@@ -124,6 +124,21 @@
                 </div>
             </div>
         </header>
+        <!-- Mobile Menu Overlay -->
+<div class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+    <!-- Bezáró gomb -->
+    <button id="menu-button" id="close-menu" class="absolute top-6 right-6 text-[#111418] dark:text-white">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    
+    <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
+    <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+        <a href="portfolio.html" class="hover:text-primary">Work</a>
+        <a href="about-me.html" class="hover:text-primary">About</a>
+        <a href="resume.html" class="hover:text-primary">Resume</a>
+        <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
+    </nav>
+</div>
         <!-- TARTALOM RÉSZ -->
         <div class="layout-container flex h-full grow flex-col">
             <!-- Itt a py-5-öt átírtam py-2-re, hogy közelebb legyen a menühöz -->
@@ -406,6 +421,32 @@
                             });
                         });
                     </script>
+                    <script>
+    // Mobil menü vezérlése
+    const menuBtn = document.getElementById('menu-button');
+    const closeBtn = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+    });
+
+    // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+    closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+    });
+    
+    // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+    });
+</script>
 </body>
 
 </html>

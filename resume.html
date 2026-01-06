@@ -119,12 +119,27 @@
                         Let's Talk
                     </a>
                     <!-- Hamburger menü ikon csak mobilra -->
-                    <button class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
+                    <button id="menu-button" class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                 </div>
             </div>
         </header>
+        <!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+    <!-- Bezáró gomb -->
+    <button id="close-menu" class="absolute top-6 right-6 text-[#111418] dark:text-white">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    
+    <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
+    <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+        <a href="portfolio.html" class="hover:text-primary">Work</a>
+        <a href="about-me.html" class="hover:text-primary">About</a>
+        <a href="resume.html" class="hover:text-primary">Resume</a>
+        <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
+    </nav>
+</div>
     </div>
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
@@ -546,6 +561,32 @@
             });
         });
     </script>
+    <script>
+    // Mobil menü vezérlése
+    const menuBtn = document.getElementById('menu-button');
+    const closeBtn = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+    });
+
+    // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+    closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+    });
+    
+    // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+    });
+</script>
 </body>
 
 </html>
