@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contact - UI Designer Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+    </style>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #9281ab;
+            border-radius: 20px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-x-hidden antialiased transition-colors duration-300 selection:bg-primary selection:text-white">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Navbar -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt a py-3-at hagyd meg, ez a fejléc magassága -->
+            <div class="mx-auto max-w-[1200px] px-4 md:px-10 flex h-16 items-center justify-between">
+                <!-- LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-300 shadow-lg shadow-primary/20 p-1.5">
+                            <!-- Ide fogja a JS beilleszteni az SVG-t -->
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- MENÜ (NAV) - ELTÁVOLÍTOTTAM A w-full-t és a py-4-et! -->
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        href="portfolio.html">Work</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        href="about-me.html">About</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        href="resume.html">Resume</a>
+                </nav>
+                <!-- 3. OSZLOP: GOMB / MOBIL MENÜ (Jobbra tapad) -->
+                <div class="flex items-center gap-4">
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-80 transition-all">
+                        Let's Talk
+                    </a>
+                    <!-- Hamburger menü ikon csak mobilra -->
+                    <button class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow flex flex-col items-center justify-start px-4 md:px-10 py-2">
+            <div class="flex flex-col w-full max-w-[1024px] gap-10">
+                <!-- Page Heading Section -->
+                <div class="flex flex-wrap justify-between gap-6 pb-6 border-b border-[#e5e7eb] dark:border-[#2a3441]">
+                    <div class="flex flex-col gap-4 max-w-2xl">
+                        <h1
+                            class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                            Let's Work Together
+                        </h1>
+                        <p class="text-[#637588] dark:text-[#94a3b8] text-lg font-normal leading-relaxed">
+                            Have a project in mind? Looking for a UI partner? Send me a message and I'll get back to you
+                            within 24 hours.
+                        </p>
+                    </div>
+                </div>
+                <!-- Two Column Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-4">
+                    <!-- Contact Form (Left/Main Column) -->
+                    <div class="lg:col-span-7 flex flex-col gap-6">
+                        <h2 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">
+                            Send a message</h2>
+                        <form class="flex flex-col gap-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                        for="name">Name</label>
+                                    <input
+                                        class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                                        id="name" placeholder="Jane Doe" type="text" />
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                        for="email">Email</label>
+                                    <input
+                                        class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                                        id="email" placeholder="jane@example.com" type="email" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                    for="subject">Subject</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none transition-all"
+                                        id="subject">
+                                        <option disabled="" selected="" value="">Select a topic</option>
+                                        <option value="project">New Project Inquiry</option>
+                                        <option value="collaboration">Collaboration</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#637588] pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                    for="message">Message</label>
+                                <textarea
+                                    class="w-full rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] p-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none transition-all"
+                                    id="message" placeholder="Tell me about your project..." rows="6"></textarea>
+                            </div>
+                            <button
+                                class="mt-2 flex w-full md:w-auto md:self-start items-center justify-center rounded-lg bg-primary transition-opacity hover:opacity-80 px-8 py-3 text-white text-sm font-bold tracking-wide transition-colors"
+                                type="button">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <!-- Contact Info (Right/Sidebar Column) -->
+                    <div
+                        class="lg:col-span-5 flex flex-col gap-8 lg:pl-8 lg:border-l lg:border-[#e5e7eb] lg:dark:border-[#2a3441]">
+                        <!-- Info Group -->
+                        <div class="flex flex-col gap-4">
+                            <h2
+                                class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">
+                                Contact Info</h2>
+                            <div class="flex flex-col gap-4">
+                                <!-- Email Item -->
+                                <a class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-[#1e293b] border border-transparent hover:border-primary/20 hover:shadow-sm transition-all"
+                                    href="mailto:hello@designer.com">
+                                    <div
+                                        class="flex items-center justify-center shrink-0 size-12 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                        <span class="material-symbols-outlined">mail</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center h-12">
+                                        <p
+                                            class="text-[#637588] dark:text-[#94a3b8] text-xs font-medium uppercase tracking-wider">
+                                            Email Me</p>
+                                        <p class="text-[#111418] dark:text-white text-base font-semibold">
+                                            foeldvary@gmail.com</p>
+                                    </div>
+                                </a>
+                                <!-- Location Item -->
+                                <div
+                                    class="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-[#1e293b] border border-transparent">
+                                    <div
+                                        class="flex items-center justify-center shrink-0 size-12 rounded-full bg-primary/10 text-primary">
+                                        <span class="material-symbols-outlined">location_on</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center h-12">
+                                        <p
+                                            class="text-[#637588] dark:text-[#94a3b8] text-xs font-medium uppercase tracking-wider">
+                                            Location</p>
+                                        <p class="text-[#111418] dark:text-white text-base font-semibold">Sopron,
+                                            HU</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Map Preview -->
+                        <div class="w-full h-48 rounded-xl overflow-hidden relative group cursor-pointer">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
+                            <div class="absolute bottom-4 left-4 z-20 text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">open_in_new</span>
+                                <span class="text-sm font-medium">View on Map</span>
+                            </div>
+                            <!-- Map Image -->
+                            <img alt="Aerial view of San Francisco city streets"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-location="San Francisco" src="img/sopron-2.jpg" />
+                        </div>
+                        <!-- Socials -->
+                        <div class="flex flex-col gap-4">
+                            <h3 class="text-[#111418] dark:text-white text-lg font-bold">Follow Me</h3>
+                            <div class="flex gap-3">
+                                <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                    href="#">
+                                    <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                                        <path
+                                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                    href="https://www.linkedin.com/in/foldvary-laszlo/">
+                                    <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                                        <path clip-rule="evenodd"
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                            fill-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                                <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                    href="#">
+                                    <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                                        <path clip-rule="evenodd"
+                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z"
+                                            fill-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer
+            class="mt-auto border-t border-[#e5e7eb] dark:border-[#2a3441] bg-white dark:bg-background-dark py-8 px-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 max-w-[1024px] mx-auto">
+                <p class="text-[#637588] dark:text-[#94a3b8] text-sm">© 2024 UI Designer Portfolio. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a class="text-[#637588] dark:text-[#94a3b8] hover:text-primary text-sm transition-colors"
+                        href="#">Privacy Policy</a>
+                    <a class="text-[#637588] dark:text-[#94a3b8] hover:text-primary text-sm transition-colors"
+                        href="#">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+ 
+    <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+
+                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

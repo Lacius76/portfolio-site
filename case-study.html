@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Odyssey: Space Exploration Game UI - Case Study</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1", 
+                        "secondary": "#a855f7",
+                        "accent": "#ec4899",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "text-main": "#0f172a",
+                        "text-muted": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white antialiased transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md">
+<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-4">
+<div class="flex size-8 items-center justify-center rounded bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-xl">sports_esports</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">PixelCrafter</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-sm font-medium text-slate-900 hover:text-primary dark:text-white dark:hover:text-primary transition-colors" href="#">Projects</a>
+<a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">About</a>
+<a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Process</a>
+<a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Contact</a>
+</nav>
+<button class="hidden sm:flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white transition-transform hover:scale-105 active:scale-95 shadow-sm shadow-indigo-500/30">
+                    Hire Me
+                </button>
+<button class="md:hidden p-2 text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<section class="relative w-full">
+<div class="flex min-h-[70vh] flex-col items-center justify-center bg-cover bg-center bg-no-repeat p-4 sm:p-10 lg:p-20 relative overflow-hidden group" style='background-image: linear-gradient(rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDx6eycgpmaz9RBsGTmVhWeZIUcwRLA1NjwYCOUpDz8UESwBR3mch_ZYVvVSAxE92RUzlnO_KsxNkyuhCHSOLYymVIK0W1KTRWttWhNzkWXQg0mbtRmB0Ovxc3OCMvL9pW9V1KhXEgkLw9PPTe7i4Ye1eqaY--vPfj_RS5QMTw_NI1E1bK4R5Jv8gc3zYXKAY85-oowVIDFltZC64cK1PxKsLaad2IGmxmw4YQqFH57gkV8cG-PoIV5UtDHCP_qvpPUX6XQAjsdKT2U");'>
+<div class="absolute inset-0 -z-10 opacity-30 mix-blend-overlay">
+<div class="h-full w-full bg-gradient-to-tr from-indigo-900 via-purple-900 to-slate-900 animate-pulse"></div>
+</div>
+<div class="relative z-10 flex max-w-4xl flex-col items-center gap-6 text-center">
+<span class="inline-flex items-center rounded-full bg-indigo-500/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-200 backdrop-blur-sm ring-1 ring-inset ring-indigo-500/40">
+                        Game UI / HUD Design
+                    </span>
+<h1 class="text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-br from-white via-indigo-100 to-indigo-300">
+                        Odyssey: Void
+                    </h1>
+<p class="max-w-2xl text-lg font-light leading-relaxed text-slate-300 sm:text-xl md:text-2xl">
+                        Designing an immersive, diegetic HUD for a sci-fi exploration game. Balancing information density with atmospheric immersion.
+                    </p>
+<div class="mt-10 flex flex-wrap justify-center gap-4">
+<button class="flex items-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-bold text-slate-900 shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 hover:bg-indigo-50">
+<span class="material-symbols-outlined filled">play_circle</span>
+                            Watch Gameplay Trailer
+                        </button>
+<button class="flex items-center gap-2 rounded-full bg-white/5 backdrop-blur-md px-8 py-4 text-sm font-bold text-white ring-1 ring-white/20 transition-colors hover:bg-white/10">
+                            View Interactive Prototype
+                        </button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
+<span class="material-symbols-outlined">keyboard_arrow_down</span>
+</div>
+</div>
+</section>
+<div class="border-b border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark sticky top-16 z-40 backdrop-blur-md bg-opacity-95">
+<div class="mx-auto flex max-w-6xl flex-col divide-y divide-slate-100 dark:divide-slate-800 sm:flex-row sm:divide-x sm:divide-y-0">
+<div class="flex flex-1 flex-col items-center p-6 text-center sm:items-start sm:text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<span class="mb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Role</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Lead UI Artist</span>
+</div>
+<div class="flex flex-1 flex-col items-center p-6 text-center sm:items-start sm:text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<span class="mb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Platform</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">PC / Console (PS5)</span>
+</div>
+<div class="flex flex-1 flex-col items-center p-6 text-center sm:items-start sm:text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<span class="mb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Tools</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Figma, Unreal Engine 5, Illustrator</span>
+</div>
+<div class="flex flex-1 flex-col items-center p-6 text-center sm:items-start sm:text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<span class="mb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Timeline</span>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">6 Months (2023)</span>
+</div>
+</div>
+</div>
+<main class="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-10 px-4 py-16 sm:px-6 lg:flex-row lg:gap-16 lg:px-8">
+<aside class="hidden lg:block lg:w-64 lg:flex-none">
+<div class="sticky top-40 space-y-8">
+<div>
+<h3 class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Mission Log</h3>
+<ul class="space-y-3 border-l-2 border-slate-100 dark:border-slate-800">
+<li><a class="block border-l-2 border-primary -ml-[2px] pl-4 text-sm font-bold text-primary" href="#brief">The Brief</a></li>
+<li><a class="block border-l-2 border-transparent pl-4 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-all" href="#ux-flow">UX &amp; Player Flow</a></li>
+<li><a class="block border-l-2 border-transparent pl-4 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-all" href="#hud-design">HUD Conception</a></li>
+<li><a class="block border-l-2 border-transparent pl-4 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-all" href="#inventory">Inventory System</a></li>
+<li><a class="block border-l-2 border-transparent pl-4 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-all" href="#motion">Motion &amp; Interaction</a></li>
+</ul>
+</div>
+<div class="rounded-xl bg-slate-50 dark:bg-slate-800/50 p-4 border border-slate-100 dark:border-slate-700/50">
+<p class="text-xs font-medium text-slate-500 mb-2">Project Status</p>
+<div class="flex items-center gap-2 mb-1">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">Released</span>
+</div>
+<p class="text-xs text-slate-400">v1.2 Patch live</p>
+</div>
+</div>
+</aside>
+<div class="flex min-w-0 flex-1 flex-col gap-20 lg:gap-32">
+<section class="space-y-8" id="brief">
+<div class="flex flex-col gap-4">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">The Brief</h2>
+<p class="text-lg leading-8 text-slate-600 dark:text-slate-300">
+                            Create a minimalistic, non-intrusive UI for "Odyssey: Void", a first-person space survival game. The primary challenge was to convey critical survival stats (Oxygen, Suit Integrity, Fuel) without cluttering the breathtaking vistas of the procedural planets. The UI needed to feel "diegetic" — as if it were projected inside the player's helmet visor.
+                        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+<div class="rounded-2xl bg-orange-50 dark:bg-orange-900/10 p-8 border border-orange-100 dark:border-orange-800/30">
+<h4 class="mb-4 flex items-center gap-3 font-bold text-orange-900 dark:text-orange-200">
+<span class="material-symbols-outlined rounded-full bg-orange-200/50 p-1 text-orange-700">warning</span> 
+                                The Problem
+                            </h4>
+<ul class="space-y-3 text-orange-900/80 dark:text-orange-100/70 text-sm list-disc list-inside">
+<li>Traditional health bars broke immersion.</li>
+<li>Complex inventory management slowed down gameplay pace.</li>
+<li>Text readability issues against bright stellar backgrounds.</li>
+</ul>
+</div>
+<div class="rounded-2xl bg-emerald-50 dark:bg-emerald-900/10 p-8 border border-emerald-100 dark:border-emerald-800/30">
+<h4 class="mb-4 flex items-center gap-3 font-bold text-emerald-900 dark:text-emerald-200">
+<span class="material-symbols-outlined rounded-full bg-emerald-200/50 p-1 text-emerald-700">check_circle</span> 
+                                The Goal
+                            </h4>
+<ul class="space-y-3 text-emerald-900/80 dark:text-emerald-100/70 text-sm list-disc list-inside">
+<li>Context-aware UI that hides when idle.</li>
+<li>Holographic visual language consistent with sci-fi lore.</li>
+<li>Accessible color schemes for critical warnings.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="space-y-10" id="ux-flow">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl mb-6">UX &amp; Player Flow</h2>
+<p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+                        Before high-fidelity design, I mapped out the player's loop: Explore → Gather → Craft → Survive. The UI needed to support quick switching between these modes. We used FigJam to plot the user journey and identified friction points in the crafting menu.
+                    </p>
+</div>
+<div class="w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-sm">
+<div class="relative aspect-[16/7] w-full rounded-lg bg-slate-50 dark:bg-slate-800 overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&amp;w=2069&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-20"></div>
+<div class="relative z-10 p-8 text-center">
+<div class="inline-flex flex-col items-center gap-4">
+<div class="flex gap-4 sm:gap-8 items-center">
+<div class="px-6 py-3 bg-white dark:bg-slate-700 rounded-lg shadow border border-slate-200 dark:border-slate-600 text-sm font-bold">Exploration HUD</div>
+<span class="material-symbols-outlined text-slate-400">arrow_forward</span>
+<div class="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-lg shadow-indigo-500/30 text-sm font-bold ring-4 ring-indigo-500/20">Quick Loot</div>
+<span class="material-symbols-outlined text-slate-400">arrow_forward</span>
+<div class="px-6 py-3 bg-white dark:bg-slate-700 rounded-lg shadow border border-slate-200 dark:border-slate-600 text-sm font-bold">Inventory Full</div>
+</div>
+<p class="mt-6 text-xs font-mono text-slate-500 uppercase tracking-widest">Simplified Interaction Flow</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
+<span class="block text-2xl font-black text-indigo-500 mb-1">01</span>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">Scan Environment</span>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
+<span class="block text-2xl font-black text-indigo-500 mb-1">02</span>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">Target Lock</span>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
+<span class="block text-2xl font-black text-indigo-500 mb-1">03</span>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">Radial Menu</span>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
+<span class="block text-2xl font-black text-indigo-500 mb-1">04</span>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">Action Confirm</span>
+</div>
+</div>
+</section>
+<section class="space-y-10" id="hud-design">
+<div class="flex flex-col gap-4">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">HUD Conception</h2>
+<p class="text-lg text-slate-600 dark:text-slate-300">
+                        From wireframes to high-fidelity mockups. The concept evolved from a traditional "flat" UI to a curved, world-space UI that mimics a helmet projection.
+                    </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 relative group cursor-zoom-in">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80" data-alt="Low fidelity wireframe of game HUD showing basic health bars" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv4fLjgxG8ieaZ61ch6fJ6C2vA_r5YqnqsYi_UNMbndM1MJTCMGyIY8BU7a6_iBXzwiQgRqNwyd4G24IL7mdYAJbhyZee_xax0pXypiKxpN6tSUwa_Jm-QtKOWrEqQ5JVkyWScfmRFtJhEG7ukK1WtC2jxXdKHLBih-vt8a0d6Pjxd4wVFa2wrYU-GkB-YB9ZHA5omGgFAtaGuyAJcpa349PINX7hzKvsWgwMQYHQKlB-wD0pvwa_h6PcaqBlFlLa40tLzWYuG5k2Q"/>
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 rounded text-xs font-bold text-white uppercase tracking-wider">Wireframe V1</div>
+</div>
+<p class="text-sm text-slate-500 italic">Initial layout focused on corner-anchored stats, which felt too generic.</p>
+</div>
+<div class="space-y-4">
+<div class="aspect-video w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 relative group cursor-zoom-in">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="High fidelity game HUD design with glowing blue holographic elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb1YO6T9B0He4XEini3S9RoM8ygr8IycYTybDjb8x6d6G5PQCKvRHM5xuPlVPmJRWf885k9bALPYpge4WAWeLKgcJ-BcQpe1StrzzaliHsrzZrvE5L1F-Pd2WajpW0KHA-xFfML7HNyPjLE-VDqZIRh0zhzEjbf1h4zz-rpD2xotn9PBKzzBLgTPD53qUM3FmnkBNxq2S6LW73XkJiAmgLt79IHGStFTcNPAuLXmVVVH08DJ1-_rD_JBmXua2e5Xju-av09uCDSs5I"/>
+<div class="absolute top-4 left-4 bg-indigo-600/80 backdrop-blur px-3 py-1 rounded text-xs font-bold text-white uppercase tracking-wider shadow-lg shadow-indigo-500/30">Final Design</div>
+</div>
+<p class="text-sm text-slate-500 italic">Curved UI elements with chromatic aberration to simulate visor projection.</p>
+</div>
+</div>
+<div class="mt-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark p-8 shadow-sm">
+<h3 class="mb-6 text-sm font-bold uppercase tracking-wider text-slate-400">Visual Language</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<p class="font-semibold text-slate-900 dark:text-white mb-2">Typography</p>
+<div class="space-y-2">
+<div class="text-4xl font-mono text-indigo-400">AG-IO</div>
+<p class="text-xs text-slate-500">Share Tech Mono - Used for data readouts</p>
+</div>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white mb-2">Palette</p>
+<div class="flex gap-2">
+<div class="h-10 w-10 rounded bg-[#00f0ff] shadow-lg shadow-[#00f0ff]/20"></div>
+<div class="h-10 w-10 rounded bg-[#ff003c] shadow-lg shadow-[#ff003c]/20"></div>
+<div class="h-10 w-10 rounded bg-[#1a1a2e] border border-white/10"></div>
+</div>
+<p class="text-xs text-slate-500 mt-2">Cyber Cyan, Alert Red, Deep Space</p>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white mb-2">Iconography</p>
+<div class="flex gap-4 text-slate-300">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="material-symbols-outlined">biotech</span>
+<span class="material-symbols-outlined">warning</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-8" id="inventory">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Inventory Management</h2>
+<span class="text-sm font-medium text-primary flex items-center gap-1 cursor-pointer hover:underline">
+<span class="material-symbols-outlined text-lg">open_in_new</span>
+                        Try Prototype
+                    </span>
+</div>
+<div class="relative w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-900 shadow-2xl">
+<div class="absolute top-0 left-0 right-0 z-20 flex justify-between p-6 opacity-0 hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/80 to-transparent">
+<div class="text-white font-mono text-sm">
+<span class="text-green-400">●</span> RECORDING: INVENTORY_TEST_04
+                        </div>
+</div>
+<div class="aspect-[21/9] w-full bg-slate-800 relative group">
+<img class="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100" data-alt="Screenshot of complex grid-based inventory system in a sci-fi game" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASTJzK_TWTER1bRHVrYGUoId3Lqs-JlA6UREMHVV9Iwo3YCyMMdoyMuUoIFgEezMVfWmQlNhb2YNYPZh93LWy93CKCvTk4dfPP6iKPNdnxlL0aeILWFePe2wYgJBm11UK590GKxiRauA5dF0QfjuMd6GQYWwhxOUxRo3nq9mmcNVRVbqaLhDF6-KYLR1walKuLObJb0IHdwYjjgBtkRFTNJDB5eIsYY0IvaRTHILqYKwgd--UiF24INV7RXFYt-PPnCgOM-R_JXqEP"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="h-16 w-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/30 text-white shadow-xl cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl filled">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 border-t border-slate-200 dark:border-slate-700">
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-slate-400 mt-1">info</span>
+<p class="text-sm text-slate-600 dark:text-slate-400 max-w-4xl">
+                            The inventory uses a grid-based system but with a twist: items have physical weight and occupy specific slots based on shape (Tetris-style). Hovering over an item expands a detail card with 3D model inspection.
+                        </p>
+</div>
+</div>
+</div>
+<div class="mt-12">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Companion App Interface</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+<div class="mx-auto w-full max-w-[260px] transform transition-transform hover:-translate-y-2 duration-300">
+<div class="rounded-[2.5rem] border-[8px] border-slate-800 bg-slate-900 shadow-xl overflow-hidden aspect-[9/19]">
+<img class="h-full w-full object-cover" data-alt="Mobile app screen showing login" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_UFuocBz47tiac19NlEXGaQOUpMzsELIzsu_n0trUaDjGpzAFcWOhzCrUmjt1WqnENGJ90yAFu09x1Lgb-tYNCj9mVoz72VNNsEJTVHZzihcP2cSucw21xDLTDkZ9dge0xvWciaX7AFuNrOO3a0Ck6YPU9QJeam5cVRSex1Jxvm12i1osRp6uSXD8YU3ThThKMO8ihwaJVZLGQTloVfrptmYH2MhEOSVuPWovztNTP8-ohj8q_pU_KUZLKqZ6YuBQmAPpyd_5xez_"/>
+</div>
+<p class="text-center mt-4 text-sm font-medium text-slate-500">Orbit Map</p>
+</div>
+<div class="mx-auto w-full max-w-[260px] transform transition-transform hover:-translate-y-2 duration-300 delay-75">
+<div class="rounded-[2.5rem] border-[8px] border-slate-800 bg-slate-900 shadow-xl overflow-hidden aspect-[9/19]">
+<img class="h-full w-full object-cover" data-alt="Mobile app screen showing transfer success state" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI6evf7jQthWx_gkISdnlaOUuvrpRBceNho5f-Sogi0XObj5RcEA7oN_SJ6JoRKswQmvc4-3qWj47ddpnwDdGy8CP_eB67RXA0YmToS1kmE3JAQqK60-Wy1IKRGK-M9qGFgiNsI_XPoEAvEY0pPIwF-4-Yp3DgUM8_TWnCvKq5fcsr2a0MRIksrPGgkrax22VWiIWd7fMNNcGr4lySIiBYbUQbmUv6msO1_41SFIcTa6zrtMXFBkB_iCVj5IZDEd3K6HeoWVcmkr4W"/>
+</div>
+<p class="text-center mt-4 text-sm font-medium text-slate-500">Inventory Sync</p>
+</div>
+<div class="mx-auto w-full max-w-[260px] transform transition-transform hover:-translate-y-2 duration-300 delay-150">
+<div class="rounded-[2.5rem] border-[8px] border-slate-800 bg-slate-900 shadow-xl overflow-hidden aspect-[9/19]">
+<img class="h-full w-full object-cover" data-alt="Mobile app screen showing user profile settings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6Oke7WzXSvnK03RB_j-WNQt9CZ5oNSEAJc--ZB4DQI-YvXK7BuNNSoAshUfzQuikyk3GhCWMcCNWVqlih1sy7q-8rgXlV0yfK2mxVRyiwfNEJIJ4BN6X4t3OJNVd_fiiO51hH61mbMs9DLlVRc43kpEdCdECbnRtLd87tULyBTBYbW9B-gDQbJSYHEB9yKg5oWgHFVMoG1tKwmNS0nim0nca894hvEwxeNokpuuMHOt1KbscBydyVQ48vXYisIQ8oAJ2NahPFbQGq"/>
+</div>
+<p class="text-center mt-4 text-sm font-medium text-slate-500">Mission Logs</p>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-8" id="motion">
+<div class="flex flex-col gap-4">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Motion &amp; Interaction</h2>
+<p class="text-lg text-slate-600 dark:text-slate-300">
+                        Micro-interactions are crucial in game UI. They provide immediate feedback. We used Adobe After Effects and Rive to prototype these animations before implementation in Unreal Engine UMG.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group rounded-2xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 p-6 transition-all hover:shadow-lg hover:border-primary/50">
+<div class="mb-4 aspect-square w-full rounded-xl bg-slate-100 dark:bg-slate-900 flex items-center justify-center overflow-hidden relative">
+<img alt="Abstract tech background" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxYUpTpMeR3BFTutiYXRxNkqzfYZ1ioEKVgV6jNmzYyDoaSOLiuz0UEvwDYQzP_bHemphUqA31PSAAMS5eK1HOWZ99POvTfsiphxtHOAEbAyCjZ5T_MU_6pawF9wz0nOk2BS3ihEh-0qdF4Z7Txq9f6rt3pJ7ogfhdIGxgO6UIKwItGQ0DfO7_n6pm-x9dloLwuk5820bvQV3clU-zRkw-ZCs1e_mTP5SOXCmcL5VGxPMH-61R01RGaufI1ZMHwZ33-Sn54IF0XNJR"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="h-12 w-12 rounded-full border-2 border-primary border-t-transparent animate-spin"></div>
+</div>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white">Scanning Effect</h4>
+<p class="text-sm text-slate-500 mt-2">Procedural scanning lines that react to object proximity.</p>
+</div>
+<div class="group rounded-2xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 p-6 transition-all hover:shadow-lg hover:border-primary/50">
+<div class="mb-4 aspect-square w-full rounded-xl bg-slate-100 dark:bg-slate-900 flex items-center justify-center overflow-hidden relative">
+<img alt="Abstract tech background" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6-Kz9jSyFDvXbeAkWE-_2EkKn2zRatE6QaPj3dKO1mm2gQOWWLBR5Nlyl3o7x4dtvyco_JZObbuKSoYQoBg67hK8eslmIlFpXSoc2JCpFhp0NY_haeqDLhWbiiQos7KQbczIvzBqFeuW6CHLHEB-xgks4ZhHA0ASpvoKc6B2Zhm2OfK3dVUuewsYOSqocHz5Yxk2R2giG-vAAQUxD9Ko2Cd6PUz12JAl48lHsLCPaZyZKzV5eJWguqD5_OXxgu0vNLpZn-eGoKs-b"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-red-500 animate-pulse">warning</span>
+</div>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white">Critical Alert</h4>
+<p class="text-sm text-slate-500 mt-2">Glitch effects and chromatic aberration increase as health drops.</p>
+</div>
+<div class="group rounded-2xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 p-6 transition-all hover:shadow-lg hover:border-primary/50">
+<div class="mb-4 aspect-square w-full rounded-xl bg-slate-100 dark:bg-slate-900 flex items-center justify-center overflow-hidden relative">
+<img alt="Abstract tech background" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEml5r0jC-RffHJJ2k1KiGQaSJYDcLpII3XVw5IZxVi-YO1_MGDGfNGbfGjPltJ8qN6cdddRLqm9ZLSs3PWS6S8sZ10zqvQyVNX_lEjFxnjBTX5R_FvZYqizGWY33HdscSmL5cptjWFduJ3WoeOLKHeGubIGYfo1OMqcHJJ84OWQ_-l_Sl6iCsdcwifYvCtOrtexVpTMcGm3P2ly4F0Fqes-wDLrQUQUfPvs7ZWoIOyvBkO9yFau0J61p2Vvf6MB2KYnqUb_igJfG8"/>
+<div class="absolute inset-0 flex items-center justify-center gap-1">
+<div class="h-8 w-2 bg-green-500 rounded-sm animate-bounce" style="animation-delay: 0s"></div>
+<div class="h-12 w-2 bg-green-500 rounded-sm animate-bounce" style="animation-delay: 0.1s"></div>
+<div class="h-6 w-2 bg-green-500 rounded-sm animate-bounce" style="animation-delay: 0.2s"></div>
+</div>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white">Voice Input</h4>
+<p class="text-sm text-slate-500 mt-2">Audio reactive visualizer for the AI companion dialogue.</p>
+</div>
+</div>
+</section>
+<section class="py-10">
+<div class="grid grid-cols-2 gap-8 rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 px-8 py-12 text-white sm:grid-cols-4 shadow-2xl relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="relative text-center z-10">
+<div class="text-4xl font-black text-indigo-400">9/10</div>
+<div class="mt-2 text-sm font-medium opacity-80">IGN UI Rating</div>
+</div>
+<div class="relative text-center z-10">
+<div class="text-4xl font-black text-indigo-400">60fps</div>
+<div class="mt-2 text-sm font-medium opacity-80">Performance Target</div>
+</div>
+<div class="relative text-center z-10">
+<div class="text-4xl font-black text-indigo-400">300+</div>
+<div class="mt-2 text-sm font-medium opacity-80">Unique Icons</div>
+</div>
+<div class="relative text-center z-10">
+<div class="text-4xl font-black text-indigo-400">2M+</div>
+<div class="mt-2 text-sm font-medium opacity-80">Players</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<hr class="border-slate-200 dark:border-slate-800"/>
+<section class="flex flex-col items-center justify-center gap-6 py-20 text-center bg-slate-50 dark:bg-slate-900/50">
+<p class="text-sm font-bold uppercase tracking-widest text-slate-500">Next Case Study</p>
+<a class="group relative flex w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl ring-1 ring-slate-200 dark:ring-slate-700" href="#">
+<div class="h-56 w-full overflow-hidden bg-slate-200 relative">
+<div class="absolute inset-0 bg-indigo-900/20 group-hover:bg-indigo-900/0 transition-colors z-10"></div>
+<img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Abstract marketing analytics dashboard concept" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA5rdtwTG12KNzOk1C20NpNO4O36N69RW4vIaAgkIK-BghduUJ5pq0VpUMcfyzoGYltgLuESVaT12_9TFGuQVRAG3bbpQOlg__NNgmF2z780aLvdsA2jgWFhNvNMOeR4NCM859NSTzjwR-lVBtZm5Z79vx5z5ABaYZ7NIGOdGvtrkShaxhiPgT3ywXZXh3WTOnBOUt1TAuVAOgbwnFnUaPy3CmDVsl6eHMio2AWY402epKoosgIyp0u6Zk6qwUp6EASuuKiiJ1XVra"/>
+</div>
+<div class="flex flex-col gap-3 p-8 text-left">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">Mobile App</span>
+<span class="text-slate-400 dark:text-slate-500 text-sm">2022</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Fantasy RPG Companion App</h3>
+<p class="text-slate-500 dark:text-slate-400">Inventory management and clan chat system for a popular MMORPG.</p>
+</div>
+</a>
+</section>
+<footer class="bg-surface-light dark:bg-surface-dark py-12 border-t border-slate-200 dark:border-slate-800">
+<div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+<div class="flex items-center justify-center gap-2 mb-4 text-slate-900 dark:text-white font-bold text-xl">
+<span class="material-symbols-outlined text-primary">sports_esports</span>
+                     PixelCrafter
+                </div>
+<div class="flex justify-center gap-8 mb-8">
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">ArtStation</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">Behance</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">Twitter</a>
+</div>
+<p class="text-sm text-slate-400">© 2023 PixelCrafter Design. All rights reserved.</p>
+</div>
+</footer>
+</div>
+</body></html>

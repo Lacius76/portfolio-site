@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About Me - UI Designer Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+
+    <!-- 1. Külső könyvtárak (CDN) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+
+
+    <!-- 3. ÖSSZEVONT Stílusok -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #9281ab;
+            border-radius: 20px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+
+        /* Masonry */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-x-hidden antialiased transition-colors duration-300 selection:bg-primary selection:text-white">
+    <div class="relative flex min-h-screen flex-col">
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Ez a belső doboz tartja a 1200px-es szélességet és teszi középre az egészet -->
+            <div class="mx-auto max-w-[1200px] px-4 md:px-10 flex h-16 items-center justify-between">
+                <!-- 1. OSZLOP: LOGÓ (Balra tapad) -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-yellow-300 shadow-lg shadow-primary/20 p-1.5">
+                            <!-- Ide fogja a JS beilleszteni az SVG-t -->
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. OSZLOP: MENÜ (Középen vagy a jobb szél felé) -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 transition-colors"
+                        href="about-me.html">About</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 transition-colors"
+                        href="resume.html">Resume</a>
+                </nav>
+                <!-- 3. OSZLOP: GOMB / MOBIL MENÜ (Jobbra tapad) -->
+                <div class="flex items-center gap-4">
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-80 transition-all">
+                        Let's Talk
+                    </a>
+                    <!-- Hamburger menü ikon csak mobilra -->
+                    <button class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+
+            </div>
+        </header>
+        <main class="flex-1">
+            <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+                        <div class="flex flex-col items-start gap-6 relative z-10">
+                            <div
+                                class="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                                <span class="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+                                Open for commissions
+                            </div>
+                            <h1
+                                class="text-5xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
+                                Crafting Immersive <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Game
+                                    UI</span> &amp; Apps
+                            </h1>
+                            <p class="max-w-xl text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                                I'm Alex, a specialized UI/UX Designer bridging the gap between functional app design
+                                and immersive game interfaces.
+                            </p>
+                            <div class="flex flex-wrap gap-4 pt-4">
+                                <button
+                                    class="h-12 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all">
+                                    View Portfolio
+                                </button>
+                                <button
+                                    class="group flex h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-base font-bold text-slate-900 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all">
+                                    <span
+                                        class="material-symbols-outlined text-[20px] group-hover:animate-bounce">download</span>
+                                    Resume
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative lg:ml-auto w-full">
+                            <div
+                                class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary/20 blur-[80px] dark:bg-primary/30 mix-blend-multiply dark:mix-blend-screen">
+                            </div>
+                            <div
+                                class="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-purple-500/20 blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen">
+                            </div>
+                            <div
+                                class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-900/10 dark:ring-white/10 lg:w-[600px] bg-slate-900 group">
+                                <div
+                                    class="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent">
+                                </div>
+                                <div class="h-full w-full bg-slate-800 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVBGb1twL9kre2QNe0x7S2LPaQzUmEQ7-VRtIjMEmcbiVkQip6ky0YpAtd2Jf2E1k3RBeXM1IerUKOxyMoRBQ4UwnrOrqsJ3oD8V_f9Ux8Kbvw0rvS6iGxgu8IKivu_2IgnYmDpGFJGFOzu5jK5Dpv1-UQF5c4gHyjCgvn301o2x038bOxuCXnvQakhDmkCx10HYYK4JclyIbT6hNFjfgLXHxb-k6BCa7UaYg13FGayAU0qcnznMZDDbylCLZdsTVqWoZqm9c6bMZ7');">
+                                </div>
+                                <div
+                                    class="absolute bottom-6 right-6 z-20 flex items-center gap-3 rounded-xl bg-white/10 p-3 backdrop-blur-md border border-white/20 shadow-xl">
+                                    <div
+                                        class="h-10 w-10 rounded-lg bg-primary flex items-center justify-center text-white">
+                                        <span class="material-symbols-outlined">sports_esports</span>
+                                    </div>
+                                    <div class="pr-2 text-white">
+                                        <div class="text-xs font-medium text-white/70">Project</div>
+                                        <div class="text-sm font-bold">Cyber HUD v2.0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="sticky top-16 z-30 border-b border-slate-200 bg-background-light/80 py-4 backdrop-blur-xl dark:border-slate-800 dark:bg-background-dark/80">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-slate-400">filter_list</span>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                Filter By</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
+                            <button
+                                class="whitespace-nowrap rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-slate-800 dark:bg-white dark:text-slate-900">
+                                All Work
+                            </button>
+                            <button
+                                class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-sm font-medium text-slate-600 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-700 transition-all">
+                                Game HUDs
+                            </button>
+                            <button
+                                class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-sm font-medium text-slate-600 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-700 transition-all">
+                                Mobile Apps
+                            </button>
+                            <button
+                                class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-sm font-medium text-slate-600 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50 hover:text-primary dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-700 transition-all">
+                                Menus &amp; Inventories
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-12 sm:py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="masonry-grid">
+                        <div class="group relative flex flex-col gap-4 row-span-2">
+                            <div
+                                class="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                <div class="absolute top-4 left-4 z-20">
+                                    <span
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">RPG
+                                        Interface</span>
+                                </div>
+                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    data-alt="Sci-fi game inventory screen with detailed stats"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzQ2gxxnuRPzOzZ-yXJEhI7Z1cWxZ4MBQFnhtf0jz55nLK1YKZYWK5igv5Mv6OmPUz8ZN0sjWfl44kqv1-6LEXLSiqJWXWe0KYqZWlrRyhnD3vH4uQItRMPeFwQfM5Ct0ZAEeGxiSu6glb8_TfixtnVZ8pA7UNNdVND1tJNVqyVXwlDvYXuJTOSWPfI6bThD0mCHeXN_bPGdgOaWDxJeG-wO-SAnHfKevZ-A8fOoBmlQmCWdrzwSLYIdTJxNwmo1frvX_S9LfOW_qQ');">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80">
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <h3 class="text-xl font-bold text-white mb-1">Neon Nexus RPG</h3>
+                                    <p class="text-sm text-slate-300 mb-4 line-clamp-2">A complete inventory management
+                                        system design for a cyberpunk RPG, featuring modular grid layouts.</p>
+                                    <button
+                                        class="flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors">
+                                        View Case Study <span
+                                            class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative flex flex-col gap-4">
+                            <div
+                                class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                <div class="absolute top-4 left-4 z-20">
+                                    <span
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Companion
+                                        App</span>
+                                </div>
+                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    data-alt="Mobile game companion app dashboard"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjtXohcUiCSmDS64AOAu_LQswoH4u1DqREsFqYz0_4Js3vplrVaaedXyG1IHsc1H19NHYe6YeNAYvO69HkObvJVNmZ6tF6woy1JhmMl8GVWLDJsaG_ImuDU7IHby_aXEjwhq20zreTDf-zWUh-bOI8JUYapDSE6J2ZY4xLgFG75BC4qyR_7pzmtexeYHLrRUgDDItknisSmM-bWZdIZJQOGbGF1qRP2-0p9a-X2tqQdbln-LrUGDks3zyPUQTZ66N_rcsKiA35fSdc');">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <h3 class="text-lg font-bold text-white">Tactical Ops Mobile</h3>
+                                    <p class="text-xs text-slate-300">UX/UI • iOS</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative flex flex-col gap-4">
+                            <div
+                                class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                <div class="absolute top-4 left-4 z-20">
+                                    <span
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">HUD
+                                        Design</span>
+                                </div>
+                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    data-alt="Futuristic heads up display design"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhIgyzVSNj27rMgtXd-yBxyWJ3QswcD4ySXneQhnNJmd6en0xk0ijxC1HQHQ2CejHXrPKUne3nPAp0G9gBin1MnGKjyU3ijlok9wMX_R4KqnABz9LtiexBzQbLbsj3tJ-wY6CfQ6yLfY9O7YP3AbIYRDFh-XzS2d4bRkFZGZpbfKGGaGz2Z-0kc-Vpajh8woz7o1cEYt1yArB48sl1HQA6hI1zb15EZyYfMJsIlNEQGOdf1kbqWpMm7KGn3cMmcE_uSq-3VS_mY_Up');">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <h3 class="text-lg font-bold text-white">Project: Aether HUD</h3>
+                                    <p class="text-xs text-slate-300">Game UI • Motion</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative flex flex-col gap-4 row-span-2">
+                            <div
+                                class="relative aspect-[9/16] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                <div class="absolute top-4 left-4 z-20">
+                                    <span
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Mobile
+                                        Game</span>
+                                </div>
+                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    data-alt="Vertical mobile game menu screen"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABmwNQYDQZ7LirjGAJjaBDKNcsABimnu7zGX7mRdIu_RrseIrM-T-DY-h_yXrvf46IlItd0T44VH4IofWkx612xmhI-ZKTd1QWPONdNBKPoX0f_c7HzOQXkoh8IZkkQQKu6twu3_tTRSEWZV7F4N9NCGTOu6AdW23UOIABtKYlfb_lOaPHJZ6AGOlqmtjAExzc3XrcvZIqQsQ8Ok48CJXPVsGOQeRoFnopPPaWRZMaEMc-8pdvHSrbmOlUkxDmqpB3BotjMGW0ttln');">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80">
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <h3 class="text-xl font-bold text-white mb-1">Cosmic Miner</h3>
+                                    <p class="text-sm text-slate-300 mb-4">Casual mobile game interface focusing on
+                                        one-handed usability and delightful micro-interactions.</p>
+                                    <button
+                                        class="flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors">
+                                        View Project <span
+                                            class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative flex flex-col gap-4">
+                            <div
+                                class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                <div class="absolute top-4 left-4 z-20">
+                                    <span
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Web
+                                        App</span>
+                                </div>
+                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    data-alt="Esports tournament platform dashboard"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9tYJKTJt43zI8RM6JhtN_CfM3Rl0pnccIXr6dYYGblaAy1M37-i5n99DTTMRVL8VXxcIJ98PmwSlfQ29g91LyaRGs8fpqf_fuyAvK094OIzQ0b0CXWbH-M92TZu2VkfW3yi-DBcHpJZ5SSE_3aFkvjUIxEab5IxcTGWsPhzHZ7Tvik-063au6I-OBdzeScwmMDdMZetqukF0ZsfJMeX5GuxnboHC-zPzWVnzcxCJHhF20Psc3F6bFtczh6DoKX_3HZImTCLfMA-8B');">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <h3 class="text-lg font-bold text-white">Esports Arena</h3>
+                                    <p class="text-xs text-slate-300">Web Dashboard • Analytics</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative flex flex-col gap-4">
+                            <div
+                                class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                <div class="absolute top-4 left-4 z-20">
+                                    <span
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Iconography</span>
+                                </div>
+                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    data-alt="Set of fantasy game skill icons"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaQygPaPXf6k0fSjJ-XmrhPv0g5CYps9H7s6yVzZORR_cqtf8Pa3yqdfqLCFJIxPqyEZ3aTLiEgEK3KSpmQIuAa53LFJLqyON_nHCT4jOPQczQKNmRmMbSL_tNjoN_cFlo9tRX4JUOTUYCE_4UvcetKzHE9Qqm_esp_tJeQggh9wMZoYC7MmblgWksFRK6ogiwPSj4fl6yAiWNQXQelveAsDxC8Ez9pST1SIO4lz6Nw4ZnKr_fl-l4vVCC3Eghx0HRiglBB_1kceXV');">
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <h3 class="text-lg font-bold text-white">Skill Icon Set</h3>
+                                    <p class="text-xs text-slate-300">Visual Design • Illustration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-16 flex justify-center">
+                        <button
+                            class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-8 py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
+                            Load More Projects
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section class="border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
+                    <div
+                        class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
+                        <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+                    </div>
+                    <h2 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6">Need a Level Up
+                        for your UI?</h2>
+                    <p class="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed">
+                        Whether it's a AAA console title, a mobile indie gem, or a complex SaaS dashboard, I bring
+                        user-centric design principles to interactive experiences.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button
+                            class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-primary/90">
+                            Start a Project
+                        </button>
+                        <button
+                            class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-8 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors">
+                            Copy Email
+                            <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="border-t border-slate-200 bg-slate-50 py-12 dark:border-slate-800 dark:bg-[#0f172a]">
+            <div
+                class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6 lg:px-8">
+                <div class="flex items-center gap-2 text-slate-900 dark:text-white">
+                    <div
+                        class="flex size-8 items-center justify-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900">
+                        <span class="material-symbols-outlined text-[18px]">gamepad</span>
+                    </div>
+                    <span class="font-bold text-lg">Alex.UI</span>
+                </div>
+                <div class="flex gap-6">
+                    <a class="text-slate-500 hover:text-primary transition-colors" href="#">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="text-slate-500 hover:text-primary transition-colors" href="#">
+                        <span class="sr-only">Dribbble</span>
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path clip-rule="evenodd"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.753 1.003-1.83 2.458-2.018 2.687-3.652 1.353-6.656 1.147-6.932 1.116a8.627 8.627 0 01-.52-3.782zm2.01 5.33c.338.03 2.853.187 5.92-1.228.329.845.8 1.95 1.157 2.825a8.601 8.601 0 01-7.078-1.597zm11.237.95c-.329-.868-.781-1.92-1.096-2.738 2.636-.25 5.253.303 5.385.335a8.62 8.62 0 01-4.29 2.403z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="text-center text-sm text-slate-500 dark:text-slate-400 sm:text-right">
+                    © 2024 Alex.UI Design. All rights reserved.
+                </div>
+            </div>
+        </footer>
+        <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+            <button
+                class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
+                    <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+                </div>
+                <span class="text-base font-bold tracking-wide">Hire Me</span>
+            </button>
+        </div>
+    </div>
+                    <script src="js/icons.js"></script>
+                    <script>
+                        window.addEventListener('DOMContentLoaded', () => {
+                            document.querySelectorAll('[data-icon]').forEach(element => {
+                                const iconName = element.getAttribute('data-icon');
+
+                                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                                    element.innerHTML = ASSETS[iconName];
+                                }
+                            });
+                        });
+                    </script>
+</body>
+
+</html>

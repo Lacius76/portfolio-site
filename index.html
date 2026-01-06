@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About Me - UI Designer Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+
+    <!-- 1. Külső könyvtárak (CDN) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+
+
+    <!-- 3. ÖSSZEVONT Stílusok -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #9281ab;
+            border-radius: 20px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+
+        /* Masonry */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-x-hidden antialiased transition-colors duration-300 selection:bg-primary selection:text-white">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- TopNavBar -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt a py-3-at hagyd meg, ez a fejléc magassága -->
+            <div class="mx-auto max-w-[1200px] px-4 md:px-10 flex h-16 items-center justify-between">
+                <!-- LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 p-1.5">
+                            <!-- Ide fogja a JS beilleszteni az SVG-t -->
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- MENÜ (NAV) - ELTÁVOLÍTOTTAM A w-full-t és a py-4-et! -->
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        href="portfolio.html">Work</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        href="about-me.html">About</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        href="resume.html">Resume</a>
+                </nav>
+                <!-- 3. OSZLOP: GOMB / MOBIL MENÜ (Jobbra tapad) -->
+                <div class="flex items-center gap-4">
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-80 transition-all">
+                        Let's Talk
+                    </a>
+                    <!-- Hamburger menü ikon csak mobilra -->
+                    <button class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+                    <!-- Hero Section -->
+                    <div class="@container py-12 md:py-24">
+                        <div class="flex flex-col-reverse gap-12 px-4 @[864px]:flex-row @[864px]:items-center">
+                            <!-- Text Content -->
+                            <div class="flex flex-col gap-6 flex-1 @[864px]:pr-12">
+                                <div class="flex flex-col gap-4 text-left">
+                                    <div
+                                        class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+                                        Available for work
+                                    </div>
+                                    <h1
+                                        class="text-[#111418] dark:text-white text-5xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-6xl lg:text-7xl">
+                                        Design that <span class="text-primary">humanizes</span> technology.
+                                    </h1>
+                                    <h2
+                                        class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed @[480px]:text-xl max-w-2xl mt-4">
+                                        Hi, I'm Földváry László. A Product Designer &amp; UI Specialist based in Sopron.
+                                        I craft clean, intuitive digital experiences that solve complex problems.
+                                    </h2>
+                                </div>
+                                <div class="flex gap-4 mt-4">
+                                    <button
+                                        class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary transition-opacity hover:opacity-80 transition-colors text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20">
+                                        <span class="truncate">View Selected Work</span>
+                                    </button>
+                                    <button
+                                        class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]">
+                                        <span class="truncate">Contact Me</span>
+                                    </button>
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 mt-8 pt-8 border-t border-gray-100 dark:border-gray-800">
+                                    <div class="flex flex-col">
+                                        <span class="text-2xl font-bold text-[#111418] dark:text-white">20+</span>
+                                        <span class="text-sm text-gray-500">Years Experience</span>
+                                    </div>
+                                    <div class="w-px h-10 bg-gray-200 dark:bg-gray-700"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-2xl font-bold text-[#111418] dark:text-white">50+</span>
+                                        <span class="text-sm text-gray-500">Projects Launched</span>
+                                    </div>
+                                    <div class="w-px h-10 bg-gray-200 dark:bg-gray-700"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-2xl font-bold text-[#111418] dark:text-white">12</span>
+                                        <span class="text-sm text-gray-500">Awards Won</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hero Image -->
+                            <div class="w-full flex-1">
+                                <div
+                                    class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
+                                    <!-- Decorative abstract pattern/image -->
+                                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                        data-alt="Abstract geometric shapes in shades of blue and white representing modern digital design"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpE489MUWbSdkt-KlJ8ngOyIhZEv0pE2ujtR4W40ss_lGl9e80oAvnkuHTxA7vxpOKRmgRCmuE1SIcZ2X2JdobO_HEgCyA0vc-GXFH4N0MCiTXin8HT-Vp_GX89LpesKDfYLjCaaqiQg5zu26ylXORUuupwBY6O51ayEngDgqRoSl1Rj_ljlyFqu5YQi_Xb749_vCN9Y31BJx9uvh8KrCbiFvgs9rPxCEzmmLB3LMveyQY6F8JrOq0iDObl04Q5ERX2f2wLk4uKfNq");'>
+                                    </div>
+                                    <!-- Floating Card 1 -->
+                                    <div
+                                        class="absolute bottom-6 left-6 right-6 md:right-auto md:w-64 p-4 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <div
+                                                class="size-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-sm">check_circle</span>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-bold text-gray-900 dark:text-white">Project
+                                                    Complete</p>
+                                                <p class="text-[10px] text-gray-500">Fintech Dashboard App</p>
+                                            </div>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+                                            <div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Selected Works Preview (Bonus Section for context) -->
+                    <div class="py-10 border-t border-gray-100 dark:border-gray-800">
+                        <div class="flex justify-between items-end mb-8 px-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#111418] dark:text-white">Selected Works</h3>
+                                <p class="text-gray-500 mt-1">A glimpse into my recent design journey</p>
+                            </div>
+                            <a class="text-primary font-medium hover:underline hidden sm:block" href="#">View all
+                                projects -&gt;</a>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+                            <!-- Project 1 -->
+                            <div class="group cursor-pointer">
+                                <div
+                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative">
+                                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                                        data-alt="Dashboard interface displaying data analytics graphs on a dark screen"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwMnIPahzoY_6jGBAxvcra_RDNgNqdksWiHOS3vWTgMWY0vO5fRL42oO8iQu60qsydHpSmVyk_6UkcoaXVgk_NySXirBHGNOLVzPaAWmz8zlT2REybJIrxFM5eOmSyNAufHvqYJuJULokNgLhrL7J_1t64yq-o8OMW1ISDYx3XhOb5d5ikFFoR4vbR5cFzGFSSCX-mwXOYpL6UfKhfuq2XxI9gYJ9STy9ir2dNp7FC1-nwitsRk2dCUREFz9dBEQTepSYmI2rmZkg8");'>
+                                    </div>
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                </div>
+                                <h4
+                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                                    FinData Analytics</h4>
+                                <p class="text-sm text-gray-500">UX Research, UI Design</p>
+                            </div>
+                            <!-- Project 2 -->
+                            <div class="group cursor-pointer">
+                                <div
+                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative">
+                                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                                        data-alt="Modern minimal e-commerce mobile application screens"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcC01h75_kJ_oGe2Vjs2Pv44jp4ZbNzB9JBgjtEHFAbmQ_Bk04coJxcGD3SNezX8OeJFJUdSY5ATEyaZjlDurF8xIiXDFwd5fZbuUbN62VUO9auOGniKcZB1cwrW2hwP1OOnAg2FSyU5daYKFrX-UYiJ9--TocYlRVjvHyVJPPSLynDRn96FV-HEjsjDgF8Lzhh3GI-xp74xmPgk_bXZCEH3oCW55MjMaM6pSyea87OTbOvMDIqv7nC2rql1vVId31X9_h0yPftOPf");'>
+                                    </div>
+                                </div>
+                                <h4
+                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                                    Lumina E-commerce</h4>
+                                <p class="text-sm text-gray-500">Mobile App, Branding</p>
+                            </div>
+                            <!-- Project 3 -->
+                            <div class="group cursor-pointer hidden lg:block">
+                                <div
+                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative">
+                                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                                        data-alt="Clean productivity web application interface with sidebar navigation"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCBVriAHTYewfRCuCu0VoB-3-JqUeONvVvut8iiCGftPtB7ezChnA7TjBQBQ3Z8DnljoFEfn0_OT5e1JIkrbRQ9omK3VsoovYIC9FytS-IhsKhZ_705geUFKM6u5QuiTna2ZoSa0Ipsd5g-zGm6E_OdwVN7XZdaaqeTFON27kbZzwn_xXFOjw7IpFgXe3kBjmt3JYX7myVh9rB-9pyQ_7DYWsLFWp7t1CnCpSoKIvPAu08igtcGqOe4LKv0nFFOZQ25zR1GP8LBXj1m");'>
+                                    </div>
+                                </div>
+                                <h4
+                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                                    TaskFlow Pro</h4>
+                                <p class="text-sm text-gray-500">SaaS Product Design</p>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center sm:hidden">
+                            <button
+                                class="w-full py-3 rounded-lg border border-gray-200 dark:border-gray-700 font-medium">View
+                                all projects</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="border-t border-[#f0f2f4] dark:border-gray-800 mt-auto bg-white dark:bg-[#101922]">
+            <div class="px-4 md:px-40 py-10 flex flex-col items-center">
+                <div class="flex flex-col gap-6 text-center max-w-[600px]">
+                    <h3 class="text-2xl font-bold text-[#111418] dark:text-white">Let's build something amazing
+                        together.</h3>
+                    <p class="text-gray-500">Open for new opportunities. Whether you have a question or just want to say
+                        hi, I'll try my best to get back to you!</p>
+                    <div class="flex flex-wrap justify-center gap-6 mt-2">
+                        <a class="group flex items-center justify-center p-3 rounded-full bg-gray-50 dark:bg-gray-800 hover:bg-primary hover:text-white transition-all text-[#617589] dark:text-gray-400"
+                            href="#">
+                            <span class="material-symbols-outlined">work</span> <!-- Approximating LinkedIn -->
+                        </a>
+                        <a class="group flex items-center justify-center p-3 rounded-full bg-gray-50 dark:bg-gray-800 hover:bg-[#ea4c89] hover:text-white transition-all text-[#617589] dark:text-gray-400"
+                            href="#">
+                            <span class="material-symbols-outlined">brush</span> <!-- Approximating Dribbble -->
+                        </a>
+                        <a class="group flex items-center justify-center p-3 rounded-full bg-gray-50 dark:bg-gray-800 hover:bg-[#1769ff] hover:text-white transition-all text-[#617589] dark:text-gray-400"
+                            href="#">
+                            <span class="material-symbols-outlined">palette</span> <!-- Approximating Behance -->
+                        </a>
+                        <a class="group flex items-center justify-center p-3 rounded-full bg-gray-50 dark:bg-gray-800 hover:bg-primary hover:text-white transition-all text-[#617589] dark:text-gray-400"
+                            href="#">
+                            <span class="material-symbols-outlined">mail</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm font-normal leading-normal mt-4">© 2024 Alex Smith. All rights
+                        reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+
+                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
