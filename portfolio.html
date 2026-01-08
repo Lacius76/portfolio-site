@@ -117,7 +117,8 @@
                         Let's Talk
                     </a>
                     <!-- Hamburger menü ikon csak mobilra -->
-                    <button id="menu-button" class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                 </div>
@@ -125,20 +126,21 @@
             </div>
         </header>
         <!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
-    <!-- Bezáró gomb -->
-    <button id="close-menu" class="absolute top-6 right-6 text-[#111418] dark:text-white">
-        <span class="material-symbols-outlined text-4xl">close</span>
-    </button>
-    
-    <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
-    <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-        <a href="portfolio.html" class="hover:text-primary">Work</a>
-        <a href="about-me.html" class="hover:text-primary">About</a>
-        <a href="resume.html" class="hover:text-primary">Resume</a>
-        <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
-    </nav>
-</div>
+        <div id="mobile-menu"
+            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <!-- Bezáró gomb -->
+            <button id="close-menu" class="absolute top-6 right-6 text-[#111418] dark:text-white">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+
+            <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
+            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="portfolio.html" class="hover:text-primary">Work</a>
+                <a href="about-me.html" class="hover:text-primary">About</a>
+                <a href="resume.html" class="hover:text-primary">Resume</a>
+                <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
+            </nav>
+        </div>
         <main class="flex-1">
             <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -184,10 +186,16 @@
                                 <div
                                     class="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent">
                                 </div>
-                              <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
-                                    <img src="img/start-portfolio.jpg" alt="László Földváry Portrait Illustration"
-                                        class="w-full h-full object-cover rounded-2xl shadow-lg grayscale-0 hover:grayscale-0 transition-all duration-500 cursor-pointer">
-                                    </div>
+                                <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
+                                    <video autoplay muted loop playsinline poster="img/start-portfolio.jpg"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
+                                        <!-- Itt add meg a videód pontos nevét -->
+                                        <source src="img/looping start.mp4" type="video/mp4">
+
+                                        <!-- Ez marad itt "tartaléknak", ha valamiért nem töltene be a videó -->
+                                        <img src="img/start-portfolio.jpg" alt="László Földváry Portrait Illustration">
+                                    </video>
+                                </div>
                                 <div
                                     class="absolute bottom-6 right-6 z-20 flex items-center gap-3 rounded-xl bg-white/10 p-3 backdrop-blur-md border border-white/20 shadow-xl">
                                     <div
@@ -459,45 +467,45 @@
             </button>
         </div>
     </div>
-                    <script src="js/icons.js"></script>
-                    <script>
-                        window.addEventListener('DOMContentLoaded', () => {
-                            document.querySelectorAll('[data-icon]').forEach(element => {
-                                const iconName = element.getAttribute('data-icon');
+    <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
 
-                                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
-                                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
-                                    element.innerHTML = ASSETS[iconName];
-                                }
-                            });
-                        });
-                    </script>
-                    <script>
-    // Mobil menü vezérlése
-    const menuBtn = document.getElementById('menu-button');
-    const closeBtn = document.getElementById('close-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
-    });
-
-    // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
-    closeBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
-    });
-    
-    // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
         });
-    });
-</script>
+    </script>
+    <script>
+        // Mobil menü vezérlése
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+        });
+
+        // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+        });
+
+        // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
 </body>
 
 </html>
