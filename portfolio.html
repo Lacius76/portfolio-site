@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en">
+<html class="dark" lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -15,7 +15,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-
+<script>
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+</script>
     <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
     <script id="tailwind-config">
         tailwind.config = {
@@ -105,9 +111,9 @@
 
                 <!-- 2. OSZLOP: MENÜ (Középen vagy a jobb szél felé) -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 transition-colors"
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
                         href="about-me.html">About</a>
-                    <a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 transition-colors"
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
                         href="resume.html">Resume</a>
                 </nav>
                 <!-- 3. OSZLOP: GOMB / MOBIL MENÜ (Jobbra tapad) -->
@@ -116,6 +122,13 @@
                         class="hidden sm:flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-80 transition-all">
                         Let's Talk
                     </a>
+                    <button id="theme-toggle"
+                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon (sötét módhoz) -->
+                        <span id="theme-toggle-dark-icon" class="hidden material-symbols-outlined">dark_mode</span>
+                        <!-- Nap ikon (világos módhoz) -->
+                        <span id="theme-toggle-light-icon" class="hidden material-symbols-outlined">light_mode</span>
+                    </button>
                     <!-- Hamburger menü ikon csak mobilra -->
                     <button id="menu-button"
                         class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
@@ -175,27 +188,33 @@
                             </div>
                         </div>
                         <div class="relative lg:ml-auto w-full">
+                            <!-- Dekorációs fények maradhatnak -->
                             <div
                                 class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary/20 blur-[80px] dark:bg-primary/30 mix-blend-multiply dark:mix-blend-screen">
                             </div>
                             <div
                                 class="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-purple-500/20 blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen">
                             </div>
-                            <div
-                                class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-900/10 dark:ring-white/10 lg:w-[600px] bg-slate-900 group">
-                                <div
-                                    class="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent">
-                                </div>
-                                <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
-                                    <video autoplay muted loop playsinline poster="img/start-portfolio.jpg"
-                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
-                                        <!-- Itt add meg a videód pontos nevét -->
-                                        <source src="img/looping start.mp4" type="video/mp4">
 
-                                        <!-- Ez marad itt "tartaléknak", ha valamiért nem töltene be a videó -->
-                                        <img src="img/start-portfolio.jpg" alt="László Földváry Portrait Illustration">
+                            <!-- EZT A RÉSZT CSERÉLD KI (Kivettem az aspect-16/10-et és a bg-slate-900-at) -->
+                            <div class="relative w-full lg:w-[600px] group">
+
+                                <!-- A VIDEÓS DOBOZUNK (Ez most már a főnök) -->
+                                <div
+                                    class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-[#101922]">
+                                    <video autoplay muted loop playsinline poster="img/start-portfolio.jpg"
+                                        class="absolute inset-0 w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105 cursor-pointer">
+                                        <source src="img/start-work.mp4" type="video/mp4">
+                                        <img src="img/start-portfolio.jpg" alt="László Földváry Portfólió">
                                     </video>
+
+                                    <!-- Átlátszó sötétítő réteg a videó felett (opcionális, ha a szöveg nem látszik) -->
+                                    <div
+                                        class="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none">
+                                    </div>
                                 </div>
+
+                                <!-- Lebegő kártya (Cyber HUD) - Ez most már a jó helyen marad -->
                                 <div
                                     class="absolute bottom-6 right-6 z-20 flex items-center gap-3 rounded-xl bg-white/10 p-3 backdrop-blur-md border border-white/20 shadow-xl">
                                     <div
@@ -432,7 +451,7 @@
                         class="flex size-8 items-center justify-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900">
                         <span class="material-symbols-outlined text-[18px]">gamepad</span>
                     </div>
-                    <span class="font-bold text-lg">Alex.UI</span>
+                    <span class="font-bold text-lg">Laszlo.UI</span>
                 </div>
                 <div class="flex gap-6">
                     <a class="text-slate-500 hover:text-primary transition-colors" href="#">
@@ -506,6 +525,7 @@
             });
         });
     </script>
+    <script src="js/theme.js"></script>
 </body>
 
 </html>
