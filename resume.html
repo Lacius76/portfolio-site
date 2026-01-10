@@ -4,17 +4,23 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>László Földváry - Resume</title>
+    <title>About Me - UI Designer Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Oswald:wght@400;500;600&amp;display=swap"
+
+    <!-- 1. Külső könyvtárak (CDN) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
     <script id="tailwind-config">
         tailwind.config = {
@@ -91,41 +97,46 @@
         <!-- Itt a py-3-at hagyd meg, ez a fejléc magassága -->
         <header
             class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-            <!-- Itt a py-3-at hagyd meg, ez a fejléc magassága -->
-            <div class="mx-auto max-w-[1200px] px-4 md:px-10 flex h-16 items-center justify-between">
-                <!-- LOGÓ -->
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. OSZLOP: LOGÓ -->
                 <div class="flex items-center gap-4">
                     <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
                         href="index.html">
                         <div data-icon="logo"
-                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-lime-400 shadow-lg shadow-primary/20 p-1.5">
-                            <!-- Ide fogja a JS beilleszteni az SVG-t -->
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-400 shadow-lg shadow-primary/20 p-1.5">
                         </div>
                         <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
                     </a>
                 </div>
 
-                <!-- MENÜ (NAV) - ELTÁVOLÍTOTTAM A w-full-t és a py-4-et! -->
-                <nav class="hidden md:flex items-center gap-9">
-                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
-                        href="portfolio.html">Work</a>
-                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
-                        href="about-me.html">About</a>
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
                 </nav>
-                <!-- 3. OSZLOP: GOMB / MOBIL MENÜ (Jobbra tapad) -->
+
+                <!-- 3. OSZLOP: GOMBOK -->
                 <div class="flex items-center gap-4">
+                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
                     <a href="contact.html"
-                        class="hidden sm:flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm dark:text-white font-bold text-white shadow-sm hover:opacity-80 transition-all">
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
                         Let's Talk
                     </a>
+                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
                     <button id="theme-toggle"
-                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
-                        <!-- Hold ikon (sötét módhoz) -->
-                        <span id="theme-toggle-dark-icon" class="hidden material-symbols-outlined">dark_mode</span>
-                        <!-- Nap ikon (világos módhoz) -->
-                        <span id="theme-toggle-light-icon" class="hidden material-symbols-outlined">light_mode</span>
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+
+                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
                     </button>
-                    <!-- Hamburger menü ikon csak mobilra -->
                     <button id="menu-button"
                         class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
                         <span class="material-symbols-outlined">menu</span>
@@ -143,7 +154,7 @@
 
             <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="portfolio.html" class="hover:text-primary">Work</a>
+                <a href="work.html" class="hover:text-primary">Work</a>
                 <a href="about-me.html" class="hover:text-primary">About</a>
                 <a href="resume.html" class="hover:text-primary">Resume</a>
                 <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
@@ -159,26 +170,37 @@
                         src="img/portrait-vektor-2.png" />
                 </div>
                 <div
-                    class="w-full bg-surface-light dark:bg-surface-dark p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
-                    <ul class="space-y-4 text-sm"dark:text-white >
+                    class="w-full bg-white dark:bg-[#1a2633] p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-800">
+                    <ul class="space-y-4 text-sm">
+                        <!-- Telefon -->
                         <li class="flex items-center gap-3">
-                            <span class="text-primary material-icons text-lg">phone</span>
-                            <span class="text-muted-light dark:text-muted-dark dark:text-white font-medium">0043 699 8184 1767</span>
+                            <span class="text-primary material-symbols-outlined text-[20px]">call</span>
+                            <span class="text-gray-600 dark:text-gray-300 font-medium">0043 699 8184 1767</span>
                         </li>
+
+                        <!-- Email -->
                         <li class="flex items-center gap-3">
-                            <span class="text-primary material-icons text-lg">email</span>
-                            <a class="text-muted-light dark:text-muted-dark dark:text-white hover:text-primary transition-colors"
+                            <span class="text-primary material-symbols-outlined text-[20px]">mail</span>
+                            <a class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium"
                                 href="mailto:foeldvary@gmail.com">foeldvary@gmail.com</a>
                         </li>
+
+                        <!-- Honlap -->
                         <li class="flex items-center gap-3">
-                            <span class="text-primary material-icons text-lg">language</span>
-                            <a class="text-muted-light dark:text-muted-dark dark:text-white hover:text-primary transition-colors underline"
+                            <span class="text-primary material-symbols-outlined text-[20px]">language</span>
+                            <a class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium underline"
                                 href="https://www.foeldvary.com" target="_blank">www.foeldvary.com</a>
                         </li>
+
+                        <!-- LinkedIn -->
                         <li class="flex items-center gap-3">
-                            <i class="fab fa-linkedin text-primary text-lg pl-0.5"></i>
-                            <a class="text-muted-light dark:text-muted-dark dark:text-white hover:text-primary transition-colors ml-1"
-                                href="#">/in/foldvary-laszlo/</a>
+                            <!-- Hozzáadtam a 'text-primary' osztályt, így sötétben és világosban is kék/lila lesz -->
+                            <svg class="size-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                            <a class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium"
+                                href="https://www.linkedin.com/in/foldvary-laszlo/">/in/foldvary-laszlo/</a>
                         </li>
                     </ul>
                 </div>
@@ -188,12 +210,13 @@
                     <h1
                         class="font-display text-4xl lg:text-5xl font-bold uppercase tracking-wide text-gray-900 dark:text-white mb-2">
                         László Földváry</h1>
-                    <h2 class="text-primary text-xl dark:text-white lg:text-2xl font-medium tracking-wider uppercase">Senior UX/UI
+                    <h2 class="text-primary text-xl dark:text-white lg:text-2xl font-medium tracking-wider uppercase">
+                        Senior UX/UI
                         Designer &amp; Visual Artist</h2>
                 </div>
                 <div class="relative pl-6 border-l-4 border-primary">
                     <div
-                        class="absolute -left-[11px] top-0 w-0 h-0 border-t-[8px] border-t-transparent border-r-[12px] border-r-primary border-b-[8px] border-b-transparent">
+                        class="absolute -left-[15px] top-0 w-0 h-0 border-t-[8px] border-t-transparent border-r-[12px] border-r-primary border-b-[8px] border-b-transparent">
                     </div>
                     <h3
                         class="bg-primary text-white font-display font-bold uppercase px-3 py-1 inline-block mb-4 text-sm dark:text-white tracking-wider">
@@ -220,11 +243,13 @@
                     <div class="space-y-6">
                         <div>
                             <h4 class="text-primary font-medium">Dtp Grafik Ausbildung</h4>
-                            <p class="text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white">Bfi Salzburg</p>
+                            <p class="text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white">Bfi
+                                Salzburg</p>
                         </div>
                         <div>
                             <h4 class="text-primary font-medium">Multimedia Design</h4>
-                            <p class="text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white">Multimedia Kolleg Innsbruck</p>
+                            <p class="text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white">
+                                Multimedia Kolleg Innsbruck</p>
                         </div>
                     </div>
                 </section>
@@ -293,10 +318,11 @@
                     <h3
                         class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
                         Sprachen</h3>
-                    <div class="space-y-3 text-sm dark:text-white" >
+                    <div class="space-y-3 text-sm dark:text-white">
                         <div class="flex justify-between">
                             <span class="font-bold">Deutsch</span>
-                            <span class="text-muted-light dark:text-muted-dark dark:text-white">Verhandlungssicher</span>
+                            <span
+                                class="text-muted-light dark:text-muted-dark dark:text-white">Verhandlungssicher</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="font-bold">Englisch</span>
@@ -315,20 +341,25 @@
                     <div class="space-y-6 relative border-l border-gray-200 dark:border-gray-700 ml-2 pl-6 pb-2">
                         <div class="relative">
                             <div
-                                class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-white dark:border-gray-800">
+                                class="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-white dark:border-gray-800">
                             </div>
                             <h4 class="text-primary font-medium">Grafik/Kunst, Abitur</h4>
-                            <div class="text-sm dark:text-white font-medium mb-1">Grafik und Kunst Gymnasium, Ion Vidu</div>
-                            <div class="text-xs text-muted-light dark:text-muted-dark dark:text-white uppercase tracking-wide mb-2">1986
+                            <div class="text-sm dark:text-white font-medium mb-1">Grafik und Kunst Gymnasium, Ion Vidu
+                            </div>
+                            <div
+                                class="text-xs text-muted-light dark:text-muted-dark dark:text-white uppercase tracking-wide mb-2">
+                                1986
                                 - 1991 • Timisoara</div>
                         </div>
                         <div class="relative">
                             <div
-                                class="absolute -left-[29px] top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-white dark:border-gray-800">
+                                class="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-white dark:border-gray-800">
                             </div>
                             <h4 class="text-primary font-medium">Berufsschule</h4>
                             <div class="text-sm dark:text-white font-medium mb-1">Berufsschule Kremsmünster</div>
-                            <div class="text-xs text-muted-light dark:text-muted-dark dark:text-white uppercase tracking-wide">1994 -
+                            <div
+                                class="text-xs text-muted-light dark:text-muted-dark dark:text-white uppercase tracking-wide">
+                                1994 -
                                 1997 • Kremsmünster</div>
                         </div>
                     </div>
@@ -342,7 +373,7 @@
                     <div class="space-y-12 border-l-2 border-primary/20 dark:border-primary/20 ml-2 pl-8 relative">
                         <div class="relative group">
                             <span
-                                class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
+                                class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
                                 <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">
                                     UI/UX-Designer</h4>
@@ -353,14 +384,18 @@
                                     <span
                                         class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2019
                                         - 2022</span>
-                                    <span class="material-icons text-sm dark:text-white mr-1">location_on</span> Eisenstadt
+                                    <span class="material-icons text-sm dark:text-white mr-1">location_on</span>
+                                    Eisenstadt
                                 </div>
                             </div>
-                            <p class="mb-3 text-muted-light dark:text-muted-dark dark:text-white italic">Verantwortlich für das
+                            <p class="mb-3 text-muted-light dark:text-muted-dark dark:text-white italic">Verantwortlich
+                                für das
                                 UI/UX-Design von WinCC OA.</p>
                             <div
                                 class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <strong class="block text-sm dark:text-white uppercase tracking-wide text-gray-500 mb-2">Erfolge &amp;
+                                <strong
+                                    class="block text-sm dark:text-white uppercase tracking-wide text-gray-500 mb-2">Erfolge
+                                    &amp;
                                     Aufgaben:</strong>
                                 <ul
                                     class="list-disc list-outside ml-4 space-y-2 text-sm dark:text-white text-gray-700 dark:text-gray-300">
@@ -374,7 +409,7 @@
                         </div>
                         <div class="relative group">
                             <span
-                                class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
+                                class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
                                 <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">UI-Designer
                                 </h4>
@@ -405,7 +440,7 @@
                         </div>
                         <div class="relative group">
                             <span
-                                class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
+                                class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
                                 <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">UI-Designer
                                 </h4>
@@ -426,7 +461,7 @@
                         </div>
                         <div class="relative group">
                             <span
-                                class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
+                                class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
                                 <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">
                                     UI/UX-Designer</h4>
@@ -440,7 +475,9 @@
                                     <span class="material-icons text-sm dark:text-white mr-1">location_on</span> Regau
                                 </div>
                             </div>
-                            <p class="mb-3 text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white">Meine Aufgabe war es, die
+                            <p
+                                class="mb-3 text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white">
+                                Meine Aufgabe war es, die
                                 Spieloberfläche, Charaktere und Animationen zu gestalten, wobei ich eng mit Entwicklern
                                 zusammenarbeitete. Ich hatte die Freiheit, jedes Thema zu wählen, da sie vollstes
                                 Vertrauen in mich hatten.</p>
@@ -455,7 +492,7 @@
                         </div>
                         <div class="relative group">
                             <span
-                                class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
+                                class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
                                 <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">UI-Designer
                                 </h4>
@@ -465,7 +502,8 @@
                                     <span
                                         class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2000
                                         - 2003</span>
-                                    <span class="material-icons text-sm dark:text-white mr-1">location_on</span> Schörfling
+                                    <span class="material-icons text-sm dark:text-white mr-1">location_on</span>
+                                    Schörfling
                                 </div>
                             </div>
                             <ul
@@ -478,28 +516,36 @@
                         </div>
                         <div class="relative group">
                             <span
-                                class="absolute -left-[36px] top-1.5 w-3.5 h-3.5 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-background-dark shadow-sm z-10"></span>
-                            <h4 class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white">Praktikum
+                                class="absolute -left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-background-dark shadow-sm z-10"></span>
+                            <h4
+                                class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white">
+                                Praktikum
                             </h4>
                             <div class="text-primary font-medium text-base">Trend Present</div>
-                            <div class="flex items-center text-xs text-muted-light dark:text-muted-dark dark:text-white mt-1 mb-2">
+                            <div
+                                class="flex items-center text-xs text-muted-light dark:text-muted-dark dark:text-white mt-1 mb-2">
                                 <span class="mr-2">1999 - 2000</span>
                                 <span class="material-icons text-xs mr-1">location_on</span> Vöcklabruck
                             </div>
-                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400">Vorbereitung von Lithografie Sieben für
+                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400">Vorbereitung von
+                                Lithografie Sieben für
                                 den Druck, Beteiligung an der Lithografie.</p>
                         </div>
                         <div class="relative group pb-4">
                             <span
-                                class="absolute -left-[36px] top-1.5 w-3.5 h-3.5 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-background-dark shadow-sm z-10"></span>
-                            <h4 class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white">Praktikum
+                                class="absolute -left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-background-dark shadow-sm z-10"></span>
+                            <h4
+                                class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white">
+                                Praktikum
                             </h4>
                             <div class="text-primary font-medium text-base">Studio Attersee</div>
-                            <div class="flex items-center text-xs text-muted-light dark:text-muted-dark dark:text-white mt-1 mb-2">
+                            <div
+                                class="flex items-center text-xs text-muted-light dark:text-muted-dark dark:text-white mt-1 mb-2">
                                 <span class="mr-2">1998 - 1999</span>
                                 <span class="material-icons text-xs mr-1">location_on</span> Vöcklabruck
                             </div>
-                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400">Vorbereitung und Einstellung der
+                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400">Vorbereitung und
+                                Einstellung der
                                 Lichtspots, Bildretusche nach den Fotoshootings.</p>
                         </div>
                     </div>
@@ -507,40 +553,74 @@
             </div>
         </div>
     </main>
-    <footer class="bg-surface-light dark:bg-surface-dark border-t border-gray-200 dark:border-gray-700 py-12 mt-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-                <div class="flex flex-col items-center md:items-start">
-                    <span class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-2">László Földváry</span>
-                    <span class="text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white">Senior UI/UX Designer</span>
+    <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-4 md:px-10">
+
+            <!-- FELSŐ RÉSZ: Nagy szöveg | Elválasztó | Elérhetőségek -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12 mb-12">
+
+                <!-- 1. Oszlop: Nagy szöveg (A "reklám" hatás) -->
+                <div class="flex-1 text-center md:text-left">
+                    <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4">Ready to start a project?
+                    </h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md">
+                        Let's create something meaningful together. I'll try my best to get back to you!
+                    </p>
                 </div>
-                <div class="flex space-x-6">
-                    <a class="text-gray-500 hover:text-primary transition-colors" href="mailto:foeldvary@gmail.com">
-                        <span class="sr-only">Email</span>
-                        <i class="fas fa-envelope text-xl dark:text-white"></i>
-                    </a>
-                    <a class="text-gray-500 hover:text-primary transition-colors" href="#">
-                        <span class="sr-only">LinkedIn</span>
-                        <i class="fab fa-linkedin text-xl dark:text-white"></i>
-                    </a>
-                    <a class="text-gray-500 hover:text-primary transition-colors" href="#">
-                        <span class="sr-only">Facebook</span>
-                        <i class="fab fa-facebook text-xl dark:text-white"></i>
-                    </a>
-                    <a class="text-gray-500 hover:text-primary transition-colors" href="https://www.foeldvary.com">
-                        <span class="sr-only">Website</span>
-                        <i class="fas fa-globe text-xl dark:text-white"></i>
-                    </a>
-                </div>
-                <div class="text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white text-center md:text-right">
-                    <p>0043 699 818 41 767</p>
-                    <p>foeldvary@gmail.com</p>
+
+                <!-- 2. Oszlop: Függőleges elválasztó (csak nagy gépen látszik) -->
+                <div class="hidden md:block w-px h-32 bg-[#f0f2f4] dark:bg-gray-800"></div>
+
+                <!-- 3. Oszlop: Kapcsolat (Tel + Email + Ikonok) -->
+                <div class="flex flex-col items-center gap-6">
+                    <!-- Telefonszám és Email -->
+                    <div class="text-center">
+                        <p class="text-xl font-bold text-[#111418] dark:text-white mb-1">+43 699 818 41 767</p>
+                        <p class="text-primary font-medium">foeldvary@gmail.com</p>
+                    </div>
+
+                    <!-- Ikonok -->
+                    <div class="flex gap-3 justify-center">
+                        <!-- LinkedIn -->
+                        <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                            href="https://www.linkedin.com/in/foldvary-laszlo/" title="LinkedIn">
+                            <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <!-- Email gomb ismétlésként vagy Facebook -->
+                        <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                            href="mailto:foeldvary@gmail.com" title="Send Email">
+                            <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </a>
+                        <!-- Website -->
+                        <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                            href="https://www.foeldvary.com" title="Website">
+                            <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <!-- ALSÓ RÉSZ: Copyright és Jogi linkek -->
             <div
-                class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-xs text-muted-light dark:text-muted-dark dark:text-white">
-                © 2023 László Földváry. All rights reserved.
+                class="pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#637588] dark:text-[#94a3b8]">
+                <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                </div>
             </div>
+
         </div>
     </footer>
     <div class="fixed top-0 left-0 w-full h-full -z-10 opacity-30 pointer-events-none overflow-hidden">
