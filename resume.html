@@ -89,8 +89,7 @@
     </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body min-h-screen transition-colors duration-300">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased transition-colors duration-300">
     <!-- Navbar -->
     <div
         class="w-full border-b border-solid border-b-[#f0f2f4] dark:border-b-[#2a3441] bg-background-light dark:bg-background-dark sticky top-0 z-50">
@@ -144,21 +143,18 @@
             </div>
         </header>
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu"
-            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
-            <!-- Bezáró gomb -->
-            <button id="close-menu" class="absolute top-6 right-6 text-[#111418] dark:text-white">
-                <span class="material-symbols-outlined text-4xl">close</span>
-            </button>
+<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+    <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
 
-            <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
-            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="work.html" class="hover:text-primary">Work</a>
-                <a href="about-me.html" class="hover:text-primary">About</a>
-
-                <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
-            </nav>
-        </div>
+    <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+        <a href="index.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
+        <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
+        <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+        <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity">Let's Talk</a>
+    </nav>
+</div>
     </div>
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">

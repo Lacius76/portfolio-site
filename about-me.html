@@ -136,8 +136,8 @@
                         <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
                     </button>
                     <button id="menu-button"
-                        class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
-                        <span class="material-symbols-outlined">menu</span>
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
                     </button>
                 </div>
             </div>
@@ -152,8 +152,9 @@
 
             <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="index.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
                 <a href="work.html" class="hover:text-primary">Work</a>
-
                 <a href="resume.html" class="hover:text-primary">Resume</a>
                 <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
             </nav>
@@ -182,14 +183,17 @@
                                     </p>
                                 </div>
                                 <div class="flex gap-4 pt-2">
-                                    <button
-                                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary transition-colors shadow-sm">
+                                    <!-- Kicseréltem button-ról a-ra, és hozzáadtam a href és download részeket -->
+                                    <a href="img/foldvary_laszlo_cv.pdf" download="foldvary_laszlo_cv.pdf"
+                                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-all shadow-sm">
                                         <span class="truncate">Download Resume</span>
-                                    </button>
-                                    <button
-                                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-background-light dark:bg-background-dark border border-[#dce0e5] dark:border-[#3e4a5b] text-[#111418] dark:text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-gray-50 dark:hover:bg-[#1a2633] transition-colors">
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-background-light dark:bg-background-dark border border-[#dce0e5] dark:border-[#3e4a5b] text-[#111418] dark:text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-gray-50 dark:hover:bg-[#1a2633] transition-colors"
+                                        title="LinkedIn">
                                         <span class="truncate">View LinkedIn</span>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <!-- Image Container -->
@@ -491,9 +495,9 @@
                                     </script>
                                     <script>
                                         // Mobil menü vezérlése
-                                        const menuBtn = document.getElementById('menu-button');
-                                        const closeBtn = document.getElementById('close-menu');
-                                        const mobileMenu = document.getElementById('mobile-menu');
+                                        const menuBtn = document.getElementById('menu-button'); // Ez keresi a hamburgert
+                                        const closeBtn = document.getElementById('close-menu'); // Ez keresi az X-et
+                                        const mobileMenu = document.getElementById('mobile-menu'); // Ez maga a menü
 
                                         // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
                                         menuBtn.addEventListener('click', () => {

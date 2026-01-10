@@ -117,14 +117,19 @@
 <a href="contact.html" class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
     Let's Talk
 </a>
-<!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
-<button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
-    <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
-    <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
-    
-    <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
-    <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
-</button>
+                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+
+                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
         </div>
     </div>
 </header>
@@ -138,7 +143,7 @@
 
             <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-
+                <a href="index.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
                 <a href="about-me.html" class="hover:text-primary">About</a>
                 <a href="resume.html" class="hover:text-primary">Resume</a>
                 <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
