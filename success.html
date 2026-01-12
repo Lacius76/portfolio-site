@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="dark" lang="en">
 
@@ -98,16 +98,154 @@
     </style>
 </head>
 
- <div class="flex flex-col w-full max-w-[1024px] gap-10">
-                <!-- Megszólitó üzenet -->
-                <div class="flex flex-wrap justify-between gap-6 pb-6 border-b border-[#e5e7eb] dark:border-[#2a3441]">
-                    <div class="flex flex-col gap-4 max-w-2xl">
-                        <h1
-                            class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
-                            Thank you for your message.
-                        </h1>
-                        <p class="text-[#637588] dark:text-[#94a3b8] text-lg font-normal leading-relaxed">
-                            I received your message and will definitely respond within 24 hours.
-                        </p>
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-x-hidden antialiased transition-colors duration-300 selection:bg-primary selection:text-white">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Navbar -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. OSZLOP: LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-grey-100 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                </nav>
+
+                <!-- 3. OSZLOP: GOMBOK -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <a href="index.html"
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        Back to Laszlo.UI
+                    </a>
+                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+
+                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <!-- Csak a bezáró gomb (X) maradjon itt! -->
+            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+
+            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="index.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
+                <a href="about-me.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+                <a href="resume.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
+
+
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <main class="flex-grow flex flex-col items-center justify-center px-4 md:px-10 py-20 min-h-[70vh]">
+            <!-- Konténer a tartalomnak -->
+            <div class="w-full max-w-2xl text-center flex flex-col gap-8 animate-in fade-in zoom-in duration-500">
+
+                <!-- Siker ikon (opcionális, de jól néz ki) -->
+                <div class="flex justify-center">
+                    <div class="size-20 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-5xl">check_circle</span>
                     </div>
                 </div>
+
+                <!-- Üzenet -->
+                <div class="flex flex-col gap-4 border-b border-[#e5e7eb] dark:border-[#2a3441] pb-10">
+                    <h1
+                        class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-tight">
+                        Thank you for reaching out!
+                    </h1>
+                    <p class="text-[#637588] dark:text-[#94a3b8] text-lg font-normal leading-relaxed">
+                        I've received your message and will get back to you within 24 hours.<br>
+                        <span class="font-bold text-[#111418] dark:text-white mt-4 block">Best regards, László Földváry</span>
+                    </p>
+                </div>
+
+                <!-- Vissza gomb (Nagyon fontos UX szempontból!) -->
+                <div class="pt-4">
+                    <a href="work.html"
+                        class="inline-flex h-12 items-center px-8 bg-primary text-white rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
+                        Explore my work
+                    </a>
+                </div>
+            </div>
+        </main>
+                <!-- inentöl jönnek a scriptek -->
+        <script src="js/icons.js"></script>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('[data-icon]').forEach(element => {
+                    const iconName = element.getAttribute('data-icon');
+
+                    // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                    if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                        element.innerHTML = ASSETS[iconName];
+                    }
+                });
+            });
+        </script>
+        <script>
+            // Mobil menü vezérlése
+            const menuBtn = document.getElementById('menu-button');
+            const closeBtn = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+            });
+
+            // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+            });
+
+            // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        </script>
+        <script src="js/theme.js"></script>
+        <script>
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        </script>
+</body>
