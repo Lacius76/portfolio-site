@@ -91,6 +91,7 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+
     <div class="relative flex min-h-screen flex-col">
         <!-- TopNavBar -->
         <header
@@ -246,9 +247,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>                           
+                            </a>
                         </div>
-                    </div>                   
+                    </div>
                     <!-- Selected Works Preview (Bonus Section for context) -->
                     <div class="py-10 border-t border-gray-100 dark:border-gray-800">
                         <div class="flex justify-between items-end mb-8 px-4">
@@ -260,52 +261,39 @@
                                 View all projects -&gt;
                             </a>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-                            <!-- Project 1 -->
-                            <div class="group cursor-pointer">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative">
-                                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                                        data-alt="Dashboard interface displaying data analytics graphs on a dark screen"
-                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwMnIPahzoY_6jGBAxvcra_RDNgNqdksWiHOS3vWTgMWY0vO5fRL42oO8iQu60qsydHpSmVyk_6UkcoaXVgk_NySXirBHGNOLVzPaAWmz8zlT2REybJIrxFM5eOmSyNAufHvqYJuJULokNgLhrL7J_1t64yq-o8OMW1ISDYx3XhOb5d5ikFFoR4vbR5cFzGFSSCX-mwXOYpL6UfKhfuq2XxI9gYJ9STy9ir2dNp7FC1-nwitsRk2dCUREFz9dBEQTepSYmI2rmZkg8");'>
-                                    </div>
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
-                                    </div>
-                                </div>
-                                <h4
-                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
-                                    FinData Analytics</h4>
-                                <p class="text-sm text-gray-500">UX Research, UI Design</p>
-                            </div>
-                            <!-- Shadow Cartels -->
-                            <div class="group cursor-pointer">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative">
-                                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                                        data-alt="Modern minimal e-commerce mobile application screens">
-                                        <img src="img/shadow-cartels/promo-1.jpg" alt="shadow-cartels-game">
-                                    </div>
-                                </div>
-                                <h4
-                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
-                                    Shadow Cartels Game</h4>
-                                <p class="text-sm text-gray-500">Mobile App, Branding</p>
-                            </div>
-                            <!-- Project 3 -->
-                            <div class="group cursor-pointer hidden lg:block">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative">
-                                    <div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                                        data-alt="Clean productivity web application interface with sidebar navigation"
-                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCBVriAHTYewfRCuCu0VoB-3-JqUeONvVvut8iiCGftPtB7ezChnA7TjBQBQ3Z8DnljoFEfn0_OT5e1JIkrbRQ9omK3VsoovYIC9FytS-IhsKhZ_705geUFKM6u5QuiTna2ZoSa0Ipsd5g-zGm6E_OdwVN7XZdaaqeTFON27kbZzwn_xXFOjw7IpFgXe3kBjmt3JYX7myVh9rB-9pyQ_7DYWsLFWp7t1CnCpSoKIvPAu08igtcGqOe4LKv0nFFOZQ25zR1GP8LBXj1m");'>
-                                    </div>
-                                </div>
-                                <h4
-                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
-                                    TaskFlow Pro</h4>
-                                <p class="text-sm text-gray-500">SaaS Product Design</p>
-                            </div>
-                        </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+    
+    <!-- 1. Projekt: Shadow Cartels -->
+    <a href="case-study-shadow-cartels.html" class="group block cursor-pointer">
+        <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
+            <img src="img/shadow-cartels/shadow-game.jpg" alt="Game UI Design" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+        </div>
+        <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">Shadow Cartels</h4>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Lead Game UI & Interaction</p>
+    </a>
+
+    <!-- 2. Projekt: Amatic / Casino -->
+    <a href="work.html#casino" class="group block cursor-pointer">
+        <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
+            <img src="img/pharao/pharao-game.jpg" alt="Casino Slot Design" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+        </div>
+        <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">Premium Slot Games</h4>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Visual Design & UI Art</p>
+    </a>
+
+    <!-- 3. Projekt: Siemens / Industrial -->
+    <a href="work.html#industrial" class="group block cursor-pointer">
+        <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
+            <img src="img/siemens/wincc-screen.jpg" alt="Industrial HMI Design" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+        </div>
+        <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">Industrial SCADA & Dashboard Design</h4>
+        <p class="text-sm text-gray-500 dark:text-gray-400">WinCC OA Technical UI & Custom Icon System</p>
+    </a>
+
+</div>
                         <!--div class="mt-8 text-center sm:hidden">
                             <button
                                 class="w-full py-3 rounded-lg border border-gray-200 dark:border-gray-700 font-medium" href="work.html">
