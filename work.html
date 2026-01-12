@@ -92,31 +92,38 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
     <div class="relative flex min-h-screen flex-col">
-<header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-    <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
-    <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-        
-        <!-- 1. OSZLOP: LOGÓ -->
-        <div class="flex items-center gap-4">
-            <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80" href="index.html">
-                <div data-icon="logo" class="flex size-9 items-center justify-center rounded-xl bg-primary text-green-500 shadow-lg shadow-primary/20 p-1.5"></div>
-                <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
-            </a>
-        </div>
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
 
-        <!-- 2. OSZLOP: MENÜ -->
-        <nav class="hidden md:flex items-center gap-8">
+                <!-- 1. OSZLOP: LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-green-500 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
 
-            <a href="about-me.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
-            <a href="resume.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
-        </nav>
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
 
-        <!-- 3. OSZLOP: GOMBOK -->
-        <div class="flex items-center gap-4">
-            <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
-<a href="contact.html" class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
-    Let's Talk
-</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                </nav>
+
+                <!-- 3. OSZLOP: GOMBOK -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        Let's Talk
+                    </a>
                     <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
@@ -130,9 +137,9 @@
                         class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
                         <span class="material-symbols-outlined text-[28px]">menu</span>
                     </button>
-        </div>
-    </div>
-</header>
+                </div>
+            </div>
+        </header>
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu"
             class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
@@ -143,18 +150,21 @@
 
             <!-- Linkek (Nagy méretben, hogy mobilon könnyű legyen rányomni) -->
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="index.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
+                <a href="index.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
                 <a href="about-me.html" class="hover:text-primary">About</a>
                 <a href="resume.html" class="hover:text-primary">Resume</a>
                 <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
             </nav>
         </div>
-        
+
         <main class="flex-1">
+            <!-- EZ AZ ELSÖ SKECIÓM VEZÉR CÍM VIDEÓ ÉS BUTTON -->
             <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
                         <div class="flex flex-col items-start gap-6 relative z-10">
+                            <!-- VEZÉR CÍM SZALAG -->
                             <div
                                 class="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
                                 <span class="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
@@ -170,6 +180,7 @@
                                 I'm Laszlo, a specialized UI/UX Designer bridging the gap between functional app design
                                 and immersive game interfaces.
                             </p>
+                            <!-- A 2 BUTTON PORTFOLIO & RESUME -->
                             <div class="flex flex-wrap gap-4 pt-4">
                                 <button
                                     class="h-12 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all">
@@ -177,7 +188,8 @@
                                 </button>
                                 <a href="img/foldvary_laszlo_cv.pdf" download="foldvary_laszlo_cv.pdf"
                                     class="group flex h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-base font-bold text-slate-900 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all">
-                                    <span class="truncate" Download Resume material-symbols-outlined text-[20px] group-hover:animate-bounce >Resume</span>
+                                    <span class="truncate" Download Resume material-symbols-outlined text-[20px]
+                                        group-hover:animate-bounce>Resume</span>
                                 </a>
                             </div>
                         </div>
@@ -189,11 +201,9 @@
                             <div
                                 class="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-purple-500/20 blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen">
                             </div>
-
-                            <!-- EZT A RÉSZT CSERÉLD KI (Kivettem az aspect-16/10-et és a bg-slate-900-at) -->
+                            <!-- EZ A VIDEO -->
                             <div class="relative w-full lg:w-[600px] group">
-
-                                <!-- A VIDEÓS DOBOZUNK (Ez most már a főnök) -->
+                                <!-- A VIDEÓS DOBOZUNK -->
                                 <div
                                     class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-[#101922]">
                                     <video autoplay muted loop playsinline poster="img/start-portfolio.jpg"
@@ -207,8 +217,7 @@
                                         class="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none">
                                     </div>
                                 </div>
-
-                                <!-- Lebegő kártya (Cyber HUD) - Ez most már a jó helyen marad -->
+                                <!-- Lebegő kártya (Cyber HUD) -->
                                 <div
                                     class="absolute bottom-6 right-6 z-20 flex items-center gap-3 rounded-xl bg-white/10 p-3 backdrop-blur-md border border-white/20 shadow-xl">
                                     <div
@@ -224,8 +233,15 @@
                         </div>
                     </div>
                 </div>
+                <!-- Scroll Indicator -->
+                <div class="flex justify-center py-10 h-1 animate-bounce">
+                    <a href="#projects" class="text-gray-400 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-4xl">keyboard_double_arrow_down</span>
+                    </a>
+                </div>
             </section>
-            <section
+            <!-- Ez egy filter és projektek menü Nekem még nem Aktuális -->
+            <!--section
                 class="sticky top-16 z-30 border-b border-slate-200 bg-background-light/80 py-4 backdrop-blur-xl dark:border-slate-800 dark:bg-background-dark/80">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -254,11 +270,11 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section-->
             <section class="py-12 sm:py-20">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="masonry-grid">
-                        
+
                         <!-- Siemens WinCC-OA -->
                         <div class="group relative flex flex-col gap-4 row-span-2">
                             <div
@@ -274,7 +290,7 @@
                                 </div>
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80">
-                                </div>                               
+                                </div>
                                 <div
                                     class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                                     <h3 class="text-xl font-bold text-white mb-1">WinCC OA Registry</h3>
@@ -294,7 +310,8 @@
                                 class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                                 <div class="absolute top-4 left-4 z-20">
                                     <span
-                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Shadow Cartels
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Shadow
+                                        Cartels
                                         App</span>
                                 </div>
                                 <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -322,7 +339,7 @@
                                 </div>
                                 <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                     data-alt="Futuristic heads up display design">
-                                     <img src="img/bugsn-bees/bugs-promo.jpg" alt="bugs'n-bees">
+                                    <img src="img/bugsn-bees/bugs-promo.jpg" alt="bugs'n-bees">
                                 </div>
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -370,11 +387,12 @@
                                 class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                                 <div class="absolute top-4 left-4 z-20">
                                     <span
-                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Cabinet Game</span>
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Cabinet
+                                        Game</span>
                                 </div>
                                 <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                     data-alt="Esports tournament platform dashboard">
-                                     <img src="img/pharao/pharo-promo.jpg" alt="pharao game">
+                                    <img src="img/pharao/pharo-promo.jpg" alt="pharao game">
                                 </div>
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -443,6 +461,7 @@
                 </div>
             </section>
         </main>
+        
         <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
             <div class="max-w-[1200px] mx-auto px-4 md:px-10">
 
@@ -524,6 +543,8 @@
             </button>
         </div>
     </div>
+
+    <!-- INNEN KEZDÖDNEK A SKRIPTEK -->
     <script src="js/icons.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {

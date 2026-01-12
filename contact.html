@@ -102,24 +102,31 @@
     class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-x-hidden antialiased transition-colors duration-300 selection:bg-primary selection:text-white">
     <div class="relative flex min-h-screen flex-col">
         <!-- Navbar -->
-<header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-    <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
-    <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-        
-        <!-- 1. OSZLOP: LOGÓ -->
-        <div class="flex items-center gap-4">
-            <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80" href="index.html">
-                <div data-icon="logo" class="flex size-9 items-center justify-center rounded-xl bg-primary text-yellow-400 shadow-lg shadow-primary/20 p-1.5"></div>
-                <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
-            </a>
-        </div>
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
 
-        <!-- 2. OSZLOP: MENÜ -->
-        <nav class="hidden md:flex items-center gap-8">
-            <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
-            <a href="about-me.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
-            <a href="resume.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
-        </nav>
+                <!-- 1. OSZLOP: LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-yellow-400 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                </nav>
 
                 <!-- 3. OSZLOP: GOMBOK -->
                 <div class="flex items-center gap-4">
@@ -153,18 +160,21 @@
             </button>
 
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="index.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
+                <a href="index.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
                 <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
-                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
-                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
+                <a href="about-me.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+                <a href="resume.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
 
-    
+
             </nav>
         </div>
         <!-- Main Content -->
         <main class="flex-grow flex flex-col items-center justify-start px-4 md:px-10 py-2">
             <div class="flex flex-col w-full max-w-[1024px] gap-10">
-                <!-- Page Heading Section -->
+                <!-- Megszólitó üzenet -->
                 <div class="flex flex-wrap justify-between gap-6 pb-6 border-b border-[#e5e7eb] dark:border-[#2a3441]">
                     <div class="flex flex-col gap-4 max-w-2xl">
                         <h1
@@ -183,54 +193,62 @@
                     <div class="lg:col-span-7 flex flex-col gap-6">
                         <h2 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">
                             Send a message</h2>
- <form name="contact" method="POST" data-netlify="true" class="flex flex-col gap-5">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="flex flex-col gap-2">
-            <label class="text-[#111418] dark:text-white text-sm font-medium" for="name">Name</label>
-            <input
-                name="name" 
-                class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                id="name" placeholder="Jane Doe" type="text" required />
-        </div>
-        <div class="flex flex-col gap-2">
-            <label class="text-[#111418] dark:text-white text-sm font-medium" for="email">Email</label>
-            <input
-                name="email" 
-                class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                id="email" placeholder="jane@example.com" type="email" required />
-        </div>
-    </div>
-    <div class="flex flex-col gap-2">
-        <label class="text-[#111418] dark:text-white text-sm font-medium" for="subject">Subject</label>
-        <div class="relative">
-            <select
-                name="subject" 
-                class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none transition-all"
-                id="subject">
-                <option disabled="" selected="" value="">Select a topic</option>
-                <option value="project">New Project Inquiry</option>
-                <option value="collaboration">Collaboration</option>
-                <option value="other">Other</option>
-                <option value="feedback">Feedback</option>
-            </select>
-            <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#637588] pointer-events-none">expand_more</span>
-        </div>
-    </div>
-    <div class="flex flex-col gap-2">
-        <label class="text-[#111418] dark:text-white text-sm font-medium" for="message">Message</label>
-        <textarea
-            name="message" 
-            class="w-full rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] p-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none transition-all"
-            id="message" placeholder="Tell me about your project..." rows="6" required></textarea>
-    </div>
-    <button
-        class="mt-2 mb-5 flex w-full md:w-auto md:self-start items-center justify-center rounded-lg bg-primary transition-opacity hover:opacity-80 px-8 py-3 text-white text-sm font-bold tracking-wide transition-colors"
-        type="submit">
-        Send Message
-    </button>
-</form>
+                        <form name="contact" method="POST" data-netlify="true" class="flex flex-col gap-5">
+                            <!-- EZ A REJTETT MEZŐ: -->
+                            <input type="hidden" name="form-name" value="contact" />
+                            <!-- Adat kitöltés cím, név, stb -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                        for="name">Name</label>
+                                    <input name="name"
+                                        class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                                        id="name" placeholder="Jane Doe" type="text" required />
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                        for="email">Email</label>
+                                    <input name="email"
+                                        class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                                        id="email" placeholder="jane@example.com" type="email" required />
+                                </div>
+                            </div>
+                            <!-- Ez a dropdown, hogy milyen ügben -->
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                    for="subject">Subject</label>
+                                <div class="relative">
+                                    <select name="subject"
+                                        class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none transition-all"
+                                        id="subject">
+                                        <option disabled="" selected="" value="">Select a topic</option>
+                                        <option value="project">New Project Inquiry</option>
+                                        <option value="collaboration">Collaboration</option>
+                                        <option value="other">Other</option>
+                                        <option value="feedback">Feedback</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#637588] pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            <!-- Ez a szöveg mezö -->
+                            <div class="flex flex-col gap-2">
+                                <label class="text-[#111418] dark:text-white text-sm font-medium"
+                                    for="message">Message</label>
+                                <textarea name="message"
+                                    class="w-full rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] p-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none transition-all"
+                                    id="message" placeholder="Tell me about your project..." rows="6"
+                                    required></textarea>
+                            </div>
+                            <!-- Küld gomb -->
+                            <button
+                                class="mt-2 mb-5 flex w-full md:w-auto md:self-start items-center justify-center rounded-lg bg-primary transition-opacity hover:opacity-80 px-8 py-3 text-white text-sm font-bold tracking-wide transition-colors"
+                                type="submit">
+                                Send Message
+                            </button>
+                        </form>
                     </div>
-                    <!-- Contact Info (Right/Sidebar Column) -->           
+                    <!-- Contact Info (Right/Sidebar Column) -->
                     <div
                         class="lg:col-span-5 flex flex-col gap-8 lg:pl-8 lg:border-l lg:border-[#e5e7eb] lg:dark:border-[#2a3441]">
                         <!-- Info Group -->
@@ -288,6 +306,7 @@
                 </div>
             </div>
         </main>
+
         <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
             <div class="max-w-[1200px] mx-auto px-4 md:px-10">
 
@@ -360,6 +379,7 @@
             </div>
         </footer>
 
+        <!-- inentöl jönnek a scriptek -->
         <script src="js/icons.js"></script>
         <script>
             window.addEventListener('DOMContentLoaded', () => {
