@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Shadow Cartels: AI-Driven Noir Strategy | Laszlo.UI</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background-dark": "#0a0f14",
+                        "noir-card": "#12181f",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel { background: rgba(18, 24, 31, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .text-glow { text-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+        .noir-gradient { background: linear-gradient(to bottom, transparent, #0a0f14); }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-300 antialiased selection:bg-primary selection:text-white">
+
+    <div class="relative flex min-h-screen flex-col">
+        <!-- HEADER -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. OSZLOP: LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                </nav>
+
+                <!-- 3. OSZLOP: GOMBOK -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        Let's Talk
+                    </a>
+                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO: SHADOW CARTELS -->
+            <section class="relative pt-20 pb-32 overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <video poster="img/shadow-cartels-hero.jpg" class="w-full h-full object-cover opacity-30" autoplay muted loop playsinline>
+                        <source src="/assets/shadow-cartels-ui-preview.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 noir-gradient"></div>
+                </div>
+
+                <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
+                    <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4">Case Study</h2>
+                    <h1 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter">Shadow Cartels</h1>
+                    <p class="max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed text-slate-400">
+                        How I co-created an <span class="text-white">AI-driven noir strategy interface</span> that balances complex data with 1930s cinematic atmosphere.
+                    </p>
+                </div>
+            </section>
+
+            <!-- EXECUTIVE SUMMARY (A Build infók alapján) -->
+            <section class="max-w-[1200px] mx-auto px-6 -mt-20 relative z-20">
+                <div class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-3 gap-12">
+                    <div class="md:col-span-2 space-y-6">
+                        <h3 class="text-2xl font-bold text-white">Project Vision</h3>
+                        <p class="leading-relaxed">
+                            Shadow Cartels is a browser-based strategy game where the player manages a criminal empire in a procedural Noir world. My goal was to design a system capable of handling <span class="text-primary font-semibold">massive procedural events</span> without letting the 1930s aesthetic (Art Deco/Noir) overshadow critical gameplay data.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <span class="px-4 py-2 rounded-xl bg-white/5 text-xs font-semibold text-slate-300 border border-white/10">UI/UX Leadership</span>
+                            <span class="px-4 py-2 rounded-xl bg-white/5 text-xs font-semibold text-slate-300 border border-white/10">AI Co-Creation</span>
+                            <span class="px-4 py-2 rounded-xl bg-white/5 text-xs font-semibold text-slate-300 border border-white/10">Data Visualization</span>
+                            <span class="px-4 py-2 rounded-xl bg-white/5 text-xs font-semibold text-slate-300 border border-white/10">Atomic Design</span>
+                        </div>
+                    </div>
+                    <div class="space-y-6 border-l border-white/5 pl-8">
+                        <div>
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Key Tech</p>
+                            <p class="text-sm text-white">Gemini AI, SVG Data-Map, Tailwind</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Core Challenge</p>
+                            <p class="text-sm text-white">Zero-latency feedback for procedural events.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DEEP DIVE SECTIONS -->
+            <div class="max-w-[1200px] mx-auto px-6 py-32 space-y-32">
+
+                <!-- 1. TECHNICAL COMPLEXITY -->
+                <section class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined">map</span>
+                        </div>
+                        <h2 class="text-4xl font-bold text-white">Live Data Visualization:<br><span class="text-primary">The Procedural Map</span></h2>
+                        <p>The map isn't a static asset—it's a <span class="text-white">Living Data Structure</span>. Every district is a unique SVG object tied to a real-time graph of neighbors, ownership, and police presence.</p>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex gap-3"><span class="text-primary font-bold">//</span> Zero-latency updates for procedural events like Police Raids.</li>
+                            <li class="flex gap-3"><span class="text-primary font-bold">//</span> Dynamic SVG layers that respond to Gemini AI-generated world events.</li>
+                        </ul>
+                    </div>
+                    <div class="glass-panel rounded-3xl p-4">
+                        <img src="img/shadow-cartels/shadow-game.jpg" alt="SVG Map Data Logic" class="rounded-2xl w-full">
+                    </div>
+                </section>
+<!-- THE DESIGNER'S JOURNEY: FROM NOSTALGIA TO INNOVATION -->
+<section class="max-w-[1200px] mx-auto px-6 py-24 border-t border-white/5">
+    <div class="grid lg:grid-cols-5 gap-16">
+        
+        <!-- BAL OSZLOP: A SZEMÉLYES SZÁL -->
+        <div class="lg:col-span-2 space-y-6">
+            <h3 class="text-primary font-bold tracking-widest uppercase text-xs">The Origin Story</h3>
+            <h2 class="text-3xl font-bold text-white leading-tight">From Mac OS 8.6 <br>to AI-Co-Creation</h2>
+            <p class="text-slate-400 leading-relaxed">
+                Everything started 20 years ago. I remember playing a Risk-style game on my first iMac running Mac OS 8.6. That atmosphere never left me. 
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+                As a designer with 20+ years of experience in game UI, I’ve always followed others' visions. The <strong>Google AI Studio Build</strong> gave me the first chance to realize my own fantasy—testing how far a designer with <em>zero coding knowledge</em> can push the boundaries of product development today.
+            </p>
+        </div>
+
+        <!-- JOBB OSZLOP: TANULSÁGOK ÉS KIHÍVÁSOK -->
+        <div class="lg:col-span-3 grid sm:grid-cols-2 gap-8">
+            
+            <!-- Technikai tanulság -->
+            <div class="glass-panel p-6 rounded-2xl space-y-3">
+                <span class="material-symbols-outlined text-primary">psychology_alt</span>
+                <h4 class="text-white font-bold text-sm uppercase">Technical Evolution</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Megtanultam a határokat: az SVG kódok Base64 konvertálásától kezdve az AI "crash" elkerüléséig. Megértettem, hogyan kell egy komplex <code>assets.ts</code> struktúrát felépíteni, hogy a logika és a vizualitás ne lassítsa le az AI modellt.
+                </p>
+            </div>
+
+            <!-- Kompromisszumok -->
+            <div class="glass-panel p-6 rounded-2xl space-y-3 border-rose-500/20">
+                <span class="material-symbols-outlined text-rose-400">warning</span>
+                <h4 class="text-white font-bold text-sm uppercase">Constraints & Pivots</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    A projekt mérete próbára tette az ingyenes AI modellek kapacitását. Bár a mobil böngészős optimalizálás még várat magára, minden akadály egy újabb lecke volt a rendszerarchitektúráról és a prioritások kezeléséről.
+                </p>
+            </div>
+
+            <!-- Jövőkép -->
+            <div class="glass-panel p-6 rounded-2xl space-y-3 border-emerald-500/20">
+                <span class="material-symbols-outlined text-emerald-400">rocket_launch</span>
+                <h4 class="text-white font-bold text-sm uppercase">The Roadmap</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    A jövőben Rive animációkkal, valódi dobókocka-fizikával és világkörüli térképekkel (Chicagótól Budapestig) bővítem a projektet. A végső cél: egy teljes értékű Android/iOS natív App Store megjelenés.
+                </p>
+            </div>
+
+            <!-- UI/UX szemlélet -->
+            <div class="glass-panel p-6 rounded-2xl space-y-3 border-amber-500/20">
+                <span class="material-symbols-outlined text-amber-400">design_services</span>
+                <h4 class="text-white font-bold text-sm uppercase">Pure Creative Freedom</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Végre én választhattam témát, hangulatot és játékmenetet. Ez a projekt nem csak kódolásról szólt, hanem arról, hogyan válik a design a technológia hajtóerejévé.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+                <!-- 2. ATOMIC DESIGN -->
+                <section class="bg-noir-card border border-white/5 rounded-[3rem] p-12 overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
+                        <span class="text-[15rem] font-black leading-none">AI</span>
+                    </div>
+                    <div class="relative z-10 space-y-12">
+                        <div class="max-w-2xl">
+                            <h2 class="text-4xl font-bold text-white mb-4">Atomic Noir Architecture</h2>
+                            <p>To ensure scalability, I built a modular UI library based on the Atomic Design methodology. This allowed us to iterate with AI in record time.</p>
+                        </div>
+                        <div class="grid sm:grid-cols-3 gap-8 text-center">
+                            <div class="space-y-3">
+                                <div class="h-1 bg-primary w-12 mx-auto"></div>
+                                <h4 class="font-bold text-white uppercase tracking-tighter">Atoms</h4>
+                                <p class="text-xs text-slate-500">Custom Typography (Cinzel/Oswald), Rank Icons, Noir Cursors.</p>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="h-1 bg-primary/60 w-12 mx-auto"></div>
+                                <h4 class="font-bold text-white uppercase tracking-tighter">Molecules</h4>
+                                <p class="text-xs text-slate-500">Interactive Boss Cards, Dynamic Unit Counters.</p>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="h-1 bg-primary/30 w-12 mx-auto"></div>
+                                <h4 class="font-bold text-white uppercase tracking-tighter">Organisms</h4>
+                                <p class="text-xs text-slate-500">The HUD & Financial Dashboards, Real-time Market Data.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+<!-- CASE STUDY: DINAMIKUS TÉRKÉP RENDSZER -->
+<section class="mx-auto max-w-[1200px] px-6 py-20">
+    <div class="grid lg:grid-cols-12 gap-16 items-center">
+        <!-- Szöveges magyarázat (Technikai fókusz) -->
+        <div class="lg:col-span-5 space-y-6">
+            <h3 class="text-primary font-bold uppercase tracking-widest text-sm italic">Feature Focus</h3>
+            <h2 class="text-4xl font-black text-slate-900 dark:text-white leading-tight">
+                Procedural <br>Vector Mapping
+            </h2>
+            <p class="text-slate-500 leading-relaxed">
+                The core challenge was to create a map that acts as a <strong>living data dashboard</strong>. Instead of static textures, I developed a system where districts are unique SVG objects tied to a real-time data graph.
+            </p>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary">analytics</span>
+                    <p class="text-sm">Real-time status updates: territorial changes are reflected instantly through dynamic SVG fills.</p>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary">data_object</span>
+                    <p class="text-sm">Modular Data Structure: Using a custom <code>assets.ts</code> to manage hundreds of district coordinates without performance drops.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Média: Itt a videó vagy illusztráció a térképről -->
+        <div class="lg:col-span-7 bg-slate-100 dark:bg-white/5 rounded-3xl p-4 border border-slate-200 dark:border-white/10">
+            <div class="overflow-hidden rounded-2xl shadow-2xl bg-black aspect-video relative group">
+                <!-- Videó helyőrző -->
+                <video poster="img/shadow-cartels/shadow-game.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" autoplay muted loop>
+                    <source src="assets/map-demo.mp4" type="video/mp4">
+                </video>
+                <!-- Technikai "Overlay" - Ettől tűnik profinak -->
+                <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur px-3 py-1 rounded text-[10px] font-mono text-primary border border-primary/30 uppercase tracking-tighter">
+                    SVG_Layer_V1.2 // Live_Data_Active
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CASE STUDY: KOGNITÍV TERHELÉS CSÖKKENTÉSE -->
+<section class="mx-auto max-w-[1200px] px-6 py-20 border-t border-slate-100 dark:border-white/5">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+        
+        <!-- BAL OSZLOP: ILLUSZTRÁCIÓ (Pl. a fázis-függő UI-ról) -->
+        <div class="order-2 lg:order-1 bg-slate-100 dark:bg-white/5 rounded-3xl p-6 border border-slate-200 dark:border-white/10">
+            <div class="space-y-4">
+                <!-- Itt mutathatod be pl. az újság modalt vagy a gombokat, amik csak akkor jelennek meg, ha kell -->
+                <div class="glass-panel p-4 rounded-xl border-l-4 border-primary">
+                    <p class="text-[10px] uppercase font-bold text-primary mb-1">Contextual State: Reinforce</p>
+                    <div class="flex gap-2">
+                        <div class="h-8 w-24 bg-primary/20 rounded-md"></div>
+                        <div class="h-8 w-8 bg-primary/20 rounded-md"></div>
+                    </div>
+                </div>
+                <div class="glass-panel p-4 rounded-xl opacity-30">
+                    <p class="text-[10px] uppercase font-bold text-slate-500 mb-1">Inactive Phase: Combat</p>
+                    <div class="flex gap-2">
+                        <div class="h-8 w-24 bg-slate-500/20 rounded-md"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-6 text-xs text-slate-500 italic text-center uppercase tracking-widest">
+                UI elements only appear during relevant gameplay phases.
+            </p>
+        </div>
+
+        <!-- JOBB OSZLOP: SZAKMAI MAGYARÁZAT -->
+        <div class="order-1 lg:order-2 space-y-6">
+            <h2 class="text-4xl font-black text-slate-900 dark:text-white leading-tight">
+                Fighting <span class="text-primary italic">Information Overload</span>
+            </h2>
+            <p class="text-slate-500 leading-relaxed">
+                Strategy games are notoriously data-heavy. My approach was to implement <strong>Context-Aware UX</strong>, ensuring that the interface is never noisier than necessary.
+            </p>
+            <div class="space-y-6">
+                <!-- Pont 1 -->
+                <div class="flex gap-4">
+                    <span class="material-symbols-outlined text-primary">visibility_off</span>
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Phase-Locked Interaction</h4>
+                        <p class="text-sm text-slate-500">Buttons and sliders for unit management only reveal themselves during reinforcement phases, keeping the tactical view clean.</p>
+                    </div>
+                </div>
+                <!-- Pont 2 -->
+                <div class="flex gap-4">
+                    <span class="material-symbols-outlined text-primary">newspaper</span>
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Narrative Data Feedback</h4>
+                        <p class="text-sm text-slate-500">Instead of raw spreadsheets, AI-generated "Newspaper" alerts provide vital tactical feedback through immersive storytelling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CASE STUDY: AI-ASSISTED WORKFLOW - A jövő munkafolyamata -->
+<section class="mx-auto max-w-[1200px] px-6 py-24 bg-primary/[0.02] border-y border-white/5">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">The Future of Design</h3>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+            AI as a Co-Creator:<br>Accelerated Architecture
+        </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
+        
+        <!-- BAL OLDAL: TECHNIKAI KIHÍVÁSOK (PROXIMITY TO CODE) -->
+        <div class="space-y-8">
+            <div class="space-y-4">
+                <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">terminal</span>
+                    Managing Complexity
+                </h4>
+                <p class="text-slate-500 leading-relaxed">
+                    Working without a traditional developer meant I had to bridge the gap between design and logic. This journey was a deep-dive into <strong>Design-to-Code architecture</strong>.
+                </p>
+            </div>
+
+            <!-- Technikai kártyák -->
+            <div class="space-y-4">
+                <!-- Data Structure -->
+                <div class="p-6 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary">Data Structure Optimization</h5>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">
+                        Learned to manage scale by separating SVG coordinates into dedicated <code>assets.ts</code> files, avoiding AI memory overload and ensuring rapid rendering of procedural elements.
+                    </p>
+                </div>
+                <!-- Base64 Logic -->
+                <div class="p-6 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary">Dynamic Assets Injection</h5>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">
+                        Mastered <strong>Base64 vector embedding</strong> and dynamic asset injection, enabling a truly portable single-page experience without traditional server-side dependencies.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JOBB OLDAL: EREDMÉNYEK ÉS FILOZÓFIA -->
+        <div class="flex flex-col justify-center space-y-10">
+            <div class="space-y-6">
+                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug">
+                    "From idea to interactive product in record time—leveraging AI to break technical barriers."
+                </h4>
+                <div class="h-1 w-20 bg-primary"></div>
+                <p class="text-lg text-slate-500 italic leading-relaxed">
+                    By acting as a "Director" for the AI, I was able to focus on <strong>strategic UX decisions</strong> and <strong>high-fidelity storytelling</strong> while the AI handled the boilerplate structure of the system. 
+                </p>
+            </div>
+            
+            <!-- Mérőszám / Eredmény vizuálisan -->
+            <div class="grid grid-cols-2 gap-6">
+                <div class="p-4 border-l-2 border-primary">
+                    <span class="block text-3xl font-black text-slate-900 dark:text-white">3X</span>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Faster Prototyping</span>
+                </div>
+                <div class="p-4 border-l-2 border-primary">
+                    <span class="block text-3xl font-black text-slate-900 dark:text-white">Zero</span>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Coding Foundation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CASE STUDY: AI-ASSISTED WORKFLOW - Frissítve a Mobil HUD és Deployment infókkal -->
+<section class="mx-auto max-w-[1200px] px-6 py-24 bg-primary/[0.02] border-y border-white/5">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">Development & Strategy</h3>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight text-balance">
+            Technical Ownership:<br>From Vision to Global Deployment
+        </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
+        
+        <!-- BAL OLDAL: MOBIL ADAPTÁCIÓ & ASSETS -->
+        <div class="space-y-8 text-center md:text-left">
+            <div class="space-y-4">
+                <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2">
+                    <span class="material-symbols-outlined text-primary">smartphone</span>
+                    Mobile HUD Re-Engineering
+                </h4>
+                <p class="text-slate-500 leading-relaxed">
+                    Adapting a data-heavy RTS for mobile wasn't just about scaling—it was about <strong>radical reconstruction</strong>. I had to rethink the entire HUD architecture to ensure the gameplay remains "digestible" on smaller touch screens while maintaining technical depth.
+                </p>
+            </div>
+
+            <!-- Technikai kártyák -->
+            <div class="space-y-4 text-left">
+                <div class="p-6 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic">Architecture: assets.ts</h5>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">
+                        By mastering <code>Base64</code> embedding and offloading data to an <code>assets.ts</code>, I optimized the AI workflow to handle massive vector loads without performance degradation.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JOBB OLDAL: DEPLOYMENT & PORTFOLIO TRANSFORMATION -->
+        <div class="flex flex-col justify-center space-y-10">
+            <div class="space-y-6 text-center md:text-left">
+                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug italic">
+                    "Stepping out of the 'Wix prison' into the world of professional deployment."
+                </h4>
+                <div class="h-1 w-20 bg-primary mx-auto md:mx-0"></div>
+                <p class="text-lg text-slate-500 leading-relaxed">
+                    This project was a turning point. I learned to bridge the gap between design and production by mastering a professional workflow: **GitHub** version control and **Netlify** automated deployment.
+                </p>
+                <p class="text-sm text-slate-500 border-l-2 border-primary pl-4">
+                    This technical awakening allowed me to leave limited "no-code" builders behind and create this very portfolio—pixel-perfect, high-performance, and fully owned by me.
+                </p>
+            </div>
+            
+            <!-- Új vizuális eredmény -->
+            <div class="flex justify-center md:justify-start gap-8">
+                <div class="text-center">
+                    <span class="material-symbols-outlined text-3xl text-primary">git_merge</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-400 mt-1">Version Control</span>
+                </div>
+                <div class="text-center">
+                    <span class="material-symbols-outlined text-3xl text-primary">cloud_done</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-400 mt-1">Global Hosting</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</section>
+                <!-- 4. FUTURE OF WORK -->
+                <section class="text-center space-y-8 py-20 border-y border-white/5">
+                    <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-sm">Product Owner Insights</h3>
+                    <h2 class="text-4xl md:text-5xl font-black text-white">AI as a Design Partner</h2>
+                    <p class="max-w-3xl mx-auto text-lg leading-relaxed">
+                        This project proved that a <span class="text-white">Senior Designer using AI as a "Co-pilot"</span> can handle the workload of an entire product team. From logic structures to narrative-driven UX, the synergy allowed for rapid prototyping and technical depth that would normally take months—completed in record time.
+                    </p>
+                    <div class="flex justify-center pt-8">
+                        <div class="px-8 py-4 bg-primary/10 border border-primary/30 rounded-2xl flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                            <p class="text-sm font-bold text-white tracking-tight">Rapid Prototyping: 3x Acceleration achieved.</p>
+                        </div>
+                    </div>
+                </section>
+<!-- ... Előtte van a Product Owner Insights szekció ... -->
+
+<!-- LESSONS FROM THE NOIR - Keret nélkül, hogy ne legyen dupla vonal -->
+<section class="mx-auto max-w-[1200px] px-6 py-24 text-center">
+    <div class="max-w-2xl mx-auto space-y-8">
+        <h2 class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic">Lessons from the Noir.</h2>
+        <div class="h-1 w-12 bg-primary mx-auto"></div>
+        <p class="text-lg text-slate-500 leading-relaxed italic">
+            Shadow Cartels proved that 20 years of UI experience, combined with AI, creates a new kind of "Technical Artist." A professional who doesn't just design buttons, but builds functional, scalable ecosystems. This journey from Mac OS 8.6 nostalgia to a modern GitHub-deployed product is just the beginning.
+        </p>
+        
+        <div class="pt-8">
+            <a href="work.html" class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all group">
+                <span class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+                Back to All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+</footer>
+
+            </div>
+        </main>
+        <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-24 mt-auto">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
+
+                <!-- 1. Nagy szöveg az Indexen -->
+                <div class="mb-12">
+                    <h3 class="text-4xl md:text-4xl font-black text-[#111418] dark:text-white mb-6">Ready to start a
+                        project?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                        Let's create something meaningful together. I'm always open to new opportunities and interesting
+                        challenges.
+                    </p>
+                </div>
+
+                <!-- 2. Elérhetőségek nagyban -->
+                <div class="mb-12">
+                    <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
+                    <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+                </div>
+
+                <!-- 2. KÖZÉPSŐ RÉSZ: Social Media Ikonok (Kör alakú gomb hatás) -->
+                <div class="flex gap-5 mb-16">
+                    <!-- LinkedIn -->
+                    <!-- Email -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="mailto:foeldvary@gmail.com">
+                        <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="https://www.linkedin.com/in/foldvary-laszlo/">
+                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                            <path clip-rule="evenodd"
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <!-- Facebook -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="#">
+                        <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                            </path>
+                        </svg>
+                    </a>
+                    <!-- Website -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="https://www.foeldvary.com">
+                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                            <path clip-rule="evenodd"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- 4. Alsó sor (Ugyanaz, mint a többi oldalon) -->
+                <div
+                    class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
+                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <div class="flex gap-8">
+                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+
+                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+    <script>
+        // Mobil menü vezérlése
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+        });
+
+        // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+        });
+
+        // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

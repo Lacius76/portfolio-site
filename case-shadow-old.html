@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About Me - UI Designer Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+
+    <!-- 1. Külső könyvtárak (CDN) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+
+
+    <!-- 3. ÖSSZEVONT Stílusok -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #9281ab;
+            border-radius: 20px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+
+        /* Masonry */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+    <div class="relative flex min-h-screen flex-col">
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. OSZLOP: LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                </nav>
+
+                <!-- 3. OSZLOP: GOMBOK -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        Let's Talk
+                    </a>
+                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <!-- Cselekvéscsomag 1: Portfólió Oldal Kidolgozása - Fő Tartalom Kezdete -->
+        <!-- Cselekvéscsomag 1: Portfólió Oldal Kidolgozása - Fő Tartalom Kezdete -->
+        <main class="text-white bg-dark-bg transition-colors duration-500 min-h-screen">
+            <!-- Hero Szekció - Alapul a beküldött kód (a project címet és szövegeket módosítva) -->
+            <section class="relative w-full overflow-hidden min-h-[70vh] flex items-center justify-center pt-24 pb-16">
+
+                <!-- Háttér Média: Javaslat MP4 videóra (vagy helyettesítő képre) a fókuszos designért -->
+                <div class="absolute inset-0 z-0 bg-dark-bg">
+                    <!-- Videó opció a brief alapján (4:3 MP4, object-cover) -->
+                    <video poster="img/shadow-cartels/shadow-game.jpg"
+                        class="object-cover w-full h-full opacity-30 group-hover:opacity-40 transition-opacity duration-500"
+                        playsinline loop muted autoplay>
+                        <source src="/assets/shadow-cartels-ui-preview.mp4" type="video/mp4">
+                    </video>
+                    <!-- Árnyékoló overlay gradient: Tailwind class a beküldött kódból adaptálva -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80 mix-blend-multiply">
+                    </div>
+                </div>
+
+                <!-- Hero Tartalom (text + CTA gombok) -->
+                <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-4 sm:px-6">
+                    <h1
+                        class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-indigo-100 to-indigo-300">
+                        Shadow Cartels <span
+                            class="block text-xl sm:text-3xl font-light pt-2 text-indigo-400">System-Centric Game UI/UX
+                            Design</span>
+                    </h1>
+                    <p class="max-w-2xl text-lg font-light leading-relaxed text-slate-300 sm:text-xl md:text-2xl pt-2">
+                        As lead UI/UX designer for this complex Real-Time Strategy (RTS) game, my goal was to design a
+                        robust
+                        and scalable UI system that supports deep gameplay mechanics without overwhelming the user.
+                    </p>
+                    <div class="mt-8 flex flex-wrap justify-center gap-4">
+                        <a href="/prototype/shadowcartels"
+                            class="flex items-center gap-3 rounded-full bg-indigo-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 hover:bg-indigo-700">
+                            <svg data-icon="play-circle" class="w-5 h-5 fill-current"></svg>
+                            View Interactive Prototype
+                        </a>
+                        <a href="#about-this-project"
+                            class="flex items-center gap-2 rounded-full bg-white/5 backdrop-blur-md px-8 py-4 text-sm font-bold text-white ring-1 ring-white/20 transition-colors hover:bg-white/10">
+                            About this Project
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gördülj le indikátor -->
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
+                    <svg data-icon="chevron-down" class="w-6 h-6 fill-current"></svg>
+                </div>
+            </section>
+            <div id="project-info-bar"
+                class="border-b border-gray-700 dark:border-slate-800 bg-gray-900/90 dark:bg-[#101922]/90 sticky top-16 z-40 backdrop-blur-md">
+                <!-- Projekt Szerep Cím Sáv -->
+                <div
+                    class="mx-auto flex max-w-[1200px] flex-col divide-y divide-gray-700/50 dark:divide-slate-800 sm:flex-row sm:divide-x sm:divide-y-0">
+                    <!-- Adatpont 1: Szerepkör -->
+                    <div
+                        class="flex flex-1 flex-col items-center p-6 text-center transition-colors hover:bg-white/5 dark:hover:bg-indigo-600/10">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-indigo-400 dark:text-indigo-400">Role</span>
+                        <span class="text-sm font-semibold text-white">Lead Game UI & Product Designer</span>
+                    </div>
+                    <!-- Adatpont 2: Platform -->
+                    <div
+                        class="flex flex-1 flex-col items-center p-6 text-center transition-colors hover:bg-white/5 dark:hover:bg-indigo-600/10">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-indigo-400 dark:text-indigo-400">Platform</span>
+                        <span class="text-sm font-semibold text-white">PC / Multiplatform</span>
+                    </div>
+                    <!-- Adatpont 3: Eszközök -->
+                    <div
+                        class="flex flex-1 flex-col items-center p-6 text-center transition-colors hover:bg-white/5 dark:hover:bg-indigo-600/10">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-indigo-400 dark:text-indigo-400">Tools</span>
+                        <span class="text-sm font-semibold text-white">Figma, AI Workflow, Cavalry</span>
+                    </div>
+                    <!-- Adatpont 4: Idővonal -->
+                    <div
+                        class="flex flex-1 flex-col items-center p-6 text-center transition-colors hover:bg-white/5 dark:hover:bg-indigo-600/10">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-indigo-400 dark:text-indigo-400">Timeline</span>
+                        <span class="text-sm font-semibold text-white">2020 - 2023</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Folytatás a "Kihívás-Megoldás-Eredmények" struktúrával a fenti Hero alá -->
+            <div id="about-this-project" class="max-w-[1200px] mx-auto pt-16 md:pt-24 px-4 sm:px-6 lg:px-8 space-y-16">
+                <section class="space-y-8">
+                    <section class="space-y-8">
+                        <h2
+                            class="text-3xl sm:text-4xl font-extrabold border-b border-indigo-500/50 pb-2 text-white/90">
+                            The Challenge: Scalable Complexity</h2>
+
+                        <p class="text-gray-400 text-lg">
+                            Shadow Cartels is a data-driven strategy game. The main design challenge was displaying
+                            hundreds
+                            of real-time events (e.g., unit movements, economic data, interactive map information)
+                            simultaneously
+                            without overloading the user interface. Reducing interaction latency and cognitive load were
+                            key priorities.
+                        </p>
+
+                        <div class="space-y-6 md:space-y-0 md:flex md:space-x-8">
+                            <div class="p-6 bg-[#18232c] rounded-lg shadow-xl md:w-1/2">
+                                <h4 class="text-xl font-semibold text-indigo-400">Systemic Design Thinking</h4>
+                                <p class="mt-2 text-gray-400 text-sm">
+                                    Scalability was solved by creating an atomic component-based UI Kit. Establishing
+                                    the core
+                                    principles of the design system (utilizing experience from industrial SCADA systems
+                                    like WinCC OA)
+                                    was crucial for consistency and rapid prototyping. This allowed for multiple
+                                    iterations in parallel
+                                    with evolving game mechanics.
+                                </p>
+                            </div>
+                            <div class="p-6 bg-[#18232c] rounded-lg shadow-xl md:w-1/2">
+                                <h4 class="text-xl font-semibold text-indigo-400">AI-Augmented Workflow</h4>
+                                <p class="mt-2 text-gray-400 text-sm">
+                                    We integrated "human in the loop" AI tools into the workflow to speed up prototyping
+                                    of
+                                    complex dashboards and maps, as well as generate visual options. AI-assisted testing
+                                    helped validate
+                                    various visual hierarchies, dramatically shortening the iteration cycle.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Kiemelt Projektdetail: Interaktív Vektortérképészet -->
+                    <section class="space-y-8">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold border-b border-rose-500/50 pb-2 text-white/90">
+                            Key Module: Dynamic Map Data Visualization</h2>
+
+                        <figure class="rounded-lg overflow-hidden border border-gray-700">
+                            <!-- Media embed: 4:3 MP4 video based on brief. Use your specific file. -->
+                            <video poster="/assets/shadow-cartels-thumbnail.jpg" class="object-cover w-full h-auto"
+                                playsinline loop muted autoplay>
+                                <source src="/assets/shadow-cartels-ui-preview.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <figcaption class="text-center text-xs text-gray-500 pt-2 pb-0">Dynamic vector map rendering
+                                prototype. <span class="text-rose-400">M:V:M Ratio</span>
+                                (Movement:Visualization:Mastery Ratio) analysis.</figcaption>
+                        </figure>
+
+                        <div class="space-y-4">
+                            <p class="text-gray-400 text-lg">
+                                The core of the game revolves around a custom, procedurally generated vector-based map
+                                displaying hundreds of moving elements. Instead of a static background image, we built
+                                interactive layers where the user must rapidly recognize critical information (e.g.,
+                                resource shortages, enemy movements, territorial tensions).
+                            </p>
+                            <ul class="space-y-2 text-gray-400 ml-4 list-disc marker:text-rose-400">
+                                <li><strong class="text-white">Layer-based Scaling:</strong> Maps composed of separate
+                                    SVGs were dynamically scaled and filtered based on the data selected by the user.
+                                </li>
+                                <li><strong class="text-white">Visual Hierarchy:</strong> Using `data-visualization`
+                                    principles, we distinguished between static background elements and dynamic,
+                                    action-requiring data to minimize information overload.</li>
+                                <li><strong class="text-white">Performance-First Prototypes:</strong> In-engine
+                                    prototypes (built with the `data-icon` and Tailwind CSS technical foundation you
+                                    use) helped validate technical feasibility in parallel with visual design
+                                    development.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- A Főbb Eredmények & Következtetés -->
+                    <section class="space-y-8 pb-16">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold border-b border-rose-500/50 pb-2 text-white/90">
+                            Results and Lessons Learned</h2>
+                        <p class="text-gray-400 text-lg">
+                            This methodology and systems-based approach enabled the Shadow Cartels UI to be both
+                            functionally complex and user-friendly for its target audience. Interactive prototypes
+                            provided fast and effective feedback loops. Thanks to the scalable design system,
+                            integrating future content and features proved highly efficient.
+                        </p>
+                    </section>
+            </div>
+        </main>
+        <!-- Cselekvéscsomag 1: Portfólió Oldal Kidolgozása - Fő Tartalom Vége -->
+        <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10">
+
+                <!-- FELSŐ RÉSZ: Nagy szöveg | Elválasztó | Elérhetőségek -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-12 mb-12">
+
+                    <!-- 1. Oszlop: Nagy szöveg (A "reklám" hatás) -->
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4">Ready to start a project?
+                        </h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md">
+                            Let's create something meaningful together. I'll try my best to get back to you!
+                        </p>
+                    </div>
+
+                    <!-- 2. Oszlop: Függőleges elválasztó (csak nagy gépen látszik) -->
+                    <div class="hidden md:block w-px h-32 bg-[#f0f2f4] dark:bg-gray-800"></div>
+
+                    <!-- 3. Oszlop: Kapcsolat (Tel + Email + Ikonok) -->
+                    <div class="flex flex-col items-center gap-6">
+                        <!-- Telefonszám és Email -->
+                        <div class="text-center">
+                            <p class="text-xl font-bold text-[#111418] dark:text-white mb-1">+43 699 818 41 767</p>
+                            <p class="text-primary font-medium">foeldvary@gmail.com</p>
+                        </div>
+
+                        <!-- Ikonok -->
+                        <div class="flex gap-3 justify-center">
+                            <!-- LinkedIn -->
+                            <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                href="https://www.linkedin.com/in/foldvary-laszlo/" title="LinkedIn">
+                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                </svg>
+                            </a>
+                            <!-- Email gomb ismétlésként vagy Facebook -->
+                            <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                href="mailto:foeldvary@gmail.com" title="Send Email">
+                                <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                            <!-- Website -->
+                            <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                href="https://www.foeldvary.com" title="Website">
+                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALSÓ RÉSZ: Copyright és Jogi linkek -->
+                <div
+                    class="pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#637588] dark:text-[#94a3b8]">
+                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+
+                    <div class="flex gap-6">
+                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+
+                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+    <script>
+        // Mobil menü vezérlése
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+        });
+
+        // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+        });
+
+        // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+    <script src="js/theme.js"></script>
+</body>

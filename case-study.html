@@ -1,19 +1,28 @@
 <!DOCTYPE html>
+
 <html class="dark" lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Odyssey: Space Exploration Game UI - Case Study</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+    <title>About Me - UI Designer Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+
+    <!-- 1. Külső könyvtárak (CDN) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -21,25 +30,28 @@
                 extend: {
                     colors: {
                         "primary": "#6366f1",
-                        "secondary": "#a855f7",
-                        "accent": "#ec4899",
-                        "background-light": "#f8fafc",
-                        "background-dark": "#0f172a",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#1e293b",
-                        "text-main": "#0f172a",
-                        "text-muted": "#64748b",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101922",
                     },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"],
-                        "body": ["Noto Sans", "sans-serif"],
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
                 },
             },
         }
     </script>
+
+
+    <!-- 3. ÖSSZEVONT Stílusok -->
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -49,53 +61,84 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background-color: #9281ab;
+            border-radius: 20px;
         }
 
         .dark ::-webkit-scrollbar-thumb {
-            background: #334155;
+            background-color: #334155;
         }
 
-        html {
-            scroll-behavior: smooth;
+        /* Masonry */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white antialiased transition-colors duration-200">
-    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+    <div class="relative flex min-h-screen flex-col">
         <header
-            class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md">
-            <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. OSZLOP: LOGÓ -->
                 <div class="flex items-center gap-4">
-                    <div class="flex size-8 items-center justify-center rounded bg-primary/10 text-primary">
-                        <span class="material-symbols-outlined text-xl">sports_esports</span>
-                    </div>
-                    <h2 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">PixelCrafter</h2>
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
                 </div>
-                <nav class="hidden md:flex flex-1 justify-center gap-8">
-                    <a class="text-sm font-medium text-slate-900 hover:text-primary dark:text-white dark:hover:text-primary transition-colors"
-                        href="#">Projects</a>
-                    <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-                        href="#">About</a>
-                    <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-                        href="#">Process</a>
-                    <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-                        href="#">Contact</a>
+
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
                 </nav>
-                <button
-                    class="hidden sm:flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white transition-transform hover:scale-105 active:scale-95 shadow-sm shadow-indigo-500/30">
-                    Hire Me
-                </button>
-                <button class="md:hidden p-2 text-slate-900 dark:text-white">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
+
+                <!-- 3. OSZLOP: GOMBOK -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        Let's Talk
+                    </a>
+                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
+                </div>
             </div>
         </header>
         <section class="relative w-full">
@@ -637,6 +680,46 @@
             </div>
         </footer>
     </div>
+        <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+
+                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+    <script>
+        // Mobil menü vezérlése
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+        });
+
+        // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+        });
+
+        // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+    <script src="js/theme.js"></script>
 </body>
 
 </html>
