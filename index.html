@@ -8,7 +8,7 @@
     <meta name="google-site-verification" content="google9366f63f30fd7097" />
     <title>About Me - UI Designer Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
-   
+
     <!-- 1. Külső könyvtárak (CDN) -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
@@ -92,7 +92,6 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
-
     <div class="relative flex min-h-screen flex-col">
         <!-- TopNavBar -->
         <header
@@ -162,164 +161,173 @@
                     Talk</a>
             </nav>
         </div>
-        <!-- Main Content -->
-        <div class="layout-container flex h-full grow flex-col">
-            <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
-                <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
-                    <!-- Hero Section -->
-                    <div class="@container py-12 md:py-24">
-                        <div class="flex flex-col-reverse gap-12 px-4 @[864px]:flex-row @[864px]:items-center">
-                            <!-- Text Content -->
-                            <div class="flex flex-col gap-6 flex-1 @[1200px]:pr-12">
-                                <div class="flex flex-col gap-4 text-left">
-                                    <div
-                                        class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2">
-                                        Available for work
-                                    </div>
-                                    <h1
-                                        class="text-[#111418] dark:text-white text-5xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-6xl lg:text-7xl">
-                                        Design that <span class="text-primary">humanizes</span> technology.
-                                    </h1>
-                                    <h2
-                                        class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed @[480px]:text-xl max-w-2xl mt-4">
-                                        Hi, I'm Földváry László. A Product Designer &amp; UI Specialist based in Sopron.
-                                        I craft clean, intuitive digital experiences that solve complex problems.
-                                    </h2>
-                                </div>
-                                <div class="flex gap-4 mt-4">
-                                    <a class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary transition-opacity hover:opacity-80 transition-colors text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20"
-                                        href="work.html" class="truncate">View Selected Work
-                                    </a>
-
-                                    <a class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]"
-                                        href="contact.html" class="truncate">Contact Me
-
-                                    </a>
-                                </div>
-                                <!--Expirience Banner-->
-                                <div
-                                    class="flex items-center gap-6 mt-8 pt-8 border-t border-gray-100 dark:border-gray-800">
-                                    <div class="flex flex-col">
-                                        <span class="text-2xl font-bold text-[#111418] dark:text-white">20+</span>
-                                        <span class="text-sm text-gray-500">Years Experience</span>
-                                    </div>
-                                    <div class="w-px h-10 bg-gray-200 dark:bg-gray-700"></div>
-                                    <div class="flex flex-col">
-                                        <span class="text-2xl font-bold text-[#111418] dark:text-white">50+</span>
-                                        <span class="text-sm text-gray-500">Projects Launched</span>
-                                    </div>
-                                    <div class="w-px h-10 bg-gray-200 dark:bg-gray-700"></div>
-                                    <div class="flex flex-col">
-                                        <span class="text-2xl font-bold text-[#111418] dark:text-white">12</span>
-                                        <span class="text-sm text-gray-500">Awards Won</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Hero Image Video -->
-                            <a href="work.html" class="w-full flex-1">
-                                <div
-                                    class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
-                                    <!-- Decorative abstract pattern/image -->
-                                    <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
-                                        <video autoplay muted loop playsinline poster="img/start.jpg"
-                                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
-                                            <!-- Itt a videód -->
-                                            <source src="img/start-loop.mp4" type="video/mp4">
-                                            <!-- Ez marad itt "tartaléknak", ha valamiért nem töltene be a videó -->
-                                            <img src="img/start.jpg" alt="László Földváry Portrait Illustration">
-                                        </video>
-                                    </div>
-                                    <!-- Floating Card 1 -->
-                                    <div
-                                        class="absolute bottom-6 left-6 right-6 md:right-auto md:w-64 p-4 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20">
-                                        <div class="flex items-center gap-3 mb-2">
-                                            <div
-                                                class="size-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                                                <span class="material-symbols-outlined text-sm">check_circle</span>
-                                            </div>
-                                            <div>
-                                                <p class="text-xs font-bold text-gray-900 dark:text-white">Project
-                                                    Complete</p>
-                                                <p class="text-[10px] text-gray-500">Develop.UI Dashboard App</p>
-                                            </div>
+        <main class="flex-col">
+            <!-- Main Content -->
+            <div class="layout-container flex h-full grow flex-col">
+                <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+                    <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+                        <!-- Hero Section -->
+                        <div class="@container py-12 md:py-24">
+                            <div class="flex flex-col-reverse gap-12 px-4 @[864px]:flex-row @[864px]:items-center">
+                                <!-- Text Content -->
+                                <div class="flex flex-col gap-6 flex-1 @[1200px]:pr-12">
+                                    <div class="flex flex-col gap-4 text-left">
+                                        <div
+                                            class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+                                            Available for work
                                         </div>
-                                        <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-                                            <div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+                                        <h1
+                                            class="text-[#111418] dark:text-white text-5xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-6xl lg:text-7xl">
+                                            Design that <span class="text-primary">humanizes</span> technology.
+                                        </h1>
+                                        <h2
+                                            class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed @[480px]:text-xl max-w-2xl mt-4">
+                                            Hi, I'm Földváry László. A Product Designer &amp; UI Specialist based in
+                                            Sopron.
+                                            I craft clean, intuitive digital experiences that solve complex problems.
+                                        </h2>
+                                    </div>
+                                    <div class="flex gap-4 mt-4">
+                                        <a href="work.html"
+                                            class="flex min-w-[140px] truncate  cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary transition-opacity hover:opacity-80 transition-colors text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20">
+                                            View Selected Work
+                                        </a>
+
+                                        <a href="contact.html"
+                                            class="flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]">
+                                            Contact Me
+
+                                        </a>
+                                    </div>
+                                    <!--Expirience Banner-->
+                                    <div
+                                        class="flex items-center gap-6 mt-8 pt-8 border-t border-gray-100 dark:border-gray-800">
+                                        <div class="flex flex-col">
+                                            <span class="text-2xl font-bold text-[#111418] dark:text-white">20+</span>
+                                            <span class="text-sm text-gray-500">Years Experience</span>
+                                        </div>
+                                        <div class="w-px h-10 bg-gray-200 dark:bg-gray-700"></div>
+                                        <div class="flex flex-col">
+                                            <span class="text-2xl font-bold text-[#111418] dark:text-white">50+</span>
+                                            <span class="text-sm text-gray-500">Projects Launched</span>
+                                        </div>
+                                        <div class="w-px h-10 bg-gray-200 dark:bg-gray-700"></div>
+                                        <div class="flex flex-col">
+                                            <span class="text-2xl font-bold text-[#111418] dark:text-white">12</span>
+                                            <span class="text-sm text-gray-500">Awards Won</span>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Selected Works Preview (Bonus Section for context) -->
-                    <div class="py-10 border-t border-gray-100 dark:border-gray-800">
-                        <div class="flex justify-between items-end mb-8 px-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-[#111418] dark:text-white">Selected Works</h3>
-                                <p class="text-gray-500 mt-1">A glimpse into my recent design journey</p>
+                                <!-- Hero Image Video -->
+                                <a href="work.html" class="w-full flex-1">
+                                    <div
+                                        class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
+                                        <!-- Decorative abstract pattern/image -->
+                                        <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
+                                            <video autoplay muted loop playsinline poster="img/start.jpg"
+                                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
+                                                <!-- Itt a videód -->
+                                                <source src="img/start-loop.mp4" type="video/mp4">
+                                                <!-- Ez marad itt "tartaléknak", ha valamiért nem töltene be a videó -->
+                                                <img src="img/start.jpg" alt="László Földváry Portrait Illustration">
+                                            </video>
+                                        </div>
+                                        <!-- Floating Card 1 -->
+                                        <div
+                                            class="absolute bottom-6 left-6 right-6 md:right-auto md:w-64 p-4 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20">
+                                            <div class="flex items-center gap-3 mb-2">
+                                                <div
+                                                    class="size-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-xs font-bold text-gray-900 dark:text-white">Project
+                                                        Complete</p>
+                                                    <p class="text-[10px] text-gray-500">Develop.UI Dashboard App</p>
+                                                </div>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+                                                <div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            <a class="text-primary font-medium hover:underline hidden sm:block" href="work.html">
-                                View all projects -&gt;
-                            </a>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-
-                            <!-- 1. Projekt: Shadow Cartels -->
-                            <a href="case-study-shadow.html" class="group block cursor-pointer">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
-                                    <img src="img/shadow-cartels/shadow-game.jpg" alt="Game UI Design"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
-                                    </div>
+                        <!-- Selected Works Preview (Bonus Section for context) -->
+                        <div class="py-10 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex justify-between items-end mb-8 px-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-[#111418] dark:text-white">Selected Works</h3>
+                                    <p class="text-gray-500 mt-1">A glimpse into my recent design journey</p>
                                 </div>
-                                <h4
-                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
-                                    Shadow Cartels</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Lead Game UI & Interaction</p>
-                            </a>
+                                <a class="text-primary font-medium hover:underline hidden sm:block" href="work.html">
+                                    View all projects -&gt;
+                                </a>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
 
-                            <!-- 2. Projekt: Amatic / Casino -->
-                            <a href="work.html#casino" class="group block cursor-pointer">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
-                                    <img src="img/pharao/pharao-game.jpg" alt="Casino Slot Design"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                <!-- 1. Projekt: Shadow Cartels -->
+                                <a href="case-study-shadow.html" class="group block cursor-pointer">
+                                    <div
+                                        class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
+                                        <img src="img/shadow-cartels/shadow-game.jpg" alt="Game UI Design"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                        <div
+                                            class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                        </div>
                                     </div>
-                                </div>
-                                <h4
-                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
-                                    Premium Slot Games</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Visual Design & UI Art</p>
-                            </a>
+                                    <h4
+                                        class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                                        Shadow Cartels</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Lead Game UI & Interaction</p>
+                                </a>
 
-                            <!-- 3. Projekt: Siemens / Industrial -->
-                            <a href="work.html#industrial" class="group block cursor-pointer">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
-                                    <img src="img/siemens/wincc-screen.jpg" alt="Industrial HMI Design"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                <!-- 2. Projekt: Amatic / Casino -->
+                                <a href="work.html#casino" class="group block cursor-pointer">
+                                    <div
+                                        class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
+                                        <img src="img/pharao/pharao-game.jpg" alt="Casino Slot Design"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                        <div
+                                            class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                        </div>
                                     </div>
-                                </div>
-                                <h4
-                                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
-                                    Industrial SCADA UI</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">WinCC OA UI & Icons</p>
-                            </a>
+                                    <h4
+                                        class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                                        Premium Slot Games</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Visual Design & UI Art</p>
+                                </a>
 
-                        </div>
-                        <!--div class="mt-8 text-center sm:hidden">
+                                <!-- 3. Projekt: Siemens / Industrial -->
+                                <a href="case-study-siemens.html" class="group block cursor-pointer">
+                                    <div
+                                        class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
+                                        <img src="img/siemens/wincc-screen.jpg" alt="Industrial HMI Design"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                        <div
+                                            class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
+                                        Industrial SCADA UI</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">WinCC OA UI & Icons</p>
+                                </a>
+
+                            </div>
+                            <!--div class="mt-8 text-center sm:hidden">
                             <button
                                 class="w-full py-3 rounded-lg border border-gray-200 dark:border-gray-700 font-medium" href="work.html">
                                 View all projects 
                             </button>
                         </div-->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
+
         <!-- Footer -->
         <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-24 mt-auto">
             <div class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">

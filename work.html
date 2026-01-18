@@ -92,6 +92,7 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
     <div class="relative flex min-h-screen flex-col">
+        <!-- TopNavBar -->
         <header
             class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
             <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
@@ -158,10 +159,10 @@
             </nav>
         </div>
 
-        <main class="flex-1">
+        <main class="flex flex-col">
             <!-- EZ AZ ELSÖ SKECIÓM VEZÉR CÍM VIDEÓ ÉS BUTTON -->
             <section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
                     <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
                         <div class="flex flex-col items-start gap-6 relative z-10">
                             <!-- VEZÉR CÍM SZALAG -->
@@ -182,15 +183,18 @@
                             </p>
                             <!-- A 2 BUTTON PORTFOLIO & RESUME -->
                             <div class="flex flex-wrap gap-4 pt-4">
-                                <a href="img/Laszlo_Foldvary_Portfolio_2026.pdf"
-                                    download="Laszlo_Foldvary_Portfolio_2026"
-                                    class="group flex h-12 items-center rounded-xl bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all">
+                                <!-- View Portfolio -->
+                                <a href="img/Laszlo_Foldvary_Portfolio_2026.pdf" download
+                                    class="group flex h-14 items-center rounded-xl bg-primary px-10 text-lg font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all">
                                     View Portfolio
                                 </a>
-                                <a href="img/foldvary_laszlo_cv.pdf" download="foldvary_laszlo_cv.pdf"
-                                    class="group flex h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-base font-bold text-slate-900 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all">
-                                    <span class="truncate" Download Resume material-symbols-outlined text-[20px]
-                                        group-hover:animate-bounce>Resume</span>
+
+                                <!-- Resume (Most már ugráló ikonnal és helyes HTML-lel) -->
+                                <a href="img/foldvary_laszlo_cv.pdf" download
+                                    class="group flex h-14 items-center gap-3 rounded-xl border-2 border-slate-200 bg-white px-8 text-lg font-bold text-slate-900 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all">
+                                    <span
+                                        class="material-symbols-outlined text-[24px] group-hover:animate-bounce">download</span>
+                                    Resume
                                 </a>
                             </div>
                         </div>
@@ -244,7 +248,7 @@
             <!-- Ez egy filter és projektek menü Nekem még nem Aktuális -->
             <!--section
                 class="sticky top-16 z-30 border-b border-slate-200 bg-background-light/80 py-4 backdrop-blur-xl dark:border-slate-800 dark:bg-background-dark/80">
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-slate-400">filter_list</span>
@@ -273,38 +277,48 @@
                 </div>
             </section-->
             <section class="py-12 sm:py-20">
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
                     <div class="masonry-grid">
+                        <!-- Siemens WinCC-OA - Teljes háttérkitöltéssel -->
+                        <a href="case-study-siemens.html"
+                            class="group relative flex flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800 dark:ring-white/10 row-span-2 h-full">
 
-                        <!-- Siemens WinCC-OA -->
-                        <div class="group relative flex flex-col gap-4 row-span-2">
-                            <div
-                                class="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                                <div class="absolute top-4 left-4 z-20">
-                                    <span
-                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">WinCC-OA
-                                        Interface</span>
-                                </div>
-                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="PLC control inventory screen with detailed stats">
-                                    <img src="img/siemens/wincc-oa.jpg" alt="wincc-oa project">
-                                </div>
+                            <!-- KÉP KONTÉNER: Absolute inset-0-al kényszerítjük, hogy kitöltse a TELJES kártyát -->
+                            <div class="absolute inset-0 z-0">
+                                <img src="img/siemens/wincc-oa.jpg" alt="wincc-oa project"
+                                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                                <!-- SÖTÉT GRADIENT: Ez is kitölti a teljes kártyát, hogy alul olvasható legyen a szöveg -->
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80">
-                                </div>
-                                <div
-                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                                    <h3 class="text-xl font-bold text-white mb-1">WinCC OA Registry</h3>
-                                    <p class="text-sm text-slate-300 mb-4 line-clamp-2">A complete PLC management
-                                        system design for WinCC OA, featuring modular grid layouts.</p>
-                                    <button
-                                        class="flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors">
-                                        View Case Study <span
-                                            class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                    </button>
+                                    class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100">
                                 </div>
                             </div>
-                        </div>
+
+                            <!-- TARTALOM: relative z-10-zel a kép felé emeljük, és az aljára toljuk -->
+                            <div class="relative z-10 flex h-full flex-col justify-end p-8">
+                                <!-- Tag felül (elhagyható, ha túl zsúfolt, de jól néz ki) -->
+                                <div class="absolute top-4 left-4">
+                                    <span
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white border border-white/10">
+                                        WinCC-OA Interface
+                                    </span>
+                                </div>
+
+                                <!-- Alsó szövegblokk -->
+                                <div class="transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                    <h3 class="text-2xl font-bold text-white mb-2 leading-tight">WinCC OA Registry</h3>
+                                    <p class="text-sm text-slate-300 mb-6 line-clamp-3 leading-relaxed">
+                                        A complete PLC management system design for WinCC OA, featuring modular grid
+                                        layouts and systematic iconography.
+                                    </p>
+                                    <div
+                                        class="flex items-center gap-2 text-sm font-bold text-primary group-hover:text-white transition-colors">
+                                        View Case Study <span
+                                            class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                         <!-- Shadow Cartels -->
                         <a href="case-study-shadow.html" class="group block cursor-pointer">
                             <div
@@ -335,8 +349,7 @@
                                 class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                                 <div class="absolute top-4 left-4 z-20">
                                     <span
-                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">UI
-                                        Illustration</span>
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Greentube</span>
                                 </div>
                                 <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                     data-alt="Futuristic heads up display design">
@@ -347,8 +360,8 @@
                                 </div>
                                 <div
                                     class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                                    <h3 class="text-lg font-bold text-white">Project: Aether HUD</h3>
-                                    <p class="text-xs text-slate-300">Game UI • Motion</p>
+                                    <h3 class="text-lg font-bold text-white">Bugs'n Bees UI</h3>
+                                    <p class="text-xs text-slate-300">Slot Game UI & Visual Assets • Greentube</p>
                                 </div>
                             </div>
                         </div>
@@ -388,8 +401,7 @@
                                 class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                                 <div class="absolute top-4 left-4 z-20">
                                     <span
-                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Cabinet
-                                        Game</span>
+                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Amatic</span>
                                 </div>
                                 <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                     data-alt="Esports tournament platform dashboard">
@@ -400,8 +412,8 @@
                                 </div>
                                 <div
                                     class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                                    <h3 class="text-lg font-bold text-white">Pharo Game</h3>
-                                    <p class="text-xs text-slate-300">Game UI • Illustration</p>
+                                    <h3 class="text-lg font-bold text-white">Pharao's Riches</h3>
+                                    <p class="text-xs text-slate-300">Cabinet UI & Digital Illustration • Amatic</p>
                                 </div>
                             </div>
                         </div>
@@ -421,8 +433,8 @@
                                 </div>
                                 <div
                                     class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                                    <h3 class="text-lg font-bold text-white">Skill Icon Set</h3>
-                                    <p class="text-xs text-slate-300">Visual Design • Illustration</p>
+                                    <h3 class="text-lg font-bold text-white">Industrial Icon Systems</h3>
+                                    <p class="text-xs text-slate-300">270+ SVG Components • WinCC OA</p>
                                 </div>
                             </div>
                         </div>
@@ -440,24 +452,25 @@
                 <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
                     <div
                         class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
-                        <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+                        <span class="material-symbols-outlined text-3xl">handshake</span>
                     </div>
-                    <h2 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6">Need a Level Up
-                        for your UI?</h2>
+                    <h2 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6 uppercase">
+                        Let's Bridge the Gap together
+                    </h2>
                     <p class="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed">
-                        Whether it's a AAA console title, a mobile indie gem, or a complex SaaS dashboard, I bring
-                        user-centric design principles to interactive experiences.
+                        From complex <span class="text-primary font-bold">Industrial HMI dashboards</span> to immersive
+                        <span class="text-primary font-bold">Game Interfaces</span>.
+                        I bring 20+ years of systematic thinking to your next digital product.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <button
+                        <a href="contact.html"
                             class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-primary/90">
-                            Start a Project
-                        </button>
-                        <button
+                            Start a Collaboration
+                        </a>
+                        <a href="mailto:foeldvary@gmail.com"
                             class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-8 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors">
-                            Copy Email
-                            <span class="material-symbols-outlined text-[18px]">content_copy</span>
-                        </button>
+                            foeldvary@gmail.com
+                        </a>
                     </div>
                 </div>
             </section>
