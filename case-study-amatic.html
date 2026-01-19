@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Shadow Cartels: AI-Driven Noir Strategy | Laszlo.UI</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background-dark": "#0a0f14",
+                        "noir-card": "#12181f",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(18, 24, 31, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .noir-gradient {
+            background: linear-gradient(to bottom, transparent, #0a0f14);
+        }
+        /* Minimalista görgetősáv stílus */
+.custom-scrollbar::-webkit-scrollbar {
+    height: 4px; /* Vízszintes görgető magassága */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent; /* Teljesen átlátszó háttér */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3); /* Halvány Indigo szín */
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.8); /* Erősebb szín hoverre */
+}
+
+/* Firefox támogatás */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+    </style>
+    
+</head>
+
+<body class="bg-background-dark font-display text-slate-300 antialiased selection:bg-primary selection:text-white">
+
+    <div class="relative flex min-h-screen flex-col">
+        <!-- HEADER -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. OSZLOP: LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                </nav>
+
+                <!-- 3. OSZLOP: GOMBOK -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        Let's Talk
+                    </a>
+                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO SECTION -->
+            <section
+                class="relative w-full overflow-hidden min-h-[60vh] flex items-center justify-center pt-24 pb-16 border-b border-white/5 bg-slate-950">
+                <div class="absolute inset-0 z-0 opacity-20">
+                    <!-- Egyiptomi stílusú háttér -->
+                    <img src="img/amatic/egypt-bg.jpg" class="object-cover w-full h-full grayscale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-6">
+                    <span
+                        class="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-bold uppercase tracking-widest">
+                        Artistic Direction & Character Design
+                    </span>
+                    <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-white uppercase">
+                        Amatic <span class="text-primary italic">Industries</span>
+                    </h1>
+                    <p class="max-w-3xl text-lg font-light leading-relaxed text-slate-300 sm:text-xl md:text-2xl pt-2">
+                        Bridging cultural research with digital art: Creating iconic game worlds through
+                        high-fidelity character design and style adaptation.
+                    </p>
+                </div>
+            </section>
+
+            <!-- STATS BAR -->
+            <div class="border-y border-slate-800 bg-[#101922]/90 sticky top-16 z-40 backdrop-blur-md">
+                <div class="mx-auto flex max-w-[1200px] flex-wrap divide-x divide-slate-800">
+                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Expertise</span>
+                        <span class="text-sm font-semibold text-white uppercase tracking-tighter">Character
+                            Lifecycle</span>
+                    </div>
+                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Workflow</span>
+                        <span class="text-sm font-semibold text-white uppercase tracking-tighter">Vector-to-Pixel
+                            Mastery</span>
+                    </div>
+                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Styles</span>
+                        <span class="text-sm font-semibold text-white uppercase tracking-tighter italic">Realism /
+                            Cartoon / Viking</span>
+                    </div>
+                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
+                        <span
+                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Assets</span>
+                        <span class="text-sm font-semibold text-white uppercase tracking-tighter italic">Hand-crafted
+                            Symbols</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="max-w-[1200px] mx-auto py-24 px-6 space-y-32 text-slate-300">
+
+                <!-- 1. SZAKASZ: PHARAO (The Masterpiece) -->
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <h2
+                            class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight uppercase">
+                            The Pharao <br><span class="text-amber-500 italic font-light">Digital Archeology</span>
+                        </h2>
+                        <div class="space-y-4 text-lg leading-relaxed text-slate-400">
+                            <p>
+                                Designing the <strong>Pharao</strong> series required more than just drawing; it
+                                required
+                                cultural research. From Tutankhamun’s mask to the Eye of Ra, every symbol was crafted
+                                with historical depth and premium aesthetic.
+                            </p>
+                            <p>
+                                <strong>Technical Approach:</strong> I developed these characters using a hybrid
+                                workflow.
+                                Starting with precise <strong>Vector foundations</strong> for perfect anatomy, then
+                                refined
+                                with pixel-level texturing to achieve that rich, golden atmospheric finish.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Karakter galéria rács -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="img/amatic/tutankhamun.png"
+                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500">
+                        <img src="img/amatic/nefertiti.png"
+                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500 mt-8">
+                        <img src="img/amatic/anubis.png"
+                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500 -mt-8">
+                        <img src="img/amatic/eye-of-ra.png"
+                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+
+                <!-- 2. SZAKASZ: STÍLUS ADAPTÁCIÓ (Zoo & Viking) -->
+                <div class="space-y-12">
+                    <div class="max-w-3xl">
+                        <h2 class="text-3xl font-bold text-white uppercase italic tracking-tighter mb-4">Style
+                            Adaptability</h2>
+                        <p class="text-slate-400 text-lg italic">
+                            A senior designer’s greatest asset is the ability to speak different visual languages.
+                            From the gritty atmosphere of Nordic mythology to the playful, animated world of a cartoon
+                            zoo.
+                        </p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-12 gap-8">
+                        <!-- Viking Game -->
+                        <div class="lg:col-span-7 space-y-4">
+                            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group">
+                                <img src="img/amatic/viking-main.jpg" alt="Viking Game Screen" class="w-full h-auto">
+                                <div
+                                    class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-lg text-[10px] font-mono uppercase tracking-widest">
+                                    Genre: Mythological Realism
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Zoo Game (Video/Animation focus) -->
+                        <div class="lg:col-span-5 space-y-4">
+                            <div
+                                class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-square bg-black flex items-center justify-center">
+                                <!-- Ha van videó az állatokról, ide jöhet -->
+                                <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                                    <source src="img/amatic/zoo-icons.mp4" type="video/mp4">
+                                </video>
+                            </div>
+<!-- Kártyák sora a módosított scrollbar-ral -->
+<div class="flex gap-4 overflow-x-auto pb-6 custom-scrollbar">
+    <!-- Kis kártyák az állatoknak -->
+    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+        <img src="img/amatic/geko.png" class="w-full h-full object-contain">
+    </div>
+    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+        <img src="img/amatic/elephant.png" class="w-full h-full object-contain">
+    </div>
+    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+        <img src="img/amatic/raccoon.png" class="w-full h-full object-contain">
+    </div>
+    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+        <img src="img/amatic/monkey.png" class="w-full h-full object-contain">
+    </div>
+    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+        <img src="img/amatic/bear.png" class="w-full h-full object-contain">
+    </div>
+    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+        <img src="img/amatic/snake.png" class="w-full h-full object-contain">
+    </div>
+    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+        <img src="img/amatic/lion.png" class="w-full h-full object-contain">
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. SZAKASZ: THE ARTIST'S JOURNEY -->
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative group order-2 lg:order-1">
+                        <img src="img/amatic/pharao-sketch.jpg"
+                            class="rounded-[2.5rem] shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700">
+                        <p class="mt-4 text-[10px] font-mono text-primary uppercase tracking-widest">// Original Pencil
+                            Concept for the Pharaoh</p>
+                    </div>
+                    <div class="space-y-6 order-1 lg:order-2">
+                        <h2 class="text-3xl font-black text-white uppercase italic leading-none">The Sketch <br>is the
+                            Soul</h2>
+                        <p class="text-slate-400 text-lg leading-relaxed">
+                            Even in a digital-first industry, I believe in the power of the hand-drawn concept.
+                            The Pharao’s character lifecycle began with detailed pencil studies, ensuring that
+                            the final digital rendering carried the same weight and personality as a classical artwork.
+                        </p>
+                        <div class="bg-noir-card p-6 rounded-2xl border-l-4 border-amber-500">
+                            <p class="text-sm italic text-slate-300">
+                                "My goal was to create characters that players don't just see, but recognize as symbols
+                                of power
+                                and mystery. The vector foundation allows for infinite scalability, while the
+                                pixel-finishing
+                                brings the gold to life."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RETURN BUTTON -->
+                <div class="flex justify-center py-10">
+                    <a href="work.html"
+                        class="flex items-center gap-3 text-primary font-bold hover:text-white transition-colors group">
+                        <span
+                            class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+                        Back to Portfolio
+                    </a>
+                </div>
+            </section>
+        </main>
+        <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10">
+
+                <!-- FELSŐ RÉSZ: Nagy szöveg | Elválasztó | Elérhetőségek -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-12 mb-12">
+
+                    <!-- 1. Oszlop: Nagy szöveg (A "reklám" hatás) -->
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4">Ready to start a project?
+                        </h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md">
+                            Let's create something meaningful together. I'll try my best to get back to you!
+                        </p>
+                    </div>
+
+                    <!-- 2. Oszlop: Függőleges elválasztó (csak nagy gépen látszik) -->
+                    <div class="hidden md:block w-px h-32 bg-[#f0f2f4] dark:bg-gray-800"></div>
+
+                    <!-- 3. Oszlop: Kapcsolat (Tel + Email + Ikonok) -->
+                    <div class="flex flex-col items-center gap-6">
+                        <!-- Telefonszám és Email -->
+                        <div class="text-center">
+                            <p class="text-xl font-bold text-[#111418] dark:text-white mb-1">+43 699 818 41 767</p>
+                            <p class="text-primary font-medium">foeldvary@gmail.com</p>
+                        </div>
+
+                        <!-- Ikonok -->
+                        <div class="flex gap-3 justify-center">
+                            <!-- LinkedIn -->
+                            <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                href="https://www.linkedin.com/in/foldvary-laszlo/" title="LinkedIn">
+                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                </svg>
+                            </a>
+                            <!-- Email gomb ismétlésként vagy Facebook -->
+                            <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                href="mailto:foeldvary@gmail.com" title="Send Email">
+                                <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                            <!-- Website -->
+                            <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                                href="https://www.foeldvary.com" title="Website">
+                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALSÓ RÉSZ: Copyright és Jogi linkek -->
+                <div
+                    class="pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#637588] dark:text-[#94a3b8]">
+                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+
+                    <div class="flex gap-6">
+                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+        <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+            <button
+                class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
+                    <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+                </div>
+                <span class="text-base font-bold tracking-wide">Hire Me</span>
+            </button>
+        </div>
+    </div>
+    <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+
+                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+    <script>
+        // Mobil menü vezérlése
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+        });
+
+        // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+        });
+
+        // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>
