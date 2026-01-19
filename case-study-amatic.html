@@ -233,56 +233,59 @@
                         </p>
                     </div>
 
-                    <div class="grid lg:grid-cols-12 gap-8">
-                        <!-- Viking Game -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                        <!-- Viking Game - Mobilon teljes szélesség, de kontrollált magasság -->
                         <div class="lg:col-span-7 space-y-4">
-                            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group">
-                                <img src="img/amatic/viking-main.jpg" alt="Viking Game Screen" class="w-full h-auto">
+                            <div
+                                class="rounded-2xl lg:rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group bg-slate-900">
+                                <img src="img/amatic/viking-main.jpg" alt="Viking Game Screen"
+                                    class="w-full h-auto object-cover">
                                 <div
-                                    class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-lg text-[10px] font-mono uppercase tracking-widest">
+                                    class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[9px] lg:text-[10px] font-mono uppercase tracking-widest text-white">
                                     Genre: Mythological Realism
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Zoo Game (Video/Animation focus) -->
+                        <!-- Zoo Game - Mobilon VIDEÓ ARÁNY (nem négyzet), Desktopon marad NÉGYZET -->
                         <div class="lg:col-span-5 space-y-4">
                             <div
-                                class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-square bg-black flex items-center justify-center">
-                                <!-- Ha van videó az állatokról, ide jöhet -->
+                                class="rounded-2xl lg:rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-video lg:aspect-square bg-black flex items-center justify-center">
                                 <video autoplay loop muted playsinline class="w-full h-full object-cover">
                                     <source src="img/amatic/zoo-icons.mp4" type="video/mp4">
                                 </video>
                             </div>
-                            <!-- Kártyák sora a módosított scrollbar-ral -->
-                            <div class="flex gap-4 overflow-x-auto pb-6 custom-scrollbar">
-                                <!-- Kis kártyák az állatoknak -->
+
+                            <!-- Kártyák sora - Mobilon picit kisebb kártyákkal, hogy ne foglalják el a fél világot -->
+                            <div class="flex gap-3 lg:gap-4 overflow-x-auto pb-6 custom-scrollbar">
+                                <!-- Állat kártya példa (ismételd a többi állattal) -->
                                 <div
-                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
                                     <img src="img/amatic/geko.png" class="w-full h-full object-contain">
                                 </div>
+                                <!-- ... többi állat ugyanígy ... -->
                                 <div
-                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
                                     <img src="img/amatic/elephant.png" class="w-full h-full object-contain">
                                 </div>
                                 <div
-                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
                                     <img src="img/amatic/raccoon.png" class="w-full h-full object-contain">
                                 </div>
                                 <div
-                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
                                     <img src="img/amatic/monkey.png" class="w-full h-full object-contain">
                                 </div>
                                 <div
-                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
                                     <img src="img/amatic/bear.png" class="w-full h-full object-contain">
                                 </div>
                                 <div
-                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
                                     <img src="img/amatic/snake.png" class="w-full h-full object-contain">
                                 </div>
                                 <div
-                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
                                     <img src="img/amatic/lion.png" class="w-full h-full object-contain">
                                 </div>
                             </div>
