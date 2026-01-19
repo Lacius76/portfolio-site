@@ -41,32 +41,37 @@
         .noir-gradient {
             background: linear-gradient(to bottom, transparent, #0a0f14);
         }
+
         /* Minimalista görgetősáv stílus */
-.custom-scrollbar::-webkit-scrollbar {
-    height: 4px; /* Vízszintes görgető magassága */
-}
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+            /* Vízszintes görgető magassága */
+        }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent; /* Teljesen átlátszó háttér */
-}
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+            /* Teljesen átlátszó háttér */
+        }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(99, 102, 241, 0.3); /* Halvány Indigo szín */
-    border-radius: 10px;
-    transition: background 0.3s;
-}
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.3);
+            /* Halvány Indigo szín */
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(99, 102, 241, 0.8); /* Erősebb szín hoverre */
-}
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.8);
+            /* Erősebb szín hoverre */
+        }
 
-/* Firefox támogatás */
-.custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
-}
+        /* Firefox támogatás */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+        }
     </style>
-    
+
 </head>
 
 <body class="bg-background-dark font-display text-slate-300 antialiased selection:bg-primary selection:text-white">
@@ -148,8 +153,9 @@
             </section>
 
             <!-- STATS BAR -->
-            <div class="border-y border-slate-800 bg-[#101922]/90 sticky top-16 z-40 backdrop-blur-md">
-                <div class="mx-auto flex max-w-[1200px] flex-wrap divide-x divide-slate-800">
+            <!-- ROLE & IMPACT BAR - Siemens/ETM (Eredeti tartalom + Mobil-optimalizált váz) -->
+            <div class="border-y border-slate-800 bg-[#101922]/95 relative sm:sticky sm:top-16 z-40 backdrop-blur-md">
+                <div class="mx-auto grid grid-cols-2 md:grid-cols-4 max-w-[1200px] divide-slate-800">
                     <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
                         <span
                             class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Expertise</span>
@@ -248,31 +254,38 @@
                                     <source src="img/amatic/zoo-icons.mp4" type="video/mp4">
                                 </video>
                             </div>
-<!-- Kártyák sora a módosított scrollbar-ral -->
-<div class="flex gap-4 overflow-x-auto pb-6 custom-scrollbar">
-    <!-- Kis kártyák az állatoknak -->
-    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-        <img src="img/amatic/geko.png" class="w-full h-full object-contain">
-    </div>
-    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-        <img src="img/amatic/elephant.png" class="w-full h-full object-contain">
-    </div>
-    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-        <img src="img/amatic/raccoon.png" class="w-full h-full object-contain">
-    </div>
-    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-        <img src="img/amatic/monkey.png" class="w-full h-full object-contain">
-    </div>
-    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-        <img src="img/amatic/bear.png" class="w-full h-full object-contain">
-    </div>
-    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-        <img src="img/amatic/snake.png" class="w-full h-full object-contain">
-    </div>
-    <div class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-        <img src="img/amatic/lion.png" class="w-full h-full object-contain">
-    </div>
-</div>
+                            <!-- Kártyák sora a módosított scrollbar-ral -->
+                            <div class="flex gap-4 overflow-x-auto pb-6 custom-scrollbar">
+                                <!-- Kis kártyák az állatoknak -->
+                                <div
+                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    <img src="img/amatic/geko.png" class="w-full h-full object-contain">
+                                </div>
+                                <div
+                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    <img src="img/amatic/elephant.png" class="w-full h-full object-contain">
+                                </div>
+                                <div
+                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    <img src="img/amatic/raccoon.png" class="w-full h-full object-contain">
+                                </div>
+                                <div
+                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    <img src="img/amatic/monkey.png" class="w-full h-full object-contain">
+                                </div>
+                                <div
+                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    <img src="img/amatic/bear.png" class="w-full h-full object-contain">
+                                </div>
+                                <div
+                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    <img src="img/amatic/snake.png" class="w-full h-full object-contain">
+                                </div>
+                                <div
+                                    class="min-w-[100px] h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                                    <img src="img/amatic/lion.png" class="w-full h-full object-contain">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -387,14 +400,16 @@
 
             </div>
         </footer>
+        <!-- STICKY HIRE ME BUTTON -->
         <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
-            <button
+            <a href="contact.html"
                 class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+
                 <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
                     <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
                 </div>
                 <span class="text-base font-bold tracking-wide">Hire Me</span>
-            </button>
+            </a>
         </div>
     </div>
     <script src="js/icons.js"></script>
