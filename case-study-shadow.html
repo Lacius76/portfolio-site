@@ -96,77 +96,109 @@
                 </div>
             </div>
         </header>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <!-- Csak a bezáró gomb (X) maradjon itt! -->
+            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
 
-        <main>
+            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
+                <a href="about-me.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+                <a href="resume.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
+                <a href="contact.html"
+                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity">Let's
+                    Talk</a>
+            </nav>
+        </div>
+        <main class="bg-white dark:bg-background-dark transition-colors duration-300">
             <!-- HERO: SHADOW CARTELS -->
-            <section class="relative pt-20 pb-32 overflow-hidden">
+            <section class="relative pt-20 pb-32 overflow-hidden bg-slate-950">
                 <div class="absolute inset-0 z-0">
-                    <video poster="img/shadow-cartels-hero.jpg" class="w-full h-full object-cover opacity-30" autoplay
+                    <!-- Videó marad, de kap egy sötétebb réteget, hogy a szöveg mindenképp látsszon -->
+                    <video poster="img/shadow-cartels-hero.jpg" class="w-full h-full object-cover opacity-40" autoplay
                         muted loop playsinline>
                         <source src="/assets/shadow-cartels-ui-preview.mp4" type="video/mp4">
                     </video>
-                    <div class="absolute inset-0 noir-gradient"></div>
+                    <!-- A Noir gradient most fixen sötét marad a Hero-nál a hangulat miatt, de a lezárása adaptív -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-white dark:from-background-dark via-transparent to-transparent opacity-100">
+                    </div>
+                    <div class="absolute inset-0 bg-black/40"></div>
                 </div>
 
                 <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-                    <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4">Case Study</h2>
-                    <h1 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter">Shadow Cartels</h1>
-                    <p class="max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed text-slate-400">
-                        How I co-created an <span class="text-white">AI-driven noir strategy interface</span> that
-                        balances complex data with 1930s cinematic atmosphere.
+                    <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic">Case Study</h2>
+                    <h1 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic">Shadow
+                        Cartels</h1>
+                    <p class="max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed text-slate-200">
+                        How I co-created an <span class="text-primary font-bold">AI-driven noir strategy
+                            interface</span> that balances complex data with 1930s cinematic atmosphere.
                     </p>
                 </div>
             </section>
 
-<!-- EXECUTIVE SUMMARY - Shadow Cartels -->
-<section class="max-w-[1200px] mx-auto px-6 -mt-20 relative z-20">
-    <div class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-3 gap-12 bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
-        
-        <!-- BAL OLDAL: Project Vision & Tags -->
-        <div class="md:col-span-2 space-y-6">
-            <h3 class="text-4xl font-bold text-white tracking-tight">Project Vision</h3>
-            <p class="leading-relaxed text-slate-400">
-                Shadow Cartels is a browser-based strategy game where the player manages a criminal empire
-                in a procedural Noir world. My goal was to design a system capable of handling <span class="text-primary font-semibold">massive procedural events</span> without letting the
-                1930s aesthetic (Art Deco/Noir) overshadow critical gameplay data.
-            </p>
-            <!-- TAGS: Szép kártyaszerű megjelenés -->
-            <div class="flex flex-wrap gap-3 pt-2">
-                <span class="px-3 py-1.5 rounded-lg bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-300 border border-white/10">UI/UX Leadership</span>
-                <span class="px-3 py-1.5 rounded-lg bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-300 border border-white/10">AI Co-Creation</span>
-                <span class="px-3 py-1.5 rounded-lg bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-300 border border-white/10">Data Visualization</span>
-                <span class="px-3 py-1.5 rounded-lg bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-300 border border-white/10">Atomic Design</span>
-            </div>
-        </div>
+            <!-- EXECUTIVE SUMMARY - Shadow Cartels -->
+            <section class="max-w-[1200px] mx-auto px-6 -mt-20 relative z-20">
+                <div
+                    class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-3 gap-12 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors">
 
-        <!-- JOBB OLDAL: Key Tech & Core Challenge & Gomb -->
-        <div class="space-y-8 border-l border-white/5 pl-8">
-            <div class="space-y-4">
-                <div>
-                    <p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-1">Key Tech</p>
-                    <p class="text-sm text-white font-medium">Gemini AI, SVG Data-Map, Tailwind</p>
-                </div>
-                <div>
-                    <p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-1">Core Challenge</p>
-                    <p class="text-sm text-white font-medium">Zero-latency feedback for procedural events.</p>
-                </div>
-            </div>
+                    <!-- BAL OLDAL: Project Vision -->
+                    <div class="md:col-span-2 space-y-6">
+                        <h3 class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase">
+                            Project Vision</h3>
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg">
+                            Shadow Cartels is a browser-based strategy game where the player manages a criminal empire
+                            in a procedural Noir world. My goal was to design a system capable of handling <span
+                                class="text-primary font-semibold">massive procedural events</span> without letting the
+                            1930s aesthetic overshadow critical gameplay data.
+                        </p>
+                        <!-- TAGS -->
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">UI/UX
+                                Leadership</span>
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">AI
+                                Co-Creation</span>
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Data
+                                Visualization</span>
+                        </div>
+                    </div>
 
-            <!-- INTERAKTÍV GOMB: Branded Launch Button -->
-            <div class="pt-4 flex justify-start">
-                <a href="https://shadow-cartels-game.netlify.app/" target="_blank"
-                    class="group flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white shadow-xl shadow-indigo-500/30 transition-all hover:scale-105 hover:bg-indigo-700 active:scale-95">
-                    
-                    <!-- A JÁTÉK LOGÓJA: Csak akkor hagyd benne a szűrőt, ha fehérre akarod kényszeríteni -->
-                    <img src="img/shadow-cartels/logo4.png" alt="Shadow Cartels Logo"
-                        class="h-12 w-auto object-contain group-hover:scale-110 transition-transform duration-300">
-                    
-                    <span>Launch Experience</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+                    <!-- JOBB OLDAL: Key Tech -->
+                    <div class="space-y-8 border-l border-slate-200 dark:border-white/5 pl-8">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-1 italic">Key
+                                    Tech</p>
+                                <p class="text-sm text-slate-900 dark:text-white font-medium">Gemini AI, SVG Data-Map,
+                                    Tailwind</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-1 italic">
+                                    Core Challenge</p>
+                                <p class="text-sm text-slate-900 dark:text-white font-medium">Zero-latency feedback for
+                                    procedural events.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex justify-start">
+                            <a href="https://shadow-cartels-game.netlify.app/" target="_blank"
+                                class="group flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white shadow-xl shadow-indigo-500/30 transition-all hover:scale-105 hover:bg-indigo-700 active:scale-95">
+                                <img src="img/shadow-cartels/logo4.png" alt="Shadow Cartels Logo"
+                                    class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110">
+                                <span>Launch Experience</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- DEEP DIVE SECTIONS -->
             <div class="max-w-[1200px] mx-auto px-6 py-32 space-y-32">
@@ -177,293 +209,171 @@
                         <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined">map</span>
                         </div>
-                        <h2 class="text-4xl font-bold text-white">Live Data Visualization:<br><span
-                                class="text-primary">The Procedural Map</span></h2>
-                        <p>The map isn't a static asset—it's a <span class="text-white">Living Data Structure</span>.
-                            Every district is a unique SVG object tied to a real-time graph of neighbors, ownership, and
-                            police presence.</p>
-                        <ul class="space-y-4 text-sm">
-                            <li class="flex gap-3"><span class="text-primary font-bold">//</span> Zero-latency updates
-                                for procedural events like Police Raids.</li>
-                            <li class="flex gap-3"><span class="text-primary font-bold">//</span> Dynamic SVG layers
-                                that respond to Gemini AI-generated world events.</li>
+                        <h2 class="text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                            Live Data Visualization:<br><span class="text-primary">The Procedural Map</span></h2>
+                        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            <p>The map isn't a static asset—it's a <span
+                                    class="text-slate-900 dark:text-white font-bold">Living Data Structure</span>. Every
+                                district is a unique SVG object tied to a real-time graph of neighbors, ownership, and
+                                police presence.</p>
+                        </div>
+                        <ul class="space-y-4 text-sm font-mono text-primary uppercase tracking-widest">
+                            <li class="flex gap-3"><span>//</span> Zero-latency updates for events.</li>
+                            <li class="flex gap-3"><span>//</span> Dynamic AI-generated world layers.</li>
                         </ul>
                     </div>
-                    <div class="glass-panel rounded-3xl p-4">
+                    <div
+                        class="glass-panel rounded-3xl p-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
                         <img src="img/shadow-cartels/shadow-game.jpg" alt="SVG Map Data Logic"
-                            class="rounded-2xl w-full">
+                            class="rounded-2xl w-full shadow-lg">
                     </div>
                 </section>
-                <!-- THE DESIGNER'S JOURNEY: FROM NOSTALGIA TO INNOVATION -->
-                <section class="max-w-[1200px] mx-auto px-6 py-24 border-t border-white/5">
-                    <div class="grid lg:grid-cols-5 gap-16">
 
-                        <!-- BAL OSZLOP: A SZEMÉLYES SZÁL -->
+                <!-- THE DESIGNER'S JOURNEY -->
+                <section class="max-w-[1200px] mx-auto py-24 border-t border-slate-200 dark:border-white/5">
+                    <div class="grid lg:grid-cols-5 gap-16">
                         <div class="lg:col-span-2 space-y-6">
-                            <h3 class="text-primary font-bold tracking-widest uppercase text-xs">The Origin Story</h3>
-                            <h2 class="text-3xl font-bold text-white leading-tight">From Mac OS 8.6 <br>to
-                                AI-Co-Creation</h2>
-                            <p class="text-slate-400 leading-relaxed">
-                                Everything started 20 years ago. I remember playing a Risk-style game on my first iMac
-                                running Mac OS 8.6. That atmosphere never left me.
-                            </p>
-                            <p class="text-slate-400 leading-relaxed">
-                                As a designer with 20+ years of experience in game UI, I’ve always followed others'
-                                visions. The <strong>Google AI Studio Build</strong> gave me the first chance to realize
-                                my own fantasy—testing how far a designer with <em>zero coding knowledge</em> can push
-                                the boundaries of product development today.
+                            <h3 class="text-primary font-bold tracking-widest uppercase text-xs italic">The Origin Story
+                            </h3>
+                            <h2
+                                class="text-3xl font-bold text-slate-900 dark:text-white leading-tight uppercase italic">
+                                From Mac OS 8.6 <br>to AI-Co-Creation</h2>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                As a designer with 20+ years of experience, I’ve always followed others' visions. The
+                                <strong>Google AI Studio Build</strong> gave me the first chance to realize my own
+                                fantasy—testing how far a designer with <em>zero coding knowledge</em> can push the
+                                boundaries.
                             </p>
                         </div>
 
-<!-- JOBB OSZLOP: INSIGHTS AND CHALLENGES -->
-<div class="lg:col-span-3 grid sm:grid-cols-2 gap-8">
-
-    <!-- Technical Evolution -->
-    <div class="glass-panel p-6 rounded-2xl space-y-3">
-        <span class="material-symbols-outlined text-primary">psychology_alt</span>
-        <h4 class="text-white font-bold text-sm uppercase italic">Technical Evolution</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">
-            Pushing the limits of browser-based performance: from <strong>Base64 SVG optimization</strong> to 
-            preventing AI context overflows. I developed a complex <code>assets.ts</code> architecture 
-            to ensure that high-fidelity visuals and game logic remain lightweight and AI-model friendly.
-        </p>
-    </div>
-
-    <!-- Constraints & Pivots -->
-    <div class="glass-panel p-6 rounded-2xl space-y-3 border-rose-500/20">
-        <span class="material-symbols-outlined text-rose-400">warning</span>
-        <h4 class="text-white font-bold text-sm uppercase italic">Constraints & Pivots</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">
-            The project's scale tested the token limits of modern LLMs. While mobile-web optimization is 
-            the next milestone, every technical hurdle was a lesson in <strong>system architecture</strong>, 
-            strategic prioritization, and modular design-to-code workflows.
-        </p>
-    </div>
-
-    <!-- The Roadmap -->
-    <div class="glass-panel p-6 rounded-2xl space-y-3 border-emerald-500/20">
-        <span class="material-symbols-outlined text-emerald-400">rocket_launch</span>
-        <h4 class="text-white font-bold text-sm uppercase italic">The Roadmap</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">
-            The future of Shadow Cartels includes <strong>Rive animations</strong>, physics-based 
-            dice mechanics, and procedural maps for global hubs (from Budapest to Chicago). 
-            The ultimate goal: a fully native deployment for iOS and Android.
-        </p>
-    </div>
-
-    <!-- UI/UX Vision -->
-    <div class="glass-panel p-6 rounded-2xl space-y-3 border-amber-500/20">
-        <span class="material-symbols-outlined text-amber-400">design_services</span>
-        <h4 class="text-white font-bold text-sm uppercase italic">Creative Autonomy</h4>
-        <p class="text-xs text-slate-500 leading-relaxed">
-            This project represents pure creative freedom—owning the theme, atmosphere, and mechanics. 
-            It is a testament to how <strong>design-driven development</strong> can lead technology, 
-            creating a seamless synthesis between code and high-end Noir aesthetics.
-        </p>
-    </div>
-
-</div>
+                        <div class="lg:col-span-3 grid sm:grid-cols-2 gap-8">
+                            <!-- Tech Card 1 -->
+                            <div
+                                class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
+                                <span class="material-symbols-outlined text-primary">psychology_alt</span>
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">Technical
+                                    Evolution</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Optimizing Base64
+                                    SVG assets and preventing AI context overflows through modular assets.ts
+                                    architecture.</p>
+                            </div>
+                            <!-- Tech Card 2 -->
+                            <div
+                                class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
+                                <span class="material-symbols-outlined text-rose-500">warning</span>
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">
+                                    Constraints</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Testing the token
+                                    limits of LLMs and managing strategic prioritization in a design-to-code workflow.
+                                </p>
+                            </div>
+                            <!-- Tech Card 3 -->
+                            <div
+                                class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
+                                <span class="material-symbols-outlined text-emerald-500">rocket_launch</span>
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">The
+                                    Roadmap</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Future integration
+                                    of Rive animations and native deployment for iOS and Android.</p>
+                            </div>
+                            <!-- Tech Card 4 -->
+                            <div
+                                class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
+                                <span class="material-symbols-outlined text-amber-500">design_services</span>
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">Creative
+                                    Autonomy</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Owning the entire
+                                    theme, atmosphere, and mechanics. A synthesis of code and high-end Noir aesthetics.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
-                <!-- CASE STUDY: AI-ASSISTED WORKFLOW - A jövő munkafolyamata -->
-                <section class="mx-auto max-w-[1200px] px-6 py-24 bg-primary/[0.02] border-y border-white/5">
+
+                <!-- AI WORKFLOW SECTION -->
+                <section
+                    class="mx-auto max-w-[1200px] py-24 bg-primary/[0.03] rounded-[3rem] px-8 border border-primary/10">
                     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                        <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">The Future of
-                            Design</h3>
-                        <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
-                            AI as a Co-Creator:<br>Accelerated Architecture
-                        </h2>
+                        <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">Accelerated
+                            Architecture</h3>
+                        <h2
+                            class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                            AI as a Co-Creator</h2>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
-
-                        <!-- BAL OLDAL: TECHNIKAI KIHÍVÁSOK (PROXIMITY TO CODE) -->
                         <div class="space-y-8">
                             <div class="space-y-4">
                                 <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-primary">terminal</span>
+                                    <span
+                                        class="material-symbols-outlined text-primary uppercase italic">terminal</span>
                                     Managing Complexity
                                 </h4>
-                                <p class="text-slate-500 leading-relaxed">
-                                    Working without a traditional developer meant I had to bridge the gap between design
-                                    and logic. This journey was a deep-dive into <strong>Design-to-Code
-                                        architecture</strong>.
-                                </p>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Working without a
+                                    developer meant bridging the gap between design and logic through
+                                    <strong>Design-to-Code architecture</strong>.</p>
                             </div>
-
-                            <!-- Technikai kártyák -->
-                            <div class="space-y-4">
-                                <!-- Data Structure -->
+                            <div class="space-y-4 text-left">
                                 <div
-                                    class="p-6 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary">Data
-                                        Structure Optimization</h5>
-                                    <p class="text-xs text-slate-500 leading-relaxed italic">
-                                        Learned to manage scale by separating SVG coordinates into dedicated
-                                        <code>assets.ts</code> files, avoiding AI memory overload and ensuring rapid
-                                        rendering of procedural elements.
-                                    </p>
+                                    class="p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
+                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic">
+                                        Data Structure</h5>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 italic">Separating SVG
+                                        coordinates into <code>assets.ts</code> to ensure rapid rendering and avoid
+                                        memory overload.</p>
                                 </div>
-                                <!-- Base64 Logic -->
                                 <div
-                                    class="p-6 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary">Dynamic
-                                        Assets Injection</h5>
-                                    <p class="text-xs text-slate-500 leading-relaxed italic">
-                                        Mastered <strong>Base64 vector embedding</strong> and dynamic asset injection,
-                                        enabling a truly portable single-page experience without traditional server-side
-                                        dependencies.
-                                    </p>
+                                    class="p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
+                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic">
+                                        Global Deployment</h5>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 italic">Mastering GitHub and
+                                        Netlify to create high-performance, pixel-perfect interactive products.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- JOBB OLDAL: EREDMÉNYEK ÉS FILOZÓFIA -->
                         <div class="flex flex-col justify-center space-y-10">
                             <div class="space-y-6">
-                                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug">
-                                    "From idea to interactive product in record time—leveraging AI to break technical
-                                    barriers."
-                                </h4>
+                                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug italic">"From
+                                    idea to interactive product in record time—leveraging AI to break technical
+                                    barriers."</h4>
                                 <div class="h-1 w-20 bg-primary"></div>
-                                <p class="text-lg text-slate-500 italic leading-relaxed">
-                                    By acting as a "Director" for the AI, I was able to focus on <strong>strategic UX
-                                        decisions</strong> and <strong>high-fidelity storytelling</strong> while the AI
-                                    handled the boilerplate structure of the system.
-                                </p>
+                                <p class="text-lg text-slate-600 dark:text-slate-400 italic font-light">By acting as a
+                                    "Director", I focused on <strong>strategic UX decisions</strong> while the AI
+                                    handled the boilerplate structure.</p>
                             </div>
-
-                            <!-- Mérőszám / Eredmény vizuálisan -->
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="p-4 border-l-2 border-primary">
                                     <span class="block text-3xl font-black text-slate-900 dark:text-white">3X</span>
-                                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Faster
+                                    <span
+                                        class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic">Faster
                                         Prototyping</span>
                                 </div>
                                 <div class="p-4 border-l-2 border-primary">
                                     <span class="block text-3xl font-black text-slate-900 dark:text-white">Zero</span>
-                                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Coding
+                                    <span
+                                        class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic">Coding
                                         Foundation</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- CASE STUDY: AI-ASSISTED WORKFLOW - Frissítve a Mobil HUD és Deployment infókkal -->
-                <section class="mx-auto max-w-[1200px] px-6 py-24 bg-primary/[0.02] border-y border-white/5">
-                    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                        <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">Development &
-                            Strategy</h3>
-                        <h2
-                            class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight text-balance">
-                            Technical Ownership:<br>From Vision to Global Deployment
-                        </h2>
-                    </div>
 
-                    <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
-
-                        <!-- BAL OLDAL: MOBIL ADAPTÁCIÓ & ASSETS -->
-                        <div class="space-y-8 text-center md:text-left">
-                            <div class="space-y-4">
-                                <h4
-                                    class="text-xl font-bold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2">
-                                    <span class="material-symbols-outlined text-primary">smartphone</span>
-                                    Mobile HUD Re-Engineering
-                                </h4>
-                                <p class="text-slate-500 leading-relaxed">
-                                    Adapting a data-heavy RTS for mobile wasn't just about scaling—it was about
-                                    <strong>radical reconstruction</strong>. I had to rethink the entire HUD
-                                    architecture to ensure the gameplay remains "digestible" on smaller touch screens
-                                    while maintaining technical depth.
-                                </p>
-                            </div>
-
-                            <!-- Technikai kártyák -->
-                            <div class="space-y-4 text-left">
-                                <div
-                                    class="p-6 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic">
-                                        Architecture: assets.ts</h5>
-                                    <p class="text-xs text-slate-500 leading-relaxed italic">
-                                        By mastering <code>Base64</code> embedding and offloading data to an
-                                        <code>assets.ts</code>, I optimized the AI workflow to handle massive vector
-                                        loads without performance degradation.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- JOBB OLDAL: DEPLOYMENT & PORTFOLIO TRANSFORMATION -->
-                        <div class="flex flex-col justify-center space-y-10">
-                            <div class="space-y-6 text-center md:text-left">
-                                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug italic">
-                                    "Stepping out of the 'Wix prison' into the world of professional deployment."
-                                </h4>
-                                <div class="h-1 w-20 bg-primary mx-auto md:mx-0"></div>
-                                <p class="text-lg text-slate-500 leading-relaxed">
-                                    This project was a turning point. I learned to bridge the gap between design and
-                                    production by mastering a professional workflow: **GitHub** version control and
-                                    **Netlify** automated deployment.
-                                </p>
-                                <p class="text-sm text-slate-500 border-l-2 border-primary pl-4">
-                                    This technical awakening allowed me to leave limited "no-code" builders behind and
-                                    create this very portfolio—pixel-perfect, high-performance, and fully owned by me.
-                                </p>
-                            </div>
-
-                            <!-- Új vizuális eredmény -->
-                            <div class="flex justify-center md:justify-start gap-8">
-                                <div class="text-center">
-                                    <span class="material-symbols-outlined text-3xl text-primary">git_merge</span>
-                                    <span class="block text-[10px] font-bold uppercase text-slate-400 mt-1">Version
-                                        Control</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="material-symbols-outlined text-3xl text-primary">cloud_done</span>
-                                    <span class="block text-[10px] font-bold uppercase text-slate-400 mt-1">Global
-                                        Hosting</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                </section>
-                <!-- 4. FUTURE OF WORK -->
-                <section class="text-center space-y-8 py-20 border-y border-white/5">
-                    <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-sm">Product Owner Insights</h3>
-                    <h2 class="text-4xl md:text-5xl font-black text-white">AI as a Design Partner</h2>
-                    <p class="max-w-3xl mx-auto text-lg leading-relaxed">
-                        This project proved that a <span class="text-white">Senior Designer using AI as a
-                            "Co-pilot"</span> can handle the workload of an entire product team. From logic structures
-                        to narrative-driven UX, the synergy allowed for rapid prototyping and technical depth that would
-                        normally take months—completed in record time.
-                    </p>
-                    <div class="flex justify-center pt-8">
-                        <div
-                            class="px-8 py-4 bg-primary/10 border border-primary/30 rounded-2xl flex items-center gap-4">
-                            <span class="material-symbols-outlined text-primary">auto_awesome</span>
-                            <p class="text-sm font-bold text-white tracking-tight">Rapid Prototyping: 3x Acceleration
-                                achieved.</p>
-                        </div>
-                    </div>
-                </section>
-                <!-- ... Előtte van a Product Owner Insights szekció ... -->
-
-                <!-- LESSONS FROM THE NOIR - Keret nélkül, hogy ne legyen dupla vonal -->
-                <section class="mx-auto max-w-[1200px] px-6 py-24 text-center">
+                <!-- LESSONS FROM THE NOIR -->
+                <section class="mx-auto max-w-[1200px] py-24 text-center">
                     <div class="max-w-2xl mx-auto space-y-8">
-                        <h2 class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic">Lessons
-                            from the Noir.</h2>
+                        <h2
+                            class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase">
+                            Lessons from the Noir.</h2>
                         <div class="h-1 w-12 bg-primary mx-auto"></div>
-                        <p class="text-lg text-slate-500 leading-relaxed italic">
-                            Shadow Cartels proved that 20 years of UI experience, combined with AI, creates a new kind
-                            of "Technical Artist." A professional who doesn't just design buttons, but builds
-                            functional, scalable ecosystems. This journey from Mac OS 8.6 nostalgia to a modern
-                            GitHub-deployed product is just the beginning.
+                        <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light">
+                            "Shadow Cartels proved that 20 years of UI experience, combined with AI, creates a new kind
+                            of Technical Artist. A professional who builds functional, scalable ecosystems."
                         </p>
-
                         <div class="pt-8">
                             <a href="work.html"
-                                class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all group">
+                                class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 transition-all group">
                                 <span
                                     class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
                                 Back to All Projects
@@ -471,9 +381,15 @@
                         </div>
                     </div>
                 </section>
+            </div>
 
-                </footer>
-
+            <!-- STICKY HIRE ME -->
+            <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+                <a href="contact.html"
+                    class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+                    <span class="text-base font-bold tracking-wide">Hire Me</span>
+                </a>
             </div>
         </main>
         <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-24 mt-auto">
@@ -549,17 +465,8 @@
             </div>
         </footer>
     </div>
-    <!-- STICKY HIRE ME BUTTON -->
-<div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
-    <a href="contact.html" 
-       class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-        
-        <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
-            <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
-        </div>
-        <span class="text-base font-bold tracking-wide">Hire Me</span>
-    </a>
-</div>
+
+
     <script src="js/icons.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {

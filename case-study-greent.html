@@ -96,241 +96,191 @@
                 </div>
             </div>
         </header>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <!-- Csak a bezáró gomb (X) maradjon itt! -->
+            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
 
-        <main>
-            <!-- HERO SECTION -->
-            <section
-                class="relative w-full overflow-hidden min-h-[65vh] flex items-center justify-center pt-24 pb-16 border-b border-white/5 bg-slate-950">
-                <div class="absolute inset-0 z-0">
-                    <!-- Egy sötétített, hangulatos háttérkép a játékaidból -->
-                    <img src="img/greentube/title.jpg" class="object-cover w-full h-full opacity-30 grayscale blur-sm">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                </div>
+            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
+                <a href="about-me.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+                <a href="resume.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
+                <a href="contact.html"
+                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity">Let's
+                    Talk</a>
+            </nav>
+        </div>
+<main class="bg-white dark:bg-background-dark transition-colors duration-300">
+    <!-- HERO SECTION -->
+    <section class="relative w-full overflow-hidden min-h-[65vh] flex items-center justify-center pt-24 pb-16 border-b border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950">
+        <div class="absolute inset-0 z-0">
+            <!-- Háttérkép: világosban kicsit áttetszőbb, sötétben marad a grayscale hangulat -->
+            <img src="img/greentube/title.jpg" class="object-cover w-full h-full opacity-20 dark:opacity-30 grayscale blur-sm">
+            <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-950 via-transparent to-transparent"></div>
+        </div>
 
-                <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-6">
-                    <span
-                        class="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
-                        10 Years of Gaming Mastery
-                    </span>
-                    <h1
-                        class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-white uppercase italic">
-                        Greentube <span class="text-primary">Novomatic</span>
-                    </h1>
-                    <p
-                        class="max-w-3xl text-lg font-light leading-relaxed text-slate-300 sm:text-xl md:text-2xl pt-2 italic">
-                        Leading the digital transformation of casino entertainment through 50+ global game titles
-                        and industry-first browser-based experiences.
+        <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-6">
+            <span class="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
+                10 Years of Gaming Mastery
+            </span>
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic">
+                Greentube <span class="text-primary uppercase">Novomatic</span>
+            </h1>
+            <p class="max-w-3xl text-lg font-light leading-relaxed text-slate-600 dark:text-slate-400 sm:text-xl md:text-2xl pt-2 italic">
+                Leading the digital transformation of casino entertainment through 50+ global game titles
+                and industry-first browser-based experiences.
+            </p>
+        </div>
+    </section>
+
+    <!-- STATS BAR - Mobile Optimized & Adaptív -->
+    <div class="border-y border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#101922]/95 relative sm:sticky sm:top-16 z-40 backdrop-blur-md">
+        <div class="mx-auto grid grid-cols-2 md:grid-cols-4 max-w-[1200px] divide-slate-200 dark:divide-slate-800">
+            <!-- Stat 1 -->
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center border-r border-slate-200 dark:border-slate-800">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Tenure</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">10 Consecutive Years</span>
+            </div>
+            <!-- Stat 2 -->
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Volume</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">50+ Shipped Titles</span>
+            </div>
+            <!-- Stat 3 -->
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-r border-slate-200 dark:border-slate-800 md:border-t-0">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Impact</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Market-Leading UI/UX</span>
+            </div>
+            <!-- Stat 4 -->
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-slate-200 dark:border-slate-800 md:border-t-0">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Platforms</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Desktop & Mobile</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="max-w-[1200px] mx-auto py-24 px-6 space-y-32">
+
+        <!-- 1. SZAKASZ: AZ INNOVÁCIÓ -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6 text-slate-600 dark:text-slate-300">
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight uppercase italic">
+                    Digital <br><span class="text-primary italic font-light">Pioneering</span>
+                </h2>
+                <div class="space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+                    <p>
+                        At <strong>Greentube (Novomatic Interactive)</strong>, my role was instrumental in defining
+                        the visual quality of browser-based gaming. We were among the first to offer high-fidelity experiences directly in the browser.
+                    </p>
+                    <p>
+                        Over a decade, I navigated the complex balance between technical constraints and the rich visual language required by the international gaming market.
                     </p>
                 </div>
-            </section>
-
-            <!-- STATS BAR - Mobile Optimized -->
-            <div class="border-y border-slate-800 bg-[#101922]/95 relative sm:sticky sm:top-16 z-40 backdrop-blur-md">
-                <div
-                    class="mx-auto grid grid-cols-2 md:grid-cols-4 max-w-[1200px] divide-x divide-y md:divide-y-0 divide-slate-800">
-
-                    <!-- Stat 1 -->
-                    <div class="p-4 sm:p-6 flex flex-col items-center text-center">
-                        <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Tenure</span>
-                        <span class="text-xs sm:text-sm font-semibold text-white uppercase tracking-tighter italic">10
-                            Consecutive Years</span>
-                    </div>
-
-                    <!-- Stat 2 -->
-                    <div class="p-4 sm:p-6 flex flex-col items-center text-center">
-                        <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Volume</span>
-                        <span class="text-xs sm:text-sm font-semibold text-white uppercase tracking-tighter italic">50+
-                            Shipped Titles</span>
-                    </div>
-
-                    <!-- Stat 3 -->
-                    <div
-                        class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-slate-800 md:border-t-0">
-                        <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Impact</span>
-                        <span
-                            class="text-xs sm:text-sm font-semibold text-white uppercase tracking-tighter italic">Market-Leading
-                            UI/UX</span>
-                    </div>
-
-                    <!-- Stat 4 -->
-                    <div
-                        class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-slate-800 md:border-t-0">
-                        <span
-                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Platforms</span>
-                        <span
-                            class="text-xs sm:text-sm font-semibold text-white uppercase tracking-tighter italic">Desktop
-                            & Mobile</span>
-                    </div>
-
+            </div>
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-blue-500/20 rounded-3xl blur opacity-25"></div>
+                <div class="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-slate-100 dark:bg-slate-900 aspect-video">
+                    <img src="img/greentube/golden-sevens-mobile.jpg" alt="Golden Sevens Mobile UI" class="w-full h-full object-cover">
                 </div>
             </div>
+        </div>
 
-            <section class="max-w-[1200px] mx-auto py-24 px-6 space-y-32 text-slate-300">
+        <!-- 2. SZAKASZ: FROM SKETCH TO ENGINE -->
+        <div class="space-y-12">
+            <div class="max-w-3xl text-slate-600 dark:text-slate-300">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter mb-4 uppercase">The Craftsmanship Pipeline</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">
+                    True senior-level design starts with a pencil. I demonstrate the full lifecycle: from initial sketches to final, engine-ready assets.
+                </p>
+            </div>
 
-                <!-- 1. SZAKASZ: AZ INNOVÁCIÓ (Piacvezető minőség) -->
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-6">
-                        <h2
-                            class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight uppercase italic">
-                            Digital <br><span class="text-primary italic font-light">Pioneering</span>
-                        </h2>
-                        <div class="space-y-4 text-lg leading-relaxed text-slate-400">
-                            <p>
-                                At <strong>Greentube (Novomatic Interactive)</strong>, my role was instrumental in
-                                defining
-                                the visual quality of browser-based gaming. We were among the first in the industry to
-                                offer high-fidelity, desktop-grade casino experiences directly in the browser.
-                            </p>
-                            <p>
-                                Over a decade, I navigated the complex balance between high-performance technical
-                                constraints
-                                and the rich, emotional visual language required by the international gaming market.
-                            </p>
-                        </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Sketches -->
+                <div class="space-y-4">
+                    <div class="aspect-[4/5] rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-white/5 p-4">
+                        <img src="img/greentube/pencil.jpg" alt="Pencil Sketch" class="w-full h-full object-contain grayscale">
                     </div>
-                    <div class="relative group">
-                        <div
-                            class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-blue-500/20 rounded-3xl blur opacity-25">
-                        </div>
-                        <div
-                            class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-slate-900 aspect-video">
-                            <!-- Ide jöhet a Golden Sevens mobil kép vagy egy kollázs a játékokból -->
-                            <img src="img/greentube/golden-sevens-mobile.jpg" alt="Golden Sevens Mobile UI"
-                                class="w-full h-full object-cover">
-                        </div>
+                    <p class="text-[10px] font-mono text-primary uppercase tracking-widest">// Phase 01: Concept Sketching</p>
+                </div>
+                <!-- UI/Digital -->
+                <div class="space-y-4 md:mt-12">
+                    <div class="aspect-[4/5] rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-noir-card shadow-2xl">
+                        <img src="img/greentube/bugs-bees-ui.jpg" alt="Digital UI Rendering" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-mono text-primary uppercase tracking-widest">// Phase 02: Digital UI Mastery</p>
+                </div>
+                <!-- Final Screen -->
+                <div class="space-y-4 md:mt-24">
+                    <div class="aspect-[4/5] rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-black">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="img/greentube/part-slot.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p class="text-[10px] font-mono text-primary uppercase tracking-widest">// Phase 03: Engine Integration</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SZAKASZ: VARIETY & SCALE -->
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 space-y-6">
+                <h2 class="text-3xl font-black text-slate-900 dark:text-white uppercase italic leading-none uppercase">Global <br>Portfolio</h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    My expertise spans across multiple genres—from high-stakes Video Slots to competitive Skill Games, requiring a deep understanding of platform ergonomics.
+                </p>
+                <div class="grid grid-cols-2 gap-4 pt-4">
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                        <span class="block text-2xl font-bold text-slate-900 dark:text-white italic">50+</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary">Titles Shipped</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                        <span class="block text-2xl font-bold text-slate-900 dark:text-white italic">Multi</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary">Platform Logic</span>
                     </div>
                 </div>
-
-                <!-- 2. SZAKASZ: FROM SKETCH TO ENGINE (Bugs 'n Bees fókusz) -->
-                <div class="space-y-12">
-                    <div class="max-w-3xl">
-                        <h2 class="text-3xl font-bold text-white uppercase italic tracking-tighter mb-4">The
-                            Craftsmanship Pipeline</h2>
-                        <p class="text-slate-400 text-lg">
-                            True senior-level design starts with a pencil. Using <strong>Bugs 'n Bees</strong> as a case
-                            study,
-                            I demonstrate the full lifecycle of character and UI development: from initial analog
-                            sketches
-                            to final, engine-ready assets and animations.
-                        </p>
+            </div>
+            <div class="lg:col-span-7">
+                <div class="grid grid-cols-2 gap-6 items-start">
+                    <div class="space-y-4 pt-12">
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-transform hover:scale-[1.02] duration-500">
+                            <img src="img/greentube/skill-game-1.png" alt="Skill Game" class="w-full h-auto">
+                        </div>
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest text-right">Competitive Skill Gaming //</p>
                     </div>
-
-                    <!-- Sketch to Final Grid -->
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <!-- Sketches -->
-                        <div class="space-y-4">
-                            <div class="aspect-[4/5] rounded-xl overflow-hidden border border-white/5 bg-white/5 p-4">
-                                <img src="img/greentube/pencil.jpg" alt="Pencil Sketch"
-                                    class="w-full h-full object-contain grayscale">
-                            </div>
-                            <p class="text-xs font-mono text-primary uppercase tracking-widest">// Phase 01: Concept
-                                Sketching</p>
+                    <div class="space-y-4">
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-transform hover:scale-[1.02] duration-500">
+                            <img src="img/greentube/frutsn.png" alt="Video Slot" class="w-full h-auto">
                         </div>
-                        <!-- UI/Digital -->
-                        <div class="space-y-4 md:mt-12">
-                            <div
-                                class="aspect-[4/5] rounded-xl overflow-hidden border border-white/10 bg-noir-card shadow-2xl">
-                                <img src="img/greentube/bugs-bees-ui.jpg" alt="Digital UI Rendering"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <p class="text-xs font-mono text-primary uppercase tracking-widest">// Phase 02: Digital UI
-                                Mastery</p>
-                        </div>
-                        <!-- Final Screen -->
-                        <div class="space-y-4 md:mt-24">
-                            <div
-                                class="aspect-[4/5] rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black">
-                                <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                                    <source src="img/greentube/part-slot.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                            <p class="text-xs font-mono text-primary uppercase tracking-widest">// Phase 03: Engine
-                                Integration</p>
-                        </div>
+                        <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Global Video Slots //</p>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- 3. SZAKASZ: VARIETY & SCALE (Skill games & Slots) -->
-                    <div class="grid lg:grid-cols-12 gap-12 items-center">
-                        <div class="lg:col-span-5 space-y-6">
-                            <h2 class="text-3xl font-black text-white uppercase italic leading-none">Global
-                                <br>Portfolio</h2>
-                            <p class="text-slate-400 leading-relaxed">
-                                My expertise spans across multiple genres—from high-stakes Video Slots to competitive
-                                Skill Games.
-                                Managing the UI/UX for 50+ titles required a deep understanding of platform-specific
-                                ergonomics
-                                and international regulatory requirements.
-                            </p>
-                            <div class="grid grid-cols-2 gap-4 pt-4">
-                                <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-                                    <span class="block text-2xl font-bold text-white italic">50+</span>
-                                    <span class="text-[10px] uppercase tracking-widest text-primary">Titles
-                                        Shipped</span>
-                                </div>
-                                <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-                                    <span class="block text-2xl font-bold text-white italic">Multi</span>
-                                    <span class="text-[10px] uppercase tracking-widest text-primary">Platform
-                                        Logic</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lg:col-span-7">
-                            <div class="grid grid-cols-2 gap-6 items-start">
-                                <!-- 1. KÉP: Skill Game (kicsit lejjebb tolva a dinamika miatt) -->
-                                <div class="space-y-4 pt-12">
-                                    <div
-                                        class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl transition-transform hover:scale-[1.02] duration-500">
-                                        <img src="img/greentube/skill-game-1.png" alt="Greentube Skill Game UI"
-                                            class="w-full h-auto">
-                                    </div>
-                                    <p
-                                        class="text-[10px] font-mono text-slate-500 uppercase tracking-widest text-right">
-                                        Competitive Skill Gaming //</p>
-                                </div>
+        <!-- IMPACT BOX -->
+        <section class="relative overflow-hidden py-24 px-8 rounded-[3rem] bg-primary/5 dark:bg-primary/10 border border-primary/20 text-center transition-colors">
+            <div class="relative z-10 max-w-3xl mx-auto space-y-8">
+                <h3 class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter uppercase italic">Legacy of Trust</h3>
+                <p class="text-2xl text-slate-600 dark:text-slate-300 italic font-light leading-relaxed">
+                    "A decade at Novomatic's interactive division taught me that <span class="text-primary font-bold">consistency is as important as creativity</span>. In a highly regulated industry, I delivered excellence across every platform."
+                </p>
+            </div>
+        </section>
 
-                                <!-- 2. KÉP: Modern Slot / Másik stílus -->
-                                <div class="space-y-4">
-                                    <div
-                                        class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl transition-transform hover:scale-[1.02] duration-500">
-                                        <img src="img/greentube/frutsn.png" alt="Video Slot UI Variety"
-                                            class="w-full h-auto">
-                                    </div>
-                                    <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Global
-                                        Video Slots //</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- IMPACT BOX -->
-                    <section
-                        class="relative overflow-hidden py-24 px-8 rounded-[3rem] bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 text-center">
-                        <div class="relative z-10 max-w-3xl mx-auto space-y-8">
-                            <h3 class="text-4xl font-black text-white tracking-tighter uppercase italic">Legacy of Trust
-                            </h3>
-                            <p class="text-2xl text-slate-300 italic font-light leading-relaxed">
-                                "A decade at Novomatic's interactive division taught me that
-                                <span class="text-primary font-bold">consistency is as important as creativity</span>.
-                                In a highly regulated industry, I delivered excellence across every platform."
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- RETURN BUTTON -->
-                    <div class="flex justify-center py-10">
-                        <a href="work.html"
-                            class="flex items-center gap-3 text-primary font-bold hover:text-white transition-colors group">
-                            <span
-                                class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                            Back to Portfolio
-                        </a>
-                    </div>
-            </section>
-        </main>
+        <!-- BACK BUTTON -->
+        <div class="flex justify-center py-10">
+            <a href="work.html" class="flex items-center gap-3 text-primary font-bold hover:text-slate-900 dark:hover:text-white transition-colors group">
+                <span class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+                Back to Portfolio
+            </a>
+        </div>
+    </section>
+</main>
         <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
             <div class="max-w-[1200px] mx-auto px-4 md:px-10">
 

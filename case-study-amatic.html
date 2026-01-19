@@ -126,212 +126,180 @@
                 </div>
             </div>
         </header>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <!-- Csak a bezáró gomb (X) maradjon itt! -->
+            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
 
-        <main>
-            <!-- HERO SECTION -->
-            <section
-                class="relative w-full overflow-hidden min-h-[60vh] flex items-center justify-center pt-24 pb-16 border-b border-white/5 bg-slate-950">
-                <div class="absolute inset-0 z-0 opacity-20">
-                    <!-- Egyiptomi stílusú háttér -->
-                    <img src="img/amatic/egypt-bg.jpg" class="object-cover w-full h-full grayscale">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                </div>
+            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
+                <a href="about-me.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+                <a href="resume.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
+                <a href="contact.html"
+                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity">Let's
+                    Talk</a>
+            </nav>
+        </div>
+<main class="bg-white dark:bg-background-dark transition-colors duration-300">
+    <!-- HERO SECTION -->
+    <section class="relative w-full overflow-hidden min-h-[60vh] flex items-center justify-center pt-24 pb-16 border-b border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="img/amatic/egypt-bg.jpg" class="object-cover w-full h-full grayscale">
+            <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-950 via-transparent to-transparent"></div>
+        </div>
 
-                <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-6">
-                    <span
-                        class="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-bold uppercase tracking-widest">
-                        Artistic Direction & Character Design
-                    </span>
-                    <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-white uppercase">
-                        Amatic <span class="text-primary italic">Industries</span>
-                    </h1>
-                    <p class="max-w-3xl text-lg font-light leading-relaxed text-slate-300 sm:text-xl md:text-2xl pt-2">
-                        Bridging cultural research with digital art: Creating iconic game worlds through
-                        high-fidelity character design and style adaptation.
+        <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-6">
+            <span class="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-500 text-xs font-bold uppercase tracking-widest">
+                Artistic Direction & Character Design
+            </span>
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic">
+                Amatic <span class="text-primary uppercase">Industries</span>
+            </h1>
+            <p class="max-w-3xl text-lg font-light leading-relaxed text-slate-600 dark:text-slate-300 sm:text-xl md:text-2xl pt-2">
+                Bridging cultural research with digital art: Creating iconic game worlds through
+                high-fidelity character design and style adaptation.
+            </p>
+        </div>
+    </section>
+
+    <!-- STATS BAR - Mobile Optimized & Adaptív -->
+    <div class="border-y border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#101922]/95 relative sm:sticky sm:top-16 z-40 backdrop-blur-md">
+        <div class="mx-auto grid grid-cols-2 md:grid-cols-4 max-w-[1200px] divide-slate-200 dark:divide-slate-800">
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center border-r border-slate-200 dark:border-slate-800">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Expertise</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter">Character Lifecycle</span>
+            </div>
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Workflow</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter">Vector-to-Pixel Mastery</span>
+            </div>
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-r border-slate-200 dark:border-slate-800 md:border-t-0">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Styles</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Realism / Cartoon</span>
+            </div>
+            <div class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-slate-200 dark:border-slate-800 md:border-t-0">
+                <span class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Assets</span>
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Hand-crafted Symbols</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="max-w-[1200px] mx-auto py-24 px-6 space-y-32">
+
+        <!-- 1. SZAKASZ: PHARAO (The Masterpiece) -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight uppercase italic">
+                    The Pharao <br><span class="text-amber-600 dark:text-amber-500 italic font-light">Digital Archeology</span>
+                </h2>
+                <div class="space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+                    <p>
+                        Designing the <strong>Pharao</strong> series required cultural research. From Tutankhamun’s mask to the Eye of Ra, every symbol was crafted with historical depth and premium aesthetic.
+                    </p>
+                    <p>
+                        <strong>Technical Approach:</strong> I developed these characters using a hybrid workflow: precise <strong>Vector foundations</strong> refined with pixel-level texturing to achieve a rich, golden finish.
                     </p>
                 </div>
-            </section>
+            </div>
+            <!-- Karakter galéria rács -->
+            <div class="grid grid-cols-2 gap-4">
+                <img src="img/amatic/tutankhamun.png" class="rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500">
+                <img src="img/amatic/nefertiti.png" class="rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500 mt-8">
+                <img src="img/amatic/anubis.png" class="rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500 -mt-8">
+                <img src="img/amatic/eye-of-ra.png" class="rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500">
+            </div>
+        </div>
 
-            <!-- STATS BAR -->
-            <!-- ROLE & IMPACT BAR - Siemens/ETM (Eredeti tartalom + Mobil-optimalizált váz) -->
-            <div class="border-y border-slate-800 bg-[#101922]/95 relative sm:sticky sm:top-16 z-40 backdrop-blur-md">
-                <div class="mx-auto grid grid-cols-2 md:grid-cols-4 max-w-[1200px] divide-slate-800">
-                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
-                        <span
-                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Expertise</span>
-                        <span class="text-sm font-semibold text-white uppercase tracking-tighter">Character
-                            Lifecycle</span>
+        <!-- 2. SZAKASZ: STÍLUS ADAPTÁCIÓ -->
+        <div class="space-y-12">
+            <div class="max-w-3xl">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter mb-4 uppercase">Style Adaptability</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg italic">
+                    A senior designer’s greatest asset is the ability to speak different visual languages. From Nordic mythology to the playful world of a cartoon zoo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 text-slate-600 dark:text-slate-300">
+                <!-- Viking Game -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="rounded-2xl lg:rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl relative group bg-slate-100 dark:bg-slate-900">
+                        <img src="img/amatic/viking-main.jpg" alt="Viking Game Screen" class="w-full h-auto object-cover">
+                        <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[9px] lg:text-[10px] font-mono uppercase tracking-widest text-white">
+                            Genre: Mythological Realism
+                        </div>
                     </div>
-                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
-                        <span
-                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Workflow</span>
-                        <span class="text-sm font-semibold text-white uppercase tracking-tighter">Vector-to-Pixel
-                            Mastery</span>
+                </div>
+
+                <!-- Zoo Game -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="rounded-2xl lg:rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl aspect-video lg:aspect-square bg-slate-100 dark:bg-black flex items-center justify-center">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="img/amatic/zoo-icons.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
-                        <span
-                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Styles</span>
-                        <span class="text-sm font-semibold text-white uppercase tracking-tighter italic">Realism /
-                            Cartoon / Viking</span>
-                    </div>
-                    <div class="flex-1 min-w-[50%] md:min-w-0 p-6 flex flex-col items-center text-center">
-                        <span
-                            class="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary italic">Assets</span>
-                        <span class="text-sm font-semibold text-white uppercase tracking-tighter italic">Hand-crafted
-                            Symbols</span>
+
+                    <!-- Állat kártyák sora -->
+                    <div class="flex gap-3 lg:gap-4 overflow-x-auto pb-6 custom-scrollbar">
+                        <!-- Állat kártyák (ismételve az összesnél) -->
+                        <div class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                            <img src="img/amatic/geko.png" class="w-full h-full object-contain">
+                        </div>
+                        <div class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                            <img src="img/amatic/elephant.png" class="w-full h-full object-contain">
+                        </div>
+                        <div class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                            <img src="img/amatic/raccoon.png" class="w-full h-full object-contain">
+                        </div>
+                        <div class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                            <img src="img/amatic/monkey.png" class="w-full h-full object-contain">
+                        </div>
+                        <div class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                            <img src="img/amatic/bear.png" class="w-full h-full object-contain">
+                        </div>
+                        <div class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                            <img src="img/amatic/snake.png" class="w-full h-full object-contain">
+                        </div>
+                        <div class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
+                            <img src="img/amatic/lion.png" class="w-full h-full object-contain">
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <section class="max-w-[1200px] mx-auto py-24 px-6 space-y-32 text-slate-300">
-
-                <!-- 1. SZAKASZ: PHARAO (The Masterpiece) -->
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-6">
-                        <h2
-                            class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight uppercase">
-                            The Pharao <br><span class="text-amber-500 italic font-light">Digital Archeology</span>
-                        </h2>
-                        <div class="space-y-4 text-lg leading-relaxed text-slate-400">
-                            <p>
-                                Designing the <strong>Pharao</strong> series required more than just drawing; it
-                                required
-                                cultural research. From Tutankhamun’s mask to the Eye of Ra, every symbol was crafted
-                                with historical depth and premium aesthetic.
-                            </p>
-                            <p>
-                                <strong>Technical Approach:</strong> I developed these characters using a hybrid
-                                workflow.
-                                Starting with precise <strong>Vector foundations</strong> for perfect anatomy, then
-                                refined
-                                with pixel-level texturing to achieve that rich, golden atmospheric finish.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Karakter galéria rács -->
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="img/amatic/tutankhamun.png"
-                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500">
-                        <img src="img/amatic/nefertiti.png"
-                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500 mt-8">
-                        <img src="img/amatic/anubis.png"
-                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500 -mt-8">
-                        <img src="img/amatic/eye-of-ra.png"
-                            class="rounded-2xl border border-white/5 bg-white/5 p-2 shadow-xl hover:scale-105 transition-transform duration-500">
-                    </div>
+        <!-- 3. SZAKASZ: THE ARTIST'S JOURNEY -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative group order-2 lg:order-1">
+                <img src="img/amatic/pharao-sketch.jpg" class="rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-white/10 grayscale hover:grayscale-0 transition-all duration-700">
+                <p class="mt-4 text-[10px] font-mono text-primary uppercase tracking-widest">// Original Pencil Concept for the Pharaoh</p>
+            </div>
+            <div class="space-y-6 order-1 lg:order-2">
+                <h2 class="text-3xl font-black text-slate-900 dark:text-white uppercase italic leading-none uppercase">The Sketch <br>is the Soul</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                    Even in a digital-first industry, I believe in the power of the hand-drawn concept. The Pharao’s character lifecycle began with detailed pencil studies.
+                </p>
+                <div class="bg-slate-100 dark:bg-noir-card p-6 rounded-2xl border-l-4 border-amber-500 transition-colors">
+                    <p class="text-sm italic text-slate-700 dark:text-slate-300 leading-relaxed">
+                        "My goal was to create characters that players don't just see, but recognize as symbols of power and mystery. The vector foundation allows for infinite scalability, while the pixel-finishing brings the gold to life."
+                    </p>
                 </div>
+            </div>
+        </div>
 
-                <!-- 2. SZAKASZ: STÍLUS ADAPTÁCIÓ (Zoo & Viking) -->
-                <div class="space-y-12">
-                    <div class="max-w-3xl">
-                        <h2 class="text-3xl font-bold text-white uppercase italic tracking-tighter mb-4">Style
-                            Adaptability</h2>
-                        <p class="text-slate-400 text-lg italic">
-                            A senior designer’s greatest asset is the ability to speak different visual languages.
-                            From the gritty atmosphere of Nordic mythology to the playful, animated world of a cartoon
-                            zoo.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                        <!-- Viking Game - Mobilon teljes szélesség, de kontrollált magasság -->
-                        <div class="lg:col-span-7 space-y-4">
-                            <div
-                                class="rounded-2xl lg:rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group bg-slate-900">
-                                <img src="img/amatic/viking-main.jpg" alt="Viking Game Screen"
-                                    class="w-full h-auto object-cover">
-                                <div
-                                    class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[9px] lg:text-[10px] font-mono uppercase tracking-widest text-white">
-                                    Genre: Mythological Realism
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Zoo Game - Mobilon VIDEÓ ARÁNY (nem négyzet), Desktopon marad NÉGYZET -->
-                        <div class="lg:col-span-5 space-y-4">
-                            <div
-                                class="rounded-2xl lg:rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-video lg:aspect-square bg-black flex items-center justify-center">
-                                <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                                    <source src="img/amatic/zoo-icons.mp4" type="video/mp4">
-                                </video>
-                            </div>
-
-                            <!-- Kártyák sora - Mobilon picit kisebb kártyákkal, hogy ne foglalják el a fél világot -->
-                            <div class="flex gap-3 lg:gap-4 overflow-x-auto pb-6 custom-scrollbar">
-                                <!-- Állat kártya példa (ismételd a többi állattal) -->
-                                <div
-                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0 transition-transform hover:-translate-y-1">
-                                    <img src="img/amatic/geko.png" class="w-full h-full object-contain">
-                                </div>
-                                <!-- ... többi állat ugyanígy ... -->
-                                <div
-                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
-                                    <img src="img/amatic/elephant.png" class="w-full h-full object-contain">
-                                </div>
-                                <div
-                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
-                                    <img src="img/amatic/raccoon.png" class="w-full h-full object-contain">
-                                </div>
-                                <div
-                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
-                                    <img src="img/amatic/monkey.png" class="w-full h-full object-contain">
-                                </div>
-                                <div
-                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
-                                    <img src="img/amatic/bear.png" class="w-full h-full object-contain">
-                                </div>
-                                <div
-                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
-                                    <img src="img/amatic/snake.png" class="w-full h-full object-contain">
-                                </div>
-                                <div
-                                    class="min-w-[80px] h-[80px] lg:min-w-[100px] lg:h-[100px] rounded-xl bg-white/5 border border-white/10 p-2 flex-shrink-0">
-                                    <img src="img/amatic/lion.png" class="w-full h-full object-contain">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. SZAKASZ: THE ARTIST'S JOURNEY -->
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="relative group order-2 lg:order-1">
-                        <img src="img/amatic/pharao-sketch.jpg"
-                            class="rounded-[2.5rem] shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700">
-                        <p class="mt-4 text-[10px] font-mono text-primary uppercase tracking-widest">// Original Pencil
-                            Concept for the Pharaoh</p>
-                    </div>
-                    <div class="space-y-6 order-1 lg:order-2">
-                        <h2 class="text-3xl font-black text-white uppercase italic leading-none">The Sketch <br>is the
-                            Soul</h2>
-                        <p class="text-slate-400 text-lg leading-relaxed">
-                            Even in a digital-first industry, I believe in the power of the hand-drawn concept.
-                            The Pharao’s character lifecycle began with detailed pencil studies, ensuring that
-                            the final digital rendering carried the same weight and personality as a classical artwork.
-                        </p>
-                        <div class="bg-noir-card p-6 rounded-2xl border-l-4 border-amber-500">
-                            <p class="text-sm italic text-slate-300">
-                                "My goal was to create characters that players don't just see, but recognize as symbols
-                                of power
-                                and mystery. The vector foundation allows for infinite scalability, while the
-                                pixel-finishing
-                                brings the gold to life."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RETURN BUTTON -->
-                <div class="flex justify-center py-10">
-                    <a href="work.html"
-                        class="flex items-center gap-3 text-primary font-bold hover:text-white transition-colors group">
-                        <span
-                            class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                        Back to Portfolio
-                    </a>
-                </div>
-            </section>
-        </main>
+        <!-- BACK BUTTON -->
+        <div class="flex justify-center py-10">
+            <a href="work.html" class="flex items-center gap-3 text-primary font-bold hover:text-slate-900 dark:hover:text-white transition-colors group">
+                <span class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+                Back to Portfolio
+            </a>
+        </div>
+    </section>
+</main>
         <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
             <div class="max-w-[1200px] mx-auto px-4 md:px-10">
 
