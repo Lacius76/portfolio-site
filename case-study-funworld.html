@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Funworld / Photoplay: Touchscreen Ergonomics Pioneer | Laszlo.UI</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background-dark": "#0a0f14",
+                        "industrial-card": "#18181b",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .industrial-gradient {
+            background: linear-gradient(to bottom, #1f2937, #0a0f14);
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-300 antialiased selection:bg-primary selection:text-white">
+
+    <div class="relative flex min-h-screen flex-col">
+        <!-- HEADER -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. OSZLOP: LOGÓ -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. OSZLOP: MENÜ -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                </nav>
+
+                <!-- 3. OSZLOP: GOMBOK -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk -->
+                    <a href="contact.html"
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        Let's Talk
+                    </a>
+                    <!-- Sötét mód gomb -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+
+            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
+                <a href="about-me.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+                <a href="resume.html"
+                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
+                <a href="contact.html"
+                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity">Let's
+                    Talk</a>
+            </nav>
+        </div>
+
+
+        <main class="bg-transparent transition-colors duration-300">
+            <!-- HERO: FUNWORLD / PHOTOPLAY -->
+            <section class="fixed inset-0 h-screen flex flex-col justify-center overflow-hidden bg-[#18181b] z-0">
+                <div class="absolute inset-0 z-0">
+                    <!-- HERO IMAGE: A terminál fotója -->
+                    <img src="img/funworld/potoplay-terminal-3.jpg"
+                        class="w-full h-full object-cover opacity-30 mix-blend-luminosity scale-110 blur-sm"
+                        alt="Photoplay Terminal">
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-white dark:from-background-dark via-[#18181b]/80 to-transparent">
+                    </div>
+                    <!-- Oldalsó sötétítés, hogy a szöveg olvasható legyen -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+                </div>
+
+                <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center md:text-left">
+                    <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic">Case Study: 2000 -
+                        2003</h2>
+                    <h1
+                        class="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter uppercase leading-tight">
+                        Pioneering<br>Touch<br><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400 pb-1 pr-2">Ergonomics</span>
+                    </h1>
+                    <p class="max-w-2xl text-xl md:text-2xl font-light leading-relaxed text-slate-300">
+                        Defining the rules of touch-interaction and "Hand-Occlusion" UX long before the smartphone era
+                        at <strong>Funworld AG (Photoplay)</strong>.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CONTENT WRAPPER FOR SCROLL EFFECT -->
+            <div
+                class="relative z-10 mt-[100vh] bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] pt-2 h-full">
+                <!-- EXECUTIVE SUMMARY - Funworld -->
+                <section class="max-w-[1200px] mx-auto px-6 relative z-20">
+                    <div
+                        class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-3 gap-12 bg-white/90 dark:bg-[#18181b]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors">
+
+                        <!-- BAL OLDAL: Project Vision -->
+                        <div class="md:col-span-2 space-y-6">
+                            <h3
+                                class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight uppercase italic">
+                                The Challenge</h3>
+                            <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg">
+                                Designing purely touch-based interfaces on <span
+                                    class="text-primary font-semibold">low-res
+                                    CRT hardware</span> (640x480) requires a completely different mindset than
+                                mouse-driven
+                                UI. My role was to solve the physical constraints of the arcade cabinet: viewing angles,
+                                finger precision, and the "Gorilla Arm" effect.
+                            </p>
+                            <!-- TAGS -->
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <span
+                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">HMI
+                                    Ergonomics</span>
+                                <span
+                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Pixel
+                                    Art</span>
+                                <span
+                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Technical
+                                    Art</span>
+                            </div>
+                        </div>
+
+                        <!-- JOBB OLDAL: Key Tech -->
+                        <!-- JOBB OLDAL: Key Tech -->
+                        <div class="space-y-8 border-l border-slate-200 dark:border-white/5 pl-8 clearfix">
+
+                            <!-- Terminal Image (Floating) -->
+                            <div
+                                class="float-right ml-1 mb-1 opacity-90 hover:scale-110 transition-all duration-500 origin-top-right">
+                                <img src="img/funworld/potoplay-terminal.png" alt="Photoplay Terminal"
+                                    class="h-[200px] object-contain drop-shadow-xl">
+                            </div>
+
+                            <div>
+                                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Hardware
+                                    Constraints
+                                </p>
+                                <p class="text-sm text-slate-700 dark:text-white">CRT Touchscreens, Limited VRAM, Alpha
+                                    Channels</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Key
+                                    Innovation
+                                </p>
+                                <p class="text-sm text-slate-700 dark:text-white">Occlusion-Free Layouts</p>
+                            </div>
+                        </div>
+                </section>
+
+                <!-- DEEP DIVE SECTIONS -->
+                <div class="max-w-[1200px] mx-auto px-6 py-24 space-y-32">
+
+                    <!-- 1. THE PROBLEM: HAND OCCLUSION -->
+                    <section class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="space-y-6 order-2 lg:order-1">
+                            <!-- Itt egy kép helye, pl. egy játék screenshot -->
+                            <div
+                                class="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl group">
+                                <img src="img/funworld/game-screens/mayan-funtowers.jpg" alt="Mayan Funtowers Interface"
+                                    class="w-full transition-transform duration-700 group-hover:scale-105">
+                                <div
+                                    class="absolute bottom-4 left-4 bg-black/70 backdrop-blur px-3 py-1 rounded text-xs text-white font-mono">
+                                    UI Elements placed at edges
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-6 order-1 lg:order-2">
+                            <div
+                                class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">touch_app</span>
+                            </div>
+                            <h2
+                                class="text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                                The "Hand-Occlusion"<br><span class="text-primary">Paradox</span></h2>
+                            <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <p>When a user interacts with a touchscreen, <span
+                                        class="text-slate-900 dark:text-white font-bold">their own hand blocks the
+                                        view</span>. This was a critical issue in 2000, where instantaneous feedback was
+                                    needed for arcade games.</p>
+                                <p>My solution was a rigorous layout grid that pushed critical information (score,
+                                    timer,
+                                    next move) to the <strong>peripheral zones</strong>, ensuring the center remained
+                                    clear
+                                    for interaction logic.</p>
+                            </div>
+                            <ul class="space-y-4 text-sm font-mono text-primary uppercase tracking-widest">
+                                <li class="flex gap-3"><span>//</span> Hit-Target size optimization for fingers.</li>
+                                <li class="flex gap-3"><span>//</span> Instant visual feedback on "Touch-Down".</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 2. GALLERY GRID -->
+                    <section>
+                        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">Visual
+                                Diversity
+                            </h3>
+                            <h2
+                                class="text-4xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                                Adapting to Genres</h2>
+                            <p class="text-slate-600 dark:text-slate-400">From puzzle games to card classics, every
+                                interface had to follow strict style guides while maintaining the core ergonomic
+                                principles.
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Card 1 -->
+                            <div
+                                class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-white/10">
+                                <img src="img/funworld/game-screens/magic-rings.jpg" alt="Magic Rings"
+                                    class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                    <span class="text-xs font-bold text-white uppercase tracking-wider">Magic
+                                        Rings</span>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div
+                                class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-white/10">
+                                <img src="img/funworld/game-screens/spacetowers.jpg" alt="Space Towers"
+                                    class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                    <span class="text-xs font-bold text-white uppercase tracking-wider">Space
+                                        Towers</span>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div
+                                class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-white/10">
+                                <img src="img/funworld/game-screens/elevens-1.jpg" alt="Elevens"
+                                    class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                    <span class="text-xs font-bold text-white uppercase tracking-wider">Elevens</span>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div
+                                class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-white/10">
+                                <img src="img/funworld/game-screens/heloween15.jpg" alt="Halloween"
+                                    class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                    <span class="text-xs font-bold text-white uppercase tracking-wider">Halloween</span>
+                                </div>
+                            </div>
+                            <!-- Card 5 -->
+                            <div
+                                class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-white/10">
+                                <img src="img/funworld/game-screens/spidey.jpg" alt="Spidey"
+                                    class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                    <span class="text-xs font-bold text-white uppercase tracking-wider">Spidey</span>
+                                </div>
+                            </div>
+                            <!-- Card 6 -->
+                            <div
+                                class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-white/10">
+                                <img src="img/funworld/game-screens/fun2one.jpg" alt="Fun 21"
+                                    class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                    <span class="text-xs font-bold text-white uppercase tracking-wider">Fun 21 (Card
+                                        Game)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- TECHNICAL LEGACY -->
+                    <section class="max-w-[1000px] mx-auto py-12 border-t border-slate-200 dark:border-white/5">
+                        <div class="grid md:grid-cols-2 gap-12">
+                            <div class="space-y-6">
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white uppercase italic">Technical
+                                    Artist Legacy</h3>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Back then, "Technical Artist" wasn't a common job title. But handling <strong>TIFF
+                                        Alpha
+                                        Channels</strong>, optimizing palettes for 256 colors, and understanding the
+                                    rendering pipeline of the Photoplay OS was essential.
+                                </p>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    This experience formed the foundation of my career: understanding that <span
+                                        class="text-primary font-bold">Design cannot exist without understanding the
+                                        Tech
+                                        Stack.</span>
+                                </p>
+                            </div>
+                            <div
+                                class="bg-slate-100 dark:bg-white/5 rounded-2xl p-8 border border-slate-200 dark:border-white/10">
+                                <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-6">Tools of the
+                                    Trade
+                                    (2000)</h4>
+                                <ul class="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-slate-400">brush</span>
+                                        <span>Adobe Photoshop 5.5 (managing Alpha Channels)</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-slate-400">view_comfy</span>
+                                        <span>Pixel-Perfect Icon Design (No Vectors!)</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-slate-400">hardware</span>
+                                        <span>CRT Color Calibration</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <div class="pt-8 text-center">
+                        <a href="work.html"
+                            class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 transition-all group text-lg">
+                            <span
+                                class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+                            Back to All Projects
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- STICKY HIRE ME -->
+            <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+                <a href="contact.html"
+                    class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+                    <span class="text-base font-bold tracking-wide">Hire Me</span>
+                </a>
+            </div>
+        </main>
+
+        <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-24 mt-auto">
+            <div class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
+                <div class="mb-12">
+                    <h3 class="text-4xl md:text-4xl font-black text-[#111418] dark:text-white mb-6">Ready to start a
+                        project?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                        Let's create something meaningful together. I'm always open to new opportunities and interesting
+                        challenges.
+                    </p>
+                </div>
+                <div class="mb-12">
+                    <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
+                    <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+                </div>
+                <!-- Közösségi ikonok a footerben -->
+                <div class="flex gap-5 mb-16">
+                    <!-- Email -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="mailto:foeldvary@gmail.com">
+                        <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="https://www.linkedin.com/in/foldvary-laszlo/">
+                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                            <path clip-rule="evenodd"
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="https://www.foeldvary.com">
+                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                            <path clip-rule="evenodd"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div
+                    class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
+                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <div class="flex gap-8">
+                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+    <script>
+        // Mobil menü
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>
