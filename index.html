@@ -124,7 +124,7 @@
                     <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
                         href="index.html">
                         <div data-icon="logo"
-                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 p-1.5">
                         </div>
                         <h2 class="text-lg font-bold tracking-tight">Laszlo.UI</h2>
                     </a>
@@ -187,128 +187,154 @@
                 <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
                     <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
                         <!-- Hero Section -->
-                        <div class="@container pt-12 md:pt-24 pb-6 md:pb-10">
-                            <div class="flex flex-col-reverse gap-12 px-4 @[864px]:flex-row @[864px]:items-start">
-                                <!-- Text Content -->
-                                <div class="flex flex-col gap-6 flex-1 @[1200px]:pr-12">
-                                    <div class="flex flex-col gap-4 text-left">
-                                        <div
-                                            class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2">
-                                            Available for work
+                        <!-- HERO SECTION (FIXED LAYER 1) -->
+                        <!-- Reduced top padding to fit content -->
+                        <!-- HERO SECTION (FIXED LAYER 1) -->
+                        <div
+                            class="fixed inset-0 z-0 pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
+                            <div class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full">
+
+                                <!-- Top Hero Content (Text + Video) -->
+                                <div
+                                    class="flex flex-col-reverse gap-8 md:gap-12 lg:flex-row lg:items-start mb-4 md:mb-8 flex-1">
+                                    <!-- Text Content -->
+                                    <div class="flex flex-col gap-6 flex-1 @[1200px]:pr-8 z-10">
+                                        <div class="flex flex-col gap-4 text-left">
+                                            <div
+                                                class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+                                                Available for work
+                                            </div>
+                                            <h1
+                                                class="text-[#111418] dark:text-white text-4xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl">
+                                                Design that <span class="text-primary">humanizes</span> technology.
+                                            </h1>
+                                            <h2
+                                                class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
+                                                Hi, I'm Földváry László. A Product Designer &amp; UI Specialist based in
+                                                Sopron.
+                                                I craft clean, intuitive digital experiences that solve complex
+                                                problems.
+                                            </h2>
                                         </div>
-                                        <h1
-                                            class="text-[#111418] dark:text-white text-5xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-6xl lg:text-7xl">
-                                            Design that <span class="text-primary">humanizes</span> technology.
-                                        </h1>
-                                        <h2
-                                            class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed @[480px]:text-xl max-w-2xl mt-4">
-                                            Hi, I'm Földváry László. A Product Designer &amp; UI Specialist based in
-                                            Sopron.
-                                            I craft clean, intuitive digital experiences that solve complex problems.
-                                        </h2>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                                        <a href="work.html"
-                                            class="flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
-                                            View Selected Work
-                                        </a>
+                                        <div class="flex flex-col sm:flex-row gap-4 mt-2">
+                                            <a href="work.html"
+                                                class="flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
+                                                View Selected Work
+                                            </a>
 
-                                        <a href="contact.html"
-                                            class="flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]">
-                                            Contact Me
+                                            <a href="contact.html"
+                                                class="flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]">
+                                                Contact Me
 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <!-- Hero Image Video -->
-                                <a href="work.html" class="w-full flex-1 @[864px]:mt-12">
-                                    <div
-                                        class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
-                                        <!-- Decorative abstract pattern/image -->
-                                        <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
-                                            <video autoplay muted loop playsinline poster="img/start.jpg"
-                                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
-                                                <!-- Itt a videód -->
-                                                <source src="img/start-loop.mp4" type="video/mp4">
-                                                <!-- Ez marad itt "tartaléknak", ha valamiért nem töltene be a videó -->
-                                                <img src="img/start.jpg" alt="László Földváry Portrait Illustration">
-                                            </video>
+                                            </a>
                                         </div>
-                                        <!-- Floating Card 1 -->
-                                        <div
-                                            class="absolute bottom-6 left-6 right-6 md:right-auto md:w-64 p-4 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20">
-                                            <div class="flex items-center gap-3 mb-2">
+
+                                        <!-- Experience Cards (Integrated into Text Col) -->
+                                        <div class="w-full mt-[30px] z-10">
+                                            <div
+                                                class="grid grid-cols-2 gap-4 md:gap-8 max-w-[600px] lg:max-w-none lg:w-fit">
+                                                <!-- Card 1: Projects -->
                                                 <div
-                                                    class="size-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                                                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                                                    class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
+                                                    <div class="flex items-baseline gap-1">
+                                                        <span
+                                                            class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">50</span>
+                                                        <span class="text-lg md:text-xl font-bold text-primary">+</span>
+                                                    </div>
+                                                    <span
+                                                        class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400">Projects
+                                                        Launched</span>
                                                 </div>
-                                                <div>
-                                                    <p class="text-xs font-bold text-gray-900 dark:text-white">Project
-                                                        Complete</p>
-                                                    <p class="text-[10px] text-gray-500">Develop.UI Dashboard App</p>
+
+                                                <!-- Card 2: Experience -->
+                                                <div
+                                                    class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
+                                                    <div class="flex items-baseline gap-1">
+                                                        <span
+                                                            class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
+                                                        <span class="text-lg md:text-xl font-bold text-primary">+</span>
+                                                    </div>
+                                                    <p
+                                                        class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400">
+                                                        Years Experience</p>
                                                 </div>
-                                            </div>
-                                            <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-                                                <div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
                                             </div>
                                         </div>
+
                                     </div>
-                                </a>
+                                    <!-- Hero Image Video -->
+                                    <a href="work.html" class="w-full flex-1 max-w-[600px] mx-auto z-10">
+                                        <div
+                                            class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
+                                            <!-- Decorative abstract pattern/image -->
+                                            <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
+                                                <video autoplay muted loop playsinline poster="img/start.jpg"
+                                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
+                                                    <!-- Itt a videód -->
+                                                    <source src="img/start-loop.mp4" type="video/mp4">
+                                                    <!-- Ez marad itt "tartaléknak", ha valamiért nem töltene be a videó -->
+                                                    <img src="img/start.jpg"
+                                                        alt="László Földváry Portrait Illustration">
+                                                </video>
+                                            </div>
+                                            <!-- Floating Card 1 -->
+                                            <div
+                                                class="absolute bottom-6 left-6 right-6 md:right-auto md:w-64 p-4 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20">
+                                                <div class="flex items-center gap-3 mb-2">
+                                                    <div
+                                                        class="size-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                                        <span
+                                                            class="material-symbols-outlined text-sm">check_circle</span>
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-xs font-bold text-gray-900 dark:text-white">
+                                                            Project
+                                                            Complete</p>
+                                                        <p class="text-[10px] text-gray-500">Develop.UI Dashboard App
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+                                                    <div class="bg-primary h-1.5 rounded-full" style="width: 100%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+
                             </div>
                         </div>
+                        <!-- END OF RESTRICTED LAYOUT CONTAINER (Closing early so content-wrapper can be full width) -->
                     </div>
                 </div>
+            </div>
 
-                <!-- Floating Cards Experience Section -->
-                <div class="w-full py-6 bg-slate-50/50 dark:bg-[#101922]">
-                    <div class="max-w-[1000px] mx-auto px-4 md:px-10">
-                        <div class="grid grid-cols-2 gap-4 md:gap-8">
-                            <!-- Card 1: Projects -->
-                            <div
-                                class="flex flex-col items-center justify-center p-6 md:p-8 bg-white dark:bg-[#1e293b] rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 transition-transform hover:-translate-y-1 duration-300">
-                                <div class="flex items-baseline gap-1 mb-2">
-                                    <span
-                                        class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white">50</span>
-                                    <span class="text-2xl md:text-3xl font-bold text-primary">+</span>
-                                </div>
-                                <span
-                                    class="text-sm font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400">Projects
-                                    Launched</span>
-                            </div>
+            <!-- SCROLLING CONTENT WRAPPER (Cards + Selected Works) -->
+            <div id="content-wrapper"
+                class="relative z-10 mt-[100vh] bg-white dark:bg-background-dark shadow-[0_-30px_20px_#ffffff] dark:shadow-[0_-30px_20px_#101922]">
 
-                            <!-- Card 2: Experience -->
-                            <div
-                                class="flex flex-col items-center justify-center p-6 md:p-8 bg-white dark:bg-[#1e293b] rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 transition-transform hover:-translate-y-1 duration-300">
-                                <div class="flex items-baseline gap-1 mb-2">
-                                    <span
-                                        class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white">25</span>
-                                    <span class="text-2xl md:text-3xl font-bold text-primary">+</span>
-                                </div>
-                                <p
-                                    class="text-sm font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400">
-                                    Years
-                                    Experience</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
-                    <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+
+                <!-- Inner Content Container (Matches Hero Width) -->
+                <div class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 py-5 flex flex-col">
+                    <!-- Place holder for dynamic content if any, or just structure -->
+                    <div class="layout-content-container flex flex-col flex-1">
                     </div>
                     <!-- Selected Works Preview (Bonus Section for context) -->
-                    <div class="py-10 border-t border-gray-100 dark:border-gray-800">
-                        <div class="flex justify-between items-end mb-8 px-4">
+                    <div class="py-10">
+                        <div class="flex justify-between items-end mb-8">
                             <div>
-                                <h3 class="text-2xl font-bold text-[#111418] dark:text-white">Selected Works</h3>
+                                <h3 class="text-2xl font-bold text-[#111418] dark:text-white">Selected Works
+                                </h3>
                                 <p class="text-gray-500 mt-1">A glimpse into my recent design journey</p>
                             </div>
                             <a class="text-primary font-medium hover:underline hidden sm:block" href="work.html">
                                 View all projects -&gt;
                             </a>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                             <!-- 1. Projekt: Shadow Cartels -->
                             <a href="case-study-shadow.html" class="group block cursor-pointer">
@@ -322,7 +348,8 @@
                                 <h4
                                     class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
                                     Shadow Cartels</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Lead Game UI & Interaction</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Lead Game UI &
+                                    Interaction</p>
                             </a>
 
                             <!-- 2. Projekt: Amatic / Casino -->
@@ -337,7 +364,8 @@
                                 <h4
                                     class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors">
                                     Premium Slot Games</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Visual Design & UI Art</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Visual Design & UI Art
+                                </p>
                             </a>
 
                             <!-- 3. Projekt: Siemens / Industrial -->
@@ -364,95 +392,95 @@
                         </div-->
                     </div>
                 </div>
-            </div>
-    </div>
-    </main>
+                <!-- Removed 3 closing divs here as they are closed early above -->
+        </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-24 mt-auto">
-        <div class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
-
-            <!-- 1. Nagy szöveg az Indexen -->
-            <div class="mb-12">
-                <h3 class="text-4xl md:text-4xl font-black text-[#111418] dark:text-white mb-6">Ready to start a
-                    project?</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
-                    Let's create something meaningful together. I'm always open to new opportunities and interesting
-                    challenges.
-                </p>
-            </div>
-
-            <!-- 2. Elérhetőségek nagyban -->
-            <div class="mb-12">
-                <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
-                <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
-            </div>
-
-            <!-- 2. KÖZÉPSŐ RÉSZ: Social Media Ikonok (Kör alakú gomb hatás) -->
-            <div class="flex gap-5 mb-16">
-                <!-- LinkedIn -->
-                <!-- Email -->
-                <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                    href="mailto:foeldvary@gmail.com">
-                    <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                            stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </a>
-                <!-- LinkedIn -->
-                <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                    href="https://www.linkedin.com/in/foldvary-laszlo/">
-                    <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                        <path clip-rule="evenodd"
-                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                            fill-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <!-- Facebook -->
-                <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                    href="#">
-                    <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
-                        </path>
-                    </svg>
-                </a>
-                <!-- Website -->
-                <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                    href="https://www.foeldvary.com">
-                    <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                        <path clip-rule="evenodd"
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z"
-                            fill-rule="evenodd"></path>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- 4. Alsó sor (Ugyanaz, mint a többi oldalon) -->
+        <!-- Footer -->
+        <footer id="footer-reveal"
+            class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-24 overflow-hidden transition-all duration-300">
             <div
-                class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
-                <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
-                <div class="flex gap-8">
-                    <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern">
+                <!-- Grid Pattern class added (if available) or background -->
+
+                <!-- 1. Nagy szöveg az Indexen (ANIMÁLT) -->
+                <div id="footer-cta" class="mb-12">
+                    <h3 id="footer-title"
+                        class="text-4xl md:text-5xl font-black text-[#111418] dark:text-white mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out">
+                        Ready
+                        to start a
+                        project?</h3>
+                    <p id="footer-subtitle"
+                        class="text-gray-500 dark:text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out">
+                        Let's create something meaningful together. I'm always open to new opportunities and interesting
+                        challenges.
+                    </p>
+                </div>
+
+                <!-- 2. Elérhetőségek nagyban -->
+                <div id="footer-contact"
+                    class="mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out">
+                    <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
+                    <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+                </div>
+
+                <!-- 2. KÖZÉPSŐ RÉSZ: Social Media Ikonok (Kör alakú gomb hatás) -->
+                <div class="flex gap-5 mb-16">
+                    <!-- Email -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="mailto:foeldvary@gmail.com">
+                        <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="https://www.linkedin.com/in/foldvary-laszlo/">
+                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                            <path clip-rule="evenodd"
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <!-- Facebook -->
+                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                        href="#">
+                        <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                            </path>
+                        </svg>
+                    </a>
+                    <!-- Website - REMOVED (Redundant in Footer of Index) -->
+                </div>
+
+                <!-- 4. Alsó sor (Ugyanaz, mint a többi oldalon) -->
+                <div
+                    class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
+                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <div class="flex gap-8">
+                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
-        <a href="contact.html"
-            class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+        </footer>
+        <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+            <a href="contact.html"
+                class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
-            <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
-                <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
-            </div>
-            <span class="text-base font-bold tracking-wide">Hire Me</span>
-        </a>
+                <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
+                    <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+                </div>
+                <span class="text-base font-bold tracking-wide">Hire Me</span>
+            </a>
+        </div>
+
+        <!-- CLOSE CONTENT WRAPPER BEFORE FOOTER -->
     </div>
-    </div>
-    <script src="js/icons.js"></script>
+    </main>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-icon]').forEach(element => {
@@ -491,7 +519,65 @@
             });
         });
     </script>
+    <script src="js/icons.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
     <script src="js/theme.js"></script>
+    <script>
+        // Footer Reveal Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const footer = document.getElementById('footer-reveal');
+            const wrapper = document.getElementById('content-wrapper');
+
+            function adjustLayout() {
+                // Set wrapper margin equal to footer height to allow reveal
+                wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+            }
+
+            function handleScroll() {
+                const scrollY = window.scrollY;
+                const viewHeight = window.innerHeight;
+                const docHeight = document.body.scrollHeight;
+
+                // 1. Z-Index Logic
+                if (scrollY > viewHeight) {
+                    footer.style.zIndex = '1';
+                } else {
+                    footer.style.zIndex = '-1';
+                }
+
+                // 2. CTA Animation Logic
+                // Trigger when we are close to the bottom (footer fully revealed)
+                const title = document.getElementById('footer-title');
+                const subtitle = document.getElementById('footer-subtitle');
+                const contact = document.getElementById('footer-contact');
+
+                // Use a threshold (e.g. 50px from bottom)
+                if (window.innerHeight + scrollY >= docHeight - 50) {
+                    title.classList.remove('opacity-0', 'translate-x-[50px]');
+                    subtitle.classList.remove('opacity-0', '-translate-x-[50px]');
+                    contact.classList.remove('opacity-0', 'translate-y-[50px]');
+                } else {
+                    title.classList.add('opacity-0', 'translate-x-[50px]');
+                    subtitle.classList.add('opacity-0', '-translate-x-[50px]');
+                    contact.classList.add('opacity-0', 'translate-y-[50px]');
+                }
+            }
+
+            // Init
+            adjustLayout();
+            window.addEventListener('resize', adjustLayout);
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        });
+    </script>
 </body>
 
 </html>
