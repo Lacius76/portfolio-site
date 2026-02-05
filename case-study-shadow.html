@@ -115,7 +115,8 @@
                     Talk</a>
             </nav>
         </div>
-        <main class="bg-white dark:bg-background-dark transition-colors duration-300">
+        <main id="content-wrapper"
+            class="relative z-10 bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300">
             <!-- HERO: SHADOW CARTELS -->
             <section class="relative pt-20 pb-32 overflow-hidden bg-slate-950">
                 <div class="absolute inset-0 z-0">
@@ -398,30 +399,46 @@
                 </a>
             </div>
         </main>
-        <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-24 mt-auto">
-            <div class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
+        <footer id="footer-reveal"
+            class="fixed bottom-0 left-0 w-full z-[-1] border-t border-white/10 bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300">
+            <!-- BACKGROUND HERO EFFECT -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <img src="img/shadow-cartels/shadow-cartels-hero.jpg"
+                    class="w-full h-full object-cover opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-50"
+                    alt="Shadow Cartels Background">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#18181b] via-[#18181b]/80 to-transparent"></div>
+            </div>
 
-                <!-- 1. Nagy szöveg az Indexen -->
+            <div class="relative z-10 max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
+
+                <!-- MOVED BACK BUTTON -->
+                <div class="mb-16">
+                    <a id="footer-back-link" href="work.html"
+                        class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
+                        <span
+                            class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+                        Back to All Projects
+                    </a>
+                </div>
+
                 <div class="mb-12">
-                    <h3 class="text-4xl md:text-4xl font-black text-[#111418] dark:text-white mb-6">Ready to start a
+                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">Ready
+                        to start a
                         project?</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
                         Let's create something meaningful together. I'm always open to new opportunities and interesting
                         challenges.
                     </p>
                 </div>
-
-                <!-- 2. Elérhetőségek nagyban -->
-                <div class="mb-12">
-                    <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
+                <div id="footer-contact-info"
+                    class="mb-12 opacity-0 translate-y-4 transition-all duration-700 ease-out delay-200">
+                    <p class="text-2xl font-bold text-white mb-2">+43 699 818 41 767</p>
                     <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
                 </div>
-
-                <!-- 2. KÖZÉPSŐ RÉSZ: Social Media Ikonok (Kör alakú gomb hatás) -->
+                <!-- Közösségi ikonok a footerben -->
                 <div class="flex gap-5 mb-16">
-                    <!-- LinkedIn -->
                     <!-- Email -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+                    <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
                         href="mailto:foeldvary@gmail.com">
                         <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -431,8 +448,8 @@
                         </svg>
                     </a>
                     <!-- LinkedIn -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="https://www.linkedin.com/in/foldvary-laszlo/">
+                    <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                        href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank">
                         <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
                             <path clip-rule="evenodd"
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
@@ -440,28 +457,17 @@
                         </svg>
                     </a>
                     <!-- Facebook -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="#">
+                    <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                        href="https://www.facebook.com/laszlo.foldvary" target="_blank">
                         <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
                             </path>
                         </svg>
                     </a>
-                    <!-- Website -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="https://www.foeldvary.com">
-                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                            <path clip-rule="evenodd"
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-1.015-2.527-2.126-4.937-2.126-4.937a11.962 11.962 0 00-6.602 3.005c.005.02.012.042.02.067.876 2.383 3.65 4.28 6.096 4.904-.62 2.158-1.543 4.22-2.316 6.136a9.554 9.554 0 01-3.66-2.186 9.475 9.475 0 01-2.434-6.636c0-.335.033-.664.085-.989.141-.019 3.033-.314 5.952.937 1.34-2.457 2.418-4.92 2.766-5.835a9.58 9.58 0 016.232.492zM12 20.445a8.47 8.47 0 01-4.945-1.583c.929-2.222 1.838-4.323 2.503-6.19 2.924.973 4.542 2.73 4.618 2.82a8.455 8.455 0 01-2.176 4.953z"
-                                fill-rule="evenodd"></path>
-                        </svg>
-                    </a>
                 </div>
-
-                <!-- 4. Alsó sor (Ugyanaz, mint a többi oldalon) -->
                 <div
-                    class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
+                    class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
                     <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
                     <div class="flex gap-8">
                         <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
@@ -471,9 +477,60 @@
             </div>
         </footer>
     </div>
-
-
     <script src="js/icons.js"></script>
+    <script>
+        // Footer Reveal Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const footer = document.getElementById('footer-reveal');
+            const wrapper = document.getElementById('content-wrapper');
+
+            function adjustLayout() {
+                // Set wrapper margin equal to footer height to allow reveal
+                if (wrapper && footer) {
+                    wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+                }
+            }
+
+            function handleScroll() {
+                // Toggle Footer Z-Index AND Back Button Animation
+
+                const scrollY = window.scrollY;
+                const viewHeight = window.innerHeight;
+                const docHeight = document.body.scrollHeight;
+
+                // 1. Z-Index Logic
+                if (footer) {
+                    if (scrollY > viewHeight) {
+                        footer.style.zIndex = '1';
+                    } else {
+                        footer.style.zIndex = '-1';
+                    }
+                }
+
+                // 2. Back Button Animation Logic
+                // Trigger when we are close to the bottom (footer fully revealed)
+                const backLink = document.getElementById('footer-back-link');
+                const contactInfo = document.getElementById('footer-contact-info');
+
+                if (backLink && contactInfo) {
+                    // Use a threshold (e.g. 50px from bottom)
+                    if (window.innerHeight + scrollY >= docHeight - 50) {
+                        backLink.classList.remove('opacity-0', 'translate-x-12');
+                        contactInfo.classList.remove('opacity-0', 'translate-y-4');
+                    } else {
+                        backLink.classList.add('opacity-0', 'translate-x-12');
+                        contactInfo.classList.add('opacity-0', 'translate-y-4');
+                    }
+                }
+
+            }
+
+            // Init
+            adjustLayout();
+            window.addEventListener('resize', adjustLayout);
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        });
+    </script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-icon]').forEach(element => {
