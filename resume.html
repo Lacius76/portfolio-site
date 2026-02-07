@@ -8,6 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
 
     <!-- 1. Külső könyvtárak (CDN) -->
+    <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
@@ -113,10 +114,11 @@
 
                 <!-- 2. OSZLOP: MENÜ -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
 
                 </nav>
 
@@ -125,8 +127,29 @@
                     <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
                     <a href="contact.html"
                         class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
-                        Let's Talk
+                        <span data-i18n="nav.letsTalk">Let's Talk</span>
                     </a>
+                    <!-- Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
@@ -151,13 +174,15 @@
             </button>
 
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="index.html"
-                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
-                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
-                <a href="about-me.html"
-                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
+                <a href="index.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.home">Home</a>
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.work">Work</a>
+                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.about">About</a>
                 <a href="contact.html"
-                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity">Let's
+                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
+                    data-i18n="nav.letsTalk">Let's
                     Talk</a>
             </nav>
         </div>
@@ -193,7 +218,8 @@
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-center gap-3">
                             <span class="text-primary material-symbols-outlined text-[20px]">verified_user</span>
-                            <span class="text-gray-700 dark:text-gray-300 font-bold italic">Österreichischer
+                            <span class="text-gray-700 dark:text-gray-300 font-bold italic"
+                                data-i18n="resume.citizenship">Österreichischer
                                 Staatsbürger</span>
                         </li>
                         <li class="flex items-center gap-3">
@@ -223,7 +249,8 @@
                         class="font-display text-4xl lg:text-5xl font-bold uppercase tracking-wide text-gray-900 dark:text-white mb-2">
                         László Földváry
                     </h1>
-                    <h2 class="text-primary text-xl dark:text-white lg:text-2xl font-medium tracking-wider uppercase">
+                    <h2 class="text-primary text-xl dark:text-white lg:text-2xl font-medium tracking-wider uppercase"
+                        data-i18n="resume.mainSubtitle">
                         Senior UI/UX Design Architect & Visual Artist
                     </h2>
                 </div>
@@ -232,17 +259,19 @@
                     <div
                         class="absolute -left-[15px] top-0 w-0 h-0 border-t-[8px] border-t-transparent border-r-[12px] border-r-primary border-b-[8px] border-b-transparent">
                     </div>
-                    <h3
-                        class="bg-primary text-white font-display font-bold uppercase px-3 py-1 inline-block mb-4 text-sm tracking-wider">
+                    <h3 class="bg-primary text-white font-display font-bold uppercase px-3 py-1 inline-block mb-4 text-sm tracking-wider"
+                        data-i18n="resume.aboutMeTitle">
                         Über Mich
                     </h3>
 
-                    <p class="text-gray-900 dark:text-white leading-relaxed mb-4 font-bold">
+                    <p class="text-gray-900 dark:text-white leading-relaxed mb-4 font-bold"
+                        data-i18n="resume.aboutMeIntro">
                         Experte für komplexe Design Systems, HMI und High-Performance Interfaces mit über 20 Jahren
                         Branchenerfahrung.
                     </p>
 
-                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 text-sm">
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4 text-sm"
+                        data-i18n="resume.aboutMePara1" data-i18n-html>
                         Als Pionier der Touchscreen-Ergonomie und erfahrener UI-Spezialist für Weltmarktführer wie
                         <strong>Siemens</strong> beherrsche ich die gesamte Product-Design-Chain. Mein Fokus liegt auf
                         der
@@ -250,7 +279,8 @@
                         <strong>User Experience (UX)</strong> für komplexe SaaS- und Fintech-Plattformen.
                     </p>
 
-                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm" data-i18n="resume.aboutMePara2"
+                        data-i18n-html>
                         Ich garantiere einen hocheffizienten <strong>Design-to-Development Handoff</strong> in agilen
                         Umgebungen (Scrum/Kanban) und nutze modernste <strong>AI-Workflows</strong>, um
                         Prototyping-Phasen
@@ -263,7 +293,7 @@
                         <a href="img/foldvary_laszlo_cv.pdf" download
                             class="inline-flex items-center gap-2 bg-primary hover:bg-indigo-700 text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded shadow-lg transition-all active:scale-95">
                             <span class="material-symbols-outlined text-sm">download</span>
-                            Lebenslauf als PDF herunterladen
+                            <span data-i18n="resume.downloadCV">Lebenslauf als PDF herunterladen</span>
                         </a>
                     </div>
                 </div>
@@ -275,28 +305,34 @@
             <aside class="lg:col-span-4 space-y-12 order-2 lg:order-1">
                 <!-- Weiterbildung -->
                 <section>
-                    <h3
-                        class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
+                    <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
+                        data-i18n="resume.continuingEducationTitle">
                         Weiterbildung
                     </h3>
                     <div class="space-y-6">
                         <div class="relative pl-4 border-l-2 border-primary/30">
-                            <h4 class="text-primary font-bold text-sm">Multimedia Design</h4>
-                            <p class="text-xs dark:text-white font-medium">Multimedia Kolleg Innsbruck</p>
-                            <p class="text-[10px] text-gray-500 uppercase">Schwerpunkt: Digital Media & Interactivity
+                            <h4 class="text-primary font-bold text-sm" data-i18n="resume.edu1Title">Multimedia Design
+                            </h4>
+                            <p class="text-xs dark:text-white font-medium" data-i18n="resume.edu1School">Multimedia
+                                Kolleg Innsbruck</p>
+                            <p class="text-[10px] text-gray-500 uppercase" data-i18n="resume.edu1Focus">Schwerpunkt:
+                                Digital Media & Interactivity
                             </p>
                         </div>
                         <div class="relative pl-4 border-l-2 border-primary/30">
-                            <h4 class="text-primary font-bold text-sm">Dtp Grafik Ausbildung</h4>
-                            <p class="text-xs dark:text-white font-medium">BFI Salzburg</p>
-                            <p class="text-[10px] text-gray-500 uppercase">Schwerpunkt: Print & Layout Technology</p>
+                            <h4 class="text-primary font-bold text-sm" data-i18n="resume.edu2Title">Dtp Grafik
+                                Ausbildung</h4>
+                            <p class="text-xs dark:text-white font-medium" data-i18n="resume.edu2School">BFI Salzburg
+                            </p>
+                            <p class="text-[10px] text-gray-500 uppercase" data-i18n="resume.edu2Focus">Schwerpunkt:
+                                Print & Layout Technology</p>
                         </div>
                     </div>
                 </section>
                 <!-- Kenntnisse -->
                 <section>
-                    <h3
-                        class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
+                    <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
+                        data-i18n="resume.skillsTitle">
                         Kenntnisse</h3>
                     <div class="space-y-3">
                         <div class="flex items-center justify-between group">
@@ -364,8 +400,8 @@
                 </section>
                 <!-- Ausbildung -->
                 <section>
-                    <h3
-                        class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
+                    <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
+                        data-i18n="resume.fundamentalEducationTitle">
                         Fundamentale Ausbildung
                     </h3>
                     <div
@@ -375,13 +411,17 @@
                             <div
                                 class="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-gray-400 border-2 border-white dark:border-gray-800">
                             </div>
-                            <h4 class="text-gray-900 dark:text-white font-bold text-sm uppercase">Klassische Kunst &
+                            <h4 class="text-gray-900 dark:text-white font-bold text-sm uppercase"
+                                data-i18n="resume.fundEdu1Title">Klassische Kunst &
                                 Grafik (Abitur)</h4>
-                            <div class="text-xs text-primary font-medium mb-1 text-balance">Kunstgymnasium Ion Vidu,
+                            <div class="text-xs text-primary font-medium mb-1 text-balance"
+                                data-i18n="resume.fundEdu1School">Kunstgymnasium Ion Vidu,
                                 Timisoara</div>
-                            <p class="text-[10px] text-gray-500 italic leading-tight">Fokus: Anatomisches Zeichnen,
+                            <p class="text-[10px] text-gray-500 italic leading-tight" data-i18n="resume.fundEdu1Focus">
+                                Fokus: Anatomisches Zeichnen,
                                 Kompositionslehre und Farbenlehre.</p>
-                            <div class="text-[10px] text-gray-400 mt-1">1986 - 1991</div>
+                            <div class="text-[10px] text-gray-400 mt-1" data-i18n="resume.fundEdu1Years">1986 - 1991
+                            </div>
                         </div>
 
                         <!-- Berufsschule -->
@@ -389,52 +429,57 @@
                             <div
                                 class="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-gray-300 border-2 border-white dark:border-gray-800">
                             </div>
-                            <h4 class="text-gray-900 dark:text-white font-bold text-sm uppercase">Berufsschule</h4>
-                            <div class="text-xs text-gray-500 font-medium mb-1 italic leading-tight text-balance">
+                            <h4 class="text-gray-900 dark:text-white font-bold text-sm uppercase"
+                                data-i18n="resume.fundEdu2Title">Berufsschule</h4>
+                            <div class="text-xs text-gray-500 font-medium mb-1 italic leading-tight text-balance"
+                                data-i18n="resume.fundEdu2School">
                                 Berufsschule Kremsmünster</div>
-                            <div class="text-[10px] text-gray-400 mt-1">1994 - 1997</div>
+                            <div class="text-[10px] text-gray-400 mt-1" data-i18n="resume.fundEdu2Years">1994 - 1997
+                            </div>
                         </div>
                     </div>
                 </section>
                 <!-- Sprachen -->
                 <section>
-                    <h3
-                        class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
+                    <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
+                        data-i18n="resume.languagesTitle">
                         Sprachen
                     </h3>
                     <div class="space-y-4 text-sm dark:text-white">
                         <!-- Deutsch -->
                         <div>
                             <div class="flex justify-between items-baseline">
-                                <span class="font-bold">Deutsch</span>
-                                <span class="text-primary font-bold">Muttersprachliches Niveau</span>
+                                <span class="font-bold" data-i18n="resume.languageGerman">Deutsch</span>
+                                <span class="text-primary font-bold"
+                                    data-i18n="resume.languageGermanLevel">Muttersprachliches Niveau</span>
                             </div>
-                            <span
-                                class="block text-[10px] text-gray-500 uppercase tracking-[0.1em] italic text-right">Vollkommen
+                            <span class="block text-[10px] text-gray-500 uppercase tracking-[0.1em] italic text-right"
+                                data-i18n="resume.languageGermanNote">Vollkommen
                                 akzentfrei</span>
                         </div>
 
                         <!-- Ungarisch -->
                         <div
                             class="flex justify-between items-baseline border-t border-gray-100 dark:border-gray-800 pt-2">
-                            <span class="font-bold">Ungarisch</span>
-                            <span
-                                class="text-muted-light dark:text-muted-dark dark:text-white italic">Muttersprache</span>
+                            <span class="font-bold" data-i18n="resume.languageHungarian">Ungarisch</span>
+                            <span class="text-muted-light dark:text-muted-dark dark:text-white italic"
+                                data-i18n="resume.languageHungarianLevel">Muttersprache</span>
                         </div>
 
                         <!-- Englisch -->
                         <div
                             class="flex justify-between items-baseline border-t border-gray-100 dark:border-gray-800 pt-2">
-                            <span class="font-bold">Englisch</span>
-                            <span class="text-muted-light dark:text-muted-dark dark:text-white italic">Fließend in Wort
+                            <span class="font-bold" data-i18n="resume.languageEnglish">Englisch</span>
+                            <span class="text-muted-light dark:text-muted-dark dark:text-white italic"
+                                data-i18n="resume.languageEnglishLevel">Fließend in Wort
                                 und Schrift</span>
                         </div>
                     </div>
                 </section>
                 <!-- KERNKOMPETENZEN: HR-barát elnevezés a szoftveres ismereteken túl -->
                 <section>
-                    <h3
-                        class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
+                    <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
+                        data-i18n="resume.coreCompetenciesTitle">
                         Kernkompetenzen
                     </h3>
                     <div class="flex flex-wrap gap-2">
@@ -460,20 +505,20 @@
                 </section>
                 <!-- INTERESSEN: Humánus és technikai oldalad összekötése -->
                 <section>
-                    <h3
-                        class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2 text-slate-400">
+                    <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2 text-slate-400"
+                        data-i18n="resume.personalTitle">
                         Persönliches
                     </h3>
                     <div class="space-y-4 text-xs leading-relaxed text-slate-600 dark:text-slate-400 italic">
-                        <p>
+                        <p data-i18n="resume.personalP1">
                             Ich bin ein lebenslanger Lerner mit einer tiefen Leidenschaft für die Evolution der Technik.
                         </p>
-                        <p>
+                        <p data-i18n="resume.personalP2" data-i18n-html>
                             In meiner Freizeit sammle und restauriere ich <strong>Vintage-Technologie</strong>: Von
                             analogen Plattenspielern bis hin zu frühen Computersystemen und klassischen
                             Betriebssystemen.
                         </p>
-                        <p>
+                        <p data-i18n="resume.personalP3">
                             Diese Begeisterung für die „Wurzeln der Digitalisierung“ schärft meinen Blick für zeitlose
                             Design-Prinzipien und benutzerzentrierte Logik.
                         </p>
@@ -481,10 +526,12 @@
                 </section>
                 <!-- OPCIONÁLIS: Interests (Hogy emberivé tegyük) -->
                 <section>
-                    <h3 class="font-display font-bold text-lg dark:text-white uppercase tracking-wider mb-4 opacity-50">
+                    <h3 class="font-display font-bold text-lg dark:text-white uppercase tracking-wider mb-4 opacity-50"
+                        data-i18n="resume.interestsTitle">
                         Interessen
                     </h3>
-                    <p class="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed italic">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed italic"
+                        data-i18n="resume.interestsText">
                         Passion für Generative AI (Stable Diffusion/ComfyUI), Modellbau, Geschichte der industriellen
                         Ergonomie und die Evolution der digitalen Spielkultur.
                     </p>
@@ -493,38 +540,49 @@
             <!-- Berufserfahrung -->
             <div class="lg:col-span-8 order-1 lg:order-2">
                 <section>
-                    <h3
-                        class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-8 border-b-2 border-gray-200 dark:border-gray-700 pb-2">
+                    <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-8 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
+                        data-i18n="resume.experienceTitle">
                         Berufserfahrung</h3>
+
+
                     <div class="space-y-12 border-l-2 border-primary/20 dark:border-primary/20 ml-2 pl-8 relative">
                         <!-- SELF-PROJECT: Shadow Cartels - Kitölti a rést és mutatja a modern tudást -->
                         <div class="relative group">
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
-                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">Senior UI
+                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white"
+                                    data-i18n="resume.exp1Role">Senior UI
                                     Designer & Product Researcher</h4>
-                                <span class="text-primary font-medium text-lg">Independent Project: Shadow
+                                <span class="text-primary font-medium text-lg"
+                                    data-i18n="resume.exp1Company">Independent Project: Shadow
                                     Cartels</span>
                                 <div
                                     class="flex items-center text-sm mt-1 font-medium text-gray-500 dark:text-gray-400">
                                     <span
-                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2022
+                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300"
+                                        data-i18n="resume.exp1Period">2022
                                         -
                                         Heute</span>
-                                    <span class="material-icons text-sm mr-1">location</span> Remote
+                                    <span class="material-icons text-sm mr-1">location</span> <span
+                                        data-i18n="resume.exp1Location">Remote</span>
                                 </div>
                             </div>
                             <div class="bg-primary/5 p-4 rounded-lg border border-primary/20">
-                                <strong class="block text-sm uppercase tracking-wide text-primary mb-2 italic">Fokus:
+                                <strong class="block text-sm uppercase tracking-wide text-primary mb-2 italic"
+                                    data-i18n="resume.exp1Focus">Fokus:
                                     AI-Augmented Design & Systems</strong>
                                 <ul class="list-disc ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <li>Entwicklung eines komplexen Game-Ecosystems mit Fokus auf
+                                    <li data-i18n="resume.exp1Point1" data-i18n-html>Entwicklung eines komplexen
+                                        Game-Ecosystems mit Fokus auf
                                         <strong>Datenvisualisierung</strong> und System-Thinking.
                                     </li>
-                                    <li>Implementierung von <strong>AI-Workflows (Gemini, Midjourney)</strong> zur
-                                        Beschleunigung des Prototyping-Prozesses um das 3-fache.</li>
-                                    <li>Beherrschung von modernem Deployment via <strong>GitHub & Netlify</strong> – weg
+                                    <li data-i18n="resume.exp1Point2" data-i18n-html>Implementierung von
+                                        <strong>AI-Workflows (Gemini, Midjourney)</strong> zur
+                                        Beschleunigung des Prototyping-Prozesses um das 3-fache.
+                                    </li>
+                                    <li data-i18n="resume.exp1Point3" data-i18n-html>Beherrschung von modernem
+                                        Deployment via <strong>GitHub & Netlify</strong> – weg
                                         von No-Code zu echtem technischem UI-Management.</li>
                                 </ul>
                             </div>
@@ -534,41 +592,51 @@
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
-                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">
+                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white"
+                                    data-i18n="resume.exp2Role">
                                     UI/UX-Designer</h4>
-                                <a class="text-primary font-medium hover:underline text-lg" href="#">Siemens-ETM
+                                <a class="text-primary font-medium hover:underline text-lg" href="#"
+                                    data-i18n="resume.exp2Company">Siemens-ETM
                                     Professional Control</a>
                                 <div
                                     class="flex items-center text-sm mt-1 font-medium text-gray-500 dark:text-gray-400">
                                     <span
-                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2019
+                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300"
+                                        data-i18n="resume.exp2Period">2019
                                         - 2022</span>
                                     <span class="material-icons text-sm mr-1">location</span>
-                                    Eisenstadt
+                                    <span data-i18n="resume.exp2Location">Eisenstadt</span>
                                 </div>
                             </div>
-                            <p class="mb-3 text-muted-light dark:text-muted-dark dark:text-white italic">Verantwortlich
+                            <p class="mb-3 text-muted-light dark:text-muted-dark dark:text-white italic"
+                                data-i18n="resume.exp2Intro">Verantwortlich
                                 für das
                                 UI/UX-Design von WinCC OA.</p>
                             <div
                                 class="bg-surface-light dark:bg-gray-800/40 p-4 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
                                 <strong
-                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2">Erfolge
+                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2"
+                                    data-i18n="resume.exp2Header">Erfolge
                                     &amp;
                                     Aufgaben:</strong>
                                 <ul
                                     class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <li>Standardisierung komplexer <strong>Design-Systeme</strong> (Widget-Bibliothek)
+                                    <li data-i18n="resume.exp2Point1" data-i18n-html>Standardisierung komplexer
+                                        <strong>Design-Systeme</strong> (Widget-Bibliothek)
                                         mit über 270 Komponenten, was die Implementierungszeit um ca. 40% reduzierte.
                                     </li>
-                                    <li>Konzeption hochverfügbarer Dashboards für kritische Infrastrukturen (WinCC OA) –
+                                    <li data-i18n="resume.exp2Point2" data-i18n-html>Konzeption hochverfügbarer
+                                        Dashboards für kritische Infrastrukturen (WinCC OA) –
                                         Fokus auf <strong>kognitive Entlastung</strong>.</li>
-                                    <li>Leitung von User-Centered-Design Prozessen zur Harmonisierung technischer
+                                    <li data-i18n="resume.exp2Point3" data-i18n-html>Leitung von User-Centered-Design
+                                        Prozessen zur Harmonisierung technischer
                                         PLC-Daten mit moderner User Experience.</li>
                                     <!-- Új pont a Siemens sikerlistához -->
-                                    <li>Sicherstellung des effizienten <strong>Design-to-Development Handoffs</strong>
+                                    <li data-i18n="resume.exp2Point4" data-i18n-html>Sicherstellung des effizienten
+                                        <strong>Design-to-Development Handoffs</strong>
                                         in einem agilen Scrum-Umfeld, um Reibungsverluste bei der Implementierung
-                                        komplexer Logik zu minimieren.</li>
+                                        komplexer Logik zu minimieren.
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -577,21 +645,25 @@
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
-                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">Senior UI
+                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white"
+                                    data-i18n="resume.exp3Role">Senior UI
                                     Designer & Art Lead</h4>
-                                <a class="text-primary font-medium hover:underline text-lg" href="#">Greentube
+                                <a class="text-primary font-medium hover:underline text-lg" href="#"
+                                    data-i18n="resume.exp3Company">Greentube
                                     (Novomatic Interactive)</a>
                                 <div
                                     class="flex items-center text-sm mt-1 font-medium text-gray-500 dark:text-gray-400">
                                     <span
-                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2008
+                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300"
+                                        data-i18n="resume.exp3Period">2008
                                         -
                                         2018</span>
-                                    <span class="material-icons text-sm mr-1">location</span> Wien
+                                    <span class="material-icons text-sm mr-1">location</span> <span
+                                        data-i18n="resume.exp3Location">Wien</span>
                                 </div>
                             </div>
 
-                            <p class="mb-3 text-muted-light dark:text-white italic">
+                            <p class="mb-3 text-muted-light dark:text-white italic" data-i18n="resume.exp3Intro">
                                 Maßgebliche Gestaltung der globalen UI-Standards für marktführende Casino-Produkte über
                                 ein Jahrzehnt hinweg.
                             </p>
@@ -600,35 +672,45 @@
                             <div
                                 class="bg-surface-light dark:bg-gray-800/40 p-4 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
                                 <strong
-                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2">Erfolge
+                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2"
+                                    data-i18n="resume.exp3Header">Erfolge
                                     & Kompetenzen:</strong>
                                 <ul
                                     class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <li>Lead-Entwicklung von UI-Systemen für über 50+ High-Performance Slot-Games mit
+                                    <li data-i18n="resume.exp3Point1" data-i18n-html>Lead-Entwicklung von UI-Systemen
+                                        für über 50+ High-Performance Slot-Games mit
                                         Fokus auf <strong>Cross-Platform-Usability</strong> (Mobile-First).</li>
-                                    <li>Enge Zusammenarbeit mit Technical Leads zur Optimierung von
+                                    <li data-i18n="resume.exp3Point2" data-i18n-html>Enge Zusammenarbeit mit Technical
+                                        Leads zur Optimierung von
                                         <strong>Asset-Pipelines</strong> und UI-Performance.
                                     </li>
-                                    <li>Etablierung visueller Hierarchien, die Spielspaß mit komplexen mathematischen
+                                    <li data-i18n="resume.exp3Point3" data-i18n-html>Etablierung visueller Hierarchien,
+                                        die Spielspaß mit komplexen mathematischen
                                         Anzeigen (Payouts, Rules) harmonisieren.</li>
-                                    <li>Sicherstellung der <strong>Pixel-Perfektion</strong> unter Einhaltung strenger
-                                        regulatorischer UI-Vorgaben in verschiedenen internationalen Märkten.</li>
+                                    <li data-i18n="resume.exp3Point4" data-i18n-html>Sicherstellung der
+                                        <strong>Pixel-Perfektion</strong> unter Einhaltung strenger
+                                        regulatorischer UI-Vorgaben in verschiedenen internationalen Märkten.
+                                    </li>
                                 </ul>
                             </div>
 
                             <!-- SKILLS TAGS -->
                             <div class="flex flex-wrap gap-2 mt-4">
                                 <span
-                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter">Mobile-First
+                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter"
+                                    data-i18n="resume.exp3Tag1">Mobile-First
                                     UI</span>
                                 <span
-                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter">High-End
+                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter"
+                                    data-i18n="resume.exp3Tag2">High-End
                                     Illustration</span>
                                 <span
-                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter">Art
+                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter"
+                                    data-i18n="resume.exp3Tag3">Art
                                     Direction</span>
                                 <span
-                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter">Agile
+                                    class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded font-bold uppercase tracking-tighter"
+                                    data-i18n="resume.exp3Tag4">Agile
                                     Design Ops</span>
                             </div>
                         </div>
@@ -637,29 +719,37 @@
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
-                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">UI-Designer
+                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white"
+                                    data-i18n="resume.exp4Role">UI-Designer
                                 </h4>
-                                <a class="text-primary font-medium hover:underline text-lg" href="#">Altova</a>
+                                <a class="text-primary font-medium hover:underline text-lg" href="#"
+                                    data-i18n="resume.exp4Company">Altova</a>
                                 <div
                                     class="flex items-center text-sm dark:text-white text-muted-light dark:text-muted-dark dark:text-white mt-1 font-medium">
                                     <span
-                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2007
+                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300"
+                                        data-i18n="resume.exp4Period">2007
                                         - 2008</span>
-                                    <span class="material-icons text-sm dark:text-white mr-1">location</span> Wien
+                                    <span class="material-icons text-sm dark:text-white mr-1">location</span> <span
+                                        data-i18n="resume.exp4Location">Wien</span>
                                 </div>
                             </div>
                             <div class="bg-surface-light dark:bg-gray-800/40 p-4 rounded-lg border border-gray-100
                                 dark:border-gray-700 shadow-sm">
                                 <strong
-                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2">Kompetenzen:</strong>
+                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2"
+                                    data-i18n="resume.exp4Header">Kompetenzen:</strong>
                                 <ul
                                     class="list-disc list-outside ml-4 space-y-1 text-sm dark:text-white text-gray-700 dark:text-gray-300 mt-2">
-                                    <li>Systematisches Icon-Design: Erstellung von plattformübergreifenden
+                                    <li data-i18n="resume.exp4Point1" data-i18n-html>Systematisches Icon-Design:
+                                        Erstellung von plattformübergreifenden
                                         Desktop-Iconsets in Multi-Resolution-Formaten (inkl. Monochrom-Adaptionen für
                                         spezifische UI-States).</li>
-                                    <li>Web-Interface Optimization: Visuelle Pflege und Optimierung von Web-Assets für
+                                    <li data-i18n="resume.exp4Point2" data-i18n-html>Web-Interface Optimization:
+                                        Visuelle Pflege und Optimierung von Web-Assets für
                                         die Unternehmenspräsenz.</li>
-                                    <li>Frontend-Assets: Entwicklung von präzisen UI-Komponenten zur Steigerung der
+                                    <li data-i18n="resume.exp4Point3" data-i18n-html>Frontend-Assets: Entwicklung von
+                                        präzisen UI-Komponenten zur Steigerung der
                                         Software-Usability.</li>
                                 </ul>
                             </div>
@@ -669,20 +759,24 @@
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
-                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">UI-Designer
+                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white"
+                                    data-i18n="resume.exp5Role">UI-Designer
                                     & Concept Artist</h4>
-                                <span class="text-primary font-medium hover:underline text-lg">Amatic Industries</span>
+                                <span class="text-primary font-medium hover:underline text-lg"
+                                    data-i18n="resume.exp5Company">Amatic Industries</span>
                                 <div
                                     class="flex items-center text-sm mt-1 font-medium text-gray-500 dark:text-gray-400">
                                     <span
-                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2003
+                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300"
+                                        data-i18n="resume.exp5Period">2003
                                         -
                                         2007</span>
-                                    <span class="material-icons text-sm mr-1">location</span> Regau
+                                    <span class="material-icons text-sm mr-1">location</span> <span
+                                        data-i18n="resume.exp5Location">Regau</span>
                                 </div>
                             </div>
 
-                            <p class="mb-3 text-muted-light dark:text-white italic">
+                            <p class="mb-3 text-muted-light dark:text-white italic" data-i18n="resume.exp5Intro">
                                 Fokus auf Design-Research und die Integration von Motion Graphics in kohärente
                                 Spielewelten.
                             </p>
@@ -691,18 +785,23 @@
                             <div
                                 class="bg-surface-light dark:bg-gray-800/40 p-4 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
                                 <strong
-                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2">Kernverantwortlichkeiten
+                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2"
+                                    data-i18n="resume.exp5Header">Kernverantwortlichkeiten
                                     & Forschung:</strong>
                                 <ul
                                     class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <li><strong>Thematisches Research:</strong> Durchführung intensiver
+                                    <li data-i18n="resume.exp5Point1" data-i18n-html><strong>Thematisches
+                                            Research:</strong> Durchführung intensiver
                                         kulturhistorischer Studien (z.B. Ägyptologie für „Pharaoh“, Nordische Mythologie
                                         für „Viking“) zur Erschaffung authentischer grafischer Welten.</li>
-                                    <li><strong>Motion Design Pionier:</strong> Früher Umstieg von Macromedia Director
+                                    <li data-i18n="resume.exp5Point2" data-i18n-html><strong>Motion Design
+                                            Pionier:</strong> Früher Umstieg von Macromedia Director
                                         auf Adobe After Effects zur Steigerung der Animationsqualität im UI.</li>
-                                    <li><strong>Globales Benchmarking:</strong> Analyse internationaler Markttrends und
+                                    <li data-i18n="resume.exp5Point3" data-i18n-html><strong>Globales
+                                            Benchmarking:</strong> Analyse internationaler Markttrends und
                                         Technologien durch Messebesuche wie die ATI London (ICE).</li>
-                                    <li><strong>Ganzheitliches Design:</strong> Verantwortung für den kompletten
+                                    <li data-i18n="resume.exp5Point4" data-i18n-html><strong>Ganzheitliches
+                                            Design:</strong> Verantwortung für den kompletten
                                         visuellen Lifecycle von der Skizze bis zur finalen Schnittstellen-Animation
                                         (Projekte: Pharao, Viking, Zoo).</li>
                                 </ul>
@@ -713,21 +812,26 @@
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
                             <div class="mb-2">
-                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white">UI Designer
+                                <h4 class="text-2xl font-display font-medium text-gray-900 dark:text-white"
+                                    data-i18n="resume.exp6Role">UI Designer
                                     & Ergonomie-Spezialist</h4>
-                                <span class="text-primary font-medium hover:underline text-lg uppercase">Funworld
+                                <span class="text-primary font-medium hover:underline text-lg uppercase"
+                                    data-i18n="resume.exp6Company">Funworld
                                     AG</span>
                                 <div
                                     class="flex items-center text-sm mt-1 font-medium text-gray-500 dark:text-gray-400">
                                     <span
-                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300">2000
+                                        class="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded mr-2 text-gray-700 dark:text-gray-300"
+                                        data-i18n="resume.exp6Period">2000
                                         -
                                         2003</span>
-                                    <span class="material-icons text-sm mr-1">location</span> Schörfling am Attersee
+                                    <span class="material-icons text-sm mr-1">location</span> <span
+                                        data-i18n="resume.exp6Location">Schörfling am Attersee</span>
                                 </div>
                             </div>
 
-                            <p class="mb-3 text-muted-light dark:text-white italic leading-relaxed">
+                            <p class="mb-3 text-muted-light dark:text-white italic leading-relaxed"
+                                data-i18n="resume.exp6Intro">
                                 Pionierarbeit in der Entwicklung von **Touchscreen-Interfaces** (Photoplay) lange vor
                                 der Smartphone-Ära.
                             </p>
@@ -735,20 +839,25 @@
                             <div
                                 class="bg-surface-light dark:bg-gray-800/40 p-4 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
                                 <strong
-                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2">Spezialisierung
+                                    class="block text-sm uppercase tracking-wide text-gray-500 dark:text-primary mb-2"
+                                    data-i18n="resume.exp6Header">Spezialisierung
                                     & UX-Insights:</strong>
                                 <ul
                                     class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <li><strong>Interface-Ergonomie:</strong> Tiefgehende Erfahrung in der Platzierung
+                                    <li data-i18n="resume.exp6Point1" data-i18n-html>
+                                        <strong>Interface-Ergonomie:</strong> Tiefgehende Erfahrung in der Platzierung
                                         von Elementen zur Vermeidung von Sichtverdeckung durch die menschliche Hand
                                         (Hand-Occlusion-UX) – ein Prinzip, das heute in mobilen Apps essenziell ist.
                                     </li>
-                                    <li><strong>Präzisions-Design:</strong> Entwicklung von UI-Targets und Button-Zonen,
+                                    <li data-i18n="resume.exp6Point2" data-i18n-html><strong>Präzisions-Design:</strong>
+                                        Entwicklung von UI-Targets und Button-Zonen,
                                         optimiert für haptische Interaktion auf frühen Touch-Automaten.</li>
-                                    <li><strong>Legacy Technical Artist:</strong> Management komplexer Asset-Workflows
+                                    <li data-i18n="resume.exp6Point3" data-i18n-html><strong>Legacy Technical
+                                            Artist:</strong> Management komplexer Asset-Workflows
                                         in Zeiten vor modernen Standards (TIFF Alpha Channels, Bitmap-Logik), was ein
                                         tiefes Verständnis für Grafik-Ressourcen schaffte.</li>
-                                    <li><strong>B2B Co-Produktion:</strong> Visual Lead für Partner-Produktionen im
+                                    <li data-i18n="resume.exp6Point4" data-i18n-html><strong>B2B Co-Produktion:</strong>
+                                        Visual Lead für Partner-Produktionen im
                                         Rahmen der Photoplay-Erweiterung auf globale Märkte.</li>
                                 </ul>
                             </div>
@@ -756,34 +865,40 @@
                         <div class="relative group">
                             <span
                                 class="absolute -left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-background-dark shadow-sm z-10"></span>
-                            <h4
-                                class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white">
+                            <h4 class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white"
+                                data-i18n="resume.exp7Role">
                                 Praktikum
                             </h4>
-                            <div class="text-primary font-medium text-base">Trend Present</div>
+                            <div class="text-primary font-medium text-base" data-i18n="resume.exp7Company">Trend Present
+                            </div>
                             <div
                                 class="flex items-center text-xs text-muted-light dark:text-muted-dark dark:text-white mt-1 mb-2">
-                                <span class="mr-2">1999 - 2000</span>
-                                <span class="material-icons text-xs mr-1">location</span> Vöcklabruck
+                                <span class="mr-2" data-i18n="resume.exp7Period">1999 - 2000</span>
+                                <span class="material-icons text-xs mr-1">location</span> <span
+                                    data-i18n="resume.exp7Location">Vöcklabruck</span>
                             </div>
-                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400">Vorbereitung von
+                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400"
+                                data-i18n="resume.exp7Desc">Vorbereitung von
                                 Lithografie Sieben für
                                 den Druck, Beteiligung an der Lithografie.</p>
                         </div>
                         <div class="relative group pb-4">
                             <span
                                 class="absolute -left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-background-dark shadow-sm z-10"></span>
-                            <h4
-                                class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white">
+                            <h4 class="text-xl dark:text-white font-display font-medium text-muted-light dark:text-muted-dark dark:text-white"
+                                data-i18n="resume.exp8Role">
                                 Praktikum
                             </h4>
-                            <div class="text-primary font-medium text-base">Studio Attersee</div>
+                            <div class="text-primary font-medium text-base" data-i18n="resume.exp8Company">Studio
+                                Attersee</div>
                             <div
                                 class="flex items-center text-xs text-muted-light dark:text-muted-dark dark:text-white mt-1 mb-2">
-                                <span class="mr-2">1998 - 1999</span>
-                                <span class="material-icons text-xs mr-1">location</span> Vöcklabruck
+                                <span class="mr-2" data-i18n="resume.exp8Period">1998 - 1999</span>
+                                <span class="material-icons text-xs mr-1">location</span> <span
+                                    data-i18n="resume.exp8Location">Vöcklabruck</span>
                             </div>
-                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400">Vorbereitung und
+                            <p class="text-sm dark:text-white text-gray-600 dark:text-gray-400"
+                                data-i18n="resume.exp8Desc">Vorbereitung und
                                 Einstellung der
                                 Lichtspots, Bildretusche nach den Fotoshootings.</p>
                         </div>
@@ -792,7 +907,7 @@
             </div>
         </div>
     </main>
-    <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+    <div class="hidden sm:block fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
         <a href="contact.html"
             class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
@@ -810,9 +925,10 @@
 
                 <!-- 1. Oszlop: Nagy szöveg (A "reklám" hatás) -->
                 <div class="flex-1 text-center md:text-left">
-                    <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4">Ready to start a project?
+                    <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4" data-i18n="footer.readyToStart">
+                        Ready to start a project?
                     </h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md">
+                    <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md" data-i18n="footer.readySubtitle">
                         Let's create something meaningful together. I'll try my best to get back to you!
                     </p>
                 </div>
@@ -864,11 +980,14 @@
             <!-- ALSÓ RÉSZ: Copyright és Jogi linkek -->
             <div
                 class="pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#637588] dark:text-[#94a3b8]">
-                <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                <p>&copy; <span id="current-year"></span> László Földváry. <span
+                        data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
 
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.privacyPolicy">Privacy
+                        Policy</a>
+                    <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms of
+                        Service</a>
                 </div>
             </div>
 
@@ -929,6 +1048,7 @@
         });
     </script>
     <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
 </body>
 
 </html>

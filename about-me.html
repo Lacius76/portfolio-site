@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>About Me - UI Designer Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
@@ -82,18 +83,40 @@
                 </div>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <!-- AZ ABOUT LINKET ELTÁVOLÍTOTTUK, MERT ITT VAGYUNK -->
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
                 </nav>
 
                 <div class="flex items-center gap-4">
                     <a href="contact.html"
                         class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
-                        Let's Talk
+                        <span data-i18n="nav.letsTalk">Let's Talk</span>
                     </a>
+                    <!-- Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
                         <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
@@ -114,9 +137,12 @@
                 <span class="material-symbols-outlined text-4xl">close</span>
             </button>
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary">Work</a>
-                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary">Resume</a>
-                <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl">Let's Talk</a>
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary"
+                    data-i18n="nav.work">Work</a>
+                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary"
+                    data-i18n="nav.resume">Resume</a>
+                <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's
+                    Talk</a>
             </nav>
         </div>
 
@@ -146,15 +172,16 @@
                         <!-- SZÖVEG BLOKK: Mobilon középre igazítva (text-center), Desktopon balra (lg:text-left) -->
                         <div class="flex-1 space-y-8 text-center lg:text-left">
                             <div class="space-y-4">
-                                <h4 class="text-primary font-bold uppercase tracking-widest text-sm">About Me</h4>
-                                <h1
-                                    class="text-3xl lg:text-6xl font-black tracking-tighter text-slate-900 dark:text-white leading-tight">
+                                <h4 class="text-primary font-bold uppercase tracking-widest text-sm"
+                                    data-i18n="about.heroTitle">About Me</h4>
+                                <h1 class="text-3xl lg:text-6xl font-black tracking-tighter text-slate-900 dark:text-white leading-tight"
+                                    data-i18n="about.heroHeadline">
                                     Balancing 20 years of design legacy with future AI.
                                 </h1>
                             </div>
 
-                            <p
-                                class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0"
+                                data-i18n="about.heroDescription">
                                 I am a <span class="text-slate-900 dark:text-white font-semibold">Senior UI/UX
                                     Designer</span> based in Vienna, specialized in creating high-stakes interfaces for
                                 industrial systems and AI-augmented product systems.
@@ -165,13 +192,15 @@
                                 class="flex justify-center lg:justify-start gap-10 pt-4 border-t border-slate-100 dark:border-white/5">
                                 <div class="flex flex-col">
                                     <span class="text-3xl font-bold text-slate-900 dark:text-white">25+</span>
-                                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Years
+                                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500"
+                                        data-i18n="about.statLegacy">Years
                                         of
                                         Legacy</span>
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="text-3xl font-bold text-slate-900 dark:text-white">50+</span>
-                                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Global
+                                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500"
+                                        data-i18n="about.statProjects">Global
                                         Projects</span>
                                 </div>
                             </div>
@@ -192,12 +221,13 @@
 
                             <!-- Bal oldali felirat (4 oszlop) -->
                             <div class="lg:col-span-4 space-y-4">
-                                <h2
-                                    class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">
+                                <h2 class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white uppercase"
+                                    data-i18n="about.originTitle">
                                     The Origin Story
                                 </h2>
                                 <div class="h-1 w-12 bg-primary"></div>
-                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest"
+                                    data-i18n="about.originSubtitle">
                                     From Nostalgia to Innovation
                                 </p>
                             </div>
@@ -205,7 +235,7 @@
                             <!-- Jobb oldali tartalom (8 oszlop) -->
                             <div
                                 class="lg:col-span-8 space-y-8 text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
-                                <p>
+                                <p data-i18n="about.originP1">
                                     Everything started 20 years ago with my first <strong>iMac running Mac OS
                                         8.6</strong>.
                                     The atmosphere of those early Risk-style games left a permanent mark on my visual
@@ -213,13 +243,13 @@
                                     systems for giants like <strong>Siemens</strong> and premium game studios like
                                     <strong>Greentube</strong>.
                                 </p>
-                                <p>
+                                <p data-i18n="about.originP2">
                                     The <strong>Google AI Studio Build</strong> experiment was born from a desire for
                                     creative freedom. I wanted to see how far a designer could go with <em>zero coding
                                         background</em> using AI as a co-creator. It wasn't just about drawing; it was a
                                     deep learning process where I managed the project's soul, theme, and mechanics.
                                 </p>
-                                <p>
+                                <p data-i18n="about.originP3">
                                     During the process, I faced real technical challenges: converting <strong>SVG
                                         vectors to
                                         Base64</strong>, optimizing data structures in <code>assets.ts</code>, and
@@ -238,7 +268,8 @@
                 <section
                     class="sticky top-0 z-20 min-h-[50vh] flex items-center bg-white/90 dark:bg-[#101922] backdrop-blur-md border-y border-slate-100 dark:border-white/5 shadow-[0_-20px_60px_#f9fafb] dark:shadow-[0_-20px_60px_#101922]">
                     <div class="mx-auto max-w-[1200px] px-6">
-                        <p class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em] mb-12">
+                        <p class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em] mb-12"
+                            data-i18n="about.trustedTitle">
                             Trusted by Industry Leaders
                         </p>
                         <!-- Grayscale cégnevek, amik hoverre kicsit felerősödnek -->
@@ -265,11 +296,12 @@
                     <!-- SZAKMAI VÍZIÓ CONTENT MOVED HERE -->
                     <div class="mx-auto max-w-[1200px] px-6 py-24 w-full">
                         <div class="text-center mb-16 space-y-4">
-                            <h2 class="text-3xl font-black tracking-tighter uppercase text-slate-900 dark:text-white">
+                            <h2 class="text-3xl font-black tracking-tighter uppercase text-slate-900 dark:text-white"
+                                data-i18n="about.strategyTitle">
                                 Future-Proof Design Strategy
                             </h2>
                             <div class="h-1 w-20 bg-primary mx-auto"></div>
-                            <p class="text-slate-500 max-w-2xl mx-auto">
+                            <p class="text-slate-500 max-w-2xl mx-auto" data-i18n="about.strategySubtitle">
                                 Beyond pixels: my focus is on creating high-performance, multi-platform ecosystems where
                                 technology meets seamless user experience.
                             </p>
@@ -281,8 +313,9 @@
                                 class="p-8 border border-slate-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-white/5 transition-hover hover:border-primary/50 group">
                                 <span
                                     class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">install_mobile</span>
-                                <h4 class="font-bold mb-3 text-slate-900 dark:text-white">Native Ecosystems</h4>
-                                <p class="text-sm text-slate-500 leading-relaxed">
+                                <h4 class="font-bold mb-3 text-slate-900 dark:text-white"
+                                    data-i18n="about.strategyNativeTitle">Native Ecosystems</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed" data-i18n="about.strategyNativeDesc">
                                     Transitioning from web-based frameworks to native **Android and iOS** deployment. My
                                     goal is to build high-performance mobile products that leverage the full potential
                                     of device hardware and OS features.
@@ -294,8 +327,9 @@
                                 class="p-8 border border-slate-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-white/5 transition-hover hover:border-primary/50 group">
                                 <span
                                     class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">animation</span>
-                                <h4 class="font-bold mb-3 text-slate-900 dark:text-white">Advanced Motion Design</h4>
-                                <p class="text-sm text-slate-500 leading-relaxed">
+                                <h4 class="font-bold mb-3 text-slate-900 dark:text-white"
+                                    data-i18n="about.strategyMotionTitle">Advanced Motion Design</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed" data-i18n="about.strategyMotionDesc">
                                     Integrating **Rive and real-time physics** to replace static UI. I believe
                                     interactive feedback and high-end animations are crucial for reducing cognitive load
                                     and increasing user retention.
@@ -307,9 +341,10 @@
                                 class="p-8 border border-slate-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-white/5 transition-hover hover:border-primary/50 group">
                                 <span
                                     class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">hub</span>
-                                <h4 class="font-bold mb-3 text-slate-900 dark:text-white">Complex Data Architectures
+                                <h4 class="font-bold mb-3 text-slate-900 dark:text-white"
+                                    data-i18n="about.strategyDataTitle">Complex Data Architectures
                                 </h4>
-                                <p class="text-sm text-slate-500 leading-relaxed">
+                                <p class="text-sm text-slate-500 leading-relaxed" data-i18n="about.strategyDataDesc">
                                     Mastering the visualization of massive data sets. My vision is to make complex,
                                     multi-layered information intuitive and accessible through smart **Design Systems**.
                                 </p>
@@ -331,11 +366,11 @@
                             </div>
 
                             <div class="relative z-10 space-y-6 max-w-3xl mx-auto">
-                                <h2
-                                    class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter">
+                                <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter"
+                                    data-i18n="about.conclusionTitle">
                                     Ready to bring my 20 years of legacy to your team.
                                 </h2>
-                                <p class="text-lg text-slate-600 dark:text-slate-400">
+                                <p class="text-lg text-slate-600 dark:text-slate-400" data-i18n="about.conclusionDesc">
                                     I am currently looking for a new home where I can apply my experience in UI/UX
                                     design,
                                     system thinking, and AI-assisted workflows. Whether it's a dynamic startup or an
@@ -345,7 +380,8 @@
                                 <div class="pt-6">
                                     <a href="contact.html"
                                         class="inline-flex min-h-[56px] h-auto py-3 items-center justify-center px-10 rounded-xl bg-primary text-white font-bold hover:scale-105 transition-transform shadow-lg shadow-primary/25">
-                                        <span class="text-center leading-tight">Let's discuss a<br>collaboration</span>
+                                        <span class="text-center leading-tight" data-i18n="about.conclusionCta">Let's
+                                            discuss a<br>collaboration</span>
                                     </a>
                                 </div>
                             </div>
@@ -364,12 +400,14 @@
                 <!-- 1. Nagy szöveg az Indexen (ANIMÁLT) -->
                 <div id="footer-cta" class="mb-6 md:mb-12">
                     <h3 id="footer-title"
-                        class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out">
+                        class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
+                        data-i18n="footer.readyToStart">
                         Ready
                         to start a
                         project?</h3>
                     <p id="footer-subtitle"
-                        class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out">
+                        class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
+                        data-i18n="footer.readySubtitle">
                         Let's create something meaningful together. I'm always open to new opportunities and interesting
                         challenges.
                     </p>
@@ -417,15 +455,18 @@
                 <!-- 4. Alsó sor -->
                 <div
                     class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
-                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <p>&copy; <span id="current-year"></span> László Földváry. <span
+                            data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-primary transition-colors"
+                            data-i18n="footer.privacyPolicy">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
+                            of Service</a>
                     </div>
                 </div>
             </div>
         </footer>
-        <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+        <div class="hidden sm:block fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
             <a href="contact.html"
                 class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
@@ -509,6 +550,7 @@
         });
     </script>
     <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
 </body>
 
 </html>

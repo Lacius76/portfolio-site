@@ -30,6 +30,7 @@
     <meta name="description"
         content="László Földváry - Senior UI/UX Design Architect. Portfolio showcasing 25 years of experience.">
     <!-- 1. Külső könyvtárak (CDN) -->
+    <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
@@ -132,21 +133,46 @@
 
                 <!-- 2. OSZLOP: MENÜ -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
                 </nav>
 
                 <!-- 3. OSZLOP: GOMBOK -->
                 <div class="flex items-center gap-4">
                     <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
                     <a href="contact.html"
-                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity">
+                        class="hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:opacity-90 transition-opacity"
+                        data-i18n="nav.letsTalk">
                         Let's Talk
                     </a>
+                    <!-- Language Button -->
+                    <!-- Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
@@ -200,30 +226,34 @@
                                     <!-- Text Content -->
                                     <div class="flex flex-col gap-6 flex-1 @[1200px]:pr-8 z-10">
                                         <div class="flex flex-col gap-4 text-left">
-                                            <div
-                                                class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-                                                Available for work
+                                            <div class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
+                                                data-i18n="index.availableForWork">Available for work
                                             </div>
                                             <h1
                                                 class="text-[#111418] dark:text-white text-4xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl">
-                                                Design that <span class="text-primary">humanizes</span> technology.
+                                                <span data-i18n="index.heroTitle1">Design that
+                                                </span><span class="text-primary"
+                                                    data-i18n="index.heroTitle2">humanizes</span><span
+                                                    data-i18n="index.heroTitle3"> technology.</span>
                                             </h1>
                                             <h2
                                                 class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
-                                                Hi, I'm László Földváry. Senior UI/UX & Product Designer. I leverage 25+
-                                                years of mastery and AI-driven workflows to solve complex problems
-                                                through intuitive digital experiences.
+                                                <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior
+                                                    UI/UX & Product Designer. I leverage 25+ years of mastery and
+                                                    AI-driven workflows to solve complex problems through intuitive
+                                                    digital experiences.</span>
                                             </h2>
                                         </div>
                                         <div class="flex flex-col sm:flex-row gap-4 mt-2">
                                             <a href="work.html"
                                                 class="flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
-                                                View Selected Work
+                                                <span data-i18n="index.viewSelectedWork">View
+                                                    Selected Work</span>
                                             </a>
 
                                             <a href="contact.html"
-                                                class="flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]">
-                                                Contact Me
+                                                class="flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]"
+                                                data-i18n="index.contactMe">Contact Me
 
                                             </a>
                                         </div>
@@ -241,8 +271,8 @@
                                                         <span class="text-lg md:text-xl font-bold text-primary">+</span>
                                                     </div>
                                                     <span
-                                                        class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400">Projects
-                                                        Launched</span>
+                                                        class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                                                        data-i18n="index.projectsLaunched">Projects Launched</span>
                                                 </div>
 
                                                 <!-- Card 2: Experience -->
@@ -253,9 +283,9 @@
                                                             class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
                                                         <span class="text-lg md:text-xl font-bold text-primary">+</span>
                                                     </div>
-                                                    <p
-                                                        class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400">
-                                                        Years Experience</p>
+                                                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                                                        data-i18n="index.yearsExperience">
+                                                        Years of Experience</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -404,13 +434,16 @@
                 <!-- 1. Nagy szöveg az Indexen (ANIMÁLT) -->
                 <div id="footer-cta" class="mb-6 md:mb-12">
                     <h3 id="footer-title"
-                        class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out">
+                        class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
+                        data-i18n="footer.readyToStart">
                         Ready
                         to start a
                         project?</h3>
                     <p id="footer-subtitle"
-                        class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out">
-                        Let's create something meaningful together. I'm always open to new opportunities and interesting
+                        class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
+                        data-i18n="footer.readySubtitle">
+                        Let's create something meaningful together. I'm always open to new opportunities and
+                        interesting
                         challenges.
                     </p>
                 </div>
@@ -458,10 +491,13 @@
                 <!-- 4. Alsó sor (Ugyanaz, mint a többi oldalon) -->
                 <div
                     class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
-                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <p>&copy; <span id="current-year"></span> László Földváry. <span
+                            data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-primary transition-colors"
+                            data-i18n="footer.privacyPolicy">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
+                            of Service</a>
                     </div>
                 </div>
             </div>
@@ -577,6 +613,8 @@
             window.addEventListener('scroll', handleScroll, { passive: true });
         });
     </script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
 </body>
 
 </html>

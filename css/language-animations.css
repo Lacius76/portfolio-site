@@ -1,0 +1,20 @@
+/* Language Switching Animations */
+
+/* Fade transition for content */
+body {
+    transition: opacity 0.2s ease-in-out;
+}
+
+body.lang-fade-out {
+    opacity: 0;
+}
+
+/* Language icon flip animation */
+@keyframes flipIcon {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+#language-btn img.flip {
+    animation: flipIcon 0.3s ease-in-out;
+}

@@ -22,6 +22,7 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
+    <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
 
@@ -120,16 +121,38 @@
 
                 <!-- 2. OSZLOP: MENÜ -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
                 </nav>
 
                 <!-- 3. OSZLOP: GOMBOK -->
                 <div class="flex items-center gap-4">
+                    <!-- Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
@@ -155,13 +178,14 @@
             </button>
 
             <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="index.html"
-                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Home</a>
-                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors">Work</a>
-                <a href="about-me.html"
-                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">About</a>
-                <a href="resume.html"
-                    class="text-slate-900 dark:text-white hover:text-primary transition-colors">Resume</a>
+                <a href="index.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.home">Home</a>
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.work">Work</a>
+                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.about">About</a>
+                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.resume">Resume</a>
 
 
             </nav>
@@ -172,11 +196,12 @@
                 <!-- Megszólitó üzenet -->
                 <div class="flex flex-wrap justify-between gap-6 pb-6 border-b border-[#e5e7eb] dark:border-[#2a3441]">
                     <div class="flex flex-col gap-4 max-w-2xl">
-                        <h1
-                            class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                        <h1 class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]"
+                            data-i18n="contact.mainTitle">
                             Let's Work Together
                         </h1>
-                        <p class="text-[#637588] dark:text-[#94a3b8] text-lg font-normal leading-relaxed">
+                        <p class="text-[#637588] dark:text-[#94a3b8] text-lg font-normal leading-relaxed"
+                            data-i18n="contact.mainSubtitle">
                             Have a project in mind? Looking for a UI partner? Send me a message and I'll get back to you
                             within 24 hours.
                         </p>
@@ -195,15 +220,15 @@
                             <!-- Adat kitöltés cím, név, stb -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div class="flex flex-col gap-2">
-                                    <label class="text-[#111418] dark:text-white text-sm font-medium"
-                                        for="name">Name</label>
+                                    <label class="text-[#111418] dark:text-white text-sm font-medium" for="name"
+                                        data-i18n="contact.name">Name</label>
                                     <input name="name"
                                         class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                                         id="name" placeholder="Jane Doe" type="text" required />
                                 </div>
                                 <div class="flex flex-col gap-2">
-                                    <label class="text-[#111418] dark:text-white text-sm font-medium"
-                                        for="email">Email</label>
+                                    <label class="text-[#111418] dark:text-white text-sm font-medium" for="email"
+                                        data-i18n="contact.email">Email</label>
                                     <input name="email"
                                         class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                                         id="email" placeholder="jane@example.com" type="email" required />
@@ -211,17 +236,20 @@
                             </div>
                             <!-- Ez a dropdown, hogy milyen ügben -->
                             <div class="flex flex-col gap-2">
-                                <label class="text-[#111418] dark:text-white text-sm font-medium"
-                                    for="subject">Subject</label>
+                                <label class="text-[#111418] dark:text-white text-sm font-medium" for="subject"
+                                    data-i18n="contact.subject">Subject</label>
                                 <div class="relative">
                                     <select name="subject"
                                         class="w-full h-12 rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] px-4 text-[#111418] dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none transition-all"
                                         id="subject">
-                                        <option disabled="" selected="" value="">Select a topic</option>
-                                        <option value="project">New Project Inquiry</option>
-                                        <option value="collaboration">Collaboration</option>
-                                        <option value="other">Other</option>
-                                        <option value="feedback">Feedback</option>
+                                        <option disabled="" selected="" value="" data-i18n="contact.selectTopic">Select
+                                            a topic</option>
+                                        <option value="project" data-i18n="contact.newProject">New Project Inquiry
+                                        </option>
+                                        <option value="collaboration" data-i18n="contact.collaboration">Collaboration
+                                        </option>
+                                        <option value="other" data-i18n="contact.other">Other</option>
+                                        <option value="feedback" data-i18n="contact.feedback">Feedback</option>
                                     </select>
                                     <span
                                         class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#637588] pointer-events-none">expand_more</span>
@@ -229,8 +257,8 @@
                             </div>
                             <!-- Ez a szöveg mezö -->
                             <div class="flex flex-col gap-2">
-                                <label class="text-[#111418] dark:text-white text-sm font-medium"
-                                    for="message">Message</label>
+                                <label class="text-[#111418] dark:text-white text-sm font-medium" for="message"
+                                    data-i18n="contact.message">Message</label>
                                 <textarea name="message"
                                     class="w-full rounded-lg border border-[#dce0e5] dark:border-[#334155] bg-white dark:bg-[#1e293b] p-4 text-[#111418] dark:text-white placeholder-[#9ca3af] focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none transition-all"
                                     id="message" placeholder="Tell me about your project..." rows="6"
@@ -240,7 +268,7 @@
                             <button
                                 class="mt-2 mb-5 flex w-full md:w-auto md:self-start items-center justify-center rounded-lg bg-primary transition-opacity hover:opacity-80 px-8 py-3 text-white text-sm font-bold tracking-wide transition-colors"
                                 type="submit">
-                                Send Message
+                                <span data-i18n="contact.sendButton">Send Message</span>
                             </button>
                         </form>
                     </div>
@@ -251,7 +279,8 @@
                         <div class="flex flex-col gap-4">
                             <h2
                                 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">
-                                Contact Info</h2>
+                                <span data-i18n="contact.contactInfoTitle">Contact Info</span>
+                            </h2>
                             <div class="flex flex-col gap-4">
                                 <!-- Email Item -->
                                 <a class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-[#1e293b] border border-transparent hover:border-primary/20 hover:shadow-sm transition-all"
@@ -261,8 +290,8 @@
                                         <span class="material-symbols-outlined">mail</span>
                                     </div>
                                     <div class="flex flex-col justify-center h-12">
-                                        <p
-                                            class="text-[#637588] dark:text-[#94a3b8] text-xs font-medium uppercase tracking-wider">
+                                        <p class="text-[#637588] dark:text-[#94a3b8] text-xs font-medium uppercase tracking-wider"
+                                            data-i18n="contact.emailMe">
                                             Email Me</p>
                                         <p class="text-[#111418] dark:text-white text-base font-semibold">
                                             foeldvary@gmail.com</p>
@@ -276,8 +305,8 @@
                                         <span class="material-symbols-outlined">location_on</span>
                                     </div>
                                     <div class="flex flex-col justify-center h-12">
-                                        <p
-                                            class="text-[#637588] dark:text-[#94a3b8] text-xs font-medium uppercase tracking-wider">
+                                        <p class="text-[#637588] dark:text-[#94a3b8] text-xs font-medium uppercase tracking-wider"
+                                            data-i18n="contact.location">
                                             Location</p>
                                         <p class="text-[#111418] dark:text-white text-base font-semibold">Sopron,
                                             HU</p>
@@ -290,7 +319,7 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
                             <div class="absolute bottom-4 left-4 z-20 text-white flex items-center gap-2">
                                 <span class="material-symbols-outlined text-sm">open_in_new</span>
-                                <span class="text-sm font-medium">View on Map</span>
+                                <span class="text-sm font-medium" data-i18n="contact.viewOnMap">View on Map</span>
                             </div>
                             <!-- Map Image -->
                             <img alt="Aerial view of San Francisco city streets"
@@ -311,9 +340,10 @@
 
                     <!-- 1. Oszlop: Nagy szöveg (A "reklám" hatás) -->
                     <div class="flex-1 text-center md:text-left">
-                        <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4">Ready to start a project?
+                        <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4"
+                            data-i18n="footer.readyToStart">Ready to start a project?
                         </h3>
-                        <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md">
+                        <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md" data-i18n="footer.readySubtitle">
                             Let's create something meaningful together. I'll try my best to get back to you!
                         </p>
                     </div>
@@ -366,11 +396,14 @@
                 <!-- ALSÓ RÉSZ: Copyright és Jogi linkek -->
                 <div
                     class="pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#637588] dark:text-[#94a3b8]">
-                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <p>&copy; <span id="current-year"></span> László Földváry. <span
+                            data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
 
                     <div class="flex gap-6">
-                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-primary transition-colors"
+                            data-i18n="footer.privacyPolicy">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
+                            of Service</a>
                     </div>
                 </div>
 
@@ -418,6 +451,7 @@
             });
         </script>
         <script src="js/theme.js"></script>
+        <script src="js/language.js"></script>
         <script>
             document.getElementById('current-year').textContent = new Date().getFullYear();
         </script>
