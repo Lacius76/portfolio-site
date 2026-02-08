@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Trigger icon flip animation
         if (languageIcon) {
             languageIcon.classList.add('flip');
-            setTimeout(() => languageIcon.classList.remove('flip'), 300);
+            setTimeout(() => languageIcon.classList.remove('flip'), 600);
         }
 
         // Apply language with fade effect
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Fade in
                 body.classList.remove('lang-fade-out');
-            }, 200);
+            }, 500);
         } else {
             // No animation on page load
             translateElements(elementsToTranslate, lang);

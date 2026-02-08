@@ -2,7 +2,7 @@
 
 /* Fade transition for content */
 body {
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 body.lang-fade-out {
@@ -16,5 +16,5 @@ body.lang-fade-out {
 }
 
 #language-btn img.flip {
-    animation: flipIcon 0.3s ease-in-out;
+    animation: flipIcon 0.6s ease-in-out;
 }
