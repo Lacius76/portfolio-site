@@ -222,6 +222,13 @@
       "allRightsReserved": "All rights reserved.",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service"
+    },
+    "success": {
+      "pageTitle": "Message Sent - UI Designer Portfolio",
+      "mainTitle": "Message Sent Successfully",
+      "subTitle": "Thank you for reaching out. I'll get back to you within 24 hours.",
+      "backButton": "Back to Laszlo.UI",
+      "exploreButton": "Explore my work"
     }
   },
   "de": {
@@ -447,6 +454,13 @@
       "allRightsReserved": "Alle Rechte vorbehalten.",
       "privacyPolicy": "Datenschutz",
       "termsOfService": "Nutzungsbedingungen"
+    },
+    "success": {
+      "pageTitle": "Nachricht gesendet - UI Designer Portfolio",
+      "mainTitle": "Nachricht erfolgreich gesendet",
+      "subTitle": "Vielen Dank für Ihre Nachricht. Ich werde mich innerhalb von 24 Stunden bei Ihnen melden.",
+      "backButton": "Zurück zu Laszlo.UI",
+      "exploreButton": "Arbeiten ansehen"
     }
   }
 }

@@ -3,12 +3,6 @@ let translations = {};
 let currentLang = 'en';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const languageBtn = document.getElementById('language-btn');
-    const languageDropdown = document.getElementById('language-dropdown');
-    const languageIcon = languageBtn?.querySelector('img');
-
-    if (!languageBtn || !languageDropdown) return;
-
     // Load translations from JSON
     try {
         const response = await fetch('translations.json');
@@ -21,41 +15,48 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get current language from localStorage or default to 'en'
     currentLang = localStorage.getItem('preferred-language') || 'en';
 
-    // Apply language on page load
+    // Apply language on page load - RUNS ON ALL PAGES
     applyLanguage(currentLang, false);
 
-    // Toggle Dropdown
-    languageBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        languageDropdown.classList.toggle('hidden');
-    });
+    // --- UI Event Listeners (Only if switcher exists) ---
+    const languageBtn = document.getElementById('language-btn');
+    const languageDropdown = document.getElementById('language-dropdown');
+    const languageIcon = languageBtn?.querySelector('img');
 
-    // Language selection handlers
-    const langLinks = languageDropdown.querySelectorAll('a');
-    langLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const lang = link.getAttribute('data-lang');
-            if (lang && lang !== currentLang) {
-                switchLanguage(lang);
-            }
-            languageDropdown.classList.add('hidden');
+    if (languageBtn && languageDropdown) {
+        // Toggle Dropdown
+        languageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('hidden');
         });
-    });
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
-            languageDropdown.classList.add('hidden');
-        }
-    });
+        // Language selection handlers
+        const langLinks = languageDropdown.querySelectorAll('a');
+        langLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = link.getAttribute('data-lang');
+                if (lang && lang !== currentLang) {
+                    switchLanguage(lang);
+                }
+                languageDropdown.classList.add('hidden');
+            });
+        });
 
-    // Close when pressing Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            languageDropdown.classList.add('hidden');
-        }
-    });
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+                languageDropdown.classList.add('hidden');
+            }
+        });
+
+        // Close when pressing Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                languageDropdown.classList.add('hidden');
+            }
+        });
+    }
 
     function switchLanguage(newLang) {
         // Trigger icon flip animation
