@@ -587,7 +587,7 @@
       "creativeAutonomyDesc": "Verantwortung für gesamtes Thema, Atmosphäre und Spielmechanik – eine Synthese aus Code und hochwertiger Noir-Ästhetik.",
       "accelArchTitle": "Beschleunigte<br>Architektur",
       "accelArchHeadline": "KI als Co-Creator",
-      "managingComplexityTitle": "Komplexitätsmanagement",
+      "managingComplexityTitle": "Komplexitäts\u00ADmanagement",
       "managingComplexityText": "Ohne Entwickler im Team bedeutete es, die Lücke zwischen Design und Logik durch eine Design-to-Code-Architektur zu schließen.",
       "dataStructureTitle": "Datenstruktur",
       "dataStructureDesc": "Auslagerung der SVG-Koordinaten in assets.ts, um schnelles Rendering sicherzustellen und Speicherüberlastung zu vermeiden.",

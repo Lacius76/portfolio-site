@@ -41,6 +41,13 @@
         .noir-gradient {
             background: linear-gradient(to bottom, transparent, #0a0f14);
         }
+
+        /* German hyphenation for mobile */
+        body {
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+        }
     </style>
 </head>
 
@@ -160,9 +167,11 @@
 
                 <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
                     <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic">Case Study</h2>
-                    <h1 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic">Shadow
+                    <h1
+                        class="text-3xl sm:text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic break-words">
+                        Shadow
                         Cartels</h1>
-                    <p class="max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed text-slate-200"
+                    <p class="max-w-full sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl font-light leading-relaxed text-slate-200 px-2"
                         data-i18n="shadow.headerDescription">
                         How I co-created an <span class="text-primary font-bold">AI-driven noir strategy
                             interface</span> that balances complex data with 1930s cinematic atmosphere.
@@ -177,7 +186,7 @@
 
                     <!-- BAL OLDAL: Project Vision -->
                     <div class="md:col-span-2 space-y-6">
-                        <h3 class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase"
+                        <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
                             data-i18n="shadow.projectVisionTitle">
                             Project Vision</h3>
                         <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg"
@@ -248,7 +257,7 @@
                         <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined">map</span>
                         </div>
-                        <h2 class="text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter"
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
                             data-i18n="shadow.liveDataTitle">
                             Live Data Visualization:<br><span class="text-primary">The Procedural Map</span></h2>
                         <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -257,10 +266,12 @@
                                 district is a unique SVG object tied to a real-time graph of neighbors, ownership, and
                                 police presence.</p>
                         </div>
-                        <ul class="space-y-4 text-sm font-mono text-primary uppercase tracking-widest">
-                            <li class="flex gap-3" data-i18n="shadow.liveDataPoint1"><span>//</span> Zero-latency
+                        <ul
+                            class="space-y-4 text-xs sm:text-sm font-mono text-primary uppercase tracking-wide sm:tracking-widest break-words">
+                            <li class="flex gap-3 break-words" data-i18n="shadow.liveDataPoint1"><span>//</span>
+                                Zero-latency
                                 updates for events.</li>
-                            <li class="flex gap-3" data-i18n="shadow.liveDataPoint2"><span>//</span> Dynamic
+                            <li class="flex gap-3 break-words" data-i18n="shadow.liveDataPoint2"><span>//</span> Dynamic
                                 AI-generated world layers.</li>
                         </ul>
                     </div>
@@ -278,7 +289,7 @@
                             <h3 class="text-primary font-bold tracking-widest uppercase text-xs italic"
                                 data-i18n="shadow.originStoryTitle">The Origin Story
                             </h3>
-                            <h2 class="text-3xl font-bold text-slate-900 dark:text-white leading-tight uppercase italic"
+                            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight uppercase italic break-words"
                                 data-i18n="shadow.originStoryHeadline">
                                 From Mac OS 8.6 <br>to AI-Co-Creation</h2>
                             <p class="text-slate-600 dark:text-slate-400 leading-relaxed"
@@ -349,7 +360,7 @@
                         <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic"
                             data-i18n="shadow.accelArchTitle">Accelerated
                             Architecture</h3>
-                        <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
                             data-i18n="shadow.accelArchHeadline">
                             AI as a Co-Creator</h2>
                     </div>
@@ -357,7 +368,8 @@
                     <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
                         <div class="space-y-8">
                             <div class="space-y-4">
-                                <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <h4
+                                    class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex flex-col items-start gap-2 sm:flex-row sm:items-center break-words">
                                     <span
                                         class="material-symbols-outlined text-primary uppercase italic">terminal</span>
                                     <span data-i18n="shadow.managingComplexityTitle">Managing Complexity</span>
@@ -393,7 +405,7 @@
 
                         <div class="flex flex-col justify-center space-y-10">
                             <div class="space-y-6">
-                                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug italic"
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-black text-slate-900 dark:text-white leading-snug italic break-words"
                                     data-i18n="shadow.workflowQuote">"From
                                     idea to interactive product in record time—leveraging AI to break technical
                                     barriers."</h4>
@@ -426,7 +438,7 @@
                 <!-- LESSONS FROM THE NOIR -->
                 <section class="mx-auto max-w-[1200px] py-24 text-center">
                     <div class="max-w-2xl mx-auto space-y-8">
-                        <h2 class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase"
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
                             data-i18n="shadow.lessonsTitle">
                             Lessons from the Noir.</h2>
                         <div class="h-1 w-12 bg-primary mx-auto"></div>
@@ -437,10 +449,10 @@
                         </p>
                         <div class="pt-8">
                             <a href="case-study-siemens.html"
-                                class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse">
+                                class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg">
                                 <span
                                     class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
-                                <span data-i18n="shadow.nextCaseStudy">Next: Siemens WinCC OA</span>
+                                <span data-i18n="shadow.nextCaseStudy" class="break-words">Next: Siemens WinCC OA</span>
                             </a>
                         </div>
                     </div>
@@ -479,7 +491,7 @@
                 </div>
 
                 <div class="mb-12">
-                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter"
+                    <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter break-words"
                         data-i18n="footer.readyToStart">Ready
                         to start a
                         project?</h3>

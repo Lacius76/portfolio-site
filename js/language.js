@@ -118,8 +118,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // Check if element should use innerHTML or textContent
-            // If the translation contains HTML tags (e.g. <strong>), use innerHTML automatically
-            if (element.hasAttribute('data-i18n-html') || /<[a-z][\s\S]*>/i.test(translation)) {
+            // If the translation contains HTML tags or entities (e.g. <strong>, &shy;), use innerHTML
+            if (element.hasAttribute('data-i18n-html') || /\<[a-z][\s\S]*\>|&[a-z]+;/i.test(translation)) {
                 element.innerHTML = translation;
             } else {
                 element.textContent = translation;
