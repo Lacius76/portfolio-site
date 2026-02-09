@@ -66,12 +66,14 @@
 
                 <!-- 2. OSZLOP: MENÜ -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
                 </nav>
 
                 <!-- 3. OSZLOP: GOMBOK -->
@@ -82,6 +84,27 @@
                         aria-label="Contact">
                         <img src="img/contact-icon.svg" alt="Contact" class="size-6">
                     </a>
+                    <!-- Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
@@ -139,7 +162,8 @@
                     <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic">Case Study</h2>
                     <h1 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic">Shadow
                         Cartels</h1>
-                    <p class="max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed text-slate-200">
+                    <p class="max-w-3xl mx-auto text-xl md:text-2xl font-light leading-relaxed text-slate-200"
+                        data-i18n="shadow.headerDescription">
                         How I co-created an <span class="text-primary font-bold">AI-driven noir strategy
                             interface</span> that balances complex data with 1930s cinematic atmosphere.
                     </p>
@@ -153,9 +177,11 @@
 
                     <!-- BAL OLDAL: Project Vision -->
                     <div class="md:col-span-2 space-y-6">
-                        <h3 class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase">
+                        <h3 class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase"
+                            data-i18n="shadow.projectVisionTitle">
                             Project Vision</h3>
-                        <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg">
+                        <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg"
+                            data-i18n="shadow.projectVisionText">
                             Shadow Cartels is a browser-based strategy game where the player manages a criminal empire
                             in a procedural Noir world. My goal was to design a system capable of handling <span
                                 class="text-primary font-semibold">massive procedural events</span> without letting the
@@ -179,19 +205,23 @@
                     <div class="space-y-8 border-l border-slate-200 dark:border-white/5 pl-8">
 
                         <div>
-                            <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Key Tech
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                                data-i18n="shadow.keyTechTitle">Key Tech
                             </p>
-                            <p class="text-sm text-white">Gemini AI, SVG Data-Map, Tailwind</p>
+                            <p class="text-sm text-white" data-i18n="shadow.keyTechList">Gemini AI, SVG Data-Map,
+                                Tailwind</p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Core
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                                data-i18n="shadow.coreChallengeTitle">Core
                                 Challenge</p>
-                            <p class="text-sm text-white">Zero-latency feedback for procedural events.</p>
+                            <p class="text-sm text-white" data-i18n="shadow.coreChallengeDesc">Zero-latency feedback for
+                                procedural events.</p>
                         </div>
 
                         <!-- FIGYELMEZTETÉS A GOMB FELETT -->
                         <div class="bg-amber-500/10 border-l-2 border-amber-500 p-3 rounded-lg max-w-sm mt-4">
-                            <p class="text-[11px] text-amber-200/90 leading-snug">
+                            <p class="text-[11px] text-amber-200/90 leading-snug" data-i18n="shadow.desktopWarning">
                                 <strong class="font-bold">⚠️ Desktop Recommended:</strong> Heavy dynamic SVG
                                 rendering is optimized for desktop. The mobile version is currently under
                                 development and may experience performance issues.
@@ -203,7 +233,7 @@
                                 class="group flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white shadow-xl shadow-indigo-500/30 transition-all hover:scale-105 hover:bg-indigo-700 active:scale-95">
                                 <img src="img/shadow-cartels/logo4.png" alt="Shadow Cartels Logo"
                                     class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110">
-                                <span>Launch Experience</span>
+                                <span data-i18n="shadow.launchExperience">Launch Experience</span>
                             </a>
                         </div>
                     </div>
@@ -218,17 +248,20 @@
                         <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
                             <span class="material-symbols-outlined">map</span>
                         </div>
-                        <h2 class="text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                        <h2 class="text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter"
+                            data-i18n="shadow.liveDataTitle">
                             Live Data Visualization:<br><span class="text-primary">The Procedural Map</span></h2>
                         <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-                            <p>The map isn't a static asset—it's a <span
+                            <p data-i18n="shadow.liveDataDesc">The map isn't a static asset—it's a <span
                                     class="text-slate-900 dark:text-white font-bold">Living Data Structure</span>. Every
                                 district is a unique SVG object tied to a real-time graph of neighbors, ownership, and
                                 police presence.</p>
                         </div>
                         <ul class="space-y-4 text-sm font-mono text-primary uppercase tracking-widest">
-                            <li class="flex gap-3"><span>//</span> Zero-latency updates for events.</li>
-                            <li class="flex gap-3"><span>//</span> Dynamic AI-generated world layers.</li>
+                            <li class="flex gap-3" data-i18n="shadow.liveDataPoint1"><span>//</span> Zero-latency
+                                updates for events.</li>
+                            <li class="flex gap-3" data-i18n="shadow.liveDataPoint2"><span>//</span> Dynamic
+                                AI-generated world layers.</li>
                         </ul>
                     </div>
                     <div
@@ -242,12 +275,14 @@
                 <section class="max-w-[1200px] mx-auto py-24 border-t border-slate-200 dark:border-white/5">
                     <div class="grid lg:grid-cols-5 gap-16">
                         <div class="lg:col-span-2 space-y-6">
-                            <h3 class="text-primary font-bold tracking-widest uppercase text-xs italic">The Origin Story
+                            <h3 class="text-primary font-bold tracking-widest uppercase text-xs italic"
+                                data-i18n="shadow.originStoryTitle">The Origin Story
                             </h3>
-                            <h2
-                                class="text-3xl font-bold text-slate-900 dark:text-white leading-tight uppercase italic">
+                            <h2 class="text-3xl font-bold text-slate-900 dark:text-white leading-tight uppercase italic"
+                                data-i18n="shadow.originStoryHeadline">
                                 From Mac OS 8.6 <br>to AI-Co-Creation</h2>
-                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed"
+                                data-i18n="shadow.originStoryText">
                                 As a designer with 20+ years of experience, I’ve always followed others' visions. The
                                 <strong>Google AI Studio Build</strong> gave me the first chance to realize my own
                                 fantasy—testing how far a designer with <em>zero coding knowledge</em> can push the
@@ -260,9 +295,11 @@
                             <div
                                 class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
                                 <span class="material-symbols-outlined text-primary">psychology_alt</span>
-                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">Technical
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic"
+                                    data-i18n="shadow.techEvoTitle">Technical
                                     Evolution</h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Optimizing Base64
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                                    data-i18n="shadow.techEvoDesc">Optimizing Base64
                                     SVG assets and preventing AI context overflows through modular assets.ts
                                     architecture.</p>
                             </div>
@@ -270,9 +307,11 @@
                             <div
                                 class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
                                 <span class="material-symbols-outlined text-rose-500">warning</span>
-                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic"
+                                    data-i18n="shadow.constraintsTitle">
                                     Constraints</h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Testing the token
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                                    data-i18n="shadow.constraintsDesc">Testing the token
                                     limits of LLMs and managing strategic prioritization in a design-to-code workflow.
                                 </p>
                             </div>
@@ -280,18 +319,22 @@
                             <div
                                 class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
                                 <span class="material-symbols-outlined text-emerald-500">rocket_launch</span>
-                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">The
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic"
+                                    data-i18n="shadow.roadmapTitle">The
                                     Roadmap</h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Future integration
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                                    data-i18n="shadow.roadmapDesc">Future integration
                                     of Rive animations and native deployment for iOS and Android.</p>
                             </div>
                             <!-- Tech Card 4 -->
                             <div
                                 class="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 space-y-3 transition-colors">
                                 <span class="material-symbols-outlined text-amber-500">design_services</span>
-                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic">Creative
+                                <h4 class="text-slate-900 dark:text-white font-bold text-sm uppercase italic"
+                                    data-i18n="shadow.creativeAutonomyTitle">Creative
                                     Autonomy</h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Owning the entire
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                                    data-i18n="shadow.creativeAutonomyDesc">Owning the entire
                                     theme, atmosphere, and mechanics. A synthesis of code and high-end Noir aesthetics.
                                 </p>
                             </div>
@@ -303,10 +346,11 @@
                 <section
                     class="mx-auto max-w-[1200px] py-24 bg-primary/[0.03] rounded-[3rem] px-8 border border-primary/10">
                     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                        <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">Accelerated
+                        <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic"
+                            data-i18n="shadow.accelArchTitle">Accelerated
                             Architecture</h3>
-                        <h2
-                            class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                        <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
+                            data-i18n="shadow.accelArchHeadline">
                             AI as a Co-Creator</h2>
                     </div>
 
@@ -316,9 +360,10 @@
                                 <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                                     <span
                                         class="material-symbols-outlined text-primary uppercase italic">terminal</span>
-                                    Managing Complexity
+                                    <span data-i18n="shadow.managingComplexityTitle">Managing Complexity</span>
                                 </h4>
-                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Working without a
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed"
+                                    data-i18n="shadow.managingComplexityText">Working without a
                                     developer meant bridging the gap between design and logic through
                                     <strong>Design-to-Code architecture</strong>.
                                 </p>
@@ -326,17 +371,21 @@
                             <div class="space-y-4 text-left">
                                 <div
                                     class="p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
-                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic">
+                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic"
+                                        data-i18n="shadow.dataStructureTitle">
                                         Data Structure</h5>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 italic">Separating SVG
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 italic"
+                                        data-i18n="shadow.dataStructureDesc">Separating SVG
                                         coordinates into <code>assets.ts</code> to ensure rapid rendering and avoid
                                         memory overload.</p>
                                 </div>
                                 <div
                                     class="p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
-                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic">
+                                    <h5 class="font-bold text-sm mb-2 uppercase tracking-widest text-primary italic"
+                                        data-i18n="shadow.globalDeploymentTitle">
                                         Global Deployment</h5>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 italic">Mastering GitHub and
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 italic"
+                                        data-i18n="shadow.globalDeploymentDesc">Mastering GitHub and
                                         Netlify to create high-performance, pixel-perfect interactive products.</p>
                                 </div>
                             </div>
@@ -344,25 +393,29 @@
 
                         <div class="flex flex-col justify-center space-y-10">
                             <div class="space-y-6">
-                                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug italic">"From
+                                <h4 class="text-2xl font-black text-slate-900 dark:text-white leading-snug italic"
+                                    data-i18n="shadow.workflowQuote">"From
                                     idea to interactive product in record time—leveraging AI to break technical
                                     barriers."</h4>
                                 <div class="h-1 w-20 bg-primary"></div>
-                                <p class="text-lg text-slate-600 dark:text-slate-400 italic font-light">By acting as a
+                                <p class="text-lg text-slate-600 dark:text-slate-400 italic font-light"
+                                    data-i18n="shadow.workflowQuoteSub">By acting as a
                                     "Director", I focused on <strong>strategic UX decisions</strong> while the AI
                                     handled the boilerplate structure.</p>
                             </div>
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="p-4 border-l-2 border-primary">
-                                    <span class="block text-3xl font-black text-slate-900 dark:text-white">3X</span>
-                                    <span
-                                        class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic">Faster
+                                    <span class="block text-3xl font-black text-slate-900 dark:text-white"
+                                        data-i18n="shadow.stat3x">3X</span>
+                                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
+                                        data-i18n="shadow.statFasterProto">Faster
                                         Prototyping</span>
                                 </div>
                                 <div class="p-4 border-l-2 border-primary">
-                                    <span class="block text-3xl font-black text-slate-900 dark:text-white">Zero</span>
-                                    <span
-                                        class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic">Coding
+                                    <span class="block text-3xl font-black text-slate-900 dark:text-white"
+                                        data-i18n="shadow.statZero">Zero</span>
+                                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
+                                        data-i18n="shadow.statCodingFound">Coding
                                         Foundation</span>
                                 </div>
                             </div>
@@ -373,20 +426,21 @@
                 <!-- LESSONS FROM THE NOIR -->
                 <section class="mx-auto max-w-[1200px] py-24 text-center">
                     <div class="max-w-2xl mx-auto space-y-8">
-                        <h2
-                            class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase">
+                        <h2 class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase"
+                            data-i18n="shadow.lessonsTitle">
                             Lessons from the Noir.</h2>
                         <div class="h-1 w-12 bg-primary mx-auto"></div>
-                        <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light">
+                        <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light"
+                            data-i18n="shadow.lessonsText">
                             "Shadow Cartels proved that 20 years of UI experience, combined with AI, creates a new kind
                             of Technical Artist. A professional who builds functional, scalable ecosystems."
                         </p>
                         <div class="pt-8">
-                            <a href="work.html"
-                                class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 transition-all group">
+                            <a href="case-study-siemens.html"
+                                class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse">
                                 <span
-                                    class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                                Back to All Projects
+                                    class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                                <span data-i18n="shadow.nextCaseStudy">Next: Siemens WinCC OA</span>
                             </a>
                         </div>
                     </div>
@@ -420,15 +474,17 @@
                         class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
                         <span
                             class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                        Back to All Projects
+                        <span data-i18n="shadow.backToProjects">Back to All Projects</span>
                     </a>
                 </div>
 
                 <div class="mb-12">
-                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">Ready
+                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter"
+                        data-i18n="footer.readyToStart">Ready
                         to start a
                         project?</h3>
-                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed"
+                        data-i18n="footer.readySubtitle">
                         Let's create something meaningful together. I'm always open to new opportunities and interesting
                         challenges.
                     </p>
@@ -471,10 +527,15 @@
                 </div>
                 <div
                     class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <p>&copy; <span id="current-year"></span> László Földváry. <span
+                            data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-primary transition-colors"
+                            data-i18n="footer.privacyPolicy">Privacy
+                            Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
+                            of
+                            Service</a>
                     </div>
                 </div>
             </div>
@@ -573,6 +634,7 @@
         });
     </script>
     <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
 </body>
 
 </html>

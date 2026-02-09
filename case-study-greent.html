@@ -66,12 +66,14 @@
 
                 <!-- 2. OSZLOP: MENÜ -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
                 </nav>
 
                 <!-- 3. OSZLOP: GOMBOK -->
@@ -82,7 +84,30 @@
                         aria-label="Contact">
                         <img src="img/contact-icon.svg" alt="Contact" class="size-6">
                     </a>
-                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+
+                    <!-- 2. Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Theme Toggle -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
                         <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
@@ -134,15 +159,16 @@
 
                 <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-6">
                     <span
-                        class="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
+                        class="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest"
+                        data-i18n="greentube.heroTag">
                         10 Years of Gaming Mastery
                     </span>
-                    <h1
-                        class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic">
+                    <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic"
+                        data-i18n="greentube.heroTitle" data-i18n-html="true">
                         Greentube <span class="text-primary uppercase">Novomatic</span>
                     </h1>
-                    <p
-                        class="max-w-3xl text-lg font-light leading-relaxed text-slate-600 dark:text-slate-400 sm:text-xl md:text-2xl pt-2 italic">
+                    <p class="max-w-3xl text-lg font-light leading-relaxed text-slate-600 dark:text-slate-400 sm:text-xl md:text-2xl pt-2 italic"
+                        data-i18n="greentube.heroDesc">
                         Leading the digital transformation of casino entertainment through 50+ global game titles
                         and industry-first browser-based experiences.
                     </p>
@@ -158,35 +184,43 @@
                     <div
                         class="p-4 sm:p-6 flex flex-col items-center text-center border-r border-slate-200 dark:border-slate-800">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Tenure</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="greentube.statTenureTitle">Tenure</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">10
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic"
+                            data-i18n="greentube.statTenureValue">10
                             Consecutive Years</span>
                     </div>
                     <!-- Stat 2 -->
                     <div class="p-4 sm:p-6 flex flex-col items-center text-center">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Volume</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="greentube.statVolumeTitle">Volume</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">50+
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic"
+                            data-i18n="greentube.statVolumeValue">50+
                             Shipped Titles</span>
                     </div>
                     <!-- Stat 3 -->
                     <div
                         class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-r border-slate-200 dark:border-slate-800 md:border-t-0">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Impact</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="greentube.statImpactTitle">Impact</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Market-Leading
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic"
+                            data-i18n="greentube.statImpactValue">Market-Leading
                             UI/UX</span>
                     </div>
                     <!-- Stat 4 -->
                     <div
                         class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-slate-200 dark:border-slate-800 md:border-t-0">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Platforms</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="greentube.statPlatformsTitle">Platforms</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Desktop
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic"
+                            data-i18n="greentube.statPlatformsValue">Desktop
                             & Mobile</span>
                     </div>
                 </div>
@@ -197,18 +231,18 @@
                 <!-- 1. SZAKASZ: AZ INNOVÁCIÓ -->
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div class="space-y-6 text-slate-600 dark:text-slate-300">
-                        <h2
-                            class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight uppercase italic">
+                        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight uppercase italic"
+                            data-i18n="greentube.section1Title" data-i18n-html="true">
                             Digital <br><span class="text-primary italic font-light">Pioneering</span>
                         </h2>
                         <div class="space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-                            <p>
+                            <p data-i18n="greentube.section1P1" data-i18n-html="true">
                                 At <strong>Greentube (Novomatic Interactive)</strong>, my role was instrumental in
                                 defining
                                 the visual quality of browser-based gaming. We were among the first to offer
                                 high-fidelity experiences directly in the browser.
                             </p>
-                            <p>
+                            <p data-i18n="greentube.section1P2">
                                 Over a decade, I navigated the complex balance between technical constraints and the
                                 rich visual language required by the international gaming market.
                             </p>
@@ -229,10 +263,10 @@
                 <!-- 2. SZAKASZ: FROM SKETCH TO ENGINE -->
                 <div class="space-y-12">
                     <div class="max-w-3xl text-slate-600 dark:text-slate-300">
-                        <h2
-                            class="text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter mb-4 uppercase">
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter mb-4 uppercase"
+                            data-i18n="greentube.section2Title">
                             The Craftsmanship Pipeline</h2>
-                        <p class="text-slate-600 dark:text-slate-400 text-lg">
+                        <p class="text-slate-600 dark:text-slate-400 text-lg" data-i18n="greentube.section2Desc">
                             True senior-level design starts with a pencil. I demonstrate the full lifecycle: from
                             initial sketches to final, engine-ready assets.
                         </p>
@@ -246,7 +280,8 @@
                                 <img src="img/greentube/pencil.jpg" alt="Pencil Sketch"
                                     class="w-full h-full object-contain grayscale">
                             </div>
-                            <p class="text-[10px] font-mono text-primary uppercase tracking-widest">// Phase 01: Concept
+                            <p class="text-[10px] font-mono text-primary uppercase tracking-widest"
+                                data-i18n="greentube.section2Phase1">// Phase 01: Concept
                                 Sketching</p>
                         </div>
                         <!-- UI/Digital -->
@@ -256,7 +291,8 @@
                                 <img src="img/greentube/bugs-bees-ui.jpg" alt="Digital UI Rendering"
                                     class="w-full h-full object-cover">
                             </div>
-                            <p class="text-[10px] font-mono text-primary uppercase tracking-widest">// Phase 02: Digital
+                            <p class="text-[10px] font-mono text-primary uppercase tracking-widest"
+                                data-i18n="greentube.section2Phase2">// Phase 02: Digital
                                 UI Mastery</p>
                         </div>
                         <!-- Final Screen -->
@@ -267,7 +303,8 @@
                                     <source src="img/greentube/part-slot.mp4" type="video/mp4">
                                 </video>
                             </div>
-                            <p class="text-[10px] font-mono text-primary uppercase tracking-widest">// Phase 03: Engine
+                            <p class="text-[10px] font-mono text-primary uppercase tracking-widest"
+                                data-i18n="greentube.section2Phase3">// Phase 03: Engine
                                 Integration</p>
                         </div>
                     </div>
@@ -276,24 +313,28 @@
                 <!-- 3. SZAKASZ: VARIETY & SCALE -->
                 <div class="grid lg:grid-cols-12 gap-12 items-center">
                     <div class="lg:col-span-5 space-y-6">
-                        <h2
-                            class="text-3xl font-black text-slate-900 dark:text-white uppercase italic leading-none uppercase">
+                        <h2 class="text-3xl font-black text-slate-900 dark:text-white uppercase italic leading-none uppercase"
+                            data-i18n="greentube.section3Title" data-i18n-html="true">
                             Global <br>Portfolio</h2>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed"
+                            data-i18n="greentube.section3Desc">
                             My expertise spans across multiple genres—from high-stakes Video Slots to competitive Skill
                             Games, requiring a deep understanding of platform ergonomics.
                         </p>
                         <div class="grid grid-cols-2 gap-4 pt-4">
                             <div
                                 class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                                <span class="block text-2xl font-bold text-slate-900 dark:text-white italic">50+</span>
-                                <span class="text-[10px] uppercase tracking-widest text-primary">Titles Shipped</span>
+                                <span class="block text-2xl font-bold text-slate-900 dark:text-white italic"
+                                    data-i18n="greentube.section3Stat1Value">50+</span>
+                                <span class="text-[10px] uppercase tracking-widest text-primary"
+                                    data-i18n="greentube.section3Stat1Label">Titles Shipped</span>
                             </div>
                             <div
                                 class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                                <span
-                                    class="block text-2xl font-bold text-slate-900 dark:text-white italic">Multi</span>
-                                <span class="text-[10px] uppercase tracking-widest text-primary">Platform Logic</span>
+                                <span class="block text-2xl font-bold text-slate-900 dark:text-white italic"
+                                    data-i18n="greentube.section3Stat2Value">Multi</span>
+                                <span class="text-[10px] uppercase tracking-widest text-primary"
+                                    data-i18n="greentube.section3Stat2Label">Platform Logic</span>
                             </div>
                         </div>
                     </div>
@@ -304,7 +345,8 @@
                                     class="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-transform hover:scale-[1.02] duration-500">
                                     <img src="img/greentube/skill-game-1.png" alt="Skill Game" class="w-full h-auto">
                                 </div>
-                                <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest text-right">
+                                <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest text-right"
+                                    data-i18n="greentube.section3Caption1">
                                     Competitive Skill Gaming //</p>
                             </div>
                             <div class="space-y-4">
@@ -312,7 +354,8 @@
                                     class="rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-transform hover:scale-[1.02] duration-500">
                                     <img src="img/greentube/frutsn.png" alt="Video Slot" class="w-full h-auto">
                                 </div>
-                                <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Global Video
+                                <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest"
+                                    data-i18n="greentube.section3Caption2">Global Video
                                     Slots //</p>
                             </div>
                         </div>
@@ -323,10 +366,11 @@
                 <section
                     class="relative overflow-hidden py-24 px-8 rounded-[3rem] bg-primary/5 dark:bg-primary/10 border border-primary/20 text-center transition-colors">
                     <div class="relative z-10 max-w-3xl mx-auto space-y-8">
-                        <h3
-                            class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter uppercase italic">
+                        <h3 class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter uppercase italic"
+                            data-i18n="greentube.impactBoxTitle">
                             Legacy of Trust</h3>
-                        <p class="text-2xl text-slate-600 dark:text-slate-300 italic font-light leading-relaxed">
+                        <p class="text-2xl text-slate-600 dark:text-slate-300 italic font-light leading-relaxed"
+                            data-i18n="greentube.impactBoxQuote" data-i18n-html="true">
                             "A decade at Novomatic's interactive division taught me that <span
                                 class="text-primary font-bold">consistency is as important as creativity</span>. In a
                             highly regulated industry, I delivered excellence across every platform."
@@ -340,7 +384,7 @@
                         class="flex items-center gap-3 text-primary font-bold hover:text-slate-900 dark:hover:text-white transition-colors group">
                         <span
                             class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                        Back to Portfolio
+                        <span data-i18n="greentube.backButton">Back to Portfolio</span>
                     </a>
                 </div>
             </section>
@@ -363,15 +407,17 @@
                         class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
                         <span
                             class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                        Back to All Projects
+                        <span data-i18n="footer.backToProjects">Back to All Projects</span>
                     </a>
                 </div>
 
                 <div class="mb-12">
-                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">Ready
+                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter"
+                        data-i18n="footer.readyToStart">Ready
                         to start a
                         project?</h3>
-                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed"
+                        data-i18n="footer.readySubtitle">
                         Let's create something meaningful together. I'm always open to new opportunities and interesting
                         challenges.
                     </p>
@@ -414,10 +460,13 @@
                 </div>
                 <div
                     class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <p>&copy; <span id="current-year"></span> László Földváry. <span
+                            data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-primary transition-colors"
+                            data-i18n="footer.privacyPolicy">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
+                            of Service</a>
                     </div>
                 </div>
             </div>
@@ -516,6 +565,7 @@
         });
     </script>
     <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
 </body>
 
 </html>
