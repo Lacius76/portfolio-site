@@ -67,7 +67,7 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
 
-    <div class="relative flex min-h-screen flex-col">
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
         <!-- HEADER (Az általad kért navigációs logikával: az "About" link elrejtve) -->
         <header
             class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
@@ -151,13 +151,14 @@
             <!-- FIXED HERO SECTION -->
             <div
                 class="fixed inset-0 z-0 overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-24 lg:pt-16">
-                <section class="mx-auto max-w-[1200px] px-6 py-4 lg:py-32 w-full">
+                <section class="mx-auto max-w-[1200px] px-2 py-2 lg:py-14 w-full">
                     <!-- lg:flex-row: asztali gépen egymás mellett, alapból (mobilon) egymás alatt -->
-                    <div class="flex flex-col lg:flex-row gap-6 lg:gap-24 items-center lg:items-start">
+                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-24 items-center lg:items-start">
 
                         <!-- FOTÓ BLOKK: Mobilon középen, Desktopon bal oldalon -->
-                        <div class="w-full lg:w-auto flex justify-center">
-                            <div class="relative group w-full max-w-[380px]"> <!-- Itt a fix 380px korlát desktopra -->
+                        <div class="flex justify-center lg:justify-start">
+                            <div class="relative group w-[85vw] lg:w-[380px]">
+                                <!-- 85vw mobilon = 85% viewport szélesség, 380px desktopnál -->
                                 <div
                                     class="overflow-hidden rounded-2xl aspect-[4/5] bg-gray-200 dark:bg-gray-800 shadow-xl border border-white/5">
                                     <img src="img/foto.jpg" alt="László Földváry"
@@ -165,7 +166,7 @@
                                 </div>
                                 <!-- Dekoratív elem hoverre -->
                                 <div
-                                    class="absolute -bottom-4 -right-4 h-24 w-24 bg-primary/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                    class="hidden lg:block absolute -bottom-4 -right-4 h-24 w-24 bg-primary/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                                 </div>
                             </div>
                         </div>
