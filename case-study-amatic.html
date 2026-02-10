@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Shadow Cartels: AI-Driven Noir Strategy | Laszlo.UI</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
         rel="stylesheet" />
@@ -96,12 +97,14 @@
 
                 <!-- 2. OSZLOP: MENÜ -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
                 </nav>
 
                 <!-- 3. OSZLOP: GOMBOK -->
@@ -112,7 +115,30 @@
                         aria-label="Contact">
                         <img src="img/contact-icon.svg" alt="Contact" class="size-6">
                     </a>
-                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+
+                    <!-- 2. Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Theme Toggle -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
                         <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
@@ -162,15 +188,16 @@
 
                 <div class="relative z-10 flex max-w-[1000px] flex-col items-center gap-6 text-center px-6">
                     <span
-                        class="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-500 text-xs font-bold uppercase tracking-widest">
+                        class="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-500 text-xs font-bold uppercase tracking-widest"
+                        data-i18n="amatic.heroBadge">
                         Artistic Direction & Character Design
                     </span>
-                    <h1
-                        class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic">
+                    <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic"
+                        data-i18n="amatic.heroTitle">
                         Amatic <span class="text-primary uppercase">Industries</span>
                     </h1>
-                    <p
-                        class="max-w-3xl text-lg font-light leading-relaxed text-slate-600 dark:text-slate-300 sm:text-xl md:text-2xl pt-2">
+                    <p class="max-w-3xl text-lg font-light leading-relaxed text-slate-600 dark:text-slate-300 sm:text-xl md:text-2xl pt-2"
+                        data-i18n="amatic.heroDesc">
                         Bridging cultural research with digital art: Creating iconic game worlds through
                         high-fidelity character design and style adaptation.
                     </p>
@@ -179,38 +206,46 @@
 
             <!-- STATS BAR - Mobile Optimized & Adaptív -->
             <div
-                class="border-y border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#101922]/95 relative sm:sticky sm:top-16 z-40 backdrop-blur-md">
+                class="border-y border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#101922]/95 relative sticky top-16 z-40 backdrop-blur-md">
                 <div
                     class="mx-auto grid grid-cols-2 md:grid-cols-4 max-w-[1200px] divide-slate-200 dark:divide-slate-800">
                     <div
                         class="p-4 sm:p-6 flex flex-col items-center text-center border-r border-slate-200 dark:border-slate-800">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Expertise</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="amatic.statExpertiseTitle">Expertise</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter">Character
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter"
+                            data-i18n="amatic.statExpertiseValue">Character
                             Lifecycle</span>
                     </div>
                     <div class="p-4 sm:p-6 flex flex-col items-center text-center">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Workflow</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="amatic.statWorkflowTitle">Workflow</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter">Vector-to-Pixel
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter"
+                            data-i18n="amatic.statWorkflowValue">Vector-to-Pixel
                             Mastery</span>
                     </div>
                     <div
                         class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-r border-slate-200 dark:border-slate-800 md:border-t-0">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Styles</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="amatic.statStylesTitle">Styles</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Realism
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic"
+                            data-i18n="amatic.statStylesValue">Realism
                             / Cartoon</span>
                     </div>
                     <div
                         class="p-4 sm:p-6 flex flex-col items-center text-center border-t border-slate-200 dark:border-slate-800 md:border-t-0">
                         <span
-                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic">Assets</span>
+                            class="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary italic"
+                            data-i18n="amatic.statAssetsTitle">Assets</span>
                         <span
-                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic">Hand-crafted
+                            class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tighter italic"
+                            data-i18n="amatic.statAssetsValue">Hand-crafted
                             Symbols</span>
                     </div>
                 </div>
@@ -221,18 +256,18 @@
                 <!-- 1. SZAKASZ: PHARAO (The Masterpiece) -->
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div class="space-y-6">
-                        <h2
-                            class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight uppercase italic">
+                        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight uppercase italic"
+                            data-i18n="amatic.section1Title">
                             The Pharao <br><span class="text-amber-600 dark:text-amber-500 italic font-light">Digital
                                 Archeology</span>
                         </h2>
                         <div class="space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-                            <p>
+                            <p data-i18n="amatic.section1P1">
                                 Designing the <strong>Pharao</strong> series required cultural research. From
                                 Tutankhamun’s mask to the Eye of Ra, every symbol was crafted with historical depth and
                                 premium aesthetic.
                             </p>
-                            <p>
+                            <p data-i18n="amatic.section1P2">
                                 <strong>Technical Approach:</strong> I developed these characters using a hybrid
                                 workflow: precise <strong>Vector foundations</strong> refined with pixel-level texturing
                                 to achieve a rich, golden finish.
@@ -255,10 +290,10 @@
                 <!-- 2. SZAKASZ: STÍLUS ADAPTÁCIÓ -->
                 <div class="space-y-12">
                     <div class="max-w-3xl">
-                        <h2
-                            class="text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter mb-4 uppercase">
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter mb-4 uppercase"
+                            data-i18n="amatic.section2Title" data-i18n-html="true">
                             Style Adaptability</h2>
-                        <p class="text-slate-600 dark:text-slate-400 text-lg italic">
+                        <p class="text-slate-600 dark:text-slate-400 text-lg italic" data-i18n="amatic.section2Desc">
                             A senior designer’s greatest asset is the ability to speak different visual languages. From
                             Nordic mythology to the playful world of a cartoon zoo.
                         </p>
@@ -271,8 +306,8 @@
                                 class="rounded-2xl lg:rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl relative group bg-slate-100 dark:bg-slate-900">
                                 <img src="img/amatic/viking-main.jpg" alt="Viking Game Screen"
                                     class="w-full h-auto object-cover">
-                                <div
-                                    class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[9px] lg:text-[10px] font-mono uppercase tracking-widest text-white">
+                                <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 lg:px-4 lg:py-2 rounded-lg text-[9px] lg:text-[10px] font-mono uppercase tracking-widest text-white"
+                                    data-i18n="amatic.vikingBadge">
                                     Genre: Mythological Realism
                                 </div>
                             </div>
@@ -330,20 +365,23 @@
                     <div class="relative group order-2 lg:order-1">
                         <img src="img/amatic/pharao-sketch.jpg"
                             class="rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-white/10 grayscale hover:grayscale-0 transition-all duration-700">
-                        <p class="mt-4 text-[10px] font-mono text-primary uppercase tracking-widest">// Original Pencil
+                        <p class="mt-4 text-[10px] font-mono text-primary uppercase tracking-widest"
+                            data-i18n="amatic.sketchCaption">// Original Pencil
                             Concept for the Pharaoh</p>
                     </div>
                     <div class="space-y-6 order-1 lg:order-2">
-                        <h2
-                            class="text-3xl font-black text-slate-900 dark:text-white uppercase italic leading-none uppercase">
+                        <h2 class="text-3xl font-black text-slate-900 dark:text-white uppercase italic leading-none uppercase"
+                            data-i18n="amatic.section3Title">
                             The Sketch <br>is the Soul</h2>
-                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
+                            data-i18n="amatic.section3Desc">
                             Even in a digital-first industry, I believe in the power of the hand-drawn concept. The
                             Pharao’s character lifecycle began with detailed pencil studies.
                         </p>
                         <div
                             class="bg-slate-100 dark:bg-noir-card p-6 rounded-2xl border-l-4 border-amber-500 transition-colors">
-                            <p class="text-sm italic text-slate-700 dark:text-slate-300 leading-relaxed">
+                            <p class="text-sm italic text-slate-700 dark:text-slate-300 leading-relaxed"
+                                data-i18n="amatic.quote">
                                 "My goal was to create characters that players don't just see, but recognize as symbols
                                 of power and mystery. The vector foundation allows for infinite scalability, while the
                                 pixel-finishing brings the gold to life."
@@ -354,11 +392,11 @@
 
                 <!-- BACK BUTTON -->
                 <div class="flex justify-center py-10">
-                    <a href="work.html"
-                        class="flex items-center gap-3 text-primary font-bold hover:text-slate-900 dark:hover:text-white transition-colors group">
+                    <a href="case-study-funworld.html"
+                        class="inline-flex items-center gap-3 text-primary font-bold hover:text-slate-900 dark:hover:text-white transition-colors group flex-row-reverse">
                         <span
-                            class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                        Back to Portfolio
+                            class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                        <span data-i18n="amatic.backButton">Next Project: Funworld</span>
                     </a>
                 </div>
             </section>
@@ -375,21 +413,22 @@
 
             <div class="relative z-10 max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
 
-                <!-- MOVED BACK BUTTON -->
                 <div class="mb-16">
                     <a id="footer-back-link" href="work.html"
                         class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
                         <span
                             class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                        Back to All Projects
+                        <span data-i18n="footer.backToProjects">Back to All Projects</span>
                     </a>
                 </div>
 
                 <div class="mb-12">
-                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">Ready
+                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter"
+                        data-i18n="footer.readyToStart">Ready
                         to start a
                         project?</h3>
-                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed"
+                        data-i18n="footer.readySubtitle">
                         Let's create something meaningful together. I'm always open to new opportunities and interesting
                         challenges.
                     </p>
@@ -432,10 +471,13 @@
                 </div>
                 <div
                     class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-                    <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                    <p>&copy; <span id="current-year"></span> László Földváry. <span
+                            data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-primary transition-colors"
+                            data-i18n="footer.privacyPolicy">Privacy Policy</a>
+                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
+                            of Service</a>
                     </div>
                 </div>
             </div>
@@ -534,6 +576,7 @@
         });
     </script>
     <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
 </body>
 
 </html>

@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Funworld / Photoplay: Touchscreen Ergonomics Pioneer | Laszlo.UI</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
         rel="stylesheet" />
@@ -49,7 +50,7 @@
     <div class="relative flex min-h-screen flex-col">
         <!-- HEADER -->
         <header
-            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            class="sticky top-0 z-[100] w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
             <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
 
                 <!-- 1. OSZLOP: LOGÓ -->
@@ -65,12 +66,14 @@
 
                 <!-- 2. OSZLOP: MENÜ -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Work</a>
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">About</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Resume</a>
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
                 </nav>
 
                 <!-- 3. OSZLOP: GOMBOK -->
@@ -81,6 +84,26 @@
                         aria-label="Contact">
                         <img src="img/contact-icon.svg" alt="Contact" class="size-6">
                     </a>
+                    <!-- Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Sötét mód gomb -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
@@ -133,15 +156,17 @@
                     <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
                 </div>
 
-                <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center md:text-left">
-                    <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic">Case Study: 2000 -
+                <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center md:text-left overflow-hidden">
+                    <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic break-words"
+                        data-i18n="funworld.heroSubheading">Case Study: 2000 -
                         2003</h2>
-                    <h1
-                        class="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter uppercase leading-tight">
+                    <h1 class="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter uppercase leading-tight break-words"
+                        data-i18n="funworld.heroTitle" data-i18n-html="true">
                         Pioneering<br>Touch<br><span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400 pb-1 pr-2">Ergonomics</span>
                     </h1>
-                    <p class="max-w-2xl text-xl md:text-2xl font-light leading-relaxed text-slate-300">
+                    <p class="max-w-2xl text-xl md:text-2xl font-light leading-relaxed text-slate-300 break-words"
+                        data-i18n="funworld.heroDescription" data-i18n-html="true">
                         Defining the rules of touch-interaction and "Hand-Occlusion" UX long before the smartphone era
                         at <strong>Funworld AG (Photoplay)</strong>.
                     </p>
@@ -158,10 +183,11 @@
 
                         <!-- BAL OLDAL: Project Vision -->
                         <div class="md:col-span-2 space-y-6">
-                            <h3
-                                class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight uppercase italic">
+                            <h3 class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight uppercase italic break-words"
+                                data-i18n="funworld.challengeTitle">
                                 The Challenge</h3>
-                            <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg">
+                            <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg break-words"
+                                data-i18n="funworld.challengeDescription" data-i18n-html="true">
                                 Designing purely touch-based interfaces on <span
                                     class="text-primary font-semibold">low-res
                                     CRT hardware</span> (640x480) requires a completely different mindset than
@@ -172,40 +198,47 @@
                             <!-- TAGS -->
                             <div class="flex flex-wrap gap-3 pt-2">
                                 <span
-                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">HMI
+                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+                                    data-i18n="funworld.tagHMI">HMI
                                     Ergonomics</span>
                                 <span
-                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Pixel
+                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+                                    data-i18n="funworld.tagPixelArt">Pixel
                                     Art</span>
                                 <span
-                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Technical
+                                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+                                    data-i18n="funworld.tagTechnicalArt">Technical
                                     Art</span>
                             </div>
                         </div>
 
                         <!-- JOBB OLDAL: Key Tech -->
                         <!-- JOBB OLDAL: Key Tech -->
-                        <div class="space-y-8 border-l border-slate-200 dark:border-white/5 pl-8 clearfix">
+                        <div class="space-y-8 md:border-l border-slate-200 dark:border-white/5 md:pl-8 clearfix">
 
-                            <!-- Terminal Image (Floating) -->
+                            <!-- Terminal Image (Floating on desktop only) -->
                             <div
-                                class="float-right ml-1 mb-1 opacity-90 hover:scale-110 transition-all duration-500 origin-top-right">
+                                class="md:float-right md:ml-1 md:mb-1 mb-4 opacity-90 hover:scale-110 transition-all duration-500 origin-top-right max-w-full">
                                 <img src="img/funworld/potoplay-terminal.png" alt="Photoplay Terminal"
-                                    class="h-[200px] object-contain drop-shadow-xl">
+                                    class="h-[200px] w-auto max-w-full object-contain drop-shadow-xl mx-auto md:mx-0">
                             </div>
 
                             <div>
-                                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Hardware
+                                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                                    data-i18n="funworld.hardwareConstraintsTitle">Hardware
                                     Constraints
                                 </p>
-                                <p class="text-sm text-slate-700 dark:text-white">CRT Touchscreens, Limited VRAM, Alpha
+                                <p class="text-sm text-slate-700 dark:text-white break-words"
+                                    data-i18n="funworld.hardwareConstraintsValue">CRT Touchscreens, Limited VRAM, Alpha
                                     Channels</p>
                             </div>
                             <div>
-                                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Key
+                                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                                    data-i18n="funworld.keyInnovationTitle">Key
                                     Innovation
                                 </p>
-                                <p class="text-sm text-slate-700 dark:text-white">Occlusion-Free Layouts</p>
+                                <p class="text-sm text-slate-700 dark:text-white break-words"
+                                    data-i18n="funworld.keyInnovationValue">Occlusion-Free Layouts</p>
                             </div>
                         </div>
                 </section>
@@ -232,23 +265,29 @@
                                 class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
                                 <span class="material-symbols-outlined">touch_app</span>
                             </div>
-                            <h2
-                                class="text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                            <h2 class="text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
+                                data-i18n="funworld.handOcclusionTitle" data-i18n-html="true">
                                 The "Hand-Occlusion"<br><span class="text-primary">Paradox</span></h2>
                             <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-                                <p>When a user interacts with a touchscreen, <span
+                                <p class="break-words" data-i18n="funworld.handOcclusionP1" data-i18n-html="true">When a
+                                    user interacts with a touchscreen, <span
                                         class="text-slate-900 dark:text-white font-bold">their own hand blocks the
                                         view</span>. This was a critical issue in 2000, where instantaneous feedback was
                                     needed for arcade games.</p>
-                                <p>My solution was a rigorous layout grid that pushed critical information (score,
+                                <p class="break-words" data-i18n="funworld.handOcclusionP2" data-i18n-html="true">My
+                                    solution was a rigorous layout grid that pushed critical information (score,
                                     timer,
                                     next move) to the <strong>peripheral zones</strong>, ensuring the center remained
                                     clear
                                     for interaction logic.</p>
                             </div>
                             <ul class="space-y-4 text-sm font-mono text-primary uppercase tracking-widest">
-                                <li class="flex gap-3"><span>//</span> Hit-Target size optimization for fingers.</li>
-                                <li class="flex gap-3"><span>//</span> Instant visual feedback on "Touch-Down".</li>
+                                <li class="flex gap-3 break-words"><span>//</span> <span
+                                        data-i18n="funworld.handOcclusionList1">Hit-Target size optimization for
+                                        fingers.</span></li>
+                                <li class="flex gap-3 break-words"><span>//</span> <span
+                                        data-i18n="funworld.handOcclusionList2">Instant visual feedback on
+                                        "Touch-Down".</span></li>
                             </ul>
                         </div>
                     </section>
@@ -256,13 +295,14 @@
                     <!-- 2. GALLERY GRID -->
                     <section>
                         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic">Visual
+                            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic break-words"
+                                data-i18n="funworld.gallerySubtitle">Visual
                                 Diversity
                             </h3>
-                            <h2
-                                class="text-4xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">
-                                Adapting to Genres</h2>
-                            <p class="text-slate-600 dark:text-slate-400">From puzzle games to card classics, every
+                            <h2 class="text-4xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
+                                data-i18n="funworld.galleryTitle">Adapting to Genres</h2>
+                            <p class="text-slate-600 dark:text-slate-400 break-words"
+                                data-i18n="funworld.galleryDescription">From puzzle games to card classics, every
                                 interface had to follow strict style guides while maintaining the core ergonomic
                                 principles.
                             </p>
@@ -340,15 +380,18 @@
                     <section class="max-w-[1000px] mx-auto py-12 border-t border-slate-200 dark:border-white/5">
                         <div class="grid md:grid-cols-2 gap-12">
                             <div class="space-y-6">
-                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white uppercase italic">Technical
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white uppercase italic break-words"
+                                    data-i18n="funworld.legacyTitle">Technical
                                     Artist Legacy</h3>
-                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed break-words"
+                                    data-i18n="funworld.legacyP1" data-i18n-html="true">
                                     Back then, "Technical Artist" wasn't a common job title. But handling <strong>TIFF
                                         Alpha
                                         Channels</strong>, optimizing palettes for 256 colors, and understanding the
                                     rendering pipeline of the Photoplay OS was essential.
                                 </p>
-                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed break-words"
+                                    data-i18n="funworld.legacyP2" data-i18n-html="true">
                                     This experience formed the foundation of my career: understanding that <span
                                         class="text-primary font-bold">Design cannot exist without understanding the
                                         Tech
@@ -357,21 +400,24 @@
                             </div>
                             <div
                                 class="bg-slate-100 dark:bg-white/5 rounded-2xl p-8 border border-slate-200 dark:border-white/10">
-                                <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-6">Tools of the
+                                <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-6 break-words"
+                                    data-i18n="funworld.legacyToolsTitle">Tools of the
                                     Trade
                                     (2000)</h4>
                                 <ul class="space-y-4 text-sm text-slate-700 dark:text-slate-300">
-                                    <li class="flex items-center gap-3">
+                                    <li class="flex items-center gap-3 break-words">
                                         <span class="material-symbols-outlined text-slate-400">brush</span>
-                                        <span>Adobe Photoshop 5.5 (managing Alpha Channels)</span>
+                                        <span data-i18n="funworld.legacyTool1">Adobe Photoshop 5.5 (managing Alpha
+                                            Channels)</span>
                                     </li>
-                                    <li class="flex items-center gap-3">
+                                    <li class="flex items-center gap-3 break-words">
                                         <span class="material-symbols-outlined text-slate-400">view_comfy</span>
-                                        <span>Pixel-Perfect Icon Design (No Vectors!)</span>
+                                        <span data-i18n="funworld.legacyTool2">Pixel-Perfect Icon Design (No
+                                            Vectors!)</span>
                                     </li>
-                                    <li class="flex items-center gap-3">
+                                    <li class="flex items-center gap-3 break-words">
                                         <span class="material-symbols-outlined text-slate-400">hardware</span>
-                                        <span>CRT Color Calibration</span>
+                                        <span data-i18n="funworld.legacyTool3">CRT Color Calibration</span>
                                     </li>
                                 </ul>
                             </div>
@@ -415,15 +461,17 @@
                     class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
                     <span
                         class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
-                    Back to All Projects
+                    <span data-i18n="footer.backToProjects">Back to All Projects</span>
                 </a>
             </div>
 
             <div class="mb-12">
-                <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter">Ready
+                <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter break-words"
+                    data-i18n="footer.readyToStart">Ready
                     to start a
                     project?</h3>
-                <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed break-words"
+                    data-i18n="footer.readySubtitle">
                     Let's create something meaningful together. I'm always open to new opportunities and interesting
                     challenges.
                 </p>
@@ -466,10 +514,13 @@
             </div>
             <div
                 class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-                <p>&copy; <span id="current-year"></span> László Földváry. All rights reserved.</p>
+                <p>&copy; <span id="current-year"></span> László Földváry. <span
+                        data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                 <div class="flex gap-8">
-                    <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.privacyPolicy">Privacy
+                        Policy</a>
+                    <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms of
+                        Service</a>
                 </div>
             </div>
         </div>
@@ -559,6 +610,7 @@
         });
     </script>
     <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
 </body>
 
 </html>
