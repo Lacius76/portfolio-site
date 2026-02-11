@@ -19,7 +19,24 @@
       "projectsLaunched": "Projects Launched",
       "yearsExperience": "Years of Experience",
       "happyClients": "Happy Clients",
-      "designAwards": "Design Awards"
+      "designAwards": "Design Awards",
+      "selectedWorks": {
+        "title": "Selected Works",
+        "subtitle": "A glimpse into my recent design journey",
+        "viewAll": "View all projects ->",
+        "shadow": {
+          "title": "Shadow Cartels",
+          "subtitle": "Lead Game UI & Interaction"
+        },
+        "casino": {
+          "title": "Premium Slot Games",
+          "subtitle": "Visual Design & UI Art"
+        },
+        "industrial": {
+          "title": "Industrial SCADA UI",
+          "subtitle": "WinCC OA UI & Icons"
+        }
+      }
     },
     "resume": {
       "pageTitle": "Resume - UI Designer Portfolio",
@@ -416,7 +433,24 @@
       "projectsLaunched": "Projekte umgesetzt",
       "yearsExperience": "Jahre Erfahrung",
       "happyClients": "Zufriedene Kunden",
-      "designAwards": "Design-Auszeichnungen"
+      "designAwards": "Design-Auszeichnungen",
+      "selectedWorks": {
+        "title": "Ausgewählte Arbeiten",
+        "subtitle": "Ein Einblick in meine jüngsten Designprojekte",
+        "viewAll": "Alle Projekte ansehen →",
+        "shadow": {
+          "title": "Shadow Cartels",
+          "subtitle": "Lead Game UI & Interaction"
+        },
+        "casino": {
+          "title": "Premium Slot Games",
+          "subtitle": "Visual Design & UI Art"
+        },
+        "industrial": {
+          "title": "Industrielle SCADA UI",
+          "subtitle": "WinCC OA UI & Icons"
+        }
+      }
     },
     "resume": {
       "pageTitle": "Lebenslauf - UI Designer Portfolio",
@@ -566,7 +600,7 @@
       "heroDescription": "Ich bin Senior UI/UX Designer aus Wien, spezialisiert auf High-Stakes-Interfaces für industrielle Systeme und AI-gestützte Produkt-Ökosysteme.",
       "statLegacy": "Jahre Erfahrung",
       "statProjects": "Globale Projekte",
-      "originTitle": "Ursprungsgeschichte",
+      "originTitle": "Vorgeschichte",
       "originSubtitle": "Von Nostalgie zu Innovation",
       "originP1": "Alles begann vor 20 Jahren mit meinem ersten <strong>iMac unter Mac OS 8.6</strong>. Die Atmosphäre dieser frühen Strategiespiele prägte meine visuelle Sprache nachhaltig. Seither habe ich zwei Jahrzehnte in der Industrie verbracht und komplexe Systeme für Giganten wie <strong>Siemens</strong> und Premium-Studios wie <strong>Greentube</strong> entworfen.",
       "originP2": "Das <strong>Google AI Studio Build</strong> Experiment entstand aus dem Wunsch nach kreativer Freiheit. Ich wollte sehen, wie weit ein Designer mit <em>Null Coding-Hintergrund</em> mit AI als Co-Creator kommen kann. Es ging nicht nur ums Zeichnen, sondern um einen tiefen Lernprozess, bei dem ich Seele, Thema und Mechanik des Projekts steuerte.",
