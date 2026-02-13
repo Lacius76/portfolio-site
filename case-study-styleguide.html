@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Project Anti-Gravity: AI-Collaborative Portfolio | Laszlo.UI</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <link rel="stylesheet" href="css/language-animations.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1", // Indigo
+                        "background-dark": "#0a0f14",
+                        "industrial-card": "#18181b",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Prevent horizontal scrolling on mobile */
+        html,
+        body {
+            max-width: 100vw;
+        }
+
+        /* Ensure all containers respect viewport width except dropdown - MOBILE ONLY */
+        @media (max-width: 768px) {
+            *:not(#language-dropdown) {
+                max-width: 100%;
+            }
+        }
+
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .spec-grid {
+            background-image: radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.1) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* Long word handling for German text */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        li,
+        span {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-300 antialiased selection:bg-primary selection:text-white">
+
+    <div class="relative flex min-h-screen flex-col">
+        <!-- HEADER -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+
+                <!-- 1. COLUMN: LOGO -->
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+                        href="index.html">
+                        <div data-icon="logo"
+                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
+                        </div>
+                        <h2 class="hidden sm:block text-lg font-bold tracking-tight">Laszlo.UI</h2>
+                    </a>
+                </div>
+
+                <!-- 2. COLUMN: MENU -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.work">Work</a>
+                    <a href="about-me.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.about">About</a>
+                    <a href="resume.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        data-i18n="nav.resume">Resume</a>
+                </nav>
+
+                <!-- 3. COLUMN: BUTTONS -->
+                <div class="flex items-center gap-4">
+                    <!-- Let's Talk -->
+                    <a href="contact.html"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        aria-label="Contact">
+                        <img src="img/contact-icon.svg" alt="Contact" class="size-6">
+                    </a>
+                    <!-- Language Dropdown -->
+                    <div class="relative">
+                        <button id="language-btn"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
+                        </button>
+                        <div id="language-dropdown"
+                            class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+                            <div class="py-1">
+                                <a href="#" data-lang="en"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                                    <span class="text-lg">🇬🇧</span> English
+                                </a>
+                                <a href="#" data-lang="de"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                                    <span class="text-lg">🇩🇪</span> Deutsch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                    </button>
+                    <button id="menu-button"
+                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-[28px]">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+
+            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.work">Work</a>
+                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.about">About</a>
+                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.resume">Resume</a>
+                <a href="contact.html"
+                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
+                    data-i18n="nav.letsTalk">Let's Talk</a>
+            </nav>
+        </div>
+
+
+        <main class="bg-transparent transition-colors duration-300">
+            <!-- HERO: PROJECT ANTI-GRAVITY -->
+            <section class="fixed inset-0 h-screen flex flex-col justify-center overflow-hidden bg-[#0a0f14] z-0">
+                <div class="absolute inset-0 z-0">
+                    <img src="img/style-guide/affinity.jpg" alt="Project Antigravity Hero"
+                        class="w-full h-full object-cover opacity-50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/80 to-transparent"></div>
+                    <div class="absolute inset-0 spec-grid opacity-10 mix-blend-overlay"></div>
+                </div>
+
+                <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center md:text-left">
+                    <div class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6 border border-primary/20"
+                        data-i18n="antiGravity.heroTag">
+                        Case Study: 2024
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black text-white mb-6 tracking-tight leading-tight"
+                        data-i18n="antiGravity.heroTitle">
+                        Project <span class="text-primary">Antigravity</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8"
+                        data-i18n="antiGravity.heroSubtitle" data-i18n-html="true">
+                        Building a <strong class="text-primary">Future-Ready</strong> portfolio with AI-Collaboration.
+                        A case study on merging 25 years of design experience with Gemini 3 Pro and Claude Sonnet.
+                    </p>
+                    <div class="flex flex-wrap gap-4 md:justify-start justify-center">
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono uppercase text-slate-400"
+                            data-i18n="antiGravity.heroBadge1">AI-Augmented
+                            Design</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono uppercase text-slate-400"
+                            data-i18n="antiGravity.heroBadge2">Rapid
+                            Prototyping</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono uppercase text-slate-400"
+                            data-i18n="antiGravity.heroBadge3">Design
+                            Systems</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTENT WRAPPER FOR SCROLL EFFECT -->
+            <div id="content-wrapper"
+                class="relative z-10 mt-[100vh] bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] pt-2">
+
+                <!-- EXECUTIVE SUMMARY -->
+                <section class="max-w-[1200px] mx-auto px-6 py-24 relative z-20">
+
+                    <div
+                        class="glass-panel rounded-[2rem] p-8 md:p-12 mb-24 grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white/90 dark:bg-[#18181b]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl items-stretch">
+                        <!-- Text Column (5 cols) -->
+                        <div class="lg:col-span-5 flex flex-col justify-center">
+                            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 italic"
+                                data-i18n="antiGravity.missionTag">The
+                                Mission</h3>
+                            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6"
+                                data-i18n="antiGravity.missionTitle">Escaping the Template
+                                Trap</h2>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg mb-6"
+                                data-i18n="antiGravity.missionP1" data-i18n-html="true">
+                                It started with a proposal generated by <strong>Google Stitch</strong>, which I began
+                                implementing in <strong>Google Studio</strong>. While these tools offered a quick start,
+                                providing a solid initial structure, I quickly realized their limitations.
+                            </p>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg"
+                                data-i18n="antiGravity.missionP2" data-i18n-html="true">
+                                I switched to "Project Anti-Gravity"—a custom workflow driven by <strong>Gemini 3
+                                    Pro</strong> and <strong>Claude Sonnet</strong>—to regain granular control over
+                                every pixel and interaction, transforming a standard site into a high-performance web
+                                experience.
+                            </p>
+                        </div>
+
+                        <!-- Stats Column (3 cols) -->
+                        <div
+                            class="lg:col-span-3 flex flex-col justify-center space-y-6 lg:border-l border-slate-200 dark:border-white/5 lg:pl-8">
+                            <div>
+                                <h4 class="text-4xl font-black text-slate-900 dark:text-white mb-1">50%</h4>
+                                <p class="text-sm font-mono text-slate-500 uppercase tracking-widest"
+                                    data-i18n="antiGravity.statEfficiency">Efficiency Boost
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="text-4xl font-black text-slate-900 dark:text-white mb-1">3.5<span
+                                        class="text-lg align-top text-primary">s</span></h4>
+                                <p class="text-sm font-mono text-slate-500 uppercase tracking-widest"
+                                    data-i18n="antiGravity.statDeploy">Time to Deploy</p>
+                            </div>
+                            <div>
+                                <h4 class="text-4xl font-black text-slate-900 dark:text-white mb-1">100<span
+                                        class="text-lg align-top text-primary">%</span></h4>
+                                <p class="text-sm font-mono text-slate-500 uppercase tracking-widest"
+                                    data-i18n="antiGravity.statCode">Custom Code</p>
+                            </div>
+                        </div>
+
+                        <!-- Stitch Image (4 cols, Landscape/Match Height) -->
+                        <!-- Stitch & Anti-Gravity Images (4 cols, Stacked) -->
+                        <div class="lg:col-span-4 hidden lg:flex flex-col gap-4 h-full">
+                            <!-- Stitch (Top) -->
+                            <div
+                                class="relative w-full h-1/2 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg group">
+                                <img src="img/style-guide/google-stitch.jpg" alt="Google Stitch Proposal"
+                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div
+                                    class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                                    <p class="text-xs font-mono text-white/80" data-i18n="antiGravity.stitchCaption">
+                                        Original Stitch Proposal</p>
+                                </div>
+                            </div>
+                            <!-- Anti-Gravity (Bottom) -->
+                            <div
+                                class="relative w-full h-1/2 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg group">
+                                <img src="img/style-guide/antigravity.jpg" alt="Project Anti-Gravity"
+                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div
+                                    class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                                    <p class="text-xs font-mono text-white/80"
+                                        data-i18n="antiGravity.antiGravityCaption">
+                                        Final Anti-Gravity Result</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1. AI-DRIVEN WORKFLOW -->
+                    <div class="mb-32">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter"
+                                data-i18n="antiGravity.workflowTitle" data-i18n-html="true">
+                                AI-Driven <span class="text-primary">Workflow</span></h2>
+                            <p class="text-xl text-slate-600 dark:text-slate-400" data-i18n="antiGravity.workflowDesc">
+                                This isn't just about using ChatGPT to write copy. This is a symbiotic development
+                                process leveraging specific AI models for their unique strengths.
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- GEMINI CARD -->
+                            <div
+                                class="group p-8 rounded-2xl bg-white dark:bg-[#18181b] border border-slate-200 dark:border-white/5 hover:border-blue-500/30 transition-all">
+                                <div
+                                    class="size-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 mb-6">
+                                    <span class="material-symbols-outlined">architecture</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4"
+                                    data-i18n="antiGravity.geminiTitle">Gemini 3 Pro: The
+                                    Architect</h3>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6"
+                                    data-i18n="antiGravity.geminiDesc">
+                                    Gemini acted as the structural engineer. It handled the heavy lifting of boilerplate
+                                    code, Tailwind configuration, and rapid iteration of HTML structures. Its massive
+                                    context window allowed it to "hold" the entire project in memory.
+                                </p>
+                                <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400 font-mono">
+                                    <li class="flex items-center"><span
+                                            class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span><span
+                                            data-i18n="antiGravity.geminiList1">Scaffolding &
+                                            Layouts</span></li>
+                                    <li class="flex items-center"><span
+                                            class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span><span
+                                            data-i18n="antiGravity.geminiList2">Refactoring Legacy
+                                            CSS</span></li>
+                                </ul>
+                            </div>
+
+                            <!-- CLAUDE CARD -->
+                            <div
+                                class="group p-8 rounded-2xl bg-white dark:bg-[#18181b] border border-slate-200 dark:border-white/5 hover:border-orange-500/30 transition-all">
+                                <div
+                                    class="size-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 mb-6">
+                                    <span class="material-symbols-outlined">psychology</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4"
+                                    data-i18n="antiGravity.claudeTitle">Claude Sonnet: The
+                                    Logician</h3>
+                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6"
+                                    data-i18n="antiGravity.claudeDesc">
+                                    When logic became complex—like the "Footer Reveal" calculation or the i18n JSON
+                                    structure—Claude stepped in. Its nuance in reasoning helped solve edge cases that
+                                    pure brute force couldn't.
+                                </p>
+                                <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400 font-mono">
+                                    <li class="flex items-center"><span
+                                            class="w-1.5 h-1.5 bg-orange-500 rounded-full mr-3"></span><span
+                                            data-i18n="antiGravity.claudeList1">Complex JS Logic</span>
+                                    </li>
+                                    <li class="flex items-center"><span
+                                            class="w-1.5 h-1.5 bg-orange-500 rounded-full mr-3"></span><span
+                                            data-i18n="antiGravity.claudeList2">Content
+                                            Refinement</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1.5 EVOLUTION GALLERY (NEW) -->
+                    <div class="mb-32">
+                        <div class="mb-32">
+                            <div class="text-center max-w-3xl mx-auto mb-12">
+                                <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 italic"
+                                    data-i18n="antiGravity.evolutionTag">Process
+                                </h3>
+                                <h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter"
+                                    data-i18n="antiGravity.evolutionTitle" data-i18n-html="true">
+                                    Usage & <span class="text-primary">Adaptation</span></h2>
+                            </div>
+
+                            <!-- Scrollable Gallery -->
+                            <div
+                                class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 md:grid md:grid-cols-3 md:overflow-visible">
+                                <!-- Grok -->
+                                <div
+                                    class="snap-center shrink-0 w-[85vw] md:w-auto group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 aspect-video">
+                                    <img src="img/style-guide/google-stitch.jpg" alt="Idea Generation in Grok"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <div
+                                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                                        <div class="text-xs font-mono text-primary mb-1"
+                                            data-i18n="antiGravity.stitchStep">01. Foundation</div>
+                                        <h4 class="font-bold text-white text-lg" data-i18n="antiGravity.stitchTitle">
+                                            Google Stitch</h4>
+                                        <p class="text-sm text-slate-300" data-i18n="antiGravity.stitchDesc">The
+                                            absolute baseline. A stitched visual reference that served as the starting
+                                            point for the entire project.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Google AI Studio -->
+                                <div
+                                    class="snap-center shrink-0 w-[85vw] md:w-auto group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 aspect-video">
+                                    <img src="img/style-guide/google-ai-studio.jpg"
+                                        alt="Prototyping in Google AI Studio"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <div
+                                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                                        <div class="text-xs font-mono text-primary mb-1"
+                                            data-i18n="antiGravity.studioStep">02. Prototyping</div>
+                                        <h4 class="font-bold text-white text-lg">Google AI Studio</h4>
+                                        <p class="text-sm text-slate-300" data-i18n="antiGravity.studioDesc">Rapidly
+                                            generating boilerplate and testing
+                                            structures.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Anti-Gravity -->
+                                <div
+                                    class="snap-center shrink-0 w-[85vw] md:w-auto group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 aspect-video">
+                                    <img src="img/style-guide/antigravity.jpg" alt="Development in Anti-Gravity"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <div
+                                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                                        <div class="text-xs font-mono text-primary mb-1"
+                                            data-i18n="antiGravity.antiGravityStep">03. Production</div>
+                                        <h4 class="font-bold text-white text-lg">Anti-Gravity</h4>
+                                        <p class="text-sm text-slate-300" data-i18n="antiGravity.antiGravityDesc">Final
+                                            coding, refinement, and logic
+                                            implementation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. ICONOGRAPHY & BRANDING (HUMAN TOUCH) -->
+                        <div class="mb-32 grid lg:grid-cols-2 gap-16 items-center">
+                            <div class="order-2 lg:order-1">
+                                <div
+                                    class="bg-slate-100 dark:bg-[#18181b] p-8 rounded-2xl border border-slate-200 dark:border-white/5 relative overflow-hidden group">
+                                    <!-- Placeholders for Icons -->
+                                    <!-- New Layout: 2 Icons Top, 1 Wide Image Bottom -->
+                                    <div class="flex flex-col gap-8">
+                                        <!-- Top Row: Icons -->
+                                        <div class="grid grid-cols-2 gap-8">
+                                            <!-- Language Icon -->
+                                            <div
+                                                class="aspect-square bg-white dark:bg-black/20 rounded-xl flex items-center justify-center border border-dashed border-slate-300 dark:border-white/10 group-hover:border-primary/50 transition-colors">
+                                                <img src="img/language-icon.svg" class="w-16 h-16 opacity-80"
+                                                    alt="Language Icon">
+                                            </div>
+                                            <!-- Contact Icon (New) -->
+                                            <div
+                                                class="aspect-square bg-white dark:bg-black/20 rounded-xl flex items-center justify-center border border-dashed border-slate-300 dark:border-white/10 group-hover:border-primary/50 transition-colors">
+                                                <img src="img/contact-icon.svg" class="w-16 h-16 opacity-80"
+                                                    alt="Contact Icon">
+                                            </div>
+                                        </div>
+
+                                        <!-- Bottom Row: Affinity Image (Wide) -->
+                                        <div
+                                            class="aspect-video bg-white dark:bg-black/20 rounded-xl flex items-center justify-center border border-dashed border-slate-300 dark:border-white/10 group-hover:border-primary/50 transition-colors overflow-hidden">
+                                            <img src="img/style-guide/affinity.jpg"
+                                                class="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+                                                alt="Affinity Designer Workflow">
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-4 right-6 text-xs font-mono text-slate-400 uppercase tracking-widest"
+                                        data-i18n="antiGravity.affinityCaption">
+                                        Designed in Affinity</div>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2">
+                                <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 italic"
+                                    data-i18n="antiGravity.humanTouchTag">The Human
+                                    Touch</h3>
+                                <h2 class="text-4xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter"
+                                    data-i18n="antiGravity.humanTouchTitle" data-i18n-html="true">
+                                    Iconography & <span class="text-primary">Identity</span></h2>
+                                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6"
+                                    data-i18n="antiGravity.humanTouchDesc">
+                                    AI generates code, but it doesn't understand heritage. The branding of this site is
+                                    a
+                                    direct nod to my industrial roots.
+                                </p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2"
+                                            data-i18n="antiGravity.eggTitle">
+                                            <span class="material-symbols-outlined text-primary text-sm">egg</span>
+                                            The "Easter Egg"
+                                        </h4>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400"
+                                            data-i18n="antiGravity.eggDesc" data-i18n-html="true">
+                                            The Language Switcher icon isn't generic. It's a modernized vector
+                                            adaptation of
+                                            the classic <strong>WinCC OA</strong> symbol—a subtle nod to the automation
+                                            systems I've spent decades designing for.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2"
+                                            data-i18n="antiGravity.affinityTitle">
+                                            <span class="material-symbols-outlined text-primary text-sm">draw</span>
+                                            Affinity Designer
+                                        </h4>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400"
+                                            data-i18n="antiGravity.affinityDesc">
+                                            No "generated" assets here. Every SVG was manually crafted in Affinity
+                                            Designer
+                                            for pixel-perfect alignment on any display density.
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="pt-8 border-t border-slate-200 dark:border-white/5">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"
+                                        data-i18n="antiGravity.aiIconsTitle">
+                                        <span class="material-symbols-outlined text-primary text-sm">bolt</span>
+                                        Speed & Utility: Material Symbols
+                                    </h4>
+                                    <!-- Icon Grid -->
+                                    <div class="grid grid-cols-6 gap-2 mb-4">
+                                        <div class="aspect-square rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-primary transition-colors"
+                                            title="dashboard">
+                                            <span class="material-symbols-outlined text-2xl">dashboard</span>
+                                        </div>
+                                        <div class="aspect-square rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-orange-500 transition-colors"
+                                            title="layers">
+                                            <span class="material-symbols-outlined text-2xl">layers</span>
+                                        </div>
+                                        <div class="aspect-square rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors"
+                                            title="extension">
+                                            <span class="material-symbols-outlined text-2xl">extension</span>
+                                        </div>
+                                        <div class="aspect-square rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors"
+                                            title="auto_awesome">
+                                            <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                                        </div>
+                                        <div class="aspect-square rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors"
+                                            title="terminal">
+                                            <span class="material-symbols-outlined text-2xl">terminal</span>
+                                        </div>
+                                        <div class="aspect-square rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors"
+                                            title="grid_view">
+                                            <span class="material-symbols-outlined text-2xl">grid_view</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400"
+                                        data-i18n="antiGravity.aiIconsDesc" data-i18n-html="true">
+                                        While branding elements are custom, utility icons come from Google's
+                                        <strong>Material Symbols</strong>. This allowed us to iterate interfaces
+                                        instantly, matching font weights perfectly via CSS.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- 2.5 MOTION DESIGN (GROK v CAVALRY) -->
+                        <div class="mb-32">
+                            <div class="text-center max-w-3xl mx-auto mb-16">
+                                <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 italic"
+                                    data-i18n="antiGravity.motionTag">Refinement</h3>
+                                <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter"
+                                    data-i18n="antiGravity.motionTitleMain" data-i18n-html="true">
+                                    Motion <span class="text-primary">Compositing</span>
+                                </h2>
+                                <p class="text-xl text-slate-600 dark:text-slate-400"
+                                    data-i18n="antiGravity.motionDescMain">
+                                    Grok generated the motion path, but the text and icons were gibberish. I had to
+                                    redraw
+                                    the interface in Affinity and manually composite it in Cavalry to match the
+                                    perspective.
+                                </p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <!-- Grok Hallucination -->
+                                <div
+                                    class="group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 aspect-video">
+                                    <img src="img/style-guide/grok.jpg" alt="Grok Hallucination"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <div
+                                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                                        <div class="text-xs font-mono text-red-500 mb-1"
+                                            data-i18n="antiGravity.grokFailTag">AI Hallucination</div>
+                                        <h4 class="font-bold text-white text-lg">Grok 2 Generation</h4>
+                                        <p class="text-sm text-slate-300" data-i18n="antiGravity.grokFailDesc">
+                                            Great motion concept, but nonsense text and broken UI elements.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Cavalry Fix -->
+                                <div
+                                    class="group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 aspect-video">
+                                    <img src="img/style-guide/cavalry.jpg" alt="Cavalry Fix"
+                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <div
+                                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                                        <div class="text-xs font-mono text-green-500 mb-1"
+                                            data-i18n="antiGravity.cavalryFixTag">Manual Reconstruction</div>
+                                        <h4 class="font-bold text-white text-lg">Cavalry + Affinity</h4>
+                                        <p class="text-sm text-slate-300" data-i18n="antiGravity.cavalryFixDesc">
+                                            Interface redrawn in Affinity, then composited in Cavalry to match the 3D
+                                            perspective.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. DESIGN SYSTEM (TECHNOLOGY) -->
+                        <div class="mb-32">
+                            <div
+                                class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-primary/10 pb-8">
+                                <div class="max-w-xl">
+                                    <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 italic"
+                                        data-i18n="antiGravity.systemTag">Under
+                                        the Hood</h3>
+                                    <h2 class="text-4xl font-black text-slate-900 dark:text-white mb-4 uppercase italic tracking-tighter"
+                                        data-i18n="antiGravity.systemTitle">
+                                        The System</h2>
+                                    <p class="text-slate-600 dark:text-slate-400" data-i18n="antiGravity.systemDesc">
+                                        The biggest challenge? German. The language of compound words. Designing a
+                                        system
+                                        that breaks gracefully on mobile while maintaining the "Swiss Style" grid on
+                                        desktop
+                                        required strict discipline.
+                                    </p>
+                                </div>
+                                <div class="hidden md:block text-right">
+                                    <span
+                                        class="px-3 py-1 bg-primary/10 text-primary rounded text-xs font-bold uppercase">Inter
+                                        v3.0</span>
+                                </div>
+                            </div>
+
+                            <!-- Mini Style Guide Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <!-- Colors -->
+                                <div
+                                    class="p-6 rounded-xl bg-white dark:bg-[#18181b] border border-slate-200 dark:border-white/5">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-4"
+                                        data-i18n="antiGravity.paletteTitle">Palette</h4>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-4">
+                                            <div
+                                                class="size-10 bg-[#0a0f14] rounded-lg shadow-inner border border-white/10">
+                                            </div>
+                                            <div>
+                                                <div class="font-mono text-xs text-slate-500"
+                                                    data-i18n="antiGravity.paletteBg">Background</div>
+                                                <div class="font-bold text-slate-900 dark:text-white">#0A0F14</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-4">
+                                            <div class="size-10 bg-[#6366f1] rounded-lg shadow-lg shadow-primary/20">
+                                            </div>
+                                            <div>
+                                                <div class="font-mono text-xs text-slate-500"
+                                                    data-i18n="antiGravity.palettePrimary">Primary</div>
+                                                <div class="font-bold text-slate-900 dark:text-white">#6366F1</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Typography -->
+                                <div
+                                    class="p-6 rounded-xl bg-white dark:bg-[#18181b] border border-slate-200 dark:border-white/5">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-4"
+                                        data-i18n="antiGravity.typographyTitle">Typography</h4>
+                                    <div class="space-y-4">
+                                        <div>
+                                            <span
+                                                class="text-4xl font-black tracking-tighter text-slate-900 dark:text-white">Ag</span>
+                                            <div class="text-xs text-slate-500 mt-1">Inter Display / 900</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-lg font-normal text-slate-600 dark:text-slate-400">The
+                                                quick
+                                                brown fox.</span>
+                                            <div class="text-xs text-slate-500 mt-1">Inter Text / 400</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Layout Logic -->
+                                <div
+                                    class="p-6 rounded-xl bg-white dark:bg-[#18181b] border border-slate-200 dark:border-white/5">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-4"
+                                        data-i18n="antiGravity.responsiveTitle">Responsive Logic</h4>
+                                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                                        <li class="flex items-center justify-between">
+                                            <span data-i18n="antiGravity.responsiveMobile">Mobile</span>
+                                            <span class="font-mono text-primary">Flex / Stack</span>
+                                        </li>
+                                        <li class="flex items-center justify-between">
+                                            <span data-i18n="antiGravity.responsiveDesktop">Desktop</span>
+                                            <span class="font-mono text-primary">Grid (12-col)</span>
+                                        </li>
+                                        <li class="flex items-center justify-between">
+                                            <span data-i18n="antiGravity.responsiveWrap">Text Wrap</span>
+                                            <span class="font-mono text-primary">break-word</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. QUALITY ASSURANCE (TRICENTIS HOOK) -->
+                        <div class="bg-indigo-900/10 rounded-2xl p-8 md:p-12 border border-primary/20">
+                            <div class="grid md:grid-cols-2 gap-12 items-center">
+                                <div>
+                                    <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 italic"
+                                        data-i18n="antiGravity.qaTag">
+                                        Quality Assurance</h3>
+                                    <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter"
+                                        data-i18n="antiGravity.qaTitle" data-i18n-html="true">
+                                        Beyond the <span class="text-primary">Happy Path</span></h2>
+                                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6"
+                                        data-i18n="antiGravity.qaDesc">
+                                        A portfolio is software. And software must be tested. Throughout the
+                                        development, I
+                                        treated this project not as "art," but as a product.
+                                    </p>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start gap-3 text-slate-300">
+                                            <span
+                                                class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                                            <span data-i18n="antiGravity.qaBrowser"
+                                                data-i18n-html="true"><strong>Cross-Browser Verification:</strong>
+                                                Validated on Chrome, Safari,
+                                                and Firefox.</span>
+                                        </li>
+                                        <li class="flex items-start gap-3 text-slate-300">
+                                            <span
+                                                class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                                            <span data-i18n="antiGravity.qaStress" data-i18n-html="true"><strong>Stress
+                                                    Testing:</strong> Deliberately breaking layouts with long
+                                                German strings (e.g., "Benutzeroberfläche").</span>
+                                        </li>
+                                        <li class="flex items-start gap-3 text-slate-300">
+                                            <span
+                                                class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
+                                            <span data-i18n="antiGravity.qaPerf"
+                                                data-i18n-html="true"><strong>Performance:</strong> Lighthouse scores of
+                                                95+ via asset
+                                                optimization.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="relative flex flex-col gap-4">
+                                    <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+
+                                    <!-- QA Image -->
+                                    <div
+                                        class="relative z-10 overflow-hidden rounded-xl border border-white/10 shadow-2xl">
+                                        <img src="img/style-guide/desk-mobil.jpg"
+                                            alt="Quality Assurance: Desktop & Mobile"
+                                            class="w-full h-auto bg-slate-800">
+                                    </div>
+
+                                    <div
+                                        class="relative z-10 bg-slate-900 p-6 rounded-xl border border-white/10 shadow-2xl">
+                                        <div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-4">
+                                            <span class="size-3 rounded-full bg-red-500"></span>
+                                            <span class="size-3 rounded-full bg-yellow-500"></span>
+                                            <span class="size-3 rounded-full bg-green-500"></span>
+                                            <span class="ml-2 text-xs font-mono text-slate-500">console.log</span>
+                                        </div>
+                                        <div class="font-mono text-xs text-green-400 space-y-2">
+                                            <p>> Init Project Anti-Gravity...</p>
+                                            <p>> Loading Modules... [OK]</p>
+                                            <p>> Verifying Responsive Grid... [OK]</p>
+                                            <p>> Checking German Translations... [OK]</p>
+                                            <p class="text-white animate-pulse">> Ready to Deploy_</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </section>
+
+                <!-- Final Philosophy Quote -->
+                <section class="max-w-[800px] mx-auto text-center py-20 border-t border-gray-200 dark:border-white/10">
+                    <h3 class="text-2xl italic font-light text-slate-500 dark:text-slate-400 leading-relaxed"
+                        data-i18n="antiGravity.quote">
+                        "The future of design isn't AI replacing us. It's us guiding AI to build better, faster, and
+                        more robust systems."
+                    </h3>
+                </section>
+
+            </div>
+
+            <!-- STICKY HIRE ME -->
+            <div class="fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+                <a href="contact.html"
+                    class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+                    <span class="text-base font-bold tracking-wide">Hire Me</span>
+                </a>
+            </div>
+
+            <!-- Closing Content Wrapper BEFORE Footer to allow Reveal Effect -->
+    </div>
+    </main>
+
+    <footer id="footer-reveal"
+        class="fixed bottom-0 left-0 w-full z-[-1] border-t border-white/10 bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300">
+        <!-- BACKGROUND HERO EFFECT -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#18181b] via-[#18181b]/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
+
+            <!-- MOVED BACK BUTTON -->
+            <div class="mb-16">
+                <a id="footer-back-link" href="work.html"
+                    class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
+                    <span
+                        class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+                    <span data-i18n="footer.backToProjects">Back to All Projects</span>
+                </a>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter break-words"
+                    data-i18n="footer.readyToStart">Ready to start a project?</h3>
+                <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed break-words"
+                    data-i18n="footer.readySubtitle">
+                    Let's create something meaningful together. I'm always open to new opportunities and interesting
+                    challenges.
+                </p>
+            </div>
+            <div id="footer-contact-info"
+                class="mb-12 opacity-0 translate-y-4 transition-all duration-700 ease-out delay-200">
+                <p class="text-2xl font-bold text-white mb-2">+43 699 818 41 767</p>
+                <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+            </div>
+            <!-- Social Icons -->
+            <div class="flex gap-5 mb-16">
+                <!-- Email -->
+                <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                    href="mailto:foeldvary@gmail.com">
+                    <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </a>
+                <!-- LinkedIn -->
+                <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                    href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank">
+                    <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                        <path clip-rule="evenodd"
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                            fill-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <!-- Facebook -->
+                <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                    href="https://www.facebook.com/laszlo.foldvary" target="_blank">
+                    <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+            <div
+                class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
+                <p>&copy; <span id="current-year"></span> László Földváry. <span
+                        data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.privacyPolicy">Privacy
+                        Policy</a>
+                    <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms of
+                        Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/icons.js"></script>
+    <script>
+        // Footer Reveal Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const footer = document.getElementById('footer-reveal');
+            const wrapper = document.getElementById('content-wrapper');
+
+            function adjustLayout() {
+                // Set wrapper margin equal to footer height to allow reveal
+                wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+            }
+
+            function handleScroll() {
+                // Toggle Footer Z-Index AND Back Button Animation
+
+                const scrollY = window.scrollY;
+                const viewHeight = window.innerHeight;
+                const docHeight = document.body.scrollHeight;
+
+                // 1. Z-Index Logic
+                if (scrollY > viewHeight) {
+                    footer.style.zIndex = '1';
+                } else {
+                    footer.style.zIndex = '-1';
+                }
+
+                // 2. Back Button Animation Logic
+                // Trigger when we are close to the bottom (footer fully revealed)
+                const backLink = document.getElementById('footer-back-link');
+                const contactInfo = document.getElementById('footer-contact-info');
+
+                // Use a threshold (e.g. 50px from bottom)
+                if (window.innerHeight + scrollY >= docHeight - 50) {
+                    backLink.classList.remove('opacity-0', 'translate-x-12');
+                    contactInfo.classList.remove('opacity-0', 'translate-y-4');
+                } else {
+                    backLink.classList.add('opacity-0', 'translate-x-12');
+                    contactInfo.classList.add('opacity-0', 'translate-y-4');
+                }
+
+            }
+
+            // Init
+            adjustLayout();
+            window.addEventListener('resize', adjustLayout);
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        });
+    </script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-icon]').forEach(element => {
+                const iconName = element.getAttribute('data-icon');
+                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
+                    element.innerHTML = ASSETS[iconName];
+                }
+            });
+        });
+    </script>
+    <script>
+        // Mobil menü
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
+</body>
+
+</html>

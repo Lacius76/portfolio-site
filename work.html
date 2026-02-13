@@ -292,54 +292,37 @@
                 <section id="projects" class="pt-8 pb-12 sm:pb-20">
                     <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
                         <div class="masonry-grid">
-                            <!-- Siemens WinCC-OA - Teljes háttérkitöltéssel -->
-                            <a href="case-study-siemens.html"
-                                class="group relative flex flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-800 dark:ring-white/10 md:row-span-2 h-full min-h-[480px] md:min-h-0">
-
-                                <!-- KÉP KONTÉNER -->
-                                <div class="absolute inset-0 z-0">
-                                    <img src="img/siemens/wincc-oa.jpg" alt="wincc-oa project"
-                                        class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
-
-                                    <!-- SÖTÉT GRADIENT: Mobilon picit erősebbre vesszük az olvashatóság miatt -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-t from-black/100 via-black/50 to-transparent opacity-90 md:opacity-80 transition-opacity duration-300 group-hover:opacity-100">
-                                    </div>
-                                </div>
-
-                                <!-- TARTALOM -->
-                                <div class="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
-                                    <!-- Tag felül -->
-                                    <div class="absolute top-4 left-4">
+                            <!-- 1. Anti-Gravity (Converted to Standard Card) -->
+                            <a href="case-study-styleguide.html" class="group block cursor-pointer">
+                                <div
+                                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                    <div class="absolute top-4 left-4 z-20">
                                         <span
-                                            class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-white border border-white/10">
-                                            <span data-i18n="work.projectWinccTag">WinCC-OA Interface</span>
+                                            class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">
+                                            <span data-i18n="index.selectedWorks.antiGravity.tag">Case Study 2026</span>
                                         </span>
                                     </div>
-
-                                    <!-- Alsó szövegblokk -->
                                     <div
-                                        class="transition-all duration-300 md:translate-y-2 md:group-hover:translate-y-0">
-                                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-tight"
-                                            data-i18n="work.projectWinccTitle">WinCC OA
-                                            Registry</h3>
-
-                                        <!-- Leírás: Mobilon csak 2 sort engedünk (line-clamp-2), asztalin maradhat a 3 -->
-                                        <p class="text-xs md:text-sm text-slate-300 mb-4 md:mb-6 line-clamp-2 md:line-clamp-3 leading-relaxed"
-                                            data-i18n="work.projectWinccDesc">
-                                            A complete PLC management system design for WinCC OA, featuring modular grid
-                                            layouts and systematic iconography.
+                                        class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
+                                        <img src="img/style-guide/styleguide.jpg" alt="Project Anti-Gravity"
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                    </div>
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                        <h3 class="text-lg font-bold text-white leading-tight mb-1"
+                                            data-i18n="index.selectedWorks.antiGravity.title">Project Antigravity</h3>
+                                        <p class="text-xs text-slate-300 line-clamp-2"
+                                            data-i18n="index.selectedWorks.antiGravity.subtitle">
+                                            AI-Collaborative Design System
                                         </p>
-
-                                        <div
-                                            class="flex items-center gap-2 text-sm font-bold text-primary group-hover:text-white transition-colors">
-                                            <span data-i18n="work.viewCaseStudy">View Case Study</span> <span
-                                                class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                                        </div>
                                     </div>
                                 </div>
                             </a>
-                            <!-- Shadow Cartels -->
+
+                            <!-- 2. Shadow Cartels (Moved here, Standard Card) -->
                             <a href="case-study-shadow.html" class="group block cursor-pointer">
                                 <div
                                     class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
@@ -352,7 +335,8 @@
                                     </div>
                                     <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                         data-alt="Mobile game companion app dashboard">
-                                        <img src="img/shadow-cartels/promo-1.jpg" alt="shadow-cartels-game">
+                                        <img src="img/shadow-cartels/promo-1.jpg" alt="shadow-cartels-game"
+                                            class="h-full w-full object-cover">
                                     </div>
                                     <div
                                         class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -366,7 +350,39 @@
                                     </div>
                                 </div>
                             </a>
-                            <!-- Greentube - Bugs'n Bees -->
+
+                            <!-- 3. Siemens WinCC-OA (Converted to Standard Card) -->
+                            <a href="case-study-siemens.html" class="group block cursor-pointer">
+                                <div
+                                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                                    <div class="absolute top-4 left-4 z-20">
+                                        <span
+                                            class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">
+                                            <span data-i18n="work.projectWinccTag">WinCC-OA Interface</span>
+                                        </span>
+                                    </div>
+                                    <div
+                                        class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
+                                        <img src="img/siemens/wincc-oa.jpg" alt="wincc-oa project"
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                    </div>
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                        <h3 class="text-lg font-bold text-white leading-tight mb-1"
+                                            data-i18n="work.projectWinccTitle">WinCC OA
+                                            Registry</h3>
+                                        <p class="text-xs text-slate-300 line-clamp-2"
+                                            data-i18n="work.projectWinccDesc">
+                                            A complete PLC management system design for WinCC OA.
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- 4. Greentube - Bugs'n Bees -->
                             <a href="case-study-greent.html" class="group block cursor-pointer">
                                 <div
                                     class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
@@ -391,37 +407,8 @@
                                     </div>
                                 </div>
                             </a>
-                            <!--
-                        <div class="group relative flex flex-col gap-4 row-span-2">
-                            <div
-                                class="relative aspect-[9/16] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                                <div class="absolute top-4 left-4 z-20">
-                                    <span
-                                        class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/10">Mobile
-                                        Game</span>
-                                </div>
-                                <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="Vertical mobile game menu screen"
-                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABmwNQYDQZ7LirjGAJjaBDKNcsABimnu7zGX7mRdIu_RrseIrM-T-DY-h_yXrvf46IlItd0T44VH4IofWkx612xmhI-ZKTd1QWPONdNBKPoX0f_c7HzOQXkoh8IZkkQQKu6twu3_tTRSEWZV7F4N9NCGTOu6AdW23UOIABtKYlfb_lOaPHJZ6AGOlqmtjAExzc3XrcvZIqQsQ8Ok48CJXPVsGOQeRoFnopPPaWRZMaEMc-8pdvHSrbmOlUkxDmqpB3BotjMGW0ttln');">
-                                </div>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80">
-                                </div>
-                                <div
-                                    class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                                    <h3 class="text-xl font-bold text-white mb-1">Cosmic Miner</h3>
-                                    <p class="text-sm text-slate-300 mb-4">Casual mobile game interface focusing on
-                                        one-handed usability and delightful micro-interactions.</p>
-                                    <button
-                                        class="flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors">
-                                        View Project <span
-                                            class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div> 
-                        -->
-                            <!-- Amatic - Pharao -->
+
+                            <!-- 5. Amatic - Pharao -->
                             <a href="case-study-amatic.html" class="group block cursor-pointer">
                                 <div
                                     class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
@@ -446,7 +433,8 @@
                                     </div>
                                 </div>
                             </a>
-                            <!-- Funworld - Photoplay -->
+
+                            <!-- 6. Funworld - Photoplay -->
                             <a href="case-study-funworld.html" class="group block cursor-pointer">
                                 <div
                                     class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
