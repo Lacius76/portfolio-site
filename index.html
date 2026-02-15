@@ -31,7 +31,7 @@
     <!-- Google / Search Engine tags -->
     <meta name="description"
         content="László Földváry - Senior UI/UX Design Architect. Portfolio showcasing 25 years of experience.">
-    <!-- 1. Külső könyvtárak (CDN) -->
+    <!-- 1. External Libraries (CDN) -->
     <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
@@ -46,7 +46,7 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
-    <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
+    <!-- 2. Tailwind Configuration (Kept separate for ID reference) -->
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -65,7 +65,7 @@
     </script>
 
 
-    <!-- 3. ÖSSZEVONT Stílusok -->
+    <!-- 3. Consolidated Styles -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -119,10 +119,10 @@
         <!-- TopNavBar -->
         <header
             class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <!-- Replaced lg:px-40 with px-6 for consistent stability across layouts -->
             <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
 
-                <!-- 1. OSZLOP: LOGÓ -->
+                <!-- COLUMN 1: LOGO -->
                 <div class="flex items-center gap-4">
                     <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
                         href="index.html">
@@ -133,7 +133,7 @@
                     </a>
                 </div>
 
-                <!-- 2. OSZLOP: MENÜ -->
+                <!-- COLUMN 2: MENU -->
                 <nav class="hidden md:flex items-center gap-8">
                     <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
                         data-i18n="nav.work">Work</a>
@@ -145,9 +145,9 @@
                         data-i18n="nav.resume">Resume</a>
                 </nav>
 
-                <!-- 3. OSZLOP: GOMBOK -->
+                <!-- COLUMN 3: BUTTONS -->
                 <div class="flex items-center gap-4">
-                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <!-- Let's Talk: Removed base transition, activates only on hover -->
                     <a href="contact.html"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                         aria-label="Contact">
@@ -175,12 +175,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
-                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
                         <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
-                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
                         <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
                     </button>
                     <button id="menu-button"
@@ -193,7 +193,7 @@
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu"
             class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
-            <!-- Csak a bezáró gomb (X) maradjon itt! -->
+            <!-- Close Button (X) only -->
             <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
                 <span class="material-symbols-outlined text-4xl">close</span>
             </button>
@@ -217,9 +217,8 @@
                 <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
                     <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
                         <!-- Hero Section -->
-                        <!-- HERO SECTION (FIXED LAYER 1) -->
+                        <!-- === HERO SECTION (FIXED LAYER 1) === -->
                         <!-- Reduced top padding to fit content -->
-                        <!-- HERO SECTION (FIXED LAYER 1) -->
                         <div
                             class="fixed inset-0 z-0 pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
                             <div class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full">
@@ -303,9 +302,9 @@
                                             <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
                                                 <video autoplay muted loop playsinline poster="img/start.jpg"
                                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
-                                                    <!-- Itt a videód -->
+                                                    <!-- Video Source -->
                                                     <source src="img/start-loop.mp4" type="video/mp4">
-                                                    <!-- Ez marad itt "tartaléknak", ha valamiért nem töltene be a videó -->
+                                                    <!-- Fallback Image if video fails to load -->
                                                     <img src="img/start.jpg"
                                                         alt="László Földváry Portrait Illustration">
                                                 </video>
@@ -355,7 +354,7 @@
                     <!-- Place holder for dynamic content if any, or just structure -->
                     <div class="layout-content-container flex flex-col flex-1">
                     </div>
-                    <!-- Selected Works Preview (Bonus Section for context) -->
+                    <!-- Selected Works Preview -->
                     <div class="py-10">
                         <div class="flex justify-between items-end mb-8">
                             <div>
@@ -372,7 +371,7 @@
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                            <!-- 1. Projekt: Anti-Gravity (New) -->
+                            <!-- Project 1: Anti-Gravity (New) -->
                             <a href="case-study-styleguide.html" class="group block cursor-pointer">
                                 <div
                                     class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
@@ -397,7 +396,7 @@
                                 </p>
                             </a>
 
-                            <!-- 2. Projekt: Shadow Cartels -->
+                            <!-- Project 2: Shadow Cartels -->
                             <a href="case-study-shadow.html" class="group block cursor-pointer">
                                 <div
                                     class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
@@ -414,7 +413,7 @@
                                     Interaction</p>
                             </a>
 
-                            <!-- 3. Projekt: Siemens / Industrial -->
+                            <!-- Project 3: Siemens / Industrial -->
                             <a href="case-study-siemens.html" class="group block cursor-pointer">
                                 <div
                                     class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
@@ -431,12 +430,13 @@
                             </a>
 
                         </div>
-                        <!--div class="mt-8 text-center sm:hidden">
+                        <div class="mt-8 text-center sm:hidden">
                             <button
-                                class="w-full py-3 rounded-lg border border-gray-200 dark:border-gray-700 font-medium" href="work.html">
-                                View all projects 
+                                class="w-full py-3 rounded-lg border border-gray-200 dark:border-gray-700 font-medium"
+                                href="work.html">
+                                View all projects
                             </button>
-                        </div-->
+                        </div>
                     </div>
                 </div>
                 <!-- Removed 3 closing divs here as they are closed early above -->
@@ -449,7 +449,7 @@
                 class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern">
                 <!-- Grid Pattern class added (if available) or background -->
 
-                <!-- 1. Nagy szöveg az Indexen (ANIMÁLT) -->
+                <!-- 1. Large Text (Animated) -->
                 <div id="footer-cta" class="mb-6 md:mb-12">
                     <h3 id="footer-title"
                         class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
@@ -466,14 +466,14 @@
                     </p>
                 </div>
 
-                <!-- 2. Elérhetőségek nagyban -->
+                <!-- 2. Contact Details (Large) -->
                 <div id="footer-contact"
                     class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out">
                     <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
                     <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
                 </div>
 
-                <!-- 2. KÖZÉPSŐ RÉSZ: Social Media Ikonok (Kör alakú gomb hatás) -->
+                <!-- 3. Social Media Icons (Circular Button Effect) -->
                 <div class="flex gap-5 mb-8 md:mb-16">
                     <!-- Email -->
                     <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
@@ -511,10 +511,10 @@
                             </path>
                         </svg>
                     </a>
-                    <!-- Website - REMOVED (Redundant in Footer of Index) -->
+                    <!-- Website Link - Removed (Redundant) -->
                 </div>
 
-                <!-- 4. Alsó sor (Ugyanaz, mint a többi oldalon) -->
+                <!-- 4. Bottom Row (Standard across pages) -->
                 <div
                     class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
                     <p>&copy; <span id="current-year"></span> László Földváry. <span
@@ -547,7 +547,7 @@
             document.querySelectorAll('[data-icon]').forEach(element => {
                 const iconName = element.getAttribute('data-icon');
 
-                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                // Check if database and icon exist
                 if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
                     element.innerHTML = ASSETS[iconName];
                 }
@@ -555,24 +555,24 @@
         });
     </script>
     <script>
-        // Mobil menü vezérlése
+        // Mobile Menu Control
         const menuBtn = document.getElementById('menu-button');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+        // On Hamburger Click: Remove 'hidden' class (Show Menu)
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
 
-        // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+        // On 'X' Click: Add 'hidden' class (Hide Menu)
         closeBtn.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
+            document.body.style.overflow = 'auto'; // Restore scrolling
         });
 
-        // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+        // Optional: Close menu when a link is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');

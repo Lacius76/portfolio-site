@@ -2,7 +2,7 @@
 <html class="dark" lang="en">
 
 <head>
-    <!-- Az általad küldött Head rész változatlanul -->
+    <!-- Head section (Unchanged) -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>About Me - UI Designer Portfolio</title>
@@ -68,7 +68,7 @@
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
 
     <div class="relative flex min-h-screen flex-col overflow-x-hidden">
-        <!-- HEADER (Az általad kért navigációs logikával: az "About" link elrejtve) -->
+        <!-- HEADER (Navigation logic: "About" link hidden) -->
         <header
             class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
             <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
@@ -85,7 +85,7 @@
                 <nav class="hidden md:flex items-center gap-8">
                     <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
                         data-i18n="nav.work">Work</a>
-                    <!-- AZ ABOUT LINKET ELTÁVOLÍTOTTUK, MERT ITT VAGYUNK -->
+                    <!-- "About" link removed (Current Page) -->
                     <a href="resume.html"
                         class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
                         data-i18n="nav.resume">Resume</a>
@@ -148,30 +148,30 @@
         </div>
 
         <main class="flex flex-col">
-            <!-- FIXED HERO SECTION -->
+            <!-- === HERO SECTION (FIXED LAYER 1) === -->
             <div
                 class="fixed inset-0 z-0 overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-24 lg:pt-16">
                 <section class="mx-auto max-w-[1200px] px-2 py-2 lg:py-14 w-full">
-                    <!-- lg:flex-row: asztali gépen egymás mellett, alapból (mobilon) egymás alatt -->
+                    <!-- lg:flex-row: Desktop: side-by-side, Mobile: stacked -->
                     <div class="flex flex-col lg:flex-row gap-4 lg:gap-24 items-center lg:items-start">
 
-                        <!-- FOTÓ BLOKK: Mobilon középen, Desktopon bal oldalon -->
+                        <!-- PHOTO BLOCK: Mobile: center, Desktop: left -->
                         <div class="flex justify-center lg:justify-start">
                             <div class="relative group w-[85vw] lg:w-[380px]">
-                                <!-- 85vw mobilon = 85% viewport szélesség, 380px desktopnál -->
+                                <!-- 85vw on mobile, 380px on desktop -->
                                 <div
                                     class="overflow-hidden rounded-2xl aspect-[4/5] bg-gray-200 dark:bg-gray-800 shadow-xl border border-white/5">
                                     <img src="img/foto.jpg" alt="László Földváry"
                                         class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out transform group-hover:scale-105">
                                 </div>
-                                <!-- Dekoratív elem hoverre -->
+                                <!-- Decorative element on hover -->
                                 <div
                                     class="hidden lg:block absolute -bottom-4 -right-4 h-24 w-24 bg-primary/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- SZÖVEG BLOKK: Mobilon középre igazítva (text-center), Desktopon balra (lg:text-left) -->
+                        <!-- TEXT BLOCK: Mobile: centered, Desktop: left-aligned -->
                         <div class="flex-1 space-y-8 text-center lg:text-left">
                             <div class="space-y-4">
                                 <h4 class="text-primary font-bold uppercase tracking-widest text-sm"
@@ -189,7 +189,7 @@
                                 industrial systems and AI-augmented product systems.
                             </p>
 
-                            <!-- STATISZTIKA: justify-center mobilon, justify-start desktopon -->
+                            <!-- STATISTICS: Mobile: justify-center, Desktop: justify-start -->
                             <div
                                 class="flex justify-center lg:justify-start gap-10 pt-4 border-t border-slate-100 dark:border-white/5">
                                 <div class="flex flex-col">
@@ -218,10 +218,10 @@
                 <section
                     class="sticky top-0 z-10 min-h-screen flex items-center py-24 bg-gray-50 dark:bg-[#101922] shadow-[0_-20px_60px_#f9fafb] dark:shadow-[0_-20px_60px_#101922]">
                     <div class="mx-auto max-w-[1200px] px-6">
-                        <!-- 12 oszlopos rács a precíz elosztáshoz -->
+                        <!-- 12-column grid for precise layout -->
                         <div class="grid lg:grid-cols-12 gap-12">
 
-                            <!-- Bal oldali felirat (4 oszlop) -->
+                            <!-- Left label (4 columns) -->
                             <div class="lg:col-span-4 space-y-4">
                                 <h2 class="text-3xl font-black tracking-tighter text-slate-900 dark:text-white uppercase"
                                     data-i18n="about.originTitle">
@@ -234,7 +234,7 @@
                                 </p>
                             </div>
 
-                            <!-- Jobb oldali tartalom (8 oszlop) -->
+                            <!-- Right content (8 columns) -->
                             <div
                                 class="lg:col-span-8 space-y-8 text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
                                 <p data-i18n="about.originP1">
@@ -274,7 +274,7 @@
                             data-i18n="about.trustedTitle">
                             Trusted by Industry Leaders
                         </p>
-                        <!-- Grayscale cégnevek, amik hoverre kicsit felerősödnek -->
+                        <!-- Grayscale company names, fade in on hover -->
                         <div
                             class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 dark:opacity-30">
                             <span
@@ -295,7 +295,7 @@
                 <!-- CARD 3: FUTURE-PROOF DESIGN (z-30) -->
                 <section
                     class="relative lg:sticky lg:top-0 z-30 min-h-0 lg:min-h-screen flex items-center bg-white dark:bg-[#101922] shadow-[0_-20px_60px_#ffffff] dark:shadow-[0_-20px_60px_#101922]">
-                    <!-- SZAKMAI VÍZIÓ CONTENT MOVED HERE -->
+                    <!-- PROFESSIONAL VISION CONTENT -->
                     <div class="mx-auto max-w-[1200px] px-6 py-24 w-full">
                         <div class="text-center mb-16 space-y-4">
                             <h2 class="text-3xl font-black tracking-tighter uppercase text-slate-900 dark:text-white"
@@ -310,7 +310,7 @@
                         </div>
 
                         <div class="grid md:grid-cols-3 gap-8">
-                            <!-- 1. PONT: Native Ecosystems -->
+                            <!-- Point 1: Native Ecosystems -->
                             <div
                                 class="p-8 border border-slate-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-white/5 transition-hover hover:border-primary/50 group">
                                 <span
@@ -324,7 +324,7 @@
                                 </p>
                             </div>
 
-                            <!-- 2. PONT: Advanced Motion Design -->
+                            <!-- Point 2: Advanced Motion Design -->
                             <div
                                 class="p-8 border border-slate-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-white/5 transition-hover hover:border-primary/50 group">
                                 <span
@@ -338,7 +338,7 @@
                                 </p>
                             </div>
 
-                            <!-- 3. PONT: Complex Data Architectures -->
+                            <!-- Point 3: Complex Data Architectures -->
                             <div
                                 class="p-8 border border-slate-200 dark:border-white/10 rounded-2xl bg-white/50 dark:bg-white/5 transition-hover hover:border-primary/50 group">
                                 <span
@@ -362,7 +362,7 @@
                         <div
                             class="glass-panel p-10 md:p-16 rounded-[2rem] bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 relative overflow-hidden text-center">
 
-                            <!-- Díszítő elem a háttérben -->
+                            <!-- Background decorative element -->
                             <div class="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
                                 <span class="material-symbols-outlined text-[12rem]">handshake</span>
                             </div>
@@ -399,7 +399,7 @@
             class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] pt-20 md:pt-32 pb-12 overflow-hidden transition-all duration-300">
             <div
                 class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern">
-                <!-- 1. Nagy szöveg az Indexen (ANIMÁLT) -->
+                <!-- 1. Large Text (Animated) -->
                 <div id="footer-cta" class="mb-6 md:mb-12">
                     <h3 id="footer-title"
                         class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
@@ -415,14 +415,14 @@
                     </p>
                 </div>
 
-                <!-- 2. Elérhetőségek nagyban -->
+                <!-- 2. Contact Details (Large) -->
                 <div id="footer-contact"
                     class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out">
                     <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
                     <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
                 </div>
 
-                <!-- 2. KÖZÉPSŐ RÉSZ: Social Media Ikonok -->
+                <!-- 3. Social Media Icons -->
                 <div class="flex gap-5 mb-8 md:mb-16">
                     <!-- Email -->
                     <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
@@ -462,7 +462,7 @@
                     </a>
                 </div>
 
-                <!-- 4. Alsó sor -->
+                <!-- 4. Bottom Row -->
                 <div
                     class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
                     <p>&copy; <span id="current-year"></span> László Földváry. <span
@@ -544,7 +544,7 @@
             document.getElementById('current-year').textContent = new Date().getFullYear();
         });
 
-        // Mobil menü vezérlése (Ahogy kérted)
+        // Mobile Menu Control
         const menuBtn = document.getElementById('menu-button');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');

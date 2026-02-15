@@ -7,7 +7,7 @@
     <title>About Me - UI Designer Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
 
-    <!-- 1. Külső könyvtárak (CDN) -->
+    <!-- 1. External Libraries (CDN) -->
     <link rel="stylesheet" href="css/language-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
@@ -22,7 +22,7 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
-    <!-- 2. Tailwind Konfiguráció (Külön ID miatt marad) -->
+    <!-- 2. Tailwind Configuration (Kept separate for ID reference) -->
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -41,7 +41,7 @@
     </script>
 
 
-    <!-- 3. ÖSSZEVONT Stílusok -->
+    <!-- 3. Consolidated Styles -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -94,13 +94,13 @@
     <!-- Navbar -->
     <div
         class="w-full border-b border-solid border-b-[#f0f2f4] dark:border-b-[#2a3441] bg-background-light dark:bg-background-dark sticky top-0 z-50">
-        <!-- Itt a py-3-at hagyd meg, ez a fejléc magassága -->
+        <!-- Keep py-3 here, it defines header height -->
         <header
             class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-            <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+            <!-- Replaced lg:px-40 with px-6 for consistent stability -->
             <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
 
-                <!-- 1. OSZLOP: LOGÓ -->
+                <!-- COLUMN 1: LOGO -->
                 <div class="flex items-center gap-4">
                     <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
                         href="index.html">
@@ -111,7 +111,7 @@
                     </a>
                 </div>
 
-                <!-- 2. OSZLOP: MENÜ -->
+                <!-- COLUMN 2: MENU -->
                 <nav class="hidden md:flex items-center gap-8">
                     <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
                         data-i18n="nav.work">Work</a>
@@ -121,9 +121,9 @@
 
                 </nav>
 
-                <!-- 3. OSZLOP: GOMBOK -->
+                <!-- COLUMN 3: BUTTONS -->
                 <div class="flex items-center gap-4">
-                    <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+                    <!-- Let's Talk: Removed base transition, activates only on hover -->
                     <a href="contact.html"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                         aria-label="Contact">
@@ -150,13 +150,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+                    <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
                     <button id="theme-toggle"
                         class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
-                        <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+                        <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
                         <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
 
-                        <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+                        <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
                         <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
                     </button>
                     <button id="menu-button"
@@ -190,16 +190,16 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
             <div class="lg:col-span-4 flex flex-col items-center lg:items-start space-y-8">
-                <!-- PROFILKÉP: Aura effekttel és reszponzív mérettel -->
+                <!-- PROFILE PICTURE: With aura effect and responsive size -->
                 <div class="relative group">
-                    <!-- Az "Aura" árnyék a háttérben -->
+                    <!-- "Aura" shadow in the background -->
                     <div
                         class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-blue-500/30 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000">
                     </div>
 
                     <div
                         class="relative w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-                        <!-- A megadott paraméterekkel rendelkező kép -->
+                        <!-- Image with specified parameters -->
                         <img alt="László Földváry Senior UI Designer"
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                             src="img/portrait.png" />
@@ -212,7 +212,7 @@
                     </div>
                 </div>
 
-                <!-- ELÉRHETŐSÉG ÉS ÁLLAMPOLGÁRSÁG -->
+                <!-- CONTACT & CITIZENSHIP -->
                 <div
                     class="w-full bg-white dark:bg-[#1a2633] p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 transition-all hover:shadow-md">
                     <ul class="space-y-4 text-sm">
@@ -243,7 +243,7 @@
                 </div>
             </div>
             <div class="lg:col-span-8 space-y-6">
-                <!-- Vezér Cim -->
+                <!-- Main Title -->
                 <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
                     <h1
                         class="font-display text-4xl lg:text-5xl font-bold uppercase tracking-wide text-gray-900 dark:text-white mb-2">
@@ -254,7 +254,7 @@
                         Senior UI/UX Design Architect & Visual Artist
                     </h2>
                 </div>
-                <!-- ÜBER MICH -->
+                <!-- ABOUT ME -->
                 <div class="relative pl-6 border-l-4 border-primary">
                     <div
                         class="absolute -left-[15px] top-0 w-0 h-0 border-t-[8px] border-t-transparent border-r-[12px] border-r-primary border-b-[8px] border-b-transparent">
@@ -288,7 +288,7 @@
                         Skalierbarkeit und barrierefreier Usability.
                     </p>
 
-                    <!-- Letöltés gomb -->
+                    <!-- Download Button -->
                     <div class="pt-6">
                         <a href="img/foldvary_laszlo_cv.pdf" download
                             class="inline-flex items-center gap-2 bg-primary hover:bg-indigo-700 text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded shadow-lg transition-all active:scale-95">
@@ -303,7 +303,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <!-- ASIDE -->
             <aside class="lg:col-span-4 space-y-12 order-2 lg:order-1">
-                <!-- Weiterbildung -->
+                <!-- Continuing Education -->
                 <section>
                     <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
                         data-i18n="resume.continuingEducationTitle">
@@ -329,7 +329,7 @@
                         </div>
                     </div>
                 </section>
-                <!-- Kenntnisse -->
+                <!-- Skills -->
                 <section>
                     <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
                         data-i18n="resume.skillsTitle">
@@ -369,7 +369,7 @@
                             <span class="text-sm dark:text-white font-medium w-24">Dev-Handoff</span>
                             <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full ml-4 overflow-hidden">
                                 <div class="h-full bg-primary w-[90%] rounded-full italic"></div>
-                                <!-- 90% mert értesz a programozók nyelvén -->
+                                <!-- 90% because you speak developer language -->
                             </div>
                         </div>
                         <div class="flex items-center justify-between group">
@@ -398,7 +398,7 @@
                         </div>
                     </div>
                 </section>
-                <!-- Ausbildung -->
+                <!-- Education -->
                 <section>
                     <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
                         data-i18n="resume.fundamentalEducationTitle">
@@ -406,7 +406,7 @@
                     </h3>
                     <div
                         class="space-y-6 relative border-l border-gray-200 dark:border-gray-700 ml-2 pl-6 pb-2 text-sm">
-                        <!-- Ion Vidu - A művészeti alap -->
+                        <!-- Ion Vidu - Artistic Foundation -->
                         <div class="relative">
                             <div
                                 class="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-gray-400 border-2 border-white dark:border-gray-800">
@@ -424,7 +424,7 @@
                             </div>
                         </div>
 
-                        <!-- Berufsschule -->
+                        <!-- Vocational School -->
                         <div class="relative">
                             <div
                                 class="absolute -left-[30px] top-1.5 w-3 h-3 rounded-full bg-gray-300 border-2 border-white dark:border-gray-800">
@@ -439,14 +439,14 @@
                         </div>
                     </div>
                 </section>
-                <!-- Sprachen -->
+                <!-- Languages -->
                 <section>
                     <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
                         data-i18n="resume.languagesTitle">
                         Sprachen
                     </h3>
                     <div class="space-y-4 text-sm dark:text-white">
-                        <!-- Deutsch -->
+                        <!-- German -->
                         <div>
                             <div class="flex justify-between items-baseline">
                                 <span class="font-bold" data-i18n="resume.languageGerman">Deutsch</span>
@@ -458,7 +458,7 @@
                                 akzentfrei</span>
                         </div>
 
-                        <!-- Ungarisch -->
+                        <!-- Hungarian -->
                         <div
                             class="flex justify-between items-baseline border-t border-gray-100 dark:border-gray-800 pt-2">
                             <span class="font-bold" data-i18n="resume.languageHungarian">Ungarisch</span>
@@ -466,7 +466,7 @@
                                 data-i18n="resume.languageHungarianLevel">Muttersprache</span>
                         </div>
 
-                        <!-- Englisch -->
+                        <!-- English -->
                         <div
                             class="flex justify-between items-baseline border-t border-gray-100 dark:border-gray-800 pt-2">
                             <span class="font-bold" data-i18n="resume.languageEnglish">Englisch</span>
@@ -476,7 +476,7 @@
                         </div>
                     </div>
                 </section>
-                <!-- KERNKOMPETENZEN: HR-barát elnevezés a szoftveres ismereteken túl -->
+                <!-- CORE COMPETENCIES: HR-friendly term beyond software skills -->
                 <section>
                     <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
                         data-i18n="resume.coreCompetenciesTitle">
@@ -503,7 +503,7 @@
                             Handoff</span>
                     </div>
                 </section>
-                <!-- INTERESSEN: Humánus és technikai oldalad összekötése -->
+                <!-- INTERESTS: Connecting human and technical sides -->
                 <section>
                     <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-6 border-b-2 border-gray-200 dark:border-gray-700 pb-2 text-slate-400"
                         data-i18n="resume.personalTitle">
@@ -524,7 +524,7 @@
                         </p>
                     </div>
                 </section>
-                <!-- OPCIONÁLIS: Interests (Hogy emberivé tegyük) -->
+                <!-- OPTIONAL: Interests (Humanizing element) -->
                 <section>
                     <h3 class="font-display font-bold text-lg dark:text-white uppercase tracking-wider mb-4 opacity-50"
                         data-i18n="resume.interestsTitle">
@@ -537,7 +537,7 @@
                     </p>
                 </section>
             </aside>
-            <!-- Berufserfahrung -->
+            <!-- Professional Experience -->
             <div class="lg:col-span-8 order-1 lg:order-2">
                 <section>
                     <h3 class="font-display font-bold text-xl dark:text-white uppercase tracking-wider mb-8 border-b-2 border-gray-200 dark:border-gray-700 pb-2"
@@ -546,7 +546,7 @@
 
 
                     <div class="space-y-12 border-l-2 border-primary/20 dark:border-primary/20 ml-2 pl-8 relative">
-                        <!-- SELF-PROJECT: Shadow Cartels - Kitölti a rést és mutatja a modern tudást -->
+                        <!-- SELF-PROJECT: Shadow Cartels - Fills gap and shows modern skills -->
                         <div class="relative group">
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
@@ -587,7 +587,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- Simens ETM -->
+                        <!-- Siemens ETM -->
                         <div class="relative group">
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
@@ -631,7 +631,7 @@
                                     <li data-i18n="resume.exp2Point3" data-i18n-html>Leitung von User-Centered-Design
                                         Prozessen zur Harmonisierung technischer
                                         PLC-Daten mit moderner User Experience.</li>
-                                    <!-- Új pont a Siemens sikerlistához -->
+                                    <!-- New point for Siemens achievement list -->
                                     <li data-i18n="resume.exp2Point4" data-i18n-html>Sicherstellung des effizienten
                                         <strong>Design-to-Development Handoffs</strong>
                                         in einem agilen Scrum-Umfeld, um Reibungsverluste bei der Implementierung
@@ -640,7 +640,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- GREENTUBE - 10 éves tapasztalat kiemelése -->
+                        <!-- GREENTUBE - Highlighting 10 years experience -->
                         <div class="relative group">
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
@@ -668,7 +668,7 @@
                                 ein Jahrzehnt hinweg.
                             </p>
 
-                            <!-- UI/UX SIKER DOBOZ -->
+                            <!-- UI/UX SUCCESS BOX -->
                             <div
                                 class="bg-surface-light dark:bg-gray-800/40 p-4 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
                                 <strong
@@ -754,7 +754,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- AMATIC - Koncepcionális kutatás és Motion Design alapok -->
+                        <!-- AMATIC - Conceptual Research & Motion Design Basics -->
                         <div class="relative group">
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
@@ -781,7 +781,7 @@
                                 Spielewelten.
                             </p>
 
-                            <!-- UI/UX RESEARCH DOBOZ -->
+                            <!-- UI/UX RESEARCH BOX -->
                             <div
                                 class="bg-surface-light dark:bg-gray-800/40 p-4 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
                                 <strong
@@ -807,7 +807,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- FUNWORLD AG - Pionierarbeit in Touch-Ergonomie -->
+                        <!-- FUNWORLD AG - Pioneering work in Touch Ergonomics -->
                         <div class="relative group">
                             <span
                                 class="absolute -left-[43px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-background-dark shadow-sm z-10"></span>
@@ -920,10 +920,10 @@
     <footer class="border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] py-16 mt-auto">
         <div class="max-w-[1200px] mx-auto px-4 md:px-10">
 
-            <!-- FELSŐ RÉSZ: Nagy szöveg | Elválasztó | Elérhetőségek -->
+            <!-- TOP SECTION: Large Text | Divider | Contact Info -->
             <div class="flex flex-col md:flex-row items-center justify-between gap-12 mb-12">
 
-                <!-- 1. Oszlop: Nagy szöveg (A "reklám" hatás) -->
+                <!-- Column 1: Large Text (Advertising Effect) -->
                 <div class="flex-1 text-center md:text-left">
                     <h3 class="text-3xl font-bold text-[#111418] dark:text-white mb-4" data-i18n="footer.readyToStart">
                         Ready to start a project?
@@ -933,18 +933,18 @@
                     </p>
                 </div>
 
-                <!-- 2. Oszlop: Függőleges elválasztó (csak nagy gépen látszik) -->
+                <!-- Column 2: Vertical Divider (Desktop only) -->
                 <div class="hidden md:block w-px h-32 bg-[#f0f2f4] dark:bg-gray-800"></div>
 
-                <!-- 3. Oszlop: Kapcsolat (Tel + Email + Ikonok) -->
+                <!-- Column 3: Contact (Phone + Email + Icons) -->
                 <div class="flex flex-col items-center gap-6">
-                    <!-- Telefonszám és Email -->
+                    <!-- Phone and Email -->
                     <div class="text-center">
                         <p class="text-xl font-bold text-[#111418] dark:text-white mb-1">+43 699 818 41 767</p>
                         <p class="text-primary font-medium">foeldvary@gmail.com</p>
                     </div>
 
-                    <!-- Ikonok -->
+                    <!-- Icons -->
                     <div class="flex gap-3 justify-center">
                         <!-- LinkedIn -->
                         <a class="size-11 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
@@ -986,7 +986,7 @@
                 </div>
             </div>
 
-            <!-- ALSÓ RÉSZ: Copyright és Jogi linkek -->
+            <!-- BOTTOM SECTION: Copyright and Legal Links -->
             <div
                 class="pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#637588] dark:text-[#94a3b8]">
                 <p>&copy; <span id="current-year"></span> László Földváry. <span
@@ -1023,7 +1023,7 @@
             document.querySelectorAll('[data-icon]').forEach(element => {
                 const iconName = element.getAttribute('data-icon');
 
-                // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+                // Check if database and icon exist
                 if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
                     element.innerHTML = ASSETS[iconName];
                 }
@@ -1031,24 +1031,24 @@
         });
     </script>
     <script>
-        // Mobil menü vezérlése
+        // Mobile Menu Control
         const menuBtn = document.getElementById('menu-button');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+        // On Hamburger Click: Remove 'hidden' class (Show Menu)
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Megakadályozza, hogy a háttér görögjön
         });
 
-        // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+        // On 'X' Click: Add 'hidden' class (Hide Menu)
         closeBtn.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
             document.body.style.overflow = 'auto'; // Visszaállítja a görgetést
         });
 
-        // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+        // Optional: Close menu when a link is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
