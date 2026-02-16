@@ -79,7 +79,6 @@
 
 /* Prevent FOUT: clip icon text until Material Symbols font loads */
 .nav-anim-theme .material-symbols-outlined {
-    display: inline-block;
     width: 24px;
     height: 24px;
     overflow: hidden;
