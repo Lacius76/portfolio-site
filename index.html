@@ -33,6 +33,8 @@
         content="László Földváry - Senior UI/UX Design Architect. Portfolio showcasing 25 years of experience.">
     <!-- 1. External Libraries (CDN) -->
     <link rel="stylesheet" href="css/language-animations.css">
+    <link rel="stylesheet" href="css/hero-animations.css">
+    <link rel="stylesheet" href="css/nav-animations.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
@@ -123,7 +125,7 @@
             <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
 
                 <!-- COLUMN 1: LOGO -->
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-4 nav-anim-logo">
                     <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
                         href="index.html">
                         <div data-icon="logo"
@@ -135,13 +137,14 @@
 
                 <!-- COLUMN 2: MENU -->
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html" class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                    <a href="work.html"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
                         data-i18n="nav.work">Work</a>
                     <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
                         data-i18n="nav.about">About</a>
                     <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-3"
                         data-i18n="nav.resume">Resume</a>
                 </nav>
 
@@ -149,13 +152,13 @@
                 <div class="flex items-center gap-4">
                     <!-- Let's Talk: Removed base transition, activates only on hover -->
                     <a href="contact.html"
-                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
                         aria-label="Contact">
                         <img src="img/contact-icon.svg" alt="Contact" class="size-6">
                     </a>
                     <!-- Language Button -->
                     <!-- Language Dropdown -->
-                    <div class="relative">
+                    <div class="relative nav-anim-lang">
                         <button id="language-btn"
                             class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                             <img src="img/language-icon.svg" alt="Select Language" class="size-6">
@@ -177,7 +180,7 @@
                     </div>
                     <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
                     <button id="theme-toggle"
-                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white">
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme">
                         <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
                         <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
                         <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
@@ -229,18 +232,19 @@
                                     <!-- Text Content -->
                                     <div class="flex flex-col gap-6 flex-1 @[1200px]:pr-8 z-10">
                                         <div class="flex flex-col gap-4 text-left">
-                                            <div class="w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
+                                            <div class="hero-anim-badge w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
                                                 data-i18n="index.availableForWork">Available for work
                                             </div>
                                             <h1
                                                 class="text-[#111418] dark:text-white text-4xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl">
-                                                <span data-i18n="index.heroTitle1">Design that
-                                                </span><span class="text-primary"
+                                                <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that
+                                                </span><span class="hero-anim-title-2 text-primary"
                                                     data-i18n="index.heroTitle2">humanizes</span><span
-                                                    data-i18n="index.heroTitle3"> technology.</span>
+                                                    class="hero-anim-title-3" data-i18n="index.heroTitle3">
+                                                    technology.</span>
                                             </h1>
                                             <h2
-                                                class="text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
+                                                class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
                                                 <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior
                                                     UI/UX & Product Designer. I leverage 25+ years of mastery and
                                                     AI-driven workflows to solve complex problems through intuitive
@@ -249,20 +253,20 @@
                                         </div>
                                         <div class="flex flex-col sm:flex-row gap-4 mt-2">
                                             <a href="work.html"
-                                                class="flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
+                                                class="hero-anim-btn-primary flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
                                                 <span data-i18n="index.viewSelectedWork">View
                                                     Selected Work</span>
                                             </a>
 
                                             <a href="contact.html"
-                                                class="flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]"
+                                                class="hero-anim-btn-secondary flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]"
                                                 data-i18n="index.contactMe">Contact Me
 
                                             </a>
                                         </div>
 
                                         <!-- Experience Cards (Integrated into Text Col) -->
-                                        <div class="w-full mt-[30px] z-10">
+                                        <div class="hero-anim-stats w-full mt-[30px] z-10">
                                             <div
                                                 class="grid grid-cols-2 gap-4 md:gap-8 max-w-[600px] lg:max-w-none lg:w-fit">
                                                 <!-- Card 1: Projects -->
@@ -295,7 +299,8 @@
 
                                     </div>
                                     <!-- Hero Image Video -->
-                                    <a href="work.html" class="w-full flex-1 max-w-[600px] mx-auto z-10">
+                                    <a href="work.html"
+                                        class="hero-anim-video w-full flex-1 max-w-[600px] mx-auto z-10">
                                         <div
                                             class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
                                             <!-- Decorative abstract pattern/image -->
@@ -311,7 +316,7 @@
                                             </div>
                                             <!-- Floating Card 1 -->
                                             <div
-                                                class="absolute bottom-6 left-6 right-6 md:right-auto md:w-64 p-4 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20">
+                                                class="hero-anim-float-card absolute bottom-6 left-6 right-6 md:right-auto md:w-64 p-4 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20">
                                                 <div class="flex items-center gap-3 mb-2">
                                                     <div
                                                         class="size-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
