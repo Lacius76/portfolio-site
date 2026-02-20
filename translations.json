@@ -500,7 +500,7 @@
       "home": "Startseite"
     },
     "index": {
-      "availableForWork": "Offen für neue Rollen · Remote & Vor Ort",
+      "availableForWork": "Offen für neue Rollen · <br class=\"sm:hidden\"> Remote & Vor Ort",
       "heroTitle1": "Design, das Technologie ",
       "heroTitle2": "menschlich",
       "heroTitle3": " macht.",
