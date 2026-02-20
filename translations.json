@@ -437,7 +437,7 @@
       "workflowTitle": "AI-Driven <span class=\"text-primary\">Workflow</span>",
       "workflowDesc": "This isn't just about using ChatGPT to write copy. This is a symbiotic development process leveraging specific AI models for their unique strengths.",
       "geminiTitle": "Gemini 3 Pro: The Architect",
-      "geminiDesc": "Gemini agiert als Bauingenieur. Es übernahm die Schwerarbeit bei Boilerplate-Code, Tailwind-Konfiguration und der schnellen Iteration von HTML-Strukturen. Sein riesiges Kontextfenster ermöglichte es, das gesamte Projekt im Speicher zu „halten“.",
+      "geminiDesc": "Gemini acted as the structural engineer. It handled the heavy lifting of boilerplate code, Tailwind configuration, and rapid iteration of HTML structures. Its massive context window allowed it to \"hold\" the entire project in memory.",
       "geminiList1": "Scaffolding & Layouts",
       "geminiList2": "Refactoring Legacy CSS",
       "claudeTitle": "Claude Sonnet: The Logician",
