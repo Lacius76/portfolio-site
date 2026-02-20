@@ -68,7 +68,7 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
 
-    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+    <div class="relative flex min-h-screen flex-col">
         <!-- HEADER (Navigation logic: "About" link hidden) -->
         <header
             class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
@@ -374,7 +374,8 @@
                                     data-i18n="about.conclusionTitle">
                                     Ready to bring my 20 years of legacy to your team.
                                 </h2>
-                                <p class="text-lg text-slate-600 dark:text-slate-400" data-i18n="about.conclusionDesc">
+                                <p class="text-sm md:text-lg text-slate-600 dark:text-slate-400"
+                                    data-i18n="about.conclusionDesc">
                                     I am currently looking for a new home where I can apply my experience in UI/UX
                                     design,
                                     system thinking, and AI-assisted workflows. Whether it's a dynamic startup or an
@@ -470,22 +471,21 @@
                     <p>&copy; <span id="current-year"></span> László Földváry. <span
                             data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors"
+                        <a href="datenschutz.html" class="hover:text-primary transition-colors"
                             data-i18n="footer.privacyPolicy">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
-                            of Service</a>
+                        <a href="impressum.html" class="hover:text-primary transition-colors" data-i18n="footer.impressum">Impressum</a>
                     </div>
                 </div>
             </div>
         </footer>
-        <div class="hidden sm:block fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+        <div class="hidden sm:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
             <a href="contact.html"
                 class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
                 <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
                     <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
                 </div>
-                <span class="text-base font-bold tracking-wide">Hire Me</span>
+                <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Hire Me</span>
             </a>
         </div>
     </div>

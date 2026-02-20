@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -393,13 +393,15 @@
             </section>
         </main>
         <footer id="footer-reveal"
-            class="fixed bottom-0 left-0 w-full z-[-1] border-t border-white/10 bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300">
+            class="fixed bottom-0 left-0 w-full z-[-1] border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300">
             <!-- BACKGROUND HERO EFFECT -->
             <div class="absolute inset-0 z-0 pointer-events-none">
                 <img src="img/greentube/title.jpg"
-                    class="w-full h-full object-cover opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-50"
+                    class="w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-100 dark:brightness-50"
                     alt="Greentube Background">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#18181b] via-[#18181b]/80 to-transparent"></div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-white dark:from-[#18181b] via-white/80 dark:via-[#18181b]/80 to-transparent">
+                </div>
             </div>
 
             <div class="relative z-10 max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
@@ -407,7 +409,7 @@
                 <!-- MOVED BACK BUTTON -->
                 <div class="mb-16">
                     <a id="footer-back-link" href="work.html"
-                        class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
+                        class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
                         <span
                             class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
                         <span data-i18n="footer.backToProjects">Back to All Projects</span>
@@ -415,11 +417,11 @@
                 </div>
 
                 <div class="mb-12">
-                    <h3 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tighter"
+                    <h3 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter"
                         data-i18n="footer.readyToStart">Ready
                         to start a
                         project?</h3>
-                    <p class="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed"
+                    <p class="text-slate-600 dark:text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed"
                         data-i18n="footer.readySubtitle">
                         Let's create something meaningful together. I'm always open to new opportunities and interesting
                         challenges.
@@ -427,13 +429,13 @@
                 </div>
                 <div id="footer-contact-info"
                     class="mb-12 opacity-0 translate-y-4 transition-all duration-700 ease-out delay-200">
-                    <p class="text-2xl font-bold text-white mb-2">+43 699 818 41 767</p>
+                    <p class="text-2xl font-bold text-slate-900 dark:text-white mb-2">+43 699 818 41 767</p>
                     <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
                 </div>
                 <!-- Social Icons in Footer -->
                 <div class="flex gap-5 mb-16">
                     <!-- Email -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                    <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
                         href="mailto:foeldvary@gmail.com">
                         <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -443,7 +445,7 @@
                         </svg>
                     </a>
                     <!-- LinkedIn -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                    <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
                         href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank">
                         <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
                             <path clip-rule="evenodd"
@@ -452,7 +454,7 @@
                         </svg>
                     </a>
                     <!-- GitHub -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                    <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
                         href="https://github.com/Lacius76" target="_blank">
                         <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
                             <path
@@ -460,7 +462,7 @@
                         </svg>
                     </a>
                     <!-- Facebook -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:border-primary transition-all"
+                    <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
                         href="https://www.facebook.com/laszlo.foldvary" target="_blank">
                         <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -470,14 +472,13 @@
                     </a>
                 </div>
                 <div
-                    class="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
+                    class="w-full pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
                     <p>&copy; <span id="current-year"></span> László Földváry. <span
                             data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors"
+                        <a href="datenschutz.html" class="hover:text-primary transition-colors"
                             data-i18n="footer.privacyPolicy">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
-                            of Service</a>
+                        <a href="impressum.html" class="hover:text-primary transition-colors" data-i18n="footer.impressum">Impressum</a>
                     </div>
                 </div>
             </div>

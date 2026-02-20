@@ -500,11 +500,11 @@
       "home": "Startseite"
     },
     "index": {
-      "availableForWork": "Verfügbar für Projekte",
-      "heroTitle1": "Design, das ",
-      "heroTitle2": "Technologie",
-      "heroTitle3": " humanisiert.",
-      "heroSubtitle": "Hallo, ich bin László Földváry. Senior UI/UX & Product Designer. Ich nutze über 25 Jahre Expertise und KI-gestützte Workflows, um komplexe Probleme durch intuitive digitale Erlebnisse zu lösen.",
+      "availableForWork": "Offen für neue Rollen · Remote & Vor Ort",
+      "heroTitle1": "Design, das Technologie ",
+      "heroTitle2": "menschlich",
+      "heroTitle3": " macht.",
+      "heroSubtitle": "Hallo, ich bin László Földváry – Senior UI/UX & Product Designer. Mit 25+ Jahren Erfahrung und KI-gestützten Workflows löse ich komplexe Probleme – durch intuitive digitale Erlebnisse.",
       "viewSelectedWork": "Ausgewählte Arbeiten",
       "contactMe": "Kontakt aufnehmen",
       "projectsLaunched": "Projekte umgesetzt",
@@ -696,9 +696,9 @@
       "strategyMotionDesc": "Integration von **Rive und Echtzeit-Physik**, um statische UIs zu ersetzen. Ich glaube, dass interaktives Feedback und High-End-Animationen entscheidend sind, um kognitive Last zu senken und die User Retention zu steigern.",
       "strategyDataTitle": "Komplexe Datenarchitekturen",
       "strategyDataDesc": "Meisterung der Visualisierung massiver Datensätze. Meine Vision ist es, komplexe, vielschichtige Informationen durch smarte **Design-Systeme** intuitiv und zugänglich zu machen.",
-      "conclusionTitle": "Bereit, 20 Jahre Erfahrung in Ihr Team einzubringen.",
+      "conclusionTitle": "Bereit, 20&nbsp;Jahre Erfahrung in Ihr Team einzubringen.",
       "conclusionDesc": "Ich suche derzeit ein neues Zuhause, wo ich meine Erfahrung in UI/UX-Design, System-Thinking und AI-gestützten Workflows anwenden kann. Ob dynamisches Startup oder etabliertes Enterprise – ich bin bereit, etwas Außergewöhnliches zu bauen.",
-      "conclusionCta": "Lassen Sie uns über eine Zusammenarbeit sprechen"
+      "conclusionCta": "Gemeinsam starten"
     },
     "work": {
       "heroBadge": "Offen für Aufträge",
@@ -727,7 +727,7 @@
       "bridgeTitle": "Lassen Sie uns gemeinsam die Lücke schließen",
       "bridgeDesc": "Von komplexen <span class=\"text-primary font-bold\">Industrie-HMI-Dashboards</span> bis zu immersiven <span class=\"text-primary font-bold\">Game-Interfaces</span>. Ich bringe 20+ Jahre systematisches Denken in Ihr nächstes digitales Produkt ein.",
       "startCollaboration": "Zusammenarbeit starten",
-      "hireMe": "Engagieren Sie mich"
+      "hireMe": "Jetzt anfragen"
     },
     "shadow": {
       "projectVisionTitle": "Projektvision",
@@ -756,7 +756,7 @@
       "creativeAutonomyDesc": "Verantwortung für gesamtes Thema, Atmosphäre und Spielmechanik – eine Synthese aus Code und hochwertiger Noir-Ästhetik.",
       "accelArchTitle": "Beschleunigte<br>Architektur",
       "accelArchHeadline": "KI als Co-Creator",
-      "managingComplexityTitle": "Komplexitäts\u00ADmanagement",
+      "managingComplexityTitle": "Komplexitäts­management",
       "managingComplexityText": "Ohne Entwickler im Team bedeutete es, die Lücke zwischen Design und Logik durch eine Design-to-Code-Architektur zu schließen.",
       "dataStructureTitle": "Datenstruktur",
       "dataStructureDesc": "Auslagerung der SVG-Koordinaten in assets.ts, um schnelles Rendering sicherzustellen und Speicherüberlastung zu vermeiden.",
@@ -810,7 +810,7 @@
       "allRightsReserved": "Alle Rechte vorbehalten.",
       "privacyPolicy": "Datenschutz",
       "termsOfService": "Nutzungsbedingungen",
-      "hireMe": "Kontaktiere mich"
+      "hireMe": "Jetzt anfragen"
     },
     "greentube": {
       "heroTag": "10 Jahre Gaming-Expertise",
@@ -847,9 +847,9 @@
     "funworld": {
       "heroSubheading": "Case Study: 2000–2003",
       "heroTitle": "Wegweisende<br>Touch-<br><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400 pb-1 pr-2\">Ergonomie</span>",
-      "heroDescription": "Definition der Regeln für Touch-Interaktion und \u201eHand-Occlusion\u201d-UX \u2013 lange vor dem Smartphone-Zeitalter, bei <strong>Funworld AG (Photoplay)</strong>.",
+      "heroDescription": "Definition der Regeln für Touch-Interaktion und „Hand-Occlusion”-UX – lange vor dem Smartphone-Zeitalter, bei <strong>Funworld AG (Photoplay)</strong>.",
       "challengeTitle": "Die Herausforderung",
-      "challengeDescription": "Rein touchbasierte Interfaces auf <span class=\"text-primary font-semibold\">niedrig auflösender CRT-Hardware</span> (640×480) zu entwerfen, erfordert ein völlig anderes Mindset als mausgesteuerte UI. Meine Aufgabe war es, die physischen Einschränkungen des Arcade-Gehäuses zu lösen: Blickwinkel, Fingerpräzision und den \u201eGorilla-Arm\u201d-Effekt.",
+      "challengeDescription": "Rein touchbasierte Interfaces auf <span class=\"text-primary font-semibold\">niedrig auflösender CRT-Hardware</span> (640×480) zu entwerfen, erfordert ein völlig anderes Mindset als mausgesteuerte UI. Meine Aufgabe war es, die physischen Einschränkungen des Arcade-Gehäuses zu lösen: Blickwinkel, Fingerpräzision und den „Gorilla-Arm”-Effekt.",
       "tagHMI": "HMI-Ergonomie",
       "tagPixelArt": "Pixel Art",
       "tagTechnicalArt": "Technical Art",
@@ -857,16 +857,16 @@
       "hardwareConstraintsValue": "CRT Touchscreens, Begrenzter VRAM, Alpha-Kanäle",
       "keyInnovationTitle": "Schlüsselinnovation",
       "keyInnovationValue": "Occlusion-Free Layouts",
-      "handOcclusionTitle": "Das \u201eHand-Occlusion\u201d-<br><span class=\"text-primary\">Paradox</span>",
+      "handOcclusionTitle": "Das „Hand-Occlusion”-<br><span class=\"text-primary\">Paradox</span>",
       "handOcclusionP1": "Wenn Nutzer:innen mit einem Touchscreen interagieren, <span class=\"text-slate-900 dark:text-white font-bold\">verdeckt ihre eigene Hand den Sichtbereich</span>. Das war im Jahr 2000 ein kritisches Problem, weil Arcade-Games unmittelbares Feedback erforderten.",
       "handOcclusionP2": "Meine Lösung war ein strikt definiertes Layout-Grid, das kritische Informationen (Score, Timer, nächster Zug) in <strong>periphere Zonen</strong> verschob und so das Zentrum für die Interaktionslogik freihielt.",
       "handOcclusionList1": "Optimierung der Hit-Target-Größen für Finger.",
-      "handOcclusionList2": "Sofortiges visuelles Feedback beim \u201eTouch-Down\u201d.",
+      "handOcclusionList2": "Sofortiges visuelles Feedback beim „Touch-Down”.",
       "gallerySubtitle": "Visuelle Vielfalt",
       "galleryTitle": "Anpassung an verschiedene Genres",
       "galleryDescription": "Von Puzzlespielen bis hin zu Kartenspielklassikern – jedes Interface musste strengen Style Guides folgen und gleichzeitig die grundlegenden ergonomischen Prinzipien einhalten.",
       "legacyTitle": "Das Vermächtnis des Technical Artist",
-      "legacyP1": "Damals war \u201eTechnical Artist\u201d noch keine gängige Berufsbezeichnung. Doch der Umgang mit <strong>TIFF-Alphakanälen</strong>, die Optimierung von Farbpaletten auf 256 Farben und das Verständnis der Rendering-Pipeline des Photoplay OS waren essenziell.",
+      "legacyP1": "Damals war „Technical Artist” noch keine gängige Berufsbezeichnung. Doch der Umgang mit <strong>TIFF-Alphakanälen</strong>, die Optimierung von Farbpaletten auf 256 Farben und das Verständnis der Rendering-Pipeline des Photoplay OS waren essenziell.",
       "legacyP2": "Diese Erfahrung legte das Fundament meiner Karriere: das Verständnis, dass <span class=\"text-primary font-bold\">Design nicht ohne Kenntnis des Tech Stacks existieren kann.</span>",
       "legacyToolsTitle": "Werkzeuge der Stunde (2000)",
       "legacyTool1": "Adobe Photoshop 5.5 (Verwaltung von Alphakanälen)",

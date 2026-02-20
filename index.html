@@ -236,9 +236,10 @@
                                                 data-i18n="index.availableForWork">Available for work
                                             </div>
                                             <h1
-                                                class="text-[#111418] dark:text-white text-4xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl">
+                                                class="text-[#111418] dark:text-white text-4xl font-black leading-[1.2] pb-2 tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl">
                                                 <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that
-                                                </span><span class="hero-anim-title-2 text-primary"
+                                                </span><span
+                                                    class="hero-anim-title-2 inline-block pb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
                                                     data-i18n="index.heroTitle2">humanizes</span><span
                                                     class="hero-anim-title-3" data-i18n="index.heroTitle3">
                                                     technology.</span>
@@ -377,17 +378,17 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                             <!-- Project 1: Anti-Gravity (New) -->
-                            <a href="case-study-styleguide.html" class="group block cursor-pointer">
+                            <a href="case-study-styleguide.html"
+                                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
                                 <div
                                     class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
                                     <img src="img/style-guide/styleguide.jpg" alt="Project Antigravity"
                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
                                     </div>
-                                    <!-- Optional Badge -->
                                     <div class="absolute top-4 left-4">
                                         <span
-                                            class="rounded-lg bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white border border-white/10">
+                                            class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
                                             <span data-i18n="index.selectedWorks.antiGravity.tag">Tech Stack & Style
                                                 Guide</span>
                                         </span>
@@ -402,12 +403,19 @@
                             </a>
 
                             <!-- Project 2: Shadow Cartels -->
-                            <a href="case-study-shadow.html" class="group block cursor-pointer">
+                            <a href="case-study-shadow.html"
+                                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
                                 <div
                                     class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
                                     <img src="img/shadow-cartels/shadow-game.jpg" alt="Game UI Design"
                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div class="absolute top-4 left-4">
+                                        <span
+                                            class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
+                                            <span data-i18n="work.projectShadowTag">Shadow Cartels App</span>
+                                        </span>
                                     </div>
                                 </div>
                                 <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
@@ -419,12 +427,19 @@
                             </a>
 
                             <!-- Project 3: Siemens / Industrial -->
-                            <a href="case-study-siemens.html" class="group block cursor-pointer">
+                            <a href="case-study-siemens.html"
+                                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
                                 <div
                                     class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
                                     <img src="img/siemens/wincc-screen.jpg" alt="Industrial HMI Design"
                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div class="absolute top-4 left-4">
+                                        <span
+                                            class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
+                                            <span data-i18n="work.projectWinccTag">WinCC-OA Interface</span>
+                                        </span>
                                     </div>
                                 </div>
                                 <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
@@ -435,13 +450,12 @@
                             </a>
 
                         </div>
-                        <div class="mt-8 text-center sm:hidden">
-                            <button
-                                class="w-full py-3 rounded-lg border border-gray-200 dark:border-gray-700 font-medium"
-                                href="work.html">
-                                View all projects
-                            </button>
-                        </div>
+                        <a href="work.html"
+                            class="sm:hidden mt-12 w-fit mx-auto group flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                            <span class="material-symbols-outlined text-[24px]">grid_view</span>
+                            <span class="text-base font-bold tracking-wide" data-i18n="index.selectedWorks.viewAll">View
+                                all projects</span>
+                        </a>
                     </div>
                 </div>
                 <!-- Removed 3 closing divs here as they are closed early above -->
@@ -525,22 +539,22 @@
                     <p>&copy; <span id="current-year"></span> László Földváry. <span
                             data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
                     <div class="flex gap-8">
-                        <a href="#" class="hover:text-primary transition-colors"
+                        <a href="datenschutz.html" class="hover:text-primary transition-colors"
                             data-i18n="footer.privacyPolicy">Privacy Policy</a>
-                        <a href="#" class="hover:text-primary transition-colors" data-i18n="footer.termsOfService">Terms
-                            of Service</a>
+                        <a href="impressum.html" class="hover:text-primary transition-colors"
+                            data-i18n="footer.impressum">Impressum</a>
                     </div>
                 </div>
             </div>
         </footer>
-        <div class="hidden md:block fixed bottom-6 right-6 z-50 sm:bottom-8 sm:right-8">
+        <div class="hidden md:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
             <a href="contact.html"
                 class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
                 <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
                     <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
                 </div>
-                <span class="text-base font-bold tracking-wide">Hire Me</span>
+                <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Hire Me</span>
             </a>
         </div>
 
@@ -646,6 +660,38 @@
     </script>
     <script src="js/theme.js"></script>
     <script src="js/language.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const stagger = parseInt(card.getAttribute('data-delay')) || 0;
+                        const delay = stagger + 300;
+
+                        setTimeout(() => {
+                            card.classList.remove('opacity-0', '-translate-x-20');
+                            card.classList.add('opacity-100', 'translate-x-0');
+                        }, delay);
+
+                        observer.unobserve(card);
+                    }
+                });
+            }, observerOptions);
+
+            const cards = document.querySelectorAll('.scroll-animate-card');
+            cards.forEach((card, index) => {
+                card.setAttribute('data-delay', index * 150); // 150ms delay between cards
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 
 </html>
