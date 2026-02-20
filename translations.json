@@ -29,6 +29,11 @@
           "subtitle": "AI-Collaborative Design System",
           "tag": "Tech Stack & Style Guide"
         },
+        "ewa": {
+          "title": "eWa Super App",
+          "subtitle": "UX/UI Design & Android APK",
+          "tag": "Fintech App"
+        },
         "shadow": {
           "title": "Shadow Cartels",
           "subtitle": "Lead Game UI & Interaction"
@@ -191,7 +196,9 @@
     },
     "work": {
       "heroBadge": "Open for commissions",
-      "heroTitle": "Crafting Intuitive <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500\">Digital</span> Experiences",
+      "heroTitle1": "<span class=\"hero-anim-title-1\">Crafting </span><span class=\"hero-anim-title-1\">Intuitive </span>",
+      "heroTitle2": "Digital",
+      "heroTitle3": "<span class=\"hero-anim-title-3\"> Experiences</span>",
       "heroDescription": "Specialized UI/UX Designer bridging the gap between functional business solutions and high-engagement gaming interfaces.",
       "viewPortfolio": "View Portfolio",
       "downloadResume": "Resume",
@@ -261,6 +268,34 @@
       "lessonsText": "\"Shadow Cartels proved that 20 years of UI experience, combined with AI, creates a new kind of Technical Artist. A professional who builds functional, scalable ecosystems.\"",
       "backToProjects": "Back to All Projects",
       "nextCaseStudy": "Next: Siemens WinCC OA"
+    },
+    "ewa": {
+      "heroTag": "Fintech & Mobility Super App",
+      "heroDescription": "A modern application tailored for the Austrian market, seamlessly integrating smart parking, e-vignettes, and digital <span class=\"text-primary font-bold\">Electronic Wallet (eWa)</span> payments.",
+      "challengeTitle": "The Austrian Market Challenge",
+      "challengeText1": "Designing a Super App requires balancing complexity. It must house multiple critical services—like smart road tolling, parking meters, and comprehensive digital wallets—without overwhelming the user. The primary challenge was crafting an architecture robust enough for mobility but secure enough for daily fintech operations in EURO (€).",
+      "challengeText2": "Targeting the Austrian market meant adhering to high expectations of privacy, data clarity, and clean, uncompromised aesthetics.",
+      "keyTechList": "Figma, Google Stitch, Notebook LM, Antigravity, Flutter, Next.js",
+      "deliverableDesc": "Functional Android APK & Design System",
+      "launchWeb": "Launch Web App",
+      "downloadApk": "Download APK",
+      "scanQrCode": "Scan to download directly to your Android device",
+      "apkWarning": "*Note: Installing the APK may require enabling \"Unknown Sources\" in your Android settings.",
+      "solutionTitle": "Trust Through <br><span class=\"text-primary font-light\">Dark Mode</span>",
+      "solutionDesc1": "I established a dark-mode fintech aesthetic enriched with premium gradients and Material Design 3 principles. The darker palette profoundly reduces eye strain during driving and inherently commands trust, a critical factor when handling user funds.",
+      "solutionDesc2": "The digital wallet relies on intuitive swiping mechanics and clearly separated premium card designs. Cross-platform navigation was streamlined to ensure users are never more than a tap away from reserving parking or purchasing an e-Vignette.",
+      "workflowTag": "The Designer as Builder Trend",
+      "workflowHeadline": "From Mockups to Logic",
+      "workflowSubheadline": "Deployable Android Setup",
+      "workflowDesc1": "The 2026 'Designer as Builder' paradigm shifts focus from drawing static screens to building functional logic. Using Google Stitch and Next.js as starting points, I initially utilized <strong>Notebook LM</strong> to meticulously plan and gather all necessary documentation on Android environments.",
+      "workflowDesc2": "This preparation took half a day, ensuring I had the capability to create my first-ever native app. From there, I utilized Google Antigravity and Flutter to transform those UI mockups into a fully functional, deployable Android APK.",
+      "workflowQuote": "\"The handoff to engineering wasn't a static PDF, it was a working application with simulated payment logic.\"",
+      "workflowQuoteSub": "By simulating complex payment logic and real-time state management, the build phase was completed in just 1 full day.",
+      "stat1Days": "Total Dev & Prep",
+      "stat2Apk": "Android APK Built",
+      "lessonsTitle": "The Future of Collaborative Design",
+      "lessonsText": "\"The eWa Super App proves that combining 20+ years of systematic UI/UX experience with cutting-edge AI logic accelerators allows designers to act as technical bridge-builders. Bridging the gap between functional business solutions and high-engagement interfaces is no longer just a tagline; it's an executable workflow.\"",
+      "nextCaseStudy": "Next: Greentube"
     },
     "siemens": {
       "heroTag": "Case Study: Industrial Systems Architecture",
@@ -520,6 +555,11 @@
           "subtitle": "KI-Kollaboratives Design System",
           "tag": "Technologie-Stack & Design-System"
         },
+        "ewa": {
+          "title": "eWa Super App",
+          "subtitle": "UX/UI Design & Android APK",
+          "tag": "Fintech App"
+        },
         "shadow": {
           "title": "Shadow Cartels",
           "subtitle": "Lead Game UI & Interaction"
@@ -702,7 +742,9 @@
     },
     "work": {
       "heroBadge": "Offen für Aufträge",
-      "heroTitle": "Erschaffung intuitiver <span class=\"text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500\">digitaler</span> Erlebnisse",
+      "heroTitle1": "<span class=\"hero-anim-title-1\">Erschaffung </span><span class=\"hero-anim-title-1\">intuitiver </span>",
+      "heroTitle2": "digitaler",
+      "heroTitle3": "<span class=\"hero-anim-title-3\"> Erlebnisse</span>",
       "heroDescription": "Spezialisierter UI/UX Designer, der die Lücke zwischen funktionalen Geschäftslösungen und fesselnden Gaming-Interfaces schließt.",
       "viewPortfolio": "Portfolio ansehen",
       "downloadResume": "Lebenslauf",
@@ -772,6 +814,34 @@
       "lessonsText": "„Shadow Cartels hat gezeigt, dass 20 Jahre UI-Erfahrung in Kombination mit KI eine neue Art von Technical Artist hervorbringen: eine Fachperson, die funktionale, skalierbare Ökosysteme aufbaut.“",
       "backToProjects": "Zurück zu allen Projekten",
       "nextCaseStudy": "Nächstes Projekt: Siemens WinCC OA"
+    },
+    "ewa": {
+      "heroTag": "Fintech & Mobility Super App",
+      "heroDescription": "Eine moderne, auf den österreichischen Markt zugeschnittene Anwendung, die Smart Parking, E-Vignetten und digitale Zahlungen über <span class=\"text-primary font-bold\">Electronic Wallet (eWa)</span> nahtlos integriert.",
+      "challengeTitle": "Die Herausforderung am österreichischen Markt",
+      "challengeText1": "Das Designen einer Super App erfordert die Ausbalancierung von Komplexität. Sie muss mehrere kritische Dienste wie smarte Mautsysteme, Parkuhren und umfassende digitale Geldbörsen bündeln – ohne dabei den Nutzer zu überfordern. Die zentrale Herausforderung war eine Architektur, die robust genug für die Mobilitätsbranche und sicher genug für tägliche Fintech-Operationen in EURO (€) ist.",
+      "challengeText2": "Die Ausrichtung auf den österreichischen Markt bedeutete, die hohen Erwartungen in Sachen Datenschutz, Datenklarheit und saubere, kompromisslose Ästhetik zu erfüllen.",
+      "keyTechList": "Figma, Google Stitch, Notebook LM, Antigravity, Flutter, Next.js",
+      "deliverableDesc": "Funktionales Android APK & Design System",
+      "launchWeb": "Web-App starten",
+      "downloadApk": "APK herunterladen",
+      "scanQrCode": "Scannen für direkten Download auf dein Android-Gerät",
+      "apkWarning": "*Hinweis: Für die Installation der APK muss in den Android-Einstellungen ggf. die Option \"Unbekannte Herkunft\" (oder ähnliches) aktiviert werden.",
+      "solutionTitle": "Vertrauen durch <br><span class=\"text-primary font-light\">Dark Mode</span>",
+      "solutionDesc1": "Ich etablierte ein Dark-Mode-Fintech-Design mit Premium-Gradients und Material-Design-3-Prinzipien. Die dunkle Farbpalette entlastet die Augen beim Fahren und strahlt von Natur aus Vertrauen aus – ein entscheidender Faktor beim Umgang mit Nutzergeldern.",
+      "solutionDesc2": "Die digitale Geldbörse (Wallet) setzt auf intuitive Wischmechaniken und klar abgegrenzte Premium-Karten-Designs. Die plattformübergreifende Navigation wurde verschlankt, sodass Nutzer nie mehr als einen Fingertipp von der Buchung eines Parkplatzes oder dem Kauf einer E-Vignette entfernt sind.",
+      "workflowTag": "Der 'Designer as Builder'-Trend",
+      "workflowHeadline": "Von Mockups zur Logik",
+      "workflowSubheadline": "Deployment-fähiges Android Setup",
+      "workflowDesc1": "Das 2026er 'Designer as Builder'-Paradigma verlagert den Fokus vom Zeichnen statischer Screens hin zum Erstellen funktionaler Logik. Ausgehend von Google Stitch und Next.js, nutzte ich zunächst <strong>Notebook LM</strong>, um alle relevanten Android-Umgebungsdokumentationen detailliert zu planen und zusammenzustellen.",
+      "workflowDesc2": "Diese Vorbereitung nahm einen halben Tag in Anspruch, um die nötige Basis für meine allererste native App zu schaffen. Anschließend überführte ich mithilfe von Google Antigravity und Flutter die UI-Mockups in ein voll funktionsfähiges, direkt einsetzbares Android APK.",
+      "workflowQuote": "\"Die Übergabe an das Engineering war kein statisches PDF, sondern eine funktionierende App mit simulierter Payment-Logik.\"",
+      "workflowQuoteSub": "Durch die Simulation der komplexen Payment-Logik und Echtzeit-State-Management wurde die Build-Phase in nur einem ganzen Tag abgeschlossen.",
+      "stat1Days": "Gesamte Dev- & Vorbereitungszeit",
+      "stat2Apk": "Android APK Built",
+      "lessonsTitle": "Die Zukunft kollaborativen Designs",
+      "lessonsText": "\"Die eWa Super App beweist: Wenn man über 20 Jahre systematische UI/UX-Erfahrung mit modernen AI-Logik-Beschleunigern kombiniert, können Designer als technische Brückenbauer agieren. Die Lücke zwischen funktionalen Business-Lösungen und hoch-engagierenden Interfaces zu schließen, ist nicht länger nur ein Slogan – es ist ein ausführbarer Workflow.\"",
+      "nextCaseStudy": "Nächstes: Greentube"
     },
     "siemens": {
       "heroTag": "Case Study: Industrielle Systemarchitektur",
