@@ -1,703 +1,1010 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html class="dark" lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="google-site-verification" content="google9366f63f30fd7097" />
     <title>About Me - UI Designer Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg" />
     <!-- SEO & Social Media Preview (Consolidated) -->
     <title>László Földváry | Senior UI/UX Design Architect</title>
-    <meta name="description"
-        content="Senior UI/UX Design Architect (25+ Jahre Erfahrung). React/Next.js Frontend Spezialist. Bewerbung Österreich/Wien.">
-    <meta name="keywords"
-        content="Senior UI/UX Designer, Design Architect, React Next.js, TypeScript Tailwind, Wien Job, Österreich Stellenangebot">
+    <meta
+      name="description"
+      content="Senior UI/UX Design Architect (25+ Jahre Erfahrung). React/Next.js Frontend Spezialist. Bewerbung Österreich/Wien."
+    />
+    <meta
+      name="keywords"
+      content="Senior UI/UX Designer, Design Architect, React Next.js, TypeScript Tailwind, Wien Job, Österreich Stellenangebot"
+    />
 
     <!-- Open Graph / LinkedIn / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.foeldvary.com/">
-    <meta property="og:title" content="László Földváry | Senior UI/UX Design Architect">
-    <meta property="og:description" content="25 years of design logic. From Industrial Precision to Gaming Innovation.">
-    <meta name="image" property="og:image" content="https://www.foeldvary.com/img/work-preview-de.jpg">
-    <meta name="author" content="László Földváry | Senior UI/UX Design Architect">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.foeldvary.com/" />
+    <meta
+      property="og:title"
+      content="László Földváry | Senior UI/UX Design Architect"
+    />
+    <meta
+      property="og:description"
+      content="25 years of design logic. From Industrial Precision to Gaming Innovation."
+    />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://www.foeldvary.com/img/work-preview-de.jpg"
+    />
+    <meta
+      name="author"
+      content="László Földváry | Senior UI/UX Design Architect"
+    />
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="László Földváry | Senior UI/UX Design Architect">
-    <meta name="twitter:description"
-        content="25 years of design logic. From Industrial Precision to Gaming Innovation.">
-    <meta name="twitter:image" content="https://www.foeldvary.com/img/work-preview-de.jpg">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="László Földváry | Senior UI/UX Design Architect"
+    />
+    <meta
+      name="twitter:description"
+      content="25 years of design logic. From Industrial Precision to Gaming Innovation."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.foeldvary.com/img/work-preview-de.jpg"
+    />
     <!-- Google / Search Engine tags -->
-    <meta name="description"
-        content="László Földváry - Senior UI/UX Design Architect. Portfolio showcasing 25 years of experience.">
+    <meta
+      name="description"
+      content="László Földváry - Senior UI/UX Design Architect. Portfolio showcasing 25 years of experience."
+    />
     <!-- 1. External Libraries (CDN) -->
-    <link rel="stylesheet" href="css/language-animations.css">
-    <link rel="stylesheet" href="css/hero-animations.css">
-    <link rel="stylesheet" href="css/nav-animations.css">
+    <link rel="stylesheet" href="css/language-animations.css" />
+    <link rel="stylesheet" href="css/hero-animations.css" />
+    <link rel="stylesheet" href="css/nav-animations.css" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
-        rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
     <script>
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     </script>
     <!-- 2. Tailwind Configuration (Kept separate for ID reference) -->
     <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#6366f1",
-                        "background-light": "#ffffff",
-                        "background-dark": "#101922",
-                    },
-                    fontFamily: { "display": ["Inter", "sans-serif"] },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#6366f1",
+              "background-light": "#ffffff",
+              "background-dark": "#101922",
             },
-        }
+            fontFamily: { display: ["Inter", "sans-serif"] },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
     </script>
-
 
     <!-- 3. Consolidated Styles -->
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+      body {
+        font-family: "Inter", sans-serif;
+      }
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
-        ::-webkit-scrollbar-thumb {
-            background-color: #9281ab;
-            border-radius: 20px;
-        }
+      ::-webkit-scrollbar-thumb {
+        background-color: #9281ab;
+        border-radius: 20px;
+      }
 
-        .dark ::-webkit-scrollbar-thumb {
-            background-color: #334155;
-        }
+      .dark ::-webkit-scrollbar-thumb {
+        background-color: #334155;
+      }
 
-        /* Masonry */
+      /* Masonry */
+      .masonry-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+      }
+
+      @media (min-width: 640px) {
         .masonry-grid {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 2rem;
+          grid-template-columns: repeat(2, 1fr);
         }
+      }
 
-        @media (min-width: 640px) {
-            .masonry-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+      @media (min-width: 1024px) {
+        .masonry-grid {
+          grid-template-columns: repeat(3, 1fr);
         }
-
-        @media (min-width: 1024px) {
-            .masonry-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased"
+  >
     <div class="relative flex min-h-screen flex-col">
-        <!-- TopNavBar -->
-        <header
-            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-            <!-- Replaced lg:px-40 with px-6 for consistent stability across layouts -->
-            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-
-                <!-- COLUMN 1: LOGO -->
-                <div class="flex items-center gap-4 nav-anim-logo">
-                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
-                        href="index.html">
-                        <div data-icon="logo"
-                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 p-1.5">
-                        </div>
-                        <h2 class="hidden sm:block text-lg font-bold tracking-tight">Laszlo.UI</h2>
-                    </a>
-                </div>
-
-                <!-- COLUMN 2: MENU -->
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
-                        data-i18n="nav.work">Work</a>
-                    <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
-                        data-i18n="nav.about">About</a>
-                    <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-3"
-                        data-i18n="nav.resume">Resume</a>
-                </nav>
-
-                <!-- COLUMN 3: BUTTONS -->
-                <div class="flex items-center gap-4">
-                    <!-- Let's Talk: Removed base transition, activates only on hover -->
-                    <a href="contact.html"
-                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
-                        aria-label="Contact">
-                        <img src="img/contact-icon.svg" alt="Contact" class="size-6">
-                    </a>
-                    <!-- Language Button -->
-                    <!-- Language Dropdown -->
-                    <div class="relative nav-anim-lang">
-                        <button id="language-btn"
-                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                            <img src="img/language-icon.svg" alt="Select Language" class="size-6">
-                        </button>
-                        <!-- Dropdown Menu -->
-                        <div id="language-dropdown"
-                            class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
-                            <div class="py-1">
-                                <a href="#" data-lang="en"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                                    <span class="text-lg">🇬🇧</span> English
-                                </a>
-                                <a href="#" data-lang="de"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
-                                    <span class="text-lg">🇩🇪</span> Deutsch
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
-                    <button id="theme-toggle"
-                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme">
-                        <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
-                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
-                        <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
-                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
-                    </button>
-                    <button id="menu-button"
-                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
-                        <span class="material-symbols-outlined text-[28px]">menu</span>
-                    </button>
-                </div>
-            </div>
-        </header>
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu"
-            class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
-            <!-- Close Button (X) only -->
-            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
-                <span class="material-symbols-outlined text-4xl">close</span>
-            </button>
-
-            <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-                <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-                    data-i18n="nav.work">Work</a>
-                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-                    data-i18n="nav.about">About</a>
-                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-                    data-i18n="nav.resume">Resume</a>
-                <a href="contact.html"
-                    class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
-                    data-i18n="nav.letsTalk">Let's
-                    Talk</a>
-            </nav>
-        </div>
-        <main class="flex-col">
-            <!-- Main Content -->
-            <div class="layout-container flex h-full grow flex-col">
-                <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
-                    <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
-                        <!-- Hero Section -->
-                        <!-- === HERO SECTION (FIXED LAYER 1) === -->
-                        <!-- Reduced top padding to fit content -->
-                        <div
-                            class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
-                            <div class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full">
-
-                                <!-- Top Hero Content (Text + Video) -->
-                                <div
-                                    class="flex flex-col-reverse gap-4 lg:gap-12 lg:flex-row lg:items-start mb-4 md:mb-8 flex-1">
-                                    <!-- Text Content -->
-                                    <div class="flex flex-col gap-4 lg:gap-6 flex-1 @[1200px]:pr-8 z-10">
-                                        <div class="flex flex-col gap-4 text-left">
-                                            <div class="hero-anim-badge w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
-                                                data-i18n="index.availableForWork">Available for work
-                                            </div>
-                                            <h1
-                                                class="text-[#111418] dark:text-white text-4xl font-black leading-[1.2] pb-2 tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl">
-                                                <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that
-                                                </span><span
-                                                    class="hero-anim-title-2 inline-block lg:pb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
-                                                    data-i18n="index.heroTitle2">humanizes</span><span
-                                                    class="hero-anim-title-3" data-i18n="index.heroTitle3">
-                                                    technology.</span>
-                                            </h1>
-                                            <h2
-                                                class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
-                                                <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior
-                                                    UI/UX & Product Designer. I leverage 25+ years of mastery and
-                                                    AI-driven workflows to solve complex problems through intuitive
-                                                    digital experiences.</span>
-                                            </h2>
-                                        </div>
-                                        <div class="flex flex-col sm:flex-row gap-4 mt-2">
-                                            <a href="work.html"
-                                                class="hero-anim-btn-primary flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
-                                                <span data-i18n="index.viewSelectedWork">View
-                                                    Selected Work</span>
-                                            </a>
-
-                                            <a href="contact.html"
-                                                class="hero-anim-btn-secondary flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]"
-                                                data-i18n="index.contactMe">Contact Me
-
-                                            </a>
-                                        </div>
-
-                                        <!-- Experience Cards (Integrated into Text Col) -->
-                                        <div class="hero-anim-stats w-full mt-4 lg:mt-[30px] z-10">
-                                            <div
-                                                class="grid grid-cols-2 gap-4 md:gap-8 max-w-[600px] lg:max-w-none lg:w-fit">
-                                                <!-- Card 1: Projects -->
-                                                <div
-                                                    class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
-                                                    <div class="flex items-baseline gap-1">
-                                                        <span
-                                                            class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">50</span>
-                                                        <span class="text-lg md:text-xl font-bold text-primary">+</span>
-                                                    </div>
-                                                    <span
-                                                        class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                                                        data-i18n="index.projectsLaunched">Projects Launched</span>
-                                                </div>
-
-                                                <!-- Card 2: Experience -->
-                                                <div
-                                                    class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
-                                                    <div class="flex items-baseline gap-1">
-                                                        <span
-                                                            class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
-                                                        <span class="text-lg md:text-xl font-bold text-primary">+</span>
-                                                    </div>
-                                                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                                                        data-i18n="index.yearsExperience">
-                                                        Years of Experience</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!-- Hero Image Video -->
-                                    <a href="work.html"
-                                        class="hero-anim-video w-full flex-1 max-w-[600px] mx-auto z-10">
-                                        <div
-                                            class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
-                                            <!-- Decorative abstract pattern/image -->
-                                            <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
-                                                <video autoplay muted loop playsinline poster="img/start.jpg"
-                                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
-                                                    <!-- Video Source -->
-                                                    <source src="img/start-loop.mp4" type="video/mp4">
-                                                    <!-- Fallback Image if video fails to load -->
-                                                    <img src="img/start.jpg"
-                                                        alt="László Földváry Portrait Illustration">
-                                                </video>
-                                                <!-- Transparent overlay layer for glassy banner contrast -->
-                                                <div
-                                                    class="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none">
-                                                </div>
-                                            </div>
-                                            <!-- Floating Card (Glassy, smaller) -->
-                                            <div
-                                                class="hero-anim-float-card absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex flex-col justify-center rounded-xl bg-white/10 p-2 sm:p-3 backdrop-blur-md border border-white/20 shadow-xl origin-right transform scale-90 sm:scale-100">
-                                                <div class="flex items-center gap-3 mb-2">
-                                                    <div
-                                                        class="h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center shrink-0">
-                                                        <span
-                                                            class="material-symbols-outlined text-[20px] sm:text-[24px]">check_circle</span>
-                                                    </div>
-                                                    <div class="pr-2 text-white">
-                                                        <div
-                                                            class="text-[10px] font-medium text-white/70 uppercase tracking-wider">
-                                                            Project Complete
-                                                        </div>
-                                                        <div class="text-xs sm:text-sm font-bold whitespace-nowrap">
-                                                            Develop.UI Dashboard
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="w-full bg-white/20 rounded-full h-1 mt-0.5">
-                                                    <div class="bg-green-400 h-1 rounded-full" style="width: 100%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-
-                            </div>
-                        </div>
-                        <!-- END OF RESTRICTED LAYOUT CONTAINER (Closing early so content-wrapper can be full width) -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- SCROLLING CONTENT WRAPPER (Cards + Selected Works) -->
-            <div id="content-wrapper"
-                class="relative z-10 mt-[100vh] bg-white dark:bg-background-dark shadow-[0_-30px_20px_#ffffff] dark:shadow-[0_-30px_20px_#101922]">
-
-
-
-                <!-- Inner Content Container (Matches Hero Width) -->
-                <div class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 py-5 flex flex-col">
-                    <!-- Place holder for dynamic content if any, or just structure -->
-                    <div class="layout-content-container flex flex-col flex-1">
-                    </div>
-                    <!-- Selected Works Preview -->
-                    <div class="py-10">
-                        <div class="flex justify-between items-end mb-8">
-                            <div>
-                                <h3 class="text-2xl font-bold text-[#111418] dark:text-white"
-                                    data-i18n="index.selectedWorks.title">Selected Works
-                                </h3>
-                                <p class="text-gray-500 mt-1" data-i18n="index.selectedWorks.subtitle">A glimpse into my
-                                    recent design journey</p>
-                            </div>
-                            <a class="text-primary font-medium hover:underline hidden sm:block" href="work.html"
-                                data-i18n="index.selectedWorks.viewAll">
-                                View all projects -&gt;
-                            </a>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                            <!-- Project 1: Anti-Gravity (New) -->
-                            <a href="case-study-styleguide.html"
-                                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
-                                    <img src="img/style-guide/styleguide.jpg" alt="Project Antigravity"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
-                                    </div>
-                                    <div class="absolute top-4 left-4">
-                                        <span
-                                            class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
-                                            <span data-i18n="index.selectedWorks.antiGravity.tag">Tech Stack & Style
-                                                Guide</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
-                                    data-i18n="index.selectedWorks.antiGravity.title">
-                                    Project Antigravity</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400"
-                                    data-i18n="index.selectedWorks.antiGravity.subtitle">AI-Collaborative Design System
-                                </p>
-                            </a>
-
-                            <!-- Project 2: Shadow Cartels -->
-                            <a href="case-study-shadow.html"
-                                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
-                                    <img src="img/shadow-cartels/shadow-game.jpg" alt="Game UI Design"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
-                                    </div>
-                                    <div class="absolute top-4 left-4">
-                                        <span
-                                            class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
-                                            <span data-i18n="work.projectShadowTag">Shadow Cartels App</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
-                                    data-i18n="index.selectedWorks.shadow.title">
-                                    Shadow Cartels</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400"
-                                    data-i18n="index.selectedWorks.shadow.subtitle">Lead Game UI &
-                                    Interaction</p>
-                            </a>
-
-                            <!-- Project 3: eWa Super App -->
-                            <a href="case-study-ewa.html"
-                                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
-                                <div
-                                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
-                                    <img src="img/ewa/dashboard.png" alt="eWa App Dashboard"
-                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors">
-                                    </div>
-                                    <div class="absolute top-4 left-4">
-                                        <span
-                                            class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
-                                            <span data-i18n="index.selectedWorks.ewa.tag">Fintech App</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
-                                    data-i18n="index.selectedWorks.ewa.title">
-                                    eWa Super App</h4>
-                                <p class="text-sm text-gray-500 dark:text-gray-400"
-                                    data-i18n="index.selectedWorks.ewa.subtitle">UX/UI Design & Android APK</p>
-                            </a>
-
-                        </div>
-                        <a href="work.html"
-                            class="sm:hidden mt-12 w-fit mx-auto group flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                            <span class="material-symbols-outlined text-[24px]">grid_view</span>
-                            <span class="text-base font-bold tracking-wide" data-i18n="index.selectedWorks.viewAll">View
-                                all projects</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- Removed 3 closing divs here as they are closed early above -->
-        </main>
-
-        <!-- Footer -->
-        <footer id="footer-reveal"
-            class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] pt-20 md:pt-32 pb-12 overflow-hidden transition-all duration-300">
-            <div
-                class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern">
-                <!-- Grid Pattern class added (if available) or background -->
-
-                <!-- 1. Large Text (Animated) -->
-                <div id="footer-cta" class="mb-6 md:mb-12">
-                    <h3 id="footer-title"
-                        class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
-                        data-i18n="footer.readyToStart">
-                        Ready
-                        to start a
-                        project?</h3>
-                    <p id="footer-subtitle"
-                        class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
-                        data-i18n="footer.readySubtitle">
-                        Let's create something meaningful together. I'm always open to new opportunities and
-                        interesting
-                        challenges.
-                    </p>
-                </div>
-
-                <!-- 2. Contact Details (Large) -->
-                <div id="footer-contact"
-                    class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out">
-                    <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
-                    <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
-                </div>
-
-                <!-- 3. Social Media Icons (Circular Button Effect) -->
-                <div class="flex gap-5 mb-8 md:mb-16">
-                    <!-- Email -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="mailto:foeldvary@gmail.com">
-                        <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                    <!-- LinkedIn -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank">
-                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                            <path clip-rule="evenodd"
-                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                                fill-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                    <!-- GitHub -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="https://github.com/Lacius76" target="_blank">
-                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                    </a>
-                    <!-- Facebook -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="https://www.facebook.com/laszlo.foldvary" target="_blank">
-                        <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
-                            </path>
-                        </svg>
-                    </a>
-                    <!-- Website Link - Removed (Redundant) -->
-                </div>
-
-                <!-- 4. Bottom Row (Standard across pages) -->
-                <div
-                    class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
-                    <p>&copy; <span id="current-year"></span> László Földváry. <span
-                            data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
-                    <div class="flex gap-8">
-                        <a href="datenschutz.html" class="hover:text-primary transition-colors"
-                            data-i18n="footer.privacyPolicy">Privacy Policy</a>
-                        <a href="impressum.html" class="hover:text-primary transition-colors"
-                            data-i18n="footer.impressum">Impressum</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <div class="hidden md:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
-            <a href="contact.html"
-                class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-
-                <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
-                    <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
-                </div>
-                <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Hire Me</span>
+      <!-- TopNavBar -->
+      <header
+        class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80"
+      >
+        <!-- Replaced lg:px-40 with px-6 for consistent stability across layouts -->
+        <div
+          class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between"
+        >
+          <!-- COLUMN 1: LOGO -->
+          <div class="flex items-center gap-4 nav-anim-logo">
+            <a
+              class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+              href="index.html"
+            >
+              <div
+                data-icon="logo"
+                class="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 p-1.5"
+              ></div>
+              <h2 class="hidden sm:block text-lg font-bold tracking-tight">
+                Laszlo.UI
+              </h2>
             </a>
+          </div>
+
+          <!-- COLUMN 2: MENU -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              href="work.html"
+              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
+              data-i18n="nav.work"
+              >Work</a
+            >
+            <a
+              href="about-me.html"
+              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
+              data-i18n="nav.about"
+              >About</a
+            >
+            <a
+              href="resume.html"
+              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-3"
+              data-i18n="nav.resume"
+              >Resume</a
+            >
+          </nav>
+
+          <!-- COLUMN 3: BUTTONS -->
+          <div class="flex items-center gap-4">
+            <!-- Let's Talk: Removed base transition, activates only on hover -->
+            <a
+              href="contact.html"
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
+              aria-label="Contact"
+            >
+              <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
+            </a>
+            <!-- Language Button -->
+            <!-- Language Dropdown -->
+            <div class="relative nav-anim-lang">
+              <button
+                id="language-btn"
+                class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <img
+                  src="img/language-icon.svg"
+                  alt="Select Language"
+                  class="size-6"
+                />
+              </button>
+              <!-- Dropdown Menu -->
+              <div
+                id="language-dropdown"
+                class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform"
+              >
+                <div class="py-1">
+                  <a
+                    href="#"
+                    data-lang="en"
+                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  >
+                    <span class="text-lg">🇬🇧</span> English
+                  </a>
+                  <a
+                    href="#"
+                    data-lang="de"
+                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50"
+                  >
+                    <span class="text-lg">🇩🇪</span> Deutsch
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
+            <button
+              id="theme-toggle"
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme"
+            >
+              <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
+              <span
+                class="block dark:hidden material-symbols-outlined text-[24px]"
+                >dark_mode</span
+              >
+              <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
+              <span
+                class="hidden dark:block material-symbols-outlined text-[24px]"
+                >light_mode</span
+              >
+            </button>
+            <button
+              id="menu-button"
+              class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white"
+            >
+              <span class="material-symbols-outlined text-[28px]">menu</span>
+            </button>
+          </div>
+        </div>
+      </header>
+      <!-- Mobile Menu Overlay -->
+      <div
+        id="mobile-menu"
+        class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8"
+      >
+        <!-- Close Button (X) only -->
+        <button
+          id="close-menu"
+          class="absolute top-6 right-6 text-slate-900 dark:text-white"
+        >
+          <span class="material-symbols-outlined text-4xl">close</span>
+        </button>
+
+        <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+          <a
+            href="work.html"
+            class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+            data-i18n="nav.work"
+            >Work</a
+          >
+          <a
+            href="about-me.html"
+            class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+            data-i18n="nav.about"
+            >About</a
+          >
+          <a
+            href="resume.html"
+            class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+            data-i18n="nav.resume"
+            >Resume</a
+          >
+          <a
+            href="contact.html"
+            class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
+            data-i18n="nav.letsTalk"
+            >Let's Talk</a
+          >
+        </nav>
+      </div>
+      <main class="flex-col">
+        <!-- Main Content -->
+        <div class="layout-container flex h-full grow flex-col">
+          <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+            <div
+              class="layout-content-container flex flex-col max-w-[1200px] flex-1"
+            >
+              <!-- Hero Section -->
+              <!-- === HERO SECTION (FIXED LAYER 1) === -->
+              <!-- Reduced top padding to fit content -->
+              <div
+                class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark"
+              >
+                <div
+                  class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full"
+                >
+                  <!-- Top Hero Content (Text + Video) -->
+                  <div
+                    class="flex flex-col-reverse gap-4 lg:gap-12 lg:flex-row lg:items-start mb-4 md:mb-8 flex-1"
+                  >
+                    <!-- Text Content -->
+                    <div
+                      class="flex flex-col gap-4 lg:gap-6 flex-1 @[1200px]:pr-8 z-10"
+                    >
+                      <div class="flex flex-col gap-4 text-left">
+                        <div
+                          class="hero-anim-badge w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
+                          data-i18n="index.availableForWork"
+                        >
+                          Available for work
+                        </div>
+                        <h1
+                          class="text-[#111418] dark:text-white text-4xl font-black leading-[1.2] pb-2 tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl"
+                        >
+                          <span
+                            class="hero-anim-title-1"
+                            data-i18n="index.heroTitle1"
+                            >Design that </span
+                          ><span
+                            class="hero-anim-title-2 inline-block lg:pb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
+                            data-i18n="index.heroTitle2"
+                            >humanizes</span
+                          ><span
+                            class="hero-anim-title-3"
+                            data-i18n="index.heroTitle3"
+                          >
+                            technology.</span
+                          >
+                        </h1>
+                        <h2
+                          class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl"
+                        >
+                          <span data-i18n="index.heroSubtitle"
+                            >Hi, I'm László Földváry. Senior UI/UX & Product
+                            Designer. I leverage 25+ years of mastery and
+                            AI-driven workflows to solve complex problems
+                            through intuitive digital experiences.</span
+                          >
+                        </h2>
+                      </div>
+                      <div class="flex flex-col sm:flex-row gap-4 mt-2">
+                        <a
+                          href="work.html"
+                          class="hero-anim-btn-primary flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap"
+                        >
+                          <span data-i18n="index.viewSelectedWork"
+                            >View Selected Work</span
+                          >
+                        </a>
+
+                        <a
+                          href="contact.html"
+                          class="hero-anim-btn-secondary flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]"
+                          data-i18n="index.contactMe"
+                          >Contact Me
+                        </a>
+                      </div>
+
+                      <!-- Experience Cards (Integrated into Text Col) -->
+                      <div
+                        class="hero-anim-stats w-full mt-4 lg:mt-[30px] z-10"
+                      >
+                        <div
+                          class="grid grid-cols-2 gap-4 md:gap-8 max-w-[600px] lg:max-w-none lg:w-fit"
+                        >
+                          <!-- Card 1: Projects -->
+                          <div
+                            class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default"
+                          >
+                            <div class="flex items-baseline gap-1">
+                              <span
+                                class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white"
+                                >50</span
+                              >
+                              <span
+                                class="text-lg md:text-xl font-bold text-primary"
+                                >+</span
+                              >
+                            </div>
+                            <span
+                              class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                              data-i18n="index.projectsLaunched"
+                              >Projects Launched</span
+                            >
+                          </div>
+
+                          <!-- Card 2: Experience -->
+                          <div
+                            class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default"
+                          >
+                            <div class="flex items-baseline gap-1">
+                              <span
+                                class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white"
+                                >25</span
+                              >
+                              <span
+                                class="text-lg md:text-xl font-bold text-primary"
+                                >+</span
+                              >
+                            </div>
+                            <p
+                              class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                              data-i18n="index.yearsExperience"
+                            >
+                              Years of Experience
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Hero Image Video -->
+                    <a
+                      href="work.html"
+                      class="hero-anim-video w-full flex-1 max-w-[600px] mx-auto z-10"
+                    >
+                      <div
+                        class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group"
+                      >
+                        <!-- Decorative abstract pattern/image -->
+                        <div
+                          class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg"
+                        >
+                          <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            poster="img/start.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer"
+                          >
+                            <!-- Video Source -->
+                            <source src="img/start-loop.mp4" type="video/mp4" />
+                            <!-- Fallback Image if video fails to load -->
+                            <img
+                              src="img/start.jpg"
+                              alt="László Földváry Portrait Illustration"
+                            />
+                          </video>
+                          <!-- Transparent overlay layer for glassy banner contrast -->
+                          <div
+                            class="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"
+                          ></div>
+                        </div>
+                        <!-- Floating Card (Glassy, smaller) -->
+                        <div
+                          class="hero-anim-float-card absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex flex-col justify-center rounded-xl bg-white/10 p-2 sm:p-3 backdrop-blur-md border border-white/20 shadow-xl origin-right transform scale-90 sm:scale-100"
+                        >
+                          <div class="flex items-center gap-3 mb-2">
+                            <div
+                              class="h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center shrink-0"
+                            >
+                              <span
+                                class="material-symbols-outlined text-[20px] sm:text-[24px]"
+                                >check_circle</span
+                              >
+                            </div>
+                            <div class="pr-2 text-white">
+                              <div
+                                class="text-[10px] font-medium text-white/70 uppercase tracking-wider"
+                              >
+                                Project Complete
+                              </div>
+                              <div
+                                class="text-xs sm:text-sm font-bold whitespace-nowrap"
+                              >
+                                Develop.UI Dashboard
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="w-full bg-white/20 rounded-full h-1 mt-0.5"
+                          >
+                            <div
+                              class="bg-green-400 h-1 rounded-full"
+                              style="width: 100%"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- END OF RESTRICTED LAYOUT CONTAINER (Closing early so content-wrapper can be full width) -->
+            </div>
+          </div>
         </div>
 
-        <!-- CLOSE CONTENT WRAPPER BEFORE FOOTER -->
-    </div>
-    </main>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('[data-icon]').forEach(element => {
-                const iconName = element.getAttribute('data-icon');
+        <!-- SCROLLING CONTENT WRAPPER (Cards + Selected Works) -->
+        <div
+          id="content-wrapper"
+          class="relative z-10 mt-[100vh] bg-white dark:bg-background-dark shadow-[0_-30px_20px_#ffffff] dark:shadow-[0_-30px_20px_#101922]"
+        >
+          <!-- Inner Content Container (Matches Hero Width) -->
+          <div
+            class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 py-5 flex flex-col"
+          >
+            <!-- Place holder for dynamic content if any, or just structure -->
+            <div class="layout-content-container flex flex-col flex-1"></div>
+            <!-- Selected Works Preview -->
+            <div class="py-10">
+              <div class="flex justify-between items-end mb-8">
+                <div>
+                  <h3
+                    class="text-2xl font-bold text-[#111418] dark:text-white"
+                    data-i18n="index.selectedWorks.title"
+                  >
+                    Selected Works
+                  </h3>
+                  <p
+                    class="text-gray-500 mt-1"
+                    data-i18n="index.selectedWorks.subtitle"
+                  >
+                    A glimpse into my recent design journey
+                  </p>
+                </div>
+                <a
+                  class="text-primary font-medium hover:underline hidden sm:block"
+                  href="work.html"
+                  data-i18n="index.selectedWorks.viewAll"
+                >
+                  View all projects -&gt;
+                </a>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1: eWa Super App -->
+                <a
+                  href="case-study-ewa.html"
+                  class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out"
+                >
+                  <div
+                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md"
+                  >
+                    <video
+                      src="img/ewa/ewa-logo.mp4"
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    ></video>
+                    <div
+                      class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"
+                    ></div>
+                    <div class="absolute top-4 left-4">
+                      <span
+                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      >
+                        <span data-i18n="index.selectedWorks.ewa.tag"
+                          >Fintech App</span
+                        >
+                      </span>
+                    </div>
+                  </div>
+                  <h4
+                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
+                    data-i18n="index.selectedWorks.ewa.title"
+                  >
+                    eWa Super App
+                  </h4>
+                  <p
+                    class="text-sm text-gray-500 dark:text-gray-400"
+                    data-i18n="index.selectedWorks.ewa.subtitle"
+                  >
+                    UX/UI Design & Android APK
+                  </p>
+                </a>
 
-                // Check if database and icon exist
-                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
-                    element.innerHTML = ASSETS[iconName];
-                }
-            });
+                <!-- Project 2: Anti-Gravity (New) -->
+                <a
+                  href="case-study-styleguide.html"
+                  class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out"
+                >
+                  <div
+                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md"
+                  >
+                    <img
+                      src="img/style-guide/styleguide.jpg"
+                      alt="Project Antigravity"
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div
+                      class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"
+                    ></div>
+                    <div class="absolute top-4 left-4">
+                      <span
+                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      >
+                        <span data-i18n="index.selectedWorks.antiGravity.tag"
+                          >Tech Stack & Style Guide</span
+                        >
+                      </span>
+                    </div>
+                  </div>
+                  <h4
+                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
+                    data-i18n="index.selectedWorks.antiGravity.title"
+                  >
+                    Project Antigravity
+                  </h4>
+                  <p
+                    class="text-sm text-gray-500 dark:text-gray-400"
+                    data-i18n="index.selectedWorks.antiGravity.subtitle"
+                  >
+                    AI-Collaborative Design System
+                  </p>
+                </a>
+
+                <!-- Project 3: Shadow Cartels -->
+                <a
+                  href="case-study-shadow.html"
+                  class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out"
+                >
+                  <div
+                    class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md"
+                  >
+                    <img
+                      src="img/shadow-cartels/shadow-game.jpg"
+                      alt="Game UI Design"
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div
+                      class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"
+                    ></div>
+                    <div class="absolute top-4 left-4">
+                      <span
+                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      >
+                        <span data-i18n="work.projectShadowTag"
+                          >Shadow Cartels App</span
+                        >
+                      </span>
+                    </div>
+                  </div>
+                  <h4
+                    class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
+                    data-i18n="index.selectedWorks.shadow.title"
+                  >
+                    Shadow Cartels
+                  </h4>
+                  <p
+                    class="text-sm text-gray-500 dark:text-gray-400"
+                    data-i18n="index.selectedWorks.shadow.subtitle"
+                  >
+                    Lead Game UI & Interaction
+                  </p>
+                </a>
+              </div>
+              <a
+                href="work.html"
+                class="sm:hidden mt-12 w-fit mx-auto group flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              >
+                <span class="material-symbols-outlined text-[24px]"
+                  >grid_view</span
+                >
+                <span
+                  class="text-base font-bold tracking-wide"
+                  data-i18n="index.selectedWorks.viewAll"
+                  >View all projects</span
+                >
+              </a>
+            </div>
+          </div>
+          <!-- Removed 3 closing divs here as they are closed early above -->
+        </div>
+        <!-- END OF CONTENT WRAPPER -->
+      </main>
+
+      <!-- Footer -->
+      <footer
+        id="footer-reveal"
+        class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] pt-20 md:pt-32 pb-12 overflow-hidden transition-all duration-300"
+      >
+        <div
+          class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern"
+        >
+          <!-- Grid Pattern class added (if available) or background -->
+
+          <!-- 1. Large Text (Animated) -->
+          <div id="footer-cta" class="mb-6 md:mb-12">
+            <h3
+              id="footer-title"
+              class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
+              data-i18n="footer.readyToStart"
+            >
+              Ready to start a project?
+            </h3>
+            <p
+              id="footer-subtitle"
+              class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
+              data-i18n="footer.readySubtitle"
+            >
+              Let's create something meaningful together. I'm always open to new
+              opportunities and interesting challenges.
+            </p>
+          </div>
+
+          <!-- 2. Contact Details (Large) -->
+          <div
+            id="footer-contact"
+            class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out"
+          >
+            <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">
+              +43 699 818 41 767
+            </p>
+            <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+          </div>
+
+          <!-- 3. Social Media Icons (Circular Button Effect) -->
+          <div class="flex gap-5 mb-8 md:mb-16">
+            <!-- Email -->
+            <a
+              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+              href="mailto:foeldvary@gmail.com"
+            >
+              <svg
+                class="size-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a
+              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+              href="https://www.linkedin.com/in/foldvary-laszlo/"
+              target="_blank"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-6"
+                fill="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+            <!-- GitHub -->
+            <a
+              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+              href="https://github.com/Lacius76"
+              target="_blank"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-6"
+                fill="currentColor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+            </a>
+            <!-- Facebook -->
+            <a
+              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+              href="https://www.facebook.com/laszlo.foldvary"
+              target="_blank"
+            >
+              <svg
+                class="size-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                ></path>
+              </svg>
+            </a>
+            <!-- Website Link - Removed (Redundant) -->
+          </div>
+
+          <!-- 4. Bottom Row (Standard across pages) -->
+          <div
+            class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]"
+          >
+            <p>
+              &copy; <span id="current-year"></span> László Földváry.
+              <span data-i18n="footer.allRightsReserved"
+                >All rights reserved.</span
+              >
+            </p>
+            <div class="flex gap-8">
+              <a
+                href="datenschutz.html"
+                class="hover:text-primary transition-colors"
+                data-i18n="footer.privacyPolicy"
+                >Privacy Policy</a
+              >
+              <a
+                href="impressum.html"
+                class="hover:text-primary transition-colors"
+                data-i18n="footer.impressum"
+                >Impressum</a
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+      <div
+        class="hidden md:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8"
+      >
+        <a
+          href="contact.html"
+          class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        >
+          <div
+            class="flex items-center justify-center transition-transform group-hover:rotate-12"
+          >
+            <span class="material-symbols-outlined text-[24px]"
+              >mark_email_unread</span
+            >
+          </div>
+          <span
+            class="text-base font-bold tracking-wide"
+            data-i18n="work.hireMe"
+            >Hire Me</span
+          >
+        </a>
+      </div>
+
+      <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll("[data-icon]").forEach((element) => {
+            const iconName = element.getAttribute("data-icon");
+
+            // Check if database and icon exist
+            if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
+              element.innerHTML = ASSETS[iconName];
+            }
+          });
         });
-    </script>
-    <script>
+      </script>
+      <script>
         // Mobile Menu Control
-        const menuBtn = document.getElementById('menu-button');
-        const closeBtn = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBtn = document.getElementById("menu-button");
+        const closeBtn = document.getElementById("close-menu");
+        const mobileMenu = document.getElementById("mobile-menu");
 
         // On Hamburger Click: Remove 'hidden' class (Show Menu)
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        menuBtn.addEventListener("click", () => {
+          mobileMenu.classList.remove("hidden");
+          document.body.style.overflow = "hidden"; // Prevent background scrolling
         });
 
         // On 'X' Click: Add 'hidden' class (Hide Menu)
-        closeBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+        closeBtn.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          document.body.style.overflow = "auto"; // Restore scrolling
         });
 
         // Optional: Close menu when a link is clicked
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            });
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            document.body.style.overflow = "auto";
+          });
         });
-    </script>
-    <script src="js/icons.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('[data-icon]').forEach(element => {
-                const iconName = element.getAttribute('data-icon');
-                if (typeof ASSETS !== 'undefined' && ASSETS[iconName]) {
-                    element.innerHTML = ASSETS[iconName];
-                }
-            });
+      </script>
+      <script src="js/icons.js"></script>
+      <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll("[data-icon]").forEach((element) => {
+            const iconName = element.getAttribute("data-icon");
+            if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
+              element.innerHTML = ASSETS[iconName];
+            }
+          });
         });
-    </script>
-    <script src="js/theme.js"></script>
-    <script>
+      </script>
+      <script src="js/theme.js"></script>
+      <script>
         // Footer Reveal Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const footer = document.getElementById('footer-reveal');
-            const wrapper = document.getElementById('content-wrapper');
+        document.addEventListener("DOMContentLoaded", () => {
+          const footer = document.getElementById("footer-reveal");
+          const wrapper = document.getElementById("content-wrapper");
 
-            function adjustLayout() {
-                // Set wrapper margin equal to footer height to allow reveal
-                wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+          function adjustLayout() {
+            // Set wrapper margin equal to footer height to allow reveal
+            wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+          }
+
+          function handleScroll() {
+            const scrollY = window.scrollY;
+            const viewHeight = window.innerHeight;
+            const docHeight = document.body.scrollHeight;
+
+            // 1. Z-Index Logic
+            if (scrollY > viewHeight) {
+              footer.style.zIndex = "1";
+            } else {
+              footer.style.zIndex = "-1";
             }
 
-            function handleScroll() {
-                const scrollY = window.scrollY;
-                const viewHeight = window.innerHeight;
-                const docHeight = document.body.scrollHeight;
+            // 2. CTA Animation Logic
+            // Trigger when we are close to the bottom (footer fully revealed)
+            const title = document.getElementById("footer-title");
+            const subtitle = document.getElementById("footer-subtitle");
+            const contact = document.getElementById("footer-contact");
 
-                // 1. Z-Index Logic
-                if (scrollY > viewHeight) {
-                    footer.style.zIndex = '1';
-                } else {
-                    footer.style.zIndex = '-1';
-                }
-
-                // 2. CTA Animation Logic
-                // Trigger when we are close to the bottom (footer fully revealed)
-                const title = document.getElementById('footer-title');
-                const subtitle = document.getElementById('footer-subtitle');
-                const contact = document.getElementById('footer-contact');
-
-                // Use a threshold (e.g. 50px from bottom)
-                if (window.innerHeight + scrollY >= docHeight - 50) {
-                    title.classList.remove('opacity-0', 'translate-x-[50px]');
-                    subtitle.classList.remove('opacity-0', '-translate-x-[50px]');
-                    contact.classList.remove('opacity-0', 'translate-y-[50px]');
-                } else {
-                    title.classList.add('opacity-0', 'translate-x-[50px]');
-                    subtitle.classList.add('opacity-0', '-translate-x-[50px]');
-                    contact.classList.add('opacity-0', 'translate-y-[50px]');
-                }
+            // Use a threshold (e.g. 50px from bottom)
+            if (window.innerHeight + scrollY >= docHeight - 50) {
+              title.classList.remove("opacity-0", "translate-x-[50px]");
+              subtitle.classList.remove("opacity-0", "-translate-x-[50px]");
+              contact.classList.remove("opacity-0", "translate-y-[50px]");
+            } else {
+              title.classList.add("opacity-0", "translate-x-[50px]");
+              subtitle.classList.add("opacity-0", "-translate-x-[50px]");
+              contact.classList.add("opacity-0", "translate-y-[50px]");
             }
+          }
 
-            // Init
-            adjustLayout();
-            window.addEventListener('resize', adjustLayout);
-            window.addEventListener('scroll', handleScroll, { passive: true });
+          // Init
+          adjustLayout();
+          window.addEventListener("resize", adjustLayout);
+          window.addEventListener("scroll", handleScroll, { passive: true });
         });
-    </script>
-    <script src="js/theme.js"></script>
-    <script src="js/language.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
+      </script>
+      <script src="js/theme.js"></script>
+      <script src="js/language.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const observerOptions = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.1,
+          };
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const card = entry.target;
-                        const stagger = parseInt(card.getAttribute('data-delay')) || 0;
-                        const delay = stagger + 300;
+          const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const card = entry.target;
+                const stagger = parseInt(card.getAttribute("data-delay")) || 0;
+                const delay = stagger + 300;
 
-                        setTimeout(() => {
-                            card.classList.remove('opacity-0', '-translate-x-20');
-                            card.classList.add('opacity-100', 'translate-x-0');
-                        }, delay);
+                setTimeout(() => {
+                  card.classList.remove("opacity-0", "-translate-x-20");
+                  card.classList.add("opacity-100", "translate-x-0");
+                }, delay);
 
-                        observer.unobserve(card);
-                    }
-                });
-            }, observerOptions);
-
-            const cards = document.querySelectorAll('.scroll-animate-card');
-            cards.forEach((card, index) => {
-                card.setAttribute('data-delay', index * 150); // 150ms delay between cards
-                observer.observe(card);
+                observer.unobserve(card);
+              }
             });
-        });
-    </script>
-</body>
+          }, observerOptions);
 
+          const cards = document.querySelectorAll(".scroll-animate-card");
+          cards.forEach((card, index) => {
+            card.setAttribute("data-delay", index * 150); // 150ms delay between cards
+            observer.observe(card);
+          });
+        });
+      </script>
+    </div>
+  </body>
 </html>

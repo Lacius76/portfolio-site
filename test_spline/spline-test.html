@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spline Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.51/build/spline-viewer.js"></script>
+    <style>
+        /* Hide the Spline Logo Watermark */
+        spline-viewer::part(logo) {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-4xl bg-slate-800 rounded-2xl shadow-2xl p-8 text-center">
+        <h1 class="text-3xl font-bold mb-4 flex items-center justify-center gap-3">
+            <span class="material-symbols-outlined text-[#6366f1]">3d_rotation</span>
+            Spline 3D Integration Test
+        </h1>
+        <p class="text-slate-400 mb-8">Place your exported Spline web component here to see how it behaves in a Tailwind
+            environment.</p>
+
+        <!-- Spline Container -->
+        <div
+            class="w-full aspect-video md:aspect-[21/9] bg-slate-950 rounded-xl overflow-hidden border border-white/10 relative group">
+
+            <!-- Replace this placeholder with the copied Spline-Viewer tag -->
+            <div class="absolute inset-0 flex items-center justify-center text-slate-600 font-medium z-0">
+                <script type="module"
+                    src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
+                <spline-viewer url="https://prod.spline.design/nK1IJ4iZ8kM4de-t/scene.splinecode"></spline-viewer>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
