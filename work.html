@@ -1,1085 +1,756 @@
 <!doctype html>
 
 <html class="dark" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>About Me - UI Designer Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg" />
 
-    <!-- 1. External Libraries (CDN) -->
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>About Me - UI Designer Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="img/logo-s.svg" />
 
-    <link rel="stylesheet" href="css/language-animations.css" />
-    <link rel="stylesheet" href="css/nav-animations.css" />
-    <link rel="stylesheet" href="css/hero-animations.css" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      if (
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
-    <!-- 2. Tailwind Configuration (Kept separate for ID reference) -->
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#6366f1",
-              "background-light": "#ffffff",
-              "background-dark": "#101922",
-            },
-            fontFamily: { display: ["Inter", "sans-serif"] },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              "2xl": "1rem",
-              full: "9999px",
-            },
+  <!-- 1. External Libraries (CDN) -->
+
+  <link rel="stylesheet" href="css/language-animations.css" />
+  <link rel="stylesheet" href="css/nav-animations.css" />
+  <link rel="stylesheet" href="css/hero-animations.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script>
+    if (
+      localStorage.getItem("color-theme") === "dark" ||
+      (!("color-theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+  <!-- 2. Tailwind Configuration (Kept separate for ID reference) -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#6366f1",
+            "background-light": "#ffffff",
+            "background-dark": "#101922",
+          },
+          fontFamily: { display: ["Inter", "sans-serif"] },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            "2xl": "1rem",
+            full: "9999px",
           },
         },
-      };
-    </script>
+      },
+    };
+  </script>
 
-    <!-- 3. Consolidated Styles -->
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-      }
+  <!-- 3. Consolidated Styles -->
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
 
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
-      }
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
 
-      /* Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
 
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-      ::-webkit-scrollbar-thumb {
-        background-color: #9281ab;
-        border-radius: 20px;
-      }
+    ::-webkit-scrollbar-thumb {
+      background-color: #9281ab;
+      border-radius: 20px;
+    }
 
-      .dark ::-webkit-scrollbar-thumb {
-        background-color: #334155;
-      }
+    .dark ::-webkit-scrollbar-thumb {
+      background-color: #334155;
+    }
 
-      /* Masonry */
+    /* Masonry */
+    .masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 2rem;
+    }
+
+    @media (min-width: 640px) {
       .masonry-grid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
       }
+    }
 
-      @media (min-width: 640px) {
-        .masonry-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
+    @media (min-width: 1024px) {
+      .masonry-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
+    }
+  </style>
+</head>
 
-      @media (min-width: 1024px) {
-        .masonry-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-    </style>
-  </head>
-
-  <body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased"
-  >
-    <div class="relative flex min-h-screen flex-col">
-      <!-- TopNavBar -->
-      <header
-        class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80"
-      >
-        <!-- Replaced lg:px-40 with px-6 for consistent stability -->
-        <div
-          class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between"
-        >
-          <!-- COLUMN 1: LOGO -->
-          <div class="flex items-center gap-4 nav-anim-logo">
-            <a
-              class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
-              href="index.html"
-            >
-              <div
-                data-icon="logo"
-                class="flex size-9 items-center justify-center rounded-xl bg-primary text-green-500 shadow-lg shadow-primary/20 p-1.5"
-              ></div>
-              <h2 class="hidden sm:block text-lg font-bold tracking-tight">
-                Laszlo.UI
-              </h2>
-            </a>
-          </div>
-
-          <!-- COLUMN 2: MENU -->
-          <nav class="hidden md:flex items-center gap-8">
-            <a
-              href="about-me.html"
-              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
-              data-i18n="nav.about"
-              >About</a
-            >
-            <a
-              href="resume.html"
-              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
-              data-i18n="nav.resume"
-              >Resume</a
-            >
-          </nav>
-
-          <!-- COLUMN 3: BUTTONS -->
-          <div class="flex items-center gap-4">
-            <!-- Let's Talk: Removed base transition, activates only on hover -->
-            <a
-              href="contact.html"
-              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
-              aria-label="Contact"
-            >
-              <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
-            </a>
-            <!-- Language Dropdown -->
-            <div class="relative nav-anim-lang">
-              <button
-                id="language-btn"
-                class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <img
-                  src="img/language-icon.svg"
-                  alt="Select Language"
-                  class="size-6"
-                />
-              </button>
-              <!-- Dropdown Menu -->
-              <div
-                id="language-dropdown"
-                class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform"
-              >
-                <div class="py-1">
-                  <a
-                    href="#"
-                    data-lang="en"
-                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
-                  >
-                    <span class="text-lg">🇬🇧</span> English
-                  </a>
-                  <a
-                    href="#"
-                    data-lang="de"
-                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50"
-                  >
-                    <span class="text-lg">🇩🇪</span> Deutsch
-                  </a>
-                </div>
-              </div>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+  <div class="relative flex min-h-screen flex-col">
+    <!-- TopNavBar -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+      <!-- Replaced lg:px-40 with px-6 for consistent stability -->
+      <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+        <!-- COLUMN 1: LOGO -->
+        <div class="flex items-center gap-4 nav-anim-logo">
+          <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+            href="index.html">
+            <div data-icon="logo"
+              class="flex size-9 items-center justify-center rounded-xl bg-primary text-green-500 shadow-lg shadow-primary/20 p-1.5">
             </div>
-            <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
-            <button
-              id="theme-toggle"
-              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme"
-            >
-              <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
-              <span
-                class="block dark:hidden material-symbols-outlined text-[24px]"
-                >dark_mode</span
-              >
-
-              <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
-              <span
-                class="hidden dark:block material-symbols-outlined text-[24px]"
-                >light_mode</span
-              >
-            </button>
-            <button
-              id="menu-button"
-              class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white"
-            >
-              <span class="material-symbols-outlined text-[28px]">menu</span>
-            </button>
-          </div>
-        </div>
-      </header>
-      <!-- Mobile Menu Overlay -->
-      <div
-        id="mobile-menu"
-        class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8"
-      >
-        <!-- Close Button -->
-        <button
-          id="close-menu"
-          class="absolute top-6 right-6 text-[#111418] dark:text-white"
-        >
-          <span class="material-symbols-outlined text-4xl">close</span>
-        </button>
-
-        <!-- Links (Large size for mobile accessibility) -->
-        <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-          <a
-            href="index.html"
-            class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-            data-i18n="nav.home"
-            >Home</a
-          >
-          <a
-            href="about-me.html"
-            class="hover:text-primary"
-            data-i18n="nav.about"
-            >About</a
-          >
-          <a
-            href="resume.html"
-            class="hover:text-primary"
-            data-i18n="nav.resume"
-            >Resume</a
-          >
-          <a
-            href="contact.html"
-            class="bg-primary text-white px-8 py-3 rounded-xl"
-            data-i18n="nav.letsTalk"
-            >Let's Talk</a
-          >
-        </nav>
-      </div>
-
-      <main class="flex flex-col">
-        <!-- === HERO SECTION (FIXED LAYER 0) === -->
-        <div
-          class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-0 overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-4 lg:pt-16"
-        >
-          <section class="relative w-full">
-            <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-              <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-                <div class="flex flex-col items-start gap-6 relative z-10">
-                  <!-- HERO TITLE BADGE -->
-                  <div
-                    class="hero-anim-badge inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
-                  >
-                    <span
-                      class="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse"
-                    ></span>
-                    <span data-i18n="work.heroBadge">Open for commissions</span>
-                  </div>
-                  <h1
-                    class="text-4xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl"
-                  >
-                    <span data-i18n="work.heroTitle1">
-                      <span class="hero-anim-title-1">Crafting </span>
-                      <span class="hero-anim-title-1">Intuitive&nbsp;</span>
-                    </span>
-                    <span
-                      class="hero-anim-title-2 inline-block pb-2 lg:pb-3 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
-                      data-i18n="work.heroTitle2"
-                      >Digital</span
-                    >
-                    <span data-i18n="work.heroTitle3">
-                      <span class="hero-anim-title-3">&nbsp;Experiences</span>
-                    </span>
-                  </h1>
-                  <p
-                    class="hero-anim-subtitle max-w-xl text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed"
-                    data-i18n="work.heroDescription"
-                  >
-                    Specialized UI/UX Designer bridging the gap between
-                    functional business solutions and high-engagement gaming
-                    interfaces.
-                  </p>
-                  <!-- PORTFOLIO & RESUME BUTTONS -->
-                  <div class="flex flex-wrap gap-4 pt-4">
-                    <!-- View Portfolio -->
-                    <a
-                      href="img/Laszlo_Foldvary_Portfolio_2026.pdf"
-                      download
-                      class="hero-anim-btn-primary group flex h-14 items-center rounded-xl bg-primary px-10 text-lg font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all"
-                    >
-                      <span data-i18n="work.viewPortfolio">View Portfolio</span>
-                    </a>
-
-                    <!-- Resume (With bouncing icon and correct HTML) -->
-                    <a
-                      href="img/foldvary_laszlo_cv.pdf"
-                      download
-                      class="hero-anim-btn-secondary group flex h-14 items-center gap-3 rounded-xl border-2 border-slate-200 bg-white px-8 text-lg font-bold text-slate-900 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all"
-                    >
-                      <span
-                        class="material-symbols-outlined text-[24px] group-hover:animate-bounce"
-                        >download</span
-                      >
-                      <span data-i18n="work.downloadResume">Resume</span>
-                    </a>
-                  </div>
-                </div>
-                <div
-                  class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0"
-                >
-                  <!-- Decorative Lights - Refined to prevent overflow on mobile -->
-                  <div
-                    class="absolute -top-10 -right-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-primary/20 blur-[60px] sm:blur-[80px] dark:bg-primary/30 mix-blend-multiply dark:mix-blend-screen"
-                  ></div>
-                  <div
-                    class="absolute -bottom-10 -left-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-purple-500/20 blur-[60px] sm:blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen"
-                  ></div>
-
-                  <!-- VIDEO CONTAINER: Responsive -->
-                  <div
-                    class="hero-anim-video relative group w-full transition-all duration-500"
-                  >
-                    <!-- VIDEO BOX: aspect-[4/3] ensures consistent ratio -->
-                    <div
-                      class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-slate-200 dark:bg-[#101922] border border-slate-200 dark:border-white/10"
-                    >
-                      <video
-                        autoplay
-                        muted
-                        loop
-                        playsinline
-                        poster="img/start-portfolio.jpg"
-                        class="absolute inset-0 w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105 cursor-pointer"
-                      >
-                        <source src="img/start-work.mp4" type="video/mp4" />
-                        <img
-                          src="img/start-portfolio.jpg"
-                          alt="László Földváry Portfólió"
-                        />
-                      </video>
-
-                      <!-- Transparent overlay layer -->
-                      <div
-                        class="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"
-                      ></div>
-                    </div>
-
-                    <!-- Floating Card (Cyber HUD) - Mobile: scaled down (scale-75), Desktop: normal size -->
-                    <div
-                      class="hero-anim-float-card absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex items-center gap-3 rounded-xl bg-white/10 p-2 sm:p-3 backdrop-blur-md border border-white/20 shadow-xl origin-right transform scale-90 sm:scale-100"
-                    >
-                      <div
-                        class="h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-primary flex items-center justify-center text-white"
-                      >
-                        <span
-                          class="material-symbols-outlined text-[20px] sm:text-[24px]"
-                          >dynamic_form</span
-                        >
-                      </div>
-                      <div class="pr-2 text-white">
-                        <div
-                          class="text-[10px] font-medium text-white/70 uppercase tracking-wider"
-                        >
-                          <span data-i18n="work.hudSystem"
-                            >Interface System</span
-                          >
-                        </div>
-                        <div
-                          class="text-xs sm:text-sm font-bold whitespace-nowrap"
-                          data-i18n="work.hudArchitecture"
-                        >
-                          HMI Layout Architecture
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Scroll Indicator -->
-            <div class="flex justify-center pt-10 pb-2 h-1 animate-bounce">
-              <a
-                href="#projects"
-                class="text-gray-400 hover:text-primary transition-colors"
-              >
-                <span class="material-symbols-outlined text-4xl"
-                  >keyboard_double_arrow_down</span
-                >
-              </a>
-            </div>
-          </section>
-        </div>
-
-        <!-- SCROLLING CONTENT WRAPPER (Projects + Bridge) -->
-        <div
-          id="content-wrapper"
-          class="relative z-10 mt-0 lg:mt-[100vh] bg-white dark:bg-slate-900 shadow-[0_-20px_60px_#ffffff] dark:shadow-[0_-20px_60px_#0f172a]"
-        >
-          <section id="projects" class="pt-8 pb-12 sm:pb-20">
-            <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-              <div class="masonry-grid">
-                <!-- 1. eWa Super App -->
-                <a
-                  href="case-study-ewa.html"
-                  class="group block cursor-pointer"
-                >
-                  <div
-                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10"
-                  >
-                    <div class="absolute top-4 left-4 z-20">
-                      <span
-                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
-                        data-i18n="index.selectedWorks.ewa.tag"
-                        >Fintech App</span
-                      >
-                    </div>
-                    <div
-                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                      data-alt="eWa Super App Dashboard"
-                    >
-                      <video
-                        src="img/ewa/ewa-logo.mp4"
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        class="w-full h-full object-cover"
-                      ></video>
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    ></div>
-                    <div
-                      class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      <h3
-                        class="text-lg font-bold text-white"
-                        data-i18n="index.selectedWorks.ewa.title"
-                      >
-                        eWa Super App
-                      </h3>
-                      <p
-                        class="text-xs text-slate-300"
-                        data-i18n="index.selectedWorks.ewa.subtitle"
-                      >
-                        UX/UI Design & Android APK
-                      </p>
-                    </div>
-                  </div>
-                </a>
-
-                <!-- 2. Anti-Gravity (Converted to Standard Card) -->
-                <a
-                  href="case-study-styleguide.html"
-                  class="group block cursor-pointer"
-                >
-                  <div
-                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10"
-                  >
-                    <div class="absolute top-4 left-4 z-20">
-                      <span
-                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
-                      >
-                        <span data-i18n="index.selectedWorks.antiGravity.tag"
-                          >Case Study 2026</span
-                        >
-                      </span>
-                    </div>
-                    <div
-                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    >
-                      <img
-                        src="img/style-guide/styleguide.jpg"
-                        alt="Project Anti-Gravity"
-                        class="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    ></div>
-                    <div
-                      class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      <h3
-                        class="text-lg font-bold text-white leading-tight mb-1"
-                        data-i18n="index.selectedWorks.antiGravity.title"
-                      >
-                        Project Antigravity
-                      </h3>
-                      <p
-                        class="text-xs text-slate-300 line-clamp-2"
-                        data-i18n="index.selectedWorks.antiGravity.subtitle"
-                      >
-                        AI-Collaborative Design System
-                      </p>
-                    </div>
-                  </div>
-                </a>
-
-                <!-- 3. Shadow Cartels (Moved here, Standard Card) -->
-                <a
-                  href="case-study-shadow.html"
-                  class="group block cursor-pointer"
-                >
-                  <div
-                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10"
-                  >
-                    <div class="absolute top-4 left-4 z-20">
-                      <span
-                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
-                        data-i18n="work.projectShadowTag"
-                        >Shadow Cartels App
-                      </span>
-                    </div>
-                    <div
-                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                      data-alt="Mobile game companion app dashboard"
-                    >
-                      <img
-                        src="img/shadow-cartels/promo-1.jpg"
-                        alt="shadow-cartels-game"
-                        class="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    ></div>
-                    <div
-                      class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      <h3
-                        class="text-lg font-bold text-white"
-                        data-i18n="work.projectShadowTitle"
-                      >
-                        Tactical Game Web & Mobile
-                      </h3>
-                      <p
-                        class="text-xs text-slate-300"
-                        data-i18n="work.projectShadowDesc"
-                      >
-                        UX/UI & Ai • iOS
-                      </p>
-                    </div>
-                  </div>
-                </a>
-
-                <!-- 4. Siemens WinCC-OA (Converted to Standard Card) -->
-                <a
-                  href="case-study-siemens.html"
-                  class="group block cursor-pointer"
-                >
-                  <div
-                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10"
-                  >
-                    <div class="absolute top-4 left-4 z-20">
-                      <span
-                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
-                      >
-                        <span data-i18n="work.projectWinccTag"
-                          >WinCC-OA Interface</span
-                        >
-                      </span>
-                    </div>
-                    <div
-                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    >
-                      <img
-                        src="img/siemens/wincc-oa.jpg"
-                        alt="wincc-oa project"
-                        class="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    ></div>
-                    <div
-                      class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      <h3
-                        class="text-lg font-bold text-white leading-tight mb-1"
-                        data-i18n="work.projectWinccTitle"
-                      >
-                        WinCC OA Registry
-                      </h3>
-                      <p
-                        class="text-xs text-slate-300 line-clamp-2"
-                        data-i18n="work.projectWinccDesc"
-                      >
-                        A complete PLC management system design for WinCC OA.
-                      </p>
-                    </div>
-                  </div>
-                </a>
-
-                <!-- 5. Greentube - Bugs'n Bees -->
-                <a
-                  href="case-study-greent.html"
-                  class="group block cursor-pointer"
-                >
-                  <div
-                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10"
-                  >
-                    <div class="absolute top-4 left-4 z-20">
-                      <span
-                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
-                        data-i18n="work.projectGreentubeTag"
-                        >Greentube</span
-                      >
-                    </div>
-                    <div
-                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                      data-alt="Futuristic heads up display design"
-                    >
-                      <img
-                        src="img/greentube/bugs-promo.jpg"
-                        alt="bugs'n-bees"
-                      />
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    ></div>
-                    <div
-                      class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      <h3
-                        class="text-lg font-bold text-white"
-                        data-i18n="work.projectGreentubeTitle"
-                      >
-                        Bugs'n Bees UI
-                      </h3>
-                      <p
-                        class="text-xs text-slate-300"
-                        data-i18n="work.projectGreentubeDesc"
-                      >
-                        Slot Game UI & Visual Assets • Greentube
-                      </p>
-                    </div>
-                  </div>
-                </a>
-
-                <!-- 6. Amatic - Pharao -->
-                <a
-                  href="case-study-amatic.html"
-                  class="group block cursor-pointer"
-                >
-                  <div
-                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10"
-                  >
-                    <div class="absolute top-4 left-4 z-20">
-                      <span
-                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
-                        data-i18n="work.projectAmaticTag"
-                        >Amatic</span
-                      >
-                    </div>
-                    <div
-                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                      data-alt="Esports tournament platform dashboard"
-                    >
-                      <img src="img/pharao/pharo-promo.jpg" alt="pharao game" />
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    ></div>
-                    <div
-                      class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      <h3
-                        class="text-lg font-bold text-white"
-                        data-i18n="work.projectAmaticTitle"
-                      >
-                        Pharao's Riches
-                      </h3>
-                      <p
-                        class="text-xs text-slate-300"
-                        data-i18n="work.projectAmaticDesc"
-                      >
-                        Cabinet UI & Digital Illustration • Amatic
-                      </p>
-                    </div>
-                  </div>
-                </a>
-
-                <!-- 7. Funworld - Photoplay -->
-                <a
-                  href="case-study-funworld.html"
-                  class="group block cursor-pointer"
-                >
-                  <div
-                    class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl"
-                  >
-                    <div class="absolute top-4 left-4 z-20">
-                      <span
-                        class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
-                        data-i18n="work.projectFunworldTag"
-                        >Photoplay (2000)</span
-                      >
-                    </div>
-                    <div
-                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                      data-alt="Photoplay Terminal Interface"
-                    >
-                      <!-- Use a dedicated thumbnail or the main terminal image -->
-                      <img
-                        src="img/funworld/potoplay-terminal-2.jpg"
-                        alt="Photoplay Arcade"
-                        class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                      />
-                    </div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    ></div>
-                    <div
-                      class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      <h3
-                        class="text-lg font-bold text-white"
-                        data-i18n="work.projectFunworldTitle"
-                      >
-                        Funworld / Photoplay
-                      </h3>
-                      <p
-                        class="text-xs text-slate-300"
-                        data-i18n="work.projectFunworldDesc"
-                      >
-                        Touchscreen Ergonomics Pioneer • Funworld AG
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </section>
-          <section
-            class="border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900"
-          >
-            <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
-              <div
-                class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6"
-              >
-                <span class="material-symbols-outlined text-3xl"
-                  >handshake</span
-                >
-              </div>
-              <h2
-                class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6 uppercase"
-                data-i18n="work.bridgeTitle"
-              >
-                Let's Bridge the Gap together
-              </h2>
-              <p
-                class="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed"
-                data-i18n="work.bridgeDesc"
-              >
-                From complex
-                <span class="text-primary font-bold"
-                  >Industrial HMI dashboards</span
-                >
-                to immersive
-                <span class="text-primary font-bold">Game Interfaces</span>. I
-                bring 20+ years of systematic thinking to your next digital
-                product.
-              </p>
-              <div
-                class="flex flex-col sm:flex-row items-center justify-center gap-4"
-              >
-                <a
-                  href="contact.html"
-                  class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-primary/90"
-                >
-                  <span data-i18n="work.startCollaboration"
-                    >Start a Collaboration</span
-                  >
-                </a>
-                <a
-                  href="mailto:foeldvary@gmail.com"
-                  class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-8 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors"
-                >
-                  foeldvary@gmail.com
-                </a>
-              </div>
-            </div>
-          </section>
-        </div>
-        <!-- End of content-wrapper -->
-
-        <!-- STICKY HIRE ME BUTTON -->
-        <div
-          class="hidden sm:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8"
-        >
-          <a
-            href="contact.html"
-            class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-          >
-            <div
-              class="flex items-center justify-center transition-transform group-hover:rotate-12"
-            >
-              <span class="material-symbols-outlined text-[24px]"
-                >mark_email_unread</span
-              >
-            </div>
-            <span
-              class="text-base font-bold tracking-wide"
-              data-i18n="work.hireMe"
-              >Hire Me</span
-            >
+            <h2 class="hidden sm:block text-lg font-bold tracking-tight">
+              Laszlo.UI
+            </h2>
           </a>
         </div>
-      </main>
-      <footer
-        id="footer-reveal"
-        class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] pt-20 md:pt-32 pb-12 overflow-hidden transition-all duration-300"
-      >
-        <div
-          class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern"
-        >
-          <!-- Grid Pattern class added (if available) or background -->
 
-          <!-- 1. Large Text (Animated) -->
-          <div id="footer-cta" class="mb-6 md:mb-12">
-            <h3
-              id="footer-title"
-              class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
-              data-i18n="footer.readyToStart"
-            >
-              Ready to start a project?
-            </h3>
-            <p
-              id="footer-subtitle"
-              class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
-              data-i18n="footer.readySubtitle"
-            >
-              Let's create something meaningful together. I'm always open to new
-              opportunities and interesting challenges.
-            </p>
-          </div>
+        <!-- COLUMN 2: MENU -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="about-me.html"
+            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
+            data-i18n="nav.about">About</a>
+          <a href="resume.html"
+            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
+            data-i18n="nav.resume">Resume</a>
+        </nav>
 
-          <!-- 2. Contact Details (Large) -->
-          <div
-            id="footer-contact"
-            class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out"
-          >
-            <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">
-              +43 699 818 41 767
-            </p>
-            <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
-          </div>
-
-          <!-- 3. Social Media Icons -->
-          <div class="flex gap-5 mb-8 md:mb-16">
-            <!-- Email -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="mailto:foeldvary@gmail.com"
-            >
-              <svg
-                class="size-6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="https://www.linkedin.com/in/foldvary-laszlo/"
-              target="_blank"
-            >
-              <svg
-                aria-hidden="true"
-                class="size-6"
-                fill="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                  fill-rule="evenodd"
-                ></path>
-              </svg>
-            </a>
-            <!-- GitHub -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="https://github.com/Lacius76"
-              target="_blank"
-            >
-              <svg
-                aria-hidden="true"
-                class="size-6"
-                fill="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-            </a>
-            <!-- Facebook -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="https://www.facebook.com/laszlo.foldvary"
-              target="_blank"
-            >
-              <svg
-                class="size-6"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                ></path>
-              </svg>
-            </a>
-            <!-- Website Link - Removed (Redundant) -->
-          </div>
-
-          <!-- 4. Bottom Row -->
-          <div
-            class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]"
-          >
-            <p>
-              &copy; <span id="current-year"></span> László Földváry.
-              <span data-i18n="footer.allRightsReserved"
-                >All rights reserved.</span
-              >
-            </p>
-            <div class="flex gap-8">
-              <a
-                href="datenschutz.html"
-                class="hover:text-primary transition-colors"
-                data-i18n="footer.privacyPolicy"
-                >Privacy Policy</a
-              >
-              <a
-                href="impressum.html"
-                class="hover:text-primary transition-colors"
-                data-i18n="footer.impressum"
-                >Impressum</a
-              >
+        <!-- COLUMN 3: BUTTONS -->
+        <div class="flex items-center gap-4">
+          <!-- Let's Talk: Removed base transition, activates only on hover -->
+          <a href="contact.html"
+            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
+            aria-label="Contact">
+            <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
+          </a>
+          <!-- Language Dropdown -->
+          <div class="relative nav-anim-lang">
+            <button id="language-btn"
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <img src="img/language-icon.svg" alt="Select Language" class="size-6" />
+            </button>
+            <!-- Dropdown Menu -->
+            <div id="language-dropdown"
+              class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+              <div class="py-1">
+                <a href="#" data-lang="en"
+                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                  <span class="text-lg">🇬🇧</span> English
+                </a>
+                <a href="#" data-lang="de"
+                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                  <span class="text-lg">🇩🇪</span> Deutsch
+                </a>
+              </div>
             </div>
           </div>
+          <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
+          <button id="theme-toggle"
+            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme">
+            <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
+            <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+
+            <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
+            <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+          </button>
+          <button id="menu-button"
+            class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+          </button>
         </div>
-      </footer>
+      </div>
+    </header>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+      class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+      <!-- Close Button -->
+      <button id="close-menu" class="absolute top-6 right-6 text-[#111418] dark:text-white">
+        <span class="material-symbols-outlined text-4xl">close</span>
+      </button>
 
-      <!-- SCRIPTS START HERE -->
-      <script src="js/icons.js"></script>
-      <script>
-        window.addEventListener("DOMContentLoaded", () => {
-          document.querySelectorAll("[data-icon]").forEach((element) => {
-            const iconName = element.getAttribute("data-icon");
-
-            // Check if database and icon exist
-            if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
-              element.innerHTML = ASSETS[iconName];
-            }
-          });
-        });
-      </script>
-      <script>
-        // Mobile Menu Control
-        const menuBtn = document.getElementById("menu-button");
-        const closeBtn = document.getElementById("close-menu");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        // On Hamburger Click: Remove 'hidden' class (Show Menu)
-        menuBtn.addEventListener("click", () => {
-          mobileMenu.classList.remove("hidden");
-          document.body.style.overflow = "hidden"; // Megakadályozza, hogy a háttér görögjön
-        });
-
-        // On 'X' Click: Add 'hidden' class (Hide Menu)
-        closeBtn.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          document.body.style.overflow = "auto"; // Visszaállítja a görgetést
-        });
-
-        // Optional: Close menu when a link is clicked
-        mobileMenu.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => {
-            mobileMenu.classList.add("hidden");
-            document.body.style.overflow = "auto";
-          });
-        });
-      </script>
-      <script src="js/icons.js"></script>
-      <script>
-        window.addEventListener("DOMContentLoaded", () => {
-          document.querySelectorAll("[data-icon]").forEach((element) => {
-            const iconName = element.getAttribute("data-icon");
-            if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
-              element.innerHTML = ASSETS[iconName];
-            }
-          });
-        });
-      </script>
-      <script src="js/theme.js"></script>
-      <script src="js/language.js"></script>
+      <!-- Links (Large size for mobile accessibility) -->
+      <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+        <a href="index.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+          data-i18n="nav.home">Home</a>
+        <a href="about-me.html" class="hover:text-primary" data-i18n="nav.about">About</a>
+        <a href="resume.html" class="hover:text-primary" data-i18n="nav.resume">Resume</a>
+        <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's
+          Talk</a>
+      </nav>
     </div>
+
+    <main class="flex flex-col">
+      <!-- === HERO SECTION (FIXED LAYER 0) === -->
+      <div
+        class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-0 overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-4 lg:pt-16">
+        <section class="relative w-full">
+          <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+            <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+              <div class="flex flex-col items-start gap-6 relative z-10">
+                <!-- HERO TITLE BADGE -->
+                <div
+                  class="hero-anim-badge inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  <span class="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+                  <span data-i18n="work.heroBadge">Open for commissions</span>
+                </div>
+                <h1
+                  class="text-4xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
+                  <span data-i18n="work.heroTitle1">
+                    <span class="hero-anim-title-1">Crafting </span>
+                    <span class="hero-anim-title-1">Intuitive&nbsp;</span>
+                  </span>
+                  <span
+                    class="hero-anim-title-2 inline-block pb-2 lg:pb-3 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
+                    data-i18n="work.heroTitle2">Digital</span>
+                  <span data-i18n="work.heroTitle3">
+                    <span class="hero-anim-title-3">&nbsp;Experiences</span>
+                  </span>
+                </h1>
+                <p class="hero-anim-subtitle max-w-xl text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed"
+                  data-i18n="work.heroDescription">
+                  Specialized UI/UX Designer bridging the gap between
+                  functional business solutions and high-engagement gaming
+                  interfaces.
+                </p>
+                <!-- PORTFOLIO & RESUME BUTTONS -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                  <!-- View Portfolio -->
+                  <a href="img/Laszlo_Foldvary_Portfolio_2026.pdf" download
+                    class="hero-anim-btn-primary group flex h-14 items-center rounded-xl bg-primary px-10 text-lg font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all">
+                    <span data-i18n="work.viewPortfolio">View Portfolio</span>
+                  </a>
+
+                  <!-- Resume (With bouncing icon and correct HTML) -->
+                  <a href="img/foldvary_laszlo_cv.pdf" download
+                    class="hero-anim-btn-secondary group flex h-14 items-center gap-3 rounded-xl border-2 border-slate-200 bg-white px-8 text-lg font-bold text-slate-900 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all">
+                    <span class="material-symbols-outlined text-[24px] group-hover:animate-bounce">download</span>
+                    <span data-i18n="work.downloadResume">Resume</span>
+                  </a>
+                </div>
+              </div>
+              <div class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0">
+                <!-- Decorative Lights - Refined to prevent overflow on mobile -->
+                <div
+                  class="absolute -top-10 -right-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-primary/20 blur-[60px] sm:blur-[80px] dark:bg-primary/30 mix-blend-multiply dark:mix-blend-screen">
+                </div>
+                <div
+                  class="absolute -bottom-10 -left-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-purple-500/20 blur-[60px] sm:blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen">
+                </div>
+
+                <!-- VIDEO CONTAINER: Responsive -->
+                <div class="hero-anim-video relative group w-full transition-all duration-500">
+                  <!-- VIDEO BOX: aspect-[4/3] ensures consistent ratio -->
+                  <div
+                    class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-slate-200 dark:bg-[#101922] border border-slate-200 dark:border-white/10">
+                    <video autoplay muted loop playsinline poster="img/start-portfolio.jpg"
+                      class="absolute inset-0 w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105 cursor-pointer">
+                      <source src="img/start-work.mp4" type="video/mp4" />
+                      <img src="img/start-portfolio.jpg" alt="László Földváry Portfólió" />
+                    </video>
+
+                    <!-- Transparent overlay layer -->
+                    <div
+                      class="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none">
+                    </div>
+                  </div>
+
+                  <!-- Floating Card (Cyber HUD) - Mobile: scaled down (scale-75), Desktop: normal size -->
+                  <div
+                    class="hero-anim-float-card absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex items-center gap-3 rounded-xl bg-white/10 p-2 sm:p-3 backdrop-blur-md border border-white/20 shadow-xl origin-right transform scale-90 sm:scale-100">
+                    <div
+                      class="h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-primary flex items-center justify-center text-white">
+                      <span class="material-symbols-outlined text-[20px] sm:text-[24px]">dynamic_form</span>
+                    </div>
+                    <div class="pr-2 text-white">
+                      <div class="text-[10px] font-medium text-white/70 uppercase tracking-wider">
+                        <span data-i18n="work.hudSystem">Interface System</span>
+                      </div>
+                      <div class="text-xs sm:text-sm font-bold whitespace-nowrap" data-i18n="work.hudArchitecture">
+                        HMI Layout Architecture
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Scroll Indicator -->
+          <div class="flex justify-center pt-10 pb-2 h-1 animate-bounce">
+            <a href="#projects" class="text-gray-400 hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-4xl">keyboard_double_arrow_down</span>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <!-- SCROLLING CONTENT WRAPPER (Projects + Bridge) -->
+      <div id="content-wrapper"
+        class="relative z-10 mt-0 lg:mt-[100vh] bg-white dark:bg-slate-900 shadow-[0_-20px_60px_#ffffff] dark:shadow-[0_-20px_60px_#0f172a]">
+        <section id="projects" class="pt-8 pb-12 sm:pb-20">
+          <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+            <div class="masonry-grid">
+              <!-- 1. eWa Super App -->
+              <a href="case-study-ewa.html" class="group block cursor-pointer">
+                <div
+                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                  <div class="absolute top-4 left-4 z-20">
+                    <span
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      data-i18n="index.selectedWorks.ewa.tag">Fintech App</span>
+                  </div>
+                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    data-alt="eWa Super App Dashboard">
+                    <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                      <source src="img/ewa/ewa-card.webm" type="video/webm" />
+                      <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <h3 class="text-lg font-bold text-white" data-i18n="index.selectedWorks.ewa.title">
+                      eWa Super App
+                    </h3>
+                    <p class="text-xs text-slate-300" data-i18n="index.selectedWorks.ewa.subtitle">
+                      UX/UI Design & Android APK
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 2. Anti-Gravity (Converted to Standard Card) -->
+              <a href="case-study-styleguide.html" class="group block cursor-pointer">
+                <div
+                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                  <div class="absolute top-4 left-4 z-20">
+                    <span
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
+                      <span data-i18n="index.selectedWorks.antiGravity.tag">Case Study 2026</span>
+                    </span>
+                  </div>
+                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
+                    <img src="img/style-guide/styleguide.jpg" alt="Project Anti-Gravity"
+                      class="h-full w-full object-cover" />
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <h3 class="text-lg font-bold text-white leading-tight mb-1"
+                      data-i18n="index.selectedWorks.antiGravity.title">
+                      Project Antigravity
+                    </h3>
+                    <p class="text-xs text-slate-300 line-clamp-2" data-i18n="index.selectedWorks.antiGravity.subtitle">
+                      AI-Collaborative Design System
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 3. Shadow Cartels (Moved here, Standard Card) -->
+              <a href="case-study-shadow.html" class="group block cursor-pointer">
+                <div
+                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                  <div class="absolute top-4 left-4 z-20">
+                    <span
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      data-i18n="work.projectShadowTag">Shadow Cartels App
+                    </span>
+                  </div>
+                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    data-alt="Mobile game companion app dashboard">
+                    <img src="img/shadow-cartels/promo-1.jpg" alt="shadow-cartels-game"
+                      class="h-full w-full object-cover" />
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectShadowTitle">
+                      Tactical Game Web & Mobile
+                    </h3>
+                    <p class="text-xs text-slate-300" data-i18n="work.projectShadowDesc">
+                      UX/UI & Ai • iOS
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 4. Siemens WinCC-OA (Converted to Standard Card) -->
+              <a href="case-study-siemens.html" class="group block cursor-pointer">
+                <div
+                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                  <div class="absolute top-4 left-4 z-20">
+                    <span
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
+                      <span data-i18n="work.projectWinccTag">WinCC-OA Interface</span>
+                    </span>
+                  </div>
+                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
+                    <img src="img/siemens/wincc-oa.jpg" alt="wincc-oa project" class="h-full w-full object-cover" />
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <h3 class="text-lg font-bold text-white leading-tight mb-1" data-i18n="work.projectWinccTitle">
+                      WinCC OA Registry
+                    </h3>
+                    <p class="text-xs text-slate-300 line-clamp-2" data-i18n="work.projectWinccDesc">
+                      A complete PLC management system design for WinCC OA.
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 5. Greentube - Bugs'n Bees -->
+              <a href="case-study-greent.html" class="group block cursor-pointer">
+                <div
+                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                  <div class="absolute top-4 left-4 z-20">
+                    <span
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      data-i18n="work.projectGreentubeTag">Greentube</span>
+                  </div>
+                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    data-alt="Futuristic heads up display design">
+                    <img src="img/greentube/bugs-promo.jpg" alt="bugs'n-bees" />
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectGreentubeTitle">
+                      Bugs'n Bees UI
+                    </h3>
+                    <p class="text-xs text-slate-300" data-i18n="work.projectGreentubeDesc">
+                      Slot Game UI & Visual Assets • Greentube
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 6. Amatic - Pharao -->
+              <a href="case-study-amatic.html" class="group block cursor-pointer">
+                <div
+                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
+                  <div class="absolute top-4 left-4 z-20">
+                    <span
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      data-i18n="work.projectAmaticTag">Amatic</span>
+                  </div>
+                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    data-alt="Esports tournament platform dashboard">
+                    <img src="img/pharao/pharo-promo.jpg" alt="pharao game" />
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectAmaticTitle">
+                      Pharao's Riches
+                    </h3>
+                    <p class="text-xs text-slate-300" data-i18n="work.projectAmaticDesc">
+                      Cabinet UI & Digital Illustration • Amatic
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 7. Funworld - Photoplay -->
+              <a href="case-study-funworld.html" class="group block cursor-pointer">
+                <div
+                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
+                  <div class="absolute top-4 left-4 z-20">
+                    <span
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      data-i18n="work.projectFunworldTag">Photoplay (2000)</span>
+                  </div>
+                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    data-alt="Photoplay Terminal Interface">
+                    <!-- Use a dedicated thumbnail or the main terminal image -->
+                    <img src="img/funworld/potoplay-terminal-2.jpg" alt="Photoplay Arcade"
+                      class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectFunworldTitle">
+                      Funworld / Photoplay
+                    </h3>
+                    <p class="text-xs text-slate-300" data-i18n="work.projectFunworldDesc">
+                      Touchscreen Ergonomics Pioneer • Funworld AG
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section class="border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900">
+          <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
+            <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
+              <span class="material-symbols-outlined text-3xl">handshake</span>
+            </div>
+            <h2 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6 uppercase"
+              data-i18n="work.bridgeTitle">
+              Let's Bridge the Gap together
+            </h2>
+            <p class="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed"
+              data-i18n="work.bridgeDesc">
+              From complex
+              <span class="text-primary font-bold">Industrial HMI dashboards</span>
+              to immersive
+              <span class="text-primary font-bold">Game Interfaces</span>. I
+              bring 20+ years of systematic thinking to your next digital
+              product.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="contact.html"
+                class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-primary/90">
+                <span data-i18n="work.startCollaboration">Start a Collaboration</span>
+              </a>
+              <a href="mailto:foeldvary@gmail.com"
+                class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-8 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors">
+                foeldvary@gmail.com
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- End of content-wrapper -->
+
+      <!-- STICKY HIRE ME BUTTON -->
+      <div class="hidden sm:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
+        <a href="contact.html"
+          class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+          <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
+            <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+          </div>
+          <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Hire Me</span>
+        </a>
+      </div>
+    </main>
+    <footer id="footer-reveal"
+      class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] pt-20 md:pt-32 pb-12 overflow-hidden transition-all duration-300">
+      <div
+        class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern">
+        <!-- Grid Pattern class added (if available) or background -->
+
+        <!-- 1. Large Text (Animated) -->
+        <div id="footer-cta" class="mb-6 md:mb-12">
+          <h3 id="footer-title"
+            class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
+            data-i18n="footer.readyToStart">
+            Ready to start a project?
+          </h3>
+          <p id="footer-subtitle"
+            class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
+            data-i18n="footer.readySubtitle">
+            Let's create something meaningful together. I'm always open to new
+            opportunities and interesting challenges.
+          </p>
+        </div>
+
+        <!-- 2. Contact Details (Large) -->
+        <div id="footer-contact"
+          class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out">
+          <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">
+            +43 699 818 41 767
+          </p>
+          <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+        </div>
+
+        <!-- 3. Social Media Icons -->
+        <div class="flex gap-5 mb-8 md:mb-16">
+          <!-- Email -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+            href="mailto:foeldvary@gmail.com">
+            <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+            href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank">
+            <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+              <path clip-rule="evenodd"
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                fill-rule="evenodd"></path>
+            </svg>
+          </a>
+          <!-- GitHub -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+            href="https://github.com/Lacius76" target="_blank">
+            <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
+            href="https://www.facebook.com/laszlo.foldvary" target="_blank">
+            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+              </path>
+            </svg>
+          </a>
+          <!-- Website Link - Removed (Redundant) -->
+        </div>
+
+        <!-- 4. Bottom Row -->
+        <div
+          class="w-full pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
+          <p>
+            &copy; <span id="current-year"></span> László Földváry.
+            <span data-i18n="footer.allRightsReserved">All rights reserved.</span>
+          </p>
+          <div class="flex gap-8">
+            <a href="datenschutz.html" class="hover:text-primary transition-colors"
+              data-i18n="footer.privacyPolicy">Privacy Policy</a>
+            <a href="impressum.html" class="hover:text-primary transition-colors"
+              data-i18n="footer.impressum">Impressum</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SCRIPTS START HERE -->
+    <script src="js/icons.js"></script>
     <script>
-      // Footer Reveal Logic
-      document.addEventListener("DOMContentLoaded", () => {
-        const footer = document.getElementById("footer-reveal");
-        const wrapper = document.getElementById("content-wrapper");
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("[data-icon]").forEach((element) => {
+          const iconName = element.getAttribute("data-icon");
 
-        function adjustLayout() {
-          // Set wrapper margin equal to footer height
-          wrapper.style.marginBottom = `${footer.offsetHeight}px`;
-        }
-
-        function handleScroll() {
-          const scrollY = window.scrollY;
-          const viewHeight = window.innerHeight;
-          const docHeight = document.body.scrollHeight;
-
-          // 1. Z-Index Logic
-          if (scrollY > viewHeight) {
-            footer.style.zIndex = "1";
-          } else {
-            footer.style.zIndex = "-1";
+          // Check if database and icon exist
+          if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
+            element.innerHTML = ASSETS[iconName];
           }
-
-          // 2. CTA Animation Logic
-          // Trigger when we are close to the bottom (footer fully revealed)
-          const title = document.getElementById("footer-title");
-          const subtitle = document.getElementById("footer-subtitle");
-          const contact = document.getElementById("footer-contact");
-
-          // Use a threshold (e.g. 50px from bottom)
-          if (window.innerHeight + scrollY >= docHeight - 50) {
-            title.classList.remove("opacity-0", "translate-x-[50px]");
-            subtitle.classList.remove("opacity-0", "-translate-x-[50px]");
-            contact.classList.remove("opacity-0", "translate-y-[50px]");
-          } else {
-            title.classList.add("opacity-0", "translate-x-[50px]");
-            subtitle.classList.add("opacity-0", "-translate-x-[50px]");
-            contact.classList.add("opacity-0", "translate-y-[50px]");
-          }
-        }
-
-        // Init
-        adjustLayout();
-        window.addEventListener("resize", adjustLayout);
-        window.addEventListener("scroll", handleScroll, { passive: true });
+        });
       });
     </script>
-  </body>
+    <script>
+      // Mobile Menu Control
+      const menuBtn = document.getElementById("menu-button");
+      const closeBtn = document.getElementById("close-menu");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      // On Hamburger Click: Remove 'hidden' class (Show Menu)
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Megakadályozza, hogy a háttér görögjön
+      });
+
+      // On 'X' Click: Add 'hidden' class (Hide Menu)
+      closeBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        document.body.style.overflow = "auto"; // Visszaállítja a görgetést
+      });
+
+      // Optional: Close menu when a link is clicked
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        });
+      });
+    </script>
+    <script src="js/icons.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("[data-icon]").forEach((element) => {
+          const iconName = element.getAttribute("data-icon");
+          if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
+            element.innerHTML = ASSETS[iconName];
+          }
+        });
+      });
+    </script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
+  </div>
+  <script>
+    // Footer Reveal Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const footer = document.getElementById("footer-reveal");
+      const wrapper = document.getElementById("content-wrapper");
+
+      function adjustLayout() {
+        // Set wrapper margin equal to footer height
+        wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+      }
+
+      function handleScroll() {
+        const scrollY = window.scrollY;
+        const viewHeight = window.innerHeight;
+        const docHeight = document.body.scrollHeight;
+
+        // 1. Z-Index Logic
+        if (scrollY > viewHeight) {
+          footer.style.zIndex = "1";
+        } else {
+          footer.style.zIndex = "-1";
+        }
+
+        // 2. CTA Animation Logic
+        // Trigger when we are close to the bottom (footer fully revealed)
+        const title = document.getElementById("footer-title");
+        const subtitle = document.getElementById("footer-subtitle");
+        const contact = document.getElementById("footer-contact");
+
+        // Use a threshold (e.g. 50px from bottom)
+        if (window.innerHeight + scrollY >= docHeight - 50) {
+          title.classList.remove("opacity-0", "translate-x-[50px]");
+          subtitle.classList.remove("opacity-0", "-translate-x-[50px]");
+          contact.classList.remove("opacity-0", "translate-y-[50px]");
+        } else {
+          title.classList.add("opacity-0", "translate-x-[50px]");
+          subtitle.classList.add("opacity-0", "-translate-x-[50px]");
+          contact.classList.add("opacity-0", "translate-y-[50px]");
+        }
+      }
+
+      // Init
+      adjustLayout();
+      window.addEventListener("resize", adjustLayout);
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    });
+  </script>
+</body>
+
 </html>
