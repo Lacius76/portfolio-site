@@ -1,955 +1,694 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>eWa Super App: Fintech & Mobility | Laszlo.UI</title>
-    <link rel="icon" type="image/svg+xml" href="img/logo-s.svg" />
-    <link rel="stylesheet" href="css/language-animations.css" />
-    <link rel="stylesheet" href="css/nav-animations.css" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
 
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#6366f1",
-              "background-dark": "#0a0f14",
-              "noir-card": "#12181f",
-            },
-            fontFamily: { display: ["Inter", "sans-serif"] },
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>eWa Super App: Fintech & Mobility | Laszlo.UI</title>
+  <link rel="icon" type="image/svg+xml" href="img/logo-s.svg" />
+  <link rel="stylesheet" href="css/language-animations.css" />
+  <link rel="stylesheet" href="css/nav-animations.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#6366f1",
+            "background-dark": "#0a0f14",
+            "noir-card": "#12181f",
           },
+          fontFamily: { display: ["Inter", "sans-serif"] },
         },
-      };
-    </script>
-    <style>
-      .glass-panel {
-        background: rgba(18, 24, 31, 0.8);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
+      },
+    };
+  </script>
+  <style>
+    .glass-panel {
+      background: rgba(18, 24, 31, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-      .text-glow {
-        text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-      }
+    .text-glow {
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    }
 
-      .noir-gradient {
-        background: linear-gradient(to bottom, transparent, #0a0f14);
-      }
+    .noir-gradient {
+      background: linear-gradient(to bottom, transparent, #0a0f14);
+    }
 
-      /* German hyphenation for mobile */
-      body {
-        hyphens: auto;
-        -webkit-hyphens: auto;
-        -ms-hyphens: auto;
-      }
-    </style>
-  </head>
+    /* German hyphenation for mobile */
+    body {
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+    }
+  </style>
+</head>
 
-  <body
-    class="bg-background-dark font-display text-slate-300 antialiased selection:bg-primary selection:text-white"
-  >
-    <div class="relative flex min-h-screen flex-col">
-      <!-- HEADER -->
-      <header
-        class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80"
-      >
-        <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
-        <div
-          class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between"
-        >
-          <!-- 1. OSZLOP: LOGÓ -->
-          <div class="flex items-center gap-4 nav-anim-logo">
-            <a
-              class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
-              href="index.html"
-            >
-              <div
-                data-icon="logo"
-                class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5"
-              ></div>
-              <h2 class="hidden sm:block text-lg font-bold tracking-tight">
-                Laszlo.UI
-              </h2>
-            </a>
-          </div>
-
-          <!-- 2. OSZLOP: MENÜ -->
-          <nav class="hidden md:flex items-center gap-8">
-            <a
-              href="work.html"
-              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
-              data-i18n="nav.work"
-              >Work</a
-            >
-            <a
-              href="about-me.html"
-              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
-              data-i18n="nav.about"
-              >About</a
-            >
-            <a
-              href="resume.html"
-              class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-3"
-              data-i18n="nav.resume"
-              >Resume</a
-            >
-          </nav>
-
-          <!-- 3. OSZLOP: GOMBOK -->
-          <div class="flex items-center gap-4">
-            <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
-            <a
-              href="contact.html"
-              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
-              aria-label="Contact"
-            >
-              <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
-            </a>
-            <!-- Language Dropdown -->
-            <div class="relative nav-anim-lang">
-              <button
-                id="language-btn"
-                class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <img
-                  src="img/language-icon.svg"
-                  alt="Select Language"
-                  class="size-6"
-                />
-              </button>
-              <!-- Dropdown Menu -->
-              <div
-                id="language-dropdown"
-                class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform"
-              >
-                <div class="py-1">
-                  <a
-                    href="#"
-                    data-lang="en"
-                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
-                  >
-                    <span class="text-lg">🇬🇧</span> English
-                  </a>
-                  <a
-                    href="#"
-                    data-lang="de"
-                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50"
-                  >
-                    <span class="text-lg">🇩🇪</span> Deutsch
-                  </a>
-                </div>
-              </div>
+<body class="bg-background-dark font-display text-slate-300 antialiased selection:bg-primary selection:text-white">
+  <div class="relative flex min-h-screen flex-col">
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
+      <!-- Itt kivettem a lg:px-40-et, helyette px-6-ot tettem, ami mindenhol stabil -->
+      <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+        <!-- 1. OSZLOP: LOGÓ -->
+        <div class="flex items-center gap-4 nav-anim-logo">
+          <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
+            href="index.html">
+            <div data-icon="logo"
+              class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
             </div>
-            <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
-            <button
-              id="theme-toggle"
-              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme"
-            >
-              <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
-              <span
-                class="block dark:hidden material-symbols-outlined text-[24px]"
-                >dark_mode</span
-              >
-              <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
-              <span
-                class="hidden dark:block material-symbols-outlined text-[24px]"
-                >light_mode</span
-              >
-            </button>
-            <button
-              id="menu-button"
-              class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white"
-            >
-              <span class="material-symbols-outlined text-[28px]">menu</span>
-            </button>
-          </div>
-        </div>
-      </header>
-      <!-- Mobile Menu Overlay -->
-      <div
-        id="mobile-menu"
-        class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8"
-      >
-        <!-- Csak a bezáró gomb (X) maradjon itt! -->
-        <button
-          id="close-menu"
-          class="absolute top-6 right-6 text-slate-900 dark:text-white"
-        >
-          <span class="material-symbols-outlined text-4xl">close</span>
-        </button>
-
-        <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-          <a
-            href="work.html"
-            class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-            data-i18n="nav.work"
-            >Work</a
-          >
-          <a
-            href="about-me.html"
-            class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-            data-i18n="nav.about"
-            >About</a
-          >
-          <a
-            href="resume.html"
-            class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-            data-i18n="nav.resume"
-            >Resume</a
-          >
-          <a
-            href="contact.html"
-            class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
-            data-i18n="nav.letsTalk"
-            >Let's Talk</a
-          >
-        </nav>
-      </div>
-      <main
-        id="content-wrapper"
-        class="relative z-10 bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300"
-      >
-        <!-- HERO: eWa Super App -->
-        <section class="relative pt-20 pb-32 overflow-hidden bg-slate-950">
-          <div class="absolute inset-0 z-0">
-            <img
-              src="img/ewa/dashboard.png"
-              alt="eWa App UI"
-              class="w-full h-full object-cover opacity-30"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-white dark:from-background-dark via-transparent to-transparent opacity-100"
-            ></div>
-            <div class="absolute inset-0 bg-black/40"></div>
-          </div>
-
-          <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-            <h2
-              class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic"
-              data-i18n="ewa.heroTag"
-            >
-              Fintech & Mobility Super App
+            <h2 class="hidden sm:block text-lg font-bold tracking-tight">
+              Laszlo.UI
             </h2>
-            <h1
-              class="text-3xl sm:text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic break-words"
-            >
-              eWa
-              <span class="text-primary">Super App</span>
-            </h1>
-            <p
-              class="max-w-full sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl font-light leading-relaxed text-slate-200 px-2"
-              data-i18n="ewa.heroDescription"
-            >
-              A modern application tailored for the Austrian market, seamlessly
-              integrating smart parking, e-vignettes, and digital
-              <span class="text-primary font-bold"
-                >Electronic Wallet (eWa)</span
-              >
-              payments.
-            </p>
-          </div>
-        </section>
-
-        <!-- EXECUTIVE SUMMARY - eWa Super App -->
-        <section class="max-w-[1200px] mx-auto px-6 -mt-20 relative z-20">
-          <div
-            class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-5 gap-8 lg:gap-12 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors"
-          >
-            <!-- BAL OLDAL: Project Vision -->
-            <div class="md:col-span-3 space-y-6">
-              <h3
-                class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
-                data-i18n="ewa.challengeTitle"
-              >
-                The Austrian Market Challenge
-              </h3>
-              <p
-                class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg"
-                data-i18n="ewa.challengeText1"
-              >
-                Designing a Super App requires balancing complexity. It must
-                house multiple critical services—like smart road tolling,
-                parking meters, and comprehensive digital wallets—without
-                overwhelming the user. The primary challenge was crafting an
-                architecture robust enough for mobility but secure enough for
-                daily fintech operations in EURO (€).
-              </p>
-              <p
-                class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg mt-4"
-                data-i18n="ewa.challengeText2"
-              >
-                Targeting the Austrian market meant adhering to high
-                expectations of privacy, data clarity, and clean, uncompromised
-                aesthetics.
-              </p>
-              <!-- TAGS -->
-              <div class="flex flex-wrap gap-3 pt-2">
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
-                  >UI/UX Designer</span
-                >
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
-                  >AI Prototyper</span
-                >
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
-                  >Material 3</span
-                >
-              </div>
-            </div>
-
-            <!-- JOBB OLDAL: App Buttons & Key Tech -->
-            <div
-              class="space-y-6 md:border-l border-slate-200 dark:border-white/5 md:pl-8 md:col-span-2"
-            >
-              <!-- 1. QR Code for Desktop Users -->
-              <div class="hidden sm:flex flex-row items-center gap-3">
-                <div
-                  class="bg-white p-2 text-center rounded-xl shadow-sm flex-1 flex flex-col items-center justify-center shrink-0"
-                >
-                  <canvas id="qr-canvas" class="w-full h-auto"></canvas>
-                </div>
-                <div
-                  class="text-xs text-slate-500 dark:text-slate-400 font-medium leading-tight flex-1"
-                  data-i18n="ewa.scanQrCode"
-                >
-                  Scan to download directly to your Android device
-                </div>
-              </div>
-
-              <!-- 2. APP BUTTONS (Less tall, next to each other) -->
-              <div class="flex flex-col sm:flex-row gap-3">
-                <a
-                  href="downloads/app-release.apk"
-                  download="ewa.apk"
-                  class="group flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 hover:bg-emerald-700 active:scale-95 flex-1text-center"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >android</span
-                  >
-                  <span data-i18n="ewa.downloadApk">Download APK</span>
-                </a>
-                <a
-                  href="https://e-wa-app.vercel.app/profile"
-                  target="_blank"
-                  class="group flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-indigo-500/30 transition-all hover:scale-105 hover:bg-indigo-700 active:scale-95 flex-1 text-center"
-                >
-                  <span class="material-symbols-outlined text-[18px]">web</span>
-                  <span data-i18n="ewa.launchWeb">Launch Web App</span>
-                </a>
-              </div>
-              <p
-                class="text-[10px] text-slate-500 dark:text-slate-400 -mt-2 italic"
-                data-i18n="ewa.apkWarning"
-              >
-                *Note: Installing the APK may require enabling "Unknown Sources"
-                in your Android settings.
-              </p>
-
-              <!-- 3. KEY TECH & CORE CHALLENGE -->
-              <div
-                class="pt-6 border-t border-slate-200 dark:border-white/10 space-y-6"
-              >
-                <div>
-                  <p
-                    class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
-                    data-i18n="shadow.keyTechTitle"
-                  >
-                    Key Tech
-                  </p>
-                  <p
-                    class="text-sm text-slate-600 dark:text-white"
-                    data-i18n="ewa.keyTechList"
-                  >
-                    Figma, Google Stitch, Notebook LM, Antigravity, Flutter,
-                    Next.js
-                  </p>
-                </div>
-                <div>
-                  <p
-                    class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
-                    data-i18n="shadow.coreChallengeTitle"
-                  >
-                    Deliverable
-                  </p>
-                  <p
-                    class="text-sm text-slate-600 dark:text-white"
-                    data-i18n="ewa.deliverableDesc"
-                  >
-                    Functional Android APK & Design System
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- DEEP DIVE SECTIONS -->
-        <div class="max-w-[1200px] mx-auto px-6 py-32 space-y-32">
-          <!-- 1. UX/UI Solution -->
-          <section class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6">
-              <div
-                class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary"
-              >
-                <span class="material-symbols-outlined"
-                  >account_balance_wallet</span
-                >
-              </div>
-              <h2
-                class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
-                data-i18n="ewa.solutionTitle"
-              >
-                Trust Through <br /><span class="text-primary font-light"
-                  >Dark Mode</span
-                >
-              </h2>
-              <div
-                class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed"
-              >
-                <p data-i18n="ewa.solutionDesc1">
-                  I established a dark-mode fintech aesthetic enriched with
-                  premium gradients and Material Design 3 principles. The darker
-                  palette profoundly reduces eye strain during driving and
-                  inherently commands trust, a critical factor when handling
-                  user funds.
-                </p>
-                <p data-i18n="ewa.solutionDesc2">
-                  The digital wallet relies on intuitive swiping mechanics and
-                  clearly separated premium card designs. Cross-platform
-                  navigation was streamlined to ensure users are never more than
-                  a tap away from reserving parking or purchasing an e-Vignette.
-                </p>
-              </div>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div
-                class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform"
-              >
-                <img
-                  src="img/ewa/wallet.png"
-                  alt="Digital Wallet Screen"
-                  class="rounded-2xl w-full h-auto"
-                />
-              </div>
-              <div
-                class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform"
-              >
-                <img
-                  src="img/ewa/account.png"
-                  alt="Account Options Screen"
-                  class="rounded-2xl w-full h-auto"
-                />
-              </div>
-            </div>
-          </section>
-
-          <!-- 2. AI WORKFLOW SECTION -->
-          <section
-            class="mx-auto max-w-[1200px] py-16 sm:py-24 bg-primary/[0.03] rounded-[2rem] sm:rounded-[3rem] px-4 sm:px-8 border border-primary/10 overflow-hidden"
-          >
-            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4">
-              <h3
-                class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic"
-                data-i18n="ewa.workflowTag"
-              >
-                The Designer as Builder Trend
-              </h3>
-              <h2
-                class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
-                data-i18n="ewa.workflowHeadline"
-              >
-                From Mockups to Logic
-              </h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 lg:gap-24">
-              <div class="space-y-8">
-                <div class="space-y-4">
-                  <h4
-                    class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 dark:text-white flex flex-col items-start gap-2 sm:flex-row sm:items-center break-words"
-                  >
-                    <span
-                      class="material-symbols-outlined text-primary uppercase italic"
-                      >terminal</span
-                    >
-                    <span data-i18n="ewa.workflowSubheadline"
-                      >Deployable Android Setup</span
-                    >
-                  </h4>
-                  <p
-                    class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
-                    data-i18n="ewa.workflowDesc1"
-                  >
-                    The 2026 'Designer as Builder' paradigm shifts focus from
-                    drawing static screens to building functional logic. Using
-                    Google Stitch and Next.js as starting points, I initially
-                    utilized <strong>Notebook LM</strong> to meticulously plan
-                    and gather all necessary documentation on Android
-                    environments.
-                  </p>
-                  <p
-                    class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
-                    data-i18n="ewa.workflowDesc2"
-                  >
-                    This preparation took half a day, ensuring I had the
-                    capability to create my first-ever native app. From there, I
-                    utilized Google Antigravity and Flutter to transform those
-                    UI mockups into a fully functional, deployable Android APK.
-                  </p>
-                </div>
-                <!-- Image Gallery below text -->
-                <div
-                  class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 lg:hidden mt-8"
-                >
-                  <img
-                    src="img/ewa/e-vignette-payment.png"
-                    class="rounded-xl shadow-md border dark:border-white/10 w-full"
-                    alt="eWa payment"
-                  />
-                  <img
-                    src="img/ewa/parking-confirm.png"
-                    class="rounded-xl shadow-md border dark:border-white/10 w-full"
-                    alt="eWa parking confirm"
-                  />
-                  <img
-                    src="img/ewa/succes-payment.png"
-                    class="rounded-xl shadow-md border dark:border-white/10 w-full hidden sm:block"
-                    alt="eWa success payment"
-                  />
-                </div>
-              </div>
-
-              <div class="flex flex-col justify-center space-y-8 sm:space-y-10">
-                <div class="space-y-6">
-                  <h4
-                    class="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-slate-900 dark:text-white leading-snug italic break-words"
-                    data-i18n="ewa.workflowQuote"
-                  >
-                    "The handoff to engineering wasn't a static PDF, it was a
-                    working application with simulated payment logic."
-                  </h4>
-                  <div class="h-1 w-16 sm:w-20 bg-primary"></div>
-                  <p
-                    class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 italic font-light"
-                    data-i18n="ewa.workflowQuoteSub"
-                  >
-                    By simulating complex payment logic and real-time state
-                    management, the build phase was completed in just 1 full
-                    day.
-                  </p>
-                </div>
-                <div class="grid grid-cols-2 gap-4 sm:gap-6">
-                  <div class="p-3 sm:p-4 border-l-2 border-primary">
-                    <span
-                      class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white"
-                      >1.5
-                      <span class="text-base md:text-xl font-normal"
-                        >Days</span
-                      ></span
-                    >
-                    <span
-                      class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
-                      data-i18n="ewa.stat1Days"
-                      >Total Dev & Prep</span
-                    >
-                  </div>
-                  <div class="p-3 sm:p-4 border-l-2 border-primary">
-                    <span
-                      class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white"
-                      >Native</span
-                    >
-                    <span
-                      class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
-                      data-i18n="ewa.stat2Apk"
-                      >Android APK Built</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- LESSONS FROM THE NOIR -->
-          <section class="mx-auto max-w-[1200px] py-16 sm:py-24 text-center">
-            <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
-              <h2
-                class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
-                data-i18n="ewa.lessonsTitle"
-              >
-                The Future of Collaborative Design
-              </h2>
-              <div class="h-1 w-12 bg-primary mx-auto"></div>
-              <p
-                class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light px-4"
-                data-i18n="ewa.lessonsText"
-              >
-                "The eWa Super App proves that combining 20+ years of systematic
-                UI/UX experience with cutting-edge AI logic accelerators allows
-                designers to act as technical bridge-builders. Bridging the gap
-                between functional business solutions and high-engagement
-                interfaces is no longer just a tagline; it's an executable
-                workflow."
-              </p>
-              <div class="pt-6 sm:pt-8 w-full">
-                <a
-                  href="case-study-greent.html"
-                  class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg"
-                >
-                  <span
-                    class="material-symbols-outlined group-hover:translate-x-2 transition-transform"
-                    >arrow_forward</span
-                  >
-                  <span data-i18n="ewa.nextCaseStudy" class="break-words"
-                    >Next: Greentube</span
-                  >
-                </a>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- STICKY HIRE ME -->
-        <div class="fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
-          <a
-            href="contact.html"
-            class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            <span class="material-symbols-outlined text-[24px]"
-              >mark_email_unread</span
-            >
-            <span
-              class="text-base font-bold tracking-wide"
-              data-i18n="work.hireMe"
-              >Hire Me</span
-            >
           </a>
         </div>
-      </main>
-      <footer
-        id="footer-reveal"
-        class="fixed bottom-0 left-0 w-full z-[-1] border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300"
-      >
-        <!-- BACKGROUND HERO EFFECT -->
-        <div class="absolute inset-0 z-0 pointer-events-none">
-          <img
-            src="img/ewa/dashboard.png"
-            class="w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-100 dark:brightness-50"
-            alt="eWa Background"
-          />
+
+        <!-- 2. OSZLOP: MENÜ -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="work.html"
+            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
+            data-i18n="nav.work">Work</a>
+          <a href="about-me.html"
+            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
+            data-i18n="nav.about">About</a>
+          <a href="resume.html"
+            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-3"
+            data-i18n="nav.resume">Resume</a>
+        </nav>
+
+        <!-- 3. OSZLOP: GOMBOK -->
+        <div class="flex items-center gap-4">
+          <!-- Let's Talk: Kivettem az alap transition-t, csak hovernél aktiválódik! -->
+          <a href="contact.html"
+            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
+            aria-label="Contact">
+            <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
+          </a>
+          <!-- Language Dropdown -->
+          <div class="relative nav-anim-lang">
+            <button id="language-btn"
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <img src="img/language-icon.svg" alt="Select Language" class="size-6" />
+            </button>
+            <!-- Dropdown Menu -->
+            <div id="language-dropdown"
+              class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
+              <div class="py-1">
+                <a href="#" data-lang="en"
+                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                  <span class="text-lg">🇬🇧</span> English
+                </a>
+                <a href="#" data-lang="de"
+                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
+                  <span class="text-lg">🇩🇪</span> Deutsch
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
+          <button id="theme-toggle"
+            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme">
+            <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
+            <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
+            <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
+            <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+          </button>
+          <button id="menu-button"
+            class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+      class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+      <!-- Csak a bezáró gomb (X) maradjon itt! -->
+      <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
+        <span class="material-symbols-outlined text-4xl">close</span>
+      </button>
+
+      <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
+        <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+          data-i18n="nav.work">Work</a>
+        <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+          data-i18n="nav.about">About</a>
+        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+          data-i18n="nav.resume">Resume</a>
+        <a href="contact.html" class="bg-primary text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
+          data-i18n="nav.letsTalk">Let's Talk</a>
+      </nav>
+    </div>
+    <main id="content-wrapper"
+      class="relative z-10 bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300">
+      <!-- HERO: eWa Super App -->
+      <section class="relative pt-20 pb-32 overflow-hidden bg-slate-950">
+        <div class="absolute inset-0 z-0">
+          <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60 mix-blend-screen">
+            <source src="img/ewa/ewa-hero.webm" type="video/webm">
+            <source src="img/ewa/ewa-hero.mp4" type="video/mp4">
+          </video>
           <div
-            class="absolute inset-0 bg-gradient-to-t from-white dark:from-[#18181b] via-white/80 dark:via-[#18181b]/80 to-transparent"
-          ></div>
+            class="absolute inset-0 bg-gradient-to-t from-white dark:from-background-dark via-transparent to-transparent opacity-100">
+          </div>
+          <div class="absolute inset-0 bg-black/40"></div>
         </div>
 
+        <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
+          <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic" data-i18n="ewa.heroTag">
+            Fintech & Mobility Super App
+          </h2>
+          <h1
+            class="text-3xl sm:text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic break-words">
+            eWa
+            <span class="text-primary">Super App</span>
+          </h1>
+          <p class="max-w-full sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl font-light leading-relaxed text-slate-200 px-2"
+            data-i18n="ewa.heroDescription">
+            A modern application tailored for the Austrian market, seamlessly
+            integrating smart parking, e-vignettes, and digital
+            <span class="text-primary font-bold">Electronic Wallet (eWa)</span>
+            payments.
+          </p>
+        </div>
+      </section>
+
+      <!-- EXECUTIVE SUMMARY - eWa Super App -->
+      <section class="max-w-[1200px] mx-auto px-6 -mt-20 relative z-20">
         <div
-          class="relative z-10 max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center"
-        >
-          <!-- MOVED BACK BUTTON -->
-          <div class="mb-16">
-            <a
-              id="footer-back-link"
-              href="work.html"
-              class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12"
-            >
+          class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-5 gap-8 lg:gap-12 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors">
+          <!-- BAL OLDAL: Project Vision -->
+          <div class="md:col-span-3 space-y-6">
+            <h3
+              class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
+              data-i18n="ewa.challengeTitle">
+              The Austrian Market Challenge
+            </h3>
+            <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg" data-i18n="ewa.challengeText1">
+              Designing a Super App requires balancing complexity. It must
+              house multiple critical services—like smart road tolling,
+              parking meters, and comprehensive digital wallets—without
+              overwhelming the user. The primary challenge was crafting an
+              architecture robust enough for mobility but secure enough for
+              daily fintech operations in EURO (€).
+            </p>
+            <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg mt-4" data-i18n="ewa.challengeText2">
+              Targeting the Austrian market meant adhering to high
+              expectations of privacy, data clarity, and clean, uncompromised
+              aesthetics.
+            </p>
+            <!-- TAGS -->
+            <div class="flex flex-wrap gap-3 pt-2">
               <span
-                class="material-symbols-outlined group-hover:-translate-x-2 transition-transform"
-                >arrow_back</span
-              >
-              <span data-i18n="shadow.backToProjects"
-                >Back to All Projects</span
-              >
-            </a>
+                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">UI/UX
+                Designer</span>
+              <span
+                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">AI
+                Prototyper</span>
+              <span
+                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Material
+                3</span>
+            </div>
           </div>
 
-          <div class="mb-12">
-            <h3
-              class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter break-words"
-              data-i18n="footer.readyToStart"
-            >
-              Ready to start a project?
-            </h3>
-            <p
-              class="text-slate-600 dark:text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed"
-              data-i18n="footer.readySubtitle"
-            >
-              Let's create something meaningful together. I'm always open to new
-              opportunities and interesting challenges.
+          <!-- JOBB OLDAL: App Buttons & Key Tech -->
+          <div class="space-y-6 md:border-l border-slate-200 dark:border-white/5 md:pl-8 md:col-span-2">
+            <!-- 1. QR Code for Desktop Users -->
+            <div class="hidden sm:flex flex-row items-center gap-3">
+              <div
+                class="bg-white p-2 text-center rounded-xl shadow-sm flex-1 flex flex-col items-center justify-center shrink-0">
+                <canvas id="qr-canvas" class="w-full h-auto"></canvas>
+              </div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 font-medium leading-tight flex-1"
+                data-i18n="ewa.scanQrCode">
+                Scan to download directly to your Android device
+              </div>
+            </div>
+
+            <!-- 2. APP BUTTONS (Less tall, next to each other) -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href="downloads/app-release.apk" download="ewa.apk"
+                class="group flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 hover:bg-emerald-700 active:scale-95 flex-1text-center">
+                <span class="material-symbols-outlined text-[18px]">android</span>
+                <span data-i18n="ewa.downloadApk">Download APK</span>
+              </a>
+              <a href="https://e-wa-app.vercel.app/profile" target="_blank"
+                class="group flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-indigo-500/30 transition-all hover:scale-105 hover:bg-indigo-700 active:scale-95 flex-1 text-center">
+                <span class="material-symbols-outlined text-[18px]">web</span>
+                <span data-i18n="ewa.launchWeb">Launch Web App</span>
+              </a>
+            </div>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400 -mt-2 italic" data-i18n="ewa.apkWarning">
+              *Note: Installing the APK may require enabling "Unknown Sources"
+              in your Android settings.
             </p>
-          </div>
-          <div
-            id="footer-contact-info"
-            class="mb-12 opacity-0 translate-y-4 transition-all duration-700 ease-out delay-200"
-          >
-            <p class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-              +43 699 818 41 767
-            </p>
-            <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
-          </div>
-          <!-- Közösségi ikonok a footerben -->
-          <div class="flex gap-5 mb-16">
-            <!-- Email -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
-              href="mailto:foeldvary@gmail.com"
-            >
-              <svg
-                class="size-6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
-              href="https://www.linkedin.com/in/foldvary-laszlo/"
-              target="_blank"
-            >
-              <svg
-                aria-hidden="true"
-                class="size-6"
-                fill="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                  fill-rule="evenodd"
-                ></path>
-              </svg>
-            </a>
-            <!-- GitHub -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
-              href="https://github.com/Lacius76"
-              target="_blank"
-            >
-              <svg
-                aria-hidden="true"
-                class="size-6"
-                fill="currentColor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                />
-              </svg>
-            </a>
-            <!-- Facebook -->
-            <a
-              class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
-              href="https://www.facebook.com/laszlo.foldvary"
-              target="_blank"
-            >
-              <svg
-                class="size-6"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                ></path>
-              </svg>
-            </a>
-          </div>
-          <div
-            class="w-full pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500"
-          >
-            <p>
-              &copy; <span id="current-year"></span> László Földváry.
-              <span data-i18n="footer.allRightsReserved"
-                >All rights reserved.</span
-              >
-            </p>
-            <div class="flex gap-8">
-              <a
-                href="datenschutz.html"
-                class="hover:text-primary transition-colors"
-                data-i18n="footer.privacyPolicy"
-                >Privacy Policy</a
-              >
-              <a
-                href="impressum.html"
-                class="hover:text-primary transition-colors"
-                data-i18n="footer.impressum"
-                >Impressum</a
-              >
+
+            <!-- 3. KEY TECH & CORE CHALLENGE -->
+            <div class="pt-6 border-t border-slate-200 dark:border-white/10 space-y-6">
+              <div>
+                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                  data-i18n="shadow.keyTechTitle">
+                  Key Tech
+                </p>
+                <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.keyTechList">
+                  Figma, Google Stitch, Notebook LM, Antigravity, Flutter,
+                  Next.js
+                </p>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                  data-i18n="shadow.coreChallengeTitle">
+                  Deliverable
+                </p>
+                <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.deliverableDesc">
+                  Functional Android APK & Design System
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </footer>
-    </div>
-    <script src="js/icons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <script>
-      // Generate QR Code dynamically for the APK link
-      document.addEventListener("DOMContentLoaded", () => {
-        const qrCanvas = document.getElementById("qr-canvas");
-        if (qrCanvas && typeof QRCode !== "undefined") {
-          // Construct the absolute URL to the APK using current origin
-          const apkUrl = new URL(
-            "downloads/app-release.apk",
-            window.location.href,
-          ).href;
-          QRCode.toCanvas(
-            qrCanvas,
-            apkUrl,
-            {
-              width: 64,
-              margin: 0,
-              color: {
-                dark: "#0f172a", // slate-900
-                light: "#ffffff",
-              },
+      </section>
+
+      <!-- DEEP DIVE SECTIONS -->
+      <div class="max-w-[1200px] mx-auto px-6 py-32 space-y-32">
+        <!-- 1. UX/UI Solution -->
+        <section class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="space-y-6">
+            <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">account_balance_wallet</span>
+            </div>
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
+              data-i18n="ewa.solutionTitle">
+              Trust Through <br /><span class="text-primary font-light">Dark Mode</span>
+            </h2>
+            <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p data-i18n="ewa.solutionDesc1">
+                I established a dark-mode fintech aesthetic enriched with
+                premium gradients and Material Design 3 principles. The darker
+                palette profoundly reduces eye strain during driving and
+                inherently commands trust, a critical factor when handling
+                user funds.
+              </p>
+              <p data-i18n="ewa.solutionDesc2">
+                The digital wallet relies on intuitive swiping mechanics and
+                clearly separated premium card designs. Cross-platform
+                navigation was streamlined to ensure users are never more than
+                a tap away from reserving parking or purchasing an e-Vignette.
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform">
+              <img src="img/ewa/wallet.png" alt="Digital Wallet Screen" class="rounded-2xl w-full h-auto" />
+            </div>
+            <div
+              class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform">
+              <img src="img/ewa/account.png" alt="Account Options Screen" class="rounded-2xl w-full h-auto" />
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. AI WORKFLOW SECTION -->
+        <section
+          class="mx-auto max-w-[1200px] py-16 sm:py-24 bg-primary/[0.03] rounded-[2rem] sm:rounded-[3rem] px-4 sm:px-8 border border-primary/10 overflow-hidden">
+          <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4">
+            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.workflowTag">
+              The Designer as Builder Trend
+            </h3>
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
+              data-i18n="ewa.workflowHeadline">
+              From Mockups to Logic
+            </h2>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 lg:gap-24">
+            <div class="space-y-8">
+              <div class="space-y-4">
+                <h4
+                  class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 dark:text-white flex flex-col items-start gap-2 sm:flex-row sm:items-center break-words">
+                  <span class="material-symbols-outlined text-primary uppercase italic">terminal</span>
+                  <span data-i18n="ewa.workflowSubheadline">Deployable Android Setup</span>
+                </h4>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
+                  data-i18n="ewa.workflowDesc1">
+                  The 2026 'Designer as Builder' paradigm shifts focus from
+                  drawing static screens to building functional logic. Using
+                  Google Stitch and Next.js as starting points, I initially
+                  utilized <strong>Notebook LM</strong> to meticulously plan
+                  and gather all necessary documentation on Android
+                  environments.
+                </p>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
+                  data-i18n="ewa.workflowDesc2">
+                  This preparation took half a day, ensuring I had the
+                  capability to create my first-ever native app. From there, I
+                  utilized Google Antigravity and Flutter to transform those
+                  UI mockups into a fully functional, deployable Android APK.
+                </p>
+              </div>
+              <!-- Image Gallery below text -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 lg:hidden mt-8">
+                <img src="img/ewa/e-vignette-payment.png"
+                  class="rounded-xl shadow-md border dark:border-white/10 w-full" alt="eWa payment" />
+                <img src="img/ewa/parking-confirm.png" class="rounded-xl shadow-md border dark:border-white/10 w-full"
+                  alt="eWa parking confirm" />
+                <img src="img/ewa/succes-payment.png"
+                  class="rounded-xl shadow-md border dark:border-white/10 w-full hidden sm:block"
+                  alt="eWa success payment" />
+              </div>
+            </div>
+
+            <div class="flex flex-col justify-center space-y-8 sm:space-y-10">
+              <div class="space-y-6">
+                <h4
+                  class="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-slate-900 dark:text-white leading-snug italic break-words"
+                  data-i18n="ewa.workflowQuote">
+                  "The handoff to engineering wasn't a static PDF, it was a
+                  working application with simulated payment logic."
+                </h4>
+                <div class="h-1 w-16 sm:w-20 bg-primary"></div>
+                <p class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 italic font-light"
+                  data-i18n="ewa.workflowQuoteSub">
+                  By simulating complex payment logic and real-time state
+                  management, the build phase was completed in just 1 full
+                  day.
+                </p>
+              </div>
+              <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                <div class="p-3 sm:p-4 border-l-2 border-primary">
+                  <span class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">1.5
+                    <span class="text-base md:text-xl font-normal">Days</span></span>
+                  <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
+                    data-i18n="ewa.stat1Days">Total Dev & Prep</span>
+                </div>
+                <div class="p-3 sm:p-4 border-l-2 border-primary">
+                  <span
+                    class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Native</span>
+                  <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
+                    data-i18n="ewa.stat2Apk">Android APK Built</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- LESSONS FROM THE NOIR -->
+        <section class="mx-auto max-w-[1200px] py-16 sm:py-24 text-center">
+          <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
+              data-i18n="ewa.lessonsTitle">
+              The Future of Collaborative Design
+            </h2>
+            <div class="h-1 w-12 bg-primary mx-auto"></div>
+            <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light px-4"
+              data-i18n="ewa.lessonsText">
+              "The eWa Super App proves that combining 20+ years of systematic
+              UI/UX experience with cutting-edge AI logic accelerators allows
+              designers to act as technical bridge-builders. Bridging the gap
+              between functional business solutions and high-engagement
+              interfaces is no longer just a tagline; it's an executable
+              workflow."
+            </p>
+            <div class="pt-6 sm:pt-8 w-full">
+              <a href="case-study-greent.html"
+                class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg">
+                <span
+                  class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                <span data-i18n="ewa.nextCaseStudy" class="break-words">Next: Greentube</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- STICKY HIRE ME -->
+      <div class="fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
+        <a href="contact.html"
+          class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary">
+          <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+          <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Hire Me</span>
+        </a>
+      </div>
+    </main>
+    <footer id="footer-reveal"
+      class="fixed bottom-0 left-0 w-full z-[-1] border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300">
+      <!-- BACKGROUND HERO EFFECT -->
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <img src="img/ewa/dashboard.png"
+          class="w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-100 dark:brightness-50"
+          alt="eWa Background" />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-white dark:from-[#18181b] via-white/80 dark:via-[#18181b]/80 to-transparent">
+        </div>
+      </div>
+
+      <div class="relative z-10 max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center">
+        <!-- MOVED BACK BUTTON -->
+        <div class="mb-16">
+          <a id="footer-back-link" href="work.html"
+            class="inline-flex items-center gap-3 text-primary font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-700 ease-out group text-lg uppercase tracking-widest opacity-0 translate-x-12">
+            <span class="material-symbols-outlined group-hover:-translate-x-2 transition-transform">arrow_back</span>
+            <span data-i18n="shadow.backToProjects">Back to All Projects</span>
+          </a>
+        </div>
+
+        <div class="mb-12">
+          <h3
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase italic tracking-tighter break-words"
+            data-i18n="footer.readyToStart">
+            Ready to start a project?
+          </h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed"
+            data-i18n="footer.readySubtitle">
+            Let's create something meaningful together. I'm always open to new
+            opportunities and interesting challenges.
+          </p>
+        </div>
+        <div id="footer-contact-info"
+          class="mb-12 opacity-0 translate-y-4 transition-all duration-700 ease-out delay-200">
+          <p class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+            +43 699 818 41 767
+          </p>
+          <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+        </div>
+        <!-- Közösségi ikonok a footerben -->
+        <div class="flex gap-5 mb-16">
+          <!-- Email -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
+            href="mailto:foeldvary@gmail.com">
+            <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
+            href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank">
+            <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+              <path clip-rule="evenodd"
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                fill-rule="evenodd"></path>
+            </svg>
+          </a>
+          <!-- GitHub -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
+            href="https://github.com/Lacius76" target="_blank">
+            <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a class="size-12 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all"
+            href="https://www.facebook.com/laszlo.foldvary" target="_blank">
+            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+              </path>
+            </svg>
+          </a>
+        </div>
+        <div
+          class="w-full pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
+          <p>
+            &copy; <span id="current-year"></span> László Földváry.
+            <span data-i18n="footer.allRightsReserved">All rights reserved.</span>
+          </p>
+          <div class="flex gap-8">
+            <a href="datenschutz.html" class="hover:text-primary transition-colors"
+              data-i18n="footer.privacyPolicy">Privacy Policy</a>
+            <a href="impressum.html" class="hover:text-primary transition-colors"
+              data-i18n="footer.impressum">Impressum</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="js/icons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    // Generate QR Code dynamically for the APK link
+    document.addEventListener("DOMContentLoaded", () => {
+      const qrCanvas = document.getElementById("qr-canvas");
+      if (qrCanvas && typeof QRCode !== "undefined") {
+        // Construct the absolute URL to the APK using current origin
+        const apkUrl = new URL(
+          "downloads/app-release.apk",
+          window.location.href,
+        ).href;
+        QRCode.toCanvas(
+          qrCanvas,
+          apkUrl,
+          {
+            width: 64,
+            margin: 0,
+            color: {
+              dark: "#0f172a", // slate-900
+              light: "#ffffff",
             },
-            function (error) {
-              if (error) console.error("QR Code generation error:", error);
-            },
-          );
+          },
+          function (error) {
+            if (error) console.error("QR Code generation error:", error);
+          },
+        );
+      }
+    });
+  </script>
+  <script>
+    // Footer Reveal Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const footer = document.getElementById("footer-reveal");
+      const wrapper = document.getElementById("content-wrapper");
+
+      function adjustLayout() {
+        // Set wrapper margin equal to footer height to allow reveal
+        if (wrapper && footer) {
+          wrapper.style.marginBottom = `${footer.offsetHeight}px`;
         }
-      });
-    </script>
-    <script>
-      // Footer Reveal Logic
-      document.addEventListener("DOMContentLoaded", () => {
-        const footer = document.getElementById("footer-reveal");
-        const wrapper = document.getElementById("content-wrapper");
+      }
 
-        function adjustLayout() {
-          // Set wrapper margin equal to footer height to allow reveal
-          if (wrapper && footer) {
-            wrapper.style.marginBottom = `${footer.offsetHeight}px`;
-          }
-        }
+      function handleScroll() {
+        // Toggle Footer Z-Index AND Back Button Animation
 
-        function handleScroll() {
-          // Toggle Footer Z-Index AND Back Button Animation
+        const scrollY = window.scrollY;
+        const viewHeight = window.innerHeight;
+        const docHeight = document.body.scrollHeight;
 
-          const scrollY = window.scrollY;
-          const viewHeight = window.innerHeight;
-          const docHeight = document.body.scrollHeight;
-
-          // 1. Z-Index Logic
-          if (footer) {
-            if (scrollY > viewHeight) {
-              footer.style.zIndex = "1";
-            } else {
-              footer.style.zIndex = "-1";
-            }
-          }
-
-          // 2. Back Button Animation Logic
-          // Trigger when we are close to the bottom (footer fully revealed)
-          const backLink = document.getElementById("footer-back-link");
-          const contactInfo = document.getElementById("footer-contact-info");
-
-          if (backLink && contactInfo) {
-            // Use a threshold (e.g. 50px from bottom)
-            if (window.innerHeight + scrollY >= docHeight - 50) {
-              backLink.classList.remove("opacity-0", "translate-x-12");
-              contactInfo.classList.remove("opacity-0", "translate-y-4");
-            } else {
-              backLink.classList.add("opacity-0", "translate-x-12");
-              contactInfo.classList.add("opacity-0", "translate-y-4");
-            }
+        // 1. Z-Index Logic
+        if (footer) {
+          if (scrollY > viewHeight) {
+            footer.style.zIndex = "1";
+          } else {
+            footer.style.zIndex = "-1";
           }
         }
 
-        // Init
-        adjustLayout();
-        window.addEventListener("resize", adjustLayout);
-        window.addEventListener("scroll", handleScroll, { passive: true });
-      });
-    </script>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll("[data-icon]").forEach((element) => {
-          const iconName = element.getAttribute("data-icon");
+        // 2. Back Button Animation Logic
+        // Trigger when we are close to the bottom (footer fully revealed)
+        const backLink = document.getElementById("footer-back-link");
+        const contactInfo = document.getElementById("footer-contact-info");
 
-          // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
-          if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
-            element.innerHTML = ASSETS[iconName];
+        if (backLink && contactInfo) {
+          // Use a threshold (e.g. 50px from bottom)
+          if (window.innerHeight + scrollY >= docHeight - 50) {
+            backLink.classList.remove("opacity-0", "translate-x-12");
+            contactInfo.classList.remove("opacity-0", "translate-y-4");
+          } else {
+            backLink.classList.add("opacity-0", "translate-x-12");
+            contactInfo.classList.add("opacity-0", "translate-y-4");
           }
-        });
-      });
-    </script>
-    <script>
-      // Mobil menü vezérlése
-      const menuBtn = document.getElementById("menu-button");
-      const closeBtn = document.getElementById("close-menu");
-      const mobileMenu = document.getElementById("mobile-menu");
+        }
+      }
 
-      // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
-      menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; // Megakadályozza, hogy a háttér görögjön
-      });
+      // Init
+      adjustLayout();
+      window.addEventListener("resize", adjustLayout);
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    });
+  </script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("[data-icon]").forEach((element) => {
+        const iconName = element.getAttribute("data-icon");
 
-      // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
-      closeBtn.addEventListener("click", () => {
+        // Ellenőrizzük, hogy létezik-e az adatbázis és benne az ikon
+        if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
+          element.innerHTML = ASSETS[iconName];
+        }
+      });
+    });
+  </script>
+  <script>
+    // Mobil menü vezérlése
+    const menuBtn = document.getElementById("menu-button");
+    const closeBtn = document.getElementById("close-menu");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    // Amikor a hamburgerre kattintunk: levesszük a 'hidden' osztályt (megjelenik)
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("hidden");
+      document.body.style.overflow = "hidden"; // Megakadályozza, hogy a háttér görögjön
+    });
+
+    // Amikor a X-re kattintunk: visszatesszük a 'hidden' osztályt (eltűnik)
+    closeBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      document.body.style.overflow = "auto"; // Visszaállítja a görgetést
+    });
+
+    // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
         mobileMenu.classList.add("hidden");
-        document.body.style.overflow = "auto"; // Visszaállítja a görgetést
+        document.body.style.overflow = "auto";
       });
+    });
+  </script>
+  <script src="js/theme.js"></script>
+  <script src="js/language.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    // Generate QR Code dynamically for the APK link
+    document.addEventListener("DOMContentLoaded", () => {
+      const qrCanvas = document.getElementById("qr-canvas");
+      if (qrCanvas && typeof QRCode !== "undefined") {
+        const apkUrl = new URL(
+          "downloads/app-release.apk",
+          window.location.href,
+        ).href;
+        QRCode.toCanvas(
+          qrCanvas,
+          apkUrl,
+          {
+            width: 180, // Set to a high value, CSS `w-full` will scale it down to match the button width
+            margin: 0,
+            color: {
+              dark: "#0f172a",
+              light: "#ffffff",
+            },
+          },
+          function (error) {
+            if (error) console.error("QR Code generation error:", error);
+          },
+        );
+      }
+    });
+  </script>
+</body>
 
-      // Opcionális: Ha rákattintanak egy linkre, záródjon be a menü
-      mobileMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          document.body.style.overflow = "auto";
-        });
-      });
-    </script>
-    <script src="js/theme.js"></script>
-    <script src="js/language.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <script>
-      // Generate QR Code dynamically for the APK link
-      document.addEventListener("DOMContentLoaded", () => {
-        const qrCanvas = document.getElementById("qr-canvas");
-        if (qrCanvas && typeof QRCode !== "undefined") {
-          const apkUrl = new URL(
-            "downloads/app-release.apk",
-            window.location.href,
-          ).href;
-          QRCode.toCanvas(
-            qrCanvas,
-            apkUrl,
-            {
-              width: 180, // Set to a high value, CSS `w-full` will scale it down to match the button width
-              margin: 0,
-              color: {
-                dark: "#0f172a",
-                light: "#ffffff",
-              },
-            },
-            function (error) {
-              if (error) console.error("QR Code generation error:", error);
-            },
-          );
-        }
-      });
-    </script>
-  </body>
 </html>
