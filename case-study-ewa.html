@@ -62,21 +62,26 @@
     }
 
     /* === SCROLL STACK EFFECT === */
+    /* Mobile: normal flow, no stacking (panels are too tall and content gets cut) */
     .stack-panel {
-      position: sticky;
-      top: 0;
-      overflow: hidden;
-      /* Rounded top corners give the "card sliding over card" feel */
-      border-radius: 1.5rem 1.5rem 0 0;
-      box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.3);
-      /* Each panel must be tall enough for the sticky effect to work */
-      min-height: 100vh;
+      position: relative;
     }
 
-    /* First panel has no rounded top and no shadow (it's the base) */
-    .stack-panel:first-child {
-      border-radius: 0;
-      box-shadow: none;
+    /* Desktop (md+): activate sticky card-stacking */
+    @media (min-width: 768px) {
+      .stack-panel {
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        border-radius: 1.5rem 1.5rem 0 0;
+        box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.3);
+        min-height: 100vh;
+      }
+
+      .stack-panel:first-child {
+        border-radius: 0;
+        box-shadow: none;
+      }
     }
   </style>
 </head>
