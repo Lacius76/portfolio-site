@@ -60,6 +60,24 @@
       -webkit-hyphens: none;
       -ms-hyphens: none;
     }
+
+    /* === SCROLL STACK EFFECT === */
+    .stack-panel {
+      position: sticky;
+      top: 0;
+      overflow: hidden;
+      /* Rounded top corners give the "card sliding over card" feel */
+      border-radius: 1.5rem 1.5rem 0 0;
+      box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.3);
+      /* Each panel must be tall enough for the sticky effect to work */
+      min-height: 100vh;
+    }
+
+    /* First panel has no rounded top and no shadow (it's the base) */
+    .stack-panel:first-child {
+      border-radius: 0;
+      box-shadow: none;
+    }
   </style>
 </head>
 
@@ -161,427 +179,456 @@
     </div>
     <main id="content-wrapper"
       class="relative z-10 bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300">
-      <!-- HERO: eWa Super App -->
-      <section class="relative pt-20 pb-32 overflow-hidden bg-slate-950">
-        <div class="absolute inset-0 z-0">
-          <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 mix-blend-screen">
-            <source src="img/ewa/ewa-hero.webm" type="video/webm">
-            <source src="img/ewa/ewa-hero.mp4" type="video/mp4">
-          </video>
+
+      <!-- ===== PANEL 1: HERO + EXECUTIVE SUMMARY ===== -->
+      <div class="stack-panel bg-slate-950" style="z-index: 1;">
+
+        <!-- HERO: eWa Super App -->
+        <section class="relative pt-20 pb-32 overflow-hidden bg-slate-950">
+          <div class="absolute inset-0 z-0">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 mix-blend-screen">
+              <source src="img/ewa/ewa-hero.webm" type="video/webm">
+              <source src="img/ewa/ewa-hero.mp4" type="video/mp4">
+            </video>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-white dark:from-background-dark via-transparent to-transparent opacity-100">
+            </div>
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+
+          <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
+            <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic" data-i18n="ewa.heroTag">
+              Fintech &amp; Mobility Super App
+            </h2>
+            <h1
+              class="text-3xl sm:text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic break-words">
+              eWa
+              <span class="text-primary">Super App</span>
+            </h1>
+            <p class="max-w-full sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl font-light leading-relaxed text-slate-200 px-2"
+              data-i18n="ewa.heroDescription">
+              A modern application tailored for the Austrian market, seamlessly
+              integrating smart parking, e-vignettes, and digital
+              <span class="text-primary font-bold">Electronic Wallet (eWa)</span>
+              payments.
+            </p>
+          </div>
+        </section>
+
+        <!-- EXECUTIVE SUMMARY - eWa Super App -->
+        <section class="max-w-[1200px] mx-auto px-6 -mt-20 relative z-20">
           <div
-            class="absolute inset-0 bg-gradient-to-t from-white dark:from-background-dark via-transparent to-transparent opacity-100">
-          </div>
-          <div class="absolute inset-0 bg-black/40"></div>
-        </div>
-
-        <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
-          <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic" data-i18n="ewa.heroTag">
-            Fintech & Mobility Super App
-          </h2>
-          <h1
-            class="text-3xl sm:text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic break-words">
-            eWa
-            <span class="text-primary">Super App</span>
-          </h1>
-          <p class="max-w-full sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl font-light leading-relaxed text-slate-200 px-2"
-            data-i18n="ewa.heroDescription">
-            A modern application tailored for the Austrian market, seamlessly
-            integrating smart parking, e-vignettes, and digital
-            <span class="text-primary font-bold">Electronic Wallet (eWa)</span>
-            payments.
-          </p>
-        </div>
-      </section>
-
-      <!-- EXECUTIVE SUMMARY - eWa Super App -->
-      <section class="max-w-[1200px] mx-auto px-6 -mt-20 relative z-20">
-        <div
-          class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-5 gap-8 lg:gap-12 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors">
-          <!-- BAL OLDAL: Project Vision -->
-          <div class="md:col-span-3 space-y-6">
-            <h3
-              class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
-              data-i18n="ewa.challengeTitle">
-              The Austrian Market Challenge
-            </h3>
-            <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg" data-i18n="ewa.challengeText1">
-              Designing a Super App requires balancing complexity. It must
-              house multiple critical services—like smart road tolling,
-              parking meters, and comprehensive digital wallets—without
-              overwhelming the user. The primary challenge was crafting an
-              architecture robust enough for mobility but secure enough for
-              daily fintech operations in EURO (€).
-            </p>
-            <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg mt-4" data-i18n="ewa.challengeText2">
-              Targeting the Austrian market meant adhering to high
-              expectations of privacy, data clarity, and clean, uncompromised
-              aesthetics.
-            </p>
-            <!-- TAGS -->
-            <div class="flex flex-wrap gap-3 pt-2">
-              <span
-                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">UI/UX
-                Designer</span>
-              <span
-                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">AI
-                Prototyper</span>
-              <span
-                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Material
-                3</span>
-            </div>
-          </div>
-
-          <!-- JOBB OLDAL: App Buttons & Key Tech -->
-          <div class="space-y-6 md:border-l border-slate-200 dark:border-white/5 md:pl-8 md:col-span-2">
-            <!-- 1. QR Code for Desktop Users -->
-            <div class="hidden sm:flex flex-row items-center gap-3">
-              <div
-                class="bg-white p-2 text-center rounded-xl shadow-sm flex-1 flex flex-col items-center justify-center shrink-0">
-                <canvas id="qr-canvas" class="w-full h-auto"></canvas>
-              </div>
-              <div class="text-xs text-slate-500 dark:text-slate-400 font-medium leading-tight flex-1"
-                data-i18n="ewa.scanQrCode">
-                Scan to download directly to your Android device
-              </div>
-            </div>
-
-            <!-- 2. APP BUTTONS (Less tall, next to each other) -->
-            <div class="flex flex-col sm:flex-row gap-3">
-              <a href="downloads/app-release.apk" download="ewa.apk"
-                class="group flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 hover:bg-emerald-700 active:scale-95 flex-1text-center">
-                <span class="material-symbols-outlined text-[18px]">android</span>
-                <span data-i18n="ewa.downloadApk">Download APK</span>
-              </a>
-              <a href="https://e-wa-app.vercel.app/profile" target="_blank"
-                class="group flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-indigo-500/30 transition-all hover:scale-105 hover:bg-indigo-700 active:scale-95 flex-1 text-center">
-                <span class="material-symbols-outlined text-[18px]">web</span>
-                <span data-i18n="ewa.launchWeb">Launch Web App</span>
-              </a>
-            </div>
-            <p class="text-[10px] text-slate-500 dark:text-slate-400 -mt-2 italic" data-i18n="ewa.apkWarning">
-              *Note: Installing the APK may require enabling "Unknown Sources"
-              in your Android settings.
-            </p>
-
-            <!-- 3. KEY TECH & CORE CHALLENGE -->
-            <div class="pt-6 border-t border-slate-200 dark:border-white/10 space-y-6">
-              <div>
-                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
-                  data-i18n="shadow.keyTechTitle">
-                  Key Tech
-                </p>
-                <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.keyTechList">
-                  Figma, Google Stitch, Notebook LM, Antigravity, Flutter,
-                  Next.js
-                </p>
-              </div>
-              <div>
-                <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
-                  data-i18n="shadow.coreChallengeTitle">
-                  Deliverable
-                </p>
-                <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.deliverableDesc">
-                  Functional Android APK & Design System
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- DEEP DIVE SECTIONS -->
-      <div class="max-w-[1200px] mx-auto px-6 py-32 space-y-32">
-        <!-- 1. UX/UI Solution -->
-        <section class="grid lg:grid-cols-2 gap-16 items-center">
-          <div class="space-y-6">
-            <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
-              <span class="material-symbols-outlined">account_balance_wallet</span>
-            </div>
-            <h2
-              class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
-              data-i18n="ewa.solutionTitle">
-              Trust Through <br /><span class="text-primary font-light">Dark Mode</span>
-            </h2>
-            <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-              <p data-i18n="ewa.solutionDesc1">
-                I established a dark-mode fintech aesthetic enriched with
-                premium gradients and Material Design 3 principles. The darker
-                palette profoundly reduces eye strain during driving and
-                inherently commands trust, a critical factor when handling
-                user funds.
+            class="glass-panel rounded-[2rem] p-8 md:p-12 grid md:grid-cols-5 gap-8 lg:gap-12 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors">
+            <!-- BAL OLDAL: Project Vision -->
+            <div class="md:col-span-3 space-y-6">
+              <h3
+                class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
+                data-i18n="ewa.challengeTitle">
+                The Austrian Market Challenge
+              </h3>
+              <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg" data-i18n="ewa.challengeText1">
+                Designing a Super App requires balancing complexity. It must
+                house multiple critical services—like smart road tolling,
+                parking meters, and comprehensive digital wallets—without
+                overwhelming the user. The primary challenge was crafting an
+                architecture robust enough for mobility but secure enough for
+                daily fintech operations in EURO (€).
               </p>
-              <p data-i18n="ewa.solutionDesc2">
-                The digital wallet relies on intuitive swiping mechanics and
-                clearly separated premium card designs. Cross-platform
-                navigation was streamlined to ensure users are never more than
-                a tap away from reserving parking or purchasing an e-Vignette.
+              <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-lg mt-4" data-i18n="ewa.challengeText2">
+                Targeting the Austrian market meant adhering to high
+                expectations of privacy, data clarity, and clean, uncompromised
+                aesthetics.
               </p>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-            <div
-              class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform">
-              <img src="img/ewa/wallet.png" alt="Digital Wallet Screen" class="rounded-2xl w-full h-auto" />
-            </div>
-            <div
-              class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform">
-              <img src="img/ewa/account.png" alt="Account Options Screen" class="rounded-2xl w-full h-auto" />
-            </div>
-          </div>
-        </section>
-
-        <!-- 2. AI WORKFLOW SECTION -->
-        <section
-          class="mx-auto max-w-[1200px] py-16 sm:py-24 bg-primary/[0.03] rounded-[2rem] sm:rounded-[3rem] px-4 sm:px-8 border border-primary/10 overflow-hidden">
-          <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4">
-            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.workflowTag">
-              The Designer as Builder Trend
-            </h3>
-            <h2
-              class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
-              data-i18n="ewa.workflowHeadline">
-              From Mockups to Logic
-            </h2>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-8 lg:gap-24">
-            <div class="space-y-8">
-              <div class="space-y-4">
-                <h4
-                  class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 dark:text-white flex flex-col items-start gap-2 sm:flex-row sm:items-center break-words">
-                  <span class="material-symbols-outlined text-primary uppercase italic">terminal</span>
-                  <span data-i18n="ewa.workflowSubheadline">Deployable Android Setup</span>
-                </h4>
-                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
-                  data-i18n="ewa.workflowDesc1">
-                  The 2026 'Designer as Builder' paradigm shifts focus from
-                  drawing static screens to building functional logic. Using
-                  Google Stitch and Next.js as starting points, I initially
-                  utilized <strong>Notebook LM</strong> to meticulously plan
-                  and gather all necessary documentation on Android
-                  environments.
-                </p>
-                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
-                  data-i18n="ewa.workflowDesc2">
-                  This preparation took half a day, ensuring I had the
-                  capability to create my first-ever native app. From there, I
-                  utilized Google Antigravity and Flutter to transform those
-                  UI mockups into a fully functional, deployable Android APK.
-                </p>
-              </div>
-              <!-- Image Gallery below text -->
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 lg:hidden mt-8">
-                <img src="img/ewa/e-vignette-payment.png"
-                  class="rounded-xl shadow-md border dark:border-white/10 w-full" alt="eWa payment" />
-                <img src="img/ewa/parking-confirm.png" class="rounded-xl shadow-md border dark:border-white/10 w-full"
-                  alt="eWa parking confirm" />
-                <img src="img/ewa/succes-payment.png"
-                  class="rounded-xl shadow-md border dark:border-white/10 w-full hidden sm:block"
-                  alt="eWa success payment" />
+              <!-- TAGS -->
+              <div class="flex flex-wrap gap-3 pt-2">
+                <span
+                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">UI/UX
+                  Designer</span>
+                <span
+                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">AI
+                  Prototyper</span>
+                <span
+                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Material
+                  3</span>
               </div>
             </div>
 
-            <div class="flex flex-col justify-center space-y-8 sm:space-y-10">
-              <div class="space-y-6">
-                <h4
-                  class="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-slate-900 dark:text-white leading-snug italic break-words"
-                  data-i18n="ewa.workflowQuote">
-                  "The handoff to engineering wasn't a static PDF, it was a
-                  working application with simulated payment logic."
-                </h4>
-                <div class="h-1 w-16 sm:w-20 bg-primary"></div>
-                <p class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 italic font-light"
-                  data-i18n="ewa.workflowQuoteSub">
-                  By simulating complex payment logic and real-time state
-                  management, the build phase was completed in just 1 full
-                  day.
-                </p>
-              </div>
-              <div class="grid grid-cols-2 gap-4 sm:gap-6">
-                <div class="p-3 sm:p-4 border-l-2 border-primary">
-                  <span class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">1.5
-                    <span class="text-base md:text-xl font-normal">Days</span></span>
-                  <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
-                    data-i18n="ewa.stat1Days">Total Dev & Prep</span>
-                </div>
-                <div class="p-3 sm:p-4 border-l-2 border-primary">
-                  <span
-                    class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Native</span>
-                  <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
-                    data-i18n="ewa.stat2Apk">Android APK Built</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FUTURE ROADMAP & VISION -->
-        <section class="mx-auto max-w-[1200px] py-16 sm:py-24">
-          <!-- Section Header -->
-          <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
-            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.roadmapTag">
-              Product Vision
-            </h3>
-            <h2
-              class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
-              data-i18n="ewa.roadmapHeadline">
-              Future Roadmap &amp; Vision
-            </h2>
-            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed"
-              data-i18n="ewa.roadmapIntro">
-              As a working prototype, eWa proves the concept. These are the two strategic phases that would take it from
-              MVP to market-ready Super App.
-            </p>
-          </div>
-
-          <!-- Two Phase Cards -->
-          <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
-
-            <!-- Phase 1 Card -->
-            <div
-              class="glass-panel rounded-[2rem] p-8 md:p-10 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-xl flex flex-col gap-6">
-              <div class="flex items-center gap-4">
+            <!-- JOBB OLDAL: App Buttons & Key Tech -->
+            <div class="space-y-6 md:border-l border-slate-200 dark:border-white/5 md:pl-8 md:col-span-2">
+              <!-- 1. QR Code for Desktop Users -->
+              <div class="hidden sm:flex flex-row items-center gap-3">
                 <div
-                  class="size-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
-                  <span class="material-symbols-outlined text-[26px]">smartphone</span>
+                  class="bg-white p-2 text-center rounded-xl shadow-sm flex-1 flex flex-col items-center justify-center shrink-0">
+                  <canvas id="qr-canvas" class="w-full h-auto"></canvas>
+                </div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium leading-tight flex-1"
+                  data-i18n="ewa.scanQrCode">
+                  Scan to download directly to your Android device
+                </div>
+              </div>
+
+              <!-- 2. APP BUTTONS (Less tall, next to each other) -->
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a href="downloads/app-release.apk" download="ewa.apk"
+                  class="group flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 hover:bg-emerald-700 active:scale-95 flex-1text-center">
+                  <span class="material-symbols-outlined text-[18px]">android</span>
+                  <span data-i18n="ewa.downloadApk">Download APK</span>
+                </a>
+                <a href="https://e-wa-app.vercel.app/profile" target="_blank"
+                  class="group flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-indigo-500/30 transition-all hover:scale-105 hover:bg-indigo-700 active:scale-95 flex-1 text-center">
+                  <span class="material-symbols-outlined text-[18px]">web</span>
+                  <span data-i18n="ewa.launchWeb">Launch Web App</span>
+                </a>
+              </div>
+              <p class="text-[10px] text-slate-500 dark:text-slate-400 -mt-2 italic" data-i18n="ewa.apkWarning">
+                *Note: Installing the APK may require enabling "Unknown Sources"
+                in your Android settings.
+              </p>
+
+              <!-- 3. KEY TECH & CORE CHALLENGE -->
+              <div class="pt-6 border-t border-slate-200 dark:border-white/10 space-y-6">
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                    data-i18n="shadow.keyTechTitle">
+                    Key Tech
+                  </p>
+                  <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.keyTechList">
+                    Figma, Google Stitch, Notebook LM, Antigravity, Flutter,
+                    Next.js
+                  </p>
                 </div>
                 <div>
-                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
-                    data-i18n="ewa.roadmapPhase1Label">Phase 1</p>
-                  <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
-                    data-i18n="ewa.roadmapPhase1Title">
-                    Expanding the Ecosystem
-                  </h3>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1"
+                    data-i18n="shadow.coreChallengeTitle">
+                    Deliverable
+                  </p>
+                  <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.deliverableDesc">
+                    Functional Android APK & Design System
+                  </p>
                 </div>
-              </div>
-              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
-                data-i18n="ewa.roadmapPhase1Desc">
-                The immediate next step is transitioning the remaining UI placeholders — including the Mobile Ticket and
-                Insurance screens — into fully interactive, data-driven Flutter screens. This will complete the core
-                Super App experience and deliver a seamless, end-to-end user journey across every eWa service.
-              </p>
-              <ul class="space-y-2.5 mt-auto">
-                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
-                  <span
-                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[14px]">check</span>
-                  </span>
-                  <span data-i18n="ewa.roadmapPhase1Item1">Mobile Ticket & Transit screens</span>
-                </li>
-                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
-                  <span
-                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[14px]">check</span>
-                  </span>
-                  <span data-i18n="ewa.roadmapPhase1Item2">Insurance & document hub screens</span>
-                </li>
-                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
-                  <span
-                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[14px]">check</span>
-                  </span>
-                  <span data-i18n="ewa.roadmapPhase1Item3">Full data-driven Flutter integration</span>
-                </li>
-                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
-                  <span
-                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[14px]">check</span>
-                  </span>
-                  <span data-i18n="ewa.roadmapPhase1Item4">German language activation</span>
-                </li>
-                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
-                  <span
-                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-[14px]">check</span>
-                  </span>
-                  <span data-i18n="ewa.roadmapPhase1Item5">Light theme integration</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Phase 2 Card (USP) -->
-            <div
-              class="relative glass-panel rounded-[2rem] p-8 md:p-10 bg-primary/5 dark:bg-primary/10 backdrop-blur-xl border border-primary/20 shadow-xl flex flex-col gap-6 overflow-hidden">
-              <!-- "USP" Badge -->
-              <div class="absolute top-6 right-6">
-                <span
-                  class="inline-flex items-center gap-1.5 rounded-full bg-primary/20 border border-primary/30 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-                  <span class="material-symbols-outlined text-[12px]">star</span>
-                  <span data-i18n="ewa.roadmapUspBadge">Unique Feature</span>
-                </span>
-              </div>
-              <div class="flex items-center gap-4">
-                <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary shrink-0">
-                  <span class="material-symbols-outlined text-[26px]">widgets</span>
-                </div>
-                <div>
-                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
-                    data-i18n="ewa.roadmapPhase2Label">Phase 2</p>
-                  <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
-                    data-i18n="ewa.roadmapPhase2Title">
-                    The Composable Subscription Hub
-                  </h3>
-                </div>
-              </div>
-              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
-                data-i18n="ewa.roadmapPhase2Desc">
-                A truly innovative feature I have not seen in any competitor: a <strong
-                  class="text-slate-900 dark:text-white">LEGO-style modular system</strong> where users freely add,
-                configure, and
-                stack custom subscription blocks — Netflix, OneDrive, Spotify, gym memberships, and beyond. Users gain
-                total financial transparency, tracking payment dates, monitoring recurring Euro costs, and pausing or
-                cancelling any subscription with a single tap — all from within eWa.
-              </p>
-              <!-- Feature Pills -->
-              <div class="flex flex-wrap gap-2 mt-auto">
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                  data-i18n="ewa.roadmapPill1">Modular Blocks</span>
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                  data-i18n="ewa.roadmapPill2">Cost Transparency</span>
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                  data-i18n="ewa.roadmapPill3">1-Tap Cancel</span>
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                  data-i18n="ewa.roadmapPill4">Central Control</span>
               </div>
             </div>
-
           </div>
         </section>
 
-        <!-- LESSONS FROM THE NOIR -->
-
-        <section class="mx-auto max-w-[1200px] py-16 sm:py-24 text-center">
-          <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
-            <h2
-              class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
-              data-i18n="ewa.lessonsTitle">
-              The Future of Collaborative Design
-            </h2>
-            <div class="h-1 w-12 bg-primary mx-auto"></div>
-            <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light px-4"
-              data-i18n="ewa.lessonsText">
-              "The eWa Super App proves that combining 20+ years of systematic
-              UI/UX experience with cutting-edge AI logic accelerators allows
-              designers to act as technical bridge-builders. Bridging the gap
-              between functional business solutions and high-engagement
-              interfaces is no longer just a tagline; it's an executable
-              workflow."
-            </p>
-            <div class="pt-6 sm:pt-8 w-full">
-              <a href="case-study-greent.html"
-                class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg">
-                <span
-                  class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
-                <span data-i18n="ewa.nextCaseStudy" class="break-words">Next: Greentube</span>
-              </a>
-            </div>
-          </div>
-        </section>
       </div>
+      <!-- END PANEL 1 -->
+
+      <!-- ===== PANEL 2: UX/UI SOLUTION ===== -->
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 2;">
+        <div class="max-w-[1200px] mx-auto px-6 py-24">
+          <!-- 1. UX/UI Solution -->
+          <section class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+              <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">account_balance_wallet</span>
+              </div>
+              <h2
+                class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
+                data-i18n="ewa.solutionTitle">
+                Trust Through <br /><span class="text-primary font-light">Dark Mode</span>
+              </h2>
+              <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p data-i18n="ewa.solutionDesc1">
+                  I established a dark-mode fintech aesthetic enriched with
+                  premium gradients and Material Design 3 principles. The darker
+                  palette profoundly reduces eye strain during driving and
+                  inherently commands trust, a critical factor when handling
+                  user funds.
+                </p>
+                <p data-i18n="ewa.solutionDesc2">
+                  The digital wallet relies on intuitive swiping mechanics and
+                  clearly separated premium card designs. Cross-platform
+                  navigation was streamlined to ensure users are never more than
+                  a tap away from reserving parking or purchasing an e-Vignette.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform">
+                <img src="img/ewa/wallet.png" alt="Digital Wallet Screen" class="rounded-2xl w-full h-auto" />
+              </div>
+              <div
+                class="glass-panel p-2 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg hover:scale-105 transition-transform">
+                <img src="img/ewa/account.png" alt="Account Options Screen" class="rounded-2xl w-full h-auto" />
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- END PANEL 2 -->
+
+      <!-- ===== PANEL 3: AI WORKFLOW ===== -->
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 3;">
+        <div class="max-w-[1200px] mx-auto px-6 py-24">
+          <!-- 2. AI WORKFLOW SECTION -->
+          <section
+            class="mx-auto max-w-[1200px] py-16 sm:py-24 bg-primary/[0.03] rounded-[2rem] sm:rounded-[3rem] px-4 sm:px-8 border border-primary/10 overflow-hidden">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-4">
+              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.workflowTag">
+                The Designer as Builder Trend
+              </h3>
+              <h2
+                class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
+                data-i18n="ewa.workflowHeadline">
+                From Mockups to Logic
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-24">
+              <div class="space-y-8">
+                <div class="space-y-4">
+                  <h4
+                    class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 dark:text-white flex flex-col items-start gap-2 sm:flex-row sm:items-center break-words">
+                    <span class="material-symbols-outlined text-primary uppercase italic">terminal</span>
+                    <span data-i18n="ewa.workflowSubheadline">Deployable Android Setup</span>
+                  </h4>
+                  <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
+                    data-i18n="ewa.workflowDesc1">
+                    The 2026 'Designer as Builder' paradigm shifts focus from
+                    drawing static screens to building functional logic. Using
+                    Google Stitch and Next.js as starting points, I initially
+                    utilized <strong>Notebook LM</strong> to meticulously plan
+                    and gather all necessary documentation on Android
+                    environments.
+                  </p>
+                  <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
+                    data-i18n="ewa.workflowDesc2">
+                    This preparation took half a day, ensuring I had the
+                    capability to create my first-ever native app. From there, I
+                    utilized Google Antigravity and Flutter to transform those
+                    UI mockups into a fully functional, deployable Android APK.
+                  </p>
+                </div>
+                <!-- Image Gallery below text -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 lg:hidden mt-8">
+                  <img src="img/ewa/e-vignette-payment.png"
+                    class="rounded-xl shadow-md border dark:border-white/10 w-full" alt="eWa payment" />
+                  <img src="img/ewa/parking-confirm.png" class="rounded-xl shadow-md border dark:border-white/10 w-full"
+                    alt="eWa parking confirm" />
+                  <img src="img/ewa/succes-payment.png"
+                    class="rounded-xl shadow-md border dark:border-white/10 w-full hidden sm:block"
+                    alt="eWa success payment" />
+                </div>
+              </div>
+
+              <div class="flex flex-col justify-center space-y-8 sm:space-y-10">
+                <div class="space-y-6">
+                  <h4
+                    class="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-slate-900 dark:text-white leading-snug italic break-words"
+                    data-i18n="ewa.workflowQuote">
+                    "The handoff to engineering wasn't a static PDF, it was a
+                    working application with simulated payment logic."
+                  </h4>
+                  <div class="h-1 w-16 sm:w-20 bg-primary"></div>
+                  <p class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 italic font-light"
+                    data-i18n="ewa.workflowQuoteSub">
+                    By simulating complex payment logic and real-time state
+                    management, the build phase was completed in just 1 full
+                    day.
+                  </p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                  <div class="p-3 sm:p-4 border-l-2 border-primary">
+                    <span class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">1.5
+                      <span class="text-base md:text-xl font-normal">Days</span></span>
+                    <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
+                      data-i18n="ewa.stat1Days">Total Dev & Prep</span>
+                  </div>
+                  <div class="p-3 sm:p-4 border-l-2 border-primary">
+                    <span
+                      class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Native</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
+                      data-i18n="ewa.stat2Apk">Android APK Built</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- END PANEL 3 -->
+
+      <!-- ===== PANEL 4: FUTURE ROADMAP ===== -->
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 4;">
+        <div class="max-w-[1200px] mx-auto px-6 py-10">
+          <!-- FUTURE ROADMAP & VISION -->
+          <section class="mx-auto max-w-[1200px] py-4 sm:py-14">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14 space-y-4">
+              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.roadmapTag">
+                Product Vision
+              </h3>
+              <h2
+                class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
+                data-i18n="ewa.roadmapHeadline">
+                Future Roadmap &amp; Vision
+              </h2>
+              <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed"
+                data-i18n="ewa.roadmapIntro">
+                As a working prototype, eWa proves the concept. These are the two strategic phases that would take it
+                from
+                MVP to market-ready Super App.
+              </p>
+            </div>
+
+            <!-- Two Phase Cards -->
+            <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+
+              <!-- Phase 1 Card -->
+              <div
+                class="glass-panel rounded-[2rem] p-8 md:p-10 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-xl flex flex-col gap-6">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="size-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">smartphone</span>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
+                      data-i18n="ewa.roadmapPhase1Label">Phase 1</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
+                      data-i18n="ewa.roadmapPhase1Title">
+                      Expanding the Ecosystem
+                    </h3>
+                  </div>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
+                  data-i18n="ewa.roadmapPhase1Desc">
+                  The immediate next step is transitioning the remaining UI placeholders — including the Mobile Ticket
+                  and
+                  Insurance screens — into fully interactive, data-driven Flutter screens. This will complete the core
+                  Super App experience and deliver a seamless, end-to-end user journey across every eWa service.
+                </p>
+                <ul class="space-y-2.5 mt-auto">
+                  <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                    <span
+                      class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-[14px]">check</span>
+                    </span>
+                    <span data-i18n="ewa.roadmapPhase1Item1">Mobile Ticket & Transit screens</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                    <span
+                      class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-[14px]">check</span>
+                    </span>
+                    <span data-i18n="ewa.roadmapPhase1Item2">Insurance & document hub screens</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                    <span
+                      class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-[14px]">check</span>
+                    </span>
+                    <span data-i18n="ewa.roadmapPhase1Item3">Full data-driven Flutter integration</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                    <span
+                      class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-[14px]">check</span>
+                    </span>
+                    <span data-i18n="ewa.roadmapPhase1Item4">German language activation</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                    <span
+                      class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-[14px]">check</span>
+                    </span>
+                    <span data-i18n="ewa.roadmapPhase1Item5">Light theme integration</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Phase 2 Card (USP) -->
+              <div
+                class="relative glass-panel rounded-[2rem] p-8 md:p-10 bg-primary/5 dark:bg-primary/10 backdrop-blur-xl border border-primary/20 shadow-xl flex flex-col gap-6 overflow-hidden">
+                <!-- "USP" Badge -->
+                <div class="absolute top-6 right-6">
+                  <span
+                    class="inline-flex items-center gap-1.5 rounded-full bg-primary/20 border border-primary/30 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+                    <span class="material-symbols-outlined text-[12px]">star</span>
+                    <span data-i18n="ewa.roadmapUspBadge">Unique Feature</span>
+                  </span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">widgets</span>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
+                      data-i18n="ewa.roadmapPhase2Label">Phase 2</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
+                      data-i18n="ewa.roadmapPhase2Title">
+                      The Composable Subscription Hub
+                    </h3>
+                  </div>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
+                  data-i18n="ewa.roadmapPhase2Desc">
+                  A truly innovative feature I have not seen in any competitor: a <strong
+                    class="text-slate-900 dark:text-white">LEGO-style modular system</strong> where users freely add,
+                  configure, and
+                  stack custom subscription blocks — Netflix, OneDrive, Spotify, gym memberships, and beyond. Users gain
+                  total financial transparency, tracking payment dates, monitoring recurring Euro costs, and pausing or
+                  cancelling any subscription with a single tap — all from within eWa.
+                </p>
+                <!-- Feature Pills -->
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  <span
+                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    data-i18n="ewa.roadmapPill1">Modular Blocks</span>
+                  <span
+                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    data-i18n="ewa.roadmapPill2">Cost Transparency</span>
+                  <span
+                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    data-i18n="ewa.roadmapPill3">1-Tap Cancel</span>
+                  <span
+                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    data-i18n="ewa.roadmapPill4">Central Control</span>
+                </div>
+              </div>
+
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- END PANEL 4 -->
+
+      <!-- ===== PANEL 5: LESSONS / OUTRO (last panel – slides up to reveal footer) ===== -->
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 5;">
+        <div class="max-w-[1200px] mx-auto px-6 py-24">
+          <!-- LESSONS FROM THE NOIR -->
+          <section class="mx-auto max-w-[1200px] py-16 sm:py-24 text-center">
+            <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
+              <h2
+                class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
+                data-i18n="ewa.lessonsTitle">
+                The Future of Collaborative Design
+              </h2>
+              <div class="h-1 w-12 bg-primary mx-auto"></div>
+              <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light px-4"
+                data-i18n="ewa.lessonsText">
+                "The eWa Super App proves that combining 20+ years of systematic
+                UI/UX experience with cutting-edge AI logic accelerators allows
+                designers to act as technical bridge-builders. Bridging the gap
+                between functional business solutions and high-engagement
+                interfaces is no longer just a tagline; it's an executable
+                workflow."
+              </p>
+              <div class="pt-6 sm:pt-8 w-full">
+                <a href="case-study-greent.html"
+                  class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg">
+                  <span
+                    class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                  <span data-i18n="ewa.nextCaseStudy" class="break-words">Next: Greentube</span>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- END PANEL 5 -->
 
       <!-- STICKY HIRE ME -->
       <div class="fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
