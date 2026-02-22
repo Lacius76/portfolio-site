@@ -82,6 +82,21 @@
         border-radius: 0;
         box-shadow: none;
       }
+
+      /* Hero video: fixed so it never moves during scroll on desktop */
+      .hero-video-bg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      /* Hero panel and section are transparent on desktop so the fixed video shows through */
+      #hero-panel,
+      #hero-section {
+        background: transparent !important;
+      }
     }
   </style>
 </head>
@@ -186,11 +201,12 @@
       class="relative z-10 bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300">
 
       <!-- ===== PANEL 1: HERO ===== -->
-      <div class="stack-panel bg-slate-950" style="z-index: 1;">
+      <div id="hero-panel" class="stack-panel bg-slate-950" style="z-index: 1;">
 
         <!-- HERO: eWa Super App -->
-        <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-slate-950">
-          <div class="absolute inset-0 z-0">
+        <section id="hero-section"
+          class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-slate-950">
+          <div class="hero-video-bg absolute inset-0 z-0">
             <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 mix-blend-screen">
               <source src="img/ewa/ewa-hero.webm" type="video/webm">
               <source src="img/ewa/ewa-hero.mp4" type="video/mp4">
@@ -198,7 +214,9 @@
             <div class="absolute inset-0 bg-black/50"></div>
           </div>
 
-          <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center mt-16">
+          <!-- Hero text: -mt-8 shifts content slightly above mathematical center
+               to visually center it in the area below the sticky header -->
+          <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center -mt-8">
             <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic" data-i18n="ewa.heroTag">
               Fintech &amp; Mobility Super App
             </h2>
