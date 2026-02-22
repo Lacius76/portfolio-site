@@ -11,3 +11,5 @@ This is the technical repository of my personal brand ecosystem. It demonstrates
 The development process utilized **Gemini 3 Pro** for structural logic and **Claude 3.5 Sonnet** for linguistic refinement, creating a seamless "AI-Human" collaboration.
 
 [Live Site](https://www.foeldvary.com)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/126a58d3-e6c8-4d52-a7c3-375396ff0879/deploy-status)](https://app.netlify.com/projects/laszlo-ui/deploys)
