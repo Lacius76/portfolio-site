@@ -43,11 +43,22 @@
       background: linear-gradient(to bottom, transparent, #0a0f14);
     }
 
-    /* German hyphenation for mobile */
+    /* German hyphenation for mobile — body text only, NOT headings */
     body {
       hyphens: auto;
       -webkit-hyphens: auto;
       -ms-hyphens: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      hyphens: none;
+      -webkit-hyphens: none;
+      -ms-hyphens: none;
     }
   </style>
 </head>
@@ -404,7 +415,145 @@
           </div>
         </section>
 
+        <!-- FUTURE ROADMAP & VISION -->
+        <section class="mx-auto max-w-[1200px] py-16 sm:py-24">
+          <!-- Section Header -->
+          <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
+            <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.roadmapTag">
+              Product Vision
+            </h3>
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
+              data-i18n="ewa.roadmapHeadline">
+              Future Roadmap &amp; Vision
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed"
+              data-i18n="ewa.roadmapIntro">
+              As a working prototype, eWa proves the concept. These are the two strategic phases that would take it from
+              MVP to market-ready Super App.
+            </p>
+          </div>
+
+          <!-- Two Phase Cards -->
+          <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+
+            <!-- Phase 1 Card -->
+            <div
+              class="glass-panel rounded-[2rem] p-8 md:p-10 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-xl flex flex-col gap-6">
+              <div class="flex items-center gap-4">
+                <div
+                  class="size-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+                  <span class="material-symbols-outlined text-[26px]">smartphone</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
+                    data-i18n="ewa.roadmapPhase1Label">Phase 1</p>
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
+                    data-i18n="ewa.roadmapPhase1Title">
+                    Expanding the Ecosystem
+                  </h3>
+                </div>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
+                data-i18n="ewa.roadmapPhase1Desc">
+                The immediate next step is transitioning the remaining UI placeholders — including the Mobile Ticket and
+                Insurance screens — into fully interactive, data-driven Flutter screens. This will complete the core
+                Super App experience and deliver a seamless, end-to-end user journey across every eWa service.
+              </p>
+              <ul class="space-y-2.5 mt-auto">
+                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                  <span
+                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">check</span>
+                  </span>
+                  <span data-i18n="ewa.roadmapPhase1Item1">Mobile Ticket & Transit screens</span>
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                  <span
+                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">check</span>
+                  </span>
+                  <span data-i18n="ewa.roadmapPhase1Item2">Insurance & document hub screens</span>
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                  <span
+                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">check</span>
+                  </span>
+                  <span data-i18n="ewa.roadmapPhase1Item3">Full data-driven Flutter integration</span>
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                  <span
+                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">check</span>
+                  </span>
+                  <span data-i18n="ewa.roadmapPhase1Item4">German language activation</span>
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                  <span
+                    class="size-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">check</span>
+                  </span>
+                  <span data-i18n="ewa.roadmapPhase1Item5">Light theme integration</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Phase 2 Card (USP) -->
+            <div
+              class="relative glass-panel rounded-[2rem] p-8 md:p-10 bg-primary/5 dark:bg-primary/10 backdrop-blur-xl border border-primary/20 shadow-xl flex flex-col gap-6 overflow-hidden">
+              <!-- "USP" Badge -->
+              <div class="absolute top-6 right-6">
+                <span
+                  class="inline-flex items-center gap-1.5 rounded-full bg-primary/20 border border-primary/30 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+                  <span class="material-symbols-outlined text-[12px]">star</span>
+                  <span data-i18n="ewa.roadmapUspBadge">Unique Feature</span>
+                </span>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                  <span class="material-symbols-outlined text-[26px]">widgets</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
+                    data-i18n="ewa.roadmapPhase2Label">Phase 2</p>
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
+                    data-i18n="ewa.roadmapPhase2Title">
+                    The Composable Subscription Hub
+                  </h3>
+                </div>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
+                data-i18n="ewa.roadmapPhase2Desc">
+                A truly innovative feature I have not seen in any competitor: a <strong
+                  class="text-slate-900 dark:text-white">LEGO-style modular system</strong> where users freely add,
+                configure, and
+                stack custom subscription blocks — Netflix, OneDrive, Spotify, gym memberships, and beyond. Users gain
+                total financial transparency, tracking payment dates, monitoring recurring Euro costs, and pausing or
+                cancelling any subscription with a single tap — all from within eWa.
+              </p>
+              <!-- Feature Pills -->
+              <div class="flex flex-wrap gap-2 mt-auto">
+                <span
+                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                  data-i18n="ewa.roadmapPill1">Modular Blocks</span>
+                <span
+                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                  data-i18n="ewa.roadmapPill2">Cost Transparency</span>
+                <span
+                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                  data-i18n="ewa.roadmapPill3">1-Tap Cancel</span>
+                <span
+                  class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                  data-i18n="ewa.roadmapPill4">Central Control</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
         <!-- LESSONS FROM THE NOIR -->
+
         <section class="mx-auto max-w-[1200px] py-16 sm:py-24 text-center">
           <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             <h2
