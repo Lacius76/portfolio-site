@@ -37,11 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
             gridElement.appendChild(container);
             cubes[r][c] = container;
 
+            // PERFORMANCE OPTIMIZATION: Csak asztali/nagyobb kijelzőkön (képernyő szélesség > 768px) engedjük futni
+            // a roppant matematika-igényes "100 szomszéd kockát megemelő" hover animációkat.
+            // Mobilon ezeket a böngésző a scroll-lal (görgetéssel) próbálná felváltva számolni, amitől laggol a telefon.
             container.addEventListener('mouseenter', () => {
-                stopWave();
-                updateGrid(r, c, true);
+                if (window.innerWidth > 768) {
+                    stopWave();
+                    updateGrid(r, c, true);
+                }
             });
-            container.addEventListener('mouseleave', () => updateGrid(r, c, false));
+            container.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) {
+                    updateGrid(r, c, false);
+                }
+            });
         }
     }
 
