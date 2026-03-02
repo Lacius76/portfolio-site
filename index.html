@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="css/language-animations.css" />
   <link rel="stylesheet" href="css/hero-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
+  <link rel="stylesheet" href="css/hero-grid.css" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
     rel="stylesheet" />
@@ -236,11 +237,19 @@
             <!-- Reduced top padding to fit content -->
             <div
               class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
-              <div class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full">
+
+              <!-- HÁTTÉR ANIMÁCIÓ (Nagyobb Z-index, hogy fogja a kurzort) -->
+              <div class="hg-scene opacity-20 dark:opacity-40 transition-opacity duration-1000 z-10">
+                <div class="hg-grid" id="hgGrid"></div>
+              </div>
+
+              <!-- TARTALOM (TEXT + VIDEO) Legfelül van (z-20), de TELJESEN átereszti az egeret -->
+              <div
+                class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full relative z-20 pointer-events-none">
                 <!-- Top Hero Content (Text + Video) -->
                 <div class="flex flex-col-reverse gap-4 lg:gap-12 lg:flex-row lg:items-start mb-4 md:mb-8 flex-1">
                   <!-- Text Content -->
-                  <div class="flex flex-col gap-4 lg:gap-6 flex-1 @[1200px]:pr-8 z-10">
+                  <div class="flex flex-col gap-4 lg:gap-6 flex-1 @[1200px]:pr-8 z-10 pointer-events-none">
                     <div class="flex flex-col gap-4 text-left">
                       <div
                         class="hero-anim-badge w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
@@ -263,7 +272,7 @@
                           through intuitive digital experiences.</span>
                       </h2>
                     </div>
-                    <div class="flex flex-col sm:flex-row gap-4 mt-2">
+                    <div class="flex flex-col sm:flex-row gap-4 mt-2 pointer-events-auto">
                       <a href="work.html"
                         class="hero-anim-btn-primary flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
                         <span data-i18n="index.viewSelectedWork">View Selected Work</span>
@@ -290,60 +299,52 @@
                         </div>
 
                         <!-- Card 2: Experience -->
-                        <div class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
-                          <div class="flex items-baseline gap-1">
-                            <span class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
-                            <span class="text-lg md:text-xl font-bold text-primary">+</span>
+                        <div class="flex items-center gap-3">
+                          <div class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
+                            <div class="flex items-baseline gap-1">
+                              <span class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
+                              <span class="text-lg md:text-xl font-bold text-primary">+</span>
+                            </div>
+                            <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                              data-i18n="index.yearsExperience">
+                              Years of Experience
+                            </p>
                           </div>
-                          <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                            data-i18n="index.yearsExperience">
-                            Years of Experience
-                          </p>
+                          <!-- Újracsűró gomb a szöveg mellett -->
+                          <div class="hg-controls">
+                            <button class="hg-replay-btn" id="hgReplayBtn" aria-label="Replay Wave Animation">
+                              <span class="material-symbols-outlined">replay</span>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!-- Hero Image Video -->
-                  <a href="work.html" class="hero-anim-video w-full flex-1 max-w-[600px] mx-auto z-10">
+                  <!-- Hero Right Side (Floating Card Only) -->
+                  <div
+                    class="w-full flex-1 max-w-[600px] mx-auto z-10 pointer-events-none relative flex justify-center lg:justify-end items-center lg:items-end">
+                    <!-- Floating Card (Glassy) -->
                     <div
-                      class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group">
-                      <!-- Decorative abstract pattern/image -->
-                      <div class="absolute inset-0 overflow-hidden rounded-2xl shadow-lg">
-                        <video autoplay muted loop playsinline poster="img/start.jpg"
-                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer">
-                          <!-- Video Source -->
-                          <source src="img/start-loop.mp4" type="video/mp4" />
-                          <!-- Fallback Image if video fails to load -->
-                          <img src="img/start.jpg" alt="László Földváry Portrait Illustration" />
-                        </video>
-                        <!-- Transparent overlay layer for glassy banner contrast -->
+                      class="hero-anim-float-card relative z-20 flex flex-col justify-center rounded-xl bg-white/10 dark:bg-[#1e293b]/40 p-3 lg:p-4 backdrop-blur-md border border-white/20 shadow-2xl pointer-events-auto transform scale-90 sm:scale-100 hover:scale-[1.02] transition-transform duration-300">
+                      <div class="flex items-center gap-3 mb-3">
                         <div
-                          class="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none">
+                          class="h-10 w-10 sm:h-12 sm:w-12 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center shrink-0">
+                          <span class="material-symbols-outlined text-[24px] sm:text-[28px]">check_circle</span>
+                        </div>
+                        <div class="pr-4 text-slate-800 dark:text-white">
+                          <div class="text-[10px] font-bold text-slate-500 dark:text-white/70 uppercase tracking-wider">
+                            Project Complete
+                          </div>
+                          <div class="text-sm sm:text-base font-black whitespace-nowrap">
+                            Develop.UI Dashboard
+                          </div>
                         </div>
                       </div>
-                      <!-- Floating Card (Glassy, smaller) -->
-                      <div
-                        class="hero-anim-float-card absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex flex-col justify-center rounded-xl bg-white/10 p-2 sm:p-3 backdrop-blur-md border border-white/20 shadow-xl origin-right transform scale-90 sm:scale-100">
-                        <div class="flex items-center gap-3 mb-2">
-                          <div
-                            class="h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center shrink-0">
-                            <span class="material-symbols-outlined text-[20px] sm:text-[24px]">check_circle</span>
-                          </div>
-                          <div class="pr-2 text-white">
-                            <div class="text-[10px] font-medium text-white/70 uppercase tracking-wider">
-                              Project Complete
-                            </div>
-                            <div class="text-xs sm:text-sm font-bold whitespace-nowrap">
-                              Develop.UI Dashboard
-                            </div>
-                          </div>
-                        </div>
-                        <div class="w-full bg-white/20 rounded-full h-1 mt-0.5">
-                          <div class="bg-green-400 h-1 rounded-full" style="width: 100%"></div>
-                        </div>
+                      <div class="w-full bg-slate-200 dark:bg-white/20 rounded-full h-1.5 mt-1">
+                        <div class="bg-green-400 h-1.5 rounded-full" style="width: 100%"></div>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -694,6 +695,7 @@
         });
       });
     </script>
+    <script src="js/hero-grid.js"></script>
   </div>
 </body>
 

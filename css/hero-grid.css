@@ -1,0 +1,256 @@
+:root {
+    --hg-grid-base: #1e293b;
+    --hg-cube-top: #38bdf8;
+    --hg-cube-right: #0ea5e9;
+    --hg-cube-left: #0284c7;
+    --hg-glow-color: #bc13fe;
+    --hg-transition-speed: 0.3s;
+    --hg-cube-size: 40px;
+    --hg-height-main: 45px;
+    --hg-height-neighbor: 30px;
+    --hg-height-trail: 15px;
+}
+
+/* Light mode overrides for better visibility against white background */
+:root:not(.dark) {
+    --hg-grid-base: #e2e8f0;
+    --hg-cube-top: #38bdf8;
+    --hg-cube-right: #0ea5e9;
+    --hg-cube-left: #0284c7;
+}
+
+.hg-scene {
+    position: absolute;
+    inset: 0;
+    perspective: 2000px;
+    /* Megemeljük a perspektívát a nagyobb mérethez */
+    display: flex;
+    justify-content: flex-end;
+    /* Jobbra igazítás alapból */
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hg-grid {
+    /* Növeljük a méretet a --cube-size változóval */
+    --hg-cube-size: 60px;
+    /* 40px -> 60px */
+    --hg-height-main: 70px;
+    --hg-height-neighbor: 45px;
+    --hg-height-trail: 25px;
+
+    display: grid;
+    grid-template-columns: repeat(10, var(--hg-cube-size));
+    grid-template-rows: repeat(10, var(--hg-cube-size));
+    gap: 16px;
+    /* 12px -> 16px hogy szellősebb legyen vaskosabb formáknál */
+
+    /* Elforgatás és mozgatás jobbra és kicsit fel */
+    transform: rotateX(55deg) rotateZ(45deg) translate(-10%, -20%);
+    transform-style: preserve-3d;
+    pointer-events: auto;
+    /* Enable hover */
+}
+
+/* Position grid slightly to the right on large screens so it balances well behind the text */
+@media (min-width: 1024px) {
+    .hg-grid {
+        /* Még jobban kihúzzuk a szélre nagy kijelzőn és lejjebb engedjük */
+        transform: rotateX(55deg) rotateZ(45deg) translate(-5%, 0%);
+    }
+}
+
+.hg-cube-container {
+    position: relative;
+    width: var(--hg-cube-size);
+    height: var(--hg-cube-size);
+    transform-style: preserve-3d;
+    background: var(--hg-grid-base);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.hg-face {
+    position: absolute;
+    transition: all var(--hg-transition-speed) ease-out;
+    will-change: transform, height, width;
+    backface-visibility: hidden;
+}
+
+.hg-face-top {
+    width: 100%;
+    height: 100%;
+    background: var(--hg-grid-base);
+    transform: translateZ(0);
+    border-radius: 4px;
+    z-index: 3;
+}
+
+.hg-face-right {
+    background: var(--hg-cube-right);
+    transform-origin: right;
+    transform: rotateY(90deg);
+    height: 100%;
+    width: 0;
+    right: 0;
+    top: 0;
+}
+
+.hg-face-left {
+    background: var(--hg-cube-left);
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.hg-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Alap zongorázós lila-kék glow pulzálás */
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(56, 189, 248, 0.8));
+    filter: blur(8px);
+    transform: translateZ(-2px);
+    opacity: 0.15;
+    /* Alapból is van egy kis alapfény */
+    transition: opacity 0.8s ease-in-out;
+    border-radius: 4px;
+    pointer-events: none;
+    /* Teljesítmény okokból kivéve a filter-blur animáció: animation: pulseGlow 4s infinite alternate ease-in-out; */
+}
+
+/* @keyframes pulseGlow ki is véve a jobb teljesítményért */
+
+/* --- EGÉR INTERAKCIÓ ÁLLAPOTOK --- */
+.hg-active-main .hg-face-top {
+    transform: translateZ(var(--hg-height-main));
+    background: var(--hg-cube-top);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+}
+
+.hg-active-main .hg-face-right {
+    width: var(--hg-height-main);
+}
+
+.hg-active-main .hg-face-left {
+    height: var(--hg-height-main);
+}
+
+.hg-active-main .hg-glow {
+    opacity: 1;
+    background: linear-gradient(135deg, #a855f7, #0ea5e9);
+    box-shadow: 0 0 25px 8px rgba(168, 85, 247, 0.6);
+    animation: none;
+    /* Kikapcsoljuk az alap pulzálást, amikor aktív */
+}
+
+.hg-active-neighbor .hg-face-top {
+    transform: translateZ(var(--hg-height-neighbor));
+    background: #8b5cf6;
+    /* Lila szomszédok zöld helyett */
+}
+
+.hg-active-neighbor .hg-face-right {
+    width: var(--hg-height-neighbor);
+    background: #7c3aed;
+}
+
+.hg-active-neighbor .hg-face-left {
+    height: var(--hg-height-neighbor);
+    background: #6d28d9;
+}
+
+/* --- KEZDETI / AUTOMATIKUS HULLÁM ÁLLAPOTOK --- */
+.hg-wave-peak .hg-face-top {
+    transform: translateZ(var(--hg-height-neighbor));
+    background: #0ea5e9;
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+}
+
+.hg-wave-peak .hg-face-right {
+    width: var(--hg-height-neighbor);
+}
+
+.hg-wave-peak .hg-face-left {
+    height: var(--hg-height-neighbor);
+}
+
+.hg-wave-trail .hg-face-top {
+    transform: translateZ(var(--hg-height-trail));
+    background: var(--hg-grid-base);
+    border: 1px solid #8b5cf6;
+    /* Lila keret zöld helyett a lecsengéskor */
+}
+
+.hg-wave-trail .hg-face-right {
+    width: var(--hg-height-trail);
+}
+
+.hg-wave-trail .hg-face-left {
+    height: var(--hg-height-trail);
+}
+
+/* --- LAPOS, IDŐZÍTETT HULLÁM (Nincs transform, eltérő szín) --- */
+.hg-ambient-wave .hg-face-top {
+    background: rgba(139, 92, 246, 0.6);
+    /* 60% áttetsző lila */
+    transition: background 0.4s ease-out;
+}
+
+.hg-ambient-wave-trail .hg-face-top {
+    background: rgba(139, 92, 246, 0.2);
+    transition: background 0.8s ease-out;
+}
+
+/* --- VEZÉRLŐK --- */
+.hg-controls {
+    display: inline-flex;
+    align-items: center;
+    pointer-events: none;
+    /* Átengedjük a kattintást, csak a gomb fogja meg */
+}
+
+
+.hg-replay-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid rgba(148, 163, 184, 0.4);
+    /* Finomabb szürke outline, világos/sötét módhoz is jó */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    color: #64748b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+.dark .hg-replay-btn {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.hg-replay-btn:hover {
+    border-color: var(--hg-cube-top);
+    color: white;
+    background: var(--hg-cube-left);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    transform: scale(1.05);
+}
+
+.hg-replay-btn .material-symbols-outlined {
+    font-size: 22px;
+    transition: transform 0.5s ease;
+}
+
+.hg-replay-btn:hover .material-symbols-outlined {
+    transform: rotate(-180deg);
+}
