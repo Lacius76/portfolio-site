@@ -74,8 +74,10 @@
 
 .hg-face {
     position: absolute;
-    transition: all var(--hg-transition-speed) ease-out;
-    will-change: transform, height, width;
+    /* Egyetlen, mindenre (oldalak, tető, zárás, nyitás) egységesített transition a tökéletes szinkronhoz */
+    /* all helyett specifkusan felsoroljuk mi változik, mert az "all" property néha alul optimalizálja a böngészőt 3D térben */
+    transition: transform 0.4s ease-out, height 0.4s ease-out, width 0.4s ease-out, background 0.4s ease-out;
+    will-change: transform, height, width, background;
     backface-visibility: hidden;
 }
 
@@ -86,6 +88,8 @@
     transform: translateZ(0);
     border-radius: 4px;
     z-index: 3;
+    /* A transition fentről, az .hg-face-ből öröklődik teljesen szinkronban */
+    box-shadow: 0 0 0 rgba(168, 85, 247, 0);
 }
 
 .hg-face-right {
@@ -131,14 +135,22 @@
     transform: translateZ(var(--hg-height-main));
     background: var(--hg-cube-top);
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    /* Szorosan hozzárendelve a szinkron miatt */
+    transition: transform 0.4s ease-out, background 0.4s ease-out;
 }
+
+/* A kiemelt állapot vége */
 
 .hg-active-main .hg-face-right {
     width: var(--hg-height-main);
+    /* Direkt egy picit (0.02s) gyorsabb a tetőnél (0.4s), hogy hamarabb érjen fel és fedje a lyukat */
+    transition: width 0.36s ease-out;
 }
 
 .hg-active-main .hg-face-left {
     height: var(--hg-height-main);
+    /* Direkt egy picit gyorsabb a tetőnél */
+    transition: height 0.36s ease-out;
 }
 
 .hg-active-main .hg-glow {
@@ -152,59 +164,58 @@
 .hg-active-neighbor .hg-face-top {
     transform: translateZ(var(--hg-height-neighbor));
     background: #8b5cf6;
-    /* Lila szomszédok zöld helyett */
+    /* Szinkron a fő kockával: 0.4s tető animáció */
+    transition: transform 0.4s ease-out, background 0.4s ease-out;
 }
 
 .hg-active-neighbor .hg-face-right {
     width: var(--hg-height-neighbor);
     background: #7c3aed;
+    /* Itt is kell a 0.36s-os "gyorsító" trükk a rés ellen az aktív szomszédokra */
+    transition: width 0.36s ease-out, background 0.36s ease-out;
 }
 
 .hg-active-neighbor .hg-face-left {
     height: var(--hg-height-neighbor);
     background: #6d28d9;
+    /* Itt is 0.36s! */
+    transition: height 0.36s ease-out, background 0.36s ease-out;
 }
 
-/* --- KEZDETI / AUTOMATIKUS HULLÁM ÁLLAPOTOK --- */
+/* --- KEZDETI / AUTOMATIKUS HULLÁM ÁLLAPOTOK (Folyamatos) --- */
 .hg-wave-peak .hg-face-top {
-    transform: translateZ(var(--hg-height-neighbor));
-    background: #0ea5e9;
-    box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+    transform: translateZ(var(--hg-height-main));
+    background: #a855f7;
+    /* Kék helyett világos lila */
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+    /* Lila glow */
+    /* Fő hullám emelkedés: 0.6s */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--hg-wave-delay, 0ms);
 }
 
 .hg-wave-peak .hg-face-right {
-    width: var(--hg-height-neighbor);
+    width: var(--hg-height-main);
+    /* Szél sebesítése hogy fedje a rést (0.6s helyett 0.56s) */
+    transition: width 0.56s cubic-bezier(0.4, 0, 0.2, 1), background 0.56s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--hg-wave-delay, 0ms);
 }
 
 .hg-wave-peak .hg-face-left {
-    height: var(--hg-height-neighbor);
+    height: var(--hg-height-main);
+    /* Szél sebesítése hogy fedje a rést (0.6s helyett 0.56s) */
+    transition: height 0.56s cubic-bezier(0.4, 0, 0.2, 1), background 0.56s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--hg-wave-delay, 0ms);
 }
 
-.hg-wave-trail .hg-face-top {
-    transform: translateZ(var(--hg-height-trail));
-    background: var(--hg-grid-base);
-    border: 1px solid #8b5cf6;
-    /* Lila keret zöld helyett a lecsengéskor */
-}
+/* A fallback transition-t fent az alap .hg-face kezeli */
 
-.hg-wave-trail .hg-face-right {
-    width: var(--hg-height-trail);
-}
-
-.hg-wave-trail .hg-face-left {
-    height: var(--hg-height-trail);
-}
-
-/* --- LAPOS, IDŐZÍTETT HULLÁM (Nincs transform, eltérő szín) --- */
+/* --- LAPOS, IDŐZÍTETT HULLÁM (Nincs transform, csak lágy színátmenet) --- */
 .hg-ambient-wave .hg-face-top {
     background: rgba(139, 92, 246, 0.6);
     /* 60% áttetsző lila */
-    transition: background 0.4s ease-out;
-}
-
-.hg-ambient-wave-trail .hg-face-top {
-    background: rgba(139, 92, 246, 0.2);
-    transition: background 0.8s ease-out;
+    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--hg-wave-delay, 0ms);
 }
 
 /* --- VEZÉRLŐK --- */

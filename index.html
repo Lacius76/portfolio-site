@@ -299,51 +299,53 @@
                         </div>
 
                         <!-- Card 2: Experience -->
-                        <div class="flex items-center gap-3">
-                          <div class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
-                            <div class="flex items-baseline gap-1">
-                              <span class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
-                              <span class="text-lg md:text-xl font-bold text-primary">+</span>
-                            </div>
-                            <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                              data-i18n="index.yearsExperience">
-                              Years of Experience
-                            </p>
+                        <div class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
+                          <div class="flex items-baseline gap-1">
+                            <span class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
+                            <span class="text-lg md:text-xl font-bold text-primary">+</span>
                           </div>
-                          <!-- Újracsűró gomb a szöveg mellett -->
-                          <div class="hg-controls">
-                            <button class="hg-replay-btn" id="hgReplayBtn" aria-label="Replay Wave Animation">
-                              <span class="material-symbols-outlined">replay</span>
-                            </button>
-                          </div>
+                          <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                            data-i18n="index.yearsExperience">
+                            Years of Experience
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!-- Hero Right Side (Floating Card Only) -->
+                  <!-- Hero Right Side (Floating Card & Animation Controls) -->
                   <div
-                    class="w-full flex-1 max-w-[600px] mx-auto z-10 pointer-events-none relative flex justify-center lg:justify-end items-center lg:items-end">
-                    <!-- Floating Card (Glassy) -->
-                    <div
-                      class="hero-anim-float-card relative z-20 flex flex-col justify-center rounded-xl bg-white/10 dark:bg-[#1e293b]/40 p-3 lg:p-4 backdrop-blur-md border border-white/20 shadow-2xl pointer-events-auto transform scale-90 sm:scale-100 hover:scale-[1.02] transition-transform duration-300">
+                    class="w-full flex-1 max-w-[600px] mx-auto z-10 pointer-events-none relative flex flex-col justify-end items-end gap-6">
+
+                    <!-- Floating Card (Glassy Matrix Analyzer) mint Újraindító Gomb -->
+                    <div id="matrixAnalyzerCard"
+                      class="relative z-20 flex flex-col justify-center rounded-xl bg-white/10 dark:bg-[#1e293b]/50 p-3 lg:p-4 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-2xl pointer-events-auto transform scale-90 sm:scale-100 hover:scale-[1.03] transition-transform duration-300 group cursor-pointer">
                       <div class="flex items-center gap-3 mb-3">
-                        <div
-                          class="h-10 w-10 sm:h-12 sm:w-12 rounded-lg bg-green-500/20 text-green-400 flex items-center justify-center shrink-0">
-                          <span class="material-symbols-outlined text-[24px] sm:text-[28px]">check_circle</span>
-                        </div>
+
+                        <!-- Kattintható Replay Gomb a korábbi ikon helyén (hgReplayBtn) -->
+                        <button id="hgReplayBtn" aria-label="Analyze Grid Structure" title="Run Analysis Wave"
+                          class="h-10 w-10 sm:h-12 sm:w-12 rounded-lg bg-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                          <span
+                            class="material-symbols-outlined text-[24px] sm:text-[28px] transition-transform duration-700 group-hover:-rotate-180">radar</span>
+                        </button>
+
                         <div class="pr-4 text-slate-800 dark:text-white">
-                          <div class="text-[10px] font-bold text-slate-500 dark:text-white/70 uppercase tracking-wider">
-                            Project Complete
+                          <div
+                            class="text-[10px] font-bold text-slate-500 dark:text-white/60 uppercase tracking-wider mb-0.5">
+                            Status: <span id="matrixStatusText" class="text-primary font-black">Active</span>
                           </div>
-                          <div class="text-sm sm:text-base font-black whitespace-nowrap">
-                            Develop.UI Dashboard
+                          <div class="text-sm sm:text-base font-black whitespace-nowrap tracking-tight">
+                            Project Matrix Analysis
                           </div>
                         </div>
                       </div>
-                      <div class="w-full bg-slate-200 dark:bg-white/20 rounded-full h-1.5 mt-1">
-                        <div class="bg-green-400 h-1.5 rounded-full" style="width: 100%"></div>
+
+                      <!-- Progress Bar -->
+                      <div class="w-full bg-slate-200/50 dark:bg-white/10 rounded-full h-1.5 mt-1 overflow-hidden">
+                        <div id="matrixProgressBar" class="bg-primary h-1.5 rounded-full transition-all duration-300"
+                          style="width: 100%"></div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
