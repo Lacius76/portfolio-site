@@ -3,6 +3,16 @@
     --hg-cube-top: #38bdf8;
     --hg-cube-right: #0ea5e9;
     --hg-cube-left: #0284c7;
+
+    /* A szomszédok lila színei */
+    --hg-neighbor-top: #8b5cf6;
+    --hg-neighbor-right: #7c3aed;
+    --hg-neighbor-left: #6d28d9;
+
+    /* A hullámzás csúcs és ambient színei */
+    --hg-wave-top: #a855f7;
+    --hg-wave-ambient: rgba(139, 92, 246, 0.6);
+
     --hg-glow-color: #bc13fe;
     --hg-transition-speed: 0.3s;
     --hg-cube-size: 40px;
@@ -14,9 +24,27 @@
 /* Light mode overrides for better visibility against white background */
 :root:not(.dark) {
     --hg-grid-base: #e2e8f0;
-    --hg-cube-top: #38bdf8;
-    --hg-cube-right: #0ea5e9;
-    --hg-cube-left: #0284c7;
+    /* Alap, lapos tábla színe világos marad */
+
+    /* A világos módban ezek a színek mélyebbek, masszívabbak lesznek, így nem halványulnak el a fehér háttérhez képest! */
+    --hg-cube-top: #0284c7;
+    /* Sokkal telítettebb kék (sky-600) */
+    --hg-cube-right: #0369a1;
+    /* Sötétebb él (sky-700) */
+    --hg-cube-left: #075985;
+    /* Sötétebb perem (sky-800) */
+
+    --hg-neighbor-top: #7c3aed;
+    /* Mélyebb lila (violet-600) */
+    --hg-neighbor-right: #6d28d9;
+    /* Sötétebb lila él (violet-700) */
+    --hg-neighbor-left: #5b21b6;
+    /* Legmélyebb perem (violet-800) */
+
+    --hg-wave-top: #9333ea;
+    /* Mélyebb neon-lila */
+    --hg-wave-ambient: rgba(126, 34, 206, 0.8);
+    /* Erősebb és kevésbé áttetsző (purple-700) */
 }
 
 .hg-scene {
@@ -163,21 +191,21 @@
 
 .hg-active-neighbor .hg-face-top {
     transform: translateZ(var(--hg-height-neighbor));
-    background: #8b5cf6;
+    background: var(--hg-neighbor-top);
     /* Szinkron a fő kockával: 0.4s tető animáció */
     transition: transform 0.4s ease-out, background 0.4s ease-out;
 }
 
 .hg-active-neighbor .hg-face-right {
     width: var(--hg-height-neighbor);
-    background: #7c3aed;
+    background: var(--hg-neighbor-right);
     /* Itt is kell a 0.36s-os "gyorsító" trükk a rés ellen az aktív szomszédokra */
     transition: width 0.36s ease-out, background 0.36s ease-out;
 }
 
 .hg-active-neighbor .hg-face-left {
     height: var(--hg-height-neighbor);
-    background: #6d28d9;
+    background: var(--hg-neighbor-left);
     /* Itt is 0.36s! */
     transition: height 0.36s ease-out, background 0.36s ease-out;
 }
@@ -185,8 +213,8 @@
 /* --- KEZDETI / AUTOMATIKUS HULLÁM ÁLLAPOTOK (Folyamatos) --- */
 .hg-wave-peak .hg-face-top {
     transform: translateZ(var(--hg-height-main));
-    background: #a855f7;
-    /* Kék helyett világos lila */
+    background: var(--hg-wave-top);
+    /* Színes hullám */
     box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
     /* Lila glow */
     /* Fő hullám emelkedés: 0.6s */
@@ -212,8 +240,7 @@
 
 /* --- LAPOS, IDŐZÍTETT HULLÁM (Nincs transform, csak lágy színátmenet) --- */
 .hg-ambient-wave .hg-face-top {
-    background: rgba(139, 92, 246, 0.6);
-    /* 60% áttetsző lila */
+    background: var(--hg-wave-ambient);
     transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: var(--hg-wave-delay, 0ms);
 }
