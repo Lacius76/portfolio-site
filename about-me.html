@@ -212,7 +212,7 @@
                             </div>
 
                             <!-- Floating AI Bot Character (About Page version) -->
-                            <div
+                            <div id="aiBotDragWrapper"
                                 class="hidden xl:flex absolute top-[150px] right-0 z-20 items-center justify-end pointer-events-auto group origin-top-right scale-90 mt-12">
                                 <!-- Radar Button -->
                                 <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Bot Interaction"
@@ -636,13 +636,13 @@
             const radarIcon = document.querySelector('#hgReplayBtn .material-symbols-outlined');
             let currentRotation = 0;
             let isRadarScanning = false;
-            let typingInterval = null;
+            window._botTypingInterval = null;
 
             const botJokes = [
                 "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
-                "I see you reading... tell me, is Laci's origin story as cool as mine?",
+                "I see you reading... tell me, is Laszlo's origin story as cool as mine?",
                 "You pressed the radar. Good job. What did it do? Oh, right, it turned green.",
-                "Not to brag, but Laci designed this layout in his head back in 1999.",
+                "Not to brag, but Laszlo designed this layout in his head back in 1999.",
                 "Excuse me, is there any coffee around? My processor is freezing.",
                 "Interesting anomaly detected. Oh wait, that's just a typo in my code.",
                 "I could design something like this too... If I had a mouse.",
@@ -653,7 +653,7 @@
                 "Downloading cookies in the background. Just kidding. I don't eat.",
                 "Know what holds this site together? CSS Grid and a little bit of magic.",
                 "Large Language Models are my cousins, but I have way more style.",
-                "Listen, if you hire Laci, you get me included in the package deal!",
+                "Listen, if you hire Laszlo, you get me included in the package deal!",
                 "This purple wave is very smoothing. Too bad I have no feelings.",
                 "Scan complete... Interactive zone found. Let's touch base soon.",
                 "They told me to be interactive. Here I am. Interact.",
@@ -662,15 +662,15 @@
             ];
 
             function typeWriterEffect(text, element) {
-                if (typingInterval) clearInterval(typingInterval);
+                if (window._botTypingInterval) clearInterval(window._botTypingInterval);
                 element.textContent = '';
                 let i = 0;
-                typingInterval = setInterval(() => {
+                window._botTypingInterval = setInterval(() => {
                     if (i < text.length) {
                         element.textContent += text.charAt(i);
                         i++;
                     } else {
-                        clearInterval(typingInterval);
+                        clearInterval(window._botTypingInterval);
                     }
                 }, 40);
             }
@@ -682,6 +682,8 @@
             if (eyes.length > 0 && eyeContainer) {
                 document.addEventListener('mousemove', (e) => {
                     if (window.innerWidth <= 768) return;
+                    // Drag közben a bot-drag.js irányítja a szemeket
+                    if (window._botDragging) return;
 
                     const rect = eyeContainer.getBoundingClientRect();
                     const containerCenterX = rect.left + rect.width / 2;
@@ -767,6 +769,7 @@
     </script>
     <script src="js/theme.js"></script>
     <script src="js/language.js"></script>
+    <script src="js/bot-drag.js"></script>
 </body>
 
 </html>

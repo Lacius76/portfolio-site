@@ -318,7 +318,8 @@
                     class="w-full flex-1 max-w-[600px] mx-auto z-10 pointer-events-none relative flex flex-col justify-end items-end gap-6 pb-6 lg:pb-12">
 
                     <!-- Floating AI Bot Character (Replaces Matrix Analyzer) -->
-                    <div class="relative z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0">
+                    <div id="aiBotDragWrapper"
+                      class="relative z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0">
 
                       <!-- Radar Button (Docked to the left of the bot) -->
                       <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
@@ -733,6 +734,7 @@
       });
     </script>
     <script src="js/hero-grid.js"></script>
+    <script src="js/bot-drag.js"></script>
   </div>
 </body>
 

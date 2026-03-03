@@ -187,13 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let buttonTimeout1;
     let buttonTimeout2;
     let isRadarScanning = false;
-    let typingInterval = null;
+    window._botTypingInterval = null;
 
     const botJokes = [
         "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
         "I see you scrolling... but you still haven't clicked 'Download CV'.",
         "You pressed the radar. Good job. What did it do? Oh, right, it turned green.",
-        "Not to brag, but Laci designed this layout in his head back in 1999.",
+        "Not to brag, but Laszlo designed this layout in his head back in 1999.",
         "Excuse me, is there any coffee around? My processor is freezing.",
         "Interesting anomaly detected. Oh wait, that's just a typo in my code.",
         "I could design something like this too... If I had a mouse.",
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Downloading cookies in the background. Just kidding. I don't eat.",
         "Know what holds this site together? CSS Grid and a little bit of magic.",
         "Large Language Models are my cousins, but I have way more style.",
-        "Listen, if you hire Laci, you get me included in the package deal!",
+        "Listen, if you hire Laszlo, you get me included in the package deal!",
         "This purple wave is very smoothing. Too bad I have no feelings.",
         "Scan complete... Interactive zone found. Let's touch base soon.",
         "They told me to be interactive. Here I am. Interact.",
@@ -213,15 +213,15 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     function typeWriterEffect(text, element) {
-        if (typingInterval) clearInterval(typingInterval);
+        if (window._botTypingInterval) clearInterval(window._botTypingInterval);
         element.textContent = '';
         let i = 0;
-        typingInterval = setInterval(() => {
+        window._botTypingInterval = setInterval(() => {
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
             } else {
-                clearInterval(typingInterval);
+                clearInterval(window._botTypingInterval);
             }
         }, 40); // Gépelési sebesség (ms)
     }
@@ -234,6 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mousemove', (e) => {
             // Csak akkor mozgassa a szemet, ha asztali gépen vagyunk
             if (window.innerWidth <= 768) return;
+            // Drag közben a bot-drag.js irányítja a szemeket
+            if (window._botDragging) return;
 
             const rect = eyeContainer.getBoundingClientRect();
             const containerCenterX = rect.left + rect.width / 2;
@@ -345,7 +347,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- AUTOMATIC HOME PAGE GREETING ---
     if (botConsole) {
         setTimeout(() => {
-            const welcomeMsg = "Wait, are we back here? I'm getting dizzy from all this clicking.";
+            const hasVisited = sessionStorage.getItem('visitedIndex');
+            let welcomeMsg = "";
+
+            if (!hasVisited) {
+                welcomeMsg = "Oh, I'm glad you found your way here! I've been waiting for you for a week 😉";
+                sessionStorage.setItem('visitedIndex', 'true');
+
+                // Wink animation shortly after starting to type
+                setTimeout(() => {
+                    const rightEye = document.getElementById('botRightEye');
+                    if (rightEye) {
+                        const originalHeight = rightEye.style.height || getComputedStyle(rightEye).height;
+                        rightEye.style.transition = 'height 0.15s ease-in-out';
+                        rightEye.style.height = '2px';
+                        setTimeout(() => {
+                            rightEye.style.height = originalHeight;
+                            setTimeout(() => {
+                                rightEye.style.transition = 'all 0.3s'; // reset to default transition
+                            }, 150);
+                        }, 200);
+                    }
+                }, 1000);
+            } else {
+                welcomeMsg = "Wait, are we back here? I'm getting dizzy from all this clicking.";
+            }
+
             typeWriterEffect(welcomeMsg, botConsole);
         }, 1500);
     }
