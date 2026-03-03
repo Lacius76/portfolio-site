@@ -85,8 +85,8 @@
 /* Position grid slightly to the right on large screens so it balances well behind the text */
 @media (min-width: 1024px) {
     .hg-grid {
-        /* Még jobban kihúzzuk a szélre nagy kijelzőn és lejjebb engedjük */
-        transform: rotateX(55deg) rotateZ(45deg) translate(-5%, 0%);
+        /* Az interaktív rácsot kicsit beljebb (balra) húzzuk, hogy ne lógjon le a jobb szélen */
+        transform: rotateX(55deg) rotateZ(45deg) translate(-25%, 0%);
     }
 }
 
@@ -299,4 +299,42 @@
 
 .hg-replay-btn:hover .material-symbols-outlined {
     transform: rotate(-180deg);
+}
+
+/* --- AI BOT ANIMATIONS --- */
+.hg-float-anim {
+    animation: hgFloat 4s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes hgFloat {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+.bot-eye {
+    transition: transform 0.15s ease-out;
+    /* Smooth snapping for mouse tracking */
+    will-change: transform;
+}
+
+.bot-cursor {
+    animation: hgBlink 1s step-end infinite;
+}
+
+@keyframes hgBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }

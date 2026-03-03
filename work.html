@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="css/language-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
   <link rel="stylesheet" href="css/hero-animations.css" />
+  <!-- AI Bot uses classes from hero-grid.css -->
+  <link rel="stylesheet" href="css/hero-grid.css" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
     rel="stylesheet" />
@@ -276,19 +278,58 @@
                     </div>
                   </div>
 
-                  <!-- Floating Card (Cyber HUD) - Mobile: scaled down (scale-75), Desktop: normal size -->
+                  <!-- Floating AI Bot Character (Replaces HMI Layout Card) -->
                   <div
-                    class="hero-anim-float-card absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex items-center gap-3 rounded-xl bg-white/10 p-2 sm:p-3 backdrop-blur-md border border-white/20 shadow-xl origin-right transform scale-90 sm:scale-100">
-                    <div
-                      class="h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-primary flex items-center justify-center text-white">
-                      <span class="material-symbols-outlined text-[20px] sm:text-[24px]">dynamic_form</span>
-                    </div>
-                    <div class="pr-2 text-white">
-                      <div class="text-[10px] font-medium text-white/70 uppercase tracking-wider">
-                        <span data-i18n="work.hudSystem">Interface System</span>
+                    class="hero-anim-float-card absolute bottom-4 -right-2 sm:bottom-6 sm:-right-8 lg:-right-16 z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
+                    <!-- Radar Button (Docked to the left of the bot) -->
+                    <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Bot Interaction"
+                      class="absolute -left-6 z-30 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 shadow-lg backdrop-blur-md">
+                      <span
+                        class="material-symbols-outlined text-[24px] sm:text-[28px] transition-transform duration-700">radar</span>
+                    </button>
+
+                    <!-- The Bot Container -->
+                    <div id="aiBotCard"
+                      class="relative w-[220px] sm:w-[240px] bg-[#1a1e26] rounded-xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden flex flex-col hg-float-anim backdrop-blur-md">
+                      <!-- Header -->
+                      <div class="bg-gradient-to-r from-primary to-purple-500 h-8 flex items-center justify-center">
+                        <span class="text-white text-xs font-bold tracking-widest uppercase" data-i18n="bot.title">AI
+                          Bott</span>
                       </div>
-                      <div class="text-xs sm:text-sm font-bold whitespace-nowrap" data-i18n="work.hudArchitecture">
-                        HMI Layout Architecture
+
+                      <!-- Face -->
+                      <div class="flex-1 py-8 px-6 flex flex-col items-center justify-center gap-5 relative">
+                        <div id="botEyesContainer" class="flex justify-between items-center w-24 h-8 relative">
+                          <!-- Left Eye (Square) -->
+                          <div class="w-7 h-7 bg-emerald-400 rounded-sm bot-eye shadow-[0_0_12px_rgba(52,211,153,0.4)]">
+                          </div>
+                          <!-- Right Eye (Square) -->
+                          <div id="botRightEye"
+                            class="w-7 h-7 bg-emerald-400 rounded-sm bot-eye shadow-[0_0_12px_rgba(52,211,153,0.4)] transition-all duration-300">
+                          </div>
+                        </div>
+
+                        <!-- Mouth -->
+                        <div class="flex gap-1.5 items-end h-3">
+                          <div class="w-2.5 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+                          </div>
+                          <div id="botMouthMiddle"
+                            class="w-10 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)] transition-transform duration-300">
+                          </div>
+                          <div class="w-2.5 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Console -->
+                      <div
+                        class="bg-[#111418] m-3 mt-0 p-3 rounded-lg border border-white/10 h-[130px] relative flex flex-col">
+                        <div class="flex-1 overflow-y-auto pr-1 overflow-x-hidden">
+                          <span id="botConsole"
+                            class="text-gray-300 text-xs sm:text-sm font-mono leading-relaxed">System online. Waiting
+                            for input...</span>
+                          <span class="bot-cursor w-2 h-3.5 bg-primary/80 inline-block ml-0.5 align-middle"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -750,6 +791,142 @@
       window.addEventListener("resize", adjustLayout);
       window.addEventListener("scroll", handleScroll, { passive: true });
     });
+  </script>
+  <!-- AI Bot Logic (Standalone for Work page) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const botConsole = document.getElementById('botConsole');
+      const radarBtnContainer = document.getElementById('hgReplayBtn');
+      const radarIcon = document.querySelector('#hgReplayBtn .material-symbols-outlined');
+      let currentRotation = 0;
+      let isRadarScanning = false;
+      let typingInterval = null;
+
+      const botJokes = [
+        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
+        "I see you scrolling... but you still haven't clicked 'Download CV'.",
+        "You pressed the radar. Good job. What did it do? Oh, right, it turned green.",
+        "Not to brag, but Laci designed this layout in his head back in 1999.",
+        "Excuse me, is there any coffee around? My processor is freezing.",
+        "Interesting anomaly detected. Oh wait, that's just a typo in my code.",
+        "I could design something like this too... If I had a mouse.",
+        "Does that green radar use a lot of power? I'm starting to lag.",
+        "I think you should be pressing the 'Hire Me' button instead of the radar.",
+        "Analyzing portfolio... Result: Excellent architecture.",
+        "CSS animations... Pfft. I generate humor using complex algorithms.",
+        "Downloading cookies in the background. Just kidding. I don't eat.",
+        "Know what holds this site together? CSS Grid and a little bit of magic.",
+        "Large Language Models are my cousins, but I have way more style.",
+        "Listen, if you hire Laci, you get me included in the package deal!",
+        "This purple wave is very smoothing. Too bad I have no feelings.",
+        "Scan complete... Interactive zone found. Let's touch base soon.",
+        "They told me to be interactive. Here I am. Interact.",
+        "Every click you make forces me to compute another cycle. Thanks.",
+        "System optimized. Too many concurrent requests are not recommended."
+      ];
+
+      function typeWriterEffect(text, element) {
+        if (typingInterval) clearInterval(typingInterval);
+        element.textContent = '';
+        let i = 0;
+        typingInterval = setInterval(() => {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(typingInterval);
+          }
+        }, 40);
+      }
+
+      // Szemkövetés (Egér követése)
+      const eyes = document.querySelectorAll('.bot-eye');
+      const eyeContainer = document.getElementById('botEyesContainer');
+
+      if (eyes.length > 0 && eyeContainer) {
+        document.addEventListener('mousemove', (e) => {
+          if (window.innerWidth <= 768) return;
+
+          const rect = eyeContainer.getBoundingClientRect();
+          const containerCenterX = rect.left + rect.width / 2;
+          const containerCenterY = rect.top + rect.height / 2;
+
+          const moveX = (e.clientX - containerCenterX) / window.innerWidth * 12;
+          const moveY = (e.clientY - containerCenterY) / window.innerHeight * 12;
+
+          eyes.forEach(eye => {
+            eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          });
+        });
+      }
+
+      if (radarBtnContainer && botConsole) {
+        radarBtnContainer.addEventListener('click', () => {
+          if (isRadarScanning) return;
+          isRadarScanning = true;
+
+          // 1.5) Gépelős poén generálás
+          const randomJoke = botJokes[Math.floor(Math.random() * botJokes.length)];
+          typeWriterEffect(randomJoke, botConsole);
+
+          // 1.6) Easter Egg Animációk (Kacsintás és Mosoly)
+          const botRightEye = document.getElementById('botRightEye');
+          const botMouthMiddle = document.getElementById('botMouthMiddle');
+
+          if (botRightEye && botMouthMiddle) {
+            botRightEye.classList.remove('h-1.5');
+            botRightEye.classList.add('h-7');
+            botMouthMiddle.style.transform = 'translateY(0px)';
+          }
+
+          if (randomJoke.includes("Interesting anomaly")) {
+            setTimeout(() => {
+              if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(4px) scaleY(1.2)';
+              setTimeout(() => {
+                if (botRightEye) {
+                  botRightEye.classList.remove('h-7');
+                  botRightEye.classList.add('h-1.5');
+                  setTimeout(() => {
+                    botRightEye.classList.remove('h-1.5');
+                    botRightEye.classList.add('h-7');
+                  }, 200);
+                }
+              }, 500);
+              setTimeout(() => {
+                if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(0px)';
+              }, 4000);
+            }, 1500);
+          }
+
+          // 1.8) Radar ikon forgatása és "Zöld" festése
+          if (radarIcon) {
+            currentRotation += 360;
+            radarIcon.style.transition = 'transform 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            radarIcon.style.transform = `rotate(${currentRotation}deg)`;
+            radarBtnContainer.classList.remove('text-primary', 'bg-primary/20', 'border-primary/30');
+            radarBtnContainer.classList.add('text-green-400', 'bg-green-400/20', 'border-green-400/30', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
+            radarIcon.classList.add('text-green-400');
+          }
+
+          // 3) Analízis vége
+          setTimeout(() => {
+            isRadarScanning = false;
+            if (radarBtnContainer) {
+              radarBtnContainer.classList.remove('text-green-400', 'bg-green-400/20', 'border-green-400/30', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
+              radarIcon.classList.remove('text-green-400');
+              radarBtnContainer.classList.add('text-primary', 'bg-primary/20', 'border-primary/30');
+            }
+          }, 2600);
+        });
+      }
+
+      // --- AUTOMATIKUS KÖSZÖNTÉS AZ OLDAL BETÖLTÉSEKOR ---
+      setTimeout(() => {
+        const welcomeMsg = "Here we go! Oh, look at all these fancy projects...";
+        typeWriterEffect(welcomeMsg, botConsole);
+      }, 1500); // 1.5 másodperccel az oldal betöltése után kezdi el mondani
+    });
+
   </script>
 </body>
 

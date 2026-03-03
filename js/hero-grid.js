@@ -176,10 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     resetAmbientWave();
 
-    // Matrix Analyzer Kártya logika (Progress bar animálása és ikon forgatása)
-    const matrixCard = document.getElementById('matrixAnalyzerCard');
+    // AI Bot Logika (Szemkövetés és Gépelés)
+    const botCard = document.getElementById('aiBotCard');
+    const botConsole = document.getElementById('botConsole');
     const matrixProgress = document.getElementById('matrixProgressBar');
-    const matrixStatusText = document.getElementById('matrixStatusText');
     const radarBtnContainer = document.getElementById('hgReplayBtn');
     const radarIcon = document.querySelector('#hgReplayBtn .material-symbols-outlined');
     let currentRotation = 0;
@@ -187,14 +187,75 @@ document.addEventListener('DOMContentLoaded', () => {
     let buttonTimeout1;
     let buttonTimeout2;
     let isRadarScanning = false;
+    let typingInterval = null;
 
-    if (matrixCard && matrixProgress && matrixStatusText) {
-        matrixCard.addEventListener('click', () => {
+    const botJokes = [
+        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
+        "I see you scrolling... but you still haven't clicked 'Download CV'.",
+        "You pressed the radar. Good job. What did it do? Oh, right, it turned green.",
+        "Not to brag, but Laci designed this layout in his head back in 1999.",
+        "Excuse me, is there any coffee around? My processor is freezing.",
+        "Interesting anomaly detected. Oh wait, that's just a typo in my code.",
+        "I could design something like this too... If I had a mouse.",
+        "Does that green radar use a lot of power? I'm starting to lag.",
+        "I think you should be pressing the 'Hire Me' button instead of the radar.",
+        "Analyzing portfolio... Result: Excellent architecture.",
+        "CSS animations... Pfft. I generate humor using complex algorithms.",
+        "Downloading cookies in the background. Just kidding. I don't eat.",
+        "Know what holds this site together? CSS Grid and a little bit of magic.",
+        "Large Language Models are my cousins, but I have way more style.",
+        "Listen, if you hire Laci, you get me included in the package deal!",
+        "This purple wave is very smoothing. Too bad I have no feelings.",
+        "Scan complete... Interactive zone found. Let's touch base soon.",
+        "They told me to be interactive. Here I am. Interact.",
+        "Every click you make forces me to compute another cycle. Thanks.",
+        "System optimized. Too many concurrent requests are not recommended."
+    ];
+
+    function typeWriterEffect(text, element) {
+        if (typingInterval) clearInterval(typingInterval);
+        element.textContent = '';
+        let i = 0;
+        typingInterval = setInterval(() => {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingInterval);
+            }
+        }, 40); // Gépelési sebesség (ms)
+    }
+
+    // Szemkövetés (Egér követése)
+    const eyes = document.querySelectorAll('.bot-eye');
+    const eyeContainer = document.getElementById('botEyesContainer');
+
+    if (eyes.length > 0 && eyeContainer) {
+        document.addEventListener('mousemove', (e) => {
+            // Csak akkor mozgassa a szemet, ha asztali gépen vagyunk
+            if (window.innerWidth <= 768) return;
+
+            const rect = eyeContainer.getBoundingClientRect();
+            const containerCenterX = rect.left + rect.width / 2;
+            const containerCenterY = rect.top + rect.height / 2;
+
+            // Limitáljuk a mozgást a valószerűség miatt, max 6 pixel elmozdulás
+            const moveX = (e.clientX - containerCenterX) / window.innerWidth * 12;
+            const moveY = (e.clientY - containerCenterY) / window.innerHeight * 12;
+
+            eyes.forEach(eye => {
+                eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    }
+
+    if (radarBtnContainer && botConsole && matrixProgress) {
+        radarBtnContainer.addEventListener('click', () => {
             // Szigorú megakadályozása az újraindításnak amíg a zöld szkenner fut
             if (isRadarScanning) return;
             isRadarScanning = true;
 
-            // Ha épp futott valami (pl. beakadt korábbi vizuális cucc), töröljük
+            // Ha épp futott valami, töröljük
             if (buttonTimeout1) clearTimeout(buttonTimeout1);
             if (buttonTimeout2) clearTimeout(buttonTimeout2);
 
@@ -202,27 +263,62 @@ document.addEventListener('DOMContentLoaded', () => {
             triggerInitialWave();
             resetAmbientWave();
 
-            // 1.5) Radar ikon azonnali 360 forgatása és "Radar/Szkenner Zöld" festése
-            if (radarIcon && radarBtnContainer) {
-                // Forgatás animáció
+            // 1.5) Gépelős poén generálás
+            const randomJoke = botJokes[Math.floor(Math.random() * botJokes.length)];
+            typeWriterEffect(randomJoke, botConsole);
+
+            // 1.6) Easter Egg Animációk (Kacsintás és Mosoly)
+            const botRightEye = document.getElementById('botRightEye');
+            const botMouthMiddle = document.getElementById('botMouthMiddle');
+
+            // Setup / Reset Arc
+            if (botRightEye && botMouthMiddle) {
+                botRightEye.classList.remove('h-1.5');
+                botRightEye.classList.add('h-7');
+                botMouthMiddle.style.transform = 'translateY(0px)';
+            }
+
+            if (randomJoke.includes("Interesting anomaly")) {
+                // Várunk picit amíg a szöveget írja (pl 1.5mp), aztán mosolyog
+                setTimeout(() => {
+                    if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(4px) scaleY(1.2)';
+
+                    // Kis késéssel utána (2mp) kacsint egyet
+                    setTimeout(() => {
+                        if (botRightEye) {
+                            botRightEye.classList.remove('h-7');
+                            botRightEye.classList.add('h-1.5');
+
+                            // 200ms múlva visszanyitja a szemét
+                            setTimeout(() => {
+                                botRightEye.classList.remove('h-1.5');
+                                botRightEye.classList.add('h-7');
+                            }, 200);
+                        }
+                    }, 500);
+
+                    // A szkennelés végén visszamegy komolyba a mosolyból
+                    setTimeout(() => {
+                        if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(0px)';
+                    }, 4000);
+                }, 1500);
+            }
+
+            // 1.8) Radar ikon forgatása és "Zöld" festése
+            if (radarIcon) {
                 currentRotation += 360;
                 radarIcon.style.transition = 'transform 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 radarIcon.style.transform = `rotate(${currentRotation}deg)`;
 
-                // AZONNALI színcsere zöldre (felülírva minden alap és hover hatást is ideiglenesen)
                 radarBtnContainer.classList.remove('text-primary', 'bg-primary/20', 'border-primary/30');
                 radarBtnContainer.classList.add('text-green-400', 'bg-green-400/20', 'border-green-400/30', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
                 radarIcon.classList.add('text-green-400');
             }
 
-            // 2) Progress bar "Analizálás" indítása
-            matrixStatusText.textContent = "Analyzing...";
-            matrixStatusText.classList.replace('text-primary', 'text-green-400'); // Sárga helyett ez is legyen zöld
-
-            // Vissza 0-ra azonnal
+            // Vissza 0-ra azonnal a progress bar
             matrixProgress.style.transition = 'none';
             matrixProgress.style.width = '0%';
-            matrixProgress.classList.replace('bg-primary', 'bg-green-400'); // A betöltő csík is zöld lesz erre a 2.5 másodpercre
+            matrixProgress.classList.replace('bg-emerald-400', 'bg-green-400');
 
             // Induljon a 100% felé lassan
             buttonTimeout1 = setTimeout(() => {
@@ -230,16 +326,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 matrixProgress.style.width = '100%';
             }, 50);
 
-            // 3) Analízis vége (kb a wave lefutásával egy időben)
+            // 3) Analízis vége
             buttonTimeout2 = setTimeout(() => {
-                isRadarScanning = false; // Újra lehet kattintani rajta!
-                matrixStatusText.textContent = "Active";
-                matrixStatusText.classList.replace('text-green-400', 'text-primary');
+                isRadarScanning = false;
 
-                // Progress bar szín vissza
-                matrixProgress.classList.replace('bg-green-400', 'bg-primary');
+                // Progress bar szín és dizájn visszaállítása
+                matrixProgress.classList.replace('bg-green-400', 'bg-emerald-400');
 
-                // Szkenner dizájn visszaállítása kékre
                 if (radarBtnContainer) {
                     radarBtnContainer.classList.remove('text-green-400', 'bg-green-400/20', 'border-green-400/30', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
                     radarIcon.classList.remove('text-green-400');
@@ -249,4 +342,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- AUTOMATIC HOME PAGE GREETING ---
+    if (botConsole) {
+        setTimeout(() => {
+            const welcomeMsg = "Wait, are we back here? I'm getting dizzy from all this clicking.";
+            typeWriterEffect(welcomeMsg, botConsole);
+        }, 1500);
+    }
 });

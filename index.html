@@ -238,8 +238,9 @@
             <div
               class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
 
-              <!-- HÁTTÉR ANIMÁCIÓ (Nagyobb Z-index, hogy fogja a kurzort) -->
-              <div class="hg-scene opacity-20 dark:opacity-40 transition-opacity duration-1000 z-10">
+              <!-- HÁTTÉR ANIMÁCIÓ (Nagyobb Z-index, hogy fogja a kurzort) -> TARTALOM SZÉLESSÉGÉRE KORLÁTOZVA -->
+              <div
+                class="hg-scene w-full max-w-[1200px] mx-auto opacity-20 dark:opacity-40 transition-opacity duration-1000 z-10">
                 <div class="hg-grid" id="hgGrid"></div>
               </div>
 
@@ -314,35 +315,69 @@
                   </div>
                   <!-- Hero Right Side (Floating Card & Animation Controls) -->
                   <div
-                    class="w-full flex-1 max-w-[600px] mx-auto z-10 pointer-events-none relative flex flex-col justify-end items-end gap-6">
+                    class="w-full flex-1 max-w-[600px] mx-auto z-10 pointer-events-none relative flex flex-col justify-end items-end gap-6 pb-6 lg:pb-12">
 
-                    <!-- Floating Card (Glassy Matrix Analyzer) mint Újraindító Gomb -->
-                    <div id="matrixAnalyzerCard"
-                      class="relative z-20 flex flex-col justify-center rounded-xl bg-white/10 dark:bg-[#1e293b]/50 p-3 lg:p-4 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-2xl pointer-events-auto transform scale-90 sm:scale-100 hover:scale-[1.03] transition-transform duration-300 group cursor-pointer">
-                      <div class="flex items-center gap-3 mb-3">
+                    <!-- Floating AI Bot Character (Replaces Matrix Analyzer) -->
+                    <div class="relative z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0">
 
-                        <!-- Kattintható Replay Gomb a korábbi ikon helyén (hgReplayBtn) -->
-                        <button id="hgReplayBtn" aria-label="Analyze Grid Structure" title="Run Analysis Wave"
-                          class="h-10 w-10 sm:h-12 sm:w-12 rounded-lg bg-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.5)]">
-                          <span
-                            class="material-symbols-outlined text-[24px] sm:text-[28px] transition-transform duration-700 group-hover:-rotate-180">radar</span>
-                        </button>
+                      <!-- Radar Button (Docked to the left of the bot) -->
+                      <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
+                        class="absolute -left-6 z-30 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 shadow-lg backdrop-blur-md">
+                        <span
+                          class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
+                      </button>
 
-                        <div class="pr-4 text-slate-800 dark:text-white">
-                          <div
-                            class="text-[10px] font-bold text-slate-500 dark:text-white/60 uppercase tracking-wider mb-0.5">
-                            Status: <span id="matrixStatusText" class="text-primary font-black">Active</span>
+                      <!-- The Bot Container -->
+                      <div id="aiBotCard"
+                        class="relative w-[220px] sm:w-[240px] bg-[#1a1e26] rounded-xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden flex flex-col hg-float-anim backdrop-blur-md">
+                        <!-- Header -->
+                        <div class="bg-gradient-to-r from-primary to-purple-500 h-8 flex items-center justify-center">
+                          <span class="text-white text-xs font-bold tracking-widest uppercase" data-i18n="bot.title">AI
+                            Bott</span>
+                        </div>
+
+                        <!-- Face -->
+                        <div class="flex-1 py-8 px-6 flex flex-col items-center justify-center gap-5 relative">
+                          <div id="botEyesContainer" class="flex justify-between items-center w-24 h-8 relative">
+                            <!-- Left Eye (Square) -->
+                            <div
+                              class="w-7 h-7 bg-emerald-400 rounded-sm bot-eye shadow-[0_0_12px_rgba(52,211,153,0.4)]">
+                            </div>
+                            <!-- Right Eye (Square) -->
+                            <div id="botRightEye"
+                              class="w-7 h-7 bg-emerald-400 rounded-sm bot-eye shadow-[0_0_12px_rgba(52,211,153,0.4)] transition-all duration-300">
+                            </div>
                           </div>
-                          <div class="text-sm sm:text-base font-black whitespace-nowrap tracking-tight">
-                            Project Matrix Analysis
+
+                          <!-- Mouth -->
+                          <div class="flex gap-1.5 items-end h-3">
+                            <div class="w-2.5 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+                            </div>
+                            <div id="botMouthMiddle"
+                              class="w-10 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)] transition-transform duration-300">
+                            </div>
+                            <div class="w-2.5 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <!-- Progress Bar -->
-                      <div class="w-full bg-slate-200/50 dark:bg-white/10 rounded-full h-1.5 mt-1 overflow-hidden">
-                        <div id="matrixProgressBar" class="bg-primary h-1.5 rounded-full transition-all duration-300"
-                          style="width: 100%"></div>
+                        <!-- Console -->
+                        <div
+                          class="bg-[#111418] m-3 mt-0 p-3 rounded-lg border border-white/10 h-[130px] relative flex flex-col">
+                          <div class="flex-1 overflow-y-auto pr-1 overflow-x-hidden">
+                            <span id="botConsole"
+                              class="text-gray-300 text-xs sm:text-sm font-mono leading-relaxed">System online. Waiting
+                              for input...</span>
+                            <span class="bot-cursor w-2 h-3.5 bg-primary/80 inline-block ml-0.5 align-middle"></span>
+                          </div>
+
+                          <!-- Scanner Progress Bar -->
+                          <div class="absolute bottom-0 left-0 w-full bg-slate-800/50 h-1">
+                            <div id="matrixProgressBar"
+                              class="bg-emerald-400 h-1 rounded-r-full transition-all duration-300 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+                              style="width: 0%"></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
