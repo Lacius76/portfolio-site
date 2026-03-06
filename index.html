@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="css/hero-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
   <link rel="stylesheet" href="css/hero-grid.css" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="css/tailwind.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
     rel="stylesheet" />
   <link
@@ -54,28 +54,6 @@
     }
   </script>
   <!-- 2. Tailwind Configuration (Kept separate for ID reference) -->
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#6366f1",
-            "background-light": "#ffffff",
-            "background-dark": "#101922",
-          },
-          fontFamily: { display: ["Inter", "sans-serif"] },
-          borderRadius: {
-            DEFAULT: "0.25rem",
-            lg: "0.5rem",
-            xl: "0.75rem",
-            "2xl": "1rem",
-            full: "9999px",
-          },
-        },
-      },
-    };
-  </script>
 
   <!-- 3. Consolidated Styles -->
   <style>
@@ -341,8 +319,10 @@
                           <span class="text-white text-xs font-bold tracking-widest uppercase select-none"
                             data-i18n="bot.title">AI
                             Bott</span>
-                          <!-- Right icon / space saver (balancer) -->
-                          <div class="w-4"></div>
+                          <!-- Close Button -->
+                          <button class="bot-close-btn text-white/60 hover:text-white transition-colors" aria-label="Close Bot">
+                            <span class="material-symbols-outlined text-[16px]">close</span>
+                          </button>
                         </div>
 
                         <!-- Face -->

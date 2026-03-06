@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Impressum - Laszlo.UI</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="css/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
     <link
@@ -17,21 +17,6 @@
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
-        }
-    </script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#6366f1",
-                        "background-light": "#ffffff",
-                        "background-dark": "#101922",
-                    },
-                    fontFamily: { "display": ["Inter", "sans-serif"] },
-                },
-            },
         }
     </script>
     <style>

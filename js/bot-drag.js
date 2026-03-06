@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.getElementById('aiBotDragWrapper');
     if (!wrapper) return;
 
+    // Ha a bot korábban be volt zárva, azonnal elrejtjük (ne villantson fel 2.6 másodpercig)
+    if (sessionStorage.getItem('botClosed') === 'true') {
+        wrapper.style.display = 'none';
+    }
+
     const botCard = document.getElementById('aiBotCard');
     if (!botCard) return;
 
@@ -240,13 +245,102 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Auto-initialize after hero animations complete ---
-    // Hero animations take ~2.4s max (1.6s delay + 0.8s animation).
-    // We initialize after that to pick up the correct position.
     setTimeout(() => {
         if (!isInitialized) {
+            // Ha a bot zárva volt, röviden visszaállítjuk a display-t hogy az initFixedPosition működjön
+            if (sessionStorage.getItem('botClosed') === 'true') {
+                wrapper.style.display = 'flex';
+            }
             initFixedPosition();
         }
+        // Ha a bot korábban be volt zárva, maradjon zárva (most már fixed pozícióban)
+        if (sessionStorage.getItem('botClosed') === 'true') {
+            closeBot(false);
+        }
     }, 2600);
+
+    // --- CLOSE / REOPEN LOGIKA ---
+    let isBotClosed = false;
+    const closeBtn = botCard.querySelector('.bot-close-btn');
+
+    // Reopen tab gomb létrehozása (dinamikusan)
+    const reopenTab = document.createElement('button');
+    reopenTab.id = 'botReopenTab';
+    reopenTab.setAttribute('aria-label', 'Open AI Bot');
+    reopenTab.innerHTML = '<span class="material-symbols-outlined text-[20px]">smart_toy</span>';
+    Object.assign(reopenTab.style, {
+        position: 'fixed',
+        right: '0',
+        top: '50%',
+        transform: 'translateY(-50%) translateX(100%)', // Kezdetben rejtett (jobbra kicsúsztatva)
+        visibility: 'hidden', // Shadow ne látszódjon be
+        zIndex: '9999',
+        width: '40px',
+        height: '48px',
+        borderRadius: '12px 0 0 12px',
+        border: 'none',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        background: '#6366f1',
+        boxShadow: '-4px 0 15px rgba(99, 102, 241, 0.3)',
+        transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease',
+        pointerEvents: 'auto'
+    });
+    reopenTab.addEventListener('mouseenter', () => { reopenTab.style.background = '#818cf8'; });
+    reopenTab.addEventListener('mouseleave', () => { reopenTab.style.background = '#6366f1'; });
+    document.body.appendChild(reopenTab);
+
+    function closeBot(animate = true) {
+        if (isBotClosed) return;
+        isBotClosed = true;
+        sessionStorage.setItem('botClosed', 'true');
+
+        // Bot kirepülése jobbra
+        wrapper.style.transition = animate ? 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease' : 'none';
+        wrapper.style.transform = 'translateX(calc(100% + 60px))';
+        wrapper.style.opacity = '0';
+        wrapper.style.pointerEvents = 'none';
+
+        // Reopen tab bejövetele
+        reopenTab.style.visibility = 'visible';
+        setTimeout(() => {
+            reopenTab.style.transform = 'translateY(-50%) translateX(0)';
+        }, animate ? 300 : 0);
+    }
+
+    function openBot() {
+        if (!isBotClosed) return;
+        isBotClosed = false;
+        sessionStorage.removeItem('botClosed');
+
+        // Reopen tab kirepülése
+        reopenTab.style.transform = 'translateY(-50%) translateX(100%)';
+        setTimeout(() => { reopenTab.style.visibility = 'hidden'; }, 400);
+
+        // Bot visszacsúszása — display visszaállítása
+        wrapper.style.display = 'flex';
+        // Kis késleltetés hogy a display:flex érvényesüljön mielőtt az animáció indul
+        requestAnimationFrame(() => {
+            wrapper.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease';
+            wrapper.style.transform = 'none';
+            wrapper.style.opacity = '1';
+            wrapper.style.pointerEvents = 'auto';
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Ne induljon el a drag sem
+            closeBot(true);
+        });
+    }
+
+    reopenTab.addEventListener('click', () => {
+        openBot();
+    });
 
     // --- Random Unprompted Messages ---
     function scheduleRandomMessage() {
@@ -255,8 +349,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             const botConsole = document.getElementById('botConsole');
-            // Only show if not currently dragging and console exists
-            if (botConsole && !isDragging) {
+            // Ha a bot zárva van vagy drag közben van, ne piszkáljuk a DOM-ot
+            // (Tailwind CDN a DOM-módosításokra újrafordítja a stílusokat → pislogás!)
+            if (botConsole && !isDragging && !isBotClosed) {
                 // Clear any existing typing interval to prevent text overlap
                 if (window._botTypingInterval) {
                     clearInterval(window._botTypingInterval);
@@ -294,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Reset transition after opening
                             setTimeout(() => {
                                 eyes.forEach(eye => {
-                                    if (eye.id !== 'botRightEye') { // don't permanently override hero-grid.js wink logic if any
+                                    if (eye.id !== 'botRightEye') {
                                         eye.style.transition = '';
                                     }
                                 });
@@ -302,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }, 120);
 
                         blinkCount++;
-                    }, 400); // Blink every 400ms
+                    }, 400);
                 }
 
                 window._botTypingInterval = setInterval(() => {

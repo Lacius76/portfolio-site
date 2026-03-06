@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!gridElement || !replayBtn) return;
 
-    const size = 10;
+    const size = 8; // 10→8: 36% kevesebb DOM elem (64 kocka × 4 gyerek = 256 elem)
     const cubes = [];
+    const activeCubes = new Set(); // PERFORMANCIA: csak az aktív kockákat követjük, nem mind a 100-at
     let isWaving = false;
-    let waveTimeouts = []; // Tömb az összes aktív setTimeout tárolására
+    let waveTimeouts = [];
     let waveResetTimeout = null;
 
     // Rács generálása
@@ -36,30 +37,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
             gridElement.appendChild(container);
             cubes[r][c] = container;
+        }
+    }
 
-            // PERFORMANCE OPTIMIZATION: Csak asztali/nagyobb kijelzőkön (képernyő szélesség > 768px) engedjük futni
-            // a roppant matematika-igényes "100 szomszéd kockát megemelő" hover animációkat.
-            // Mobilon ezeket a böngésző a scroll-lal (görgetéssel) próbálná felváltva számolni, amitől laggol a telefon.
-            container.addEventListener('mouseenter', () => {
-                if (window.innerWidth > 768) {
-                    stopWave();
-                    updateGrid(r, c, true);
-                }
+    // PERFORMANCIA: requestAnimationFrame batching — gyors egérmozgásnál összevonja
+    // a frissítéseket egyetlen frame-be ahelyett, hogy minden kockára külön DOM-ot módosítana
+    let pendingUpdate = null;
+    let rafId = null;
+
+    function processPendingUpdate() {
+        rafId = null;
+        if (pendingUpdate) {
+            updateGrid(pendingUpdate.row, pendingUpdate.col, pendingUpdate.active);
+            pendingUpdate = null;
+        }
+    }
+
+    function scheduleUpdate(row, col, active) {
+        if (active) stopWave();
+        pendingUpdate = { row, col, active };
+        if (!rafId) {
+            rafId = requestAnimationFrame(processPendingUpdate);
+        }
+    }
+
+    // Event listenerek rárakása a kockákra (a ciklus után, hogy a RAF-kezelő már elérhető legyen)
+    for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+            cubes[r][c].addEventListener('mouseenter', () => {
+                if (window.innerWidth > 768) scheduleUpdate(r, c, true);
             });
-            container.addEventListener('mouseleave', () => {
-                if (window.innerWidth > 768) {
-                    updateGrid(r, c, false);
-                }
+            cubes[r][c].addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) scheduleUpdate(r, c, false);
             });
         }
     }
 
     function stopWave() {
         isWaving = false;
-        // Az összes épp futó setTimeout-ot (kockánkéntit) kilőjük
         waveTimeouts.forEach(id => clearTimeout(id));
         waveTimeouts = [];
         if (waveResetTimeout) clearTimeout(waveResetTimeout);
+        // A timeout-ok leállítása után a már rákerült hullám-osztályokat is le kell szedni,
+        // különben azok a kockák "befagynak" a hullámszínben
+        for (let r = 0; r < size; r++) {
+            for (let c = 0; c < size; c++) {
+                cubes[r][c].classList.remove('hg-wave-peak', 'hg-ambient-wave');
+                cubes[r][c].style.removeProperty('--hg-wave-delay');
+            }
+        }
     }
 
     function triggerInitialWave(isAmbient = false) {
@@ -102,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateGrid(row, col, isActive) {
-        clearAllClasses();
+        clearActiveCubes();
         if (!isActive) return;
 
         for (let dr = -1; dr <= 1; dr++) {
@@ -111,38 +137,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nc = col + dc;
 
                 if (nr >= 0 && nr < size && nc >= 0 && nc < size) {
-                    cubes[nr][nc].classList.remove('hg-falling-main'); // Ha ráhúzzuk újra mielőtt leesne, szakítsa meg a zuhanást
+                    const cube = cubes[nr][nc];
+                    cube.classList.remove('hg-falling-main');
 
                     if (dr === 0 && dc === 0) {
-                        cubes[nr][nc].classList.add('hg-active-main');
+                        cube.classList.add('hg-active-main');
                     } else {
-                        // Random magasság beállítása a szomszédoknak: 15px és 55px között (kisebb mint a fő 70px)
                         const randomHeight = Math.floor(Math.random() * 40) + 15;
-                        cubes[nr][nc].style.setProperty('--hg-height-neighbor', `${randomHeight}px`);
-                        cubes[nr][nc].classList.add('hg-active-neighbor');
+                        cube.style.setProperty('--hg-height-neighbor', `${randomHeight}px`);
+                        cube.classList.add('hg-active-neighbor');
                     }
+                    activeCubes.add(cube); // Követjük melyik kockák aktívak
                 }
             }
         }
     }
 
+    // PERFORMANCIA: Csak az aktív kockákat tisztítjuk (max ~9 db hover esetén), nem mind a 100-at!
+    function clearActiveCubes() {
+        activeCubes.forEach(cube => {
+            if (cube.classList.contains('hg-active-main')) {
+                cube.classList.add('hg-falling-main');
+                setTimeout(c => c.classList.remove('hg-falling-main'), 1500, cube);
+            }
+            cube.style.removeProperty('--hg-height-neighbor');
+            cube.classList.remove('hg-active-main', 'hg-active-neighbor');
+        });
+        activeCubes.clear();
+    }
+
+    // Teljes rács reset (hullámokhoz, ahol mind a 100 kocka érintett)
     function clearAllClasses(class1) {
         const classesToRemove = ['hg-active-main', 'hg-active-neighbor', 'hg-wave-peak', 'hg-ambient-wave'];
         for (let r = 0; r < size; r++) {
             for (let c = 0; c < size; c++) {
-
-                // HA épp lereseteljük a hovert (nem egyedi class1 pl hullám miatt), indítsuk a zuhanást egy explicit class-szal
-                if (!class1 && cubes[r][c].classList.contains('hg-active-main')) {
-                    cubes[r][c].classList.add('hg-falling-main');
-                    // Töröljük a zuhanó osztályt idővel, hogy ne ragadjon be
-                    setTimeout((cube) => {
-                        cube.classList.remove('hg-falling-main');
-                    }, 1500, cubes[r][c]);
-                }
-
-                cubes[r][c].style.removeProperty('--hg-wave-delay'); // Reseteljük a delay-t is
-                cubes[r][c].style.removeProperty('--hg-height-neighbor'); // Töröljük a random magasságot
-
+                cubes[r][c].style.removeProperty('--hg-wave-delay');
+                cubes[r][c].style.removeProperty('--hg-height-neighbor');
                 if (class1) {
                     cubes[r][c].classList.remove(class1);
                 } else {
@@ -150,17 +180,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        activeCubes.clear();
     }
 
-    // Hullám indítása egy kis késleltetéssel (1mp várás után)
-    setTimeout(triggerInitialWave, 1000);
+    // Kezdeti hullám: CSAK az enyhe, lapos ambient típus (nem a 3D kocka-emelő, mert az pislogást okoz)
+    setTimeout(() => triggerInitialWave(true), 1000);
 
     // Automatikus, időnkénti lágy hullámzás beállítása (10 másodpercenként)
+    // Ez CSAK a lapos színváltó ("ambient") hullám, nem okoz performancia-problémát.
     let ambientWaveTimer;
     function resetAmbientWave() {
         if (ambientWaveTimer) clearInterval(ambientWaveTimer);
         ambientWaveTimer = setInterval(() => {
-            // Csak akkor indít hullámot automatikusan, ha épp nem állunk az egerünkkel rajta
             let hasActiveCube = false;
             for (let r = 0; r < size; r++) {
                 for (let c = 0; c < size; c++) {
@@ -170,9 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if (!hasActiveCube && !isWaving) {
-                triggerInitialWave(true); // Lágy, lapos hullám indítása színnel
+                triggerInitialWave(true); // Lágy, lapos hullám (csak szín, nincs 3D emelés)
             }
-        }, 10000); // 10 másodperc
+        }, 10000);
     }
     resetAmbientWave();
 

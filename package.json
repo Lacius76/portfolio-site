@@ -1,0 +1,27 @@
+{
+  "name": "portfolio-site",
+  "version": "1.0.0",
+  "description": "This is the technical repository of my personal brand ecosystem. It demonstrates a high-performance, accessible, and multilingual approach to modern web design.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.min.css --minify",
+    "watch:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.min.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lacius76/portfolio-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Lacius76/portfolio-site/issues"
+  },
+  "homepage": "https://github.com/Lacius76/portfolio-site#readme",
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^3.4.19"
+  }
+}

@@ -1,3 +1,12 @@
+/* Regisztrált CSS property a kockamagasság animálásához.
+   Ezzel egyetlen értéket animálunk a containeren, amit mindhárom lap (tető, jobb, bal) referál.
+   Így matematikailag lehetetlen hézag a lapok között, mert minden frame-ben azonos az érték. */
+@property --hg-cube-height {
+    syntax: '<length>';
+    initial-value: 0px;
+    inherits: true;
+}
+
 :root {
     --hg-grid-base: #1e293b;
     --hg-cube-top: #38bdf8;
@@ -62,8 +71,8 @@
     --hg-height-trail: 25px;
 
     display: grid;
-    grid-template-columns: repeat(10, var(--hg-cube-size));
-    grid-template-rows: repeat(10, var(--hg-cube-size));
+    grid-template-columns: repeat(8, var(--hg-cube-size));
+    grid-template-rows: repeat(8, var(--hg-cube-size));
     gap: 16px;
     /* 12px -> 16px hogy szellősebb legyen vaskosabb formáknál */
 
@@ -90,14 +99,16 @@
     background: var(--hg-grid-base);
     border-radius: 4px;
     cursor: pointer;
+    /* A kocka magassága: ez az EGYETLEN animált érték, amit mindhárom lap követ */
+    --hg-cube-height: 0px;
+    transition: --hg-cube-height 0.25s ease-out;
 }
 
 .hg-face {
     position: absolute;
-    /* Egyetlen, mindenre (oldalak, tető, zárás, nyitás) egységesített transition a tökéletes szinkronhoz */
-    /* all helyett specifkusan felsoroljuk mi változik, mert az "all" property néha alul optimalizálja a böngészőt 3D térben */
-    transition: transform 0.4s ease-out, height 0.4s ease-out, width 0.4s ease-out, background 0.4s ease-out;
-    will-change: transform, height, width, background;
+    /* A magasság-animációt a container --hg-cube-height kezeli, a lapoknak csak a háttérszínt kell animálni */
+    transition: background 0.4s ease-out, box-shadow 0.4s ease-out;
+    will-change: background;
     backface-visibility: hidden;
 }
 
@@ -105,10 +116,10 @@
     width: 100%;
     height: 100%;
     background: var(--hg-grid-base);
-    transform: translateZ(0);
+    /* A translateZ a container --hg-cube-height értékét követi → nincs külön transform animáció */
+    transform: translateZ(var(--hg-cube-height, 0px));
     border-radius: 4px;
     z-index: 3;
-    /* A transition fentről, az .hg-face-ből öröklődik teljesen szinkronban */
     box-shadow: 0 0 0 rgba(168, 85, 247, 0);
 }
 
@@ -117,7 +128,8 @@
     transform-origin: right;
     transform: rotateY(90deg);
     height: 100%;
-    width: 0;
+    /* A width a container --hg-cube-height értékét követi → tökéletes szinkron a tetővel */
+    width: var(--hg-cube-height, 0px);
     right: 0;
     top: 0;
 }
@@ -127,7 +139,8 @@
     transform-origin: bottom;
     transform: rotateX(-90deg);
     width: 100%;
-    height: 0;
+    /* A height a container --hg-cube-height értékét követi → tökéletes szinkron a tetővel */
+    height: var(--hg-cube-height, 0px);
     bottom: 0;
     left: 0;
 }
@@ -159,26 +172,14 @@
 }
 
 /* --- EGÉR INTERAKCIÓ ÁLLAPOTOK --- */
+/* A magasságot a containeren állítjuk → mindhárom lap automatikusan követi, nulla hézaggal */
+.hg-active-main {
+    --hg-cube-height: var(--hg-height-main);
+}
+
 .hg-active-main .hg-face-top {
-    transform: translateZ(var(--hg-height-main));
     background: var(--hg-cube-top);
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
-    /* Szorosan hozzárendelve a szinkron miatt */
-    transition: transform 0.4s ease-out, background 0.4s ease-out;
-}
-
-/* A kiemelt állapot vége */
-
-.hg-active-main .hg-face-right {
-    width: var(--hg-height-main);
-    /* Direkt egy picit (0.02s) gyorsabb a tetőnél (0.4s), hogy hamarabb érjen fel és fedje a lyukat */
-    transition: width 0.36s ease-out;
-}
-
-.hg-active-main .hg-face-left {
-    height: var(--hg-height-main);
-    /* Direkt egy picit gyorsabb a tetőnél */
-    transition: height 0.36s ease-out;
 }
 
 .hg-active-main .hg-glow {
@@ -186,52 +187,36 @@
     background: linear-gradient(135deg, #a855f7, #0ea5e9);
     box-shadow: 0 0 25px 8px rgba(168, 85, 247, 0.6);
     animation: none;
-    /* Kikapcsoljuk az alap pulzálást, amikor aktív */
+}
+
+.hg-active-neighbor {
+    --hg-cube-height: var(--hg-height-neighbor);
 }
 
 .hg-active-neighbor .hg-face-top {
-    transform: translateZ(var(--hg-height-neighbor));
     background: var(--hg-neighbor-top);
-    /* Szinkron a fő kockával: 0.4s tető animáció */
-    transition: transform 0.4s ease-out, background 0.4s ease-out;
 }
 
 .hg-active-neighbor .hg-face-right {
-    width: var(--hg-height-neighbor);
     background: var(--hg-neighbor-right);
-    /* Itt is kell a 0.36s-os "gyorsító" trükk a rés ellen az aktív szomszédokra */
-    transition: width 0.36s ease-out, background 0.36s ease-out;
 }
 
 .hg-active-neighbor .hg-face-left {
-    height: var(--hg-height-neighbor);
     background: var(--hg-neighbor-left);
-    /* Itt is 0.36s! */
-    transition: height 0.36s ease-out, background 0.36s ease-out;
 }
 
 /* --- KEZDETI / AUTOMATIKUS HULLÁM ÁLLAPOTOK (Folyamatos) --- */
+/* A hullám is a containeren állítja a magasságot → nulla hézag a lapok között */
+.hg-wave-peak {
+    --hg-cube-height: var(--hg-height-main);
+    transition: --hg-cube-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--hg-wave-delay, 0ms);
+}
+
 .hg-wave-peak .hg-face-top {
-    transform: translateZ(var(--hg-height-main));
     background: var(--hg-wave-top);
-    /* 1px-es outline az accent-színben (glow helyett) */
     box-shadow: inset 0 0 0 1px var(--hg-glow-color);
-    /* Fő hullám emelkedés: 0.6s */
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: var(--hg-wave-delay, 0ms);
-}
-
-.hg-wave-peak .hg-face-right {
-    width: var(--hg-height-main);
-    /* Szél sebesítése hogy fedje a rést (0.6s helyett 0.56s) */
-    transition: width 0.56s cubic-bezier(0.4, 0, 0.2, 1), background 0.56s cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: var(--hg-wave-delay, 0ms);
-}
-
-.hg-wave-peak .hg-face-left {
-    height: var(--hg-height-main);
-    /* Szél sebesítése hogy fedje a rést (0.6s helyett 0.56s) */
-    transition: height 0.56s cubic-bezier(0.4, 0, 0.2, 1), background 0.56s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: var(--hg-wave-delay, 0ms);
 }
 
