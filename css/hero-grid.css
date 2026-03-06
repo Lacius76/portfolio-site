@@ -23,28 +23,20 @@
 
 /* Light mode overrides for better visibility against white background */
 :root:not(.dark) {
-    --hg-grid-base: #e2e8f0;
-    /* Alap, lapos tábla színe világos marad */
+    --hg-grid-base: #f1f5f9;
+    /* Alap, lapos tábla színe nagyon világos szürkére módosult az 100% opacity miatt */
 
-    /* A világos módban ezek a színek mélyebbek, masszívabbak lesznek, így nem halványulnak el a fehér háttérhez képest! */
-    --hg-cube-top: #0284c7;
-    /* Sokkal telítettebb kék (sky-600) */
-    --hg-cube-right: #0369a1;
-    /* Sötétebb él (sky-700) */
-    --hg-cube-left: #075985;
-    /* Sötétebb perem (sky-800) */
+    /* Ugyanazok a világos, élénk színek, mint sötét módban, hogy megmaradjon a "neon" hatás */
+    --hg-cube-top: #38bdf8;
+    --hg-cube-right: #0ea5e9;
+    --hg-cube-left: #0284c7;
 
-    --hg-neighbor-top: #7c3aed;
-    /* Mélyebb lila (violet-600) */
-    --hg-neighbor-right: #6d28d9;
-    /* Sötétebb lila él (violet-700) */
-    --hg-neighbor-left: #5b21b6;
-    /* Legmélyebb perem (violet-800) */
+    --hg-neighbor-top: #8b5cf6;
+    --hg-neighbor-right: #7c3aed;
+    --hg-neighbor-left: #6d28d9;
 
-    --hg-wave-top: #9333ea;
-    /* Mélyebb neon-lila */
-    --hg-wave-ambient: rgba(126, 34, 206, 0.8);
-    /* Erősebb és kevésbé áttetsző (purple-700) */
+    --hg-wave-top: #a855f7;
+    --hg-wave-ambient: rgba(139, 92, 246, 0.6);
 }
 
 .hg-scene {
