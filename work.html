@@ -132,10 +132,10 @@
         <!-- COLUMN 2: MENU -->
         <nav class="hidden md:flex items-center gap-8">
           <a href="about-me.html"
-            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-1"
+            class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-1"
             data-i18n="nav.about">About</a>
           <a href="resume.html"
-            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors nav-anim-link-2"
+            class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-2"
             data-i18n="nav.resume">Resume</a>
         </nav>
 
@@ -292,9 +292,17 @@
                     <div id="aiBotCard"
                       class="relative w-[220px] sm:w-[240px] bg-[#1a1e26] rounded-xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden flex flex-col hg-float-anim backdrop-blur-md">
                       <!-- Header -->
-                      <div class="bg-gradient-to-r from-primary to-purple-500 h-8 flex items-center justify-center">
-                        <span class="text-white text-xs font-bold tracking-widest uppercase" data-i18n="bot.title">AI
+                      <div
+                        class="bg-gradient-to-r from-primary to-purple-500 h-8 flex items-center justify-between px-3 cursor-grab hover:brightness-110 active:cursor-grabbing transition-all group/handle">
+                        <!-- Drag Handle Icon -->
+                        <div class="text-white/60 group-hover/handle:text-white transition-colors">
+                          <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                        </div>
+                        <span class="text-white text-xs font-bold tracking-widest uppercase select-none"
+                          data-i18n="bot.title">AI
                           Bott</span>
+                        <!-- Right icon / space saver (balancer) -->
+                        <div class="w-4"></div>
                       </div>
 
                       <!-- Face -->
@@ -358,7 +366,7 @@
                   class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                   <div class="absolute top-4 left-4 z-20">
                     <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
                       data-i18n="index.selectedWorks.ewa.tag">Fintech App</span>
                   </div>
                   <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -389,7 +397,7 @@
                   class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                   <div class="absolute top-4 left-4 z-20">
                     <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg">
                       <span data-i18n="index.selectedWorks.antiGravity.tag">Case Study 2026</span>
                     </span>
                   </div>
@@ -419,7 +427,7 @@
                   class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                   <div class="absolute top-4 left-4 z-20">
                     <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
                       data-i18n="work.projectShadowTag">Shadow Cartels App
                     </span>
                   </div>
@@ -449,7 +457,7 @@
                   class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                   <div class="absolute top-4 left-4 z-20">
                     <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg">
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg">
                       <span data-i18n="work.projectWinccTag">WinCC-OA Interface</span>
                     </span>
                   </div>
@@ -477,7 +485,7 @@
                   class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                   <div class="absolute top-4 left-4 z-20">
                     <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
                       data-i18n="work.projectGreentubeTag">Greentube</span>
                   </div>
                   <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -505,7 +513,7 @@
                   class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
                   <div class="absolute top-4 left-4 z-20">
                     <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
                       data-i18n="work.projectAmaticTag">Amatic</span>
                   </div>
                   <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -533,7 +541,7 @@
                   class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
                   <div class="absolute top-4 left-4 z-20">
                     <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-4 py-2 text-sm font-bold text-white border border-white/20 shadow-lg"
+                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
                       data-i18n="work.projectFunworldTag">Photoplay (2000)</span>
                   </div>
                   <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
