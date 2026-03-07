@@ -211,6 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Touch Events ---
     dragHandle.addEventListener('touchstart', (e) => {
+        // Skip drag if the touch target is the close button (or inside it)
+        if (e.target.closest('.bot-close-btn')) return;
         if (e.touches.length === 1) {
             e.preventDefault();
             const touch = e.touches[0];
