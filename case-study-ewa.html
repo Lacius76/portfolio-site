@@ -15,7 +15,6 @@
 
   <style>
     .glass-panel {
-      background: transparent;
       backdrop-filter: blur(12px);
       border: 1px solid rgba(200, 200, 220, 0.15);
     }
@@ -655,11 +654,11 @@
                 workflow."
               </p>
               <div class="pt-6 sm:pt-8 w-full">
-                <a href="case-study-greent.html"
+                <a href="case-study-styleguide.html"
                   class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg">
                   <span
                     class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
-                  <span data-i18n="ewa.nextCaseStudy" class="break-words">Next: Greentube</span>
+                  <span data-i18n="ewa.nextCaseStudy" class="break-words">Next: Styleguide</span>
                 </a>
               </div>
             </div>
@@ -678,7 +677,9 @@
       </div>
     </main>
     <footer id="footer-reveal"
-      class="fixed bottom-0 left-0 w-full z-[-1] border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300">
+      class="fixed bottom-0 left-0 w-full border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#18181b] pt-32 pb-12 overflow-hidden transition-all duration-300" style="z-index: 2;">
+      <!-- Solid background blocker to prevent hero video bleeding through -->
+      <div class="absolute inset-0 bg-white dark:bg-[#18181b]" style="z-index: -1;"></div>
       <!-- BACKGROUND HERO EFFECT -->
       <div class="absolute inset-0 z-0 pointer-events-none">
         <img src="img/ewa/dashboard.png"
@@ -822,17 +823,29 @@
         const scrollY = window.scrollY;
         const viewHeight = window.innerHeight;
         const docHeight = document.body.scrollHeight;
+        const heroVideo = document.querySelector('.hero-video-bg');
 
-        // 1. Z-Index Logic
-        if (footer) {
-          if (scrollY > viewHeight) {
-            footer.style.zIndex = "1";
+        // 1. Hide hero video when user scrolls past hero section (prevents bleed-through into footer)
+        if (heroVideo) {
+          if (scrollY > viewHeight * 0.8) {
+            heroVideo.style.visibility = 'hidden';
+            heroVideo.style.opacity = '0';
           } else {
-            footer.style.zIndex = "-1";
+            heroVideo.style.visibility = '';
+            heroVideo.style.opacity = '';
           }
         }
 
-        // 2. Back Button Animation Logic
+        // 2. Z-Index Logic
+        if (footer) {
+          if (scrollY > viewHeight) {
+            footer.style.zIndex = "2";
+          } else {
+            footer.style.zIndex = "2"; // Always above hero video (z:0)
+          }
+        }
+
+        // 3. Back Button Animation Logic
         // Trigger when we are close to the bottom (footer fully revealed)
         const backLink = document.getElementById("footer-back-link");
         const contactInfo = document.getElementById("footer-contact-info");

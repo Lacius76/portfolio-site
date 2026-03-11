@@ -29,9 +29,13 @@
         }
 
         .glass-panel {
-            background: rgba(24, 24, 27, 0.8);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(200, 200, 220, 0.15);
+        }
+
+        .dark .glass-panel {
+            background: rgba(24, 24, 27, 0.8);
+            border-color: rgba(255, 255, 255, 0.05);
         }
 
         .text-glow {
@@ -739,7 +743,7 @@
                                         treated this project not as "art," but as a product.
                                     </p>
                                     <ul class="space-y-3">
-                                        <li class="flex items-start gap-3 text-slate-300">
+                                        <li class="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                                             <span
                                                 class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
                                             <span data-i18n="antiGravity.qaBrowser"
@@ -747,14 +751,14 @@
                                                 Validated on Chrome, Safari,
                                                 and Firefox.</span>
                                         </li>
-                                        <li class="flex items-start gap-3 text-slate-300">
+                                        <li class="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                                             <span
                                                 class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
                                             <span data-i18n="antiGravity.qaStress" data-i18n-html="true"><strong>Stress
                                                     Testing:</strong> Deliberately breaking layouts with long
                                                 German strings (e.g., "Benutzeroberfläche").</span>
                                         </li>
-                                        <li class="flex items-start gap-3 text-slate-300">
+                                        <li class="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                                             <span
                                                 class="material-symbols-outlined text-green-500 mt-0.5">check_circle</span>
                                             <span data-i18n="antiGravity.qaPerf"
