@@ -542,7 +542,20 @@
       "qaBrowser": "<strong>Cross-Browser Verification:</strong> Validated on Chrome, Safari, and Firefox.",
       "qaStress": "<strong>Stress Testing:</strong> Deliberately breaking layouts with long German strings (e.g., \"Benutzeroberfläche\").",
       "qaPerf": "<strong>Performance:</strong> Lighthouse scores of 95+ via asset optimization.",
-      "quote": "\"The future of design isn't AI replacing us. It's us guiding AI to build better, faster, and more robust systems.\""
+      "quote": "\"The future of design isn't AI replacing us. It's us guiding AI to build better, faster, and more robust systems.\"",
+      "aiBottTitle": "The <span class=\"text-primary\">AI-Bott</span>",
+      "aiBottIntro": "The idea was to create something unique, funny, interactive — and personal. A character that captures the visitor's attention, giving them a reason to stay longer than 45 seconds and actually explore the site.",
+      "aiBottCallout": "Like a pet, <strong class=\"text-slate-800 dark:text-slate-200\">an AI becomes what you teach it.</strong> Feed it curiosity, craft, and context — and it reflects exactly that back. It's a simple philosophy, but an honest one: the relationship between human and AI is shaped entirely by the human side of it.",
+      "aiBottCard1Title": "The first Bott",
+      "aiBottCard1Desc": "This one was created after prompting Gemini with the core functions — eye movement, joke-telling, draggability, and triggering the cube animation.",
+      "aiBottCard2Title": "The Grok Bott",
+      "aiBottCard2Desc": "What if I tried a different AI model? After 50 versions exploring Grok's distinct visual point of view, this one became my favourite.",
+      "aiBottCard3Title": "The Designed Bott",
+      "aiBottCard3Desc": "Then I tried to implement my own style and colours — something that would feel at home within the portfolio's visual language.",
+      "aiBottCard4Title": "The Inspiration",
+      "aiBottCard4Desc": "I've always been a fan of the Macintosh SE — a legendary little machine. When I finally tried it, I ran into an error message: <em>\"<strong>I</strong> can't do that!\"</em>",
+      "aiBottCard5Title": "The final version",
+      "aiBottCard5Desc": "I moved back to Gemini in Anti-Gravity and prompted the new version — inspired by the classic Macintosh I grew up with. <strong class=\"text-slate-700 dark:text-slate-200\">The bond between Human &amp; AI is exactly the point.</strong>"
     }
   },
   "de": {
@@ -1060,7 +1073,20 @@
       "qaBrowser": "<strong>Cross-Browser-Verifizierung:</strong> Validiert auf Chrome, Safari und Firefox.",
       "qaStress": "<strong>Stresstests:</strong> Bewusstes Brechen von Layouts mit langen deutschen Strings (z.B. „Benutzeroberfläche“).",
       "qaPerf": "<strong>Performance:</strong> Lighthouse-Scores von 95+ durch Asset-Optimierung.",
-      "quote": "„Die Zukunft des Designs liegt nicht darin, dass KI uns ersetzt. Sondern darin, dass wir KI anleiten, bessere, schnellere und robustere Systeme zu bauen.“"
+      "quote": "„Die Zukunft des Designs liegt nicht darin, dass KI uns ersetzt. Sondern darin, dass wir KI anleiten, bessere, schnellere und robustere Systeme zu bauen.“",
+      "aiBottTitle": "DER <span class=\"text-primary\">AI-BOTT</span>",
+      "aiBottIntro": "Die Idee war, etwas Einzigartiges, Witziges, Interaktives — und Persönliches zu schaffen. Eine Figur, die die Aufmerksamkeit der Besucher einfängt und ihnen einen Grund gibt, länger als 45 Sekunden zu bleiben und die Seite tatsächlich zu erkunden.",
+      "aiBottCallout": "Wie ein Haustier wird auch <strong class=\"text-slate-800 dark:text-slate-200\">eine KI zu dem, was man ihr beibringt.</strong> Füttere sie mit Neugier, Handwerk und Kontext — und sie spiegelt genau das zurück. Eine einfache Philosophie, aber eine ehrliche: Die Beziehung zwischen Mensch und KI wird vollständig von der menschlichen Seite geprägt.",
+      "aiBottCard1Title": "Der erste Bott",
+      "aiBottCard1Desc": "Dieser entstand, nachdem ich Gemini mit den Kernfunktionen gefüttert hatte — Augenbewegung, Witze erzählen, Drag-Funktion und das Auslösen der Würfel-Animation.",
+      "aiBottCard2Title": "Der Grok-Bott",
+      "aiBottCard2Desc": "Was, wenn ich ein anderes KI-Modell ausprobiere? Nach 50 Versionen, in denen ich Groks eigenständige visuelle Perspektive erkundete, wurde dieser hier mein Favorit.",
+      "aiBottCard3Title": "Der gestaltete Bott",
+      "aiBottCard3Desc": "Dann versuchte ich, meinen eigenen Stil und meine Farben einzubringen — etwas, das sich in der visuellen Sprache des Portfolios heimisch anfühlt.",
+      "aiBottCard4Title": "Die Inspiration",
+      "aiBottCard4Desc": "Ich war schon immer ein Fan des Macintosh SE — eine legendäre kleine Maschine. Als ich ihn endlich ausprobierte, stieß ich auf eine Fehlermeldung: <em>„Das kann <strong>ich</strong> nicht!“</em>",
+      "aiBottCard5Title": "Die finale Version",
+      "aiBottCard5Desc": "Ich kehrte zu Gemini in Anti-Gravity zurück und promptete die neue Version — inspiriert vom klassischen Macintosh, mit dem ich aufgewachsen bin. <strong class=\"text-slate-700 dark:text-slate-200\">Die Verbindung zwischen Mensch und KI ist genau der Punkt.</strong>"
     },
     "amatic": {
       "heroBadge": "Art Direction & Character Design",
