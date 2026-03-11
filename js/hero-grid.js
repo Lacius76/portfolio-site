@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 40); // Gépelési sebesség (ms)
     }
+    window._typeWriterEffect = typeWriterEffect;
 
     // Szemkövetés (Egér követése)
     const eyes = document.querySelectorAll('.bot-eye');
@@ -267,6 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.innerWidth <= 768) return;
             // Drag közben a bot-drag.js irányítja a szemeket
             if (window._botDragging) return;
+            // Ha alszik, nem követi a kurzort
+            if (window._botSleeping) return;
 
             const rect = eyeContainer.getBoundingClientRect();
             const containerCenterX = rect.left + rect.width / 2;
@@ -282,62 +285,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (radarBtnContainer && botConsole && matrixProgress) {
+    // --- RADAR BUTTON: Wave only ---
+    if (radarBtnContainer) {
         radarBtnContainer.addEventListener('click', () => {
-            // Szigorú megakadályozása az újraindításnak amíg a zöld szkenner fut
             if (isRadarScanning) return;
             isRadarScanning = true;
 
-            // Ha épp futott valami, töröljük
             if (buttonTimeout1) clearTimeout(buttonTimeout1);
             if (buttonTimeout2) clearTimeout(buttonTimeout2);
 
-            // 1) Hullám indítása
+            // Hullám indítása
             triggerInitialWave();
             resetAmbientWave();
 
-            // 1.5) Gépelős poén generálás
-            const randomJoke = botJokes[Math.floor(Math.random() * botJokes.length)];
-            typeWriterEffect(randomJoke, botConsole);
-
-            // 1.6) Easter Egg Animációk (Kacsintás és Mosoly)
-            const botRightEye = document.getElementById('botRightEye');
-            const botMouthMiddle = document.getElementById('botMouthMiddle');
-
-            // Setup / Reset Arc
-            if (botRightEye && botMouthMiddle) {
-                botRightEye.classList.remove('h-1.5');
-                botRightEye.classList.add('h-7');
-                botMouthMiddle.style.transform = 'translateY(0px)';
-            }
-
-            if (randomJoke.includes("Interesting anomaly")) {
-                // Várunk picit amíg a szöveget írja (pl 1.5mp), aztán mosolyog
-                setTimeout(() => {
-                    if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(4px) scaleY(1.2)';
-
-                    // Kis késéssel utána (2mp) kacsint egyet
-                    setTimeout(() => {
-                        if (botRightEye) {
-                            botRightEye.classList.remove('h-7');
-                            botRightEye.classList.add('h-1.5');
-
-                            // 200ms múlva visszanyitja a szemét
-                            setTimeout(() => {
-                                botRightEye.classList.remove('h-1.5');
-                                botRightEye.classList.add('h-7');
-                            }, 200);
-                        }
-                    }, 500);
-
-                    // A szkennelés végén visszamegy komolyba a mosolyból
-                    setTimeout(() => {
-                        if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(0px)';
-                    }, 4000);
-                }, 1500);
-            }
-
-            // 1.8) Radar ikon forgatása és "Zöld" festése
+            // Radar ikon forgatása és "Zöld" festése
             if (radarIcon) {
                 currentRotation += 360;
                 radarIcon.style.transition = 'transform 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -348,23 +309,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 radarIcon.classList.add('text-green-400');
             }
 
-            // Vissza 0-ra azonnal a progress bar
-            matrixProgress.style.transition = 'none';
-            matrixProgress.style.width = '0%';
-            matrixProgress.classList.replace('bg-emerald-400', 'bg-green-400');
-
-            // Induljon a 100% felé lassan
-            buttonTimeout1 = setTimeout(() => {
-                matrixProgress.style.transition = 'width 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                matrixProgress.style.width = '100%';
-            }, 50);
-
-            // 3) Analízis vége
+            // Analízis vége
             buttonTimeout2 = setTimeout(() => {
                 isRadarScanning = false;
-
-                // Progress bar szín és dizájn visszaállítása
-                matrixProgress.classList.replace('bg-green-400', 'bg-emerald-400');
 
                 if (radarBtnContainer) {
                     radarBtnContainer.classList.remove('text-green-400', 'bg-green-400/20', 'border-green-400/30', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
@@ -372,6 +319,59 @@ document.addEventListener('DOMContentLoaded', () => {
                     radarBtnContainer.classList.add('text-primary', 'bg-primary/20', 'border-primary/30');
                 }
             }, 2600);
+        });
+    }
+
+    // --- TALK BUTTON: Bot speaks ---
+    const botTalkBtn = document.getElementById('botTalkBtn');
+    if (botTalkBtn && botConsole) {
+        botTalkBtn.addEventListener('click', () => {
+            const wasSleeping = window._botSleeping;
+
+            // Wake up if sleeping
+            if (window._botSleeping && typeof window._botWakeUp === 'function') {
+                window._botWakeUp();
+            }
+            // Reset sleep timer on interaction
+            if (typeof window._botResetSleep === 'function') {
+                window._botResetSleep();
+            }
+
+            if (!wasSleeping) {
+                // Véletlenszerű poén generálás és gépelés
+                const randomJoke = botJokes[Math.floor(Math.random() * botJokes.length)];
+                typeWriterEffect(randomJoke, botConsole);
+
+                // Easter Egg Animációk (Kacsintás és Mosoly)
+                const botRightEye = document.getElementById('botRightEye');
+                const botMouthMiddle = document.getElementById('botMouthMiddle');
+
+                // Setup / Reset Arc
+                if (botRightEye && botMouthMiddle) {
+                    botRightEye.classList.remove('h-1.5');
+                    botRightEye.classList.add('h-7');
+                    botMouthMiddle.style.transform = 'translateY(0px)';
+                }
+
+                if (randomJoke.includes("Interesting anomaly")) {
+                    setTimeout(() => {
+                        if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(4px) scaleY(1.2)';
+                        setTimeout(() => {
+                            if (botRightEye) {
+                                botRightEye.classList.remove('h-7');
+                                botRightEye.classList.add('h-1.5');
+                                setTimeout(() => {
+                                    botRightEye.classList.remove('h-1.5');
+                                    botRightEye.classList.add('h-7');
+                                }, 200);
+                            }
+                        }, 500);
+                        setTimeout(() => {
+                            if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(0px)';
+                        }, 4000);
+                    }, 1500);
+                }
+            }
         });
     }
 

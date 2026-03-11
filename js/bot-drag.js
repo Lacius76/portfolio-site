@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const botCard = document.getElementById('aiBotCard');
     if (!botCard) return;
 
-    // The gradient header is the drag handle
-    const dragHandle = botCard.querySelector('.bg-gradient-to-r');
+    // The header area is the drag handle
+    const dragHandle = botCard.querySelector('.bot-header-area');
     if (!dragHandle) return;
 
     // --- Drag handle cursor ---
@@ -51,6 +51,131 @@ document.addEventListener('DOMContentLoaded', () => {
             eye.style.transform = 'translate(0px, 0px)';
         });
     }
+
+    // === SLEEP MODE ===
+    window._botSleeping = false;
+    let sleepTimer = null;
+    let zAnimationInterval = null;
+    const SLEEP_DELAY = 30000; // 30 seconds of inactivity
+
+    function getOriginalEyeHeights() {
+        return Array.from(eyes).map(eye => {
+            // Get the computed height (from CSS class, not inline)
+            const h = getComputedStyle(eye).height;
+            return h;
+        });
+    }
+
+    function fallAsleep() {
+        if (window._botSleeping || sessionStorage.getItem('botClosed') === 'true') return;
+        window._botSleeping = true;
+
+        // Close eyes smoothly
+        eyes.forEach(eye => {
+            eye.style.transition = 'height 0.4s ease-in-out';
+            eye.style.height = '2px';
+            eye.style.borderRadius = '1px';
+            eye.style.transform = 'translate(0px, 0px)'; // Reset eye position
+        });
+
+        // Start floating "z" animation
+        startZAnimation();
+    }
+
+    function wakeUp() {
+        if (!window._botSleeping) return;
+        window._botSleeping = false;
+
+        // Open eyes
+        eyes.forEach(eye => {
+            eye.style.transition = 'height 0.3s ease-out';
+            eye.style.height = '';  // Reset to CSS class value
+            eye.style.borderRadius = '';
+        });
+
+        // Stop z animation
+        stopZAnimation();
+
+        // Print wake up message
+        const botConsole = document.getElementById('botConsole');
+        if (botConsole && window._typeWriterEffect) {
+            window._typeWriterEffect("Wh- what? Was I snoring?", botConsole);
+        }
+
+        // Reset sleep timer
+        resetSleepTimer();
+    }
+
+    function startZAnimation() {
+        const screenInset = botCard.querySelector('.bot-screen-inset');
+        if (!screenInset) return;
+
+        // Add a container for z's if it doesn't exist
+        let zContainer = screenInset.querySelector('.bot-zzz-container');
+        if (!zContainer) {
+            zContainer = document.createElement('div');
+            zContainer.className = 'bot-zzz-container';
+            Object.assign(zContainer.style, {
+                position: 'absolute',
+                bottom: '25%',
+                right: '20%',
+                zIndex: '20',
+                pointerEvents: 'none'
+            });
+            screenInset.appendChild(zContainer);
+        }
+
+        let zIndex = 0;
+        zAnimationInterval = setInterval(() => {
+            if (!window._botSleeping) return;
+
+            const z = document.createElement('span');
+            z.textContent = zIndex % 2 === 0 ? 'z' : 'Z';
+            z.style.cssText = `
+                position: absolute;
+                bottom: 0;
+                left: ${zIndex % 3 * 10}px;
+                color: #84ff8e;
+                font-weight: bold;
+                font-size: ${zIndex % 2 === 0 ? '14px' : '20px'};
+                text-shadow: 0 0 8px rgba(132, 255, 142, 0.8);
+                opacity: 1;
+                animation: botZFloat 2s ease-out forwards;
+                pointer-events: none;
+            `;
+            zContainer.appendChild(z);
+            zIndex++;
+
+            // Remove the z after animation completes
+            setTimeout(() => {
+                if (z.parentNode) z.parentNode.removeChild(z);
+            }, 2000);
+        }, 800);
+    }
+
+    function stopZAnimation() {
+        if (zAnimationInterval) {
+            clearInterval(zAnimationInterval);
+            zAnimationInterval = null;
+        }
+        // Remove all z elements
+        const zContainer = botCard.querySelector('.bot-zzz-container');
+        if (zContainer) {
+            zContainer.innerHTML = '';
+        }
+    }
+
+    function resetSleepTimer() {
+        if (sleepTimer) clearTimeout(sleepTimer);
+        sleepTimer = setTimeout(fallAsleep, SLEEP_DELAY);
+    }
+
+    // Start the initial sleep timer
+    resetSleepTimer();
+
+    // Expose wake/sleep functions globally for cross-script access
+    window._botWakeUp = wakeUp;
+    window._botResetSleep = resetSleepTimer;
 
     /**
      * Initialize fixed positioning.
@@ -108,6 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function onDragStart(clientX, clientY) {
+        const wasSleeping = window._botSleeping;
+        // Wake up if sleeping
+        wakeUp();
+        resetSleepTimer();
+
         // Initialize on first interaction
         initFixedPosition();
 
@@ -128,25 +258,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // First touch reaction — only once per page load
         if (!hasBeenTouched) {
             hasBeenTouched = true;
-            const botConsole = document.getElementById('botConsole');
-            if (botConsole) {
-                // Stop any running page-level typewriter first
-                if (window._botTypingInterval) {
-                    clearInterval(window._botTypingInterval);
-                    window._botTypingInterval = null;
-                }
-                const touchMsg = "Ohh! You touched me! Easy now... I'm ticklish.";
-                // Simple typewriter effect (self-contained)
-                let i = 0;
-                botConsole.textContent = '';
-                const typeInterval = setInterval(() => {
-                    if (i < touchMsg.length) {
-                        botConsole.textContent += touchMsg.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(typeInterval);
+            if (!wasSleeping) {
+                const botConsole = document.getElementById('botConsole');
+                if (botConsole) {
+                    // Stop any running page-level typewriter first
+                    if (window._botTypingInterval) {
+                        clearInterval(window._botTypingInterval);
+                        window._botTypingInterval = null;
                     }
-                }, 40);
+                    const touchMsg = "Ohh! You touched me! Easy now... I'm ticklish.";
+                    // Simple typewriter effect (self-contained)
+                    let i = 0;
+                    botConsole.textContent = '';
+                    const typeInterval = setInterval(() => {
+                        if (i < touchMsg.length) {
+                            botConsole.textContent += touchMsg.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeInterval);
+                        }
+                    }, 40);
+                }
             }
         }
     }

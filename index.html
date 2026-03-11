@@ -219,7 +219,14 @@
               <!-- HÁTTÉR ANIMÁCIÓ (Nagyobb Z-index, hogy fogja a kurzort) -> TARTALOM SZÉLESSÉGÉRE KORLÁTOZVA -->
               <div
                 class="hg-scene w-full max-w-[1200px] mx-auto opacity-100 dark:opacity-40 transition-opacity duration-1000 z-10">
-                <div class="hg-grid" id="hgGrid"></div>
+                <div class="relative">
+                  <div class="hg-grid" id="hgGrid"></div>
+                  <!-- Radar Button (bottom-left of grid, near second cube, 40px gap) -->
+                  <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
+                    class="absolute bottom-[110px] left-[60px] z-30 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 shadow-lg backdrop-blur-md pointer-events-auto">
+                    <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
+                  </button>
+                </div>
               </div>
 
               <!-- TARTALOM (TEXT + VIDEO) Legfelül van (z-20), de TELJESEN átereszti az egeret -->
@@ -299,73 +306,59 @@
                     <div id="aiBotDragWrapper"
                       class="relative z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0">
 
-                      <!-- Radar Button (Docked to the left of the bot) -->
-                      <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
-                        class="absolute -left-6 z-30 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 shadow-lg backdrop-blur-md">
-                        <span
-                          class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
-                      </button>
-
                       <!-- The Bot Container -->
                       <div id="aiBotCard"
-                        class="relative w-[220px] sm:w-[240px] bg-[#1a1e26] rounded-xl border border-white/10 dark:border-white/5 shadow-2xl overflow-hidden flex flex-col hg-float-anim backdrop-blur-md">
-                        <!-- Header -->
-                        <div
-                          class="bg-gradient-to-r from-primary to-purple-500 h-8 flex items-center justify-between px-3 cursor-grab hover:brightness-110 active:cursor-grabbing transition-all group/handle">
+                        class="relative bot-body-3d hg-float-anim backdrop-blur-md">
+                        <!-- Header / Drag area -->
+                        <div class="bot-header-area group/handle">
                           <!-- Drag Handle Icon -->
-                          <div class="text-white/60 group-hover/handle:text-white transition-colors">
-                            <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                          <div class="text-primary opacity-70 group-hover/handle:opacity-100 transition-opacity flex items-center justify-center shrink-0 w-8 h-8">
+                            <span class="material-symbols-outlined text-[24px]">drag_indicator</span>
                           </div>
-                          <span class="text-white text-xs font-bold tracking-widest uppercase select-none"
-                            data-i18n="bot.title">AI
-                            Bott</span>
+                          <!-- Title -->
+                          <span class="bot-title-text text-xs sm:text-sm tracking-[0.2em] uppercase select-none"
+                            data-i18n="bot.title">AI BOTT</span>
                           <!-- Close Button -->
-                          <button class="bot-close-btn text-white/60 hover:text-white transition-colors" aria-label="Close Bot">
-                            <span class="material-symbols-outlined text-[16px]">close</span>
+                          <button class="bot-close-btn bot-btn-3d w-8 h-8 flex items-center justify-center shrink-0" aria-label="Close Bot">
+                            <span class="material-symbols-outlined text-[18px] font-bold">close</span>
                           </button>
                         </div>
 
-                        <!-- Face -->
-                        <div class="flex-1 py-8 px-6 flex flex-col items-center justify-center gap-5 relative">
-                          <div id="botEyesContainer" class="flex justify-between items-center w-24 h-8 relative">
-                            <!-- Left Eye (Square) -->
-                            <div
-                              class="w-7 h-7 bg-emerald-400 rounded-sm bot-eye shadow-[0_0_12px_rgba(52,211,153,0.4)]">
+                        <!-- Face Screen -->
+                        <div class="bot-screen-container">
+                          <div class="bot-screen-inset flex flex-col items-center justify-center gap-6">
+                            <!-- Eyes -->
+                            <div id="botEyesContainer" class="flex justify-between items-center w-24 h-8 relative z-10">
+                              <div class="w-7 h-7 rounded-[10px] bot-eyes-glow bot-eye"></div>
+                              <div id="botRightEye"
+                                class="w-7 h-7 rounded-[10px] bot-eyes-glow bot-eye transition-all duration-300"></div>
                             </div>
-                            <!-- Right Eye (Square) -->
-                            <div id="botRightEye"
-                              class="w-7 h-7 bg-emerald-400 rounded-sm bot-eye shadow-[0_0_12px_rgba(52,211,153,0.4)] transition-all duration-300">
-                            </div>
-                          </div>
-
-                          <!-- Mouth -->
-                          <div class="flex gap-1.5 items-end h-3">
-                            <div class="w-2.5 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)]">
-                            </div>
-                            <div id="botMouthMiddle"
-                              class="w-10 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)] transition-transform duration-300">
-                            </div>
-                            <div class="w-2.5 h-2.5 bg-emerald-400 rounded-sm shadow-[0_0_10px_rgba(52,211,153,0.3)]">
+                            <!-- Mouth -->
+                            <div class="flex gap-1.5 items-end h-3 z-10">
+                              <div class="w-2.5 h-2.5 bot-mouth-el"></div>
+                              <div id="botMouthMiddle" class="w-10 h-2.5 bot-mouth-el transition-transform duration-300"></div>
+                              <div class="w-2.5 h-2.5 bot-mouth-el"></div>
                             </div>
                           </div>
                         </div>
 
-                        <!-- Console -->
-                        <div
-                          class="bg-[#111418] m-3 mt-0 p-3 rounded-lg border border-white/10 h-[130px] relative flex flex-col">
-                          <div class="flex-1 overflow-y-auto pr-1 overflow-x-hidden">
-                            <span id="botConsole"
-                              class="text-gray-300 text-xs sm:text-sm font-mono leading-relaxed">System online. Waiting
-                              for input...</span>
-                            <span class="bot-cursor w-2 h-3.5 bg-primary/80 inline-block ml-0.5 align-middle"></span>
-                          </div>
+                        <!-- Divider line -->
+                        <div class="bot-separator-line"></div>
 
-                          <!-- Scanner Progress Bar -->
-                          <div class="absolute bottom-0 left-0 w-full bg-slate-800/50 h-1">
-                            <div id="matrixProgressBar"
-                              class="bg-emerald-400 h-1 rounded-r-full transition-all duration-300 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
-                              style="width: 0%"></div>
+                        <!-- Console and Chat Button -->
+                        <div class="bot-bottom-area">
+                          <!-- Console -->
+                          <div class="bot-console-inset flex-1 px-3 py-2">
+                            <div class="h-full overflow-y-auto pr-1">
+                              <span id="botConsole"
+                                class="bot-console-text text-[11px] sm:text-xs font-mono leading-[0.8]">System online. Waiting for input...</span>
+                              <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+                            </div>
                           </div>
+                          <!-- Chat Button -->
+                          <button id="botTalkBtn" class="bot-btn-3d w-10 h-10 shrink-0" aria-label="Open Chat">
+                            <span class="material-symbols-outlined text-[20px]">chat</span>
+                          </button>
                         </div>
                       </div>
                     </div>

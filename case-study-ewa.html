@@ -15,9 +15,14 @@
 
   <style>
     .glass-panel {
-      background: rgba(18, 24, 31, 0.8);
+      background: transparent;
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(200, 200, 220, 0.15);
+    }
+
+    .dark .glass-panel {
+      background: rgba(18, 24, 31, 0.8);
+      border-color: rgba(255, 255, 255, 0.05);
     }
 
     .text-glow {
