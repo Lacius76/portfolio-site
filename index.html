@@ -307,19 +307,20 @@
                       class="relative z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0">
 
                       <!-- The Bot Container -->
-                      <div id="aiBotCard"
-                        class="relative bot-body-3d hg-float-anim backdrop-blur-md">
+                      <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md">
                         <!-- Header / Drag area -->
                         <div class="bot-header-area group/handle">
                           <!-- Drag Handle Icon -->
-                          <div class="text-primary opacity-70 group-hover/handle:opacity-100 transition-opacity flex items-center justify-center shrink-0 w-8 h-8">
+                          <div
+                            class="text-primary opacity-70 group-hover/handle:opacity-100 transition-opacity flex items-center justify-center shrink-0 w-8 h-8">
                             <span class="material-symbols-outlined text-[24px]">drag_indicator</span>
                           </div>
                           <!-- Title -->
                           <span class="bot-title-text text-xs sm:text-sm tracking-[0.2em] uppercase select-none"
                             data-i18n="bot.title">AI BOTT</span>
                           <!-- Close Button -->
-                          <button class="bot-close-btn bot-btn-3d w-8 h-8 flex items-center justify-center shrink-0" aria-label="Close Bot">
+                          <button class="bot-close-btn bot-btn-3d w-8 h-8 flex items-center justify-center shrink-0"
+                            aria-label="Close Bot">
                             <span class="material-symbols-outlined text-[18px] font-bold">close</span>
                           </button>
                         </div>
@@ -336,7 +337,8 @@
                             <!-- Mouth -->
                             <div class="flex gap-1.5 items-end h-3 z-10">
                               <div class="w-2.5 h-2.5 bot-mouth-el"></div>
-                              <div id="botMouthMiddle" class="w-10 h-2.5 bot-mouth-el transition-transform duration-300"></div>
+                              <div id="botMouthMiddle"
+                                class="w-10 h-2.5 bot-mouth-el transition-transform duration-300"></div>
                               <div class="w-2.5 h-2.5 bot-mouth-el"></div>
                             </div>
                           </div>
@@ -351,8 +353,10 @@
                           <div class="bot-console-inset flex-1 px-3 py-2">
                             <div class="h-full overflow-y-auto pr-1">
                               <span id="botConsole"
-                                class="bot-console-text text-[11px] sm:text-xs font-mono leading-[0.8]">System online. Waiting for input...</span>
-                              <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+                                class="bot-console-text text-[11px] sm:text-xs font-mono leading-[0.8]">System online.
+                                Waiting for input...</span>
+                              <span
+                                class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
                             </div>
                           </div>
                           <!-- Chat Button -->
@@ -402,7 +406,7 @@
                 <div
                   class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 relative shadow-md">
                   <video autoplay loop muted playsinline
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-500">
                     <source src="img/ewa/ewa-card.webm" type="video/webm" />
                     <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
                   </video>
