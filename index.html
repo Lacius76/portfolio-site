@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="css/hero-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
   <link rel="stylesheet" href="css/hero-grid.css" />
+  <link rel="stylesheet" href="css/stacked-cards.css" />
   <link rel="stylesheet" href="css/tailwind.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
     rel="stylesheet" />
@@ -384,93 +385,94 @@
           <!-- Place holder for dynamic content if any, or just structure -->
           <div class="layout-content-container flex flex-col flex-1"></div>
           <!-- Selected Works Preview -->
-          <div class="py-10">
-            <div class="flex justify-between items-end mb-8">
-              <div>
-                <h3 class="text-2xl font-bold text-[#111418] dark:text-white" data-i18n="index.selectedWorks.title">
-                  Selected Works
-                </h3>
-                <p class="text-gray-500 mt-1" data-i18n="index.selectedWorks.subtitle">
-                  A glimpse into my recent design journey
-                </p>
-              </div>
-              <a class="text-primary font-medium hover:underline hidden sm:block" href="work.html"
-                data-i18n="index.selectedWorks.viewAll">
-                View all projects -&gt;
-              </a>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <!-- Project 1: eWa Super App -->
-              <a href="case-study-ewa.html"
-                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
-                <div
-                  class="aspect-[4/3] bg-slate-900 dark:bg-gray-800 rounded-2xl overflow-hidden mb-4 relative shadow-md ring-1 ring-white/10">
-                  <video autoplay loop muted playsinline
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
-                    <source src="img/ewa/ewa-card.webm" type="video/webm" />
-                    <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
-                  </video>
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
-                </div>
-                <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
-                  data-i18n="index.selectedWorks.ewa.title">
-                  eWa Super App
-                </h4>
-                <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="index.selectedWorks.ewa.subtitle">
-                  UX/UI Design & Android APK
-                </p>
-              </a>
+            <!-- New Stacked Cards Section -->
+            <section class="stacked-cards-section">
+              <!-- sticky viewport - stays pinned while scroll-tracker provides the scroll range -->
+              <div class="sticky-cards-wrapper">
 
-              <!-- Project 2: Anti-Gravity (New) -->
-              <a href="case-study-styleguide.html"
-                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
-                <div
-                  class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden mb-4 relative shadow-md ring-1 ring-slate-900/5 dark:ring-white/10">
-                  <video autoplay loop muted playsinline
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
-                    <source src="img/style-guide/styleguide.webm" type="video/webm" />
-                    <source src="img/style-guide/styleguide.mp4" type="video/mp4" />
-                  </video>
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                <!-- Header -->
+                <div class="stacked-section-header">
+                  <h3 class="text-3xl font-black text-[#111418] dark:text-white" data-i18n="index.selectedWorks.title">
+                    Selected Works
+                  </h3>
+                  <p class="text-gray-500 mt-2 text-lg" data-i18n="index.selectedWorks.subtitle">
+                    A glimpse into my recent design journey
+                  </p>
                 </div>
-                <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
-                  data-i18n="index.selectedWorks.antiGravity.title">
-                  Project Antigravity
-                </h4>
-                <p class="text-sm text-gray-500 dark:text-gray-400"
-                  data-i18n="index.selectedWorks.antiGravity.subtitle">
-                  AI-Collaborative Design System
-                </p>
-              </a>
 
-              <!-- Project 3: Shadow Cartels -->
-              <a href="case-study-shadow.html"
-                class="group block cursor-pointer scroll-animate-card opacity-0 -translate-x-20 transition-all duration-700 ease-out">
-                <div
-                  class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-2xl overflow-hidden mb-4 relative shadow-md ring-1 ring-slate-900/5 dark:ring-white/10">
-                  <video autoplay loop muted playsinline
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110">
-                    <source src="img/shadow-cartels/shadow-card.webm" type="video/webm" />
-                    <source src="img/shadow-cartels/shadow-card.mp4" type="video/mp4" />
-                  </video>
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                <!-- Stacked card stack -->
+                <div class="cards-container">
+
+                  <!-- Card 1: eWa (top — z:30 ensures it shows on top before JS) -->
+                  <div class="stacked-card" style="z-index:30; transform: translateY(0px) scale(1);">
+                    <div class="card-media">
+                      <video autoplay loop muted playsinline>
+                        <source src="img/ewa/ewa-card.webm" type="video/webm" />
+                        <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                    <div class="card-content">
+                      <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.ewa.title">eWa Super App</h4>
+                      <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-6" data-i18n="index.selectedWorks.ewa.subtitle">UX/UI Design &amp; Android APK</p>
+                      <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed" data-i18n="index.selectedWorks.ewa.description">
+                        A modern application tailored for the Austrian market, seamlessly integrating smart parking, e-vignettes, and digital electronic wallet (ewa) payments.
+                      </p>
+                      <a href="case-study-ewa.html" class="card-more-btn">More..</a>
+                    </div>
+                  </div>
+
+                  <!-- Card 2: Antigravity (z:20) -->
+                  <div class="stacked-card" style="z-index:20; transform: translateY(18px) scale(0.95); filter: brightness(0.8);">
+                    <div class="card-media">
+                      <video autoplay loop muted playsinline>
+                        <source src="img/style-guide/styleguide.webm" type="video/webm" />
+                        <source src="img/style-guide/styleguide.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                    <div class="card-content">
+                      <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.antiGravity.title">Project Antigravity</h4>
+                      <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-6" data-i18n="index.selectedWorks.antiGravity.subtitle">AI-Collaborative Design System</p>
+                      <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed" data-i18n="index.selectedWorks.antiGravity.description">
+                        A case study on merging 25 years of design experience with AI for a future-ready portfolio.
+                      </p>
+                      <a href="case-study-styleguide.html" class="card-more-btn">More..</a>
+                    </div>
+                  </div>
+
+                  <!-- Card 3: Shadow Cartels (z:10 — behind all others initially) -->
+                  <div class="stacked-card" style="z-index:10; transform: translateY(36px) scale(0.9); filter: brightness(0.6);">
+                    <div class="card-media">
+                      <video autoplay loop muted playsinline>
+                        <source src="img/shadow-cartels/shadow-card.webm" type="video/webm" />
+                        <source src="img/shadow-cartels/shadow-card.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                    <div class="card-content">
+                      <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.shadow.title">Shadow Cartels</h4>
+                      <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-6" data-i18n="index.selectedWorks.shadow.subtitle">Lead Game UI &amp; Interaction</p>
+                      <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed" data-i18n="index.selectedWorks.shadow.description">
+                        An AI-driven noir strategy interface balancing complex data with 1930s cinematic atmosphere.
+                      </p>
+                      <a href="case-study-shadow.html" class="card-more-btn">More..</a>
+                    </div>
+                  </div>
+
+                </div><!-- /cards-container -->
+
+                <!-- View all link -->
+                <div class="stacked-view-all">
+                  <a class="text-primary font-bold text-xl flex items-center gap-2 group" href="work.html">
+                    <span class="group-hover:underline" data-i18n="index.selectedWorks.viewAll">View all projects</span>
+                    <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                  </a>
                 </div>
-                <h4 class="font-bold text-lg text-[#111418] dark:text-white group-hover:text-primary transition-colors"
-                  data-i18n="index.selectedWorks.shadow.title">
-                  Shadow Cartels
-                </h4>
-                <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="index.selectedWorks.shadow.subtitle">
-                  Lead Game UI & Interaction
-                </p>
-              </a>
-            </div>
-            <a href="work.html"
-              class="sm:hidden mt-12 w-fit mx-auto group flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-              <span class="material-symbols-outlined text-[24px]">grid_view</span>
-              <span class="text-base font-bold tracking-wide" data-i18n="index.selectedWorks.viewAll">View all
-                projects</span>
-            </a>
-          </div>
+
+              </div><!-- /sticky-cards-wrapper -->
+
+              <!-- Invisible scroll-tracker: its height creates the scroll range -->
+              <div class="scroll-tracker"></div>
+
+            </section><!-- /stacked-cards-section -->
         </div>
         <!-- Removed 3 closing divs here as they are closed early above -->
       </div>
@@ -711,6 +713,7 @@
       });
     </script>
     <script src="js/hero-grid.js"></script>
+    <script src="js/stacked-cards.js"></script>
     <script src="js/bot-drag.js"></script>
   </div>
 </body>

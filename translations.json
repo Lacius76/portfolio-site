@@ -23,20 +23,23 @@
       "selectedWorks": {
         "title": "Selected Works",
         "subtitle": "A glimpse into my recent design journey",
-        "viewAll": "View all projects ->",
+        "viewAll": "View all projects",
         "antiGravity": {
           "title": "Project Antigravity",
           "subtitle": "AI-Collaborative Design System",
-          "tag": "Style Guide"
+          "tag": "Style Guide",
+          "description": "A case study on merging 25 years of design experience with AI for a future-ready portfolio."
         },
         "ewa": {
           "title": "eWa Super App",
           "subtitle": "UX/UI Design & Android APK",
-          "tag": "Fintech App"
+          "tag": "Fintech App",
+          "description": "A modern application for the Austrian market, integrating smart parking and digital wallet payments."
         },
         "shadow": {
           "title": "Shadow Cartels",
-          "subtitle": "Lead Game UI & Interaction"
+          "subtitle": "Lead Game UI & Interaction",
+          "description": "An AI-driven noir strategy interface balancing complex data with 1930s cinematic atmosphere."
         },
         "casino": {
           "title": "Premium Slot Games",
@@ -582,20 +585,23 @@
       "selectedWorks": {
         "title": "Ausgewählte Arbeiten",
         "subtitle": "Ein Einblick in meine jüngsten Designprojekte",
-        "viewAll": "Alle Projekte ansehen →",
+        "viewAll": "Alle Projekte ansehen",
         "antiGravity": {
           "title": "Projekt Antigravity",
           "subtitle": "KI-Kollaboratives Design System",
-          "tag": "Style Guide"
+          "tag": "Style Guide",
+          "description": "Eine Fallstudie zur Verschmelzung von 25 Jahren Design-Erfahrung mit KI für ein zukunftsreiches Portfolio."
         },
         "ewa": {
           "title": "eWa Super App",
           "subtitle": "UX/UI Design & Android APK",
-          "tag": "Fintech App"
+          "tag": "Fintech App",
+          "description": "Eine moderne Anwendung für den österreichischen Markt, mit Parkgebühren und digitalen Zahlungen."
         },
         "shadow": {
           "title": "Shadow Cartels",
-          "subtitle": "Lead Game UI & Interaction"
+          "subtitle": "Lead Game UI & Interaction",
+          "description": "Ein KI-gestütztes Noir-Strategie-Interface, das komplexe Daten mit 1930er-Atmosphäre verbindet."
         },
         "casino": {
           "title": "Premium Slot Games",
