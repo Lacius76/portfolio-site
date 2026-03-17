@@ -107,19 +107,41 @@
     min-width: 0;
 }
 
-.card-more-btn {
-    display: inline-block;
-    margin-top: 28px;
+.card-arrow-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.1);
     color: #6366f1;
-    font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: -0.01em;
-    transition: opacity 0.2s, letter-spacing 0.2s;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-more-btn:hover {
-    opacity: 0.75;
-    letter-spacing: 0.02em;
+.card-arrow-link .material-symbols-outlined {
+    font-size: 24px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-arrow-link:hover {
+    background: rgba(99, 102, 241, 0.2);
+    transform: scale(1.05);
+}
+
+.card-arrow-link:hover .material-symbols-outlined {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .card-arrow-link {
+        margin-top: 4px;
+        margin-bottom: 0;
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /* =========================================
@@ -137,7 +159,7 @@
 .stacked-section-header {
     width: 100%;
     max-width: 1120px;
-    margin-bottom: 32px;
+    margin-bottom: 66px;
     flex-shrink: 0;
 }
 
@@ -166,22 +188,25 @@
 
     .sticky-cards-wrapper {
         justify-content: flex-start;
-        padding-top: 12px;
+        padding-top: 30px;
     }
 }
 
 @media (max-width: 768px) {
     .stacked-card {
         padding: 20px;
-        gap: 20px;
+        gap: 12px;
+        min-height: 380px;
+        left: calc(10% - 10px);
+        width: calc(80% + 20px);
     }
 
     .card-media {
         flex: none;
-        height: 200px;
+        height: 180px;
     }
 
     .cards-container {
-        height: 680px;
+        height: 480px;
     }
 }
