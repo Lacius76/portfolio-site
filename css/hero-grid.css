@@ -86,8 +86,8 @@
 /* Position grid slightly to the right on large screens so it balances well behind the text */
 @media (min-width: 1024px) {
     .hg-grid {
-        /* Az interaktív rácsot kicsit beljebb (balra) húzzuk, hogy ne lógjon le a jobb szélen */
-        transform: rotateX(55deg) rotateZ(45deg) translate(-25%, 0%);
+        /* Pull the grid further left so the rightmost cubes aren't clipped by the 1200px container */
+        transform: rotateX(55deg) rotateZ(45deg) translate(-35%, 0%);
     }
 }
 
