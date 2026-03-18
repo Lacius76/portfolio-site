@@ -385,105 +385,120 @@
           <!-- Place holder for dynamic content if any, or just structure -->
           <div class="layout-content-container flex flex-col flex-1"></div>
           <!-- Selected Works Preview -->
-            <!-- New Stacked Cards Section -->
-            <section class="stacked-cards-section">
-              <!-- sticky viewport - stays pinned while scroll-tracker provides the scroll range -->
-              <div class="sticky-cards-wrapper">
+          <!-- New Stacked Cards Section -->
+          <section class="stacked-cards-section">
+            <!-- sticky viewport - stays pinned while scroll-tracker provides the scroll range -->
+            <div class="sticky-cards-wrapper">
 
-                <!-- Header -->
-                <div class="stacked-section-header">
-                  <h3 class="text-3xl font-black text-[#111418] dark:text-white" data-i18n="index.selectedWorks.title">
-                    Selected Works
-                  </h3>
-                  <p class="text-gray-500 mt-4 text-lg" data-i18n="index.selectedWorks.subtitle">
-                    A glimpse into my recent design journey
-                  </p>
+              <!-- Header -->
+              <div class="stacked-section-header">
+                <h3 class="text-3xl font-black text-[#111418] dark:text-white" data-i18n="index.selectedWorks.title">
+                  Selected Works
+                </h3>
+                <p class="text-gray-500 mt-4 text-lg" data-i18n="index.selectedWorks.subtitle">
+                  A glimpse into my recent design journey
+                </p>
+              </div>
+
+              <!-- Stacked card stack -->
+              <div class="cards-container">
+
+                <!-- Card 1: eWa (top — z:30 ensures it shows on top before JS) -->
+                <div class="stacked-card" style="z-index:30; transform: translateY(0px) scale(1);">
+                  <div class="card-media">
+                    <video autoplay loop muted playsinline>
+                      <source src="img/ewa/ewa-card.webm" type="video/webm" />
+                      <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div class="card-content">
+                    <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.ewa.title">eWa Super
+                      App</h4>
+                    <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-6"
+                      data-i18n="index.selectedWorks.ewa.subtitle">UX/UI Design &amp; Android APK</p>
+                    <a href="case-study-ewa.html" class="card-arrow-link group/arrow">
+                      <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
+                      data-i18n="index.selectedWorks.ewa.description">
+                      A modern application tailored for the Austrian market, seamlessly integrating smart parking,
+                      e-vignettes, and digital electronic wallet (ewa) payments.
+                    </p>
+                  </div>
                 </div>
 
-                <!-- Stacked card stack -->
-                <div class="cards-container">
-
-                  <!-- Card 1: eWa (top — z:30 ensures it shows on top before JS) -->
-                  <div class="stacked-card" style="z-index:30; transform: translateY(0px) scale(1);">
-                    <div class="card-media">
-                      <video autoplay loop muted playsinline>
-                        <source src="img/ewa/ewa-card.webm" type="video/webm" />
-                        <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
-                      </video>
-                    </div>
-                    <div class="card-content">
-                      <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.ewa.title">eWa Super App</h4>
-                      <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-6" data-i18n="index.selectedWorks.ewa.subtitle">UX/UI Design &amp; Android APK</p>
-                      <a href="case-study-ewa.html" class="card-arrow-link group/arrow">
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                      </a>
-                      <p class="hidden md:block text-gray-600 dark:text-gray-300 text-lg leading-relaxed" data-i18n="index.selectedWorks.ewa.description">
-                        A modern application tailored for the Austrian market, seamlessly integrating smart parking, e-vignettes, and digital electronic wallet (ewa) payments.
-                      </p>
-                    </div>
+                <!-- Card 2: Antigravity (z:20) -->
+                <div class="stacked-card"
+                  style="z-index:20; transform: translateY(18px) scale(0.95); filter: brightness(0.8);">
+                  <div class="card-media">
+                    <video autoplay loop muted playsinline>
+                      <source src="img/style-guide/styleguide.webm" type="video/webm" />
+                      <source src="img/style-guide/styleguide.mp4" type="video/mp4" />
+                    </video>
                   </div>
-
-                  <!-- Card 2: Antigravity (z:20) -->
-                  <div class="stacked-card" style="z-index:20; transform: translateY(18px) scale(0.95); filter: brightness(0.8);">
-                    <div class="card-media">
-                      <video autoplay loop muted playsinline>
-                        <source src="img/style-guide/styleguide.webm" type="video/webm" />
-                        <source src="img/style-guide/styleguide.mp4" type="video/mp4" />
-                      </video>
-                    </div>
-                    <div class="card-content">
-                      <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.antiGravity.title">Project Antigravity</h4>
-                      <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-6" data-i18n="index.selectedWorks.antiGravity.subtitle">AI-Collaborative Design System</p>
-                      <a href="case-study-styleguide.html" class="card-arrow-link group/arrow">
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                      </a>
-                      <p class="hidden md:block text-gray-600 dark:text-gray-300 text-lg leading-relaxed" data-i18n="index.selectedWorks.antiGravity.description">
-                        A case study on merging 25 years of design experience with AI for a future-ready portfolio.
-                      </p>
-                    </div>
+                  <div class="card-content">
+                    <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.antiGravity.title">
+                      Project Antigravity</h4>
+                    <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-6"
+                      data-i18n="index.selectedWorks.antiGravity.subtitle">AI-Collaborative Design System</p>
+                    <a href="case-study-styleguide.html" class="card-arrow-link group/arrow">
+                      <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
+                      data-i18n="index.selectedWorks.antiGravity.description">
+                      A case study on merging 25 years of design experience with AI for a future-ready portfolio.
+                    </p>
                   </div>
-
-                  <!-- Card 3: Shadow Cartels (z:10 — behind all others initially) -->
-                  <div class="stacked-card" style="z-index:10; transform: translateY(36px) scale(0.9); filter: brightness(0.6);">
-                    <div class="card-media">
-                      <video autoplay loop muted playsinline>
-                        <source src="img/shadow-cartels/shadow-card.webm" type="video/webm" />
-                        <source src="img/shadow-cartels/shadow-card.mp4" type="video/mp4" />
-                      </video>
-                    </div>
-                    <div class="card-content">
-                      <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.shadow.title">Shadow Cartels</h4>
-                      <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-6" data-i18n="index.selectedWorks.shadow.subtitle">Lead Game UI &amp; Interaction</p>
-                      <a href="case-study-shadow.html" class="card-arrow-link group/arrow">
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                      </a>
-                      <p class="hidden md:block text-gray-600 dark:text-gray-300 text-lg leading-relaxed" data-i18n="index.selectedWorks.shadow.description">
-                        An AI-driven noir strategy interface balancing complex data with 1930s cinematic atmosphere.
-                      </p>
-                    </div>
-                  </div>
-
-                </div><!-- /cards-container -->
-
-                <!-- View all link -->
-                <div class="stacked-view-all">
-                  <!-- Scroll Down (First 2 cards) -->
-                  <div id="scroll-down-indicator" class="text-primary font-bold text-xl flex items-center gap-2 opacity-60">
-                    <span data-i18n="index.selectedWorks.scrollDown">↓ Scroll down ↓</span>
-                  </div>
-                  <!-- View All (Last card) -->
-                  <a id="view-all-projects-link" class="text-primary font-bold text-xl flex items-center gap-2 group hidden" href="work.html">
-                    <span data-i18n="index.selectedWorks.viewAll">View all projects</span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
-                  </a>
                 </div>
 
-              </div><!-- /sticky-cards-wrapper -->
+                <!-- Card 3: Shadow Cartels (z:10 — behind all others initially) -->
+                <div class="stacked-card"
+                  style="z-index:10; transform: translateY(36px) scale(0.9); filter: brightness(0.6);">
+                  <div class="card-media">
+                    <video autoplay loop muted playsinline>
+                      <source src="img/shadow-cartels/shadow-card.webm" type="video/webm" />
+                      <source src="img/shadow-cartels/shadow-card.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div class="card-content">
+                    <h4 class="font-bold text-3xl text-primary mb-2" data-i18n="index.selectedWorks.shadow.title">Shadow
+                      Cartels</h4>
+                    <p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-6"
+                      data-i18n="index.selectedWorks.shadow.subtitle">Lead Game UI &amp; Interaction</p>
+                    <a href="case-study-shadow.html" class="card-arrow-link group/arrow">
+                      <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
+                      data-i18n="index.selectedWorks.shadow.description">
+                      An AI-driven noir strategy interface balancing complex data with 1930s cinematic atmosphere.
+                    </p>
+                  </div>
+                </div>
 
-              <!-- Invisible scroll-tracker: its height creates the scroll range -->
-              <div class="scroll-tracker"></div>
+              </div><!-- /cards-container -->
 
-            </section><!-- /stacked-cards-section -->
+              <!-- View all link -->
+              <div class="stacked-view-all">
+                <!-- Scroll Down (First 2 cards) -->
+                <div id="scroll-down-indicator"
+                  class="text-primary font-bold text-xl flex items-center gap-2 opacity-60">
+                  <span data-i18n="index.selectedWorks.scrollDown">↓ Scroll down ↓</span>
+                </div>
+                <!-- View All (Last card) -->
+                <a id="view-all-projects-link"
+                  class="text-primary font-bold text-xl flex items-center gap-2 group hidden" href="work.html">
+                  <span data-i18n="index.selectedWorks.viewAll">View all projects</span>
+                  <span
+                    class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                </a>
+              </div>
+
+            </div><!-- /sticky-cards-wrapper -->
+
+            <!-- Invisible scroll-tracker: its height creates the scroll range -->
+            <div class="scroll-tracker"></div>
+
+          </section><!-- /stacked-cards-section -->
         </div>
         <!-- Removed 3 closing divs here as they are closed early above -->
       </div>
