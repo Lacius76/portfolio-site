@@ -467,9 +467,14 @@
 
                 <!-- View all link -->
                 <div class="stacked-view-all">
-                  <a class="text-primary font-bold text-xl flex items-center gap-2 group" href="work.html">
-                    <span class="group-hover:underline" data-i18n="index.selectedWorks.viewAll">View all projects</span>
-                    <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                  <!-- Scroll Down (First 2 cards) -->
+                  <div id="scroll-down-indicator" class="text-primary font-bold text-xl flex items-center gap-2 opacity-60">
+                    <span data-i18n="index.selectedWorks.scrollDown">↓ Scroll down ↓</span>
+                  </div>
+                  <!-- View All (Last card) -->
+                  <a id="view-all-projects-link" class="text-primary font-bold text-xl flex items-center gap-2 group hidden" href="work.html">
+                    <span data-i18n="index.selectedWorks.viewAll">View all projects</span>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
                   </a>
                 </div>
 

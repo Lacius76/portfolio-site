@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    perspective: 1000px;
     /* Padding so content never touches nav or bottom edge */
     padding: 32px 0;
 }
@@ -150,7 +151,7 @@
    With 2 transitions (3 cards):  220vh ≈ 2 scroll steps.
    ======================================= */
 .scroll-tracker {
-    height: 300vh;
+    height: 500vh;
 }
 
 /* =========================================
@@ -194,19 +195,32 @@
 
 @media (max-width: 768px) {
     .stacked-card {
-        padding: 20px;
-        gap: 12px;
-        min-height: 380px;
-        left: calc(10% - 10px);
-        width: calc(80% + 20px);
+        padding: 24px;
+        gap: 16px;
+        min-height: 360px;
+        left: 12px;
+        width: calc(100% - 24px);
     }
 
     .card-media {
         flex: none;
-        height: 180px;
+        height: 160px;
+    }
+
+    .card-content h4 {
+        font-size: 1.5rem; /* text-2xl equivalent for better fit */
+        margin-bottom: 4px;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
     }
 
     .cards-container {
-        height: 480px;
+        height: 520px;
+    }
+
+    .sticky-cards-wrapper {
+        padding-top: 20px;
     }
 }

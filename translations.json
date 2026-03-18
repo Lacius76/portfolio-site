@@ -24,6 +24,7 @@
         "title": "Selected Works",
         "subtitle": "A glimpse into my recent design journey",
         "viewAll": "View all projects",
+        "scrollDown": "↓ Scroll for more ↓",
         "antiGravity": {
           "title": "Project Antigravity",
           "subtitle": "AI-Collaborative Design System",
@@ -586,6 +587,7 @@
         "title": "Ausgewählte Arbeiten",
         "subtitle": "Ein Einblick in meine jüngsten Designprojekte",
         "viewAll": "Alle Projekte ansehen",
+        "scrollDown": "↓ Mehr ansehen ↓",
         "antiGravity": {
           "title": "Projekt Antigravity",
           "subtitle": "KI-Kollaboratives Design System",

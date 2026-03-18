@@ -32,83 +32,74 @@ document.addEventListener("DOMContentLoaded", () => {
     function getProgress() {
         const trackerRect = tracker.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        const totalScroll = tracker.offsetHeight;
-        const scrolled = windowHeight - trackerRect.top;
-        const raw = Math.max(0, Math.min(1, scrolled / totalScroll));
-
-        // Symmetric dead zones: 15% dwell at start and end
-        const buffer = 0.15;
-        if (raw < buffer)       return 0;
-        if (raw > 1 - buffer)   return 1;
-        return (raw - buffer) / (1 - 2 * buffer);
+        // Calculation matching the user's provided snippet: 0 at start, 1 at end
+        let progress = -trackerRect.top / (tracker.offsetHeight - windowHeight);
+        return Math.max(0, Math.min(1, progress));
     }
-
-    // ─── Smoothstep easing ───────────────────────────────────────────
-    function easeInOut(t) { return t * t * (3 - 2 * t); }
 
     // ─── Compute TARGET values for each card ─────────────────────────
     function computeTargets(progress) {
-        const step = 1 / totalSteps;
-        const rawStep = progress / step;
-        const transitionIndexRaw = Math.floor(rawStep);
-        const transitionIndex = Math.min(transitionIndexRaw, totalSteps - 1);
-        const pLinear = rawStep - transitionIndexRaw;
-        const p = easeInOut(pLinear);
-
-        const allDone = progress >= 1;
-        const completedSteps = allDone ? totalSteps : transitionIndex;
-        const frontCardIndex = completedSteps % cardCount;
-        const isTransitioning = !allDone;
-
+        const vh = window.innerHeight;
         const targets = [];
+        
+        // Total cards: 3. Steps to cycle: C0 focus, T1, C1 focus, T2, C2 focus.
+        // Total segments: cardCount + (cardCount - 1) = 5 segments.
+        // Each segment is 1/5 = 0.2 (20% of the total 500vh scroll tracker).
+        const segmentSize = 1 / (cardCount + (cardCount - 1)); 
 
-        cards.forEach((card, i) => {
-            const rank = (i - frontCardIndex + cardCount) % cardCount;
+        cards.forEach((card, index) => {
+            // Define the specific range where this card is "Held" at center (scale 1, ty 0)
+            const holdStart = index * (segmentSize * 2); 
+            const holdEnd = holdStart + segmentSize;
+            
+            let ty, scale, opacity, zIndex, brightness;
 
-            // Rest position for this rank
-            const restTy = rank * 18;
-            const restScale = 1 - rank * 0.05;
-            const restBrightness = 1 - rank * 0.2;
-            const restZ = cardCount - rank;
-
-            // Next rank (one step closer to front)
-            const nextRank = Math.max(rank - 1, 0);
-            const nextTy = nextRank * 18;
-            const nextScale = 1 - nextRank * 0.05;
-            const nextBrightness = 1 - nextRank * 0.2;
-
-            let ty = restTy;
-            let scale = restScale;
-            let brightness = restBrightness;
-            let opacity = 1;
-            let zIndex = restZ;
-
-            if (isTransitioning) {
-                if (rank === 0) {
-                    // Front card exits upward
-                    ty = -p * 100;
-                    scale = 1 - p * 0.08;
-                    brightness = 1;
-                    // Only dim slightly while overlapping, then restore once behind
-                    opacity = p < 0.5 ? 1 : 1;
-                    zIndex = p < 0.5 ? cardCount + 1 : 0;
-                } else {
-                    // Other cards advance toward front
-                    ty = restTy + p * (nextTy - restTy);
-                    scale = restScale + p * (nextScale - restScale);
-                    brightness = restBrightness + p * (nextBrightness - restBrightness);
-
-                    if (rank === 1) {
-                        opacity = 0.7 + p * 0.3;
-                    }
-                }
+            if (progress < holdStart) {
+                // 1. RISING: Card is coming from below toward the center
+                const prevHoldEnd = holdStart - segmentSize;
+                const localProgress = Math.max(0, (progress - prevHoldEnd) / segmentSize); 
+                const diff = localProgress - 1; // Approaches 0 as we enter hold phase
+                
+                const yOffsetVh = Math.abs(diff) * 100;
+                ty = (yOffsetVh / 100) * vh; 
+                scale = 1;
+                opacity = 1;
+                brightness = 1;
+            } 
+            else if (progress <= holdEnd) {
+                // 2. HOLD PHASE: Card is perfectly active/focused (Plateau)
+                ty = 0;
+                scale = 1;
+                opacity = 1;
+                brightness = 1;
+            } 
+            else {
+                // 3. EXITING: Card is scaling/fading away into the background
+                const diff = (progress - holdEnd) / segmentSize; 
+                
+                scale = 1 - (diff * 0.25); 
+                opacity = 1 - (diff * 1.5);
+                ty = -diff * 40; 
+                brightness = 1 - (diff * 0.5); 
             }
 
-            targets.push({ ty, scale, brightness, opacity, zIndex });
+            zIndex = cardCount - index;
+
+            targets.push({ 
+                ty, 
+                scale: Math.max(0.7, scale), 
+                brightness: Math.max(0.4, brightness), 
+                opacity: Math.max(0, opacity), 
+                zIndex 
+            });
         });
 
         return targets;
     }
+
+    // ─── Footer Link Toggle ──────────────────────────────────────────
+    const scrollDownIndicator = document.getElementById("scroll-down-indicator");
+    const viewAllProjectsLink = document.getElementById("view-all-projects-link");
 
     // ─── Animation loop ──────────────────────────────────────────────
     let animating = false;
@@ -117,6 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const progress = getProgress();
         const targets = computeTargets(progress);
         let needsUpdate = false;
+
+        // Toggle footer link based on progress (0.6 is where we transition to the last card)
+        if (progress < 0.6) {
+            scrollDownIndicator?.classList.remove("hidden");
+            viewAllProjectsLink?.classList.add("hidden");
+        } else {
+            scrollDownIndicator?.classList.add("hidden");
+            viewAllProjectsLink?.classList.remove("hidden");
+        }
 
         cards.forEach((card, i) => {
             const t = targets[i];
