@@ -220,11 +220,11 @@
               <!-- HÁTTÉR ANIMÁCIÓ (Nagyobb Z-index, hogy fogja a kurzort) -> TARTALOM SZÉLESSÉGÉRE KORLÁTOZVA -->
               <div
                 class="hg-scene w-full max-w-[1200px] mx-auto opacity-100 dark:opacity-40 transition-opacity duration-1000 z-10">
-                <div class="relative">
+                <div class="relative translate-y-[50px]">
                   <div class="hg-grid" id="hgGrid"></div>
-                  <!-- Radar Button (bottom-left of grid, near second cube, 40px gap) -->
+                  <!-- Radar Button (bottom-left of grid, moved after 7x7 shrink) -->
                   <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
-                    class="absolute bottom-[110px] left-[60px] z-30 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 shadow-lg backdrop-blur-md pointer-events-auto">
+                    class="absolute bottom-[90px] left-[-30px] sm:bottom-[90px] sm:left-[-30px] z-40 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/10 shadow-sm backdrop-blur-md pointer-events-auto">
                     <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
                   </button>
                 </div>
@@ -400,6 +400,12 @@
                 </p>
               </div>
 
+              <!-- Scroll Down (Moved above the cards entirely, easing via opacity) -->
+              <div id="scroll-down-indicator"
+                class="w-full max-w-[1120px] mx-auto flex justify-center mb-8 text-primary font-bold text-xl items-center gap-2 opacity-60 transition-opacity duration-300">
+                <span data-i18n="index.selectedWorks.scrollDown">↓ Scroll down ↓</span>
+              </div>
+
               <!-- Stacked card stack -->
               <div class="cards-container">
 
@@ -479,14 +485,10 @@
 
               <!-- View all link -->
               <div class="stacked-view-all">
-                <!-- Scroll Down (First 2 cards) -->
-                <div id="scroll-down-indicator"
-                  class="text-primary font-bold text-xl flex items-center gap-2 opacity-60">
-                  <span data-i18n="index.selectedWorks.scrollDown">↓ Scroll down ↓</span>
-                </div>
-                <!-- View All (Last card) -->
+                <!-- View All (Last card, hidden via opacity class instead of display to prevent layout shift) -->
                 <a id="view-all-projects-link"
-                  class="text-primary font-bold text-xl flex items-center gap-2 group hidden" href="work.html">
+                  class="text-primary font-bold text-xl flex items-center gap-2 group opacity-0 pointer-events-none transition-opacity duration-500"
+                  href="work.html">
                   <span data-i18n="index.selectedWorks.viewAll">View all projects</span>
                   <span
                     class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>

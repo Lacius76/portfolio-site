@@ -38,8 +38,8 @@
 .stacked-card {
     position: absolute;
     top: 0;
-    left: 15%;
-    width: 80%;
+    left: 20%;
+    width: 70%;
     height: 90%;
     border-radius: 24px;
     padding: 22px;
@@ -147,11 +147,12 @@
 
 /* =========================================
    SCROLL TRACKER (invisible height driver)
-   height = 100vh per transition + buffer.
-   With 2 transitions (3 cards):  220vh ≈ 2 scroll steps.
+   The total scroll distance for the cards to animate perfectly.
+   With 3 cards (5 progress segments: 3 holds, 2 transitions),
+   400vh gives a nice, even 80vh scroll per segment.
    ======================================= */
 .scroll-tracker {
-    height: 500vh;
+    height: 400vh;
 }
 
 /* =========================================
@@ -165,7 +166,7 @@
 }
 
 .stacked-view-all {
-    margin-top: 28px;
+    margin-top: 12px;
     width: 100%;
     max-width: 1120px;
     display: flex;

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!gridElement || !replayBtn) return;
 
-    const size = 8; // 10→8: 36% kevesebb DOM elem (64 kocka × 4 gyerek = 256 elem)
+    const size = 7; // 8→7: Csökkentett rács a kérésnek megfelelően
     const cubes = [];
     const activeCubes = new Set(); // PERFORMANCIA: csak az aktív kockákat követjük, nem mind a 100-at
     let isWaving = false;

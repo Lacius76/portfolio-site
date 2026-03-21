@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // ─── LERP (Linear interpolation) ─────────────────────────────────
     // Adaptive lerp: gentle at small deltas (slow scroll),
     // aggressive at large deltas (fast scroll) so animation keeps up.
-    const LERP_MIN = 0.04;  // gentle for slow scroll
-    const LERP_MAX = 0.15;  // snappy for fast scroll
+    const LERP_MIN = 0.08;  // gentle for slow scroll
+    const LERP_MAX = 0.25;  // snappy for fast scroll
     function lerp(current, target, _unused) {
         const delta = Math.abs(target - current);
         // Ramp factor: small delta → LERP_MIN, large delta → LERP_MAX
@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function getProgress() {
         const trackerRect = tracker.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        // Calculation matching the user's provided snippet: 0 at start, 1 at end
-        let progress = -trackerRect.top / (tracker.offsetHeight - windowHeight);
+        // The sticky container starts when tracker.top is at windowHeight.
+        // It ends when tracker.bottom is at windowHeight (tracker.top is windowHeight - tracker.offsetHeight).
+        let progress = (windowHeight - trackerRect.top) / tracker.offsetHeight;
         return Math.max(0, Math.min(1, progress));
     }
 
@@ -42,22 +43,55 @@ document.addEventListener("DOMContentLoaded", () => {
         const vh = window.innerHeight;
         const targets = [];
         
-        // Total cards: 3. Steps to cycle: C0 focus, T1, C1 focus, T2, C2 focus.
-        // Total segments: cardCount + (cardCount - 1) = 5 segments.
-        // Each segment is 1/5 = 0.2 (20% of the total 500vh scroll tracker).
-        const segmentSize = 1 / (cardCount + (cardCount - 1)); 
+        // We dynamically assign hold durations so the first and last cards 
+        // have shorter holds *inside* the tracker because they gain organic hold time 
+        // before and after the tracker pins. Middle cards get longer holds.
+        const transitionDuration = 0.20; 
+        const totalTransitions = Math.max(0, cardCount - 1);
+        const remainingForHolds = Math.max(0, 1.0 - (totalTransitions * transitionDuration));
+        
+        // Middle cards get 2x the hold time of the first/last cards
+        const middleCards = Math.max(0, cardCount - 2);
+        const holdUnits = 2 + (middleCards * 2);
+        const unitSize = remainingForHolds / holdUnits;
+        const shortHold = unitSize;
+        const longHold = unitSize * 2;
+
+        const phases = [];
+        let cursor = 0;
+        
+        for (let i = 0; i < cardCount; i++) {
+            const isFirst = (i === 0);
+            const isLast = (i === cardCount - 1);
+            const holdDuration = (isFirst || isLast) ? shortHold : longHold;
+            
+            phases.push({
+                holdStart: cursor,
+                holdEnd: cursor + holdDuration
+            });
+            
+            cursor += holdDuration + transitionDuration;
+        }
 
         cards.forEach((card, index) => {
-            // Define the specific range where this card is "Held" at center (scale 1, ty 0)
-            const holdStart = index * (segmentSize * 2); 
-            const holdEnd = holdStart + segmentSize;
+            const holdStart = phases[index].holdStart;
+            const holdEnd = phases[index].holdEnd;
             
+            const riseStart = index === 0 ? 0 : phases[index - 1].holdEnd;
+            const riseEnd = holdStart;
+            
+            const exitStart = holdEnd;
+            const exitEnd = index === cardCount - 1 ? 1.0 : phases[index + 1].holdStart;
+
             let ty, scale, opacity, zIndex, brightness;
 
             if (progress < holdStart) {
                 // 1. RISING: Card is coming from below toward the center
-                const prevHoldEnd = holdStart - segmentSize;
-                const localProgress = Math.max(0, (progress - prevHoldEnd) / segmentSize); 
+                const diffRange = riseEnd - riseStart;
+                let localProgress = 1;
+                if (diffRange > 0) {
+                    localProgress = Math.max(0, (progress - riseStart) / diffRange); 
+                }
                 const diff = localProgress - 1; // Approaches 0 as we enter hold phase
                 
                 const yOffsetVh = Math.abs(diff) * 100;
@@ -75,12 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
             } 
             else {
                 // 3. EXITING: Card is scaling/fading away into the background
-                const diff = (progress - holdEnd) / segmentSize; 
+                const diffRange = exitEnd - exitStart;
+                let localProgress = 0;
+                if (diffRange > 0) {
+                    localProgress = Math.min(1, (progress - exitStart) / diffRange); 
+                }
                 
-                scale = 1 - (diff * 0.25); 
-                opacity = 1 - (diff * 1.5);
-                ty = -diff * 40; 
-                brightness = 1 - (diff * 0.5); 
+                scale = 1 - (localProgress * 0.25); 
+                // Fade out twice as fast so the card below is revealed instantly
+                opacity = 1 - (localProgress * 4.0);
+                ty = -localProgress * 40; 
+                brightness = 1 - (localProgress * 0.5); 
             }
 
             zIndex = cardCount - index;
@@ -109,13 +148,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const targets = computeTargets(progress);
         let needsUpdate = false;
 
-        // Toggle footer link based on progress (0.6 is where we transition to the last card)
+        // Toggle links based on progress (0.6 is where we transition to the last card)
+        // Using opacity instead of hidden to prevent layout shifts
         if (progress < 0.6) {
-            scrollDownIndicator?.classList.remove("hidden");
-            viewAllProjectsLink?.classList.add("hidden");
+            scrollDownIndicator?.classList.remove("opacity-0");
+            scrollDownIndicator?.classList.add("opacity-60");
+            viewAllProjectsLink?.classList.add("opacity-0", "pointer-events-none");
+            viewAllProjectsLink?.classList.remove("pointer-events-auto");
         } else {
-            scrollDownIndicator?.classList.add("hidden");
-            viewAllProjectsLink?.classList.remove("hidden");
+            scrollDownIndicator?.classList.add("opacity-0");
+            scrollDownIndicator?.classList.remove("opacity-60");
+            viewAllProjectsLink?.classList.remove("opacity-0", "pointer-events-none");
+            viewAllProjectsLink?.classList.add("pointer-events-auto");
         }
 
         cards.forEach((card, i) => {
