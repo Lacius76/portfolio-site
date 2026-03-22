@@ -32,7 +32,7 @@
           "description": "A case study on merging 25 years of design experience with AI for a future-ready portfolio."
         },
         "ewa": {
-          "title": "eWa Super App",
+          "title": "eWa Wallet App",
           "subtitle": "UX/UI Design & Android APK",
           "tag": "Fintech App",
           "description": "A modern application for the Austrian market, integrating smart parking and digital wallet payments."
@@ -274,10 +274,10 @@
       "nextCaseStudy": "Next: Siemens WinCC OA"
     },
     "ewa": {
-      "heroTag": "Fintech & Mobility Super App",
+      "heroTag": "Fintech & Mobility Wallet App",
       "heroDescription": "A modern application tailored for the Austrian market, seamlessly integrating smart parking, e-vignettes, and digital <span class=\"text-primary font-bold\">Electronic Wallet (eWa)</span> payments.",
       "challengeTitle": "The Austrian Market Challenge",
-      "challengeText1": "Designing a Super App requires balancing complexity. It must house multiple critical services—like smart road tolling, parking meters, and comprehensive digital wallets—without overwhelming the user. The primary challenge was crafting an architecture robust enough for mobility but secure enough for daily fintech operations in EURO (€).",
+      "challengeText1": "Designing a Wallet App requires balancing complexity. It must house multiple critical services—like smart road tolling, parking meters, and comprehensive digital wallets—without overwhelming the user. The primary challenge was crafting an architecture robust enough for mobility but secure enough for daily fintech operations in EURO (€).",
       "challengeText2": "Targeting the Austrian market meant adhering to high expectations of privacy, data clarity, and clean, uncompromised aesthetics.",
       "keyTechList": "Figma, Google Stitch, Notebook LM, Antigravity, Flutter, Next.js",
       "deliverableDesc": "Functional Android APK & Design System",
@@ -298,14 +298,14 @@
       "stat1Days": "Total Dev & Prep",
       "stat2Apk": "Android APK Built",
       "lessonsTitle": "The Future of Collaborative Design",
-      "lessonsText": "\"The eWa Super App proves that combining 20+ years of systematic UI/UX experience with cutting-edge AI logic accelerators allows designers to act as technical bridge-builders. Bridging the gap between functional business solutions and high-engagement interfaces is no longer just a tagline; it's an executable workflow.\"",
+      "lessonsText": "\"The eWa Wallet App proves that combining 20+ years of systematic UI/UX experience with cutting-edge AI logic accelerators allows designers to act as technical bridge-builders. Bridging the gap between functional business solutions and high-engagement interfaces is no longer just a tagline; it's an executable workflow.\"",
       "nextCaseStudy": "Next: Styleguide",
       "roadmapTag": "Product Vision",
       "roadmapHeadline": "Future Roadmap & Vision",
-      "roadmapIntro": "As a working prototype, eWa proves the concept. These are the two strategic phases that would take it from MVP to market-ready Super App.",
+      "roadmapIntro": "As a working prototype, eWa proves the concept. These are the two strategic phases that would take it from MVP to market-ready Wallet App.",
       "roadmapPhase1Label": "Phase 1",
       "roadmapPhase1Title": "Expanding the Ecosystem",
-      "roadmapPhase1Desc": "The immediate next step is transitioning the remaining UI placeholders — including the Mobile Ticket and Insurance screens — into fully interactive, data-driven Flutter screens. This will complete the core Super App experience and deliver a seamless, end-to-end user journey across every eWa service.",
+      "roadmapPhase1Desc": "The immediate next step is transitioning the remaining UI placeholders — including the Mobile Ticket and Insurance screens — into fully interactive, data-driven Flutter screens. This will complete the core Wallet App experience and deliver a seamless, end-to-end user journey across every eWa service.",
       "roadmapPhase1Item1": "Mobile Ticket & Transit screens",
       "roadmapPhase1Item2": "Insurance & document hub screens",
       "roadmapPhase1Item3": "Full data-driven Flutter integration",
@@ -595,7 +595,7 @@
           "description": "Eine Fallstudie zur Verschmelzung von 25 Jahren Design-Erfahrung mit KI für ein zukunftsreiches Portfolio."
         },
         "ewa": {
-          "title": "eWa Super App",
+          "title": "eWa Wallet App",
           "subtitle": "UX/UI Design & Android APK",
           "tag": "Fintech App",
           "description": "Eine moderne Anwendung für den österreichischen Markt, mit Parkgebühren und digitalen Zahlungen."
@@ -857,10 +857,10 @@
       "nextCaseStudy": "Nächstes Projekt: Siemens WinCC OA"
     },
     "ewa": {
-      "heroTag": "Fintech & Mobility Super App",
+      "heroTag": "Fintech & Mobility Wallet App",
       "heroDescription": "Eine moderne, auf den österreichischen Markt zugeschnittene Anwendung, die Smart Parking, E-Vignetten und digitale Zahlungen über <span class=\"text-primary font-bold\">Electronic Wallet (eWa)</span> nahtlos integriert.",
       "challengeTitle": "Die Herausforderung am österreichischen Markt",
-      "challengeText1": "Das Designen einer Super App erfordert die Ausbalancierung von Komplexität. Sie muss mehrere kritische Dienste wie smarte Mautsysteme, Parkuhren und umfassende digitale Geldbörsen bündeln – ohne dabei den Nutzer zu überfordern. Die zentrale Herausforderung war eine Architektur, die robust genug für die Mobilitätsbranche und sicher genug für tägliche Fintech-Operationen in EURO (€) ist.",
+      "challengeText1": "Das Designen einer Wallet App erfordert die Ausbalancierung von Komplexität. Sie muss mehrere kritische Dienste wie smarte Mautsysteme, Parkuhren und umfassende digitale Geldbörsen bündeln – ohne dabei den Nutzer zu überfordern. Die zentrale Herausforderung war eine Architektur, die robust genug für die Mobilitätsbranche und sicher genug für tägliche Fintech-Operationen in EURO (€) ist.",
       "challengeText2": "Die Ausrichtung auf den österreichischen Markt bedeutete, die hohen Erwartungen in Sachen Datenschutz, Datenklarheit und saubere, kompromisslose Ästhetik zu erfüllen.",
       "keyTechList": "Figma, Google Stitch, Notebook LM, Antigravity, Flutter, Next.js",
       "deliverableDesc": "Funktionales Android APK & Design System",
@@ -881,14 +881,14 @@
       "stat1Days": "Gesamte Dev- & Vorbereitungszeit",
       "stat2Apk": "Android APK Built",
       "lessonsTitle": "Die Zukunft kollaborativen Designs",
-      "lessonsText": "\"Die eWa Super App beweist: Wenn man über 20 Jahre systematische UI/UX-Erfahrung mit modernen AI-Logik-Beschleunigern kombiniert, können Designer als technische Brückenbauer agieren. Die Lücke zwischen funktionalen Business-Lösungen und hoch-engagierenden Interfaces zu schließen, ist nicht länger nur ein Slogan – es ist ein ausführbarer Workflow.\"",
+      "lessonsText": "\"Die eWa Wallet App beweist: Wenn man über 20 Jahre systematische UI/UX-Erfahrung mit modernen AI-Logik-Beschleunigern kombiniert, können Designer als technische Brückenbauer agieren. Die Lücke zwischen funktionalen Business-Lösungen und hoch-engagierenden Interfaces zu schließen, ist nicht länger nur ein Slogan – es ist ein ausführbarer Workflow.\"",
       "nextCaseStudy": "Nächstes: Styleguide",
       "roadmapTag": "Produktvision",
       "roadmapHeadline": "Zukünftige Roadmap & Vision",
-      "roadmapIntro": "Als funktionsfähiger Prototyp beweist eWa das Konzept. Dies sind die zwei strategischen Phasen, die aus einem MVP eine marktreife Super App machen würden.",
+      "roadmapIntro": "Als funktionsfähiger Prototyp beweist eWa das Konzept. Dies sind die zwei strategischen Phasen, die aus einem MVP eine marktreife Wallet App machen würden.",
       "roadmapPhase1Label": "Phase 1",
       "roadmapPhase1Title": "Das Ökosystem erweitern",
-      "roadmapPhase1Desc": "Der unmittelbare nächste Schritt ist die Überführung der verbleibenden UI-Platzhalter – darunter die Screens für Mobile Ticket und Versicherung – in vollständig interaktive, datengesteuerte Flutter-Screens. Damit wird das Kern-Super-App-Erlebnis fertiggestellt und eine nahtlose End-to-End-User-Journey über alle eWa-Dienste hinweg ermöglicht.",
+      "roadmapPhase1Desc": "Der unmittelbare nächste Schritt ist die Überführung der verbleibenden UI-Platzhalter – darunter die Screens für Mobile Ticket und Versicherung – in vollständig interaktive, datengesteuerte Flutter-Screens. Damit wird das Kern-Wallet-App-Erlebnis fertiggestellt und eine nahtlose End-to-End-User-Journey über alle eWa-Dienste hinweg ermöglicht.",
       "roadmapPhase1Item1": "Mobile Ticket & Transit Screens",
       "roadmapPhase1Item2": "Versicherung & Dokumenten-Hub Screens",
       "roadmapPhase1Item3": "Vollständige datengesteuerte Flutter-Integration",
