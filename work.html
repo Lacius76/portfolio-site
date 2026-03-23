@@ -188,7 +188,9 @@
         <section class="relative w-full">
           <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
             <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-              <div class="flex flex-col items-start gap-6 relative z-10">
+
+              <!-- LEFT TEXT COLUMN -->
+              <div class="flex flex-col items-start gap-6 relative z-10 pointer-events-auto">
                 <!-- HERO TITLE BADGE -->
                 <div
                   class="hero-anim-badge inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
@@ -216,13 +218,10 @@
                 </p>
                 <!-- PORTFOLIO & RESUME BUTTONS -->
                 <div class="flex flex-wrap gap-4 pt-4">
-                  <!-- View Portfolio -->
                   <a href="img/laszlo_foldvary_portfolio.pdf" download
                     class="hero-anim-btn-primary group flex h-14 items-center rounded-xl bg-primary px-10 text-lg font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all">
                     <span data-i18n="work.viewPortfolio">View Portfolio</span>
                   </a>
-
-                  <!-- Resume (With bouncing icon and correct HTML) -->
                   <a href="img/laszlo_foldvary_cv.pdf" download
                     class="hero-anim-btn-secondary group flex h-14 items-center gap-3 rounded-xl border-2 border-slate-200 bg-white px-8 text-lg font-bold text-slate-900 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-all">
                     <span class="material-symbols-outlined text-[24px] group-hover:animate-bounce">download</span>
@@ -230,352 +229,256 @@
                   </a>
                 </div>
               </div>
-              <div class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0">
-                <!-- Decorative Lights - Refined to prevent overflow on mobile -->
+
+              <!-- RIGHT ANIMATED COLUMN (Single Column replaces Video block) -->
+              <div
+                class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0 h-[60vh] lg:h-[80vh] overflow-hidden pointer-events-auto"
+                id="infinite-scroll-container">
+                <!-- Decorative Lights matching original logic -->
                 <div
-                  class="absolute -top-10 -right-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-primary/20 blur-[60px] sm:blur-[80px] dark:bg-primary/30 mix-blend-multiply dark:mix-blend-screen">
+                  class="absolute -top-10 -right-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-primary/20 blur-[60px] sm:blur-[80px] dark:bg-primary/30 mix-blend-multiply dark:mix-blend-screen -z-10">
                 </div>
                 <div
-                  class="absolute -bottom-10 -left-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-purple-500/20 blur-[60px] sm:blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen">
+                  class="absolute -bottom-10 -left-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-purple-500/20 blur-[60px] sm:blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen -z-10">
                 </div>
 
-                <!-- VIDEO CONTAINER: Responsive -->
-                <div class="hero-anim-video relative group w-full transition-all duration-500">
-                  <!-- VIDEO BOX: aspect-[4/3] ensures consistent ratio -->
-                  <div
-                    class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-slate-200 dark:bg-[#101922] border border-slate-200 dark:border-white/10">
-                    <video autoplay muted loop playsinline poster="img/start-portfolio.jpg"
-                      class="absolute inset-0 w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105 cursor-pointer">
-                      <source src="img/start-work.mp4" type="video/mp4" />
-                      <img src="img/start-portfolio.jpg" alt="László Földváry Portfólió" />
-                    </video>
+                <!-- Top/Bottom Fade effects inside this container bounding box -->
+                <div
+                  class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-background-light dark:from-background-dark to-transparent z-20 pointer-events-none">
+                </div>
+                <div
+                  class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent z-20 pointer-events-none">
+                </div>
 
-                    <!-- Transparent overlay layer -->
-                    <div
-                      class="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none">
-                    </div>
-                  </div>
+                <!-- Single Animated Column Wrapper -->
+                <div class="relative w-[90%] mx-auto h-full">
+                  <style>
+                    .hg-card-glow {
+                      transition: box-shadow 0.5s ease, transform 0.5s ease;
+                    }
 
-                  <!-- Floating AI Bot Character (Replaces HMI Layout Card) -->
-                  <div id="aiBotDragWrapper"
-                    class="hero-anim-float-card absolute bottom-4 -right-2 sm:bottom-6 sm:-right-8 lg:-right-16 z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
-                    <!-- Radar Button (Docked to the left of the bot) -->
-                    <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Bot Interaction"
-                      class="absolute -left-6 z-30 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 shadow-lg backdrop-blur-md">
-                      <span
-                        class="material-symbols-outlined text-[24px] sm:text-[28px] transition-transform duration-700">radar</span>
-                    </button>
+                    .hg-card-glow:hover {
+                      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.6), 0 0 40px rgba(139, 92, 246, 0.6);
+                    }
+                  </style>
+                  <div id="scroll-col-1" class="flex flex-col gap-8 w-full will-change-transform pt-12">
 
-                    <!-- The Bot Container -->
-                    <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md">
-                      <!-- Header / Drag area -->
-                      <div class="bot-header-area group/handle">
-                        <!-- Drag Handle Icon -->
-                        <div
-                          class="text-primary opacity-70 group-hover/handle:opacity-100 transition-opacity flex items-center justify-center shrink-0 w-8 h-8">
-                          <span class="material-symbols-outlined text-[24px]">drag_indicator</span>
-                        </div>
-                        <!-- Title -->
-                        <span class="bot-title-text text-xs sm:text-sm tracking-[0.2em] uppercase select-none"
-                          data-i18n="bot.title">AI BOTT</span>
-                        <!-- Close Button -->
-                        <button class="bot-close-btn bot-btn-3d w-8 h-8 flex items-center justify-center shrink-0"
-                          aria-label="Close Bot">
-                          <span class="material-symbols-outlined text-[18px] font-bold">close</span>
-                        </button>
+                    <!-- 1. eWa Wallet App -->
+                    <a href="case-study-ewa.html"
+                      class="group block cursor-pointer w-full aspect-[4/3] rounded-3xl overflow-hidden shrink-0 relative bg-slate-900 shadow-2xl ring-1 ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(var(--color-primary,99,102,241),0.6)] hover:shadow-primary/60 hover:ring-primary/60 hover:ring-2">
+
+                      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 z-0">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                          <source src="img/ewa/ewa-card.webm" type="video/webm" />
+                        </video>
                       </div>
-
-                      <!-- Face Screen -->
-                      <div class="bot-screen-container">
-                        <div class="bot-screen-inset flex flex-col items-center justify-center gap-6">
-                          <!-- Eyes -->
-                          <div id="botEyesContainer" class="flex justify-between items-center w-24 h-8 relative z-10">
-                            <div class="w-7 h-7 rounded-[10px] bot-eyes-glow bot-eye"></div>
-                            <div id="botRightEye"
-                              class="w-7 h-7 rounded-[10px] bot-eyes-glow bot-eye transition-all duration-300"></div>
-                          </div>
-                          <!-- Mouth -->
-                          <div class="flex gap-1.5 items-end h-3 z-10">
-                            <div class="w-2.5 h-2.5 bot-mouth-el"></div>
-                            <div id="botMouthMiddle" class="w-10 h-2.5 bot-mouth-el transition-transform duration-300">
-                            </div>
-                            <div class="w-2.5 h-2.5 bot-mouth-el"></div>
-                          </div>
-                        </div>
+                      <div class="absolute bottom-0 left-0 pointer-events-none z-20 w-full"
+                        style="height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);">
                       </div>
-
-                      <!-- Divider line -->
-                      <div class="bot-separator-line"></div>
-
-                      <!-- Console and Chat Button -->
-                      <div class="bot-bottom-area">
-                        <!-- Console -->
-                        <div class="bot-console-inset flex-1 px-3 py-2">
-                          <div class="h-full overflow-y-auto pr-1">
-                            <span id="botConsole"
-                              class="bot-console-text text-[11px] sm:text-xs font-mono leading-[0.8]">System online.
-                              Waiting for input...</span>
-                            <span
-                              class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
-                          </div>
-                        </div>
-                        <!-- Chat Button -->
-                        <button id="botTalkBtn" class="bot-btn-3d w-10 h-10 shrink-0" aria-label="Open Chat">
-                          <span class="material-symbols-outlined text-[20px]">chat</span>
-                        </button>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-sans z-30 pointer-events-none">
+                        <h3 class="text-2xl font-black text-white mb-1" data-i18n="index.selectedWorks.ewa.title">eWa
+                          Wallet App</h3>
+                        <p class="text-sm font-medium text-slate-300 tracking-wide"
+                          data-i18n="index.selectedWorks.ewa.subtitle">UX/UI Design & Android APK</p>
                       </div>
-                    </div>
+                    </a>
+
+                    <!-- 2. Anti-Gravity -->
+                    <a href="case-study-styleguide.html"
+                      class="group block cursor-pointer w-full aspect-[4/3] rounded-3xl overflow-hidden shrink-0 relative bg-slate-900 shadow-2xl ring-1 ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(var(--color-primary,99,102,241),0.6)] hover:shadow-primary/60 hover:ring-primary/60 hover:ring-2">
+
+                      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 z-0">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                          <source src="img/style-guide/styleguide.webm" type="video/webm" />
+                        </video>
+                      </div>
+                      <div class="absolute bottom-0 left-0 pointer-events-none z-20 w-full"
+                        style="height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);">
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-sans z-30 pointer-events-none">
+                        <h3 class="text-2xl font-black text-white mb-1"
+                          data-i18n="index.selectedWorks.antiGravity.title">Project Antigravity</h3>
+                        <p class="text-sm font-medium text-slate-300 tracking-wide"
+                          data-i18n="index.selectedWorks.antiGravity.subtitle">AI-Collaborative Design System</p>
+                      </div>
+                    </a>
+
+                    <!-- 3. Shadow Cartels -->
+                    <a href="case-study-shadow.html"
+                      class="group block cursor-pointer w-full aspect-[4/3] rounded-3xl overflow-hidden shrink-0 relative bg-slate-900 shadow-2xl ring-1 ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(var(--color-primary,99,102,241),0.6)] hover:shadow-primary/60 hover:ring-primary/60 hover:ring-2">
+
+                      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 z-0">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                          <source src="img/shadow-cartels/shadow-card.webm" type="video/webm" />
+                        </video>
+                      </div>
+                      <div class="absolute bottom-0 left-0 pointer-events-none z-20 w-full"
+                        style="height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);">
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-sans z-30 pointer-events-none">
+                        <h3 class="text-2xl font-black text-white mb-1" data-i18n="work.projectShadowTitle">Tactical
+                          Game Web & Mobile</h3>
+                        <p class="text-sm font-medium text-slate-300 tracking-wide" data-i18n="work.projectShadowDesc">
+                          UX/UI & Ai • iOS</p>
+                      </div>
+                    </a>
+
+                    <!-- 4. Siemens WinCC-OA -->
+                    <a href="case-study-siemens.html"
+                      class="group block cursor-pointer w-full aspect-[4/3] rounded-3xl overflow-hidden shrink-0 relative bg-slate-100 shadow-2xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(var(--color-primary,99,102,241),0.6)] hover:shadow-primary/60 hover:ring-primary/60 hover:ring-2">
+
+                      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 z-0">
+                        <img src="img/siemens/wincc-oa.jpg" alt="wincc-oa project" class="w-full h-full object-cover" />
+                      </div>
+                      <div class="absolute bottom-0 left-0 pointer-events-none z-20 w-full"
+                        style="height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);">
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-sans z-30 pointer-events-none">
+                        <h3 class="text-2xl font-black text-white mb-1" data-i18n="work.projectWinccTitle">WinCC OA
+                          Registry</h3>
+                        <p class="text-sm font-medium text-slate-300 tracking-wide" data-i18n="work.projectWinccDesc">A
+                          complete PLC management system design for WinCC OA.</p>
+                      </div>
+                    </a>
+
+                    <!-- 5. Greentube - Bugs'n Bees -->
+                    <a href="case-study-greent.html"
+                      class="group block cursor-pointer w-full aspect-[4/3] rounded-3xl overflow-hidden shrink-0 relative bg-slate-100 shadow-2xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(var(--color-primary,99,102,241),0.6)] hover:shadow-primary/60 hover:ring-primary/60 hover:ring-2">
+
+                      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 z-0">
+                        <img src="img/greentube/bugs-promo.jpg" alt="bugs'n-bees" class="w-full h-full object-cover" />
+                      </div>
+                      <div class="absolute bottom-0 left-0 pointer-events-none z-20 w-full"
+                        style="height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);">
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-sans z-30 pointer-events-none">
+                        <h3 class="text-2xl font-black text-white mb-1" data-i18n="work.projectGreentubeTitle">Bugs'n
+                          Bees UI</h3>
+                        <p class="text-sm font-medium text-slate-300 tracking-wide"
+                          data-i18n="work.projectGreentubeDesc">Slot Game UI & Visual Assets • Greentube</p>
+                      </div>
+                    </a>
+
+                    <!-- 6. Amatic - Pharao -->
+                    <a href="case-study-amatic.html"
+                      class="group block cursor-pointer w-full aspect-[4/3] rounded-3xl overflow-hidden shrink-0 relative bg-slate-100 shadow-2xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(var(--color-primary,99,102,241),0.6)] hover:shadow-primary/60 hover:ring-primary/60 hover:ring-2">
+
+                      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 z-0">
+                        <img src="img/pharao/pharo-promo.jpg" alt="pharao game" class="w-full h-full object-cover" />
+                      </div>
+                      <div class="absolute bottom-0 left-0 pointer-events-none z-20 w-full"
+                        style="height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);">
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-sans z-30 pointer-events-none">
+                        <h3 class="text-2xl font-black text-white mb-1" data-i18n="work.projectAmaticTitle">Pharao's
+                          Riches</h3>
+                        <p class="text-sm font-medium text-slate-300 tracking-wide" data-i18n="work.projectAmaticDesc">
+                          Cabinet UI & Digital Illustration • Amatic</p>
+                      </div>
+                    </a>
+
+                    <!-- 7. Funworld - Photoplay -->
+                    <a href="case-study-funworld.html"
+                      class="group block cursor-pointer w-full aspect-[4/3] rounded-3xl overflow-hidden shrink-0 relative bg-slate-900 shadow-2xl ring-1 ring-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(var(--color-primary,99,102,241),0.6)] hover:shadow-primary/60 hover:ring-primary/60 hover:ring-2">
+
+                      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 z-0">
+                        <img src="img/funworld/potoplay-terminal-2.jpg" alt="Photoplay Arcade"
+                          class="w-full h-full object-cover" />
+                      </div>
+                      <div class="absolute bottom-0 left-0 pointer-events-none z-20 w-full"
+                        style="height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 100%);">
+                      </div>
+                      <div
+                        class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-sans z-30 pointer-events-none">
+                        <h3 class="text-2xl font-black text-white mb-1" data-i18n="work.projectFunworldTitle">Funworld /
+                          Photoplay</h3>
+                        <p class="text-sm font-medium text-slate-300 tracking-wide"
+                          data-i18n="work.projectFunworldDesc">Touchscreen Ergonomics Pioneer • Funworld AG</p>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Scroll Indicator -->
-          <div class="flex justify-center pt-10 pb-2 h-1 animate-bounce">
-            <a href="#projects" class="text-gray-400 hover:text-primary transition-colors">
-              <span class="material-symbols-outlined text-4xl">keyboard_double_arrow_down</span>
-            </a>
+
+          <!-- Floating AI Bot Character (Decoupled and Z-indexed) -->
+          <div id="aiBotDragWrapper"
+            class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[60] flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
+            <!-- Radar Button -->
+            <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Bot Interaction"
+              class="absolute -left-6 z-30 h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/30 shadow-lg backdrop-blur-md">
+              <span
+                class="material-symbols-outlined text-[24px] sm:text-[28px] transition-transform duration-700">radar</span>
+            </button>
+
+            <!-- The Bot Container -->
+            <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md">
+              <div class="bot-header-area group/handle">
+                <div
+                  class="text-primary opacity-70 group-hover/handle:opacity-100 transition-opacity flex items-center justify-center shrink-0 w-8 h-8">
+                  <span class="material-symbols-outlined text-[24px]">drag_indicator</span>
+                </div>
+                <span class="bot-title-text text-xs sm:text-sm tracking-[0.2em] uppercase select-none"
+                  data-i18n="bot.title">AI BOTT</span>
+                <button class="bot-close-btn bot-btn-3d w-8 h-8 flex items-center justify-center shrink-0"
+                  aria-label="Close Bot">
+                  <span class="material-symbols-outlined text-[18px] font-bold">close</span>
+                </button>
+              </div>
+              <div class="bot-screen-container">
+                <div class="bot-screen-inset flex flex-col items-center justify-center gap-6">
+                  <div id="botEyesContainer" class="flex justify-between items-center w-24 h-8 relative z-10">
+                    <div class="w-7 h-7 rounded-[10px] bot-eyes-glow bot-eye"></div>
+                    <div id="botRightEye"
+                      class="w-7 h-7 rounded-[10px] bot-eyes-glow bot-eye transition-all duration-300"></div>
+                  </div>
+                  <div class="flex gap-1.5 items-end h-3 z-10">
+                    <div class="w-2.5 h-2.5 bot-mouth-el"></div>
+                    <div id="botMouthMiddle" class="w-10 h-2.5 bot-mouth-el transition-transform duration-300"></div>
+                    <div class="w-2.5 h-2.5 bot-mouth-el"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="bot-separator-line"></div>
+              <div class="bot-bottom-area">
+                <div class="bot-console-inset flex-1 px-3 py-2">
+                  <div class="h-full overflow-y-auto pr-1">
+                    <span id="botConsole" class="bot-console-text text-[11px] sm:text-xs font-mono leading-[0.8]">System
+                      online. Waiting for input...</span>
+                    <span
+                      class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+                  </div>
+                </div>
+                <button id="botTalkBtn" class="bot-btn-3d w-10 h-10 shrink-0" aria-label="Open Chat">
+                  <span class="material-symbols-outlined text-[20px]">chat</span>
+                </button>
+              </div>
+            </div>
           </div>
         </section>
       </div>
 
-      <!-- SCROLLING CONTENT WRAPPER (Projects + Bridge) -->
+      <!-- SCROLLING CONTENT WRAPPER FOR BRIDGE ONLY -->
       <div id="content-wrapper"
-        class="relative z-10 mt-0 lg:mt-[100vh] bg-gray-100 dark:bg-[#0d141f] shadow-[0_-10px_2px_#f1f2f4] dark:shadow-[0_-10px_2px_#0d141f]">
-        <section id="projects" class="pt-8 pb-12 sm:pb-20">
-          <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-            <div class="masonry-grid">
-              <!-- 1. eWa Wallet App -->
-              <a href="case-study-ewa.html" class="group block cursor-pointer">
-                <div
-                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                  <div class="absolute top-4 left-4 z-20">
-                    <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
-                      data-i18n="index.selectedWorks.ewa.tag">Fintech App</span>
-                  </div>
-                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    data-alt="eWa Wallet App Dashboard">
-                    <video autoplay loop muted playsinline
-                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-700">
-                      <source src="img/ewa/ewa-card.webm" type="video/webm" />
-                      <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  </div>
-                  <div
-                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 class="text-lg font-bold text-white" data-i18n="index.selectedWorks.ewa.title">
-                      eWa Wallet App
-                    </h3>
-                    <p class="text-xs text-slate-300" data-i18n="index.selectedWorks.ewa.subtitle">
-                      UX/UI Design & Android APK
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <!-- 2. Anti-Gravity (Converted to Standard Card) -->
-              <a href="case-study-styleguide.html" class="group block cursor-pointer">
-                <div
-                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                  <div class="absolute top-4 left-4 z-20">
-                    <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg">
-                      <span data-i18n="index.selectedWorks.antiGravity.tag">Case Study 2026</span>
-                    </span>
-                  </div>
-                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
-                    <video autoplay loop muted playsinline
-                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-700">
-                      <source src="img/style-guide/styleguide.webm" type="video/webm" />
-                      <source src="img/style-guide/styleguide.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  </div>
-                  <div
-                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 class="text-lg font-bold text-white leading-tight mb-1"
-                      data-i18n="index.selectedWorks.antiGravity.title">
-                      Project Antigravity
-                    </h3>
-                    <p class="text-xs text-slate-300 line-clamp-2" data-i18n="index.selectedWorks.antiGravity.subtitle">
-                      AI-Collaborative Design System
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <!-- 3. Shadow Cartels (Moved here, Standard Card) -->
-              <a href="case-study-shadow.html" class="group block cursor-pointer">
-                <div
-                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                  <div class="absolute top-4 left-4 z-20">
-                    <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
-                      data-i18n="work.projectShadowTag">Shadow Cartels App
-                    </span>
-                  </div>
-                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
-                    <video autoplay loop muted playsinline
-                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-700">
-                      <source src="img/shadow-cartels/shadow-card.webm" type="video/webm" />
-                      <source src="img/shadow-cartels/shadow-card.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  </div>
-                  <div
-                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectShadowTitle">
-                      Tactical Game Web & Mobile
-                    </h3>
-                    <p class="text-xs text-slate-300" data-i18n="work.projectShadowDesc">
-                      UX/UI & Ai • iOS
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <!-- 4. Siemens WinCC-OA (Converted to Standard Card) -->
-              <a href="case-study-siemens.html" class="group block cursor-pointer">
-                <div
-                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                  <div class="absolute top-4 left-4 z-20">
-                    <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg">
-                      <span data-i18n="work.projectWinccTag">WinCC-OA Interface</span>
-                    </span>
-                  </div>
-                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
-                    <img src="img/siemens/wincc-oa.jpg" alt="wincc-oa project" class="h-full w-full object-cover" />
-                  </div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  </div>
-                  <div
-                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 class="text-lg font-bold text-white leading-tight mb-1" data-i18n="work.projectWinccTitle">
-                      WinCC OA Registry
-                    </h3>
-                    <p class="text-xs text-slate-300 line-clamp-2" data-i18n="work.projectWinccDesc">
-                      A complete PLC management system design for WinCC OA.
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <!-- 5. Greentube - Bugs'n Bees -->
-              <a href="case-study-greent.html" class="group block cursor-pointer">
-                <div
-                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                  <div class="absolute top-4 left-4 z-20">
-                    <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
-                      data-i18n="work.projectGreentubeTag">Greentube</span>
-                  </div>
-                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    data-alt="Futuristic heads up display design">
-                    <img src="img/greentube/bugs-promo.jpg" alt="bugs'n-bees" />
-                  </div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  </div>
-                  <div
-                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectGreentubeTitle">
-                      Bugs'n Bees UI
-                    </h3>
-                    <p class="text-xs text-slate-300" data-i18n="work.projectGreentubeDesc">
-                      Slot Game UI & Visual Assets • Greentube
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <!-- 6. Amatic - Pharao -->
-              <a href="case-study-amatic.html" class="group block cursor-pointer">
-                <div
-                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-900/5 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl dark:bg-slate-800 dark:ring-white/10">
-                  <div class="absolute top-4 left-4 z-20">
-                    <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
-                      data-i18n="work.projectAmaticTag">Amatic</span>
-                  </div>
-                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    data-alt="Esports tournament platform dashboard">
-                    <img src="img/pharao/pharo-promo.jpg" alt="pharao game" />
-                  </div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  </div>
-                  <div
-                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectAmaticTitle">
-                      Pharao's Riches
-                    </h3>
-                    <p class="text-xs text-slate-300" data-i18n="work.projectAmaticDesc">
-                      Cabinet UI & Digital Illustration • Amatic
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <!-- 7. Funworld - Photoplay -->
-              <a href="case-study-funworld.html" class="group block cursor-pointer">
-                <div
-                  class="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-sm ring-1 ring-white/10 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
-                  <div class="absolute top-4 left-4 z-20">
-                    <span
-                      class="inline-block rounded-xl bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-bold text-white border border-white/20 shadow-lg"
-                      data-i18n="work.projectFunworldTag">Photoplay (2000)</span>
-                  </div>
-                  <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    data-alt="Photoplay Terminal Interface">
-                    <!-- Use a dedicated thumbnail or the main terminal image -->
-                    <img src="img/funworld/potoplay-terminal-2.jpg" alt="Photoplay Arcade"
-                      class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  </div>
-                  <div
-                    class="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 class="text-lg font-bold text-white" data-i18n="work.projectFunworldTitle">
-                      Funworld / Photoplay
-                    </h3>
-                    <p class="text-xs text-slate-300" data-i18n="work.projectFunworldDesc">
-                      Touchscreen Ergonomics Pioneer • Funworld AG
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
+        class="relative z-10 mt-[100vh] bg-gray-100 dark:bg-[#0d141f] shadow-[0_-10px_2px_#f1f2f4] dark:shadow-[0_-10px_2px_#0d141f]">
         <section class="border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
             <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
               <span class="material-symbols-outlined text-3xl">handshake</span>
             </div>
             <h2 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6 uppercase"
-              data-i18n="work.bridgeTitle">
-              Let's Bridge the Gap together
-            </h2>
+              data-i18n="work.bridgeTitle">Let's Bridge the Gap together</h2>
             <p class="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed"
-              data-i18n="work.bridgeDesc">
-              From complex
-              <span class="text-primary font-bold">Industrial HMI dashboards</span>
-              to immersive
-              <span class="text-primary font-bold">Game Interfaces</span>. I
-              bring 20+ years of systematic thinking to your next digital
-              product.
-            </p>
+              data-i18n="work.bridgeDesc">From complex <span class="text-primary font-bold">Industrial HMI
+                dashboards</span> to immersive <span class="text-primary font-bold">Game Interfaces</span>. I bring 20+
+              years of systematic thinking to your next digital product.</p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="contact.html"
                 class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-primary/90">
@@ -603,7 +506,7 @@
       </div>
     </main>
     <footer id="footer-reveal"
-      class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] min-h-screen flex flex-col overflow-hidden transition-all duration-300">
+      class="relative w-full z-10 border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] min-h-screen flex flex-col overflow-hidden transition-all duration-300">
 
       <!-- Main Footer Content (Centered) -->
       <div class="flex-grow flex flex-col items-center justify-center w-full py-20">
@@ -749,6 +652,7 @@
     <script src="js/theme.js"></script>
     <script src="js/language.js"></script>
     <script src="js/bot-drag.js"></script>
+    <script src="js/infinite-scroll.js"></script>
   </div>
   <script>
     // Footer Reveal Logic
@@ -758,7 +662,7 @@
 
       function adjustLayout() {
         // Set wrapper margin equal to footer height
-        wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+        // wrapper.style.marginBottom = `${footer.offsetHeight}px`;
       }
 
       function handleScroll() {
@@ -766,12 +670,12 @@
         const viewHeight = window.innerHeight;
         const docHeight = document.body.scrollHeight;
 
-        // 1. Z-Index Logic
-        if (scrollY > viewHeight) {
-          footer.style.zIndex = "1";
-        } else {
-          footer.style.zIndex = "-1";
-        }
+        // 1. Z-Index Logic (Removed for normal document flow)
+        // if (scrollY > viewHeight) {
+        //   footer.style.zIndex = "1";
+        // } else {
+        //   footer.style.zIndex = "-1";
+        // }
 
         // 2. CTA Animation Logic
         // Trigger when we are close to the bottom (footer fully revealed)
