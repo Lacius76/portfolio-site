@@ -28,6 +28,35 @@
       text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
     }
 
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Thin minimalist scrollbar */
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.4);
+      border-radius: 2px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.6);
+    }
+
     .noir-gradient {
       background: linear-gradient(to bottom, transparent, #0a0f14);
     }
@@ -331,8 +360,43 @@
       </div>
       <!-- END PANEL 2 -->
 
-      <!-- ===== PANEL 3: UX/UI SOLUTION ===== -->
+      <!-- ===== PANEL 2.5: LIVE APP DEMO ===== -->
       <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 3;">
+        <div class="max-w-[1200px] mx-auto px-6 py-24">
+          <section class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+              <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">phone_android</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words">
+                Try the Live App: <br /><span class="text-primary font-light">Experience in Action</span>
+              </h2>
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                Interact with the actual eWa Wallet App in your browser. Test the interface, explore features, and see how the design translates to a real working application.
+              </p>
+            </div>
+            
+            <div class="relative flex justify-center">
+              <div class="glass-panel rounded-[2rem] p-3 md:p-4 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl">
+                <div class="w-[280px] md:w-[320px] rounded-xl bg-slate-100 dark:bg-slate-900 scrollbar-thin" style="height: 600px; overflow-y: auto;">
+                  <iframe 
+                    src="https://e-wa-app.vercel.app/" 
+                    class="w-full border-0"
+                    style="height: 600px;"
+                    frameborder="0"
+                    allowfullscreen
+                    loading="lazy">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- END PANEL 2.5 -->
+
+      <!-- ===== PANEL 3: UX/UI SOLUTION ===== -->
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 4;">
         <div class="max-w-[1200px] mx-auto px-6 py-24">
           <!-- 1. UX/UI Solution -->
           <section class="grid lg:grid-cols-2 gap-16 items-center">
@@ -376,7 +440,7 @@
       <!-- END PANEL 3 -->
 
       <!-- ===== PANEL 4: AI WORKFLOW ===== -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 4;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 5;">
         <div class="max-w-[1200px] mx-auto px-6 py-24">
           <!-- 2. AI WORKFLOW SECTION -->
           <section
@@ -481,7 +545,7 @@
       <!-- END PANEL 4 -->
 
       <!-- ===== PANEL 5: FUTURE ROADMAP ===== -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 5;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 6;">
         <div class="max-w-[1200px] mx-auto px-6 py-10">
           <!-- FUTURE ROADMAP & VISION -->
           <section class="mx-auto max-w-[1200px] py-4 sm:py-14">
@@ -632,7 +696,7 @@
       <!-- END PANEL 5 -->
 
       <!-- ===== PANEL 6: LESSONS / OUTRO (last panel – slides up to reveal footer) ===== -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 6;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 7;">
         <div class="max-w-[1200px] mx-auto px-6 py-24">
           <!-- LESSONS FROM THE NOIR -->
           <section class="mx-auto max-w-[1200px] py-16 sm:py-24 text-center">
