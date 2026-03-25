@@ -708,12 +708,13 @@
         inset -1px -1px 3px rgba(100, 100, 120, 0.2),
         0 1px 0 rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(60, 60, 60, 0.9);
-    height: 120px !important;
+    height: 100px !important;
     width: auto !important;
-    max-height: 120px !important;
-    min-height: 120px !important;
+    max-height: 100px !important;
+    min-height: 100px !important;
     overflow: hidden !important;
     margin: 0;
+    position: relative;
 }
 
 .bot-console-inset>div {
@@ -721,6 +722,22 @@
     max-width: 100% !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: #28a530 transparent;
+}
+
+/* Custom scrollbar for bot terminal */
+.bot-console-inset>div::-webkit-scrollbar {
+    width: 2px !important;
+}
+
+.bot-console-inset>div::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.bot-console-inset>div::-webkit-scrollbar-thumb {
+    background-color: #28a530 !important;
+    border-radius: 0 !important;
 }
 
 .bot-console-text,

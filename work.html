@@ -408,97 +408,6 @@
             </div>
           </div>
 
-          <!-- Floating AI-Bott 9000 Character -->
-          <div id="aiBotDragWrapper"
-            class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[60] flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
-
-            <!-- The Bot Container -->
-            <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md">
-
-              <!-- Skin Dropdown -->
-              <div id="botSkinMenu" class="bot-skin-menu">
-                <button id="skinHal" class="active-skin">◉ AI-Bott 9000</button>
-                <button id="skinClassic">◎ Classic</button>
-              </div>
-
-              <!-- TOOLBAR / Drag Area -->
-              <div class="bot-header-area group/handle">
-                <div class="bot-header-field">
-                  <div class="bot-drag-handle-indicator" title="Drag to move">
-                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
-                  </div>
-                  <button id="botTalkBtnHal" class="bot-btn-3d js-bot-talk-btn" aria-label="Open Chat">
-                    <span class="material-symbols-outlined text-[16px]">chat</span>
-                  </button>
-                  <button id="botSkinToggle" class="bot-btn-3d" aria-label="Change Skin">
-                    <span class="material-symbols-outlined text-[16px]">menu</span>
-                  </button>
-                  
-                  <div class="bot-toolbar-spacer"></div>
-                  <span class="bot-title-text" data-i18n="bot.title">AI BOTT</span>
-                  
-                  <button class="bot-close-btn bot-btn-3d" aria-label="Close Bot">
-                    <span class="material-symbols-outlined text-[16px]">close</span>
-                  </button>
-                </div>
-              </div>
-
-
-              <!-- Name Banner -->
-              <div class="bot-name-banner">
-                <span class="name-part">AI-Bott</span>
-                <span class="number-part">9000</span>
-              </div>
-
-              <!-- HAL Eye Area -->
-              <div class="bot-eye-area">
-                <div id="halEyeRing" class="hal-eye-ring">
-                  <div class="hal-inner-ring">
-                    <div class="hal-eye-lens">
-                      <div class="hal-eye-iris">
-                        <div id="halPupil" class="hal-pupil"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="bot-screen-inset" style="display:none;"></div>
-              </div>
-
-              <!-- OLD CLASSIC FACE CONTAINER (hidden in HAL) -->
-              <div id="classicFaceArea" class="classic-face-container">
-                  <div class="bot-screen-inset-classic">
-                      <div id="botEyesContainer" class="flex justify-center gap-6 mb-4">
-                          <div class="bot-eye bot-eyes-glow" style="width:28px;height:28px;"></div>
-                          <div id="botRightEye" class="bot-eye bot-eyes-glow transition-all duration-300" style="width:28px;height:28px;"></div>
-                      </div>
-                      <div class="flex justify-center gap-1.5 items-center">
-                          <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
-                          <div id="botMouthMiddle" class="bot-mouth-el" style="width:40px;height:10px;"></div>
-                          <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
-                      </div>
-                  </div>
-              </div>
-
-              <!-- Divider -->
-              <div class="bot-separator-line"></div>
-
-              <!-- Console Area -->
-              <div class="bot-bottom-area">
-                <div class="bot-screen-container w-full">
-                  <div class="bot-console-inset px-3 py-2">
-                    <div class="h-full overflow-y-auto pr-1">
-                      <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Waiting for input...</span>
-                      <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
-                    </div>
-                  </div>
-                </div>
-                <button id="botTalkBtnClassic" class="bot-btn-3d js-bot-talk-btn flex-shrink-0" style="display:none;" aria-label="Open Chat">
-                    <span class="material-symbols-outlined text-[18px]">chat</span>
-                </button>
-              </div>
-
-            </div><!-- end aiBotCard -->
-          </div><!-- end aiBotDragWrapper -->
         </section>
       </div>
 
@@ -741,135 +650,99 @@
     });
   </script>
   
-  <!-- AI Bot Logic -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const botConsole = document.getElementById('botConsole');
-      const talkBtns = document.querySelectorAll('.js-bot-talk-btn');
-      window._botTypingInterval = null;
 
-      const botJokes = [
-        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
-        "I see you scrolling... but you still haven't clicked 'Download CV'.",
-        "Not to brag, but Laszlo designed this layout in his head back in 1999.",
-        "Excuse me, is there any coffee around? My processor is freezing.",
-        "Interesting anomaly detected. Oh wait, that's just a typo in my code.",
-        "I could design something like this too... If I had a mouse.",
-        "I think you should be pressing the 'Hire Me' button instead.",
-        "Analyzing portfolio... Result: Excellent architecture.",
-        "CSS animations... Pfft. I generate humor using complex algorithms.",
-        "Downloading cookies in the background. Just kidding. I don't eat.",
-        "Know what holds this site together? CSS Grid and a little bit of magic.",
-        "Large Language Models are my cousins, but I have way more style.",
-        "Listen, if you hire Laszlo, you get me included in the package deal!",
-        "Scan complete... Interactive zone found. Let's touch base soon.",
-        "They told me to be interactive. Here I am. Interact.",
-        "Every click you make forces me to compute another cycle. Thanks.",
-        "System optimized. Too many concurrent requests are not recommended."
-      ];
+          <!-- Floating AI-Bott 9000 Character -->
+          <div id="aiBotDragWrapper"
+            class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[150] flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
 
-      function typeWriterEffect(text, element) {
-        if (!element) return;
-        if (window._botTypingInterval) clearInterval(window._botTypingInterval);
-        element.textContent = '';
-        let i = 0;
-        window._botTypingInterval = setInterval(() => {
-          if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-          } else {
-            clearInterval(window._botTypingInterval);
-          }
-        }, 40);
-      }
-      window._typeWriterEffect = typeWriterEffect;
+            <!-- The Bot Container -->
+            <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md opacity-100 transition-all duration-500">
 
-      // Chat button triggers random jokes
-      if (talkBtns.length > 0 && botConsole) {
-        talkBtns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const randomJoke = botJokes[Math.floor(Math.random() * botJokes.length)];
-            typeWriterEffect(randomJoke, botConsole);
-          });
-        });
-      }
+              <!-- Skin Dropdown -->
+              <div id="botSkinMenu" class="bot-skin-menu">
+                <button id="skinHal" class="active-skin">◉ AI-Bott 9000</button>
+                <button id="skinClassic">◎ Classic</button>
+              </div>
 
-      // ---- HAL Pupil eye tracking ----
-      const halPupil = document.getElementById('halPupil');
-      const halEyeRing = document.getElementById('halEyeRing');
-      const maxPupilMove = 10;
+              <!-- TOOLBAR / Drag Area -->
+              <div class="bot-header-area group/handle">
+                <div class="bot-header-field">
+                  <div class="bot-drag-handle-indicator" title="Drag to move">
+                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                  </div>
+                  
+                  <button id="botSkinToggle" class="bot-btn-3d" aria-label="Change Skin">
+                    <span class="material-symbols-outlined text-[16px]">menu</span>
+                  </button>
+                  
+                  <div class="bot-toolbar-spacer"></div>
+                  <span class="bot-title-text" data-i18n="bot.title">AI BOTT</span>
+                  
+                  <button class="bot-close-btn bot-btn-3d" aria-label="Close Bot">
+                    <span class="material-symbols-outlined text-[16px]">close</span>
+                  </button>
+                </div>
+              </div>
 
-      if (halPupil) {
-        document.addEventListener('mousemove', (e) => {
-          if (window.innerWidth <= 768) return;
-          if (window._botDragging) return;
-          const ringRect = halEyeRing ? halEyeRing.getBoundingClientRect() : null;
-          if (!ringRect) return;
-          const centerX = ringRect.left + ringRect.width / 2;
-          const centerY = ringRect.top + ringRect.height / 2;
-          const dx = e.clientX - centerX;
-          const dy = e.clientY - centerY;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const factor = Math.min(1, 200 / dist);
-          const moveX = (dx / dist) * maxPupilMove * factor;
-          const moveY = (dy / dist) * maxPupilMove * factor;
-          halPupil.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
-        });
-      }
 
-      window._halResetPupil = () => { if (halPupil) halPupil.style.transform = 'translate(-50%, -50%)'; };
-      window._halSetEyePosition = (moveX, moveY) => {
-        if (halPupil) {
-          const cx = Math.max(-maxPupilMove, Math.min(maxPupilMove, moveX));
-          const cy = Math.max(-maxPupilMove, Math.min(maxPupilMove, moveY));
-          halPupil.style.transform = `translate(calc(-50% + ${cx}px), calc(-50% + ${cy}px))`;
-        }
-      };
-      window._halSleep = () => { if (halEyeRing) halEyeRing.classList.add('hal-sleeping'); };
-      window._halWake  = () => { if (halEyeRing) halEyeRing.classList.remove('hal-sleeping'); };
+              <!-- Name Banner -->
+              <div class="bot-name-banner">
+                <span class="name-part">AI-Bott</span>
+                <span class="number-part">9000</span>
+              </div>
 
-      // ---- Skin switcher with localStorage ----
-      const skinMenu   = document.getElementById('botSkinMenu');
-      const skinToggle = document.getElementById('botSkinToggle');
-      const skinHalBtn = document.getElementById('skinHal');
-      const skinClassicBtn = document.getElementById('skinClassic');
-      const botCard    = document.getElementById('aiBotCard');
+              <!-- HAL Eye Area -->
+              <div class="bot-eye-area">
+                <div id="halEyeRing" class="hal-eye-ring">
+                  <div class="hal-inner-ring">
+                    <div class="hal-eye-lens">
+                      <div class="hal-eye-iris">
+                        <div id="halPupil" class="hal-pupil"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bot-screen-inset" style="display:none;"></div>
+              </div>
 
-      function setSkin(skin, save = true) {
-        if (!botCard) return;
-        if (skin === 'classic') {
-          botCard.classList.add('skin-classic');
-          if (skinHalBtn) skinHalBtn.classList.remove('active-skin');
-          if (skinClassicBtn) skinClassicBtn.classList.add('active-skin');
-        } else {
-          botCard.classList.remove('skin-classic');
-          if (skinHalBtn) skinHalBtn.classList.add('active-skin');
-          if (skinClassicBtn) skinClassicBtn.classList.remove('active-skin');
-        }
-        if (save) localStorage.setItem('botSkin', skin);
-        if (skinMenu) skinMenu.classList.remove('open');
-      }
+              <!-- OLD CLASSIC FACE CONTAINER (hidden in HAL) -->
+              <div id="classicFaceArea" class="classic-face-container">
+                  <div class="bot-screen-inset-classic">
+                      <div id="botEyesContainer" class="flex justify-center gap-6 mb-4">
+                          <div class="bot-eye bot-eyes-glow" style="width:28px;height:28px;"></div>
+                          <div id="botRightEye" class="bot-eye bot-eyes-glow transition-all duration-300" style="width:28px;height:28px;"></div>
+                      </div>
+                      <div class="flex justify-center gap-1.5 items-center">
+                          <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
+                          <div id="botMouthMiddle" class="bot-mouth-el" style="width:40px;height:10px;"></div>
+                          <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
+                      </div>
+                  </div>
+              </div>
 
-      const savedSkin = localStorage.getItem('botSkin') || 'hal';
-      setSkin(savedSkin, false);
+              <!-- Divider -->
+              <div class="bot-separator-line"></div>
 
-      if (skinToggle && skinMenu) {
-        skinToggle.addEventListener('click', (e) => { e.stopPropagation(); skinMenu.classList.toggle('open'); });
-        document.addEventListener('click', () => skinMenu.classList.remove('open'));
-        skinMenu.addEventListener('click', (e) => e.stopPropagation());
-      }
-      if (skinHalBtn) skinHalBtn.addEventListener('click', () => setSkin('hal'));
-      if (skinClassicBtn) skinClassicBtn.addEventListener('click', () => setSkin('classic'));
+              <!-- Console Area -->
+              <div class="bot-bottom-area">
+                <div class="bot-screen-container w-full">
+                  <div class="bot-console-inset px-3 py-2 relative">
+                    <div class="h-full pb-6">
+                      <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Waiting for input...</span>
+                      <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+                    </div>
+                    <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent hover:scale-110 active:scale-95 transition-all border-none cursor-pointer z-50 opacity-80 hover:opacity-100 js-bot-talk-btn" style="right: 4px; bottom: 3px; color: #28a530;" title="Generate Response (Enter)">
+                      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
+                    </button>
+                  </div>
+                </div>
+                <button id="botTalkBtnClassic" class="bot-btn-3d js-bot-talk-btn flex-shrink-0" style="display:none;" aria-label="Open Chat">
+                    <span class="material-symbols-outlined text-[18px]">chat</span>
+                </button>
+              </div>
 
-      // Welcome message
-      if (botConsole) {
-        setTimeout(() => {
-          typeWriterEffect("System online. Hello! I am AI-Bott 9000.", botConsole);
-        }, 1500);
-      }
-    });
-  </script>
+            </div><!-- end aiBotCard -->
+          </div><!-- end aiBotDragWrapper -->
 
 </body>
 

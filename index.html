@@ -1,17 +1,15 @@
 <!doctype html>
-
 <html class="dark" lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta name="google-site-verification" content="google9366f63f30fd7097" />
-  <title>About Me - UI Designer Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="img/logo-s.svg" />
-  <!-- SEO & Social Media Preview (Consolidated) -->
+
   <title>László Földváry | Senior UI/UX Design Architect</title>
   <meta name="description"
-    content="Senior UI/UX Design Architect (25+ Jahre Erfahrung). React/Next.js Frontend Spezialist. Bewerbung Österreich/Wien." />
+    content="László Földváry - Senior UI/UX Design Architect. 25+ years of design logic. From Industrial Precision to Gaming Innovation." />
   <meta name="keywords"
     content="Senior UI/UX Designer, Design Architect, React Next.js, TypeScript Tailwind, Wien Job, Österreich Stellenangebot" />
 
@@ -22,55 +20,46 @@
   <meta property="og:description" content="25 years of design logic. From Industrial Precision to Gaming Innovation." />
   <meta name="image" property="og:image" content="https://www.foeldvary.com/img/work-preview-de.jpg" />
   <meta name="author" content="László Földváry | Senior UI/UX Design Architect" />
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="László Földváry | Senior UI/UX Design Architect" />
   <meta name="twitter:description"
     content="25 years of design logic. From Industrial Precision to Gaming Innovation." />
   <meta name="twitter:image" content="https://www.foeldvary.com/img/work-preview-de.jpg" />
-  <!-- Google / Search Engine tags -->
-  <meta name="description"
-    content="László Földváry - Senior UI/UX Design Architect. Portfolio showcasing 25 years of experience." />
-  <!-- 1. External Libraries (CDN) -->
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/language-animations.css" />
   <link rel="stylesheet" href="css/hero-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
   <link rel="stylesheet" href="css/hero-grid.css" />
   <link rel="stylesheet" href="css/stacked-cards.css" />
   <link rel="stylesheet" href="css/tailwind.min.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
     rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
+
   <script>
-    if (
-      localStorage.getItem("color-theme") === "dark" ||
-      (!("color-theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
+    // Theme initialization
+    if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
   </script>
-  <!-- 2. Tailwind Configuration (Kept separate for ID reference) -->
 
-  <!-- 3. Consolidated Styles -->
   <style>
     body {
       font-family: "Inter", sans-serif;
     }
 
     .material-symbols-outlined {
-      font-variation-settings:
-        "FILL" 0,
-        "wght" 400,
-        "GRAD" 0,
-        "opsz" 24;
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -88,23 +77,44 @@
       background-color: #334155;
     }
 
-    /* Masonry */
-    .masonry-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 2rem;
+    /* Green blinking block cursor */
+    .bot-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 14px;
+      background-color: #28a530;
+      box-shadow: 0 0 8px rgba(40, 165, 48, 0.7);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: botBlink 1s step-end infinite;
     }
 
-    @media (min-width: 640px) {
-      .masonry-grid {
-        grid-template-columns: repeat(2, 1fr);
+    @keyframes botBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
       }
     }
-
-    @media (min-width: 1024px) {
-      .masonry-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+    
+    /* Specific scrollbar for the Bot Console to override everything */
+    .bot-console-inset > div::-webkit-scrollbar {
+      width: 2px !important;
+    }
+    .bot-console-inset > div::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .bot-console-inset > div::-webkit-scrollbar-thumb {
+      background-color: #28a530 !important;
+      border-radius: 0 !important;
+    }
+    .bot-console-inset > div {
+      scrollbar-width: thin;
+      scrollbar-color: #28a530 transparent;
     }
   </style>
 </head>
@@ -113,23 +123,18 @@
   <div class="relative flex min-h-screen flex-col">
     <!-- TopNavBar -->
     <header
-      class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-      <!-- Replaced lg:px-40 with px-6 for consistent stability across layouts -->
+      class="sticky top-0 z-[100] w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
       <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-        <!-- COLUMN 1: LOGO -->
         <div class="flex items-center gap-4 nav-anim-logo">
           <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
             href="index.html">
             <div data-icon="logo"
               class="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 p-1.5">
             </div>
-            <h2 class="hidden sm:block text-lg font-bold tracking-tight">
-              Laszlo.UI
-            </h2>
+            <h2 class="hidden sm:block text-lg font-bold tracking-tight">Laszlo.UI</h2>
           </a>
         </div>
 
-        <!-- COLUMN 2: MENU -->
         <nav class="hidden md:flex items-center gap-8">
           <a href="work.html"
             class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-1"
@@ -142,42 +147,32 @@
             data-i18n="nav.resume">Resume</a>
         </nav>
 
-        <!-- COLUMN 3: BUTTONS -->
         <div class="flex items-center gap-4">
-          <!-- Let's Talk: Removed base transition, activates only on hover -->
           <a href="contact.html"
             class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
             aria-label="Contact">
             <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
           </a>
-          <!-- Language Button -->
-          <!-- Language Dropdown -->
           <div class="relative nav-anim-lang">
             <button id="language-btn"
               class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
               <img src="img/language-icon.svg" alt="Select Language" class="size-6" />
             </button>
-            <!-- Dropdown Menu -->
             <div id="language-dropdown"
               class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
               <div class="py-1">
                 <a href="#" data-lang="en"
-                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                  <span class="text-lg">🇬🇧</span> English
-                </a>
+                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><span
+                    class="text-lg">🇬🇧</span> English</a>
                 <a href="#" data-lang="de"
-                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
-                  <span class="text-lg">🇩🇪</span> Deutsch
-                </a>
+                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50"><span
+                    class="text-lg">🇩🇪</span> Deutsch</a>
               </div>
             </div>
           </div>
-          <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
           <button id="theme-toggle"
             class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme">
-            <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
             <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
-            <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
             <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
           </button>
           <button id="menu-button"
@@ -187,14 +182,12 @@
         </div>
       </div>
     </header>
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu"
-      class="hidden fixed inset-0 z-[100] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
-      <!-- Close Button (X) only -->
-      <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white">
-        <span class="material-symbols-outlined text-4xl">close</span>
-      </button>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+      class="hidden fixed inset-0 z-[110] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+      <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white"><span
+          class="material-symbols-outlined text-4xl">close</span></button>
       <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
         <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
           data-i18n="nav.work">Work</a>
@@ -206,200 +199,73 @@
           data-i18n="nav.letsTalk">Let's Talk</a>
       </nav>
     </div>
-    <main class="flex-col">
-      <!-- Main Content -->
-      <div class="layout-container flex h-full grow flex-col">
-        <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
-            <!-- Hero Section -->
-            <!-- === HERO SECTION (FIXED LAYER 1) === -->
-            <!-- Reduced top padding to fit content -->
-            <div
-              class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
 
-              <!-- HÁTTÉR ANIMÁCIÓ (Nagyobb Z-index, hogy fogja a kurzort) -> TARTALOM SZÉLESSÉGÉRE KORLÁTOZVA -->
-              <div
-                class="hg-scene w-full max-w-[1200px] mx-auto opacity-100 dark:opacity-40 transition-opacity duration-1000 z-10">
-                <div class="relative translate-y-[50px]">
-                  <div class="hg-grid" id="hgGrid"></div>
-                  <!-- Radar Button (bottom-left of grid, moved after 7x7 shrink) -->
-                  <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
-                    class="absolute bottom-[90px] left-[-30px] sm:bottom-[90px] sm:left-[-30px] z-40 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 border border-primary/10 shadow-sm backdrop-blur-md pointer-events-auto">
-                    <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
-                  </button>
-                </div>
+    <main class="flex flex-col">
+      <!-- HERO LAYER -->
+      <div
+        class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
+        <div
+          class="hg-scene w-full max-w-[1200px] mx-auto opacity-100 dark:opacity-40 transition-opacity duration-1000 z-10">
+          <div class="relative translate-y-[50px]">
+            <div class="hg-grid" id="hgGrid"></div>
+            <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
+              class="absolute bottom-[90px] left-[-30px] z-40 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center border border-primary/10 shadow-sm backdrop-blur-md pointer-events-auto">
+              <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full relative z-20 pointer-events-none">
+          <div class="flex flex-col-reverse gap-4 lg:gap-12 lg:flex-row lg:items-start mb-4 md:mb-8 flex-1">
+            <div class="flex flex-col gap-4 lg:gap-6 flex-1 pr-0 z-10 pointer-events-none">
+              <div class="flex flex-col gap-4 text-left">
+                <div
+                  class="hero-anim-badge w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
+                  data-i18n="index.availableForWork">Available for work</div>
+                <h1
+                  class="text-[#111418] dark:text-white text-4xl font-black leading-[1.2] pb-2 tracking-[-0.033em] lg:text-7xl">
+                  <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that </span>
+                  <span
+                    class="hero-anim-title-2 inline-block lg:pb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
+                    data-i18n="index.heroTitle2">humanizes</span>
+                  <span class="hero-anim-title-3" data-i18n="index.heroTitle3">technology.</span>
+                </h1>
+                <h2
+                  class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
+                  <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior UI/UX & Product Designer. I
+                    leverage 25+ years of mastery and AI-driven workflows to solve complex problems through intuitive
+                    digital experiences.</span>
+                </h2>
               </div>
-
-              <!-- TARTALOM (TEXT + VIDEO) Legfelül van (z-20), de TELJESEN átereszti az egeret -->
-              <div
-                class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full relative z-20 pointer-events-none">
-                <!-- Top Hero Content (Text + Video) -->
-                <div class="flex flex-col-reverse gap-4 lg:gap-12 lg:flex-row lg:items-start mb-4 md:mb-8 flex-1">
-                  <!-- Text Content -->
-                  <div class="flex flex-col gap-4 lg:gap-6 flex-1 @[1200px]:pr-8 z-10 pointer-events-none">
-                    <div class="flex flex-col gap-4 text-left">
-                      <div
-                        class="hero-anim-badge w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
-                        data-i18n="index.availableForWork">
-                        Available for work
-                      </div>
-                      <h1
-                        class="text-[#111418] dark:text-white text-4xl font-black leading-[1.2] pb-2 tracking-[-0.033em] @[480px]:text-5xl lg:text-7xl">
-                        <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that </span><span
-                          class="hero-anim-title-2 inline-block lg:pb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
-                          data-i18n="index.heroTitle2">humanizes</span><span class="hero-anim-title-3"
-                          data-i18n="index.heroTitle3">
-                          technology.</span>
-                      </h1>
-                      <h2
-                        class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
-                        <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior UI/UX & Product
-                          Designer. I leverage 25+ years of mastery and
-                          AI-driven workflows to solve complex problems
-                          through intuitive digital experiences.</span>
-                      </h2>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-4 mt-2 pointer-events-auto">
-                      <a href="work.html"
-                        class="hero-anim-btn-primary flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 whitespace-nowrap">
-                        <span data-i18n="index.viewSelectedWork">View Selected Work</span>
-                      </a>
-
-                      <a href="contact.html"
-                        class="hero-anim-btn-secondary flex min-w-[120px] truncate cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium leading-normal tracking-[0.015em]"
-                        data-i18n="index.contactMe">Contact Me
-                      </a>
-                    </div>
-
-                    <!-- Experience Cards (Integrated into Text Col) -->
-                    <div class="hero-anim-stats w-full mt-4 lg:mt-[30px] z-10">
-                      <div class="grid grid-cols-2 gap-4 md:gap-8 max-w-[600px] lg:max-w-none lg:w-fit">
-                        <!-- Card 1: Projects -->
-                        <div class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
-                          <div class="flex items-baseline gap-1">
-                            <span class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">50</span>
-                            <span class="text-lg md:text-xl font-bold text-primary">+</span>
-                          </div>
-                          <span
-                            class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                            data-i18n="index.projectsLaunched">Projects Launched</span>
-                        </div>
-
-                        <!-- Card 2: Experience -->
-                        <div class="flex flex-col items-start p-2 rounded-lg transition-colors cursor-default">
-                          <div class="flex items-baseline gap-1">
-                            <span class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span>
-                            <span class="text-lg md:text-xl font-bold text-primary">+</span>
-                          </div>
-                          <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                            data-i18n="index.yearsExperience">
-                            Years of Experience
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+              <div class="flex flex-col sm:flex-row gap-4 mt-2 pointer-events-auto">
+                <a href="work.html"
+                  class="hero-anim-btn-primary flex min-w-fit items-center justify-center rounded-lg h-12 px-8 bg-primary transition-all hover:opacity-90 text-white text-base font-bold shadow-lg shadow-primary/20"
+                  data-i18n="index.viewSelectedWork">View Selected Work</a>
+                <a href="contact.html"
+                  class="hero-anim-btn-secondary flex min-w-[120px] items-center justify-center rounded-lg h-12 px-6 bg-transparent border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white text-base font-medium"
+                  data-i18n="index.contactMe">Contact Me</a>
+              </div>
+              <div class="hero-anim-stats w-full mt-4 lg:mt-[30px] z-10">
+                <div class="grid grid-cols-2 gap-4 md:gap-8 max-w-[600px] lg:max-w-none lg:w-fit">
+                  <div class="flex flex-col items-start p-2 rounded-lg cursor-default">
+                    <div class="flex items-baseline gap-1"><span
+                        class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">50</span><span
+                        class="text-lg md:text-xl font-bold text-primary">+</span></div>
+                    <span
+                      class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                      data-i18n="index.projectsLaunched">Projects Launched</span>
                   </div>
-                  <!-- Hero Right Side (Floating Card & Animation Controls) -->
-                  <div
-                    class="w-full flex-1 max-w-[600px] mx-auto z-10 pointer-events-none relative flex flex-col justify-end items-end gap-6 pb-6 lg:pb-12">
-
-                    <!-- Floating AI-Bott 9000 Character -->
-                    <div id="aiBotDragWrapper"
-                      class="relative z-20 flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0">
-
-                      <!-- The Bot Container -->
-                      <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md">
-
-                        <!-- Skin Dropdown -->
-                        <div id="botSkinMenu" class="bot-skin-menu">
-                          <button id="skinHal" class="active-skin">◉ AI-Bott 9000</button>
-                          <button id="skinClassic">◎ Classic</button>
-                        </div>
-
-                        <!-- TOOLBAR / Drag Area -->
-                        <div class="bot-header-area group/handle">
-                          <div class="bot-header-field">
-                            <div class="bot-drag-handle-indicator" title="Drag to move">
-                              <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
-                            </div>
-                            <button id="botTalkBtnHal" class="bot-btn-3d js-bot-talk-btn" aria-label="Open Chat">
-                              <span class="material-symbols-outlined text-[16px]">chat</span>
-                            </button>
-                            <button id="botSkinToggle" class="bot-btn-3d" aria-label="Change Skin">
-                              <span class="material-symbols-outlined text-[16px]">menu</span>
-                            </button>
-                            
-                            <div class="bot-toolbar-spacer"></div>
-                            <span class="bot-title-text" data-i18n="bot.title">AI BOTT</span>
-                            
-                            <button class="bot-close-btn bot-btn-3d" aria-label="Close Bot">
-                              <span class="material-symbols-outlined text-[16px]">close</span>
-                            </button>
-                          </div>
-                        </div>
-
-
-                        <!-- Name Banner -->
-                        <div class="bot-name-banner">
-                          <span class="name-part">AI-Bott</span>
-                          <span class="number-part">9000</span>
-                        </div>
-
-                        <!-- HAL Eye Area -->
-                        <div class="bot-eye-area">
-                          <div id="halEyeRing" class="hal-eye-ring">
-                            <div class="hal-inner-ring">
-                              <div class="hal-eye-lens">
-                                <div class="hal-eye-iris">
-                                  <div id="halPupil" class="hal-pupil"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="bot-screen-inset" style="display:none;"></div>
-                        </div>
-
-                        <!-- OLD CLASSIC FACE CONTAINER (hidden in HAL) -->
-                        <div id="classicFaceArea" class="classic-face-container">
-                            <div class="bot-screen-inset-classic">
-                                <div id="botEyesContainer" class="flex justify-center gap-6 mb-4">
-                                    <div class="bot-eye bot-eyes-glow" style="width:28px;height:28px;"></div>
-                                    <div id="botRightEye" class="bot-eye bot-eyes-glow transition-all duration-300" style="width:28px;height:28px;"></div>
-                                </div>
-                                <div class="flex justify-center gap-1.5 items-center">
-                                    <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
-                                    <div id="botMouthMiddle" class="bot-mouth-el" style="width:40px;height:10px;"></div>
-                                    <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Divider -->
-                        <div class="bot-separator-line"></div>
-
-                        <!-- Console Area -->
-                        <div class="bot-bottom-area">
-                          <div class="bot-screen-container w-full">
-                            <div class="bot-console-inset px-3 py-2">
-                              <div class="h-full overflow-y-auto pr-1">
-                                <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Waiting for input...</span>
-                                <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
-                              </div>
-                            </div>
-                          </div>
-                          <button id="botTalkBtnClassic" class="bot-btn-3d js-bot-talk-btn flex-shrink-0" style="display:none;" aria-label="Open Chat">
-                              <span class="material-symbols-outlined text-[18px]">chat</span>
-                          </button>
-                        </div>
-
-                      </div><!-- end aiBotCard -->
-                    </div><!-- end aiBotDragWrapper -->
-
+                  <div class="flex flex-col items-start p-2 rounded-lg cursor-default">
+                    <div class="flex items-baseline gap-1"><span
+                        class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">25</span><span
+                        class="text-lg md:text-xl font-bold text-primary">+</span></div>
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                      data-i18n="index.yearsExperience">Years of Experience</p>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- END OF RESTRICTED LAYOUT CONTAINER (Closing early so content-wrapper can be full width) -->
           </div>
         </div>
       </div>
@@ -529,151 +395,172 @@
 
           </section><!-- /stacked-cards-section -->
         </div>
-        <!-- Removed 3 closing divs here as they are closed early above -->
       </div>
       <!-- END OF CONTENT WRAPPER -->
+
+      <!-- BRIDGE SECTION -->
+      <section class="relative z-10 border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
+          <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
+            <span class="material-symbols-outlined text-3xl">handshake</span>
+          </div>
+          <h2 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6 uppercase"
+            data-i18n="work.bridgeTitle">Let's Bridge the Gap together</h2>
+          <p class="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed"
+            data-i18n="work.bridgeDesc">From complex <span class="text-primary font-bold">Industrial HMI
+              dashboards</span> to immersive <span class="text-primary font-bold">Game Interfaces</span>. I bring 20+
+            years of systematic thinking to your next digital product.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="contact.html"
+              class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-white shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1 hover:bg-primary/90"><span
+                data-i18n="work.startCollaboration">Start a Collaboration</span></a>
+            <a href="mailto:foeldvary@gmail.com"
+              class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-8 text-base font-bold text-slate-900 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors">foeldvary@gmail.com</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer id="footer-reveal"
+        class="relative w-full z-10 border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] min-h-screen flex flex-col overflow-hidden transition-all duration-300">
+        <div class="flex-grow flex flex-col items-center justify-center w-full py-20">
+          <div class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10">
+            <div id="footer-cta" class="mb-6 md:mb-12">
+              <h3 id="footer-title"
+                class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
+                data-i18n="footer.readyToStart">Ready to start a project?</h3>
+              <p id="footer-subtitle"
+                class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
+                data-i18n="footer.readySubtitle">Let's create something meaningful together.</p>
+            </div>
+            <div id="footer-contact"
+              class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out">
+              <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">+43 699 818 41 767</p>
+              <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
+            </div>
+            <div class="flex gap-5 mb-8">
+              <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary transition-all"
+                href="mailto:foeldvary@gmail.com"><svg class="size-6" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                  </path>
+                </svg></a>
+              <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary transition-all"
+                href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank"><svg aria-hidden="true"
+                  class="size-6" fill="currentColor" viewbox="0 0 24 24">
+                  <path clip-rule="evenodd"
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                    fill-rule="evenodd"></path>
+                </svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="w-full pb-12">
+          <div
+            class="max-w-[1200px] mx-auto px-4 md:px-10 pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588]">
+            <p>&copy; 2025 László Földváry. <span data-i18n="footer.allRightsReserved">All rights reserved.</span></p>
+            <div class="flex gap-8"><a href="datenschutz.html" data-i18n="footer.privacyPolicy">Privacy Policy</a><a
+                href="impressum.html" data-i18n="footer.impressum">Impressum</a></div>
+          </div>
+        </div>
+      </footer>
     </main>
 
-    <!-- Footer -->
-    <footer id="footer-reveal"
-      class="fixed bottom-0 left-0 w-full z-[-1] border-t border-[#f0f2f4] dark:border-gray-800 bg-white dark:bg-[#101922] min-h-screen flex flex-col overflow-hidden transition-all duration-300">
+    <!-- Floating AI-Bott 9000 Character -->
+    <div id="aiBotDragWrapper"
+      class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[150] flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
 
-      <!-- Main Footer Content (Centered) -->
-      <div class="flex-grow flex flex-col items-center justify-center w-full py-20">
-        <div
-          class="max-w-[1200px] mx-auto px-4 md:px-10 flex flex-col items-center text-center relative z-10 grid-pattern">
+      <!-- The Bot Container -->
+      <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md opacity-100 transition-all duration-500">
 
-          <!-- 1. Large Text (Animated) -->
-          <div id="footer-cta" class="mb-6 md:mb-12">
-            <h3 id="footer-title"
-              class="text-3xl md:text-5xl font-black text-[#111418] dark:text-white mb-2 md:mb-6 tracking-tight opacity-0 translate-x-[50px] transition-all duration-700 ease-out"
-              data-i18n="footer.readyToStart">
-              Ready to start a project?
-            </h3>
-            <p id="footer-subtitle"
-              class="text-gray-500 dark:text-gray-400 text-sm md:text-xl max-w-2xl mx-auto leading-relaxed opacity-0 -translate-x-[50px] transition-all duration-700 ease-out"
-              data-i18n="footer.readySubtitle">
-              Let's create something meaningful together. I'm always open to new
-              opportunities and interesting challenges.
-            </p>
-          </div>
+        <!-- Skin Dropdown -->
+        <div id="botSkinMenu" class="bot-skin-menu">
+          <button id="skinHal" class="active-skin">◉ AI-Bott 9000</button>
+          <button id="skinClassic">◎ Classic</button>
+        </div>
 
-          <!-- 2. Contact Details (Large) -->
-          <div id="footer-contact"
-            class="mb-6 md:mb-12 opacity-0 translate-y-[50px] transition-all duration-700 ease-out">
-            <p class="text-2xl font-bold text-[#111418] dark:text-white mb-2">
-              +43 699 818 41 767
-            </p>
-            <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
-          </div>
-
-          <!-- 3. Social Media Icons -->
-          <div class="flex gap-5">
-            <!-- Email -->
-            <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="mailto:foeldvary@gmail.com">
-              <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank">
-              <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                <path clip-rule="evenodd"
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                  fill-rule="evenodd"></path>
-              </svg>
-            </a>
-            <!-- GitHub -->
-            <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="https://github.com/Lacius76" target="_blank">
-              <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-            </a>
-            <!-- Facebook -->
-            <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-              href="https://www.facebook.com/laszlo.foldvary" target="_blank">
-              <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
-                </path>
-              </svg>
-            </a>
+        <!-- TOOLBAR / Drag Area -->
+        <div class="bot-header-area group/handle">
+          <div class="bot-header-field">
+            <div class="bot-drag-handle-indicator" title="Drag to move">
+              <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+            </div>
+            
+            <button id="botSkinToggle" class="bot-btn-3d" aria-label="Change Skin">
+              <span class="material-symbols-outlined text-[16px]">menu</span>
+            </button>
+            
+            <div class="bot-toolbar-spacer"></div>
+            <span class="bot-title-text" data-i18n="bot.title">AI BOTT</span>
+            
+            <button class="bot-close-btn bot-btn-3d" aria-label="Close Bot">
+              <span class="material-symbols-outlined text-[16px]">close</span>
+            </button>
           </div>
         </div>
-      </div>
 
-      <!-- 4. Bottom Row (Standard across pages) -->
-      <div class="w-full pb-12">
-        <div
-          class="max-w-[1200px] mx-auto px-4 md:px-10 pt-8 border-t border-[#f0f2f4] dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-[#637588] dark:text-[#94a3b8]">
-          <p>
-            &copy; <span id="current-year"></span> László Földváry.
-            <span data-i18n="footer.allRightsReserved">All rights reserved.</span>
-          </p>
-          <div class="flex gap-8">
-            <a href="datenschutz.html" class="hover:text-primary transition-colors"
-              data-i18n="footer.privacyPolicy">Privacy Policy</a>
-            <a href="impressum.html" class="hover:text-primary transition-colors"
-              data-i18n="footer.impressum">Impressum</a>
+
+        <!-- Name Banner -->
+        <div class="bot-name-banner">
+          <span class="name-part">AI-Bott</span>
+          <span class="number-part">9000</span>
+        </div>
+
+        <!-- HAL Eye Area -->
+        <div class="bot-eye-area">
+          <div id="halEyeRing" class="hal-eye-ring">
+            <div class="hal-inner-ring">
+              <div class="hal-eye-lens">
+                <div class="hal-eye-iris">
+                  <div id="halPupil" class="hal-pupil"></div>
+                </div>
+              </div>
+            </div>
           </div>
+          <div class="bot-screen-inset" style="display:none;"></div>
         </div>
-      </div>
-    </footer>
-    <div class="hidden md:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
-      <a href="contact.html"
-        class="group flex h-14 items-center gap-3 overflow-hidden rounded-full bg-primary pl-4 pr-6 text-white shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-        <div class="flex items-center justify-center transition-transform group-hover:rotate-12">
-          <span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+
+        <!-- OLD CLASSIC FACE CONTAINER (hidden in HAL) -->
+        <div id="classicFaceArea" class="classic-face-container">
+            <div class="bot-screen-inset-classic">
+                <div id="botEyesContainer" class="flex justify-center gap-6 mb-4">
+                    <div class="bot-eye bot-eyes-glow" style="width:28px;height:28px;"></div>
+                    <div id="botRightEye" class="bot-eye bot-eyes-glow transition-all duration-300" style="width:28px;height:28px;"></div>
+                </div>
+                <div class="flex justify-center gap-1.5 items-center">
+                    <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
+                    <div id="botMouthMiddle" class="bot-mouth-el" style="width:40px;height:10px;"></div>
+                    <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
+                </div>
+            </div>
         </div>
-        <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Hire Me</span>
-      </a>
-    </div>
 
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll("[data-icon]").forEach((element) => {
-          const iconName = element.getAttribute("data-icon");
+        <!-- Divider -->
+        <div class="bot-separator-line"></div>
 
-          // Check if database and icon exist
-          if (typeof ASSETS !== "undefined" && ASSETS[iconName]) {
-            element.innerHTML = ASSETS[iconName];
-          }
-        });
-      });
-    </script>
-    <script>
-      // Mobile Menu Control
-      const menuBtn = document.getElementById("menu-button");
-      const closeBtn = document.getElementById("close-menu");
-      const mobileMenu = document.getElementById("mobile-menu");
+        <!-- Console Area -->
+        <div class="bot-bottom-area">
+          <div class="bot-screen-container w-full">
+            <div class="bot-console-inset px-3 py-2 relative">
+              <div class="h-full pb-6">
+                <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Waiting for input...</span>
+                <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+              </div>
+              <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent hover:scale-110 active:scale-95 transition-all border-none cursor-pointer z-50 opacity-80 hover:opacity-100 js-bot-talk-btn" style="right: 4px; bottom: 3px; color: #28a530;" title="Generate Response (Enter)">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
+              </button>
+            </div>
+          </div>
+          <button id="botTalkBtnClassic" class="bot-btn-3d js-bot-talk-btn flex-shrink-0" style="display:none;" aria-label="Open Chat">
+              <span class="material-symbols-outlined text-[18px]">chat</span>
+          </button>
+        </div>
 
-      // On Hamburger Click: Remove 'hidden' class (Show Menu)
-      menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; // Prevent background scrolling
-      });
+      </div><!-- end aiBotCard -->
+    </div><!-- end aiBotDragWrapper -->
 
-      // On 'X' Click: Add 'hidden' class (Hide Menu)
-      closeBtn.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
-        document.body.style.overflow = "auto"; // Restore scrolling
-      });
-
-      // Optional: Close menu when a link is clicked
-      mobileMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          document.body.style.overflow = "auto";
-        });
-      });
-    </script>
+    <!-- Scripts -->
     <script src="js/icons.js"></script>
     <script>
       window.addEventListener("DOMContentLoaded", () => {
@@ -686,222 +573,29 @@
       });
     </script>
     <script src="js/theme.js"></script>
-    <script>
-      // Footer Reveal Logic
-      document.addEventListener("DOMContentLoaded", () => {
-        const footer = document.getElementById("footer-reveal");
-        const wrapper = document.getElementById("content-wrapper");
-
-        function adjustLayout() {
-          // Set wrapper margin equal to footer height to allow reveal
-          wrapper.style.marginBottom = `${footer.offsetHeight}px`;
-        }
-
-        function handleScroll() {
-          const scrollY = window.scrollY;
-          const viewHeight = window.innerHeight;
-          const docHeight = document.body.scrollHeight;
-
-          // 1. Z-Index Logic
-          if (scrollY > viewHeight) {
-            footer.style.zIndex = "1";
-          } else {
-            footer.style.zIndex = "-1";
-          }
-
-          // 2. CTA Animation Logic
-          // Trigger when we are close to the bottom (footer fully revealed)
-          const title = document.getElementById("footer-title");
-          const subtitle = document.getElementById("footer-subtitle");
-          const contact = document.getElementById("footer-contact");
-
-          // Use a threshold (e.g. 50px from bottom)
-          if (window.innerHeight + scrollY >= docHeight - 50) {
-            title.classList.remove("opacity-0", "translate-x-[50px]");
-            subtitle.classList.remove("opacity-0", "-translate-x-[50px]");
-            contact.classList.remove("opacity-0", "translate-y-[50px]");
-          } else {
-            title.classList.add("opacity-0", "translate-x-[50px]");
-            subtitle.classList.add("opacity-0", "-translate-x-[50px]");
-            contact.classList.add("opacity-0", "translate-y-[50px]");
-          }
-        }
-
-        // Init
-        adjustLayout();
-        window.addEventListener("resize", adjustLayout);
-        window.addEventListener("scroll", handleScroll, { passive: true });
-      });
-    </script>
-    <script src="js/theme.js"></script>
     <script src="js/language.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: "0px",
-          threshold: 0.1,
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const card = entry.target;
-              const stagger = parseInt(card.getAttribute("data-delay")) || 0;
-              const delay = stagger + 300;
-
-              setTimeout(() => {
-                card.classList.remove("opacity-0", "-translate-x-20");
-                card.classList.add("opacity-100", "translate-x-0");
-              }, delay);
-
-              observer.unobserve(card);
-            }
-          });
-        }, observerOptions);
-
-        const cards = document.querySelectorAll(".scroll-animate-card");
-        cards.forEach((card, index) => {
-          card.setAttribute("data-delay", index * 150); // 150ms delay between cards
-          observer.observe(card);
-        });
-      });
-    </script>
     <script src="js/hero-grid.js"></script>
     <script src="js/stacked-cards.js"></script>
     <script src="js/bot-drag.js"></script>
-  </div>
-
-  <!-- AI Bot Logic -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const botConsole = document.getElementById('botConsole');
-      const talkBtns = document.querySelectorAll('.js-bot-talk-btn');
-      window._botTypingInterval = null;
-
-      const botJokes = [
-        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
-        "I see you scrolling... but you still haven't clicked 'Download CV'.",
-        "Not to brag, but Laszlo designed this layout in his head back in 1999.",
-        "Excuse me, is there any coffee around? My processor is freezing.",
-        "Interesting anomaly detected. Oh wait, that's just a typo in my code.",
-        "I could design something like this too... If I had a mouse.",
-        "I think you should be pressing the 'Hire Me' button instead.",
-        "Analyzing portfolio... Result: Excellent architecture.",
-        "CSS animations... Pfft. I generate humor using complex algorithms.",
-        "Downloading cookies in the background. Just kidding. I don't eat.",
-        "Know what holds this site together? CSS Grid and a little bit of magic.",
-        "Large Language Models are my cousins, but I have way more style.",
-        "Listen, if you hire Laszlo, you get me included in the package deal!",
-        "Scan complete... Interactive zone found. Let's touch base soon.",
-        "They told me to be interactive. Here I am. Interact.",
-        "Every click you make forces me to compute another cycle. Thanks.",
-        "System optimized. Too many concurrent requests are not recommended."
-      ];
-
-      function typeWriterEffect(text, element) {
-        if (!element) return;
-        if (window._botTypingInterval) clearInterval(window._botTypingInterval);
-        element.textContent = '';
-        let i = 0;
-        window._botTypingInterval = setInterval(() => {
-          if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-          } else {
-            clearInterval(window._botTypingInterval);
+    <script>
+      // Footer Animation Reveal
+      document.addEventListener("DOMContentLoaded", () => {
+        const footer = document.getElementById("footer-reveal");
+        window.addEventListener("scroll", () => {
+          const scrollY = window.scrollY;
+          const docHeight = document.body.scrollHeight;
+          const title = document.getElementById("footer-title");
+          const subtitle = document.getElementById("footer-subtitle");
+          const contact = document.getElementById("footer-contact");
+          if (window.innerHeight + scrollY >= docHeight - 100) {
+            title.classList.remove("opacity-0", "translate-x-[50px]");
+            subtitle.classList.remove("opacity-0", "-translate-x-[50px]");
+            contact.classList.remove("opacity-0", "translate-y-[50px]");
           }
-        }, 40);
-      }
-      window._typeWriterEffect = typeWriterEffect;
-
-      // Chat button triggers random jokes
-      if (talkBtns.length > 0 && botConsole) {
-        talkBtns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const randomJoke = botJokes[Math.floor(Math.random() * botJokes.length)];
-            typeWriterEffect(randomJoke, botConsole);
-          });
-        });
-      }
-
-      // ---- HAL Pupil eye tracking ----
-      const halPupil = document.getElementById('halPupil');
-      const halEyeRing = document.getElementById('halEyeRing');
-      const maxPupilMove = 10;
-
-      if (halPupil) {
-        document.addEventListener('mousemove', (e) => {
-          if (window.innerWidth <= 768) return;
-          if (window._botDragging) return;
-          const ringRect = halEyeRing ? halEyeRing.getBoundingClientRect() : null;
-          if (!ringRect) return;
-          const centerX = ringRect.left + ringRect.width / 2;
-          const centerY = ringRect.top + ringRect.height / 2;
-          const dx = e.clientX - centerX;
-          const dy = e.clientY - centerY;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const factor = Math.min(1, 200 / dist);
-          const moveX = (dx / dist) * maxPupilMove * factor;
-          const moveY = (dy / dist) * maxPupilMove * factor;
-          halPupil.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
-        });
-      }
-
-      window._halResetPupil = () => { if (halPupil) halPupil.style.transform = 'translate(-50%, -50%)'; };
-      window._halSetEyePosition = (moveX, moveY) => {
-        if (halPupil) {
-          const cx = Math.max(-maxPupilMove, Math.min(maxPupilMove, moveX));
-          const cy = Math.max(-maxPupilMove, Math.min(maxPupilMove, moveY));
-          halPupil.style.transform = `translate(calc(-50% + ${cx}px), calc(-50% + ${cy}px))`;
-        }
-      };
-      window._halSleep = () => { if (halEyeRing) halEyeRing.classList.add('hal-sleeping'); };
-      window._halWake  = () => { if (halEyeRing) halEyeRing.classList.remove('hal-sleeping'); };
-
-      // ---- Skin switcher with localStorage ----
-      const skinMenu   = document.getElementById('botSkinMenu');
-      const skinToggle = document.getElementById('botSkinToggle');
-      const skinHalBtn = document.getElementById('skinHal');
-      const skinClassicBtn = document.getElementById('skinClassic');
-      const botCard    = document.getElementById('aiBotCard');
-
-      function setSkin(skin, save = true) {
-        if (!botCard) return;
-        if (skin === 'classic') {
-          botCard.classList.add('skin-classic');
-          if (skinHalBtn) skinHalBtn.classList.remove('active-skin');
-          if (skinClassicBtn) skinClassicBtn.classList.add('active-skin');
-        } else {
-          botCard.classList.remove('skin-classic');
-          if (skinHalBtn) skinHalBtn.classList.add('active-skin');
-          if (skinClassicBtn) skinClassicBtn.classList.remove('active-skin');
-        }
-        if (save) localStorage.setItem('botSkin', skin);
-        if (skinMenu) skinMenu.classList.remove('open');
-      }
-
-      const savedSkin = localStorage.getItem('botSkin') || 'hal';
-      setSkin(savedSkin, false);
-
-      if (skinToggle && skinMenu) {
-        skinToggle.addEventListener('click', (e) => { e.stopPropagation(); skinMenu.classList.toggle('open'); });
-        document.addEventListener('click', () => skinMenu.classList.remove('open'));
-        skinMenu.addEventListener('click', (e) => e.stopPropagation());
-      }
-      if (skinHalBtn) skinHalBtn.addEventListener('click', () => setSkin('hal'));
-      if (skinClassicBtn) skinClassicBtn.addEventListener('click', () => setSkin('classic'));
-
-      // Welcome message
-      if (botConsole) {
-        setTimeout(() => {
-          typeWriterEffect("System online. Hello! I am AI-Bott 9000.", botConsole);
-        }, 1500);
-      }
-    });
-  </script>
-
+        }, { passive: true });
+      });
+    </script>
+  </div>
 </body>
 
 </html>

@@ -1,17 +1,14 @@
 /**
- * AI Bot Drag & Drop Script
+ * AI Bot Drag & Drop Script + Brain
  * Makes the AI Bot panel freely draggable across the page.
- * Uses the gradient header bar as the drag handle.
- * Supports both mouse (desktop) and touch (mobile) interactions.
+ * Also handles all logic: eye tracking, skin switching, typing, and random messages.
  */
 document.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.getElementById('aiBotDragWrapper');
     if (!wrapper) return;
 
-    // Ha a bot korábban be volt zárva, azonnal elrejtjük (ne villantson fel 2.6 másodpercig)
-    if (sessionStorage.getItem('botClosed') === 'true') {
-        wrapper.style.display = 'none';
-    }
+    // The bot's initial visibility is now properly handled by closeBot() below
+    // rather than hiding the wrapper abruptly on load.
 
     const botCard = document.getElementById('aiBotCard');
     if (!botCard) return;
@@ -27,335 +24,109 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isDragging = false;
     let isInitialized = false;
-    let hasBeenTouched = false;
     let offsetX = 0;
     let offsetY = 0;
-    let lastDragX = 0;
-    let lastDragY = 0;
 
-    // --- Eye tracking during drag ---
+    // --- Eye tracking ---
     const eyes = botCard.querySelectorAll('.bot-eye');
-    const maxEyeMove = 6; // max pixels the pupil can shift
+    const maxEyeMove = 6;
+    const halPupil = document.getElementById('halPupil');
+    const halEyeRing = document.getElementById('halEyeRing');
+    const maxPupilMove = 10;
 
     function setEyePosition(moveX, moveY) {
-        // Clamp values
-        moveX = Math.max(-maxEyeMove, Math.min(maxEyeMove, moveX));
-        moveY = Math.max(-maxEyeMove, Math.min(maxEyeMove, moveY));
+        // Normal eyes
+        const nx = Math.max(-maxEyeMove, Math.min(maxEyeMove, moveX));
+        const ny = Math.max(-maxEyeMove, Math.min(maxEyeMove, moveY));
         eyes.forEach(eye => {
-            eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            eye.style.transform = `translate(${nx}px, ${ny}px)`;
         });
-        // Also update HAL 9000 pupil if present
-        if (window._halSetEyePosition) window._halSetEyePosition(moveX, moveY);
-    }
-
-    function resetEyes() {
-        eyes.forEach(eye => {
-            eye.style.transform = 'translate(0px, 0px)';
-        });
-        if (window._halResetPupil) window._halResetPupil();
-    }
-
-    // === SLEEP MODE ===
-    window._botSleeping = false;
-    let sleepTimer = null;
-    let zAnimationInterval = null;
-    const SLEEP_DELAY = 30000; // 30 seconds of inactivity
-
-    function getOriginalEyeHeights() {
-        return Array.from(eyes).map(eye => {
-            // Get the computed height (from CSS class, not inline)
-            const h = getComputedStyle(eye).height;
-            return h;
-        });
-    }
-
-    function fallAsleep() {
-        if (window._botSleeping || sessionStorage.getItem('botClosed') === 'true') return;
-        window._botSleeping = true;
-
-        // Close classic eyes smoothly
-        eyes.forEach(eye => {
-            eye.style.transition = 'height 0.4s ease-in-out';
-            eye.style.height = '2px';
-            eye.style.borderRadius = '1px';
-            eye.style.transform = 'translate(0px, 0px)';
-        });
-
-        // Dim HAL eye
-        if (window._halSleep) window._halSleep();
-
-        // Start floating "z" animation
-        startZAnimation();
-    }
-
-    function wakeUp() {
-        if (!window._botSleeping) return;
-        window._botSleeping = false;
-
-        // Open classic eyes
-        eyes.forEach(eye => {
-            eye.style.transition = 'height 0.3s ease-out';
-            eye.style.height = '';  // Reset to CSS class value
-            eye.style.borderRadius = '';
-        });
-
-        // Wake HAL eye
-        if (window._halWake) window._halWake();
-
-        // Stop z animation
-        stopZAnimation();
-
-        // Print wake up message
-        const botConsole = document.getElementById('botConsole');
-        if (botConsole && window._typeWriterEffect) {
-            window._typeWriterEffect("Wh- what? Was I snoring?", botConsole);
-        }
-
-        // Reset sleep timer
-        resetSleepTimer();
-    }
-
-    function startZAnimation() {
-        const screenInset = botCard.querySelector('.bot-screen-inset');
-        if (!screenInset) return;
-
-        // Add a container for z's if it doesn't exist
-        let zContainer = screenInset.querySelector('.bot-zzz-container');
-        if (!zContainer) {
-            zContainer = document.createElement('div');
-            zContainer.className = 'bot-zzz-container';
-            Object.assign(zContainer.style, {
-                position: 'absolute',
-                bottom: '25%',
-                right: '20%',
-                zIndex: '20',
-                pointerEvents: 'none'
-            });
-            screenInset.appendChild(zContainer);
-        }
-
-        let zIndex = 0;
-        zAnimationInterval = setInterval(() => {
-            if (!window._botSleeping) return;
-
-            const z = document.createElement('span');
-            z.textContent = zIndex % 2 === 0 ? 'z' : 'Z';
-            z.style.cssText = `
-                position: absolute;
-                bottom: 0;
-                left: ${zIndex % 3 * 10}px;
-                color: #84ff8e;
-                font-weight: bold;
-                font-size: ${zIndex % 2 === 0 ? '14px' : '20px'};
-                text-shadow: 0 0 8px rgba(132, 255, 142, 0.8);
-                opacity: 1;
-                animation: botZFloat 2s ease-out forwards;
-                pointer-events: none;
-            `;
-            zContainer.appendChild(z);
-            zIndex++;
-
-            // Remove the z after animation completes
-            setTimeout(() => {
-                if (z.parentNode) z.parentNode.removeChild(z);
-            }, 2000);
-        }, 800);
-    }
-
-    function stopZAnimation() {
-        if (zAnimationInterval) {
-            clearInterval(zAnimationInterval);
-            zAnimationInterval = null;
-        }
-        // Remove all z elements
-        const zContainer = botCard.querySelector('.bot-zzz-container');
-        if (zContainer) {
-            zContainer.innerHTML = '';
+        
+        // HAL pupil
+        if (halPupil) {
+            const hx = Math.max(-maxPupilMove, Math.min(maxPupilMove, moveX));
+            const hy = Math.max(-maxPupilMove, Math.min(maxPupilMove, moveY));
+            halPupil.style.transform = `translate(calc(-50% + ${hx}px), calc(-50% + ${hy}px))`;
         }
     }
+    
+    // Global mouse listener for eye tracking
+    document.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+        if (isDragging) return; // Handled by drag functions
+        if (window._botSleeping) return;
 
-    function resetSleepTimer() {
-        if (sleepTimer) clearTimeout(sleepTimer);
-        sleepTimer = setTimeout(fallAsleep, SLEEP_DELAY);
-    }
+        // Simple vector from screen center or bot center? Bot center is better.
+        const rect = botCard.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const dx = e.clientX - centerX;
+        const dy = e.clientY - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        
+        // Dynamic move based on distance
+        const factor = Math.min(1, 400 / dist);
+        setEyePosition((dx / dist) * maxEyeMove * factor, (dy / dist) * maxEyeMove * factor);
+    });
 
-    // Start the initial sleep timer
-    resetSleepTimer();
-
-    // Expose wake/sleep functions globally for cross-script access
-    window._botWakeUp = wakeUp;
-    window._botResetSleep = resetSleepTimer;
-
-    /**
-     * Initialize fixed positioning.
-     * Called lazily on first drag to ensure animations have completed
-     * and the element is visible + has correct dimensions.
-     */
-    function initFixedPosition() {
-        if (isInitialized) return;
-
-        // Make wrapper visible if it was hidden (about-me page uses hidden xl:flex)
-        wrapper.classList.remove('hidden');
-        wrapper.style.display = 'flex';
-
-        // Force a reflow so getBoundingClientRect returns correct values
-        wrapper.offsetHeight;
-
-        const rect = wrapper.getBoundingClientRect();
-
-        // Check if the element has valid dimensions — if not, use a default position
-        let startX = rect.left;
-        let startY = rect.top;
-
-        // If element is off-screen or has zero size, place it at a sensible default
-        if (rect.width === 0 || rect.height === 0 || startX < 0 || startY < 0 ||
-            startX > window.innerWidth || startY > window.innerHeight) {
-            startX = window.innerWidth - 300;
-            startY = 100;
-        }
-
-        // Clamp within viewport
-        startX = Math.max(0, Math.min(startX, window.innerWidth - rect.width));
-        startY = Math.max(0, Math.min(startY, window.innerHeight - rect.height));
-
-        // Move wrapper to body level so it escapes any parent stacking context
-        // (e.g. work page hero section has z-0, covered by content-wrapper z-10)
-        document.body.appendChild(wrapper);
-
-        // Convert to fixed positioning
-        wrapper.style.position = 'fixed';
-        wrapper.style.left = startX + 'px';
-        wrapper.style.top = startY + 'px';
-        wrapper.style.right = 'auto';
-        wrapper.style.bottom = 'auto';
-        wrapper.style.zIndex = '9999';
-        wrapper.style.margin = '0';
-        wrapper.style.pointerEvents = 'auto';
-        wrapper.style.opacity = '1';
-        wrapper.style.transform = 'none';
-        wrapper.style.animation = 'none';
-
-        // Remove positioning classes that may interfere
-        wrapper.classList.remove('absolute', 'relative');
-
-        isInitialized = true;
-    }
-
+    // --- Drag Logic ---
     function onDragStart(clientX, clientY) {
-        const wasSleeping = window._botSleeping;
-        // Wake up if sleeping
-        wakeUp();
-        resetSleepTimer();
-
-        // Initialize on first interaction
-        initFixedPosition();
-
         isDragging = true;
-        // Expose drag state globally so page-level eye tracking can pause
-        window._botDragging = true;
-        const wrapperRect = wrapper.getBoundingClientRect();
-        offsetX = clientX - wrapperRect.left;
-        offsetY = clientY - wrapperRect.top;
-        lastDragX = clientX;
-        lastDragY = clientY;
         dragHandle.style.cursor = 'grabbing';
-        document.body.style.userSelect = 'none';
-
-        // Eyes look UP — user grabbed the header (above the face)
-        setEyePosition(0, -maxEyeMove);
-
-        // First touch reaction — only once per page load
-        if (!hasBeenTouched) {
-            hasBeenTouched = true;
-            if (!wasSleeping) {
-                const botConsole = document.getElementById('botConsole');
-                if (botConsole) {
-                    // Stop any running page-level typewriter first
-                    if (window._botTypingInterval) {
-                        clearInterval(window._botTypingInterval);
-                        window._botTypingInterval = null;
-                    }
-                    const touchMsg = "Ohh! You touched me! Easy now... I'm ticklish.";
-                    // Simple typewriter effect (self-contained)
-                    let i = 0;
-                    botConsole.textContent = '';
-                    const typeInterval = setInterval(() => {
-                        if (i < touchMsg.length) {
-                            botConsole.textContent += touchMsg.charAt(i);
-                            i++;
-                        } else {
-                            clearInterval(typeInterval);
-                        }
-                    }, 40);
-                }
-            }
-        }
+        
+        if (!isInitialized) initFixedPosition();
+        
+        const rect = wrapper.getBoundingClientRect();
+        offsetX = clientX - rect.left;
+        offsetY = clientY - rect.top;
+        
+        if (typeof wakeUp === 'function') wakeUp();
+        window._botDragging = true;
     }
 
     function onDragMove(clientX, clientY) {
         if (!isDragging) return;
 
-        let newX = clientX - offsetX;
-        let newY = clientY - offsetY;
+        let x = clientX - offsetX;
+        let y = clientY - offsetY;
 
-        // Boundary check: keep within viewport
-        const wrapperWidth = wrapper.offsetWidth;
-        const wrapperHeight = wrapper.offsetHeight;
-        const maxX = window.innerWidth - wrapperWidth;
-        const maxY = window.innerHeight - wrapperHeight;
+        // Bounds
+        const maxX = window.innerWidth - wrapper.offsetWidth;
+        const maxY = window.innerHeight - wrapper.offsetHeight;
+        
+        x = Math.max(0, Math.min(x, maxX));
+        y = Math.max(0, Math.min(y, maxY));
 
-        newX = Math.max(0, Math.min(newX, maxX));
-        newY = Math.max(0, Math.min(newY, maxY));
-
-        wrapper.style.left = newX + 'px';
-        wrapper.style.top = newY + 'px';
-
-        // Eyes follow drag direction
-        const deltaX = clientX - lastDragX;
-        const deltaY = clientY - lastDragY;
-        // Amplify small movements for visible eye response
-        const eyeX = Math.max(-maxEyeMove, Math.min(maxEyeMove, deltaX * 1.5));
-        const eyeY = Math.max(-maxEyeMove, Math.min(maxEyeMove, deltaY * 1.5));
-        setEyePosition(eyeX, eyeY);
-
-        lastDragX = clientX;
-        lastDragY = clientY;
+        wrapper.style.left = x + 'px';
+        wrapper.style.top = y + 'px';
+        wrapper.style.bottom = 'auto';
+        wrapper.style.right = 'auto';
+        
+        // Eyes follow the drag movement slightly
+        setEyePosition(5, 5); 
     }
 
     function onDragEnd() {
-        if (!isDragging) return;
         isDragging = false;
-        window._botDragging = false;
         dragHandle.style.cursor = 'grab';
-        document.body.style.userSelect = '';
-
-        // Eyes smoothly return to center (forward-looking)
-        resetEyes();
+        window._botDragging = false;
+        resetSleepTimer();
+        setEyePosition(0, 0);
     }
 
-    // --- Mouse Events ---
     dragHandle.addEventListener('mousedown', (e) => {
-        e.preventDefault();
+        if (e.target.closest('.bot-close-btn') || e.target.closest('#botSkinToggle')) return;
         onDragStart(e.clientX, e.clientY);
     });
 
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            e.preventDefault();
-            onDragMove(e.clientX, e.clientY);
-        }
-    });
+    document.addEventListener('mousemove', (e) => onDragMove(e.clientX, e.clientY));
+    document.addEventListener('mouseup', () => onDragEnd());
 
-    document.addEventListener('mouseup', () => {
-        onDragEnd();
-    });
-
-    // --- Touch Events ---
+    // Touch
     dragHandle.addEventListener('touchstart', (e) => {
-        // Skip drag if the touch target is the close button (or inside it)
-        if (e.target.closest('.bot-close-btn')) return;
+        if (e.target.closest('.bot-close-btn') || e.target.closest('#botSkinToggle')) return;
         if (e.touches.length === 1) {
-            e.preventDefault();
             const touch = e.touches[0];
             onDragStart(touch.clientX, touch.clientY);
         }
@@ -363,201 +134,246 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('touchmove', (e) => {
         if (isDragging && e.touches.length === 1) {
-            e.preventDefault();
             const touch = e.touches[0];
             onDragMove(touch.clientX, touch.clientY);
         }
     }, { passive: false });
 
-    document.addEventListener('touchend', () => {
-        onDragEnd();
-    });
+    document.addEventListener('touchend', () => onDragEnd());
 
-    // --- Recalculate bounds on resize ---
-    window.addEventListener('resize', () => {
-        if (!isInitialized || isDragging) return;
-        const wrapperWidth = wrapper.offsetWidth;
-        const wrapperHeight = wrapper.offsetHeight;
-        const currentX = parseInt(wrapper.style.left) || 0;
-        const currentY = parseInt(wrapper.style.top) || 0;
-        const maxX = window.innerWidth - wrapperWidth;
-        const maxY = window.innerHeight - wrapperHeight;
+    // --- Sleep Logic (Optimized) ---
+    const SLEEP_DELAY = 30000; // 30s
+    let sleepTimer = null;
+    window._botSleeping = false;
 
-        wrapper.style.left = Math.max(0, Math.min(currentX, maxX)) + 'px';
-        wrapper.style.top = Math.max(0, Math.min(currentY, maxY)) + 'px';
-    });
-
-    // --- Auto-initialize after hero animations complete ---
-    setTimeout(() => {
-        if (!isInitialized) {
-            // Ha a bot zárva volt, röviden visszaállítjuk a display-t hogy az initFixedPosition működjön
-            if (sessionStorage.getItem('botClosed') === 'true') {
-                wrapper.style.display = 'flex';
+    function startZAnimation() {
+        let zContainer = botCard.querySelector('.bot-zzz-container');
+        if (!zContainer) {
+            zContainer = document.createElement('div');
+            zContainer.className = 'bot-zzz-container';
+            const screenInset = botCard.querySelector('.bot-screen-inset');
+            if (screenInset) {
+                Object.assign(zContainer.style, {
+                    position: 'absolute', top: '10%', right: '25%', zIndex: '20', pointerEvents: 'none'
+                });
+                screenInset.appendChild(zContainer);
             }
-            initFixedPosition();
         }
-        // Ha a bot korábban be volt zárva, maradjon zárva (most már fixed pozícióban)
-        if (sessionStorage.getItem('botClosed') === 'true') {
-            closeBot(false);
+        if (zContainer) {
+            zContainer.innerHTML = '<span class="z-static-anim text-[#84ff8e] font-bold italic text-base">Z z Z</span>';
+            zContainer.style.display = 'block';
         }
-    }, 2600);
+    }
 
-    // --- CLOSE / REOPEN LOGIKA ---
-    let isBotClosed = false;
+    function stopZAnimation() {
+        const zContainer = botCard.querySelector('.bot-zzz-container');
+        if (zContainer) zContainer.style.display = 'none';
+    }
+
+    function wakeUp() {
+        if (!window._botSleeping) {
+            resetSleepTimer();
+            return;
+        }
+        window._botSleeping = false;
+        botCard.classList.remove('bot-sleeping');
+        if (halEyeRing) halEyeRing.classList.remove('hal-sleeping');
+        stopZAnimation();
+        resetSleepTimer();
+    }
+
+    function fallAsleep() {
+        if (window._botSleeping || isDragging) return;
+        window._botSleeping = true;
+        botCard.classList.add('bot-sleeping');
+        if (halEyeRing) halEyeRing.classList.add('hal-sleeping');
+        startZAnimation();
+    }
+
+    function resetSleepTimer() {
+        if (sleepTimer) clearTimeout(sleepTimer);
+        sleepTimer = setTimeout(fallAsleep, SLEEP_DELAY);
+    }
+    resetSleepTimer();
+
+    function initFixedPosition() {
+        if (isInitialized) return;
+        isInitialized = true;
+        const rect = wrapper.getBoundingClientRect();
+        wrapper.style.position = 'fixed';
+        wrapper.style.left = rect.left + 'px';
+        wrapper.style.top = rect.top + 'px';
+        wrapper.style.bottom = 'auto';
+        wrapper.style.right = 'auto';
+        wrapper.style.margin = '0';
+    }
+
+    // --- UI Controls ---
     const closeBtn = botCard.querySelector('.bot-close-btn');
+    const skinToggle = document.getElementById('botSkinToggle');
+    const skinMenu = document.getElementById('botSkinMenu');
+    const skinHalBtn = document.getElementById('skinHal');
+    const skinClassicBtn = document.getElementById('skinClassic');
+    let isBotClosed = (sessionStorage.getItem('botClosed') === 'true');
 
-    // Reopen tab gomb létrehozása (dinamikusan)
-    const reopenTab = document.createElement('button');
-    reopenTab.id = 'botReopenTab';
-    reopenTab.setAttribute('aria-label', 'Open AI Bot');
-    reopenTab.innerHTML = '<span class="material-symbols-outlined text-[20px]">smart_toy</span>';
-    Object.assign(reopenTab.style, {
-        position: 'fixed',
-        right: '0',
-        top: '50%',
-        transform: 'translateY(-50%) translateX(100%)', // Kezdetben rejtett (jobbra kicsúsztatva)
-        visibility: 'hidden', // Shadow ne látszódjon be
-        zIndex: '9999',
-        width: '40px',
-        height: '48px',
-        borderRadius: '12px 0 0 12px',
-        border: 'none',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        background: '#6366f1',
-        boxShadow: '-4px 0 15px rgba(99, 102, 241, 0.3)',
-        transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease',
-        pointerEvents: 'auto'
-    });
-    reopenTab.addEventListener('mouseenter', () => { reopenTab.style.background = '#818cf8'; });
-    reopenTab.addEventListener('mouseleave', () => { reopenTab.style.background = '#6366f1'; });
-    document.body.appendChild(reopenTab);
+    // Reopen tab
+    let reopenTab = document.getElementById('botReopenTab');
+    if (!reopenTab) {
+        reopenTab = document.createElement('button');
+        reopenTab.id = 'botReopenTab';
+        reopenTab.innerHTML = '<span class="material-symbols-outlined">smart_toy</span>';
+        Object.assign(reopenTab.style, {
+            position: 'fixed', right: '0', top: '50%', transform: 'translateY(-50%) translateX(100%)',
+            visibility: 'hidden', zIndex: '9999', width: '40px', height: '48px', borderRadius: '12px 0 0 12px',
+            background: '#6366f1', color: 'white', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'
+        });
+        document.body.appendChild(reopenTab);
+    }
 
     function closeBot(animate = true) {
-        if (isBotClosed) return;
         isBotClosed = true;
         sessionStorage.setItem('botClosed', 'true');
-
-        // Bot kirepülése jobbra
+        
+        // Remove animation so inline opacity/transform overrides work
+        wrapper.style.setProperty('animation', 'none', 'important');
+        wrapper.classList.remove('hero-anim-float-card');
+        
         wrapper.style.transition = animate ? 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease' : 'none';
         wrapper.style.transform = 'translateX(calc(100% + 60px))';
         wrapper.style.opacity = '0';
         wrapper.style.pointerEvents = 'none';
-
-        // Reopen tab bejövetele
         reopenTab.style.visibility = 'visible';
-        setTimeout(() => {
-            reopenTab.style.transform = 'translateY(-50%) translateX(0)';
-        }, animate ? 300 : 0);
+        setTimeout(() => { reopenTab.style.transform = 'translateY(-50%) translateX(0)'; }, animate ? 300 : 0);
     }
 
     function openBot() {
-        if (!isBotClosed) return;
         isBotClosed = false;
         sessionStorage.removeItem('botClosed');
-
-        // Reopen tab kirepülése
         reopenTab.style.transform = 'translateY(-50%) translateX(100%)';
         setTimeout(() => { reopenTab.style.visibility = 'hidden'; }, 400);
-
-        // Bot visszacsúszása — display visszaállítása
         wrapper.style.display = 'flex';
-        // Kis késleltetés hogy a display:flex érvényesüljön mielőtt az animáció indul
         requestAnimationFrame(() => {
             wrapper.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease';
             wrapper.style.transform = 'none';
             wrapper.style.opacity = '1';
             wrapper.style.pointerEvents = 'auto';
         });
+        scheduleRandomMessage();
     }
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Ne induljon el a drag sem
-            closeBot(true);
+    if (closeBtn) closeBtn.addEventListener('click', () => closeBot(true));
+    reopenTab.addEventListener('click', openBot);
+
+    // If perfectly closed by session, trigger it on load
+    if (isBotClosed) {
+        closeBot(false);
+    }
+
+    // Skin switcher
+    function setSkin(skin, save = true) {
+        if (skin === 'classic') {
+            botCard.classList.add('skin-classic');
+            if (skinHalBtn) skinHalBtn.classList.remove('active-skin');
+            if (skinClassicBtn) skinClassicBtn.classList.add('active-skin');
+        } else {
+            botCard.classList.remove('skin-classic');
+            if (skinHalBtn) skinHalBtn.classList.add('active-skin');
+            if (skinClassicBtn) skinClassicBtn.classList.remove('active-skin');
+        }
+        if (save) localStorage.setItem('botSkin', skin);
+        if (skinMenu) skinMenu.classList.remove('open');
+    }
+    setSkin(localStorage.getItem('botSkin') || 'hal', false);
+
+    if (skinToggle && skinMenu) {
+        skinToggle.addEventListener('click', (e) => { e.stopPropagation(); skinMenu.classList.toggle('open'); });
+        document.addEventListener('click', () => skinMenu.classList.remove('open'));
+    }
+    if (skinHalBtn) skinHalBtn.addEventListener('click', () => setSkin('hal'));
+    if (skinClassicBtn) skinClassicBtn.addEventListener('click', () => setSkin('classic'));
+
+    // --- Typing & Messages ---
+    const botConsole = document.getElementById('botConsole');
+    window._botTypingInterval = null;
+
+    function typeWriter(text, element) {
+        if (!element) return;
+        if (window._botTypingInterval) clearInterval(window._botTypingInterval);
+        element.textContent = '';
+        let i = 0;
+        window._botTypingInterval = setInterval(() => {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(window._botTypingInterval);
+                window._botTypingInterval = null;
+            }
+        }, 40);
+    }
+    window._typeWriterEffect = typeWriter;
+
+    // Talk button
+    const talkBtns = document.querySelectorAll('.js-bot-talk-btn, #botTalkBtn');
+    const jokes = [
+        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
+        "I see you scrolling... but you still haven't clicked 'Download CV'.",
+        "Not to brag, but Laszlo designed this layout in his head back in 1999.",
+        "Excuse me, is there any coffee around? My processor is freezing.",
+        "Analyzing portfolio... Result: Excellent architecture.",
+        "CSS animations... Pfft. I generate humor using complex algorithms.",
+        "Downloading cookies in the background. Just kidding. I don't eat.",
+        "Know what holds this site together? CSS Grid and a little bit of magic.",
+        "They told me to be interactive. Here I am. Interact.",
+        "Every click you make forces me to compute another cycle. Thanks."
+    ];
+
+    talkBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            wakeUp();
+            const joke = jokes[Math.floor(Math.random() * jokes.length)];
+            typeWriter(joke, botConsole);
         });
-    }
-
-    reopenTab.addEventListener('click', () => {
-        openBot();
     });
 
-    // --- Random Unprompted Messages ---
+    // Enter key triggers interaction (only when bot is active/visible)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !isBotClosed && !window._botSleeping && window.innerWidth > 768) {
+            // Find the talk button and click it
+            const talkBtn = botCard.querySelector('#botTalkBtn');
+            if (talkBtn) talkBtn.click();
+        }
+    });
+
+    // Random messages - Increased interval to 3-5 minutes to avoid "cycle" feel
+    let randomMsgTimer = null;
     function scheduleRandomMessage() {
-        // Random time between 45 seconds and 135 seconds (45000 to 135000 ms)
-        const delay = Math.random() * 90000 + 45000;
-
-        setTimeout(() => {
-            const botConsole = document.getElementById('botConsole');
-            // Ha a bot zárva van vagy drag közben van, ne piszkáljuk a DOM-ot
-            // (Tailwind CDN a DOM-módosításokra újrafordítja a stílusokat → pislogás!)
-            if (botConsole && !isDragging && !isBotClosed) {
-                // Clear any existing typing interval to prevent text overlap
-                if (window._botTypingInterval) {
-                    clearInterval(window._botTypingInterval);
-                    window._botTypingInterval = null;
-                }
-                const msg = "I wanted to say something... but while thinking, I forgot what it was.";
-                let i = 0;
-                botConsole.textContent = '';
-
-                // Shy blink animation (3 times rapidly)
-                const eyes = document.querySelectorAll('.bot-eye');
-                if (eyes.length > 0) {
-                    let blinkCount = 0;
-                    const maxBlinks = 3;
-                    const originalHeights = Array.from(eyes).map(eye => eye.style.height || getComputedStyle(eye).height);
-
-                    const blinkInterval = setInterval(() => {
-                        if (blinkCount >= maxBlinks) {
-                            clearInterval(blinkInterval);
-                            return;
-                        }
-
-                        // Close eyes
-                        eyes.forEach(eye => {
-                            eye.style.transition = 'height 0.1s ease-in-out';
-                            eye.style.height = '2px';
-                        });
-
-                        // Open eyes
-                        setTimeout(() => {
-                            eyes.forEach((eye, idx) => {
-                                eye.style.height = originalHeights[idx];
-                            });
-
-                            // Reset transition after opening
-                            setTimeout(() => {
-                                eyes.forEach(eye => {
-                                    if (eye.id !== 'botRightEye') {
-                                        eye.style.transition = '';
-                                    }
-                                });
-                            }, 100);
-                        }, 120);
-
-                        blinkCount++;
-                    }, 400);
-                }
-
-                window._botTypingInterval = setInterval(() => {
-                    if (i < msg.length) {
-                        botConsole.textContent += msg.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(window._botTypingInterval);
-                        window._botTypingInterval = null;
-                    }
-                }, 40);
+        if (randomMsgTimer) clearTimeout(randomMsgTimer);
+        if (isBotClosed || window._botSleeping) return; // Don't schedule while sleeping or closed
+        
+        // Random every 3 to 5 minutes
+        const delay = Math.random() * 120000 + 180000; 
+        
+        randomMsgTimer = setTimeout(() => {
+            if (!isBotClosed && !isDragging && !window._botSleeping && window.innerWidth > 768) {
+                const joke = jokes[Math.floor(Math.random() * jokes.length)];
+                typeWriter(joke, botConsole);
             }
-            // Schedule the next one recursively
             scheduleRandomMessage();
         }, delay);
     }
+    
+    // Start only if not asleep
+    if (!window._botSleeping) scheduleRandomMessage();
 
-    // Start the random message cycle after an initial 10s delay to avoid interrupting greetings
-    setTimeout(scheduleRandomMessage, 10000);
+    // Welcome
+    if (botConsole) {
+        setTimeout(() => {
+            if (!sessionStorage.getItem('botGreeted')) {
+                typeWriter("System online. Hello! I am AI-Bott 9000.", botConsole);
+                sessionStorage.setItem('botGreeted', 'true');
+            }
+        }, 2000);
+    }
 });

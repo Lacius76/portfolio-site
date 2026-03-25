@@ -184,9 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Kezdeti hullám: CSAK az enyhe, lapos ambient típus (nem a 3D kocka-emelő, mert az pislogást okoz)
-    setTimeout(() => triggerInitialWave(true), 1000);
+    // ELTÁVOLÍTVA: Ne legyen automatikus hullám betöltéskor, hogy ne zavarja a felhasználót
+    // setTimeout(() => triggerInitialWave(true), 1000);
 
     // Automatikus, időnkénti lágy hullámzás beállítása (10 másodpercenként)
+    // Ez CSAK a lapos színváltó ("ambient") hullám, nem okoz performancia-problémát.
+
     // Ez CSAK a lapos színváltó ("ambient") hullám, nem okoz performancia-problémát.
     let ambientWaveTimer;
     function resetAmbientWave() {
@@ -207,92 +210,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     resetAmbientWave();
 
-    // AI Bot Logika (Szemkövetés és Gépelés)
-    const botCard = document.getElementById('aiBotCard');
-    const botConsole = document.getElementById('botConsole');
-    const matrixProgress = document.getElementById('matrixProgressBar');
+    // --- RADAR BUTTON: Wave only ---
     const radarBtnContainer = document.getElementById('hgReplayBtn');
     const radarIcon = document.querySelector('#hgReplayBtn .material-symbols-outlined');
+    let isRadarScanning = false;
     let currentRotation = 0;
 
-    let buttonTimeout1;
-    let buttonTimeout2;
-    let isRadarScanning = false;
-    window._botTypingInterval = null;
-
-    const botJokes = [
-        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
-        "I see you scrolling... but you still haven't clicked 'Download CV'.",
-        "You pressed the radar. Good job. What did it do? Oh, right, it turned green.",
-        "Not to brag, but Laszlo designed this layout in his head back in 1999.",
-        "Excuse me, is there any coffee around? My processor is freezing.",
-        "Interesting anomaly detected. Oh wait, that's just a typo in my code.",
-        "I could design something like this too... If I had a mouse.",
-        "Does that green radar use a lot of power? I'm starting to lag.",
-        "I think you should be pressing the 'Hire Me' button instead of the radar.",
-        "Analyzing portfolio... Result: Excellent architecture.",
-        "CSS animations... Pfft. I generate humor using complex algorithms.",
-        "Downloading cookies in the background. Just kidding. I don't eat.",
-        "Know what holds this site together? CSS Grid and a little bit of magic.",
-        "Large Language Models are my cousins, but I have way more style.",
-        "Listen, if you hire Laszlo, you get me included in the package deal!",
-        "This purple wave is very smoothing. Too bad I have no feelings.",
-        "Scan complete... Interactive zone found. Let's touch base soon.",
-        "They told me to be interactive. Here I am. Interact.",
-        "Every click you make forces me to compute another cycle. Thanks.",
-        "System optimized. Too many concurrent requests are not recommended."
-    ];
-
-    function typeWriterEffect(text, element) {
-        if (window._botTypingInterval) clearInterval(window._botTypingInterval);
-        element.textContent = '';
-        let i = 0;
-        window._botTypingInterval = setInterval(() => {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(window._botTypingInterval);
-            }
-        }, 40); // Gépelési sebesség (ms)
-    }
-    window._typeWriterEffect = typeWriterEffect;
-
-    // Szemkövetés (Egér követése)
-    const eyes = document.querySelectorAll('.bot-eye');
-    const eyeContainer = document.getElementById('botEyesContainer');
-
-    if (eyes.length > 0 && eyeContainer) {
-        document.addEventListener('mousemove', (e) => {
-            // Csak akkor mozgassa a szemet, ha asztali gépen vagyunk
-            if (window.innerWidth <= 768) return;
-            // Drag közben a bot-drag.js irányítja a szemeket
-            if (window._botDragging) return;
-            // Ha alszik, nem követi a kurzort
-            if (window._botSleeping) return;
-
-            const rect = eyeContainer.getBoundingClientRect();
-            const containerCenterX = rect.left + rect.width / 2;
-            const containerCenterY = rect.top + rect.height / 2;
-
-            // Limitáljuk a mozgást a valószerűség miatt, max 6 pixel elmozdulás
-            const moveX = (e.clientX - containerCenterX) / window.innerWidth * 12;
-            const moveY = (e.clientY - containerCenterY) / window.innerHeight * 12;
-
-            eyes.forEach(eye => {
-                eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
-            });
-        });
-    }
-
-    // --- RADAR BUTTON: Wave only ---
     if (radarBtnContainer) {
         radarBtnContainer.addEventListener('click', () => {
             if (isRadarScanning) return;
             isRadarScanning = true;
-
-            if (buttonTimeout1) clearTimeout(buttonTimeout1);
-            if (buttonTimeout2) clearTimeout(buttonTimeout2);
 
             // Hullám indítása
             triggerInitialWave();
@@ -310,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Analízis vége
-            buttonTimeout2 = setTimeout(() => {
+            setTimeout(() => {
                 isRadarScanning = false;
 
                 if (radarBtnContainer) {
@@ -320,91 +247,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 2600);
         });
-    }
-
-    // --- TALK BUTTON: Bot speaks ---
-    const botTalkBtn = document.getElementById('botTalkBtn');
-    if (botTalkBtn && botConsole) {
-        botTalkBtn.addEventListener('click', () => {
-            const wasSleeping = window._botSleeping;
-
-            // Wake up if sleeping
-            if (window._botSleeping && typeof window._botWakeUp === 'function') {
-                window._botWakeUp();
-            }
-            // Reset sleep timer on interaction
-            if (typeof window._botResetSleep === 'function') {
-                window._botResetSleep();
-            }
-
-            if (!wasSleeping) {
-                // Véletlenszerű poén generálás és gépelés
-                const randomJoke = botJokes[Math.floor(Math.random() * botJokes.length)];
-                typeWriterEffect(randomJoke, botConsole);
-
-                // Easter Egg Animációk (Kacsintás és Mosoly)
-                const botRightEye = document.getElementById('botRightEye');
-                const botMouthMiddle = document.getElementById('botMouthMiddle');
-
-                // Setup / Reset Arc
-                if (botRightEye && botMouthMiddle) {
-                    botRightEye.classList.remove('h-1.5');
-                    botRightEye.classList.add('h-7');
-                    botMouthMiddle.style.transform = 'translateY(0px)';
-                }
-
-                if (randomJoke.includes("Interesting anomaly")) {
-                    setTimeout(() => {
-                        if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(4px) scaleY(1.2)';
-                        setTimeout(() => {
-                            if (botRightEye) {
-                                botRightEye.classList.remove('h-7');
-                                botRightEye.classList.add('h-1.5');
-                                setTimeout(() => {
-                                    botRightEye.classList.remove('h-1.5');
-                                    botRightEye.classList.add('h-7');
-                                }, 200);
-                            }
-                        }, 500);
-                        setTimeout(() => {
-                            if (botMouthMiddle) botMouthMiddle.style.transform = 'translateY(0px)';
-                        }, 4000);
-                    }, 1500);
-                }
-            }
-        });
-    }
-
-    // --- AUTOMATIC HOME PAGE GREETING ---
-    if (botConsole) {
-        setTimeout(() => {
-            const hasVisited = sessionStorage.getItem('visitedIndex');
-            let welcomeMsg = "";
-
-            if (!hasVisited) {
-                welcomeMsg = "Oh, I'm glad you found your way here! I've been waiting for you for a week 😉";
-                sessionStorage.setItem('visitedIndex', 'true');
-
-                // Wink animation shortly after starting to type
-                setTimeout(() => {
-                    const rightEye = document.getElementById('botRightEye');
-                    if (rightEye) {
-                        const originalHeight = rightEye.style.height || getComputedStyle(rightEye).height;
-                        rightEye.style.transition = 'height 0.15s ease-in-out';
-                        rightEye.style.height = '2px';
-                        setTimeout(() => {
-                            rightEye.style.height = originalHeight;
-                            setTimeout(() => {
-                                rightEye.style.transition = 'all 0.3s'; // reset to default transition
-                            }, 150);
-                        }, 200);
-                    }
-                }, 1000);
-            } else {
-                welcomeMsg = "Wait, are we back here? I'm getting dizzy from all this clicking.";
-            }
-
-            typeWriterEffect(welcomeMsg, botConsole);
-        }, 1500);
     }
 });

@@ -119,6 +119,27 @@
     }
 }
 
+/* AI-Bot Sleep Animation (Optimized CSS-only) */
+@keyframes botZFloat {
+    0% {
+        transform: translate(0, 0) scale(0.8);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(15px, -35px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+.z-static-anim {
+    display: inline-block;
+    animation: botZFloat 2.5s ease-in-out infinite;
+    text-shadow: 0 0 8px rgba(132, 255, 142, 0.6);
+}
+
 
 /* --- Animation Classes --- */
 
