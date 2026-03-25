@@ -44,12 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
         eyes.forEach(eye => {
             eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
+        // Also update HAL 9000 pupil if present
+        if (window._halSetEyePosition) window._halSetEyePosition(moveX, moveY);
     }
 
     function resetEyes() {
         eyes.forEach(eye => {
             eye.style.transform = 'translate(0px, 0px)';
         });
+        if (window._halResetPupil) window._halResetPupil();
     }
 
     // === SLEEP MODE ===
@@ -70,13 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window._botSleeping || sessionStorage.getItem('botClosed') === 'true') return;
         window._botSleeping = true;
 
-        // Close eyes smoothly
+        // Close classic eyes smoothly
         eyes.forEach(eye => {
             eye.style.transition = 'height 0.4s ease-in-out';
             eye.style.height = '2px';
             eye.style.borderRadius = '1px';
-            eye.style.transform = 'translate(0px, 0px)'; // Reset eye position
+            eye.style.transform = 'translate(0px, 0px)';
         });
+
+        // Dim HAL eye
+        if (window._halSleep) window._halSleep();
 
         // Start floating "z" animation
         startZAnimation();
@@ -86,12 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!window._botSleeping) return;
         window._botSleeping = false;
 
-        // Open eyes
+        // Open classic eyes
         eyes.forEach(eye => {
             eye.style.transition = 'height 0.3s ease-out';
             eye.style.height = '';  // Reset to CSS class value
             eye.style.borderRadius = '';
         });
+
+        // Wake HAL eye
+        if (window._halWake) window._halWake();
 
         // Stop z animation
         stopZAnimation();
