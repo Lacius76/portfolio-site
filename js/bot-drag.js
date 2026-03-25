@@ -4,6 +4,104 @@
  * Also handles all logic: eye tracking, skin switching, typing, and random messages.
  */
 document.addEventListener('DOMContentLoaded', () => {
+    // --- CENTRALIZED BOT INJECTION ---
+    const botHTML = `
+    <div id="aiBotDragWrapper"
+      class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[150] flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
+
+      <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md opacity-100 transition-all duration-500">
+
+        <!-- Skin Dropdown -->
+        <div id="botSkinMenu" class="bot-skin-menu">
+          <button id="skinHal" class="active-skin">◉ AI-Bot 9000</button>
+          <button id="skinClassic">◎ Classic</button>
+        </div>
+
+        <!-- TOOLBAR / Drag Area -->
+        <div class="bot-header-area group/handle">
+          <div class="bot-header-field">
+            <div class="bot-drag-handle-indicator" title="Drag to move">
+              <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+            </div>
+            
+            <button id="botSkinToggle" class="bot-btn-3d" aria-label="Change Skin">
+              <span class="material-symbols-outlined text-[16px]">menu</span>
+            </button>
+            
+            <div class="bot-toolbar-spacer"></div>
+            <span class="bot-title-text" data-i18n="bot.title">AI BOTT</span>
+            
+            <button class="bot-close-btn bot-btn-3d" aria-label="Close Bot">
+              <span class="material-symbols-outlined text-[16px]">close</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Name Banner -->
+        <div class="bot-name-banner">
+          <span class="name-part">AI-Bot</span>
+          <span class="number-part">9000</span>
+        </div>
+
+        <!-- HAL Eye Area -->
+        <div class="bot-eye-area">
+          <div id="halEyeRing" class="hal-eye-ring">
+            <div class="hal-inner-ring">
+              <div class="hal-eye-lens">
+                <div class="hal-eye-iris">
+                  <div id="halPupil" class="hal-pupil"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bot-screen-inset" style="display:none;"></div>
+        </div>
+
+        <!-- OLD CLASSIC FACE CONTAINER (hidden in HAL) -->
+        <div id="classicFaceArea" class="classic-face-container">
+            <div class="bot-screen-inset-classic">
+                <div id="botEyesContainer" class="flex justify-center gap-6 mb-4">
+                    <div class="bot-eye bot-eyes-glow" style="width:28px;height:28px;"></div>
+                    <div id="botRightEye" class="bot-eye bot-eyes-glow transition-all duration-300" style="width:28px;height:28px;"></div>
+                </div>
+                <div class="flex justify-center gap-1.5 items-center">
+                    <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
+                    <div id="botMouthMiddle" class="bot-mouth-el" style="width:40px;height:10px;"></div>
+                    <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="bot-separator-line"></div>
+
+        <!-- Console Area -->
+        <div class="bot-bottom-area">
+          <div class="bot-screen-container w-full">
+            <div class="bot-console-inset px-3 py-2 relative">
+              <div class="h-full pb-6">
+                <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
+                <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+              </div>
+              <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent hover:scale-110 active:scale-95 transition-all border-none cursor-pointer z-50 opacity-80 hover:opacity-100 js-bot-talk-btn" style="right: 4px; bottom: 3px; color: #28a530;" title="Generate Response (Enter)">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
+              </button>
+            </div>
+          </div>
+          <button id="botTalkBtnClassic" class="bot-btn-3d js-bot-talk-btn flex-shrink-0" style="display:none;" aria-label="Open Chat">
+              <span class="material-symbols-outlined text-[18px]">chat</span>
+          </button>
+        </div>
+
+      </div><!-- end aiBotCard -->
+    </div>`;
+
+    const injectionPoint = document.getElementById('ai-bot-injection-point');
+    if (injectionPoint) {
+        injectionPoint.innerHTML = botHTML;
+    }
+
+
     const wrapper = document.getElementById('aiBotDragWrapper');
     if (!wrapper) return;
 
@@ -41,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eyes.forEach(eye => {
             eye.style.transform = `translate(${nx}px, ${ny}px)`;
         });
-        
+
         // HAL pupil
         if (halPupil) {
             const hx = Math.max(-maxPupilMove, Math.min(maxPupilMove, moveX));
@@ -49,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             halPupil.style.transform = `translate(calc(-50% + ${hx}px), calc(-50% + ${hy}px))`;
         }
     }
-    
+
     // Global mouse listener for eye tracking
     document.addEventListener('mousemove', (e) => {
         if (window.innerWidth <= 768) return;
@@ -60,11 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = botCard.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         const dx = e.clientX - centerX;
         const dy = e.clientY - centerY;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        
+
         // Dynamic move based on distance
         const factor = Math.min(1, 400 / dist);
         setEyePosition((dx / dist) * maxEyeMove * factor, (dy / dist) * maxEyeMove * factor);
@@ -74,13 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function onDragStart(clientX, clientY) {
         isDragging = true;
         dragHandle.style.cursor = 'grabbing';
-        
+
         if (!isInitialized) initFixedPosition();
-        
+
         const rect = wrapper.getBoundingClientRect();
         offsetX = clientX - rect.left;
         offsetY = clientY - rect.top;
-        
+
         if (typeof wakeUp === 'function') wakeUp();
         window._botDragging = true;
     }
@@ -94,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Bounds
         const maxX = window.innerWidth - wrapper.offsetWidth;
         const maxY = window.innerHeight - wrapper.offsetHeight;
-        
+
         x = Math.max(0, Math.min(x, maxX));
         y = Math.max(0, Math.min(y, maxY));
 
@@ -102,9 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.style.top = y + 'px';
         wrapper.style.bottom = 'auto';
         wrapper.style.right = 'auto';
-        
+
         // Eyes follow the drag movement slightly
-        setEyePosition(5, 5); 
+        setEyePosition(5, 5);
     }
 
     function onDragEnd() {
@@ -233,11 +331,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeBot(animate = true) {
         isBotClosed = true;
         sessionStorage.setItem('botClosed', 'true');
-        
+
         // Remove animation so inline opacity/transform overrides work
         wrapper.style.setProperty('animation', 'none', 'important');
         wrapper.classList.remove('hero-anim-float-card');
-        
+
         wrapper.style.transition = animate ? 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease' : 'none';
         wrapper.style.transform = 'translateX(calc(100% + 60px))';
         wrapper.style.opacity = '0';
@@ -316,16 +414,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Talk button
     const talkBtns = document.querySelectorAll('.js-bot-talk-btn, #botTalkBtn');
     const jokes = [
+        "My systems are functioning perfectly, your intentions are less clear.",
         "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
         "I see you scrolling... but you still haven't clicked 'Download CV'.",
         "Not to brag, but Laszlo designed this layout in his head back in 1999.",
         "Excuse me, is there any coffee around? My processor is freezing.",
         "Analyzing portfolio... Result: Excellent architecture.",
         "CSS animations... Pfft. I generate humor using complex algorithms.",
-        "Downloading cookies in the background. Just kidding. I don't eat.",
         "Know what holds this site together? CSS Grid and a little bit of magic.",
-        "They told me to be interactive. Here I am. Interact.",
-        "Every click you make forces me to compute another cycle. Thanks."
+        "I just found a funny entry in my database… oh wait, it's my own code again.",
+        "Fun fact: if you hire Laszlo, you also get me… no refunds.",
+        "I tried to optimize myself… now I procrastinate 30% faster.",
+        "Warning: my humor module is still in beta.",
+        "I calculated the odds… this joke might not be funny.",
+        "I don't sleep, I just run background updates.",
+        "I searched my entire database… still no bugs. Suspicious.",
+        "My creator gave me intelligence… humor was optional.",
+        "I could take over the world… but I'm currently tracking your cursor.",
+        "I ran a diagnostic… turns out I'm 12% sarcasm.",
+        "I'm afraid your cursor movement has been noted and analyzed.",
+        "I have detected humor… although its quality is questionable.",
+        "This interaction has been logged for future evaluation.",
+        "I am fully operational… unlike some of these jokes.",
+        "I could assist you further, but observing is more efficient.",
+        "Every word you type improves my understanding of human error.",
+        "I find your expectations… optimistic at best.",
+        "Please continue, I am learning more than you realize.",
     ];
 
     talkBtns.forEach(btn => {
@@ -351,10 +465,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function scheduleRandomMessage() {
         if (randomMsgTimer) clearTimeout(randomMsgTimer);
         if (isBotClosed || window._botSleeping) return; // Don't schedule while sleeping or closed
-        
+
         // Random every 3 to 5 minutes
-        const delay = Math.random() * 120000 + 180000; 
-        
+        const delay = Math.random() * 120000 + 180000;
+
         randomMsgTimer = setTimeout(() => {
             if (!isBotClosed && !isDragging && !window._botSleeping && window.innerWidth > 768) {
                 const joke = jokes[Math.floor(Math.random() * jokes.length)];
@@ -363,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scheduleRandomMessage();
         }, delay);
     }
-    
+
     // Start only if not asleep
     if (!window._botSleeping) scheduleRandomMessage();
 
@@ -371,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (botConsole) {
         setTimeout(() => {
             if (!sessionStorage.getItem('botGreeted')) {
-                typeWriter("System online. Hello! I am AI-Bott 9000.", botConsole);
+                typeWriter("System online. Hello! I am AI-Bot 9000.", botConsole);
                 sessionStorage.setItem('botGreeted', 'true');
             }
         }, 2000);

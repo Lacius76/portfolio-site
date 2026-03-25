@@ -1,0 +1,709 @@
+/* --- AI BOT ANIMATIONS --- */
+.hg-float-anim {
+    animation: hgFloat 4s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes hgFloat {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+.bot-eye {
+    transition: transform 0.15s ease-out;
+    /* Smooth snapping for mouse tracking */
+    will-change: transform;
+}
+
+.bot-cursor {
+    animation: hgBlink 1s step-end infinite;
+}
+
+@keyframes hgBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ========================================= */
+/* === AI-BOT 9000 — HAL 9000 SKIN      === */
+/* ========================================= */
+
+:root {
+    /* HAL skin tokens */
+    --hal-body-start: #3a3a3a;
+    --hal-body-end: #1c1c1c;
+    --hal-toolbar-bg: #c8c8c8;
+    --hal-toolbar-h: 40px;
+    --hal-btn-bg: #d8d8d8;
+    --hal-btn-border: #aaaaaa;
+    --hal-btn-shadow: rgba(0, 0, 0, 0.35);
+    --hal-title-color: #111111;
+    --hal-console-bg: #000000;
+    --hal-text: #28a530;
+    /* Classic skin tokens (fallback) */
+    --bot-bg-start: #b1b0d4;
+    --bot-bg-end: #9a98c3;
+    --bot-highlight: rgba(255, 255, 255, 0.6);
+    --bot-shadow: rgba(40, 40, 70, 0.3);
+    --bot-screen: #111418;
+    --bot-text: #28a530;
+    --bot-icon: #5a577d;
+}
+/* ---- BODY ---- */
+.bot-body-3d {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(170deg, var(--hal-body-start) 0%, var(--hal-body-end) 100%);
+    border-radius: 6px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 0 50px 8px rgba(200, 30, 30, 0.12),
+        0 24px 48px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.442);
+    width: 180px !important;
+    height: 411px !important;
+    max-width: 180px !important;
+    max-height: 411px !important;
+    min-width: 180px !important;
+    min-height: 411px !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+}
+
+/* ---- TOOLBAR ---- */
+.bot-header-area {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    background: var(--hal-body-start);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    height: var(--hal-toolbar-h);
+    flex-shrink: 0;
+    cursor: grab;
+    border-bottom: 1px solid #b3b3b3;
+    border-radius: 13px 13px 0 0;
+}
+
+.bot-header-area:active {
+    cursor: grabbing;
+}
+
+/* Continuous black field across the entire header as requested */
+.bot-header-field {
+    background: #000000;
+    height: 32px;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 4px;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(58, 69, 73, 0.317);
+    width: calc(100% - 8px);
+}
+
+/* Toolbar buttons: flat design */
+.bot-btn-3d {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+    background: transparent;
+    border-radius: 4px;
+    border: none;
+    box-shadow: none;
+    color: #babcc7;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.12s ease;
+    flex-shrink: 0;
+}
+
+.bot-btn-3d:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.bot-btn-3d:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(1px);
+}
+
+/* Drag handle indicator — visual only, not interactive */
+.bot-drag-handle-indicator {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #7c7c7c;
+    opacity: 0.8;
+    cursor: grab;
+    pointer-events: auto;
+}
+
+/* Spacer pushes title+close to the right side */
+.bot-toolbar-spacer {
+    flex: 1;
+}
+
+/* Title in toolbar — hidden in HAL mode (name shown in banner below) */
+.bot-title-text {
+    display: none;
+}
+
+/* ---- NAME BANNER (below toolbar, above eye) ---- */
+.bot-name-banner {
+    display: flex;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    border-bottom: 2px solid #222;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.bot-name-banner .name-part {
+    background: #00e5ff;
+    color: #000;
+    padding: 6px 10px;
+    flex: 1;
+}
+
+.bot-name-banner .number-part {
+    background: #000;
+    color: #fff;
+    padding: 6px 10px;
+    letter-spacing: 0;
+}
+
+/* Close button */
+.bot-close-btn {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+}
+
+/* ---- HAL EYE AREA ---- */
+.bot-eye-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle vertical center line (spaceship panel reference) */
+.bot-eye-area::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200, 20, 20, 0.06) 0%, transparent 70%);
+    pointer-events: auto;
+}
+
+/* Outer metallic ring - Sharper conic gradient */
+.hal-eye-ring {
+    position: relative;
+    width: 154px;
+    height: 154px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg,
+            #888 0deg,
+            #eee 40deg,
+            #777 90deg,
+            #ddd 130deg,
+            #666 180deg,
+            #ccc 220deg,
+            #555 270deg,
+            #bbb 320deg,
+            #888 360deg);
+    box-shadow:
+        0 0 0 4px #333,
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        0 10px 30px rgba(0, 0, 0, 0.8),
+        0 0 40px 2px rgba(200, 20, 20, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Inner metallic ring (The second ring requested by user) */
+.hal-inner-ring {
+    position: absolute;
+    width: 138px;
+    height: 138px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg,
+            #444 0deg,
+            #666 45deg,
+            #333 90deg,
+            #777 150deg,
+            #444 180deg,
+            #666 230deg,
+            #2a2a2a 270deg,
+            #555 310deg,
+            #444 360deg);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Decorative arcs inside the inner ring (as seen in image 2) */
+.hal-inner-ring::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 10%;
+    border-top: 5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50% 50% 0 0;
+}
+
+.hal-inner-ring::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+    width: 8%;
+    height: 60%;
+    border-left: 5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50% 0 0 50%;
+}
+
+/* Dark recess behind lens - enhanced depth */
+.hal-eye-lens {
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%,
+            #780101 0%,
+            #410000 20%,
+            #250000 40%,
+            #000000 70%);
+    box-shadow:
+        inset 0 0 10px 2px rgba(0, 0, 0, 0.6);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Glass reflection sheen - top highlight */
+.hal-eye-lens::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 126 126'><path d='M 11 44 A 55 55 0 0 1 49 10' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' opacity='0.3'/><path d='M 77 10 A 55 55 0 0 1 115 44' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' opacity='0.1'/></svg>") no-repeat center / contain;
+    pointer-events: none;
+    z-index: 10;
+    filter: blur(0.5px);
+}
+
+
+/* Iris container — transparent, just holds the pupil */
+.hal-eye-iris {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pupil — 7 rounded SVG bars arranged in a perfect circle */
+.hal-pupil {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><rect x='11.15' y='1.5' width='13.7' height='3' rx='1.5' fill='%23ff2020'/><rect x='4.9' y='6.5' width='26.2' height='3' rx='1.5' fill='%23ff2020'/><rect x='2.25' y='11.5' width='31.5' height='3' rx='1.5' fill='%23ff2020'/><rect x='1.5' y='16.5' width='33' height='3' rx='1.5' fill='%23ff2020'/><rect x='2.25' y='21.5' width='31.5' height='3' rx='1.5' fill='%23ff2020'/><rect x='4.9' y='26.5' width='26.2' height='3' rx='1.5' fill='%23ff2020'/><rect x='11.15' y='31.5' width='13.7' height='3' rx='1.5' fill='%23ff2020'/></svg>") no-repeat center / contain;
+    overflow: hidden;
+    transition: transform 0.12s ease-out;
+    will-change: transform;
+}
+
+/* Red glow pulse on the ring */
+@keyframes halGlowPulse {
+    0% {
+        box-shadow: 0 0 0 3px #444, 0 4px 24px rgba(0, 0, 0, 0.9), 0 0 20px 2px rgba(151, 10, 10, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 0 3px #444, 0 4px 24px rgba(0, 0, 0, 0.9), 0 0 20px 8px rgba(151, 14, 14, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 0 3px #444, 0 4px 24px rgba(0, 0, 0, 0.9), 0 0 20px 2px rgba(143, 11, 11, 0.2);
+    }
+}
+
+.hal-eye-ring {
+    animation: halGlowPulse 4s ease-in-out infinite;
+}
+
+/* Sleep state: eye dims */
+.hal-eye-ring.hal-sleeping .hal-pupil {
+    opacity: 0.06;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.hal-eye-ring.hal-sleeping {
+    animation: none;
+    box-shadow:
+        0 0 0 3px #333,
+        0 4px 24px rgba(0, 0, 0, 0.9),
+        0 0 10px 1px rgba(80, 0, 0, 0.1);
+}
+
+/* ---- SEPARATOR ---- */
+.bot-separator-line {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.54);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+/* ---- CONSOLE (bottom) ---- */
+.bot-screen-container {
+    padding: 2px 2px 2px 2px;
+    flex-shrink: 0;
+    background: transparent;
+    height: auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Hide old inset screen — console is handled by bot-console-inset now */
+.bot-screen-inset {
+    display: none;
+}
+
+.bot-console-inset {
+    background: #000;
+    border-radius: 8px;
+    box-shadow:
+        inset 2px 2px 2px rgba(0, 0, 0, 1),
+        inset -1px -1px 3px rgba(100, 100, 120, 0.2),
+        0 1px 0 rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(60, 60, 60, 0.9);
+    height: 100px !important;
+    width: auto !important;
+    max-height: 100px !important;
+    min-height: 100px !important;
+    overflow: hidden !important;
+    margin: 0;
+    position: relative;
+}
+
+.bot-console-inset>div {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+/* Custom scrollbar for bot terminal */
+.bot-console-inset>div::-webkit-scrollbar {
+    width: 2px !important;
+}
+
+.bot-console-inset>div::-webkit-scrollbar-track {
+    background: transparent !important;
+    margin-block: 8px !important;
+}
+
+.bot-console-inset>div::-webkit-scrollbar-thumb {
+    background-color: #28a530 !important;
+    border-radius: 0 !important;
+}
+
+.bot-console-text,
+#botConsole {
+    color: var(--hal-text);
+    text-shadow: 0 0 5px rgba(40, 165, 48, 0.7);
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+    display: inline !important;
+    max-width: 100% !important;
+    line-height: 1.4 !important;
+    font-size: 11px !important;
+}
+
+/* Bottom row: console + send button */
+.bot-bottom-area {
+    flex-shrink: 0;
+    padding: 4px;
+    /* Uniform padding to match top gap with sides and bottom */
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    position: relative;
+    z-index: 20;
+    overflow: hidden;
+    height: auto;
+}
+
+/* Skin dropdown */
+.bot-skin-menu {
+    position: absolute;
+    top: calc(var(--hal-toolbar-h) + 4px);
+    left: 8px;
+    background: #2b213e;
+    border: 1px solid #635882;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    overflow: hidden;
+    min-width: 140px;
+    display: none;
+}
+
+.bot-skin-menu.open {
+    display: block;
+}
+
+.bot-skin-menu button {
+    display: block;
+    width: 100%;
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    color: #c9c7cc;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.bot-skin-menu button:hover {
+    background: rgba(65, 9, 161, 0.772);
+}
+
+.bot-skin-menu button.active-skin {
+    color: rgb(180, 147, 245);
+}
+
+/* ========================================= */
+/* === CLASSIC SKIN OVERRIDE              === */
+/* ========================================= */
+#aiBotCard.skin-classic {
+    background: linear-gradient(145deg, var(--bot-bg-start), var(--bot-bg-end));
+    border-radius: 20px;
+    box-shadow:
+        inset 2px 2px 5px var(--bot-highlight),
+        inset -2px -2px 5px var(--bot-shadow),
+        0 0 40px 10px rgba(50, 40, 150, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 232px !important;
+    height: 318px !important;
+    max-width: 232px !important;
+    max-height: 318px !important;
+    min-width: 232px !important;
+    min-height: 318px !important;
+}
+
+#aiBotCard.skin-classic .bot-header-area {
+    background: transparent;
+    border-radius: 0;
+    border-bottom: none;
+}
+
+#aiBotCard.skin-classic .bot-btn-3d {
+    background: linear-gradient(145deg, var(--bot-bg-start), var(--bot-bg-end)) !important;
+    border: 1px solid rgba(40, 40, 60, 0.4) !important;
+    box-shadow:
+        inset 2px 2px 0 var(--bot-highlight),
+        inset -2px -2px 0 var(--bot-shadow) !important;
+    color: var(--bot-icon) !important;
+}
+
+#aiBotCard.skin-classic .bot-btn-3d:hover {
+    background: linear-gradient(145deg, var(--bot-bg-end), var(--bot-bg-start)) !important;
+    filter: brightness(1.1);
+    transform: none;
+}
+
+#aiBotCard.skin-classic .bot-btn-3d:active {
+    box-shadow:
+        inset -2px -2px 0 var(--bot-highlight),
+        inset 2px 2px 0 var(--bot-shadow) !important;
+    transform: translateY(1px);
+    background: linear-gradient(145deg, var(--bot-bg-end), var(--bot-bg-start)) !important;
+}
+
+#aiBotCard.skin-classic .bot-header-field {
+    background: transparent;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+}
+
+#aiBotCard.skin-classic .bot-title-text {
+    display: inline;
+    /* restore title in classic toolbar */
+    color: var(--bot-icon);
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+#aiBotCard.skin-classic .bot-name-banner {
+    display: none;
+}
+
+#aiBotCard.skin-classic .bot-eye-area {
+    display: none;
+}
+
+#aiBotCard.skin-classic .classic-face-container {
+    display: block !important;
+    background: #626CE1;
+    /* Classic blue bezel */
+    border-radius: 12px;
+    padding: 1px;
+    margin: 8px 14px;
+    height: 140px;
+    box-shadow:
+        inset -1px -1px 3px rgba(0, 0, 0, 0.2),
+        inset 1px 1px 3px rgba(255, 255, 255, 0.4),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#aiBotCard.skin-classic .bot-screen-inset-classic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #111418;
+    border-radius: 8px;
+    margin: 12px;
+    height: calc(100% - 24px);
+    box-shadow:
+        inset 0 24px 30px rgba(0, 0, 0, 0.8),
+        inset 0 -10px 20px rgba(0, 0, 0, 0.4),
+        0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+#aiBotCard.skin-classic .bot-separator-line {
+    display: none;
+}
+
+#aiBotCard.skin-classic .bot-screen-container {
+    display: block;
+    height: auto;
+}
+
+#aiBotCard.skin-classic .bot-console-inset {
+    height: 88px !important;
+    max-height: 88px !important;
+    min-height: 88px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 12px !important;
+    box-shadow:
+        inset 2px 2px 10px rgba(0, 0, 0, 1),
+        inset -1px -1px 3px rgba(100, 100, 120, 0.3),
+        0 2px 2px rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(50, 50, 50, 0.8) !important;
+}
+
+#aiBotCard.skin-classic .bot-bottom-area {
+    height: 110px !important;
+    padding: 2px 14px 14px 14px !important;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+#aiBotCard.skin-classic #botTalkBtnHal {
+    display: none;
+}
+
+#aiBotCard.skin-classic #botTalkBtnClassic {
+    display: flex !important;
+}
+
+.classic-face-container {
+    display: none;
+}
+
+/* ---- Z-float for sleep ---- */
+@keyframes botZFloat {
+    0% {
+        opacity: 0.9;
+        transform: translateY(0) translateX(0) scale(0.8);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: translateY(-25px) translateX(8px) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) translateX(15px) scale(1.1);
+    }
+}
+
+/* Keep old eye/mouth helpers for classic skin JS compat */
+.bot-eyes-glow {
+    box-shadow: 0 0 15px 2px rgba(132, 255, 142, 0.6);
+    background: #84ff8e;
+}
+
+.bot-mouth-el {
+    background: #84ff8e;
+    box-shadow: 0 0 12px 2px rgba(132, 255, 142, 0.5);
+    border-radius: 4px;
+}
