@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div id="botSkinMenu" class="bot-skin-menu">
           <button id="skinHal" class="active-skin">◉ AI-Bot 9000</button>
           <button id="skinClassic">◎ Classic</button>
+          <button id="skinFirst">▣ Original</button>
         </div>
 
         <!-- TOOLBAR / Drag Area -->
@@ -317,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const skinMenu = document.getElementById('botSkinMenu');
     const skinHalBtn = document.getElementById('skinHal');
     const skinClassicBtn = document.getElementById('skinClassic');
+    const skinFirstBtn = document.getElementById('skinFirst');
     let isBotClosed = (sessionStorage.getItem('botClosed') === 'true');
 
     // Reopen tab
@@ -375,13 +377,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Skin switcher
     function setSkin(skin, save = true) {
         if (skin === 'classic') {
+            botCard.classList.remove('skin-first');
             botCard.classList.add('skin-classic');
             if (skinHalBtn) skinHalBtn.classList.remove('active-skin');
+            if (skinFirstBtn) skinFirstBtn.classList.remove('active-skin');
             if (skinClassicBtn) skinClassicBtn.classList.add('active-skin');
+        } else if (skin === 'first') {
+            botCard.classList.remove('skin-classic');
+            botCard.classList.add('skin-first');
+            if (skinHalBtn) skinHalBtn.classList.remove('active-skin');
+            if (skinClassicBtn) skinClassicBtn.classList.remove('active-skin');
+            if (skinFirstBtn) skinFirstBtn.classList.add('active-skin');
         } else {
             botCard.classList.remove('skin-classic');
+            botCard.classList.remove('skin-first');
             if (skinHalBtn) skinHalBtn.classList.add('active-skin');
             if (skinClassicBtn) skinClassicBtn.classList.remove('active-skin');
+            if (skinFirstBtn) skinFirstBtn.classList.remove('active-skin');
         }
         if (save) localStorage.setItem('botSkin', skin);
         if (skinMenu) skinMenu.classList.remove('open');
@@ -394,6 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (skinHalBtn) skinHalBtn.addEventListener('click', () => setSkin('hal'));
     if (skinClassicBtn) skinClassicBtn.addEventListener('click', () => setSkin('classic'));
+    if (skinFirstBtn) skinFirstBtn.addEventListener('click', () => setSkin('first'));
 
     // --- Typing & Messages ---
     const botConsole = document.getElementById('botConsole');
