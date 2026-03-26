@@ -231,6 +231,7 @@
 /* Outer metallic ring - Sharper conic gradient */
 .hal-eye-ring {
     position: relative;
+    margin-top: 30px;
     width: 154px;
     height: 154px;
     border-radius: 50%;

@@ -180,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.style.filter = `brightness(${s.brightness.toFixed(3)})`;
             card.style.opacity = s.opacity.toFixed(3);
             card.style.zIndex = s.zIndex;
+            card.style.pointerEvents = s.opacity < 0.5 ? "none" : "auto";
 
             // Check if we're still moving (threshold for floating point)
             if (Math.abs(s.ty - t.ty) > 0.1 ||
@@ -213,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.filter = `brightness(${t.brightness})`;
         card.style.opacity = t.opacity;
         card.style.zIndex = t.zIndex;
+        card.style.pointerEvents = t.opacity < 0.5 ? "none" : "auto";
     });
 
     // ─── Event listeners ─────────────────────────────────────────────
@@ -226,6 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.style.filter = `brightness(${targets[i].brightness})`;
             card.style.opacity = targets[i].opacity;
             card.style.zIndex = targets[i].zIndex;
+            card.style.pointerEvents = targets[i].opacity < 0.5 ? "none" : "auto";
         });
     });
 });
