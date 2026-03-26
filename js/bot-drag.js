@@ -460,11 +460,24 @@ document.addEventListener('DOMContentLoaded', () => {
         "Please continue, I am learning more than you realize.",
     ];
 
+    // Szövegek ismétlődésének elkerülése (Shuffle bag logika)
+    let jokeBag = [];
+    function getNextJoke() {
+        if (jokeBag.length === 0) {
+            // Ha kiürült a "zsák", újra feltöltjük a szövegek indexeivel
+            jokeBag = jokes.map((_, i) => i);
+        }
+        // Húzunk egy véletlen indexet a még bent lévőkből
+        const randomIndex = Math.floor(Math.random() * jokeBag.length);
+        const selectedJokeIndex = jokeBag.splice(randomIndex, 1)[0];
+        return jokes[selectedJokeIndex];
+    }
+
     talkBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             wakeUp();
-            const joke = jokes[Math.floor(Math.random() * jokes.length)];
+            const joke = getNextJoke();
             typeWriter(joke, botConsole);
         });
     });
@@ -489,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         randomMsgTimer = setTimeout(() => {
             if (!isBotClosed && !isDragging && !window._botSleeping && window.innerWidth > 768) {
-                const joke = jokes[Math.floor(Math.random() * jokes.length)];
+                const joke = getNextJoke();
                 typeWriter(joke, botConsole);
             }
             scheduleRandomMessage();
