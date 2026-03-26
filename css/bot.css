@@ -620,7 +620,8 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    position: relative; /* Pozícionálás a cím középre igazításához */
+    position: relative;
+    /* Pozícionálás a cím középre igazításához */
 }
 
 /* Elrejtjük a drag ikont a Classic skinnél, mivel az egész címsor egyértelműen húzható */
@@ -783,16 +784,17 @@
 /* === ORIGINAL (FIRST) SKIN OVERRIDE     === */
 /* ========================================= */
 #aiBotCard.skin-first {
-    background: #1B1E28 !important; /* dark slate background */
+    background: #1B1E28 !important;
+    /* dark slate background */
     border-radius: 9px !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
     border: none !important;
     width: 232px !important;
-    height: 300px !important;
+    height: 290px !important;
     max-width: 232px !important;
-    max-height: 300px !important;
+    max-height: 290px !important;
     min-width: 232px !important;
-    min-height: 300px !important;
+    min-height: 260px !important;
     padding: 0 !important;
 }
 
@@ -803,7 +805,8 @@
 }
 
 #aiBotCard.skin-first .bot-header-field {
-    background: #8B5CF6 !important; /* solid purple */
+    background: #8B5CF6 !important;
+    /* solid purple */
     height: 38px !important;
     margin: 0 !important;
     width: 100% !important;
@@ -839,7 +842,7 @@
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    color: rgba(255,255,255,0.8) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     width: 24px !important;
     height: 24px !important;
     min-width: 24px !important;
@@ -847,7 +850,7 @@
 }
 
 #aiBotCard.skin-first .bot-btn-3d:hover {
-    background: rgba(255,255,255,0.2) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
     color: #fff !important;
     border-radius: 4px !important;
     transform: none !important;
@@ -860,7 +863,8 @@
 }
 
 #aiBotCard.skin-first .bot-drag-handle-indicator {
-    display: none !important; /* Hide drag indicator, menu takes first spot */
+    display: none !important;
+    /* Hide drag indicator, menu takes first spot */
 }
 
 /* Face area - no bezel, just floating on background */
@@ -889,8 +893,9 @@
 #aiBotCard.skin-first .bot-eye {
     width: 28px !important;
     height: 28px !important;
-    border-radius: 2px !important; 
-    background: #34d399 !important; /* neon green */
+    border-radius: 2px !important;
+    background: #34d399 !important;
+    /* neon green */
     box-shadow: 0 0 12px rgba(52, 211, 153, 0.4) !important;
 }
 
@@ -911,8 +916,8 @@
 
 /* Console Area */
 #aiBotCard.skin-first .bot-bottom-area {
-    height: 115px !important;
-    padding: 0 14px 14px 14px !important;
+    height: 120px !important;
+    padding: 0 6px 6px 6px !important;
     display: flex !important;
     align-items: flex-end !important;
 }
@@ -930,8 +935,9 @@
     width: 100% !important;
     margin: 0 !important;
     border-radius: 6px !important;
-    background: #15181e !important; /* Slightly darker than card background */
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5) !important;
+    background: #15181e !important;
+    /* Slightly darker than card background */
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5) !important;
     border: 1px solid rgba(255, 255, 255, 0.03) !important;
     position: relative !important;
     overflow: hidden !important;
@@ -952,21 +958,25 @@
 }
 
 #aiBotCard.skin-first .bot-console-text {
-    color: #e2e8f0 !important; /* light grey text */
+    color: #e2e8f0 !important;
+    /* light grey text */
     text-shadow: none !important;
     font-size: 11px !important;
-    padding-bottom: 24px !important; /* Move text up above glowing line */
+    padding-bottom: 24px !important;
+    /* Move text up above glowing line */
     display: inline-block;
 }
 
 #aiBotCard.skin-first .bot-cursor {
-    background: #a78bfa !important; /* Light purple blinking cursor */
+    background: #a78bfa !important;
+    /* Light purple blinking cursor */
     box-shadow: none !important;
 }
 
 #aiBotCard.skin-first #botTalkBtn {
-    color: #34d399 !important; 
-    bottom: 12px !important; /* Move it up because of the glowing line */
+    color: #34d399 !important;
+    bottom: 12px !important;
+    /* Move it up because of the glowing line */
     right: 6px !important;
     opacity: 1 !important;
 }
