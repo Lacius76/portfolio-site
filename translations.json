@@ -552,14 +552,14 @@
       "aiBotCallout": "Like a pet, <strong class=\"text-slate-800 dark:text-slate-200\">an AI becomes what you teach it.</strong> Feed it curiosity, craft, and context — and it reflects exactly that back. It's a simple philosophy, but an honest one: the relationship between human and AI is shaped entirely by the human side of it.",
       "aiBotCard1Title": "The first Bot",
       "aiBotCard1Desc": "This one was created after prompting Gemini with the core functions — eye movement, joke-telling, draggability, and triggering the cube animation.",
-      "aiBotCard2Title": "The Grok Bot",
-      "aiBotCard2Desc": "What if I tried a different AI model? After 50 versions exploring Grok's distinct visual point of view, this one became my favourite.",
-      "aiBotCard3Title": "The Designed Bot",
-      "aiBotCard3Desc": "Then I tried to implement my own style and colours — something that would feel at home within the portfolio's visual language.",
-      "aiBotCard4Title": "The Inspiration",
-      "aiBotCard4Desc": "I've always been a fan of the Macintosh SE — a legendary little machine. When I finally tried it, I ran into an error message: <em>\"<strong>I</strong> can't do that!\"</em>",
-      "aiBotCard5Title": "The final version",
-      "aiBotCard5Desc": "I moved back to Gemini in Anti-Gravity and prompted the new version — inspired by the classic Macintosh I grew up with. <strong class=\"text-slate-700 dark:text-slate-200\">The bond between Human &amp; AI is exactly the point.</strong>"
+      "aiBotCard2Title": "The Designed Bot",
+      "aiBotCard2Desc": "Then I tried to implement my own style and colours — something that would feel at home within the portfolio's visual language.",
+      "aiBotCard3Title": "The Inspiration",
+      "aiBotCard3Desc": "I've always been a fan of the Macintosh SE — a legendary little machine. When I finally tried it, I ran into an error message: <em>\"<strong>I</strong> can't do that!\"</em>",
+      "aiBotCard4Title": "MacOS 8.6",
+      "aiBotCard4Desc": "I moved back to Gemini in Anti-Gravity and prompted the new version — inspired by the classic Macintosh I grew up with. <strong class=\"text-slate-700 dark:text-slate-200\">The bond between Human &amp; AI is exactly the point.</strong>",
+      "aiBotCard5Title": "AI-Bot 9000",
+      "aiBotCard5Desc": "This version pays homage to HAL 9000 from 2001: A Space Odyssey, one of the most iconic and influential early depictions of artificial intelligence in cinema."
     }
   },
   "de": {
@@ -1087,14 +1087,14 @@
       "aiBotCallout": "Wie ein Haustier wird auch <strong class=\"text-slate-800 dark:text-slate-200\">eine KI zu dem, was man ihr beibringt.</strong> Füttere sie mit Neugier, Handwerk und Kontext — und sie spiegelt genau das zurück. Eine einfache Philosophie, aber eine ehrliche: Die Beziehung zwischen Mensch und KI wird vollständig von der menschlichen Seite geprägt.",
       "aiBotCard1Title": "Der erste Bot",
       "aiBotCard1Desc": "Dieser entstand, nachdem ich Gemini mit den Kernfunktionen gefüttert hatte — Augenbewegung, Witze erzählen, Drag-Funktion und das Auslösen der Würfel-Animation.",
-      "aiBotCard2Title": "Der Grok-Bot",
-      "aiBotCard2Desc": "Was, wenn ich ein anderes KI-Modell ausprobiere? Nach 50 Versionen, in denen ich Groks eigenständige visuelle Perspektive erkundete, wurde dieser hier mein Favorit.",
-      "aiBotCard3Title": "Der gestaltete Bot",
-      "aiBotCard3Desc": "Dann versuchte ich, meinen eigenen Stil und meine Farben einzubringen — etwas, das sich in der visuellen Sprache des Portfolios heimisch anfühlt.",
-      "aiBotCard4Title": "Die Inspiration",
-      "aiBotCard4Desc": "Ich war schon immer ein Fan des Macintosh SE — eine legendäre kleine Maschine. Als ich ihn endlich ausprobierte, stieß ich auf eine Fehlermeldung: <em>„Das kann <strong>ich</strong> nicht!“</em>",
-      "aiBotCard5Title": "Die finale Version",
-      "aiBotCard5Desc": "Ich kehrte zu Gemini in Anti-Gravity zurück und promptete die neue Version — inspiriert vom klassischen Macintosh, mit dem ich aufgewachsen bin. <strong class=\"text-slate-700 dark:text-slate-200\">Die Verbindung zwischen Mensch und KI ist genau der Punkt.</strong>"
+      "aiBotCard2Title": "Der gestaltete Bot",
+      "aiBotCard2Desc": "Dann versuchte ich, meinen eigenen Stil und meine Farben einzubringen — etwas, das sich in der visuellen Sprache des Portfolios heimisch anfühlt.",
+      "aiBotCard3Title": "Die Inspiration",
+      "aiBotCard3Desc": "Ich war schon immer ein Fan des Macintosh SE — eine legendäre kleine Maschine. Als ich ihn endlich ausprobierte, stieß ich auf eine Fehlermeldung: <em>„Das kann <strong>ich</strong> nicht!“</em>",
+      "aiBotCard4Title": "MacOS 8.6",
+      "aiBotCard4Desc": "Ich kehrte zu Gemini in Anti-Gravity zurück und promptete die neue Version — inspiriert vom klassischen Macintosh, mit dem ich aufgewachsen bin. <strong class=\"text-slate-700 dark:text-slate-200\">Die Verbindung zwischen Mensch und KI ist genau der Punkt.</strong>",
+      "aiBotCard5Title": "AI-Bot 9000",
+      "aiBotCard5Desc": "Diese Version ist eine Hommage an HAL 9000 aus 2001: Odyssee im Weltraum, eine der ikonischsten und einflussreichsten frühen Darstellungen von künstlicher Intelligenz in der Filmgeschichte."
     },
     "amatic": {
       "heroBadge": "Art Direction & Character Design",
