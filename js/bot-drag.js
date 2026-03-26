@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>
             
             <div class="bot-toolbar-spacer"></div>
-            <span class="bot-title-text" data-i18n="bot.title">AI BOTT</span>
+            <span class="bot-title-text" data-i18n="bot.title">AI BOT</span>
             
             <button class="bot-close-btn bot-btn-3d" aria-label="Close Bot">
               <span class="material-symbols-outlined text-[16px]">close</span>
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="bot-screen-inset-classic">
                 <div id="botEyesContainer" class="flex justify-center gap-6 mb-4">
                     <div class="bot-eye bot-eyes-glow" style="width:28px;height:28px;"></div>
-                    <div id="botRightEye" class="bot-eye bot-eyes-glow transition-all duration-300" style="width:28px;height:28px;"></div>
+                    <div id="botRightEye" class="bot-eye bot-eyes-glow" style="width:28px;height:28px;"></div>
                 </div>
                 <div class="flex justify-center gap-1.5 items-center">
                     <div class="bot-mouth-el" style="width:10px;height:10px;border-radius:50%"></div>
@@ -88,9 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
               </button>
             </div>
           </div>
-          <button id="botTalkBtnClassic" class="bot-btn-3d js-bot-talk-btn flex-shrink-0" style="display:none;" aria-label="Open Chat">
-              <span class="material-symbols-outlined text-[18px]">chat</span>
-          </button>
         </div>
 
       </div><!-- end aiBotCard -->
@@ -127,10 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Eye tracking ---
     const eyes = botCard.querySelectorAll('.bot-eye');
-    const maxEyeMove = 6;
+    const mouths = botCard.querySelectorAll('.bot-mouth-el');
+    const maxEyeMove = 20;
+    const maxMouthMoveDown = 8; // Gátolja meg, hogy a száj túllógjon a képernyő alsó szélén
     const halPupil = document.getElementById('halPupil');
     const halEyeRing = document.getElementById('halEyeRing');
-    const maxPupilMove = 10;
+    const maxPupilMove = 20;
 
     function setEyePosition(moveX, moveY) {
         // Normal eyes
@@ -138,6 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const ny = Math.max(-maxEyeMove, Math.min(maxEyeMove, moveY));
         eyes.forEach(eye => {
             eye.style.transform = `translate(${nx}px, ${ny}px)`;
+        });
+
+        // Száj szinkronizált mozgása (felfelé követi a szemet teljes mértékben, lefelé viszont megáll a határon)
+        const my = Math.max(-maxEyeMove, Math.min(maxMouthMoveDown, moveY));
+        mouths.forEach(mouth => {
+            mouth.style.transform = `translate(${nx}px, ${my}px)`;
         });
 
         // HAL pupil
