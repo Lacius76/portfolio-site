@@ -182,12 +182,15 @@
             </div>
           </div>
           <!-- Sötét mód gomb - FIX MÉRETTEL (size-10) és SHRINK-0-val -->
-          <button id="theme-toggle"
-            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme">
-            <!-- Hold ikon: Csak akkor látszik, ha NINCS dark mód (világosban sötétre váltáshoz) -->
-            <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
-            <!-- Nap ikon: Csak akkor látszik, ha VAN dark mód (sötétben világosra váltáshoz) -->
-            <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+          <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
+            <span></span>
+            <span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span></span>
           </button>
           <button id="menu-button"
             class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">

@@ -138,12 +138,15 @@
                     </div>
                     <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
                     <button id="theme-toggle"
-                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme">
-                        <!-- Moon Icon: Visible in Light Mode (Switch to Dark) -->
-                        <span class="block dark:hidden material-symbols-outlined text-[24px]">dark_mode</span>
-
-                        <!-- Sun Icon: Visible in Dark Mode (Switch to Light) -->
-                        <span class="hidden dark:block material-symbols-outlined text-[24px]">light_mode</span>
+                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
+                        <span></span>
+                        <span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span></span>
                     </button>
                     <button id="menu-button"
                         class="md:hidden flex items-center justify-center p-2 text-slate-600 dark:text-slate-300">
@@ -240,16 +243,21 @@
                 </div>
             </div>
             <div class="lg:col-span-8 space-y-6">
-                <!-- Main Title -->
                 <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
                     <h1
                         class="font-display text-4xl lg:text-5xl font-bold uppercase tracking-wide text-gray-900 dark:text-white mb-2">
                         László Földváry
                     </h1>
-                    <h2 class="text-primary text-xl dark:text-white lg:text-2xl font-medium tracking-wider uppercase"
-                        data-i18n="resume.mainSubtitle">
-                        SENIOR PRODUCT DESIGNERUI/UX & DESIGN SYSTEMS
+
+                    <h2 class="text-primary text-xl dark:text-white lg:text-2xl font-semibold tracking-wider uppercase"
+                        data-i18n="resume.role">
+                        SENIOR PRODUCT DESIGNER
                     </h2>
+
+                    <p class="text-gray-600 dark:text-gray-400 text-lg lg:text-xl italic tracking-wide mt-1"
+                        data-i18n="resume.specialties">
+                        UI/UX • Design Systems • Multimedia
+                    </p>
                 </div>
                 <!-- ABOUT ME -->
                 <div class="relative pl-6 border-l-4 border-primary">

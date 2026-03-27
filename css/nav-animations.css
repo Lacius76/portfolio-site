@@ -112,3 +112,163 @@
         animation: none !important;
     }
 }
+
+/* --- Nav Links Hover Expand Animation --- */
+header nav a {
+    position: relative;
+}
+
+header nav a::after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #6366f1;
+    /* Accent primary color */
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+
+header nav a:focus::after,
+header nav a:hover::after {
+    width: 100%;
+    left: 0%;
+}
+
+html.dark header nav a:focus,
+html.dark header nav a:hover {
+    color: #fff !important;
+}
+
+html:not(.dark) header nav a:focus,
+html:not(.dark) header nav a:hover {
+    color: #646BEE !important;
+}
+
+/* --- Theme Button --- */
+.theme__icon {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.theme__icon:hover,
+.theme__icon:focus {
+    background-color: transparent !important;
+}
+
+.theme__icon> :nth-child(1) {
+    width: 14px;
+    height: 14px;
+    border-radius: 24px;
+    border: 1px solid #f9e102;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 204, 0);
+    transition: width .4s, height .4s, border .4s, background-color .4s;
+    z-index: 10;
+}
+
+html.dark .theme__icon:not(:hover)> :nth-child(1),
+html:not(.dark) .theme__icon:hover> :nth-child(1) {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgb(229, 200, 254);
+    background-color: rgb(229, 200, 254);
+}
+
+.theme__icon> :nth-child(2) {
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform .4s;
+}
+
+html.dark .theme__icon:not(:hover)> :nth-child(2),
+html:not(.dark) .theme__icon:hover> :nth-child(2) {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(.8);
+}
+
+.theme__icon> :nth-child(2)> :nth-child(1) {
+    display: block;
+    width: 2px;
+    height: 24px;
+    border-radius: 2px;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(255, 204, 0);
+}
+
+.theme__icon> :nth-child(2)> :nth-child(2) {
+    display: block;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    position: relative;
+    top: -54%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(255, 204, 0);
+}
+
+.theme__icon> :nth-child(2)> :nth-child(3) {
+    display: block;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    position: relative;
+    top: -60%;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    background-color: rgb(255, 204, 0);
+}
+
+.theme__icon> :nth-child(2)> :nth-child(4) {
+    display: block;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    position: relative;
+    top: -70%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    background-color: rgb(255, 204, 0);
+}
+
+.theme__icon> :nth-child(3) {
+    width: 20px;
+    height: 20px;
+    border-radius: 24px;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    transition: top .4s .2s, left .4s .2s, background-color .15s 0s;
+    z-index: 20;
+}
+
+html:not(.dark) .theme__icon:hover> :nth-child(3) {
+    background-color: #ffffff;
+    top: 35%;
+    left: 40%;
+}
+
+html.dark .theme__icon:not(:hover)> :nth-child(3) {
+    background-color: #101922;
+    top: 35%;
+    left: 40%;
+}
