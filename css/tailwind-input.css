@@ -1,3 +1,105 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .resume-timeline-dot {
+    @apply absolute -left-[43px] top-6 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-[#101922] shadow-sm z-10 transition-transform duration-300 group-hover:scale-125;
+  }
+
+  /* Hire Me Button Animation Effect inspired by cssbuttons-io */
+  .btn-hire-me {
+    @apply relative flex items-center justify-center h-14 pl-4 pr-6 gap-3 overflow-hidden rounded-full shadow-xl shadow-primary/30 transition-all;
+    background: linear-gradient(82.3deg, #101922 10%, #1e293b 60%);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    /* Ensure block behaviour over default a tag behavior if necessary, though flex does this */
+  }
+
+  .btn-hire-me:focus {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  .btn-hire-me:hover {
+    @apply -translate-y-1 shadow-2xl;
+    box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.4);
+  }
+
+  .btn-hire-me::before {
+    content: "";
+    @apply absolute top-0 -left-[10%] w-[120%] h-full z-0 pointer-events-none;
+    background: theme('colors.primary'); /* #6366f1 typically */
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+  }
+
+  .btn-hire-me:hover::before {
+    transform: translate3d(100%, 0, 0) skew(30deg);
+  }
+
+  /* Make sure the text stays above the sliding background */
+  .btn-hire-me-content {
+    @apply relative z-10 flex items-center gap-3 w-full h-full text-white transition-colors duration-[400ms] pointer-events-none;
+  }
+
+  .btn-hire-me:hover .btn-hire-me-content {
+    @apply text-cyan-200; /* Subtle color change on hover as originally styled */
+  }
+
+  .btn-hire-me:hover .material-symbols-outlined {
+    @apply rotate-12;
+  }
+
+  .resume-timeline-connector {
+    @apply absolute -left-[23px] top-[33px] w-[23px] h-[2px] bg-primary/30 transition-colors duration-300 group-hover:bg-primary/60 z-0;
+  }
+
+  .resume-timeline-item {
+    @apply opacity-50 translate-y-12 transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)];
+  }
+
+  .resume-timeline-item.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .resume-card {
+    @apply rounded-xl overflow-hidden border border-primary/30 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(139,92,246,0.15)] bg-white dark:bg-[#101922] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)];
+  }
+
+  .resume-card-header {
+    @apply bg-primary/90 p-5 sm:p-6 sm:pb-5;
+  }
+
+  .resume-role {
+    @apply text-xl sm:text-2xl font-display font-bold text-white mb-1;
+  }
+
+  .resume-company {
+    @apply text-[#101922] font-semibold text-lg;
+  }
+
+  .resume-meta {
+    @apply flex flex-wrap items-center text-sm mt-2 font-medium text-[#101922]/80 gap-y-1;
+  }
+
+  .resume-intro {
+    @apply text-sm mt-3 font-medium text-[#101922]/90 italic;
+  }
+
+  .resume-meta-dot {
+    @apply mx-2;
+  }
+
+  .resume-card-body {
+    @apply p-5 sm:p-6 bg-white dark:bg-[#0b1117];
+  }
+
+  .resume-focus {
+    @apply block text-sm sm:text-base font-bold text-primary mb-3;
+  }
+
+  .resume-list {
+    @apply list-disc ml-5 space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300;
+  }
+}

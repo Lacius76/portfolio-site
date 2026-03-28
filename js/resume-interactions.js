@@ -23,4 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
     skillBars.forEach(bar => {
         observer.observe(bar);
     });
+
+    // Resume Timeline Reveal
+    const timelineObserverOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+    };
+
+    const timelineObserver = new IntersectionObserver((entries, timelineObserver) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                timelineObserver.unobserve(entry.target);
+            }
+        });
+    }, timelineObserverOptions);
+
+    const timelineItems = document.querySelectorAll('.resume-timeline-item');
+    timelineItems.forEach((item, index) => {
+        // Optional: add staggered delay based on index if multiple appear at once
+        if (index > 0) {
+            // item.style.transitionDelay = `${index * 50}ms`; // Removing direct inline delay to keep it simple
+        }
+        timelineObserver.observe(item);
+    });
 });
