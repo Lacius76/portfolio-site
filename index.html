@@ -131,7 +131,8 @@
               </div>
             </div>
           </div>
-          <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
+          <button id="theme-toggle"
+            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
             <span></span>
             <span>
               <span></span>
@@ -161,8 +162,7 @@
           data-i18n="nav.about">About</a>
         <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
           data-i18n="nav.resume">Resume</a>
-        <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl"
-          data-i18n="nav.letsTalk">Let's Talk</a>
+        <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's Talk</a>
       </nav>
     </div>
 
@@ -174,9 +174,12 @@
           class="hg-scene w-full max-w-[1200px] mx-auto opacity-100 dark:opacity-40 transition-opacity duration-1000 z-10">
           <div class="relative translate-y-[50px]">
             <div class="hg-grid" id="hgGrid"></div>
-            <button id="hgReplayBtn" aria-label="Trigger Wave Scan" title="Run Analysis Wave"
-              class="absolute bottom-[90px] left-[-30px] z-40 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center border border-primary/10 shadow-sm backdrop-blur-md pointer-events-auto">
+            <button id="hgReplayBtn" aria-label="Trigger Wave Scan"
+              class="absolute bottom-[90px] left-[-30px] z-40 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center border border-primary/10 shadow-sm backdrop-blur-md pointer-events-auto bot-tooltip-container relative">
               <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
+              <span
+                class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+                data-i18n="index.radarTooltip">Recalculate Fragments</span>
             </button>
           </div>
         </div>
@@ -191,16 +194,17 @@
                   data-i18n="index.availableForWork">Available for work</div>
                 <h1
                   class="text-[#111418] dark:text-white text-4xl font-black leading-[1.2] pb-2 tracking-[-0.033em] lg:text-7xl">
-                  <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that </span>
+                  <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that </span><br />
                   <span
                     class="hero-anim-title-2 inline-block lg:pb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
-                    data-i18n="index.heroTitle2">humanizes</span>
+                    data-i18n="index.heroTitle2">humanizes</span><br />
                   <span class="hero-anim-title-3" data-i18n="index.heroTitle3">technology.</span>
                 </h1>
                 <h2
                   class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-lg font-normal leading-relaxed max-w-xl">
-                  <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior UI/UX & Product Designer. I
-                    leverage 25+ years of mastery and AI-driven workflows to solve complex problems through intuitive
+                  <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior UI/UX & Product Designer.<br />I
+                    leverage 25+ years of mastery and AI-driven workflow to solve complex problems through
+                    intuitive
                     digital experiences.</span>
                 </h2>
               </div>

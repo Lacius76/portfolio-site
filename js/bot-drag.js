@@ -92,13 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               
               <!-- Action Buttons for Contact Prompt -->
-              <div id="botActionBtns" class="absolute hidden right-7 flex gap-2 text-[10px] font-mono" style="bottom: 14px;">
+              <div id="botActionBtns" class="absolute hidden flex gap-2 text-[10px] font-mono items-center" style="bottom: 3px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10;">
                  <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
                  <button id="botBtnNo" data-i18n="bot.contactNo">[ NO ]</button>
               </div>
 
-              <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent border-none cursor-pointer z-50 js-bot-talk-btn" style="right: 4px; bottom: 3px;" title="Generate Response (Enter)">
+              <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent border-none cursor-pointer z-50 js-bot-talk-btn bot-tooltip-container bot-tooltip-left-align" style="right: 4px; bottom: 3px;">
                 <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
+                <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipTalk">Talk to me</span>
               </button>
             </div>
           </div>
@@ -569,17 +570,17 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             wakeUp();
-            
+
             const actionBtns = botCard.querySelector('#botActionBtns');
             const talkBtnBtn = botCard.querySelector('#botTalkBtn');
-            
+
             // Ha épp a kontakt gombokat mutatjuk, a talkBtn legyen blokkolva
             if (actionBtns && !actionBtns.classList.contains('hidden')) return;
 
             if (!contactPrompted) {
                 contactPrompted = true; // Csak ismétlődés elkerülésére, első kattintásnál
                 let promptMsg = window.i18next ? window.i18next.t('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?') : "Would you like me to draft an email for an appointment with László?";
-                
+
                 typeWriter(promptMsg, botConsole, () => {
                     if (actionBtns) actionBtns.classList.remove('hidden');
                     if (talkBtnBtn) talkBtnBtn.classList.add('hidden');
@@ -592,24 +593,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Yes/No gombok logikája + Modal logika
-    
+
     function openBotContactModal() {
         const modal = document.getElementById('botContactModal');
         const modalBox = document.getElementById('botContactModalBox');
         const textarea = document.getElementById('botContactMsg');
-        
+
         if (!modal) return;
-        
+
         // Előre megírt szöveg
         let prefill = window.i18next ? window.i18next.t('bot.contactPrefill', "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,") : "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,";
         if (textarea) textarea.value = prefill;
-        
+
         // Reset state
         document.getElementById('botContactForm').classList.remove('hidden');
         document.getElementById('botContactSuccess').classList.add('hidden');
         document.getElementById('botContactForm').reset();
         if (textarea) textarea.value = prefill; // re-apply prefill after reset
-        
+
         modal.classList.remove('hidden');
         // trigger animation setup
         setTimeout(() => {
@@ -618,16 +619,16 @@ document.addEventListener('DOMContentLoaded', () => {
             modalBox.classList.add('scale-100');
         }, 10);
     }
-    
+
     function closeBotContactModal() {
         const modal = document.getElementById('botContactModal');
         const modalBox = document.getElementById('botContactModalBox');
         if (!modal) return;
-        
+
         modal.classList.add('opacity-0');
         modalBox.classList.remove('scale-100');
         modalBox.classList.add('scale-95');
-        
+
         setTimeout(() => {
             modal.classList.add('hidden');
         }, 300);
@@ -638,43 +639,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.closest('#botContactClose') || e.target.closest('#botContactSuccessClose')) {
             closeBotContactModal();
         }
-        
+
         if (e.target.closest('#botBtnYes')) {
             const actionBtns = document.getElementById('botActionBtns');
             const talkBtnBtn = document.getElementById('botTalkBtn');
             const botConsole = document.getElementById('botConsole');
-            
+
             if (actionBtns) actionBtns.classList.add('hidden');
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
-            
+
             openBotContactModal();
             let yesMsg = window.i18next ? window.i18next.t('bot.contactYesRes', 'Opening communication interface...') : "Opening communication interface...";
             typeWriter(yesMsg, botConsole);
         }
-        
+
         if (e.target.closest('#botBtnNo')) {
             const actionBtns = document.getElementById('botActionBtns');
             const talkBtnBtn = document.getElementById('botTalkBtn');
             const botConsole = document.getElementById('botConsole');
-            
+
             if (actionBtns) actionBtns.classList.add('hidden');
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
-            
-            let noMsg = window.i18next ? window.i18next.t('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be happy.') : "Maybe next time, but based on my calculations, László would be happy.";
+
+            let noMsg = window.i18next ? window.i18next.t('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be glad to hear from you.') : "Maybe next time, but based on my calculations, László would be glad to hear from you.";
             typeWriter(noMsg, botConsole);
         }
     });
-    
+
     // AJAX form submission for modal
     const contactForm = document.getElementById('botContactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const btnText = document.getElementById('botContactBtnText');
             const loadingIcon = document.getElementById('botContactLoading');
             const submitBtn = document.getElementById('botContactSubmit');
-            
+
             if (btnText) btnText.classList.add('hidden');
             if (loadingIcon) loadingIcon.classList.remove('hidden');
             if (submitBtn) submitBtn.disabled = true;
@@ -686,20 +687,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams(formData).toString()
             })
-            .then(() => {
-                contactForm.classList.add('hidden');
-                document.getElementById('botContactSuccess').classList.remove('hidden');
-                document.getElementById('botContactSuccess').style.display = 'flex';
-            })
-            .catch((error) => {
-                console.error('Form submission error:', error);
-                alert('Something went wrong. Please try again or use the main contact form.');
-            })
-            .finally(() => {
-                if (btnText) btnText.classList.remove('hidden');
-                if (loadingIcon) loadingIcon.classList.add('hidden');
-                if (submitBtn) submitBtn.disabled = false;
-            });
+                .then(() => {
+                    contactForm.classList.add('hidden');
+                    document.getElementById('botContactSuccess').classList.remove('hidden');
+                    document.getElementById('botContactSuccess').style.display = 'flex';
+                })
+                .catch((error) => {
+                    console.error('Form submission error:', error);
+                    alert('Something went wrong. Please try again or use the main contact form.');
+                })
+                .finally(() => {
+                    if (btnText) btnText.classList.remove('hidden');
+                    if (loadingIcon) loadingIcon.classList.add('hidden');
+                    if (submitBtn) submitBtn.disabled = false;
+                });
         });
     }
 

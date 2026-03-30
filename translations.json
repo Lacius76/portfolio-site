@@ -9,11 +9,12 @@
       "home": "Home"
     },
     "index": {
+      "radarTooltip": "Recalculate Fragments",
       "availableForWork": "Available for work",
       "heroTitle1": "Design that ",
       "heroTitle2": "humanizes",
       "heroTitle3": " technology.",
-      "heroSubtitle": "Hi, I'm László Földváry. Senior UI/UX & Product Designer. I leverage 25+ years of mastery and AI-driven workflows to solve complex problems through intuitive digital experiences.",
+      "heroSubtitle": "Hi, I'm László Földváry. Senior UI/UX & Product Designer.<br />I leverage 25+ years of mastery and AI-driven workflows to solve complex problems through intuitive digital experiences.",
       "viewSelectedWork": "View Selected Work",
       "contactMe": "Contact Me",
       "projectsLaunched": "Projects Launched",
@@ -566,13 +567,14 @@
       "tooltipSkin": "Choose Skin",
       "tooltipDrag": "Drag Me!",
       "tooltipClose": "Close Bot",
+      "tooltipTalk": "Talk to me",
       "modalSuccessClose": "CLOSE",
       "title": "AI BOT",
       "contactPrompt": "Would you like me to draft an email for an appointment with László?",
       "contactYes": "[ YES ]",
       "contactNo": "[ NO ]",
       "contactYesRes": "Opening mail client... Initiating protocol.",
-      "contactNoRes": "Maybe next time, but based on my calculations, László would be happy."
+      "contactNoRes": "Maybe next time, but based on my calculations, László would be glad to hear from you."
     }
   },
   "de": {
@@ -589,7 +591,7 @@
       "heroTitle1": "Design, das Technologie ",
       "heroTitle2": "menschlich",
       "heroTitle3": " macht.",
-      "heroSubtitle": "Hallo, ich bin László Földváry – Senior UI/UX & Product Designer. Mit 25+ Jahren Erfahrung und KI-gestützten Workflows löse ich komplexe Probleme – durch intuitive digitale Erlebnisse.",
+      "heroSubtitle": "Hallo, ich bin László Földváry – Senior UI/UX & Product Designer.<br />Mit 25+ Jahren Erfahrung und KI-gestützten Workflows löse ich komplexe Probleme – durch intuitive digitale Erlebnisse.",
       "viewSelectedWork": "Ausgewählte Arbeiten",
       "contactMe": "Kontakt aufnehmen",
       "projectsLaunched": "Projekte umgesetzt",
@@ -1138,13 +1140,14 @@
       "tooltipSkin": "Skin ändern",
       "tooltipDrag": "Zieh mich!",
       "tooltipClose": "Bot schließen",
+      "tooltipTalk": "Sprich mit mir",
       "modalSuccessClose": "SCHLIESSEN",
       "title": "KI BOT",
       "contactPrompt": "Soll ich eine E-Mail entwerfen, um einen Termin mit László zu vereinbaren?",
       "contactYes": "[ JA ]",
       "contactNo": "[ NEIN ]",
       "contactYesRes": "E-Mail-Client wird geöffnet... Protokoll initiiert.",
-      "contactNoRes": "Vielleicht das nächste Mal. Aber meinen Berechnungen zufolge würde sich László freuen."
+      "contactNoRes": "Vielleicht das nächste Mal. Aber meinen Berechnungen zufolge würde sich László freuen, von dir zu hören."
     }
   }
 }
