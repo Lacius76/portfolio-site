@@ -561,6 +561,18 @@
       "aiBotCard4Desc": "I moved back to Gemini in Anti-Gravity and prompted the new version — inspired by the classic Macintosh I grew up with. <strong class=\"text-slate-700 dark:text-slate-200\">The bond between Human &amp; AI is exactly the point.</strong>",
       "aiBotCard5Title": "AI-Bot 9000",
       "aiBotCard5Desc": "This version pays homage to HAL 9000 from 2001: A Space Odyssey, one of the most iconic and influential early depictions of artificial intelligence in cinema."
+    },
+    "bot": {
+      "tooltipSkin": "Choose Skin",
+      "tooltipDrag": "Drag Me!",
+      "tooltipClose": "Close Bot",
+      "modalSuccessClose": "CLOSE",
+      "title": "AI BOT",
+      "contactPrompt": "Would you like me to draft an email for an appointment with László?",
+      "contactYes": "[ YES ]",
+      "contactNo": "[ NO ]",
+      "contactYesRes": "Opening mail client... Initiating protocol.",
+      "contactNoRes": "Maybe next time, but based on my calculations, László would be happy."
     }
   },
   "de": {
@@ -1121,6 +1133,18 @@
       "section3Desc": "Auch in einer Digital-First-Branche glaube ich an die Kraft des handgezeichneten Konzepts. Der Lebenszyklus des Pharaos begann mit detaillierten Bleistiftstudien.",
       "quote": "„Mein Ziel war es, Charaktere zu schaffen, die Spieler nicht nur sehen, sondern als Symbole von Macht und Mysterium erkennen. Die Vektorbasis erlaubt unendliche Skalierbarkeit, während das Pixel-Finish das Gold zum Leben erweckt.“",
       "backButton": "Nächstes Projekt: Funworld"
+    },
+    "bot": {
+      "tooltipSkin": "Skin ändern",
+      "tooltipDrag": "Zieh mich!",
+      "tooltipClose": "Bot schließen",
+      "modalSuccessClose": "SCHLIESSEN",
+      "title": "KI BOT",
+      "contactPrompt": "Soll ich eine E-Mail entwerfen, um einen Termin mit László zu vereinbaren?",
+      "contactYes": "[ JA ]",
+      "contactNo": "[ NEIN ]",
+      "contactYesRes": "E-Mail-Client wird geöffnet... Protokoll initiiert.",
+      "contactNoRes": "Vielleicht das nächste Mal. Aber meinen Berechnungen zufolge würde sich László freuen."
     }
   }
 }

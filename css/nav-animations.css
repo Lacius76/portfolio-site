@@ -357,3 +357,28 @@ html.dark .theme__icon:not(:hover)> :nth-child(3) {
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
+
+/* --- Logo Text Hover Underline --- */
+.nav-anim-logo a h2 {
+    position: relative;
+}
+
+.nav-anim-logo a h2::after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #6366f1;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+
+.nav-anim-logo a:focus h2::after,
+.nav-anim-logo a:hover h2::after {
+    width: 100%;
+    left: 0%;
+}

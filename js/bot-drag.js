@@ -21,27 +21,33 @@ document.addEventListener('DOMContentLoaded', () => {
         <!-- TOOLBAR / Drag Area -->
         <div class="bot-header-area group/handle">
           <div class="bot-header-field">
-            <div class="bot-drag-handle-indicator" title="Drag to move">
-              <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
-            </div>
-            
-            <button id="botSkinToggle" class="bot-btn-3d" aria-label="Change Skin">
+            <button id="botSkinToggle" class="bot-btn-3d bot-tooltip-container z-10 relative" aria-label="Change Skin">
               <span class="material-symbols-outlined text-[16px]">menu</span>
+              <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipSkin">Choose Skin</span>
             </button>
             
             <div class="bot-toolbar-spacer"></div>
-            <span class="bot-title-text" data-i18n="bot.title">AI BOT</span>
             
-            <button class="bot-close-btn bot-btn-3d" aria-label="Close Bot">
+            <!-- Default / Classic / Original Skin Title (Hidden in HAL mode) -->
+            <div class="bot-title-text bot-tooltip-container bot-tooltip-drag items-center justify-center">
+                <span data-i18n="bot.title">AI BOT</span>
+                <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipDrag">Drag Me!</span>
+            </div>
+
+            <!-- HAL 9000 Name Banner (Visible in HAL mode) -->
+            <div class="bot-name-banner-small bot-tooltip-container bot-tooltip-drag absolute inset-0 flex items-center justify-center z-0" style="font-family: 'Inter', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: -0.02em; user-select: none; pointer-events: auto;">
+                <span class="name-part text-black flex-1 text-right" style="padding-right: 5px;">AI BOT</span>
+                <span class="number-part text-white flex-1 text-left" style="padding-left: 5px;">9000</span>
+                <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipDrag">Drag Me!</span>
+            </div>
+
+            <div class="bot-toolbar-spacer"></div>
+            
+            <button class="bot-close-btn bot-btn-3d bot-tooltip-container z-10 relative" aria-label="Close Bot">
               <span class="material-symbols-outlined text-[16px]">close</span>
+              <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide shadow-xl" data-i18n="bot.tooltipClose">Close Bot</span>
             </button>
           </div>
-        </div>
-
-        <!-- Name Banner -->
-        <div class="bot-name-banner">
-          <span class="name-part">AI-Bot</span>
-          <span class="number-part">9000</span>
         </div>
 
         <!-- HAL Eye Area -->
@@ -84,7 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
                 <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
               </div>
-              <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent hover:scale-110 active:scale-95 transition-all border-none cursor-pointer z-50 opacity-80 hover:opacity-100 js-bot-talk-btn" style="right: 4px; bottom: 3px; color: #28a530;" title="Generate Response (Enter)">
+              
+              <!-- Action Buttons for Contact Prompt -->
+              <div id="botActionBtns" class="absolute hidden right-7 flex gap-2 text-[10px] font-mono" style="bottom: 14px;">
+                 <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
+                 <button id="botBtnNo" data-i18n="bot.contactNo">[ NO ]</button>
+              </div>
+
+              <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent border-none cursor-pointer z-50 js-bot-talk-btn" style="right: 4px; bottom: 3px;" title="Generate Response (Enter)">
                 <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
               </button>
             </div>
@@ -92,6 +105,77 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
       </div><!-- end aiBotCard -->
+    </div><!-- end aiBotDragWrapper -->
+
+    <!-- AI Bot Contact Modal -->
+    <div id="botContactModal" class="fixed inset-0 z-[9999] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="relative p-8 transition-transform duration-300 transform scale-95 bot-modal-card" style="width: 400px; max-width: 90vw;" id="botContactModalBox">
+            
+            <!-- Modal Content Wrapper (for z-index over the shine ::after) -->
+            <div class="relative z-10">
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-[#111418] dark:text-white font-black text-xl tracking-tight" data-i18n="bot.modalTitle">Project Inquiry</h3>
+                    <button id="botContactClose" class="text-gray-500 hover:text-[#6366f1] transition-colors">
+                        <span class="material-symbols-outlined text-[24px]">close</span>
+                    </button>
+                </div>
+
+                <!-- Form -->
+                <form id="botContactForm" name="contact" method="POST" data-netlify="true" class="flex flex-col gap-4">
+                    <input type="hidden" name="form-name" value="contact" />
+                    
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest" data-i18n="contact.name">NAME</label>
+                        <input type="text" name="name" required class="w-full text-sm h-12 px-4 bg-white dark:bg-[#1e293b] border border-gray-300 dark:border-gray-600 text-[#111418] dark:text-white rounded-xl outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-all">
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest" data-i18n="contact.email">EMAIL</label>
+                        <input type="email" name="email" required class="w-full text-sm h-12 px-4 bg-white dark:bg-[#1e293b] border border-gray-300 dark:border-gray-600 text-[#111418] dark:text-white rounded-xl outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-all">
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest" data-i18n="bot.modalMessage">MESSAGE</label>
+                        <textarea name="message" id="botContactMsg" rows="5" required class="w-full text-sm py-3 px-4 bg-white dark:bg-[#1e293b] border border-gray-300 dark:border-gray-600 text-[#111418] dark:text-white rounded-xl outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-all"></textarea>
+                    </div>
+
+                    <button type="submit" id="botContactSubmit" class="mt-4 w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold shadow-xl shadow-[#6366f1]/20 transition-transform hover:-translate-y-1">
+                        <span id="botContactBtnText" data-i18n="bot.modalSend">SEND MESSAGE</span>
+                        <span class="material-symbols-outlined text-[16px] hidden animate-spin" id="botContactLoading">sync</span>
+                    </button>
+                </form>
+
+                <!-- Success Message -->
+                <div id="botContactSuccess" class="hidden flex-col items-center justify-center text-center py-2" style="min-height: 384px;">
+                    
+                    <div style="transform: scale(3.5); margin: 2rem 0; display: flex; justify-content: center; align-items: center; height: 60px;">
+                        <div class="checkbox-wrapper-12">
+                          <div class="cbx">
+                            <input checked="" type="checkbox" id="cbx-12">
+                            <label for="cbx-12"></label>
+                            <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+                              <path d="M2 8.36364L6.23077 12L13 2"></path>
+                            </svg>
+                          </div>
+                          
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="filter-svg">
+                            <defs>
+                              <filter id="goo-12">
+                                <feGaussianBlur result="blur" stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+                                <feColorMatrix result="goo-12" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" mode="matrix" in="blur"></feColorMatrix>
+                                <feBlend in2="goo-12" in="SourceGraphic"></feBlend>
+                              </filter>
+                            </defs>
+                          </svg>
+                        </div>
+                    </div>
+
+                    <p class="text-xl font-bold text-[#111418] dark:text-white mt-4" data-i18n="bot.modalSuccess">Message sent successfully!</p>
+                    <button id="botContactSuccessClose" class="mt-8 w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold tracking-wide shadow-xl shadow-[#6366f1]/20 transition-transform hover:-translate-y-1" data-i18n="bot.modalSuccessClose">CLOSE</button>
+                </div>
+            </div>
+        </div>
     </div>`;
 
     const injectionPoint = document.getElementById('ai-bot-injection-point');
@@ -176,6 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Drag Logic ---
     function onDragStart(clientX, clientY) {
+        // Find and hide drag tooltip permanently on first drag
+        document.querySelectorAll('.bot-tooltip-drag .bot-tooltip').forEach(el => {
+            el.classList.add('hidden-permanently');
+        });
+
         isDragging = true;
         dragHandle.style.cursor = 'grabbing';
 
@@ -412,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const botConsole = document.getElementById('botConsole');
     window._botTypingInterval = null;
 
-    function typeWriter(text, element) {
+    function typeWriter(text, element, onComplete) {
         if (!element) return;
         if (window._botTypingInterval) clearInterval(window._botTypingInterval);
         element.textContent = '';
@@ -424,6 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 clearInterval(window._botTypingInterval);
                 window._botTypingInterval = null;
+                if (typeof onComplete === 'function') onComplete();
             }
         }, 40);
     }
@@ -473,14 +563,145 @@ document.addEventListener('DOMContentLoaded', () => {
         return jokes[selectedJokeIndex];
     }
 
+    let contactPrompted = false;
+
     talkBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             wakeUp();
-            const joke = getNextJoke();
-            typeWriter(joke, botConsole);
+            
+            const actionBtns = botCard.querySelector('#botActionBtns');
+            const talkBtnBtn = botCard.querySelector('#botTalkBtn');
+            
+            // Ha épp a kontakt gombokat mutatjuk, a talkBtn legyen blokkolva
+            if (actionBtns && !actionBtns.classList.contains('hidden')) return;
+
+            if (!contactPrompted) {
+                contactPrompted = true; // Csak ismétlődés elkerülésére, első kattintásnál
+                let promptMsg = window.i18next ? window.i18next.t('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?') : "Would you like me to draft an email for an appointment with László?";
+                
+                typeWriter(promptMsg, botConsole, () => {
+                    if (actionBtns) actionBtns.classList.remove('hidden');
+                    if (talkBtnBtn) talkBtnBtn.classList.add('hidden');
+                });
+            } else {
+                const joke = getNextJoke();
+                typeWriter(joke, botConsole);
+            }
         });
     });
+
+    // Yes/No gombok logikája + Modal logika
+    
+    function openBotContactModal() {
+        const modal = document.getElementById('botContactModal');
+        const modalBox = document.getElementById('botContactModalBox');
+        const textarea = document.getElementById('botContactMsg');
+        
+        if (!modal) return;
+        
+        // Előre megírt szöveg
+        let prefill = window.i18next ? window.i18next.t('bot.contactPrefill', "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,") : "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,";
+        if (textarea) textarea.value = prefill;
+        
+        // Reset state
+        document.getElementById('botContactForm').classList.remove('hidden');
+        document.getElementById('botContactSuccess').classList.add('hidden');
+        document.getElementById('botContactForm').reset();
+        if (textarea) textarea.value = prefill; // re-apply prefill after reset
+        
+        modal.classList.remove('hidden');
+        // trigger animation setup
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalBox.classList.remove('scale-95');
+            modalBox.classList.add('scale-100');
+        }, 10);
+    }
+    
+    function closeBotContactModal() {
+        const modal = document.getElementById('botContactModal');
+        const modalBox = document.getElementById('botContactModalBox');
+        if (!modal) return;
+        
+        modal.classList.add('opacity-0');
+        modalBox.classList.remove('scale-100');
+        modalBox.classList.add('scale-95');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
+    document.addEventListener('click', (e) => {
+        // Modal bezáró gombok
+        if (e.target.closest('#botContactClose') || e.target.closest('#botContactSuccessClose')) {
+            closeBotContactModal();
+        }
+        
+        if (e.target.closest('#botBtnYes')) {
+            const actionBtns = document.getElementById('botActionBtns');
+            const talkBtnBtn = document.getElementById('botTalkBtn');
+            const botConsole = document.getElementById('botConsole');
+            
+            if (actionBtns) actionBtns.classList.add('hidden');
+            if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
+            
+            openBotContactModal();
+            let yesMsg = window.i18next ? window.i18next.t('bot.contactYesRes', 'Opening communication interface...') : "Opening communication interface...";
+            typeWriter(yesMsg, botConsole);
+        }
+        
+        if (e.target.closest('#botBtnNo')) {
+            const actionBtns = document.getElementById('botActionBtns');
+            const talkBtnBtn = document.getElementById('botTalkBtn');
+            const botConsole = document.getElementById('botConsole');
+            
+            if (actionBtns) actionBtns.classList.add('hidden');
+            if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
+            
+            let noMsg = window.i18next ? window.i18next.t('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be happy.') : "Maybe next time, but based on my calculations, László would be happy.";
+            typeWriter(noMsg, botConsole);
+        }
+    });
+    
+    // AJAX form submission for modal
+    const contactForm = document.getElementById('botContactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btnText = document.getElementById('botContactBtnText');
+            const loadingIcon = document.getElementById('botContactLoading');
+            const submitBtn = document.getElementById('botContactSubmit');
+            
+            if (btnText) btnText.classList.add('hidden');
+            if (loadingIcon) loadingIcon.classList.remove('hidden');
+            if (submitBtn) submitBtn.disabled = true;
+
+            const formData = new FormData(contactForm);
+
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                contactForm.classList.add('hidden');
+                document.getElementById('botContactSuccess').classList.remove('hidden');
+                document.getElementById('botContactSuccess').style.display = 'flex';
+            })
+            .catch((error) => {
+                console.error('Form submission error:', error);
+                alert('Something went wrong. Please try again or use the main contact form.');
+            })
+            .finally(() => {
+                if (btnText) btnText.classList.remove('hidden');
+                if (loadingIcon) loadingIcon.classList.add('hidden');
+                if (submitBtn) submitBtn.disabled = false;
+            });
+        });
+    }
 
     // Enter key triggers interaction (only when bot is active/visible)
     document.addEventListener('keydown', (e) => {
