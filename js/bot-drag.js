@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div><!-- end aiBotDragWrapper -->
 
     <!-- AI Bot Contact Modal -->
-    <div id="botContactModal" class="fixed inset-0 z-[9999] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+    <div id="botContactModal" class="fixed inset-0 hidden flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300" style="z-index: 99999;">
         <div class="relative p-8 transition-transform duration-300 transform scale-95 bot-modal-card" style="width: 400px; max-width: 90vw;" id="botContactModalBox">
             
             <!-- Modal Content Wrapper (for z-index over the shine ::after) -->
@@ -182,6 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const injectionPoint = document.getElementById('ai-bot-injection-point');
     if (injectionPoint) {
         injectionPoint.innerHTML = botHTML;
+        
+        // Move modal to body to guarantee fixed position covers viewport regardless of scroll
+        const contactModal = document.getElementById('botContactModal');
+        if (contactModal) document.body.appendChild(contactModal);
     }
 
 
