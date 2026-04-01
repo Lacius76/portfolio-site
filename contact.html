@@ -340,16 +340,51 @@
                             </div>
                         </div>
                         <!-- Map Preview -->
-                        <div class="w-full h-48 rounded-xl overflow-hidden relative group cursor-pointer">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-                            <div class="absolute bottom-4 left-4 z-20 text-white flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm">open_in_new</span>
-                                <span class="text-sm font-medium" data-i18n="contact.viewOnMap">View on Map</span>
+                        <!-- Map Preview CSS to bypass missing Tailwind JIT classes -->
+                        <style>
+                            .map-magic-container:hover .map-magic-cover {
+                                opacity: 0 !important;
+                                pointer-events: none !important;
+                                transform: scale(1.05);
+                            }
+
+                            .map-magic-cover {
+                                transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                                transform-origin: center;
+                            }
+                        </style>
+
+                        <!-- Map Preview with Magical Hover Reveal -->
+                        <div class="w-full rounded-xl overflow-hidden relative shadow-lg map-magic-container"
+                            style="height: 300px; margin-top: -22px;">
+
+                            <!-- Base Layer: Interactive Google Map -->
+                            <!-- This sits at z-0 taking up the full space -->
+                            <iframe
+                                class="absolute inset-0 w-full h-full border-0 z-0"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85603.88126759711!2d16.434032394747754!3d47.679782800539655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c3b6b7a5a3bc3%3A0x400c4290c1e1370!2sSopron!5e0!3m2!1sen!2shu!4v1712000000000!5m2!1sen!2shu"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+
+                            <!-- Cover Layer: Image that fades out on hover -->
+                            <!-- z-10 puts it over the map, opacity transitions to 0 via our custom class, pointer-events-none lets clicks pass through -->
+                            <div class="absolute inset-0 z-10 opacity-100 map-magic-cover">
+                                <img alt="Sopron, Hungary city streets by night" class="w-full h-full object-cover"
+                                    data-location="Sopron" src="img/sopron-2.jpg" />
+
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                                </div>
                             </div>
-                            <!-- Map Image -->
-                            <img alt="Aerial view of San Francisco city streets"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                data-location="San Francisco" src="img/sopron-2.jpg" />
+
+                            <!-- Permanently Floating Text indicating the interaction -->
+                            <div class="absolute z-20 flex items-center gap-2 pointer-events-none drop-shadow-md"
+                                style="color: white; bottom: 24px; left: 24px;">
+                                <span class="material-symbols-outlined text-[20px]"
+                                    style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">map</span>
+                                <span class="text-sm font-medium tracking-wide" data-i18n="contact.viewOnMap"
+                                    style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">View on Map</span>
+                            </div>
                         </div>
 
                     </div>

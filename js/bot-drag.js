@@ -659,10 +659,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('click', (e) => {
-        // Global intercept for all Contact and Hire Me links
-        const contactLink = e.target.closest('a[href="contact.html"]');
-        // Do not intercept the header nav contact icon (nav-anim-contact)
-        if (contactLink && !contactLink.closest('.nav-anim-contact')) {
+        // Only intercept buttons specifically marked to open the Bot Contact card
+        const botContactTrigger = e.target.closest('.bot-contact-trigger');
+        if (botContactTrigger) {
             e.preventDefault();
             if (typeof wakeUp === 'function') wakeUp();
             if (typeof openBot === 'function' && isBotClosed) openBot();

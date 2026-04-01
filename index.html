@@ -213,7 +213,7 @@
                   class="hero-anim-btn-primary btn-sweep-primary flex min-w-fit items-center justify-center rounded-lg h-12 px-8 text-base font-bold shadow-lg shadow-primary/20"
                   data-i18n="index.viewSelectedWork">View Selected Work</a>
                 <a href="contact.html"
-                  class="hero-anim-btn-secondary btn-sweep-outline flex min-w-[120px] items-center justify-center rounded-lg h-12 px-6 border border-gray-200 dark:border-gray-700 text-base font-medium"
+                  class="hero-anim-btn-secondary btn-sweep-outline flex min-w-[120px] items-center justify-center rounded-lg h-12 px-6 border border-gray-200 dark:border-gray-700 text-base font-medium bot-contact-trigger"
                   data-i18n="index.contactMe">Contact Me</a>
               </div>
               <div class="hero-anim-stats w-full mt-4 lg:mt-[30px] z-10">
@@ -448,6 +448,33 @@
             element.innerHTML = ASSETS[iconName];
           }
         });
+      });
+    </script>
+    <script>
+      // Mobile Menu Control
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.getElementById('menu-button');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if(menuBtn && closeBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; 
+            });
+
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto'; 
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        }
       });
     </script>
     <script src="js/theme.js"></script>

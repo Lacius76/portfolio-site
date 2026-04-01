@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
         // Manual Trackpad/Mouse Wheel scroll inside container
         container.addEventListener("wheel", (e) => {
+            if (window.innerWidth < 1024) return; // Allow native page scroll on mobile/tablet
             // Accelerate slightly for responsiveness
             const scrollFactor = 1.2;
             y1 -= (e.deltaY * scrollFactor);
@@ -98,10 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mobile Touch Gestures
         let touchStartY = 0;
         container.addEventListener("touchstart", (e) => {
+            if (window.innerWidth < 1024) return; // Allow native page scroll on mobile/tablet
             touchStartY = e.touches[0].clientY;
         }, { passive: true });
   
         container.addEventListener("touchmove", (e) => {
+            if (window.innerWidth < 1024) return; // Allow native page scroll on mobile/tablet
+            
             const currentY = e.touches[0].clientY;
             const deltaY = touchStartY - currentY;
             touchStartY = currentY;

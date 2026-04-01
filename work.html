@@ -416,8 +416,12 @@
 
 
       <!-- SCROLLING CONTENT WRAPPER FOR BRIDGE ONLY -->
+      <style>
+        #content-wrapper { margin-top: 3rem; }
+        @media (min-width: 1024px) { #content-wrapper { margin-top: 100vh; } }
+      </style>
       <div id="content-wrapper"
-        class="relative z-10 mt-[100vh] bg-gray-100 dark:bg-[#0d141f] shadow-[0_-10px_2px_#f1f2f4] dark:shadow-[0_-10px_2px_#0d141f]">
+        class="relative z-10 bg-gray-100 dark:bg-[#0d141f] shadow-[0_-10px_2px_#f1f2f4] dark:shadow-[0_-10px_2px_#0d141f]">
         <section class="border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
             <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
@@ -446,7 +450,7 @@
 
       <!-- STICKY HIRE ME BUTTON -->
       <div class="hidden sm:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
-                <a href="contact.html" class="btn-hire-me">
+                <a href="contact.html" class="btn-hire-me bot-contact-trigger">
           <div class="btn-hire-me-content">
             <span class="material-symbols-outlined text-[24px] transition-transform group-hover:rotate-12">mark_email_unread</span>
             <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Hire Me</span>
