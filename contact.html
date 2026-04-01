@@ -201,8 +201,9 @@
                     </div>
 
                     <div class="w-full overflow-hidden rounded-xl border border-[#e5e7eb] dark:border-[#2a3441] bg-white dark:bg-[#1e293b] relative"
-                        style="height: 630px;">
-                        <iframe id="cal-iframe" style="width: 100%; height: 100%; border: none;"></iframe>
+                        style="height: 680px;">
+                        <iframe id="cal-iframe"
+                            style="width: 135%; height: 135%; border: none; transform: scale(0.74); transform-origin: top left;"></iframe>
 
                         <script type="text/javascript">
                             const calIframe = document.getElementById('cal-iframe');
@@ -211,7 +212,7 @@
 
                             function updateCalTheme() {
                                 const isDark = document.documentElement.classList.contains('dark');
-                                calIframe.src = `https://cal.com/${calUsername}/${calEvent}?embed=true&theme=${isDark ? 'dark' : 'light'}`;
+                                calIframe.src = `https://cal.com/${calUsername}/${calEvent}?embed=true&theme=${isDark ? 'dark' : 'light'}&layout=column_view`;
                             }
 
                             // Initial load
