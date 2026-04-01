@@ -180,7 +180,18 @@
       "exp8Location": "Vöcklabruck",
       "exp8Desc": "Preparation and setup of light spots, image retouching after photo shoots."
     },
+    "calendar": {
+      "mon": "MON",
+      "tue": "TUE",
+      "wed": "WED",
+      "thu": "THU",
+      "fri": "FRI",
+      "busySon": "Busy",
+      "book": "+ Book"
+    },
     "contact": {
+      "calendarTitle": "Check Availability & Book a Time",
+      "calendarSubtitle": "Select an available time slot below to automatically start a project inquiry. My working hours are 08:00 - 17:00 (CET).",
       "pageTitle": "Contact - UI Designer Portfolio",
       "mainTitle": "Let's Work Together",
       "mainSubtitle": "Have a project in mind? Looking for a UI partner? Send me a message and I'll get back to you within 24 hours.",
@@ -568,7 +579,12 @@
       "tooltipDrag": "Drag Me!",
       "tooltipClose": "Close Bot",
       "tooltipTalk": "Talk to me",
+      "modalTitle": "Project Inquiry",
+      "modalMessage": "MESSAGE",
+      "modalSend": "SEND MESSAGE",
+      "modalSuccess": "Message sent successfully!",
       "modalSuccessClose": "CLOSE",
+      "contactPrefill": "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,",
       "title": "AI BOT",
       "contactPrompt": "Would you like me to draft an email for an appointment with László?",
       "contactYes": "[ YES ]",
@@ -753,7 +769,18 @@
       "exp8Location": "Vöcklabruck",
       "exp8Desc": "Vorbereitung und Einstellung der Lichtspots, Bildretusche nach den Fotoshootings."
     },
+    "calendar": {
+      "mon": "MO",
+      "tue": "DI",
+      "wed": "MI",
+      "thu": "DO",
+      "fri": "FR",
+      "busySon": "Beschäftigt",
+      "book": "+ Buchen"
+    },
     "contact": {
+      "calendarTitle": "Verfügbarkeit prüfen & Termin buchen",
+      "calendarSubtitle": "Wählen Sie ein freies Zeitfenster. Meine Arbeitszeiten sind 08:00 - 17:00 (CET).",
       "pageTitle": "Kontakt - UI Designer Portfolio",
       "mainTitle": "Lassen Sie uns zusammen&shy;arbeiten",
       "mainSubtitle": "Sie haben ein Projekt im Sinn? Sie suchen einen UI-Partner? Schreiben Sie mir eine Nachricht und ich melde mich innerhalb von 24 Stunden bei Ihnen.",
@@ -1141,7 +1168,12 @@
       "tooltipDrag": "Zieh mich!",
       "tooltipClose": "Bot schließen",
       "tooltipTalk": "Sprich mit mir",
+      "modalTitle": "Projektanfrage",
+      "modalMessage": "NACHRICHT",
+      "modalSend": "NACHRICHT SENDEN",
+      "modalSuccess": "Nachricht erfolgreich gesendet!",
       "modalSuccessClose": "SCHLIESSEN",
+      "contactPrefill": "Hallo László,\n\nich würde gerne einen Termin mit dir vereinbaren, um ein potenzielles Projekt zu besprechen.\n\nViele Grüße,",
       "title": "KI BOT",
       "contactPrompt": "Soll ich eine E-Mail entwerfen, um einen Termin mit László zu vereinbaren?",
       "contactYes": "[ JA ]",

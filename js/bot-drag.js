@@ -4,6 +4,23 @@
  * Also handles all logic: eye tracking, skin switching, typing, and random messages.
  */
 document.addEventListener('DOMContentLoaded', () => {
+    // Translation helper for dynamic texts
+    function tBot(keyStr, fallback) {
+        try {
+            const lang = localStorage.getItem('preferred-language') || 'en';
+            if (typeof translations !== 'undefined' && translations[lang]) {
+                const keys = keyStr.split('.');
+                let val = translations[lang];
+                for (let k of keys) {
+                    if (val && typeof val === 'object' && k in val) val = val[k];
+                    else return fallback;
+                }
+                if (typeof val === 'string') return val;
+            }
+        } catch(e) {}
+        return fallback;
+    }
+
     // --- CENTRALIZED BOT INJECTION ---
     const botHTML = `
     <div id="aiBotDragWrapper"
@@ -138,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <div class="flex flex-col gap-1.5">
                         <label class="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest" data-i18n="bot.modalMessage">MESSAGE</label>
-                        <textarea name="message" id="botContactMsg" rows="5" required class="w-full text-sm py-3 px-4 bg-white dark:bg-[#1e293b] border border-gray-300 dark:border-gray-600 text-[#111418] dark:text-white rounded-xl outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-all"></textarea>
+                        <textarea name="message" id="botContactMsg" rows="7" required class="w-full text-sm py-3 px-4 bg-white dark:bg-[#1e293b] border border-gray-300 dark:border-gray-600 text-[#111418] dark:text-white rounded-xl outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-all resize-y"></textarea>
                     </div>
 
                     <button type="submit" id="botContactSubmit" class="mt-4 w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold shadow-xl shadow-[#6366f1]/20 transition-transform hover:-translate-y-1">
@@ -148,32 +165,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 </form>
 
                 <!-- Success Message -->
-                <div id="botContactSuccess" class="hidden flex-col items-center justify-center text-center py-2" style="min-height: 384px;">
+                <div id="botContactSuccess" class="hidden flex-col h-full" style="min-height: 480px;">
                     
-                    <div style="transform: scale(3.5); margin: 2rem 0; display: flex; justify-content: center; align-items: center; height: 60px;">
-                        <div class="checkbox-wrapper-12">
-                          <div class="cbx">
-                            <input checked="" type="checkbox" id="cbx-12">
-                            <label for="cbx-12"></label>
-                            <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
-                              <path d="M2 8.36364L6.23077 12L13 2"></path>
-                            </svg>
-                          </div>
-                          
-                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="filter-svg">
-                            <defs>
-                              <filter id="goo-12">
-                                <feGaussianBlur result="blur" stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
-                                <feColorMatrix result="goo-12" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" mode="matrix" in="blur"></feColorMatrix>
-                                <feBlend in2="goo-12" in="SourceGraphic"></feBlend>
-                              </filter>
-                            </defs>
-                          </svg>
+                    <div class="flex-1 flex flex-col items-center justify-center text-center">
+                        <div style="transform: scale(3.5); margin: 2rem 0; display: flex; justify-content: center; align-items: center; height: 60px;">
+                            <div class="checkbox-wrapper-12">
+                              <div class="cbx">
+                                <input checked="" type="checkbox" id="cbx-12">
+                                <label for="cbx-12"></label>
+                                <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+                                  <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                </svg>
+                              </div>
+                              
+                              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="filter-svg">
+                                <defs>
+                                  <filter id="goo-12">
+                                    <feGaussianBlur result="blur" stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+                                    <feColorMatrix result="goo-12" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" mode="matrix" in="blur"></feColorMatrix>
+                                    <feBlend in2="goo-12" in="SourceGraphic"></feBlend>
+                                  </filter>
+                                </defs>
+                              </svg>
+                            </div>
                         </div>
+
+                        <p class="text-xl font-bold text-[#111418] dark:text-white mt-4" data-i18n="bot.modalSuccess">Message sent successfully!</p>
                     </div>
 
-                    <p class="text-xl font-bold text-[#111418] dark:text-white mt-4" data-i18n="bot.modalSuccess">Message sent successfully!</p>
-                    <button id="botContactSuccessClose" class="mt-8 w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold tracking-wide shadow-xl shadow-[#6366f1]/20 transition-transform hover:-translate-y-1" data-i18n="bot.modalSuccessClose">CLOSE</button>
+                    <button id="botContactSuccessClose" class="mt-auto w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold tracking-wide shadow-xl shadow-[#6366f1]/20 transition-transform hover:-translate-y-1" data-i18n="bot.modalSuccessClose">CLOSE</button>
                 </div>
             </div>
         </div>
@@ -583,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!contactPrompted) {
                 contactPrompted = true; // Csak ismétlődés elkerülésére, első kattintásnál
-                let promptMsg = window.i18next ? window.i18next.t('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?') : "Would you like me to draft an email for an appointment with László?";
+                let promptMsg = tBot('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?');
 
                 typeWriter(promptMsg, botConsole, () => {
                     if (actionBtns) actionBtns.classList.remove('hidden');
@@ -606,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modal) return;
 
         // Előre megírt szöveg
-        let prefill = window.i18next ? window.i18next.t('bot.contactPrefill', "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,") : "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,";
+        let prefill = tBot('bot.contactPrefill', "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,");
         if (textarea) textarea.value = prefill;
 
         // Reset state
@@ -639,6 +659,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('click', (e) => {
+        // Global intercept for all Contact and Hire Me links
+        const contactLink = e.target.closest('a[href="contact.html"]');
+        // Do not intercept the header nav contact icon (nav-anim-contact)
+        if (contactLink && !contactLink.closest('.nav-anim-contact')) {
+            e.preventDefault();
+            if (typeof wakeUp === 'function') wakeUp();
+            if (typeof openBot === 'function' && isBotClosed) openBot();
+            openBotContactModal();
+            return;
+        }
+
         // Modal bezáró gombok
         if (e.target.closest('#botContactClose') || e.target.closest('#botContactSuccessClose')) {
             closeBotContactModal();
@@ -653,7 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
 
             openBotContactModal();
-            let yesMsg = window.i18next ? window.i18next.t('bot.contactYesRes', 'Opening communication interface...') : "Opening communication interface...";
+            let yesMsg = tBot('bot.contactYesRes', 'Opening communication interface...');
             typeWriter(yesMsg, botConsole);
         }
 
@@ -665,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (actionBtns) actionBtns.classList.add('hidden');
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
 
-            let noMsg = window.i18next ? window.i18next.t('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be glad to hear from you.') : "Maybe next time, but based on my calculations, László would be glad to hear from you.";
+            let noMsg = tBot('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be glad to hear from you.');
             typeWriter(noMsg, botConsole);
         }
     });
