@@ -77,6 +77,16 @@
     .dark ::-webkit-scrollbar-thumb {
       background-color: #334155;
     }
+
+    .hero-ger-spacing {
+      vertical-align: 0;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-ger-spacing {
+        vertical-align: 0.4em;
+      }
+    }
   </style>
 </head>
 
@@ -457,23 +467,23 @@
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        if(menuBtn && closeBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
-            });
+        if (menuBtn && closeBtn && mobileMenu) {
+          menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          });
 
-            closeBtn.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto'; 
-            });
+          closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          });
 
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    document.body.style.overflow = 'auto';
-                });
+          mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.add('hidden');
+              document.body.style.overflow = 'auto';
             });
+          });
         }
       });
     </script>
