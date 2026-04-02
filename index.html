@@ -125,7 +125,9 @@
               aria-label="Contact">
               <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
             </a>
-            <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="nav.contactMeTooltip">Contact Me</span>
+            <span
+              class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+              data-i18n="nav.contactMeTooltip">Contact Me</span>
           </div>
           <div class="relative nav-anim-lang">
             <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
@@ -133,7 +135,9 @@
                 class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 <img src="img/language-icon.svg" alt="Select Language" class="size-6" />
               </button>
-              <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="nav.switchLanguage">Switch Language</span>
+              <span
+                class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+                data-i18n="nav.switchLanguage">Switch Language</span>
             </div>
             <div id="language-dropdown"
               class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
@@ -159,7 +163,9 @@
               </span>
               <span></span>
             </button>
-            <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="nav.toggleTheme">Toggle Theme</span>
+            <span
+              class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+              data-i18n="nav.toggleTheme">Toggle Theme</span>
           </div>
           <button id="menu-button"
             class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
@@ -190,17 +196,22 @@
       <div
         class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
         <div
-          class="hg-scene w-full max-w-[1200px] mx-auto transition-opacity duration-1000 z-10">
+          class="hg-scene w-full max-w-[1200px] mx-auto opacity-100 dark:opacity-40 transition-opacity duration-1000 z-10">
           <div class="relative translate-y-[50px]">
-            <div class="hg-grid opacity-100 dark:opacity-40 transition-opacity duration-1000" id="hgGrid"></div>
-            <button id="hgReplayBtn" aria-label="Trigger Wave Scan"
-              class="absolute bottom-[90px] left-[-30px] z-40 h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center border border-primary/10 shadow-sm backdrop-blur-md pointer-events-auto bot-tooltip-container relative">
-              <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
-              <span
-                class="bot-tooltip text-[#303030] dark:!text-white text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                data-i18n="index.radarTooltip">Recalculate Fragments</span>
-            </button>
+            <div class="hg-grid" id="hgGrid"></div>
           </div>
+        </div>
+
+        <!-- Radar gomb: A hg-scene-en KÍVÜL, hogy a dark:opacity-40 ne vonatkozzon rá -->
+        <div style="position: absolute; bottom: 170px; left: calc(50% + 60px);"
+          class="z-40 bot-tooltip-container flex items-center justify-center pointer-events-auto">
+          <button id="hgReplayBtn" aria-label="Trigger Wave Scan"
+            class="h-12 w-12 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center border border-primary/10 shadow-sm backdrop-blur-md">
+            <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
+          </button>
+          <span
+            class="bot-tooltip text-[#303030] dark:text-white text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+            data-i18n="index.radarTooltip">Recalculate Fragments</span>
         </div>
 
         <div
