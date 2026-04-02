@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Datenschutzerklärung - Laszlo.UI</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
+    <link rel="stylesheet" href="css/nav-animations.css">
   <link rel="stylesheet" href="css/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
@@ -73,22 +74,32 @@
                 </nav>
 
                 <div class="flex items-center gap-4">
-                    <a href="contact.html"
-                        class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                        aria-label="Contact">
-                        <img src="img/contact-icon.svg" alt="Contact" class="size-6">
-                    </a>
+                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
+                        <a href="contact.html"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                            aria-label="Contact">
+                            <img src="img/contact-icon.svg" alt="Contact" class="size-6">
+                        </a>
+                        <span
+                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+                            data-i18n="nav.contactMeTooltip">Contact Me</span>
+                    </div>
 
-                    <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
-            <span></span>
-            <span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-            <span></span>
-          </button>
+                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
+                        <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
+                            <span></span>
+                            <span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <span></span>
+                        </button>
+                        <span
+                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+                            data-i18n="nav.toggleTheme">Toggle Theme</span>
+                    </div>
 
                     <button id="menu-button"
                         class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">

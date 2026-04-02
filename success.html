@@ -117,16 +117,21 @@
                         Back to Laszlo.UI
                     </a>
                     <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
-                    <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
-            <span></span>
-            <span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-            <span></span>
-          </button>
+                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
+                        <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
+                            <span></span>
+                            <span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <span></span>
+                        </button>
+                        <span
+                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
+                            data-i18n="nav.toggleTheme">Toggle Theme</span>
+                    </div>
                     <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
                         href="https://www.facebook.com/laszlo.ui" target="_blank">
                         <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
