@@ -1170,6 +1170,34 @@ html.dark .bot-tooltip::before {
     /* Arrow moved to the right edge to point at button */
 }
 
+/* Modifier: Tooltip anchored pointing downwards (for header) */
+.bot-tooltip-down .bot-tooltip {
+    top: auto;
+    bottom: -6px;
+    transform-origin: top center;
+    transform: translateX(-50%) translateY(0) scale(0);
+}
+
+.bot-tooltip-container.bot-tooltip-down:hover .bot-tooltip {
+    transform: translateX(-50%) translateY(100%) scale(1);
+}
+
+.bot-tooltip-down .bot-tooltip::before {
+    bottom: auto;
+    top: calc(-0.2em - 2px);
+    border-bottom: none;
+    border-right: none;
+    border-top: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0.15rem;
+}
+
+html.dark .bot-tooltip-down .bot-tooltip::before {
+    border-top-color: rgba(255, 255, 255, 0.15);
+    border-left-color: rgba(255, 255, 255, 0.15);
+}
+
 .bot-tooltip.hidden-permanently {
     display: none !important;
 }

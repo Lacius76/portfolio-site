@@ -6,7 +6,10 @@
       "resume": "Resume",
       "contact": "Contact",
       "letsTalk": "Let's Talk",
-      "home": "Home"
+      "home": "Home",
+      "contactMeTooltip": "Contact Me",
+      "switchLanguage": "Switch Language",
+      "toggleTheme": "Toggle Theme"
     },
     "index": {
       "radarTooltip": "Recalculate Fragments",
@@ -600,7 +603,10 @@
       "resume": "Lebenslauf",
       "contact": "Kontakt",
       "letsTalk": "Kontakt",
-      "home": "Startseite"
+      "home": "Startseite",
+      "contactMeTooltip": "Kontakt",
+      "switchLanguage": "Sprache wechseln",
+      "toggleTheme": "Design wechseln"
     },
     "index": {
       "availableForWork": "Offen für neue Rollen · <br class=\"sm:hidden\"> Remote & Vor Ort",
