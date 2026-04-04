@@ -8,8 +8,8 @@
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
     <link rel="stylesheet" href="css/language-animations.css">
     <link rel="stylesheet" href="css/nav-animations.css">
-  <link rel="stylesheet" href="css/footer-social.css" />
-  <link rel="stylesheet" href="css/tailwind.min.css">
+    <link rel="stylesheet" href="css/footer-social.css" />
+    <link rel="stylesheet" href="css/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -108,7 +108,8 @@
 
                     <!-- 3. Theme Toggle -->
                     <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                        <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
+                        <button id="theme-toggle"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
                             <span></span>
                             <span>
                                 <span></span>
@@ -145,9 +146,7 @@
                     data-i18n="nav.about">About</a>
                 <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
                     data-i18n="nav.resume">Resume</a>
-                <a href="contact.html"
-                    class="btn-sweep-primary px-8 py-3 rounded-xl"
-                    data-i18n="nav.letsTalk">Let's
+                <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's
                     Talk</a>
             </nav>
         </div>
@@ -157,9 +156,8 @@
             <section
                 class="relative w-full overflow-hidden min-h-[60vh] flex items-center justify-center pt-24 pb-16 border-b border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950">
                 <div class="absolute inset-0 z-0 opacity-20">
-                    <img src="img/siemens/win-cc-oa2.jpg" class="object-cover w-full h-full grayscale">
-                    <div
-                        class="absolute inset-0 cs-footer-gradient">
+                    <img src="img/siemens/driver-title.png" class="object-cover w-full h-full grayscale">
+                    <div class="absolute inset-0 cs-footer-gradient">
                     </div>
                 </div>
 
@@ -312,6 +310,23 @@
                                 data-i18n="siemens.protoCard2Desc">// Driver Selection UI</p>
                         </div>
                     </div>
+
+                    <!-- Full Width Collage -->
+                    <div class="pt-4">
+                        <div
+                            class="relative w-full rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-slate-900 group">
+                            <img src="img/siemens/open-architecture-koallage.jpg"
+                                alt="WinCC Open Architecture Ecosystem"
+                                class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+                            <!-- Overlay gradient to ensure text readability if needed -->
+                            <div
+                                class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                <h4 class="text-white font-bold uppercase text-sm tracking-widest">The Released
+                                    Ecosystem</h4>
+                                <p class="text-slate-300 text-xs mt-1">From prototype to global 2020 rollout.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- SECTION 3: VECTOR REBIRTH (Already adaptive, keep!) -->
@@ -351,6 +366,24 @@
                     </div>
                 </div>
 
+                <!-- SECTION 4: THE ISOMETRIC STANDARD -->
+                <div class="space-y-8">
+                    <div class="max-w-3xl text-slate-600 dark:text-slate-300">
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter mb-4"
+                            data-i18n="siemens.isoTitle">
+                            Pioneering The Isometric Standard</h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
+                            data-i18n="siemens.isoDesc">
+                            During a major exhibition, I conceptualized and established a brand-new <strong>unified isometric illustration style</strong> from scratch. This unique visual language became the definitive cornerstone of the product's identity. Its impact was so profound that it was subsequently <strong>adopted, scaled, and evolved into modern 3D variations</strong> by Siemens and their external advertising agencies—setting a lasting design standard that is still actively used today.
+                        </p>
+                    </div>
+                    <div
+                        class="glass-panel p-4 rounded-[2.5rem] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 transition-colors">
+                        <img src="img/siemens/vector-splash.png" alt="Isometric Industry Style by Laszlo Foldvary"
+                            class="w-full h-auto rounded-3xl">
+                    </div>
+                </div>
+
                 <!-- CORE VALUE / QUOTE -->
                 <section
                     class="relative overflow-hidden py-24 px-8 rounded-[3rem] bg-primary/5 dark:bg-primary/10 border border-primary/20 text-center transition-colors">
@@ -358,10 +391,9 @@
                         <h3 class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter uppercase italic"
                             data-i18n="siemens.seniorEdgeTitle">
                             The Senior Edge</h3>
-                        <p class="text-2xl text-slate-600 dark:text-slate-300 italic font-light leading-relaxed"
+                        <p class="text-2xl text-slate-600 dark:text-slate-300 italic font-light leading-relaxed max-w-4xl mx-auto"
                             data-i18n="siemens.seniorEdgeQuote">
-                            "This project proves my versatility: applying high-end design principles to mission-critical
-                            industrial environments."
+                            "This project proves my versatility: seamlessly bridging the gap between high-end conceptual design and mission-critical industrial architecture, creating scalable visual systems that inspire both operators and global marketing campaigns."
                         </p>
                     </div>
                 </section>
@@ -381,11 +413,12 @@
 
     <!-- STICKY HIRE ME BUTTON -->
     <div class="fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
-                <a href="contact.html" class="btn-hire-me bot-contact-trigger">
-          <div class="btn-hire-me-content">
-            <span class="material-symbols-outlined text-[24px] transition-transform group-hover:rotate-12">calendar_month</span>
-            <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Reserve</span>
-          </div>
+        <a href="contact.html" class="btn-hire-me bot-contact-trigger">
+            <div class="btn-hire-me-content">
+                <span
+                    class="material-symbols-outlined text-[24px] transition-transform group-hover:rotate-12">calendar_month</span>
+                <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Reserve</span>
+            </div>
         </a>
     </div>
 
@@ -396,8 +429,7 @@
             <img src="img/siemens/win-cc-oa2.jpg"
                 class="w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-100 dark:brightness-50"
                 alt="Siemens Background">
-            <div
-                class="absolute inset-0 cs-footer-gradient">
+            <div class="absolute inset-0 cs-footer-gradient">
             </div>
         </div>
 
@@ -430,35 +462,43 @@
                 <p class="text-primary text-lg font-medium">foeldvary@gmail.com</p>
             </div>
             <!-- Social Icons in Footer -->
-                    <ul class="footer-social-list mb-16">
-          <!-- LinkedIn -->
-          <li class="icon">
-            <span class="tooltip">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank" aria-label="LinkedIn" style="display:contents;color:inherit;">
-              <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path>
-              </svg>
-            </a>
-          </li>
-          <!-- GitHub -->
-          <li class="icon">
-            <span class="tooltip">GitHub</span>
-            <a href="https://github.com/Lacius76" target="_blank" aria-label="GitHub" style="display:contents;color:inherit;">
-              <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-            </a>
-          </li>
-          <!-- Facebook -->
-          <li class="icon">
-            <span class="tooltip">Facebook</span>
-            <a href="https://www.facebook.com/laszlo.foldvary" target="_blank" aria-label="Facebook" style="display:contents;color:inherit;">
-              <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </a>
-          </li>
-        </ul></div>
+            <ul class="footer-social-list mb-16">
+                <!-- LinkedIn -->
+                <li class="icon">
+                    <span class="tooltip">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank" aria-label="LinkedIn"
+                        style="display:contents;color:inherit;">
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path clip-rule="evenodd"
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </li>
+                <!-- GitHub -->
+                <li class="icon">
+                    <span class="tooltip">GitHub</span>
+                    <a href="https://github.com/Lacius76" target="_blank" aria-label="GitHub"
+                        style="display:contents;color:inherit;">
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                    </a>
+                </li>
+                <!-- Facebook -->
+                <li class="icon">
+                    <span class="tooltip">Facebook</span>
+                    <a href="https://www.facebook.com/laszlo.foldvary" target="_blank" aria-label="Facebook"
+                        style="display:contents;color:inherit;">
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
         </div>
     </footer>
     <script src="js/icons.js"></script>
