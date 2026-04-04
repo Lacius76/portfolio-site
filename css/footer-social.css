@@ -1,0 +1,148 @@
+/* ============================================================
+   Footer Social Icons – Animated
+   Self-contained. No dependency on bot.css.
+   Accent: #646bee
+   ============================================================ */
+
+:root {
+  --footer-social-accent: #646bee;
+}
+
+/* ── Wrapper ────────────────────────────────────────────────── */
+.footer-social-list {
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Icon shell ─────────────────────────────────────────────── */
+.footer-social-list .icon {
+  position: relative;
+  background: #fff;
+  color: #111418;
+  border-radius: 50%;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* overflow: visible so tooltip can escape – safe because ::after
+     never leaves the icon bounds thanks to inset:0 + clip-path */
+  overflow: visible;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-decoration: none;
+  z-index: 0;
+}
+
+.dark .footer-social-list .icon {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+/* ── Accent fill: wipes UP from the bottom via clip-path ─────── */
+/* inset:0 means the ::after is EXACTLY the icon size – never leaks out */
+.footer-social-list .icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--footer-social-accent);
+  z-index: -1;
+  /* start: zero-height strip at the very bottom = invisible */
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  transition: clip-path 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* hover: expand upward to fill the full circle */
+.footer-social-list .icon:hover::after {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.footer-social-list .icon:hover {
+  color: #fff;
+  transition: color 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* SVG stays on top of the fill */
+.footer-social-list .icon svg {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Tooltip ─────────────────────────────────────────────────── */
+.footer-social-list .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 12px;
+  font-family: "Inter", "Poppins", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  background: var(--footer-social-accent);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  /* 0.3s delay – appears after the fill animation completes, with bounce */
+  transition: all 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 10;
+}
+
+/* Tooltip arrow */
+.footer-social-list .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: var(--footer-social-accent);
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* On hover: tooltip bounces up */
+.footer-social-list .icon:hover .tooltip {
+  top: -44px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ── No-tooltip variant (resume, contact pages) ─────────────── */
+.footer-social-list.no-tooltip .tooltip {
+  display: none;
+}
+
+/* ── Case study footer: dark-mode background + gradient overlay ─
+   Using plain CSS instead of Tailwind arbitrary values to ensure
+   the dark theme is reliably applied regardless of what's compiled
+   in tailwind.min.css                                             */
+.cs-footer-bg {
+  background-color: #ffffff;
+}
+.dark .cs-footer-bg {
+  background-color: #101922;
+}
+
+.cs-footer-gradient {
+  background: linear-gradient(to top,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.85) 40%,
+    transparent 100%);
+}
+.dark .cs-footer-gradient {
+  background: linear-gradient(to top,
+    #101922 0%,
+    rgba(16, 25, 34, 0.85) 40%,
+    transparent 100%);
+}
