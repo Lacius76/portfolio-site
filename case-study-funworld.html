@@ -266,11 +266,17 @@
                         <!-- RIGHT SIDE: Key Tech -->
                         <div class="space-y-8 md:border-l border-slate-200 dark:border-white/5 md:pl-8 clearfix">
 
-                            <!-- Terminal Image (Floating on desktop only) -->
-                            <div class="md:float-right md:ml-1 md:mb-1 mb-4 max-w-full z-10 relative"
+                            <!-- Terminal WebGL 3D Model (Floating on desktop only) -->
+                            <div class="md:float-right md:ml-1 md:mb-1 mb-4 flex justify-center max-w-full z-10 relative"
                                 style="margin-top: 20px;">
-                                <img src="img/funworld/potoplay-terminal.png" alt="Photoplay Terminal"
-                                    class="h-[200px] w-auto max-w-full object-contain drop-shadow-xl mx-auto md:mx-0 opacity-90 cursor-pointer transform custom-hover-scale origin-top-right hover:opacity-100 hover:drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                                <model-viewer
+                                    src="img/funworld/3d-model.glb"
+                                    auto-rotate
+                                    rotation-per-second="-20deg"
+                                    camera-controls
+                                    class="w-[200px] h-[200px] max-w-full drop-shadow-xl mx-auto md:mx-0 cursor-grab active:cursor-grabbing hover:drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500"
+                                    style="background-color: transparent; --poster-color: transparent;">
+                                </model-viewer>
                             </div>
 
                             <div>
@@ -660,6 +666,7 @@
     </script>
     <script src="js/theme.js"></script>
     <script src="js/language.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </body>
 
 </html>
