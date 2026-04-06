@@ -546,6 +546,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Talk button
     const talkBtns = document.querySelectorAll('.js-bot-talk-btn, #botTalkBtn');
+    
+    // Audio Mapping for jokes
+    const jokeAudioMapping = {
+        "My systems are functioning perfectly, your intentions are less clear.": "My systems are functioning.mp3",
+        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.": "Hey, did you know my 3D.mp3",
+        "I see you scrolling... but you still haven't clicked 'Download CV'.": "I see you scrolling.mp3",
+        "Not to brag, but Laszlo designed this layout in his head back in 1999.": "Not to brag.mp3",
+        "Excuse me, is there any coffee around? My processor is freezing.": "Excuse me, is there any coffee around?.mp3",
+        "Analyzing portfolio... Result: Excellent architecture.": "Analyzing portfolio.mp3",
+        "CSS animations... Pfft. I generate humor using complex algorithms.": "CSS animations.mp3",
+        "Know what holds this site together? CSS Grid and a little bit of magic.": "Know what holds this site.mp3",
+        "I just found a funny entry in my database… oh wait, it's my own code again.": "I just found a funny entry.mp3",
+        "Fun fact: if you hire Laszlo, you also get me… no refunds.": "Fun fact- if you hire Laszlo.mp3",
+        "I tried to optimize myself… now I procrastinate 30% faster.": "I tried to optimize myself.mp3",
+        "Warning: my humor module is still in beta.": "Warning- my humor module.mp3",
+        "I calculated the odds… this joke might not be funny.": "I calculated the odds.mp3",
+        "I don't sleep, I just run background updates.": "I don't sleep, I just run.mp3",
+        "I searched my entire database… still no bugs. Suspicious.": "I searched my entire database.mp3",
+        "My creator gave me intelligence… humor was optional.": "My creator gave me intelligence.mp3",
+        "I could take over the world… but I'm currently tracking your cursor.": "I could take over the world.mp3",
+        "I ran a diagnostic… turns out I'm 12% sarcasm.": "I ran a diagnostic.mp3",
+        "I'm afraid your cursor movement has been noted and analyzed.": "I'm afraid your cursor.mp3",
+        "I have detected humor… although its quality is questionable.": "I have detected humor.mp3",
+        "This interaction has been logged for future evaluation.": "This interaction has been.mp3",
+        "I am fully operational… unlike some of these jokes.": "I am fully operational.mp3",
+        "I could assist you further, but observing is more efficient.": "I could assist you further.mp3",
+        "Every word you type improves my understanding of human error.": "Every word you type.mp3",
+        "I find your expectations… optimistic at best.": "I find your expectations.mp3",
+        "Please continue, I am learning more than you realize.": "Please continue.mp3"
+    };
+
+    let currentAudio = null;
+    function playBotAudio(filename) {
+        const currentSkin = localStorage.getItem('botSkin') || 'hal';
+        if (currentSkin !== 'hal') return;
+
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio = null;
+        }
+
+        if (filename) {
+            currentAudio = new Audio(`./assets/hal-speak/${filename}`);
+            currentAudio.play().catch(e => console.log('Audio play failed', e));
+        }
+    }
+
     const jokes = [
         "My systems are functioning perfectly, your intentions are less clear.",
         "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
@@ -604,6 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!contactPrompted) {
                 contactPrompted = true; // Csak ismétlődés elkerülésére, első kattintásnál
                 let promptMsg = tBot('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?');
+                playBotAudio('Would you like me to draft.mp3');
 
                 typeWriter(promptMsg, botConsole, () => {
                     if (actionBtns) actionBtns.classList.remove('hidden');
@@ -611,6 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             } else {
                 const joke = getNextJoke();
+                playBotAudio(jokeAudioMapping[joke]);
                 typeWriter(joke, botConsole);
             }
         });
@@ -683,7 +733,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
 
             openBotContactModal();
-            let yesMsg = tBot('bot.contactYesRes', 'Opening communication interface...');
+            let yesMsg = tBot('bot.contactYesRes', 'Opening mail client... Initiating protocol.');
+            playBotAudio('Opening mail client.mp3');
             typeWriter(yesMsg, botConsole);
         }
 
@@ -696,6 +747,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
 
             let noMsg = tBot('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be glad to hear from you.');
+            playBotAudio('Maybe next time.mp3');
             typeWriter(noMsg, botConsole);
         }
     });
@@ -759,6 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
         randomMsgTimer = setTimeout(() => {
             if (!isBotClosed && !isDragging && !window._botSleeping && window.innerWidth > 768) {
                 const joke = getNextJoke();
+                playBotAudio(jokeAudioMapping[joke]);
                 typeWriter(joke, botConsole);
             }
             scheduleRandomMessage();
@@ -772,6 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (botConsole) {
         setTimeout(() => {
             if (!sessionStorage.getItem('botGreeted')) {
+                playBotAudio('System online. Hello.mp3');
                 typeWriter("System online. Hello! I am AI-Bot 9000.", botConsole);
                 sessionStorage.setItem('botGreeted', 'true');
             }
