@@ -577,20 +577,39 @@ document.addEventListener('DOMContentLoaded', () => {
         "Please continue, I am learning more than you realize.": "Please continue.mp3"
     };
 
-    let currentAudio = null;
+    // Reusable Audio instance for better browser policy compliance
+    const botAudioPlayer = new Audio();
+    let audioUnlocked = false;
+
+    // Unlock audio on first user interaction to bypass browser autoplay blocks
+    function unlockBotAudio() {
+        if (audioUnlocked) return;
+        // Play a tiny silent wav to initialize the audio context under a trusted event
+        botAudioPlayer.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+        botAudioPlayer.play().then(() => {
+            botAudioPlayer.pause();
+            botAudioPlayer.currentTime = 0;
+            audioUnlocked = true;
+        }).catch(() => {});
+        
+        document.removeEventListener('click', unlockBotAudio);
+        document.removeEventListener('keydown', unlockBotAudio);
+        document.removeEventListener('touchstart', unlockBotAudio);
+    }
+    document.addEventListener('click', unlockBotAudio);
+    document.addEventListener('keydown', unlockBotAudio);
+    document.addEventListener('touchstart', unlockBotAudio);
+
     function playBotAudio(filename) {
         const currentSkin = localStorage.getItem('botSkin') || 'hal';
         if (currentSkin !== 'hal') return;
 
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-            currentAudio = null;
-        }
+        botAudioPlayer.pause();
+        botAudioPlayer.currentTime = 0;
 
         if (filename) {
-            currentAudio = new Audio(`./assets/hal-speak/${filename}`);
-            currentAudio.play().catch(e => console.log('Audio play failed', e));
+            botAudioPlayer.src = encodeURI(`./assets/hal-speak/${filename}`);
+            botAudioPlayer.play().catch(e => console.warn('HAL Audio play failed (policy or 404):', e));
         }
     }
 
