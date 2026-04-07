@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function playBotAudio(filename) {
         const currentSkin = localStorage.getItem('botSkin') || 'hal';
-        if (currentSkin !== 'hal') return;
+        if (currentSkin === 'first') return;
 
         botAudioPlayer.pause();
         botAudioPlayer.currentTime = 0;
@@ -612,8 +612,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const cleanName = nameWithoutExt.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
             const actualFilename = cleanName + '.mp3';
 
-            botAudioPlayer.src = encodeURI(`./assets/hal-speak/${actualFilename}`);
-            botAudioPlayer.play().catch(e => console.warn('HAL Audio play failed (policy or 404):', e));
+            const folder = currentSkin === 'classic' ? 'mac-os-speak' : 'hal-speak';
+
+            botAudioPlayer.src = encodeURI(`./assets/${folder}/${actualFilename}`);
+            botAudioPlayer.play().catch(e => console.warn(`${currentSkin} Audio play failed:`, e));
         }
     }
 
