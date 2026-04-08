@@ -612,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cleanName = nameWithoutExt.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
             const actualFilename = cleanName + '.mp3';
 
-            const folder = currentSkin === 'classic' ? 'mac-os-speak' : 'hal-speak';
+            const folder = currentSkin === 'classic' ? 'mac-os-speak' : 'hal9000-spak';
 
             botAudioPlayer.src = encodeURI(`./assets/${folder}/${actualFilename}`);
             botAudioPlayer.play().catch(e => console.warn(`${currentSkin} Audio play failed:`, e));
