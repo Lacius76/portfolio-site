@@ -542,6 +542,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 40);
     }
+    // Az utolsó géppel írt szöveget elmenti, hogy oldalváltás után vissza lehessen tölteni
+    const _origTypeWriter = typeWriter;
+    typeWriter = function(text, element, onComplete) {
+        _origTypeWriter(text, element, () => {
+            if (element && element.id === 'botConsole') {
+                sessionStorage.setItem('botLastMessage', text);
+            }
+            if (typeof onComplete === 'function') onComplete();
+        });
+    };
     window._typeWriterEffect = typeWriter;
 
     // Talk button
@@ -662,7 +672,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return jokes[selectedJokeIndex];
     }
 
-    let contactPrompted = false;
+    // Session-szintű állapot: ha ezen a munkameneten belül már megkérdezett, ne kérdezze meg újra
+    let contactPrompted = (sessionStorage.getItem('botContactPrompted') === 'true');
 
     talkBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -676,7 +687,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (actionBtns && !actionBtns.classList.contains('hidden')) return;
 
             if (!contactPrompted) {
-                contactPrompted = true; // Csak ismétlődés elkerülésére, első kattintásnál
+                contactPrompted = true;
+                sessionStorage.setItem('botContactPrompted', 'true'); // Megőrizzük az állapotot oldalak között
                 let promptMsg = tBot('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?');
                 playBotAudio('Would you like me to draft.mp3');
 
@@ -847,14 +859,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start only if not asleep
     if (!window._botSleeping) scheduleRandomMessage();
 
-    // Welcome
+    // Welcome / utolsó üzenet visszatöltése
     if (botConsole) {
-        setTimeout(() => {
-            if (!sessionStorage.getItem('botGreeted')) {
+        const lastMsg = sessionStorage.getItem('botLastMessage');
+        if (lastMsg) {
+            // Volt már üzenet ebben a sessionban: visszatöltjük azonnal, animáció nélkül
+            botConsole.textContent = lastMsg;
+        } else {
+            // Legelső látogatás: üdvözlés 2 másodperc késéssel
+            setTimeout(() => {
                 playBotAudio('System online. Hello.mp3');
-                typeWriter("System online. Hello! I am AI-Bot 9000.", botConsole);
+                const greeting = "System online. Hello! I am AI-Bot 9000.";
+                typeWriter(greeting, botConsole);
                 sessionStorage.setItem('botGreeted', 'true');
-            }
-        }, 2000);
+            }, 2000);
+        }
     }
 });
