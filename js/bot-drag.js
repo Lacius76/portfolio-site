@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentSkin === 'classic') folder = 'mac-os-speak';
             else if (currentSkin === 'first') folder = 'original-speak';
 
-            botAudioPlayer.src = encodeURI(`./assets/${folder}/${actualFilename}`);
+            botAudioPlayer.src = encodeURI(`./assets/${folder}/${actualFilename}?v=1`);
             botAudioPlayer.play().catch(e => console.warn(`${currentSkin} Audio play failed:`, e));
         }
     }
