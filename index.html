@@ -181,9 +181,47 @@
       class="hidden fixed inset-0 z-[110] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
       <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white"><span
           class="material-symbols-outlined text-4xl">close</span></button>
-      <nav class="flex flex-col items-center gap-8 text-2xl font-bold">
-        <a href="work.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.work">Work</a>
+      <nav class="flex flex-col items-center gap-6 text-2xl font-bold w-full max-w-xs px-4">
+
+        <!-- Work dropdown -->
+        <div class="w-full flex flex-col items-center">
+          <button id="mobile-work-toggle"
+            class="flex items-center gap-2 text-slate-900 dark:text-white hover:text-primary transition-colors text-2xl font-bold">
+            <span data-i18n="nav.work">Work</span>
+            <span id="mobile-work-chevron"
+              class="material-symbols-outlined text-[22px] transition-transform duration-300">expand_more</span>
+          </button>
+          <div id="mobile-work-dropdown"
+            class="overflow-hidden transition-all duration-400 ease-in-out max-h-0 w-full">
+            <div class="mt-4 flex flex-col gap-1 text-base font-medium text-center">
+              <a href="work.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors"
+                data-i18n="nav.allProjects">All Projects</a>
+              <div class="h-px bg-slate-100 dark:bg-slate-800 my-1"></div>
+              <a href="case-study-ewa.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">eWa
+                Wallet App</a>
+              <a href="case-study-amatic.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Amatic</a>
+              <a href="case-study-funworld.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Funworld
+                / Photoplay</a>
+              <a href="case-study-greent.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Green
+                T</a>
+              <a href="case-study-shadow.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Shadow
+                Cartels</a>
+              <a href="case-study-siemens.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Siemens
+                HMI</a>
+              <a href="case-study-styleguide.html"
+                class="mobile-work-link py-2 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Project
+                Antigravity</a>
+            </div>
+          </div>
+        </div>
+
         <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
           data-i18n="nav.about">About</a>
         <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
@@ -500,6 +538,19 @@
         const menuBtn = document.getElementById('menu-button');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
+        const workToggle = document.getElementById('mobile-work-toggle');
+        const workDropdown = document.getElementById('mobile-work-dropdown');
+        const workChevron = document.getElementById('mobile-work-chevron');
+
+        function closeMobileMenu() {
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+          // reset dropdown
+          if (workDropdown) {
+            workDropdown.style.maxHeight = '0';
+            workChevron.style.transform = 'rotate(0deg)';
+          }
+        }
 
         if (menuBtn && closeBtn && mobileMenu) {
           menuBtn.addEventListener('click', () => {
@@ -507,16 +558,25 @@
             document.body.style.overflow = 'hidden';
           });
 
-          closeBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-          });
+          closeBtn.addEventListener('click', closeMobileMenu);
 
-          mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-              mobileMenu.classList.add('hidden');
-              document.body.style.overflow = 'auto';
+          // Work dropdown toggle
+          if (workToggle && workDropdown) {
+            workToggle.addEventListener('click', () => {
+              const isOpen = workDropdown.style.maxHeight && workDropdown.style.maxHeight !== '0px';
+              if (isOpen) {
+                workDropdown.style.maxHeight = '0';
+                workChevron.style.transform = 'rotate(0deg)';
+              } else {
+                workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
+                workChevron.style.transform = 'rotate(180deg)';
+              }
             });
+          }
+
+          // Close menu on any nav link click
+          mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
           });
         }
       });
