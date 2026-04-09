@@ -289,7 +289,9 @@
       // Mobile Menu Control
       document.addEventListener("DOMContentLoaded", () => {
         // Active page highlight in mobile dropdown
-        const currentPath = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+        let pathParts = window.location.pathname.split('/').filter(Boolean);
+        let currentPage = pathParts.length > 0 ? pathParts[pathParts.length - 1] : 'index';
+        const currentPath = currentPage.replace('.html', '').replace('#', '').split('?')[0];
         const dropdownLinks = document.querySelectorAll('#mobile-work-dropdown-content a');
         dropdownLinks.forEach(link => {
             if (link.getAttribute('href').replace('.html', '') === currentPath) {
