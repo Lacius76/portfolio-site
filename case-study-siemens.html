@@ -654,8 +654,8 @@
         const dropdownLinks = document.querySelectorAll('#mobile-work-dropdown-content a');
         dropdownLinks.forEach(link => {
             if (link.getAttribute('href').replace('.html', '') === currentPath) {
-                link.classList.remove('text-slate-500', 'dark:text-slate-400');
-                link.classList.add('font-bold', 'text-xl');
+                link.style.fontSize = '1.25rem';
+                link.style.fontWeight = '700';
                 link.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
             }
         });
