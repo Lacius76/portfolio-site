@@ -651,14 +651,11 @@
       // Mobile Menu Control
       document.addEventListener("DOMContentLoaded", () => {
         // Active page highlight in mobile dropdown
-        let pathParts = window.location.pathname.split('/').filter(Boolean);
-        let currentPage = pathParts.length > 0 ? pathParts[pathParts.length - 1] : 'index';
-        const currentPath = currentPage.replace('.html', '').replace('#', '').split('?')[0];
+        const currentPath = 'work';
         const dropdownLinks = document.querySelectorAll('#mobile-work-dropdown-content a');
         dropdownLinks.forEach(link => {
             if (link.getAttribute('href').replace('.html', '') === currentPath) {
                 link.classList.remove('text-slate-500', 'dark:text-slate-400');
-                // Give it the accent color, a subtle background tint, and bold text
                 link.classList.add('font-bold', 'text-xl');
                 link.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
             }
