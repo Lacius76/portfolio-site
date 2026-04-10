@@ -50,30 +50,35 @@
         .dark ::-webkit-scrollbar-thumb {
             background-color: #334155;
         }
-    
-    #mobile-work-wrapper.is-active #mobile-work-header {
-      background-color: #4f46e5;
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-    }
-    #mobile-work-wrapper.is-active #mobile-work-link,
-    #mobile-work-wrapper.is-active #mobile-work-toggle,
-    #mobile-work-wrapper.is-active #mobile-work-toggle span {
-      color: #ffffff !important;
-    }
-    #mobile-work-wrapper.is-active #mobile-work-dropdown-content {
-      background-color: #818cf8;
-    }
-    .dark #mobile-work-wrapper.is-active #mobile-work-dropdown-content {
-      background-color: #5c54f9;
-    }
-    #mobile-work-wrapper.is-active .mobile-work-link {
-      color: #ffffff !important;
-    }
-    #mobile-work-wrapper.is-active .mobile-work-link:hover {
-      background-color: rgba(255, 255, 255, 0.15) !important;
-    }
-</style>
+
+        #mobile-work-wrapper.is-active #mobile-work-header {
+            background-color: #4f46e5;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        #mobile-work-wrapper.is-active #mobile-work-link,
+        #mobile-work-wrapper.is-active #mobile-work-toggle,
+        #mobile-work-wrapper.is-active #mobile-work-toggle span {
+            color: #ffffff !important;
+        }
+
+        #mobile-work-wrapper.is-active #mobile-work-dropdown-content {
+            background-color: #818cf8;
+        }
+
+        .dark #mobile-work-wrapper.is-active #mobile-work-dropdown-content {
+            background-color: #5c54f9;
+        }
+
+        #mobile-work-wrapper.is-active .mobile-work-link {
+            color: #ffffff !important;
+        }
+
+        #mobile-work-wrapper.is-active .mobile-work-link:hover {
+            background-color: rgba(255, 255, 255, 0.15) !important;
+        }
+    </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
@@ -141,7 +146,8 @@
                         </div>
                     </div>
                     <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                        <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
+                        <button id="theme-toggle"
+                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
                             <span></span>
                             <span>
                                 <span></span>
@@ -165,69 +171,70 @@
 
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu"
-      class="hidden fixed inset-0 z-[110] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
-      <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white"><span
-          class="material-symbols-outlined text-4xl">close</span></button>
-      <nav class="flex flex-col items-center gap-6 text-2xl font-bold w-full">
+            class="hidden fixed inset-0 z-[110] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+            <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white"><span
+                    class="material-symbols-outlined text-4xl">close</span></button>
+            <nav class="flex flex-col items-center gap-6 text-2xl font-bold w-full">
 
-        <!-- Work dropdown -->
-        <div id="mobile-work-wrapper" class="w-full flex flex-col items-center transition-colors duration-300">
-          <div id="mobile-work-header"
-            class="flex items-center justify-center w-full gap-5 transition-all duration-300">
-            <a href="work.html" id="mobile-work-link"
-              class="text-slate-900 dark:text-white hover:text-primary transition-colors text-2xl font-bold"
-              data-i18n="nav.work">Work</a>
-            <button id="mobile-work-toggle"
-              class="flex items-center justify-center w-8 h-8 text-slate-900 dark:text-white hover:text-primary transition-colors"
-              aria-label="Toggle case studies">
-              <span id="mobile-work-chevron"
-                class="material-symbols-outlined text-[22px] transition-transform duration-300">expand_more</span>
-            </button>
-          </div>
-          <div id="mobile-work-dropdown" class="overflow-hidden transition-all duration-400 ease-in-out w-full"
-            style="max-height: 0px;">
-            <div id="mobile-work-dropdown-content"
-              class="flex flex-col gap-1 text-base font-medium text-center transition-colors duration-300 py-4">
-              <a href="case-study-ewa.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                eWa App</a>
-              <a href="case-study-styleguide.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Project Antigravity</a>
-              <a href="case-study-shadow.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Shadow Cartels</a>
-              <a href="case-study-siemens.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Siemens</a>
-              <a href="case-study-greent.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Greentube</a>
-              <a href="case-study-amatic.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Amatic</a>
-              <a href="case-study-funworld.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Funworld</a>
-            </div>
-          </div>
+                <!-- Work dropdown -->
+                <div id="mobile-work-wrapper" class="w-full flex flex-col items-center transition-colors duration-300">
+                    <div id="mobile-work-header"
+                        class="flex items-center justify-center w-full gap-5 transition-all duration-300">
+                        <a href="work.html" id="mobile-work-link"
+                            class="text-slate-900 dark:text-white hover:text-primary transition-colors text-2xl font-bold"
+                            data-i18n="nav.work">Work</a>
+                        <button id="mobile-work-toggle"
+                            class="flex items-center justify-center w-8 h-8 text-slate-900 dark:text-white hover:text-primary transition-colors"
+                            aria-label="Toggle case studies">
+                            <span id="mobile-work-chevron"
+                                class="material-symbols-outlined text-[22px] transition-transform duration-300">expand_more</span>
+                        </button>
+                    </div>
+                    <div id="mobile-work-dropdown"
+                        class="overflow-hidden transition-all duration-400 ease-in-out w-full" style="max-height: 0px;">
+                        <div id="mobile-work-dropdown-content"
+                            class="flex flex-col gap-1 text-base font-medium text-center transition-colors duration-300 py-4">
+                            <a href="case-study-ewa.html"
+                                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
+                                eWa App</a>
+                            <a href="case-study-styleguide.html"
+                                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
+                                Project Antigravity</a>
+                            <a href="case-study-shadow.html"
+                                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
+                                Shadow Cartels</a>
+                            <a href="case-study-siemens.html"
+                                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
+                                Siemens</a>
+                            <a href="case-study-greent.html"
+                                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
+                                Greentube</a>
+                            <a href="case-study-amatic.html"
+                                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
+                                Amatic</a>
+                            <a href="case-study-funworld.html"
+                                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
+                                Funworld</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.about">About</a>
+                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+                    data-i18n="nav.resume">Resume</a>
+                <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's
+                    Talk</a>
+            </nav>
         </div>
-
-        <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.about">About</a>
-        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.resume">Resume</a>
-        <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's Talk</a>
-      </nav>
-    </div>
 
 
 
 
         <main class="flex flex-col">
             <!-- === HERO SECTION (FIXED LAYER 1) === -->
-            <div
-                class="fixed inset-0 z-0 overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-24 lg:pt-16">
+            <div id="about-hero"
+                class="fixed inset-0 z-0 overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-24 lg:pt-16 transition-opacity duration-500">
                 <section class="mx-auto max-w-[1200px] px-2 py-2 lg:py-14 w-full">
                     <!-- lg:flex-row: Desktop: side-by-side, Mobile: stacked -->
                     <div class="flex flex-col lg:flex-row gap-4 lg:gap-24 items-center lg:items-start">
@@ -440,7 +447,8 @@
                 <!-- LAST CARD (Relative z-40): CONCLUSION + FOOTER REVEAL PUSHER -->
                 <section
                     class="relative z-40 bg-white dark:bg-[#101922] shadow-[0_-20px_60px_#ffffff] dark:shadow-[0_-20px_60px_#101922]">
-                    <section class="mx-auto max-w-[1200px] px-6 py-20 border-t border-slate-100 dark:border-white/5">
+                    <section
+                        class="mx-auto max-w-[1200px] px-6 pt-20 pb-12 border-t border-slate-100 dark:border-white/5">
                         <div
                             class="glass-panel p-10 md:p-16 rounded-[2rem] bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 relative overflow-hidden text-center">
 
@@ -510,27 +518,34 @@
                     <!-- LinkedIn -->
                     <li class="icon">
                         <span class="tooltip">LinkedIn</span>
-                        <a href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank" aria-label="LinkedIn" style="display:contents;color:inherit;">
+                        <a href="https://www.linkedin.com/in/foldvary-laszlo/" target="_blank" aria-label="LinkedIn"
+                            style="display:contents;color:inherit;">
                             <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path>
+                                <path clip-rule="evenodd"
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                    fill-rule="evenodd"></path>
                             </svg>
                         </a>
                     </li>
                     <!-- GitHub -->
                     <li class="icon">
                         <span class="tooltip">GitHub</span>
-                        <a href="https://github.com/Lacius76" target="_blank" aria-label="GitHub" style="display:contents;color:inherit;">
+                        <a href="https://github.com/Lacius76" target="_blank" aria-label="GitHub"
+                            style="display:contents;color:inherit;">
                             <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                             </svg>
                         </a>
                     </li>
                     <!-- Facebook -->
                     <li class="icon">
                         <span class="tooltip">Facebook</span>
-                        <a href="https://www.facebook.com/laszlo.foldvary" target="_blank" aria-label="Facebook" style="display:contents;color:inherit;">
+                        <a href="https://www.facebook.com/laszlo.foldvary" target="_blank" aria-label="Facebook"
+                            style="display:contents;color:inherit;">
                             <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                             </svg>
                         </a>
                     </li>
@@ -551,12 +566,13 @@
             </div>
         </footer>
         <div class="hidden sm:block fixed bottom-24 right-6 z-50 sm:bottom-24 sm:right-8">
-                    <a href="contact.html" class="btn-hire-me bot-contact-trigger">
-          <div class="btn-hire-me-content">
-            <span class="material-symbols-outlined text-[24px] transition-transform group-hover:rotate-12">calendar_month</span>
-            <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Reserve</span>
-          </div>
-        </a>
+            <a href="contact.html" class="btn-hire-me bot-contact-trigger">
+                <div class="btn-hire-me-content">
+                    <span
+                        class="material-symbols-outlined text-[24px] transition-transform group-hover:rotate-12">calendar_month</span>
+                    <span class="text-base font-bold tracking-wide" data-i18n="work.hireMe">Reserve</span>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -576,12 +592,21 @@
                 const scrollY = window.scrollY;
                 const viewHeight = window.innerHeight;
                 const docHeight = document.body.scrollHeight;
+                const hero = document.getElementById('about-hero');
 
                 // 1. Z-Index Logic
                 if (scrollY > viewHeight) {
                     footer.style.zIndex = '1';
+                    if (hero) {
+                        hero.style.opacity = '0';
+                        hero.style.pointerEvents = 'none';
+                    }
                 } else {
                     footer.style.zIndex = '-1';
+                    if (hero) {
+                        hero.style.opacity = '1';
+                        hero.style.pointerEvents = 'auto'; // allow clicks when visible
+                    }
                 }
 
                 // 2. CTA Animation Logic
@@ -617,80 +642,88 @@
         });
 
         // Mobile Menu Control
-      document.addEventListener("DOMContentLoaded", () => {
-        // Active page highlight in mobile dropdown
-        const currentPath = 'about-me';
-        const dropdownLinks = document.querySelectorAll('#mobile-work-dropdown-content a');
-        dropdownLinks.forEach(link => {
-            if (link.getAttribute('href').replace('.html', '') === currentPath) {
-                link.style.fontSize = '1.25rem';
-                link.style.fontWeight = '700';
-                link.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+        document.addEventListener("DOMContentLoaded", () => {
+            // Active page highlight in mobile dropdown
+            const currentPath = 'about-me';
+            const dropdownLinks = document.querySelectorAll('#mobile-work-dropdown-content a');
+            dropdownLinks.forEach(link => {
+                if (link.getAttribute('href').replace('.html', '') === currentPath) {
+                    link.style.fontSize = '1.25rem';
+                    link.style.fontWeight = '700';
+                    link.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                }
+            });
+
+            const menuBtn = document.getElementById('menu-button');
+            const closeBtn = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const workToggle = document.getElementById('mobile-work-toggle');
+            const workDropdown = document.getElementById('mobile-work-dropdown');
+            const workChevron = document.getElementById('mobile-work-chevron');
+
+            function toggleWorkStyles(isOpen) {
+                const wrapper = document.getElementById('mobile-work-wrapper');
+                if (wrapper) {
+                    wrapper.classList.toggle('is-active', isOpen);
+                }
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // reset dropdown
+                if (workDropdown) {
+                    workDropdown.style.maxHeight = '0px';
+                    workChevron.style.transform = 'rotate(0deg)';
+                    toggleWorkStyles(false);
+                }
+            }
+
+            if (menuBtn && closeBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                    if (workDropdown) {
+                        if (window.location.pathname.includes('case-study-')) {
+                            setTimeout(() => {
+                                workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
+                                workChevron.style.transform = 'rotate(180deg)';
+                                toggleWorkStyles(true);
+                            }, 50);
+                        } else {
+                            workDropdown.style.maxHeight = '0px';
+                            workChevron.style.transform = 'rotate(0deg)';
+                            toggleWorkStyles(false);
+                        }
+                    }
+                });
+
+                closeBtn.addEventListener('click', closeMobileMenu);
+
+                // Work dropdown toggle
+                if (workToggle && workDropdown) {
+                    workToggle.addEventListener('click', () => {
+                        const isOpen = workDropdown.style.maxHeight && workDropdown.style.maxHeight !== '0px';
+                        if (isOpen) {
+                            workDropdown.style.maxHeight = '0px';
+                            workChevron.style.transform = 'rotate(0deg)';
+                            toggleWorkStyles(false);
+                        } else {
+                            workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
+                            workChevron.style.transform = 'rotate(180deg)';
+                            toggleWorkStyles(true);
+                        }
+                    });
+                }
+
+                // Close menu on any nav link click
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    if (link.id !== 'mobile-work-link') {
+                        link.addEventListener('click', closeMobileMenu);
+                    }
+                });
             }
         });
-
-        const menuBtn = document.getElementById('menu-button');
-        const closeBtn = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const workToggle = document.getElementById('mobile-work-toggle');
-        const workDropdown = document.getElementById('mobile-work-dropdown');
-        const workChevron = document.getElementById('mobile-work-chevron');
-
-        function toggleWorkStyles(isOpen) {
-          const wrapper = document.getElementById('mobile-work-wrapper');
-          if (wrapper) {
-            wrapper.classList.toggle('is-active', isOpen);
-          }
-        }
-
-        function closeMobileMenu() {
-          mobileMenu.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-          // reset dropdown
-          if (workDropdown) {
-            workDropdown.style.maxHeight = '0px';
-            workChevron.style.transform = 'rotate(0deg)';
-            toggleWorkStyles(false);
-          }
-        }
-
-        if (menuBtn && closeBtn && mobileMenu) {
-          menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            if (workDropdown) {
-              workDropdown.style.maxHeight = '0px';
-              workChevron.style.transform = 'rotate(0deg)';
-              toggleWorkStyles(false);
-            }
-          });
-
-          closeBtn.addEventListener('click', closeMobileMenu);
-
-          // Work dropdown toggle
-          if (workToggle && workDropdown) {
-            workToggle.addEventListener('click', () => {
-              const isOpen = workDropdown.style.maxHeight && workDropdown.style.maxHeight !== '0px';
-              if (isOpen) {
-                workDropdown.style.maxHeight = '0px';
-                workChevron.style.transform = 'rotate(0deg)';
-                toggleWorkStyles(false);
-              } else {
-                workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
-                workChevron.style.transform = 'rotate(180deg)';
-                toggleWorkStyles(true);
-              }
-            });
-          }
-
-          // Close menu on any nav link click
-          mobileMenu.querySelectorAll('a').forEach(link => {
-            if(link.id !== 'mobile-work-link') {
-              link.addEventListener('click', closeMobileMenu);
-            }
-          });
-        }
-      });
     </script>
 
 

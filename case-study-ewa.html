@@ -1077,14 +1077,22 @@
 
       if (menuBtn && closeBtn && mobileMenu) {
         menuBtn.addEventListener('click', () => {
-          mobileMenu.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-          if (workDropdown) {
-            workDropdown.style.maxHeight = '0px';
-            workChevron.style.transform = 'rotate(0deg)';
-            toggleWorkStyles(false);
-          }
-        });
+                    mobileMenu.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                    if (workDropdown) {
+                        if (window.location.pathname.includes('case-study-')) {
+                            setTimeout(() => {
+                                workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
+                                workChevron.style.transform = 'rotate(180deg)';
+                                toggleWorkStyles(true);
+                            }, 50);
+                        } else {
+                            workDropdown.style.maxHeight = '0px';
+                            workChevron.style.transform = 'rotate(0deg)';
+                            toggleWorkStyles(false);
+                        }
+                    }
+                });
 
         closeBtn.addEventListener('click', closeMobileMenu);
 
