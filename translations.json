@@ -430,7 +430,7 @@
       "section3Caption2": "Global Video Slots //",
       "impactBoxTitle": "Legacy of Trust",
       "impactBoxQuote": "&quot;A decade at Novomatic's interactive division taught me that <span class=\"text-primary font-bold\">consistency is as important as creativity</span>. In a highly regulated industry, I delivered excellence across every platform.&quot;",
-      "backButton": "Back to Portfolio"
+      "backButton": "Next: Amatic"
     },
     "amatic": {
       "heroBadge": "Artistic Direction & Character Design",
@@ -575,7 +575,8 @@
       "aiBotCard4Title": "MacOS 8.6",
       "aiBotCard4Desc": "I moved back to Gemini in Anti-Gravity and prompted the new version — inspired by the classic Macintosh I grew up with. <strong class=\"text-slate-700 dark:text-slate-200\">The bond between Human &amp; AI is exactly the point.</strong>",
       "aiBotCard5Title": "AI-Bot 9000",
-      "aiBotCard5Desc": "This version pays homage to HAL 9000 from 2001: A Space Odyssey, one of the most iconic and influential early depictions of artificial intelligence in cinema."
+      "aiBotCard5Desc": "This version pays homage to HAL 9000 from 2001: A Space Odyssey, one of the most iconic and influential early depictions of artificial intelligence in cinema.",
+      "nextButton": "Next: Shadow Cartels"
     },
     "bot": {
       "tooltipSkin": "Choose Skin",
@@ -1143,7 +1144,8 @@
       "aiBotCard4Title": "MacOS 8.6",
       "aiBotCard4Desc": "Ich kehrte zu Gemini in Anti-Gravity zurück und promptete die neue Version — inspiriert vom klassischen Macintosh, mit dem ich aufgewachsen bin. <strong class=\"text-slate-700 dark:text-slate-200\">Die Verbindung zwischen Mensch und KI ist genau der Punkt.</strong>",
       "aiBotCard5Title": "AI-Bot 9000",
-      "aiBotCard5Desc": "Diese Version ist eine Hommage an HAL 9000 aus 2001: Odyssee im Weltraum, eine der ikonischsten und einflussreichsten frühen Darstellungen von künstlicher Intelligenz in der Filmgeschichte."
+      "aiBotCard5Desc": "Diese Version ist eine Hommage an HAL 9000 aus 2001: Odyssee im Weltraum, eine der ikonischsten und einflussreichsten frühen Darstellungen von künstlicher Intelligenz in der Filmgeschichte.",
+      "nextButton": "Nächstes Projekt: Shadow Cartels"
     },
     "amatic": {
       "heroBadge": "Art Direction & Character Design",
