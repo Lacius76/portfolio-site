@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>eWa Wallet App: Fintech & Mobility | Laszlo.UI</title>
+  <title>Földvary.com Experience | Laszlo.UI</title>
   <link rel="icon" type="image/svg+xml" href="img/logo-s.svg" />
   <link rel="stylesheet" href="css/language-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
@@ -317,35 +317,29 @@
         <!-- HERO: eWa Wallet App -->
         <section id="hero-section"
           class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-slate-950">
-          <div class="hero-video-bg absolute inset-0 z-0">
-            <!-- Mobile scale down and pan right to center the left-aligned content safely -->
-            <video autoplay loop muted playsinline
-              class="w-full h-full object-cover md:object-center opacity-40 mix-blend-screen scale-[0.8] sm:scale-100 transition-transform duration-500"
-              style="object-position: calc(15% - 30px) center;">
-              <source src="img/ewa/ewa-hero.webm" type="video/webm">
-              <source src="img/ewa/ewa-hero.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-black/50"></div>
-          </div>
+          <div class="hero-video-bg absolute inset-0 z-0 flex flex-col items-center justify-center">
+            <!-- Hero Image Background without scale issues or overlays -->
+            <img src="img/foldvary-concept/intro.jpg" alt="Földvary Concept Hero"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 z-[-1]">
 
-          <!-- Hero text: -mt-8 shifts content slightly above mathematical center
-               to visually center it in the area below the sticky header -->
-          <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center -mt-8">
-            <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic" data-i18n="ewa.heroTag">
-              Fintech &amp; Mobility Wallet App
-            </h2>
-            <h1
-              class="text-4xl sm:text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic break-words">
-              eWa
-              <span class="text-primary">Wallet App</span>
-            </h1>
-            <p class="max-w-full sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl font-light leading-relaxed text-slate-200 px-2"
-              data-i18n="ewa.heroDescription">
-              A modern application tailored for the Austrian market, seamlessly
-              integrating smart parking, e-vignettes, and digital
-              <span class="text-primary font-bold">Electronic Wallet (eWa)</span>
-              payments.
-            </p>
+            <!-- Hero text -->
+            <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
+              <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 italic"
+                data-i18n="foldvary.heroTag">
+                Cinematic Portfolio Experience
+              </h2>
+              <h1
+                class="text-4xl sm:text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter uppercase italic break-words">
+                Földvary.com
+                <span class="text-primary">Experience</span>
+              </h1>
+              <p class="max-w-full sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl font-light leading-relaxed text-slate-200 px-2"
+                data-i18n="foldvary.heroDescription">
+                A modern application tailored for the Austrian market, seamlessly
+                integrating smart parking, e-vignettes, and a <span class="text-primary font-bold">floating bot
+                  narrator</span>, and holographic cards.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -363,11 +357,11 @@
             <div class="md:col-span-3 space-y-6">
               <h3
                 class="text-lg sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
-                data-i18n="ewa.challengeTitle">
+                data-i18n="foldvary.challengeTitle">
                 The Austrian Market Challenge
               </h3>
               <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg"
-                data-i18n="ewa.challengeText1">
+                data-i18n="foldvary.challengeText1">
                 Designing a Wallet App requires balancing complexity. It must
                 house multiple critical services—like smart road tolling,
                 parking meters, and comprehensive digital wallets—without
@@ -376,7 +370,7 @@
                 daily fintech operations in EURO (€).
               </p>
               <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg mt-4"
-                data-i18n="ewa.challengeText2">
+                data-i18n="foldvary.challengeText2">
                 Targeting the Austrian market meant adhering to high
                 expectations of privacy, data clarity, and clean, uncompromised
                 aesthetics.
@@ -384,48 +378,29 @@
               <!-- TAGS -->
               <div class="flex flex-wrap gap-3 pt-2">
                 <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">UI/UX
-                  Designer</span>
+                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Cinematic
+                  Scroll</span>
                 <span
                   class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">AI
-                  Prototyper</span>
+                  Collaboration</span>
                 <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Material
-                  3</span>
+                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Vanilla
+                  JS / CSS</span>
               </div>
             </div>
 
             <!-- JOBB OLDAL: App Buttons & Key Tech -->
             <div class="space-y-6 md:border-l border-slate-200 dark:border-white/5 md:pl-8 md:col-span-2">
-              <!-- 1. QR Code for Desktop Users -->
-              <div class="hidden sm:flex flex-row items-center gap-3">
-                <div
-                  class="bg-white p-2 text-center rounded-xl shadow-sm flex-1 flex flex-col items-center justify-center shrink-0">
-                  <canvas id="qr-canvas" class="w-full h-auto"></canvas>
-                </div>
-                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium leading-tight flex-1"
-                  data-i18n="ewa.scanQrCode">
-                  Scan to download directly to your Android device
-                </div>
-              </div>
-
               <!-- 2. APP BUTTONS (Less tall, next to each other) -->
               <div class="flex flex-col sm:flex-row gap-3">
-                <a href="downloads/app-release.apk" download="ewa.apk"
-                  class="btn-sweep-primary group flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest shadow-lg shadow-emerald-500/30 transition-transform hover:scale-105 active:scale-95 flex-1 text-center"
-                  style="background-color: #059669;">
-                  <span class="material-symbols-outlined text-[18px]">android</span>
-                  <span data-i18n="ewa.downloadApk">Download APK</span>
-                </a>
-                <a href="https://e-wa-app.vercel.app/" target="_blank"
-                  class="btn-sweep-primary group flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest shadow-lg shadow-primary/30 transition-transform hover:scale-105 active:scale-95 flex-1 text-center">
-                  <span class="material-symbols-outlined text-[18px]">web</span>
-                  <span data-i18n="ewa.launchWeb">Launch Web App</span>
+                <a href="https://www.földvary.com/" target="_blank"
+                  class="btn-sweep-primary group flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest shadow-lg shadow-primary/30 transition-transform hover:scale-105 active:scale-95 flex-1 text-center w-full">
+                  <span class="material-symbols-outlined text-[18px]">public</span>
+                  <span data-i18n="foldvary.launchWeb">Launch Experience</span>
                 </a>
               </div>
-              <p class="text-[10px] text-slate-500 dark:text-slate-400 -mt-2 italic" data-i18n="ewa.apkWarning">
-                *Note: Installing the APK may require enabling "Unknown Sources"
-                in your Android settings.
+              <p class="text-[10px] text-slate-500 dark:text-slate-400 -mt-2 italic" data-i18n="foldvary.apkWarning">
+                *Note: The experience is fully online and accessible via browser.
               </p>
 
               <!-- 3. KEY TECH & CORE CHALLENGE -->
@@ -435,7 +410,7 @@
                     data-i18n="shadow.keyTechTitle">
                     Key Tech
                   </p>
-                  <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.keyTechList">
+                  <p class="text-sm text-slate-600 dark:text-white" data-i18n="foldvary.keyTechList">
                     Figma, Google Stitch, Notebook LM, Antigravity, Flutter,
                     Next.js
                   </p>
@@ -445,7 +420,7 @@
                     data-i18n="shadow.coreChallengeTitle">
                     Deliverable
                   </p>
-                  <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.deliverableDesc">
+                  <p class="text-sm text-slate-600 dark:text-white" data-i18n="foldvary.deliverableDesc">
                     Functional Android APK &amp; Design System
                   </p>
                 </div>
@@ -460,28 +435,30 @@
       <!-- ===== PANEL 2.5: LIVE APP DEMO ===== -->
       <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 3;">
         <div class="max-w-[1200px] mx-auto px-6 py-24">
-          <section class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6">
+          <section class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-[50px]">
+            <!-- Bal oldal: Keskenyebb szöveg -->
+            <div class="lg:col-span-4 space-y-4 sm:space-y-6">
               <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
-                <span class="material-symbols-outlined">phone_android</span>
+                <span class="material-symbols-outlined">tablet_mac</span>
               </div>
               <h2
-                class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words">
-                Try the Live App: <br /><span class="text-primary font-light">Experience in Action</span>
+                class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words">
+                Live Prototype: <br /><span class="text-primary font-light text-xl">Experience in Action</span>
               </h2>
-              <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Interact with the actual eWa Wallet App in your browser. Test the interface, explore features, and see
-                how the design translates to a real working application.
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
+                Interact with the actual Földvary cinematic scroll inside your browser. Explore the interface, the custom variable typography, and the seamless transition of the floating narrative elements in real time.
               </p>
             </div>
 
-            <div class="relative flex justify-center">
+            <!-- Jobb oldal: Széles "Tablet" beágyazás -->
+            <div class="lg:col-span-8 relative flex justify-center w-full">
               <div
-                class="glass-panel rounded-[2rem] p-3 md:p-4 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl">
-                <div class="w-[280px] md:w-[320px] rounded-xl bg-slate-100 dark:bg-slate-900 scrollbar-thin"
-                  style="height: 600px; overflow-y: auto;">
-                  <iframe src="https://e-wa-app.vercel.app/" class="w-full border-0" style="height: 600px;"
-                    frameborder="0" allowfullscreen loading="lazy">
+                class="glass-panel w-full rounded-[2rem] p-3 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl">
+                <div class="w-full rounded-xl bg-slate-100 dark:bg-slate-900 overflow-hidden"
+                  style="aspect-ratio: 16/10;">
+                  <iframe src="https://www.földvary.com/" 
+                    style="width: 160%; height: 160%; transform: scale(0.625); transform-origin: top left; border: 0;" 
+                    allowfullscreen loading="lazy">
                   </iframe>
                 </div>
               </div>
@@ -502,11 +479,11 @@
               </div>
               <h2
                 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
-                data-i18n="ewa.solutionTitle">
+                data-i18n="foldvary.solutionTitle">
                 Adaptive UI: <br /><span class="text-primary font-light">Trust & Clarity</span>
               </h2>
               <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-                <p data-i18n="ewa.solutionDesc1">
+                <p data-i18n="foldvary.solutionDesc1">
                   I established a premium fintech aesthetic enriched with Material Design
                   3 principles, offering both Dark and Light modes. The darker palette
                   profoundly reduces eye strain during driving and inherently commands
@@ -514,7 +491,7 @@
                   in bright daylight conditions. This adaptive approach gives users full
                   control over their visual experience.
                 </p>
-                <p data-i18n="ewa.solutionDesc2">
+                <p data-i18n="foldvary.solutionDesc2">
                   The digital wallet relies on intuitive swiping mechanics and clearly
                   separated premium card designs. Cross-platform navigation was streamlined
                   to ensure users are never more than a tap away from reserving parking
@@ -522,13 +499,13 @@
                 </p>
               </div>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <img src="img/ewa/dark-dashboard.png" alt="dark-dashboard Screen" />
-              </div>
-              <div>
-                <img src="img/ewa/light-dashboard2.png" alt="light-dashboard Screen" />
-              </div>
+            <div class="flex flex-col items-center w-full max-w-[420px] mx-auto lg:ml-auto lg:mr-0">
+              <!-- Top Image (Light Mode), slightly scaled down to create depth -->
+              <img src="img/foldvary-concept/screen-shot-light.jpg" alt="Light Dashboard Screen" 
+                class="w-11/12 rounded-2xl shadow-xl border border-slate-200 dark:border-white/10 z-10" />
+              <!-- Bottom Image (Dark Mode), pulled upward by 80px to save vertical space -->
+              <img src="img/foldvary-concept/screen-shot-dark.jpg" alt="Dark Dashboard Screen" 
+                class="w-full rounded-2xl shadow-3xl border border-slate-200 dark:border-white/20 z-20 -mt-20" />
             </div>
           </section>
         </div>
@@ -542,12 +519,13 @@
           <section
             class="mx-auto max-w-[1200px] py-16 sm:py-14 bg-primary/[0.03] rounded-[2rem] sm:rounded-[3rem] px-4 sm:px-8 border border-primary/10 overflow-hidden">
             <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-12 space-y-2">
-              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.workflowTag">
+              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic"
+                data-i18n="foldvary.workflowTag">
                 The Designer as Builder Trend
               </h3>
               <h2
                 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
-                data-i18n="ewa.workflowHeadline">
+                data-i18n="foldvary.workflowHeadline">
                 From Mockups to Logic
               </h2>
             </div>
@@ -557,45 +535,37 @@
                 <div class="space-y-3">
                   <h4
                     class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 dark:text-white flex flex-col items-start gap-2 sm:flex-row sm:items-center break-words">
-                    <span class="material-symbols-outlined text-primary uppercase italic">terminal</span>
-                    <span data-i18n="ewa.workflowSubheadline">Deployable Android Setup</span>
+                    <span class="material-symbols-outlined text-primary uppercase italic">neurology</span>
+                    <span data-i18n="foldvary.workflowSubheadline">Concept Evolution</span>
                   </h4>
                   <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
-                    data-i18n="ewa.workflowDesc1">
-                    The 2026 'Designer as Builder' paradigm shifts focus from
-                    drawing static screens to building functional logic. Using
-                    Google Stitch and Next.js as starting points, I initially
-                    utilized <strong>Notebook LM</strong> to meticulously plan
-                    and gather all necessary documentation on Android
-                    environments.
+                    data-i18n="foldvary.workflowDesc1">
+                    The core idea was born in my head and immediately put onto paper as a quick sketch. From there, <strong>Gemini</strong> processed the raw drawing and transformed it into a fully fleshed out, ready-to-use colored asset for the portal.
                   </p>
                   <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed"
-                    data-i18n="ewa.workflowDesc2">
-                    This preparation took half a day, ensuring I had the
-                    capability to create my first-ever native app. From there, I
-                    utilized Google Antigravity and Flutter to transform those
-                    UI mockups into a fully functional, deployable Android APK.
+                    data-i18n="foldvary.workflowDesc2">
+                    The <strong>Narrator Bot</strong> was concepted alongside this. For now, it simply projects the holographic content, but future iterations will give it a much deeper interactive role. Finally, using <strong>Google Antigravity</strong> to build the logic, I integrated a city layout with moving traffic, hinting at an upcoming version where soaring cars will fly over the metropolis.
                   </p>
                 </div>
                 <!-- Image Gallery below text -->
                 <div class="grid grid-cols-3 gap-2 sm:gap-4 mt-4">
                   <div class="relative group">
-                    <img src="img/ewa/notebooklm.png" class="rounded-xl shadow-md border dark:border-white/10 w-full"
-                      alt="Notebook LM workflow" />
+                    <img src="img/foldvary-concept/portal-skic.jpg"
+                      class="rounded-xl shadow-md border dark:border-white/10 w-full aspect-[4/3] object-cover" alt="Concept Sketch" />
                     <div
                       class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-black/60 backdrop-blur-md border border-white/20 text-white font-bold text-[9px] sm:text-xs px-2 py-1 rounded-lg tracking-wide">
-                      NotebookLM</div>
+                      Concept Sketch</div>
                   </div>
                   <div class="relative group">
-                    <img src="img/ewa/stitch.png" class="rounded-xl shadow-md border dark:border-white/10 w-full"
-                      alt="Google Stitch workflow" />
+                    <img src="img/foldvary-concept/portal.jpg"
+                      class="rounded-xl shadow-md border dark:border-white/10 w-full aspect-[4/3] object-cover" alt="Nanobanana generated art" />
                     <div
                       class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-black/60 backdrop-blur-md border border-white/20 text-white font-bold text-[9px] sm:text-xs px-2 py-1 rounded-lg tracking-wide">
-                      Google-Stitch</div>
+                      Nanobanana</div>
                   </div>
                   <div class="relative group">
-                    <img src="img/ewa/antigravity.png" class="rounded-xl shadow-md border dark:border-white/10 w-full"
-                      alt="Antigravity workflow" />
+                    <img src="img/foldvary-concept/antigravity.jpg"
+                      class="rounded-xl shadow-md border dark:border-white/10 w-full aspect-[4/3] object-cover" alt="Antigravity workflow" />
                     <div
                       class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-black/60 backdrop-blur-md border border-white/20 text-white font-bold text-[9px] sm:text-xs px-2 py-1 rounded-lg tracking-wide">
                       Antigravity</div>
@@ -607,30 +577,27 @@
                 <div class="space-y-6">
                   <h4
                     class="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-slate-900 dark:text-white leading-snug italic break-words"
-                    data-i18n="ewa.workflowQuote">
-                    "The handoff to engineering wasn't a static PDF, it was a
-                    working application with simulated payment logic."
+                    data-i18n="foldvary.workflowQuote">
+                    "A conceptual pivot from static web portfolios to dynamic, cinematic scroll experiences."
                   </h4>
                   <div class="h-1 w-16 sm:w-20 bg-primary"></div>
                   <p class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 italic font-light"
-                    data-i18n="ewa.workflowQuoteSub">
-                    By simulating complex payment logic and real-time state
-                    management, the build phase was completed in just 1 full
-                    day.
+                    data-i18n="foldvary.workflowQuoteSub">
+                    Through intensive AI collaboration, the entire conceptualization and aesthetic execution phase was heavily accelerated.
                   </p>
                 </div>
                 <div class="grid grid-cols-2 gap-4 sm:gap-6">
                   <div class="p-3 sm:p-4 border-l-2 border-primary">
-                    <span class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">1.5
+                    <span class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">2
                       <span class="text-base md:text-xl font-normal">Days</span></span>
                     <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
-                      data-i18n="ewa.stat1Days">Total Dev & Prep</span>
+                      data-i18n="foldvary.stat1Days">Idea to Reality</span>
                   </div>
                   <div class="p-3 sm:p-4 border-l-2 border-primary">
                     <span
-                      class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Native</span>
+                      class="block text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Immersive</span>
                     <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-tighter italic"
-                      data-i18n="ewa.stat2Apk">Android APK Built</span>
+                      data-i18n="foldvary.stat2Apk">Scroll Experience</span>
                   </div>
                 </div>
               </div>
@@ -647,16 +614,17 @@
           <section class="mx-auto max-w-[1200px] py-4 sm:py-14">
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-4">
-              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.roadmapTag">
+              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic"
+                data-i18n="foldvary.roadmapTag">
                 Product Vision
               </h3>
               <h2
                 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
-                data-i18n="ewa.roadmapHeadline">
+                data-i18n="foldvary.roadmapHeadline">
                 Future Roadmap &amp; Vision
               </h2>
               <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed"
-                data-i18n="ewa.roadmapIntro">
+                data-i18n="foldvary.roadmapIntro">
                 As a working prototype, eWa proves the concept. These are the two strategic phases that would take it
                 from
                 MVP to market-ready Wallet App.
@@ -676,15 +644,15 @@
                   </div>
                   <div>
                     <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
-                      data-i18n="ewa.roadmapPhase1Label">Phase 1</p>
+                      data-i18n="foldvary.roadmapPhase1Label">Phase 1</p>
                     <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
-                      data-i18n="ewa.roadmapPhase1Title">
+                      data-i18n="foldvary.roadmapPhase1Title">
                       Expanding the Ecosystem
                     </h3>
                   </div>
                 </div>
                 <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
-                  data-i18n="ewa.roadmapPhase1Desc">
+                  data-i18n="foldvary.roadmapPhase1Desc">
                   The immediate next step is transitioning the remaining UI placeholders — including the Mobile Ticket
                   and
                   Insurance screens — into fully interactive, data-driven Flutter screens. This will complete the core
@@ -696,40 +664,40 @@
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-[11px]">check</span>
                     </span>
-                    <span data-i18n="ewa.roadmapPhase1Item1">Mobile Ticket &amp; Transit screens</span>
+                    <span data-i18n="foldvary.roadmapPhase1Item1">Mobile Ticket &amp; Transit screens</span>
                   </li>
                   <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-[11px]">check</span>
                     </span>
-                    <span data-i18n="ewa.roadmapPhase1Item2">Insurance &amp; document hub screens</span>
+                    <span data-i18n="foldvary.roadmapPhase1Item2">Insurance &amp; document hub screens</span>
                   </li>
                   <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-[11px]">check</span>
                     </span>
-                    <span data-i18n="ewa.roadmapPhase1Item3">Full data-driven Flutter integration</span>
+                    <span data-i18n="foldvary.roadmapPhase1Item3">Full data-driven Flutter integration</span>
                   </li>
                   <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-[11px]">check</span>
                     </span>
-                    <span data-i18n="ewa.roadmapPhase1Item4">German language activation</span>
+                    <span data-i18n="foldvary.roadmapPhase1Item4">German language activation</span>
                   </li>
                   <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-[11px]">check</span>
                     </span>
-                    <span data-i18n="ewa.roadmapPhase1Item5">Light theme integration</span>
+                    <span data-i18n="foldvary.roadmapPhase1Item5">Light theme integration</span>
                   </li>
                   <li class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                     <span class="size-4 rounded-full border border-primary flex items-center justify-center shrink-0">
                     </span>
-                    <span data-i18n="ewa.roadmapPhase1Item6">iOS implementation (low priority since high expansion
+                    <span data-i18n="foldvary.roadmapPhase1Item6">iOS implementation (low priority since high expansion
                       cost)</span>
                   </li>
                 </ul>
@@ -743,7 +711,7 @@
                   <span
                     class="inline-flex items-center gap-1.5 rounded-full bg-primary/20 border border-primary/30 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
                     <span class="material-symbols-outlined text-[12px]">star</span>
-                    <span data-i18n="ewa.roadmapUspBadge">Unique Feature</span>
+                    <span data-i18n="foldvary.roadmapUspBadge">Unique Feature</span>
                   </span>
                 </div>
                 <div class="flex items-center gap-4">
@@ -752,15 +720,15 @@
                   </div>
                   <div>
                     <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
-                      data-i18n="ewa.roadmapPhase2Label">Phase 2</p>
+                      data-i18n="foldvary.roadmapPhase2Label">Phase 2</p>
                     <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
-                      data-i18n="ewa.roadmapPhase2Title">
+                      data-i18n="foldvary.roadmapPhase2Title">
                       The Composable Subscription Hub
                     </h3>
                   </div>
                 </div>
                 <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
-                  data-i18n="ewa.roadmapPhase2Desc">
+                  data-i18n="foldvary.roadmapPhase2Desc">
                   A truly innovative feature I have not seen in any competitor: a <strong
                     class="text-slate-900 dark:text-white">LEGO-style modular system</strong> where users freely add,
                   configure, and
@@ -772,16 +740,16 @@
                 <div class="flex flex-wrap gap-2 mt-auto">
                   <span
                     class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                    data-i18n="ewa.roadmapPill1">Modular Blocks</span>
+                    data-i18n="foldvary.roadmapPill1">Modular Blocks</span>
                   <span
                     class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                    data-i18n="ewa.roadmapPill2">Cost Transparency</span>
+                    data-i18n="foldvary.roadmapPill2">Cost Transparency</span>
                   <span
                     class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                    data-i18n="ewa.roadmapPill3">1-Tap Cancel</span>
+                    data-i18n="foldvary.roadmapPill3">1-Tap Cancel</span>
                   <span
                     class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
-                    data-i18n="ewa.roadmapPill4">Central Control</span>
+                    data-i18n="foldvary.roadmapPill4">Central Control</span>
                 </div>
               </div>
 
@@ -799,25 +767,20 @@
             <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
               <h2
                 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
-                data-i18n="ewa.lessonsTitle">
+                data-i18n="foldvary.lessonsTitle">
                 The Future of Collaborative Design
               </h2>
               <div class="h-1 w-12 bg-primary mx-auto"></div>
               <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed italic font-light px-4"
-                data-i18n="ewa.lessonsText">
-                "The eWa Wallet App proves that combining 20+ years of systematic
-                UI/UX experience with cutting-edge AI logic accelerators allows
-                designers to act as technical bridge-builders. Bridging the gap
-                between functional business solutions and high-engagement
-                interfaces is no longer just a tagline; it's an executable
-                workflow."
+                data-i18n="foldvary.lessonsText">
+                "It started with a sudden vision over the weekend—what if a web portfolio could feel like a cinematic experience? I sat down and built the entire concept in just two days. The real challenge was translating my vision step-by-step to Claude, but once the architecture was solid, generating the remaining scenes with Gemini was incredibly fast. Ultimately, my 20+ years of UI/UX experience became my biggest advantage, allowing me to precisely direct the AI agents exactly where they needed to go."
               </p>
               <div class="pt-6 sm:pt-8 w-full">
                 <a href="case-study-styleguide.html"
                   class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg">
                   <span
                     class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
-                  <span data-i18n="ewa.nextCaseStudy" class="break-words">Next: Styleguide</span>
+                  <span data-i18n="foldvary.nextCaseStudy" class="break-words">Next: Styleguide</span>
                 </a>
               </div>
             </div>
@@ -844,9 +807,9 @@
       <div class="absolute inset-0 cs-footer-bg" style="z-index: -1;"></div>
       <!-- BACKGROUND HERO EFFECT -->
       <div class="absolute inset-0 z-0 pointer-events-none">
-        <img src="img/ewa/dashboard.png"
+        <img src="img/foldvary-concept/intro.jpg"
           class="w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-100 dark:brightness-50"
-          alt="eWa Background" />
+          alt="Földvary Background" />
         <div class="absolute inset-0 cs-footer-gradient">
         </div>
       </div>
