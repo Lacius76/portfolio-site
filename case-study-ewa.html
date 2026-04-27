@@ -200,9 +200,13 @@
       gap: 10px;
       transition: all 0.3s ease;
     }
+
     @media (min-width: 1024px) {
-      .sidetrack-menu { display: flex; }
+      .sidetrack-menu {
+        display: flex;
+      }
     }
+
     .sidetrack-menu:hover {
       background-color: rgba(15, 23, 42, 0.4);
       backdrop-filter: blur(12px);
@@ -212,6 +216,7 @@
       margin-top: -1rem;
       border-radius: 1rem;
     }
+
     .sidetrack-title {
       font-size: 10px;
       font-weight: bold;
@@ -219,10 +224,9 @@
       color: #64748b;
       text-transform: uppercase;
       margin-bottom: 4px;
-      opacity: 0;
-      transition: opacity 0.3s;
+      opacity: 1;
     }
-    .sidetrack-menu:hover .sidetrack-title { opacity: 1; }
+
     .sidetrack-list {
       display: flex;
       flex-direction: column;
@@ -232,6 +236,7 @@
       padding: 0;
       list-style: none;
     }
+
     .sidetrack-item {
       position: relative;
       display: flex;
@@ -239,6 +244,7 @@
       text-decoration: none;
       cursor: pointer;
     }
+
     .sidetrack-dot {
       width: 6px;
       height: 6px;
@@ -246,10 +252,12 @@
       background-color: rgba(148, 163, 184, 0.5);
       transition: all 0.3s ease;
     }
+
     .sidetrack-item:hover .sidetrack-dot {
       transform: scale(1.5);
       background-color: #9333ea;
     }
+
     .sidetrack-dot.active {
       width: 8px;
       height: 8px;
@@ -259,9 +267,11 @@
       outline-offset: 2px;
       transition: all 0.3s ease, outline-color 0.3s ease;
     }
+
     .sidetrack-menu:hover .sidetrack-dot.active {
       outline-color: #9333ea;
     }
+
     .sidetrack-text {
       overflow: hidden;
       max-width: 0;
@@ -275,6 +285,7 @@
       font-weight: 500;
       color: #94a3b8;
     }
+
     .sidetrack-menu:hover .sidetrack-text {
       opacity: 1;
       visibility: visible;
@@ -282,6 +293,7 @@
       max-width: 200px;
       margin-left: 18px;
     }
+
     .sidetrack-item:hover .sidetrack-text {
       color: #ffffff;
     }
@@ -290,18 +302,23 @@
     html:not(.dark) .sidetrack-menu:hover {
       background-color: rgba(255, 255, 255, 0.7);
     }
+
     html:not(.dark) .sidetrack-dot {
       background-color: rgba(51, 65, 85, 0.45);
     }
+
     html:not(.dark) .sidetrack-dot.active {
       background-color: #9333ea;
     }
+
     html:not(.dark) .sidetrack-title {
       color: #334155;
     }
+
     html:not(.dark) .sidetrack-text {
       color: #1e293b;
     }
+
     html:not(.dark) .sidetrack-item:hover .sidetrack-text {
       color: #9333ea;
     }
@@ -355,12 +372,6 @@
         </a>
       </li>
       <li>
-        <a href="#panel-11" class="sidetrack-item nav-dot" data-target="panel-11">
-          <div class="sidetrack-dot"></div>
-          <span class="sidetrack-text">Login</span>
-        </a>
-      </li>
-      <li>
         <a href="#panel-12" class="sidetrack-item nav-dot" data-target="panel-12">
           <div class="sidetrack-dot"></div>
           <span class="sidetrack-text">Typography</span>
@@ -370,6 +381,12 @@
         <a href="#panel-13" class="sidetrack-item nav-dot" data-target="panel-13">
           <div class="sidetrack-dot"></div>
           <span class="sidetrack-text">Colors</span>
+        </a>
+      </li>
+      <li>
+        <a href="#panel-logo" class="sidetrack-item nav-dot" data-target="panel-logo">
+          <div class="sidetrack-dot"></div>
+          <span class="sidetrack-text">Logo</span>
         </a>
       </li>
       <li>
@@ -405,7 +422,7 @@
     </ul>
   </nav>
 
-  
+
   <div class="relative flex min-h-screen flex-col">
     <!-- HEADER -->
     <header
@@ -593,7 +610,7 @@
 
             <!-- Phone Images -->
             <div
-              class="relative z-10 w-full max-w-[1200px] h-full flex justify-center items-end pb-12 md:items-center md:pb-0 pt-20 md:pt-32">
+              class="relative z-10 w-full max-w-[1200px] h-full flex justify-center items-end pb-12 md:items-center md:pb-0 pt-20 md:pt-32" style="top: -38px;">
               <img src="img/ewa/hero-mobil-light.png" alt="eWa Mobile Light"
                 class="hero-phone-size dark:hidden h-auto object-contain object-bottom md:object-center drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all duration-300">
               <img src="img/ewa/hero-mobil-dark.png" alt="eWa Mobile Dark"
@@ -608,15 +625,17 @@
 
       <!-- ===== PANEL 1.5: PROJECT OVERVIEW ===== -->
       <div id="panel-1" class="stack-panel glass-panel-heavy border-t border-slate-200/50 dark:border-white/10"
-        style="z-index: 2; margin-top: calc(-40vh - 100px);">
+        style="z-index: 2; margin-top: calc(-40vh - 32px);">
         <section class="max-w-[1200px] mx-auto px-6 pt-12 md:pt-20 pb-32">
           <div class="w-full grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
             <!-- Left Column -->
             <div class="space-y-6">
               <div class="space-y-6">
-                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">/ Project Overview</p>
-                <p class="text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-300 font-light leading-relaxed">
+                <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap"
+                  style="position: relative; top: -22px;">/ Project Overview</h2>
+                <p class="text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-300 font-light leading-relaxed"
+                  style="margin-top: 60px;">
                   The 2026 'Designer as Builder' paradigm shifts focus <strong
                     class="font-bold text-slate-900 dark:text-white">from static screens to building functional
                     logic.</strong> After planning the environment with Notebook LM and Google Stitch, I utilized Google
@@ -655,11 +674,12 @@
 
             <!-- Right Column -->
             <div class="space-y-12 w-fit">
-              <h3 class="text-xl md:text-2xl font-medium text-slate-800 dark:text-white">
+              <h3 class="text-xl md:text-2xl font-medium text-slate-800 dark:text-white"
+                style="position: relative; top: -22px;">
                 electronic / Wallet / app = <span class="font-bold">eWa</span>
               </h3>
 
-              <div class="flex flex-col space-y-6 mt-2">
+              <div class="flex flex-col space-y-6" style="margin-top: 62px;">
                 <!-- Industry -->
                 <div class="flex items-start gap-x-6">
                   <div class="text-slate-600 dark:text-slate-400 font-medium w-24 shrink-0">Industry</div>
@@ -695,46 +715,51 @@
 
         <!-- EXECUTIVE SUMMARY - eWa Wallet App -->
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
-          <div
-            class="glass-panel rounded-[2rem] p-6 md:p-12 grid md:grid-cols-5 gap-8 lg:gap-12 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors">
-            <!-- BAL OLDAL: Project Vision -->
-            <div class="md:col-span-3 space-y-6">
-              <h3
-                class="text-lg sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
-                data-i18n="ewa.challengeTitle">
-                The Austrian Market Challenge
-              </h3>
-              <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg"
-                data-i18n="ewa.challengeText1">
-                Designing a Wallet App requires balancing complexity. It must
-                house multiple critical services—like smart road tolling,
-                parking meters, and comprehensive digital wallets—without
-                overwhelming the user. The primary challenge was crafting an
-                architecture robust enough for mobility but secure enough for
-                daily fintech operations in EURO (€).
-              </p>
-              <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg mt-4"
-                data-i18n="ewa.challengeText2">
-                Targeting the Austrian market meant adhering to high
-                expectations of privacy, data clarity, and clean, uncompromised
-                aesthetics.
-              </p>
-              <!-- TAGS -->
-              <div class="flex flex-wrap gap-3 pt-2">
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">UI/UX
-                  Designer</span>
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">AI
-                  Prototyper</span>
-                <span
-                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Material
-                  3</span>
+          <div class="flex flex-col md:flex-row gap-8 lg:gap-16 items-start">
+            <!-- BAL OLDAL: cím + tartalom -->
+            <div class="flex-1">
+              <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap">/
+                Executive Summary</h2>
+              <div class="space-y-6" style="margin-top: 100px;">
+                <h3
+                  class="text-lg sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
+                  data-i18n="ewa.challengeTitle">
+                  The Austrian Market Challenge
+                </h3>
+                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg"
+                  data-i18n="ewa.challengeText1">
+                  Designing a Wallet App requires balancing complexity. It must
+                  house multiple critical services—like smart road tolling,
+                  parking meters, and comprehensive digital wallets—without
+                  overwhelming the user. The primary challenge was crafting an
+                  architecture robust enough for mobility but secure enough for
+                  daily fintech operations in EURO (€).
+                </p>
+                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg mt-4"
+                  data-i18n="ewa.challengeText2">
+                  Targeting the Austrian market meant adhering to high
+                  expectations of privacy, data clarity, and clean, uncompromised
+                  aesthetics.
+                </p>
+                <!-- TAGS -->
+                <div class="flex flex-wrap gap-3 pt-2">
+                  <span
+                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">UI/UX
+                    Designer</span>
+                  <span
+                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">AI
+                    Prototyper</span>
+                  <span
+                    class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10">Material
+                    3</span>
+                </div>
               </div>
             </div>
 
-            <!-- JOBB OLDAL: App Buttons & Key Tech -->
-            <div class="space-y-6 md:border-l border-slate-200 dark:border-white/5 md:pl-8 md:col-span-2">
+            <!-- JOBB OLDAL: glass box 460×580 (teteje egy szintben a h2-vel) -->
+            <div
+              class="glass-panel rounded-[2rem] p-6 md:p-8 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors flex flex-col gap-6 flex-shrink-0"
+              style="width: 460px; height: 580px; overflow: auto;">
               <!-- 1. QR Code for Desktop Users -->
               <div class="hidden sm:flex flex-row items-center gap-3">
                 <div
@@ -747,7 +772,7 @@
                 </div>
               </div>
 
-              <!-- 2. APP BUTTONS (Less tall, next to each other) -->
+              <!-- 2. APP BUTTONS -->
               <div class="flex flex-col sm:flex-row gap-3">
                 <a href="downloads/app-release.apk" download="ewa.apk"
                   class="btn-sweep-primary group flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest shadow-lg shadow-emerald-500/30 transition-transform hover:scale-105 active:scale-95 flex-1 text-center"
@@ -784,7 +809,7 @@
                     Deliverable
                   </p>
                   <p class="text-sm text-slate-600 dark:text-white" data-i18n="ewa.deliverableDesc">
-                    Functional Android APK &amp; Design System
+                    Functional Android APK & Design System
                   </p>
                 </div>
               </div>
@@ -819,6 +844,9 @@
       <!-- ===== PANEL 2.5: LIVE APP DEMO ===== -->
       <div id="panel-4" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 5;">
         <div class="max-w-[1200px] mx-auto px-6 py-24">
+          <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-12"
+            style="margin-top: 28px;">/ Live
+            Demo</h2>
           <section class="grid lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-6">
               <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
@@ -834,7 +862,7 @@
               </p>
             </div>
 
-            <div class="relative flex justify-center">
+            <div class="relative flex justify-center" style="margin-top: -112px;">
               <div
                 class="glass-panel rounded-[2rem] p-3 md:p-4 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl">
                 <div class="w-[280px] md:w-[320px] rounded-xl bg-slate-100 dark:bg-slate-900 scrollbar-thin"
@@ -896,18 +924,22 @@
             <!-- Replacing SVG with the 'Slanted Box Method' using skewX for a dynamic aesthetic -->
             <div class="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;">
               <!-- Connecting Col 1 to Col 2 -->
-              <div class="absolute border-dashed opacity-40 rounded-br-[2rem]" 
-                   style="border-color: #9333ea; border-bottom-width: 2px; border-right-width: 2px; left: 21%; width: 14%; top: 53%; height: 26%; transform: skewX(-20deg); transform-origin: bottom left;"></div>
+              <div class="absolute border-dashed opacity-40 rounded-br-[2rem]"
+                style="border-color: #9333ea; border-bottom-width: 2px; border-right-width: 2px; left: 21%; width: 14%; top: 53%; height: 26%; transform: skewX(-20deg); transform-origin: bottom left;">
+              </div>
               <!-- Top horizontal connector to Wireframe -->
-              <div class="absolute border-dashed opacity-40" 
-                   style="border-color: #9333ea; border-bottom-width: 2px; left: calc(40% - 20px); right: 52%; top: 53%;"></div>
-              
+              <div class="absolute border-dashed opacity-40"
+                style="border-color: #9333ea; border-bottom-width: 2px; left: calc(40% - 20px); right: 52%; top: 53%;">
+              </div>
+
               <!-- Connecting Col 2 to Col 3 -->
-              <div class="absolute border-dashed opacity-40 rounded-br-[2rem]" 
-                   style="border-color: #9333ea; border-bottom-width: 2px; border-right-width: 2px; left: 55.5%; width: 8%; top: 53%; height: 26%; transform: skewX(-20deg); transform-origin: bottom left;"></div>
+              <div class="absolute border-dashed opacity-40 rounded-br-[2rem]"
+                style="border-color: #9333ea; border-bottom-width: 2px; border-right-width: 2px; left: 55.5%; width: 8%; top: 53%; height: 26%; transform: skewX(-20deg); transform-origin: bottom left;">
+              </div>
               <!-- Top horizontal connector to Implement Prompt -->
-              <div class="absolute border-dashed opacity-40" 
-                   style="border-color: #9333ea; border-bottom-width: 2px; left: calc(68% - 15px); right: 26%; top: 53%;"></div>
+              <div class="absolute border-dashed opacity-40"
+                style="border-color: #9333ea; border-bottom-width: 2px; left: calc(68% - 15px); right: 26%; top: 53%;">
+              </div>
             </div>
 
             <!-- COL 1: RESEARCH -->
@@ -1030,6 +1062,8 @@
       <!-- ===== PANEL 3: UX/UI SOLUTION ===== -->
       <div id="panel-6" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 7;">
         <div class="max-w-[1200px] mx-auto px-6 py-24">
+          <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-12"
+            style="position: relative; top: 58px;">/ UX/UI Solution</h2>
           <!-- 1. UX/UI Solution -->
           <section class="grid lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-6">
@@ -1635,7 +1669,7 @@
           background-color: #241c4a;
         }
       </style>
-      <div class="stack-panel bg-slate-50 dark:bg-custom-purple" style="z-index: 15;">
+      <div id="panel-logo" class="stack-panel bg-slate-50 dark:bg-custom-purple" style="z-index: 15;">
         <div class="mx-auto px-6 py-12 min-h-screen flex flex-col justify-between relative overflow-hidden"
           style="max-width: 1200px;">
 
@@ -1871,7 +1905,8 @@
 
               <!-- Left: Antigravity -->
               <div class="relative z-10 w-full sm:w-[30%] flex justify-center" style="left: 165px;">
-                <img src="./img/ewa/deployment/antigravity.png" alt="Antigravity Code" style="width: 300px; height: 300px;"
+                <img src="./img/ewa/deployment/antigravity.png" alt="Antigravity Code"
+                  style="width: 300px; height: 300px;"
                   class="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500">
               </div>
 
@@ -1907,11 +1942,18 @@
 
       <!-- ===== PANEL 4.6: BRAND SCREENS ===== -->
       <style>
-        .brand-screens-bg { background-color: #f8fafc; }
-        .dark .brand-screens-bg { background-color: #110e1d; }
+        .brand-screens-bg {
+          background-color: #f8fafc;
+        }
+
+        .dark .brand-screens-bg {
+          background-color: #110e1d;
+        }
       </style>
-      <div id="panel-brand-screens" class="stack-panel brand-screens-bg flex flex-col justify-center min-h-screen py-16 lg:py-20" style="z-index: 19;">
-          
+      <div id="panel-brand-screens"
+        class="stack-panel brand-screens-bg flex flex-col justify-center min-h-screen py-16 lg:py-20"
+        style="z-index: 19;">
+
         <!-- Top Text Section (Constrained) -->
         <div class="max-w-[1400px] mx-auto px-6 w-full mb-12 lg:mb-20">
           <div class="w-full flex flex-col md:flex-row justify-between items-start gap-8 px-2 lg:px-8">
@@ -1919,11 +1961,13 @@
             <h2 class="text-xl md:text-2xl text-slate-800 dark:text-white font-light tracking-wide whitespace-nowrap">
               / Brand Identity
             </h2>
-            
+
             <!-- Right: Description -->
             <div class="md:w-1/2 flex md:justify-end">
-              <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-md text-left">
-                Showcasing how the eWa brand adapts across different touchpoints and services. Maintaining visual harmony, dual-theme consistency, and a premium fintech appeal.
+              <p
+                class="text-base md:text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-md text-left">
+                Showcasing how the eWa brand adapts across different touchpoints and services. Maintaining visual
+                harmony, dual-theme consistency, and a premium fintech appeal.
               </p>
             </div>
           </div>
@@ -1931,7 +1975,8 @@
 
         <!-- Bottom: Full Width Image (Edge-to-Edge) -->
         <div style="width: 100vw; margin-left: calc(50% - 50vw);">
-          <img src="./img/ewa/brand/brand-screens.png" alt="eWa Brand Screens" class="w-full h-auto object-cover max-w-none block">
+          <img src="./img/ewa/brand/brand-screens.png" alt="eWa Brand Screens"
+            class="w-full h-auto object-cover max-w-none block">
         </div>
 
       </div>
@@ -2452,7 +2497,7 @@
     });
   </script>
 
-  
+
 
 
   <!-- SIDETRACK OBSERVER JS -->
@@ -2481,7 +2526,7 @@
       });
 
       document.addEventListener('DOMContentLoaded', () => {
-        const dots   = document.querySelectorAll('.nav-dot');
+        const dots = document.querySelectorAll('.nav-dot');
         const panels = Array.from(document.querySelectorAll('.stack-panel'));
 
         // Active dot tracking
@@ -2494,10 +2539,18 @@
           });
           if (activeIndex >= 0) {
             const activePanelId = panels[activeIndex].id;
+            // Check if any dot matches the active panel.
+            // If not (e.g. hero section has no nav dot), fall back to first dot.
+            const hasMatch = Array.from(dots).some(
+              d => d.getAttribute('data-target') === activePanelId
+            );
+            const targetId = hasMatch
+              ? activePanelId
+              : dots[0]?.getAttribute('data-target');
             dots.forEach(dot => {
               dot.querySelector('.sidetrack-dot').classList.toggle(
                 'active',
-                dot.getAttribute('data-target') === activePanelId
+                dot.getAttribute('data-target') === targetId
               );
             });
           }
