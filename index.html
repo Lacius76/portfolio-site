@@ -111,7 +111,50 @@
     #mobile-work-wrapper.is-active .mobile-work-link:hover {
       background-color: rgba(255, 255, 255, 0.15) !important;
     }
-</style>
+    /* Scroll down mouse indicator */
+    .container_mouse {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(100, 116, 139, 0.7);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .dark .container_mouse {
+      color: rgba(148, 163, 184, 0.6);
+    }
+    .mouse-btn {
+      margin: 0 auto;
+      width: 28px;
+      height: 46px;
+      border: 2px solid rgba(100, 116, 139, 0.4);
+      border-radius: 14px;
+      display: flex;
+    }
+    .dark .mouse-btn {
+      border-color: rgba(148, 163, 184, 0.35);
+    }
+    .mouse-scroll {
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: rgba(100, 116, 139, 0.6);
+      border-radius: 50%;
+      margin: auto;
+      animation: scrolling13 1.4s ease-in-out infinite;
+    }
+    .dark .mouse-scroll {
+      background: rgba(148, 163, 184, 0.55);
+    }
+    @keyframes scrolling13 {
+      0%   { opacity: 0; transform: translateY(-10px); }
+      40%  { opacity: 1; }
+      100% { opacity: 0; transform: translateY(14px); }
+    }
+  </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
@@ -336,6 +379,17 @@
             </div>
           </div>
         </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none" style="bottom: 32px;">
+          <div class="container_mouse">
+            <span class="mouse-btn">
+              <span class="mouse-scroll"></span>
+            </span>
+            <span>Scroll</span>
+          </div>
+        </div>
+
       </div>
 
       <!-- SCROLLING CONTENT WRAPPER (Cards + Selected Works) -->
