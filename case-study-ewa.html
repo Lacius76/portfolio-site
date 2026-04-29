@@ -610,7 +610,8 @@
 
             <!-- Phone Images -->
             <div
-              class="relative z-10 w-full max-w-[1200px] h-full flex justify-center items-end pb-12 md:items-center md:pb-0 pt-20 md:pt-32" style="top: -38px;">
+              class="relative z-10 w-full max-w-[1200px] h-full flex justify-center items-end pb-12 md:items-center md:pb-0 pt-20 md:pt-32"
+              style="top: -38px;">
               <img src="img/ewa/hero-mobil-light.png" alt="eWa Mobile Light"
                 class="hero-phone-size dark:hidden h-auto object-contain object-bottom md:object-center drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all duration-300">
               <img src="img/ewa/hero-mobil-dark.png" alt="eWa Mobile Dark"
@@ -832,9 +833,9 @@
           </div>
           <!-- Right side (Phone) -->
           <div class="flex-1 relative overflow-hidden">
-            <img src="img/ewa/parking/parking-phone-light.jpg" alt="Parking App on Phone (Light)"
+            <img src="img/ewa/parking/parking-phone.jpg" alt="Parking App on Phone (Light)"
               class="dark:hidden absolute inset-0 w-full h-full object-cover object-center">
-            <img src="img/ewa/parking/parking-phone-dark.jpg" alt="Parking App on Phone (Dark)"
+            <img src="img/ewa/parking/parking-phone.jpg" alt="Parking App on Phone (Dark)"
               class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center">
           </div>
         </section>
@@ -1109,9 +1110,9 @@
       <div id="panel-7" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 8;">
         <section class="w-full h-screen pt-[64px] flex flex-col">
           <div class="w-full h-full relative overflow-hidden">
-            <img src="img/ewa/tickets/tickets-light.jpg" alt="Tickets Showcase (Light)"
+            <img src="img/ewa/tickets/tickets.jpg" alt="Tickets Showcase (Light)"
               class="dark:hidden absolute inset-0 w-full h-full object-cover object-center">
-            <img src="img/ewa/tickets/tickets-dark.jpg" alt="Tickets Showcase (Dark)"
+            <img src="img/ewa/tickets/tickets.jpg" alt="Tickets Showcase (Dark)"
               class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center">
           </div>
         </section>
@@ -1202,13 +1203,22 @@
       <!-- END PANEL 3.9 -->
 
       <!-- ===== PANEL 3.95: INSURANCE FULL BLEED ===== -->
-      <div id="panel-9" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 10;">
-        <section class="w-full h-screen pt-[64px] flex flex-col">
-          <div class="w-full h-full relative overflow-hidden bg-slate-50 dark:bg-background-dark">
-            <img src="img/ewa/insurance/insurance.jpg" alt="Insurance UI Showcase"
-              class="absolute inset-0 w-full h-full object-cover object-center">
+      <div id="panel-9" class="stack-panel bg-slate-50 dark:bg-background-dark" style="z-index: 10;">
+        <div class="max-w-[1200px] mx-auto px-6 pt-12 pb-4 min-h-screen flex flex-col relative overflow-hidden">
+
+          <!-- TOP: HEADER -->
+          <div class="w-full relative z-10 mb-8 lg:mb-22">
+            <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap">/ User Flow
+            </h2>
           </div>
-        </section>
+
+          <!-- CENTER: IMAGE -->
+          <div class="flex-1 w-full flex items-center justify-center relative">
+            <img src="img/ewa/insurance/userflow.png" alt="Insurance UI Showcase"
+              class="w-full h-full max-w-[1150px] max-h-[520px] object-contain">
+          </div>
+
+        </div>
       </div>
       <!-- END PANEL 3.95 -->
 
@@ -1378,14 +1388,22 @@
       </div>
       <!-- END PANEL 3.96 -->
 
-      <!-- ===== PANEL 3.97: LOGIN FULL BLEED ===== -->
+      <!-- ===== PANEL 3.97: LOGIN & WALLET ===== -->
       <div id="panel-11" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 12;">
-        <section class="w-full h-screen pt-[64px] flex flex-col">
-          <div class="w-full h-full relative overflow-hidden bg-slate-50 dark:bg-background-dark">
-            <img src="img/ewa/login/login.jpg" alt="Login UI Showcase"
-              class="absolute inset-0 w-full h-full object-cover object-center">
+        <div class="w-full min-h-screen flex flex-col items-center justify-center pt-[80px] pb-16 px-6">
+          <div
+            class="w-full max-w-[1000px] grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center">
+
+            <!-- Left Image: Login -->
+            <img src="img/ewa/login/login.png" alt="Login UI Showcase"
+              class="w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
+
+            <!-- Right Image: Wallet -->
+            <img src="img/ewa/login/wallet.png" alt="Wallet UI Showcase"
+              class="w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
+
           </div>
-        </section>
+        </div>
       </div>
       <!-- END PANEL 3.97 -->
 
@@ -1529,7 +1547,7 @@
               <div
                 class="rounded-[2rem] p-5 lg:p-6 shadow-lg relative overflow-hidden flex flex-col justify-start w-full"
                 style="max-width: 318px; height: 256px; background-color: #e2e8f0; z-index: 20;">
-                <div class="flex items-center gap-3 mb-3" style="margin-left: 24px; margin-top: 16px;">
+                <div class="flex items-center gap-3 mb-3" style="margin-left: 24px; margin-top: -8px;">
                   <svg style="width: 20px; height: 20px; color: #0f172a;" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1592,7 +1610,7 @@
               <div
                 class="rounded-[2rem] p-5 lg:p-6 shadow-2xl relative overflow-hidden flex flex-col justify-start w-full"
                 style="max-width: 318px; height: 256px; background-color: #07090e;">
-                <div class="flex items-center gap-3 mb-3" style="margin-left: 24px; margin-top: 16px;">
+                <div class="flex items-center gap-3 mb-3" style="margin-left: 24px; margin-top: -8px;">
                   <svg style="width: 16px; height: 16px; color: #ffffff;" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                   </svg>
@@ -2324,7 +2342,7 @@
         const scrollY = window.scrollY;
         const viewHeight = window.innerHeight;
         const docHeight = document.body.scrollHeight;
-        const heroVideo = document.querySelector('.hero-video-bg');
+        const heroVideo = document.querySelector('.hero-fixed-container');
 
         // 1. Hide hero video when user scrolls past hero section (prevents bleed-through into footer)
         if (heroVideo) {
