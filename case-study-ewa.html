@@ -1422,8 +1422,17 @@
           <div class="flex-1 w-full flex items-center py-12">
             <div class="grid grid-cols-1 lg:grid-cols-3 w-full gap-12 lg:gap-8 items-center">
 
+              <style>
+                @media (min-width: 1024px) {
+                  .inter-baseline-fix {
+                    /* Calculates the exact descent difference between Aa (clamp 12-28rem) and Inter (8rem) */
+                    margin-bottom: clamp(1.32rem, calc(4.4vw - 1.32rem), 4.84rem) !important;
+                  }
+                }
+              </style>
+
               <!-- Left Col -->
-              <div class="flex flex-col justify-end h-full py-8 lg:min-h-[40vh]">
+              <div class="flex flex-col justify-end h-full py-8 lg:py-0 lg:self-end">
                 <div class="mb-16 lg:mb-24">
                   <p class="text-slate-700 dark:text-slate-400 font-light text-sm md:text-base leading-relaxed"
                     style="max-width: 280px;">
@@ -1431,13 +1440,14 @@
                     ensures clarity across all sizes, from interface labels to complex data tables.
                   </p>
                 </div>
-                <div class="text-6xl md:text-8xl font-medium text-slate-900 dark:text-white tracking-tighter">
+                <div
+                  class="text-6xl md:text-8xl font-medium text-slate-900 dark:text-white tracking-tighter leading-none inter-baseline-fix">
                   Inter
                 </div>
               </div>
 
               <!-- Center Col (Aa) -->
-              <div class="flex items-center justify-center relative col-span-1 py-12 lg:py-0">
+              <div class="flex flex-col justify-end items-center relative col-span-1 py-12 lg:py-0 lg:self-end">
                 <div class="font-normal leading-none tracking-tighter select-none text-slate-50 dark:text-custom-purple"
                   style="font-size: clamp(12rem, 20vw, 28rem); text-shadow: -1px -1px 0 #9333ea, 1px -1px 0 #9333ea, -1px 1px 0 #9333ea, 1px 1px 0 #9333ea, 0px 1.5px 0 #9333ea, 0px -1.5px 0 #9333ea, 1.5px 0px 0 #9333ea, -1.5px 0px 0 #9333ea;">
                   Aa
@@ -1873,7 +1883,7 @@
           </div>
 
           <!-- Content Stack -->
-          <div class="flex flex-col gap-12 lg:gap-20">
+          <div class="flex flex-col gap-8 lg:gap-12">
 
             <!-- Text Section -->
             <div class="w-full max-w-4xl space-y-6">
@@ -1890,63 +1900,70 @@
               </p>
             </div>
 
-            <!-- Visualization Section (NO SVGs for max performance!) -->
+            <!-- Visualization Section -->
             <div
-              class="relative flex flex-col sm:flex-row items-center justify-between gap-12 sm:gap-0 w-full max-w-[950px] mx-auto min-h-[400px]">
+              class="relative flex flex-col sm:flex-row items-center justify-between gap-12 sm:gap-0 w-full max-w-[850px] mx-auto min-h-[300px]">
 
-              <!-- CSS Dashed Lines (Ultra-lightweight) -->
+              <style>
+                @media (min-width: 640px) {
+                  .ewa-icon-shift {
+                    transform: translateX(-180px) !important;
+                  }
+
+                  .ewa-line-shift {
+                    right: calc(15% + 220px) !important;
+                  }
+                }
+              </style>
+
+              <!-- CSS Dashed Lines (Visible only on sm+) -->
               <div class="hidden sm:block absolute inset-0 z-0 pointer-events-none">
 
                 <!-- Central axis from left (Antigravity to fork) -->
-                <!-- From 15% (Antigravity center) to 30% -->
                 <div class="absolute border-t-2 border-dashed"
-                  style="border-color: #8B5CF6; top: 50%; left: calc(15% + 165px); right: 70%;"></div>
+                  style="border-color: #8B5CF6; top: 50%; left: calc(15% + 100px); right: 60%;"></div>
 
                 <!-- Central axis from right (fork to eWa) -->
-                <!-- From 70% to 85% (eWa center) -->
-                <div class="absolute border-t-2 border-dashed"
-                  style="border-color: #8B5CF6; top: 50%; left: 70%; right: calc(15% + 168px);"></div>
+                <div class="absolute border-t-2 border-dashed ewa-line-shift"
+                  style="border-color: #8B5CF6; top: 50%; left: 60%; right: calc(15% + 220px);"></div>
 
                 <!-- Left Fork (branches up/down) -->
-                <!-- Spans from 30% to 50% -->
                 <div class="absolute border-2 border-dashed"
-                  style="border-color: #8B5CF6; border-right-color: transparent; height: 162px; top: 50%; transform: translateY(-50%); left: 30%; right: calc(50% - 100px); border-radius: 1.5rem 0 0 1.5rem;">
+                  style="border-color: #8B5CF6; border-right-color: transparent; height: 120px; top: 50%; transform: translateY(-50%); left: 40%; right: calc(50% + 40px); border-radius: 1.5rem 0 0 1.5rem;">
                 </div>
 
                 <!-- Right Fork (merges back) -->
-                <!-- Spans from 50% to 70% -->
                 <div class="absolute border-2 border-dashed"
-                  style="border-color: #8B5CF6; border-left-color: transparent; height: 162px; top: 50%; transform: translateY(-50%); left: calc(50% + 100px); right: 30%; border-radius: 0 1.5rem 1.5rem 0;">
+                  style="border-color: #8B5CF6; border-left-color: transparent; height: 120px; top: 50%; transform: translateY(-50%); left: calc(50% + 40px); right: 40%; border-radius: 0 1.5rem 1.5rem 0;">
                 </div>
 
               </div>
 
               <!-- Left: Antigravity -->
-              <div class="relative z-10 w-full sm:w-[30%] flex justify-center" style="left: 165px;">
+              <div class="relative z-10 w-full sm:w-[30%] flex justify-center">
                 <img src="./img/ewa/deployment/antigravity.png" alt="Antigravity Code"
-                  style="width: 300px; height: 300px;"
+                  style="width: 220px; height: 220px;"
                   class="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500">
               </div>
 
               <!-- Middle: Android & Safari -->
-              <div class="relative z-10 w-full sm:w-[40%] flex flex-col items-center justify-center gap-16"
-                style="left: 100px;">
+              <div class="relative z-10 w-full sm:w-[40%] flex flex-col items-center justify-center gap-10">
                 <!-- Android -->
-                <div class="relative group w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+                <div class="relative group w-20 h-20 flex items-center justify-center">
                   <img src="./img/ewa/deployment/android.png" alt="Android APK"
-                    class="relative z-10 w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:-translate-y-2 transition-all duration-300">
+                    class="relative z-10 w-full h-full object-contain border-2 border-slate-200 dark:border-transparent rounded-2xl drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:-translate-y-2 transition-all duration-300">
                 </div>
                 <!-- Safari -->
-                <div class="relative group w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+                <div class="relative group w-20 h-20 flex items-center justify-center">
                   <img src="./img/ewa/deployment/safary.png" alt="Safari Web App"
-                    class="relative z-10 w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:-translate-y-2 transition-all duration-300">
+                    class="relative z-10 w-full h-full object-contain border-2 border-slate-200 dark:border-transparent rounded-2xl drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:-translate-y-2 transition-all duration-300">
                 </div>
               </div>
 
               <!-- Right: eWa Icon -->
-              <div class="relative z-10 w-full sm:w-[30%] flex justify-center" style="left: -170px;">
-                <div class="relative group flex items-center justify-center" style="width: 182px; height: 182px;">
-                  <img src="./img/ewa/deployment/ewa-icon.png" alt="eWa App" style="width: 182px; height: 182px;"
+              <div class="relative z-10 w-full sm:w-[30%] flex justify-center ewa-icon-shift">
+                <div class="relative group flex items-center justify-center" style="width: 180px; height: 180px;">
+                  <img src="./img/ewa/deployment/ewa-icon.png" alt="eWa App" style="width: 180px; height: 180px;"
                     class="relative z-10 object-contain drop-shadow-[0_0_40px_rgba(168,85,247,0.4)] group-hover:drop-shadow-[0_0_60px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-all duration-300">
                 </div>
               </div>
