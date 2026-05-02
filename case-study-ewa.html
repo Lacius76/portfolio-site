@@ -833,9 +833,9 @@
           </div>
           <!-- Right side (Phone) -->
           <div class="flex-1 relative overflow-hidden">
-            <img src="img/ewa/parking/parking-phone.jpg" alt="Parking App on Phone (Light)"
+            <img src="img/ewa/parking/parking-phone-light.jpg" alt="Parking App on Phone (Light)"
               class="dark:hidden absolute inset-0 w-full h-full object-cover object-center">
-            <img src="img/ewa/parking/parking-phone.jpg" alt="Parking App on Phone (Dark)"
+            <img src="img/ewa/parking/parking-phone-dark.jpg" alt="Parking App on Phone (Dark)"
               class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center">
           </div>
         </section>
@@ -1110,9 +1110,9 @@
       <div id="panel-7" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 8;">
         <section class="w-full h-screen pt-[64px] flex flex-col">
           <div class="w-full h-full relative overflow-hidden">
-            <img src="img/ewa/tickets/tickets.jpg" alt="Tickets Showcase (Light)"
+            <img src="img/ewa/tickets/tickets-light.jpg" alt="Tickets Showcase (Light)"
               class="dark:hidden absolute inset-0 w-full h-full object-cover object-center">
-            <img src="img/ewa/tickets/tickets.jpg" alt="Tickets Showcase (Dark)"
+            <img src="img/ewa/tickets/tickets-dark.jpg" alt="Tickets Showcase (Dark)"
               class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center">
           </div>
         </section>
@@ -1214,8 +1214,10 @@
 
           <!-- CENTER: IMAGE -->
           <div class="flex-1 w-full flex items-center justify-center relative">
+            <img src="img/ewa/insurance/userflow_light.jpg" alt="Insurance UI Showcase"
+              class="dark:hidden w-full h-full max-w-[1150px] max-h-[520px] object-contain">
             <img src="img/ewa/insurance/userflow.png" alt="Insurance UI Showcase"
-              class="w-full h-full max-w-[1150px] max-h-[520px] object-contain">
+              class="hidden dark:block w-full h-full max-w-[1150px] max-h-[520px] object-contain">
           </div>
 
         </div>
@@ -1395,12 +1397,16 @@
             class="w-full max-w-[1000px] grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center">
 
             <!-- Left Image: Login -->
-            <img src="img/ewa/login/login.png" alt="Login UI Showcase"
-              class="w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
+            <img src="img/ewa/login/login-light.png" alt="Login UI Showcase"
+              class="dark:hidden w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
+            <img src="img/ewa/login/login-dark.png" alt="Login UI Showcase"
+              class="hidden dark:block w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
 
             <!-- Right Image: Wallet -->
-            <img src="img/ewa/login/wallet.png" alt="Wallet UI Showcase"
-              class="w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
+            <img src="img/ewa/login/dashboard-light.png" alt="Wallet UI Showcase"
+              class="dark:hidden w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
+            <img src="img/ewa/login/dashboard-dark.png" alt="Wallet UI Showcase"
+              class="hidden dark:block w-full h-auto max-h-[80vh] object-contain drop-shadow-2xl">
 
           </div>
         </div>
@@ -1771,24 +1777,29 @@
       <!-- END PANEL 3.995 -->
 
       <!-- ===== PANEL 3.996: BRAND IDENTITY ===== -->
-      <div id="panel-14" class="stack-panel relative bg-black" style="z-index: 16;">
+      <div id="panel-14" class="stack-panel relative bg-slate-50 dark:bg-black" style="z-index: 16;">
         <div class="w-full min-h-screen relative overflow-hidden flex flex-col justify-start">
 
           <!-- Background Image -->
+          <img src="./img/ewa/brand/brand-identity-light.jpg" alt="eWa Brand Identity"
+            class="dark:hidden absolute inset-0 w-full h-full object-cover object-center z-0">
           <img src="./img/ewa/brand/brand-identity-1.jpg" alt="eWa Brand Identity"
-            class="absolute inset-0 w-full h-full object-cover object-center z-0">
+            class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center z-0">
 
           <!-- Content -->
           <div class="absolute top-12 lg:top-16 left-0 z-20 flex items-center"
             style="padding: 12px 64px 12px max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem)); margin-top: 80px;">
 
             <!-- Slanted Background -->
-            <div class="absolute top-0 bottom-0"
+            <div class="absolute top-0 bottom-0 dark:hidden"
+              style="left: -50px; right: 16px; background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid rgba(0,0,0,0.1); transform: skewX(18deg); transform-origin: bottom right; z-index: -1;">
+            </div>
+            <div class="absolute top-0 bottom-0 hidden dark:block"
               style="left: -50px; right: 16px; background-color: rgba(7, 11, 20, 0.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.2); transform: skewX(18deg); transform-origin: bottom right; z-index: -1;">
             </div>
 
             <!-- Text -->
-            <h2 class="text-xl md:text-2xl text-white font-bold whitespace-nowrap drop-shadow-md tracking-wide">
+            <h2 class="text-xl md:text-2xl text-slate-800 dark:text-white font-bold whitespace-nowrap drop-shadow-md tracking-wide">
               / Brand Identity
             </h2>
 
