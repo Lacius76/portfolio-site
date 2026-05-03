@@ -50,21 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalTransitions = Math.max(0, cardCount - 1);
         const remainingForHolds = Math.max(0, 1.0 - (totalTransitions * transitionDuration));
         
-        // Middle cards get 2x the hold time of the first/last cards
-        const middleCards = Math.max(0, cardCount - 2);
-        const holdUnits = 2 + (middleCards * 2);
-        const unitSize = remainingForHolds / holdUnits;
-        const shortHold = unitSize;
-        const longHold = unitSize * 2;
+        // Give all cards the exact same hold time inside the scroll tracker
+        // so you don't have to scroll more for the middle cards.
+        const holdDuration = remainingForHolds / Math.max(1, cardCount);
 
         const phases = [];
         let cursor = 0;
         
         for (let i = 0; i < cardCount; i++) {
-            const isFirst = (i === 0);
-            const isLast = (i === cardCount - 1);
-            const holdDuration = (isFirst || isLast) ? shortHold : longHold;
-            
             phases.push({
                 holdStart: cursor,
                 holdEnd: cursor + holdDuration
@@ -94,14 +87,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 const diff = localProgress - 1; // Approaches 0 as we enter hold phase
                 
-                const yOffsetVh = Math.abs(diff) * 100;
-                ty = (yOffsetVh / 100) * vh; 
-                scale = 1;
-                opacity = 1;
+                // The card starts exactly 100px below its final position, smaller and partially transparent
+                ty = Math.abs(diff) * 100;
+                scale = 1 - (Math.abs(diff) * 0.15); // Starts at 0.85 scale
+                
+                // Opacity reaches 1.0 faster (when diff is -0.5, opacity is already 1.0)
+                opacity = 1 - Math.max(0, (Math.abs(diff) - 0.5) * 1.6); 
                 brightness = 1;
             } 
-            else if (progress <= holdEnd) {
+            else if (progress <= holdEnd || (index === cardCount - 1 && progress >= holdStart)) {
                 // 2. HOLD PHASE: Card is perfectly active/focused (Plateau)
+                // The last card stays in hold phase forever once reached, so it doesn't shrink at the end.
                 ty = 0;
                 scale = 1;
                 opacity = 1;
@@ -116,13 +112,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 
                 scale = 1 - (localProgress * 0.25); 
-                // Fade out twice as fast so the card below is revealed instantly
-                opacity = 1 - (localProgress * 4.0);
+                // Fades down to 0.2 opacity (80% transparent) and stays visible
+                opacity = 1 - (localProgress * 0.8);
                 ty = -localProgress * 40; 
                 brightness = 1 - (localProgress * 0.5); 
             }
 
-            zIndex = cardCount - index;
+            // Dynamically calculate z-index based on scale. 
+            // This ensures the card that is shrinking (exiting) goes behind the card that is growing (rising).
+            // Multiply by 1000 for integer granularity, and add tie-breaker for initial state.
+            zIndex = Math.round(scale * 1000) + (cardCount - index);
 
             targets.push({ 
                 ty, 

@@ -433,7 +433,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const skinHalBtn = document.getElementById('skinHal');
     const skinClassicBtn = document.getElementById('skinClassic');
     const skinFirstBtn = document.getElementById('skinFirst');
-    let isBotClosed = (sessionStorage.getItem('botClosed') === 'true');
+    let isBotClosed = false;
+    const storedBotState = sessionStorage.getItem('botClosed');
+    if (storedBotState === 'true') {
+        isBotClosed = true;
+    } else if (storedBotState === 'false') {
+        isBotClosed = false;
+    } else {
+        // No stored state yet. On mobile, default to closed.
+        isBotClosed = window.innerWidth <= 768;
+    }
 
     // Reopen tab
     let reopenTab = document.getElementById('botReopenTab');
@@ -467,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openBot() {
         isBotClosed = false;
-        sessionStorage.removeItem('botClosed');
+        sessionStorage.setItem('botClosed', 'false');
         reopenTab.style.transform = 'translateY(-50%) translateX(100%)';
         setTimeout(() => { reopenTab.style.visibility = 'hidden'; }, 400);
         wrapper.style.display = 'flex';

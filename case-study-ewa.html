@@ -757,10 +757,9 @@
               </div>
             </div>
 
-            <!-- JOBB OLDAL: glass box 460×580 (teteje egy szintben a h2-vel) -->
             <div
-              class="glass-panel rounded-[2rem] p-6 md:p-8 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors flex flex-col gap-6 flex-shrink-0"
-              style="width: 460px; height: 580px; overflow: auto;">
+              class="glass-panel self-center md:self-auto rounded-[2rem] p-6 md:p-8 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors flex flex-col gap-6 flex-shrink-0"
+              style="width: min(100%, 460px); height: 580px; overflow: auto;">
               <!-- 1. QR Code for Desktop Users -->
               <div class="hidden sm:flex flex-row items-center gap-3">
                 <div
@@ -863,7 +862,7 @@
               </p>
             </div>
 
-            <div class="relative flex justify-center" style="margin-top: -112px;">
+            <div class="relative flex justify-center mt-12 lg:-mt-[112px]">
               <div
                 class="glass-panel rounded-[2rem] p-3 md:p-4 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl">
                 <div class="w-[280px] md:w-[320px] rounded-xl bg-slate-100 dark:bg-slate-900 scrollbar-thin"
@@ -1109,11 +1108,27 @@
       <!-- ===== PANEL 3.8: TICKETS FULL BLEED ===== -->
       <div id="panel-7" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 8;">
         <section class="w-full h-screen pt-[64px] flex flex-col">
-          <div class="w-full h-full relative overflow-hidden">
+          <!-- Desktop Version -->
+          <div class="hidden md:block w-full h-full relative overflow-hidden">
             <img src="img/ewa/tickets/tickets-light.jpg" alt="Tickets Showcase (Light)"
               class="dark:hidden absolute inset-0 w-full h-full object-cover object-center">
             <img src="img/ewa/tickets/tickets-dark.jpg" alt="Tickets Showcase (Dark)"
               class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center">
+          </div>
+          <!-- Mobile Version (Split) -->
+          <div class="flex md:hidden flex-col w-full h-full">
+            <div class="flex-1 relative overflow-hidden">
+              <img src="img/ewa/tickets/tickets-scren-light.jpg" alt="Tickets Screen (Light)"
+                class="dark:hidden absolute inset-0 w-full h-full object-cover object-center">
+              <img src="img/ewa/tickets/tickets-scren-dark.jpg" alt="Tickets Screen (Dark)"
+                class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center">
+            </div>
+            <div class="flex-1 relative overflow-hidden">
+              <img src="img/ewa/tickets/tickets-mobile-light.jpg" alt="Tickets Mobile (Light)"
+                class="dark:hidden absolute inset-0 w-full h-full object-cover object-center">
+              <img src="img/ewa/tickets/tickets-mobile-dark.jpg" alt="Tickets Mobile (Dark)"
+                class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center">
+            </div>
           </div>
         </section>
       </div>
@@ -1204,20 +1219,30 @@
 
       <!-- ===== PANEL 3.95: INSURANCE FULL BLEED ===== -->
       <div id="panel-9" class="stack-panel bg-slate-50 dark:bg-background-dark" style="z-index: 10;">
-        <div class="max-w-[1200px] mx-auto px-6 pt-12 pb-4 min-h-screen flex flex-col relative overflow-hidden">
+        <div class="max-w-[1200px] mx-auto pt-6 md:pt-12 pb-4 min-h-[auto] md:min-h-screen flex flex-col relative overflow-hidden">
 
           <!-- TOP: HEADER -->
-          <div class="w-full relative z-10 mb-8 lg:mb-22">
+          <div class="w-full px-6 relative z-10 mb-4 md:mb-8 lg:mb-22">
             <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap">/ User Flow
             </h2>
           </div>
 
           <!-- CENTER: IMAGE -->
           <div class="flex-1 w-full flex items-center justify-center relative">
-            <img src="img/ewa/insurance/userflow_light.jpg" alt="Insurance UI Showcase"
-              class="dark:hidden w-full h-full max-w-[1150px] max-h-[520px] object-contain">
-            <img src="img/ewa/insurance/userflow.png" alt="Insurance UI Showcase"
-              class="hidden dark:block w-full h-full max-w-[1150px] max-h-[520px] object-contain">
+            <!-- Desktop -->
+            <div class="hidden md:flex w-full h-full justify-center px-6">
+              <img src="img/ewa/insurance/userflow_light.jpg" alt="Insurance UI Showcase"
+                class="dark:hidden w-full h-full max-w-[1150px] max-h-[520px] object-contain">
+              <img src="img/ewa/insurance/userflow.png" alt="Insurance UI Showcase"
+                class="hidden dark:block w-full h-full max-w-[1150px] max-h-[520px] object-contain">
+            </div>
+            <!-- Mobile -->
+            <div class="flex md:hidden w-full h-auto justify-center">
+              <img src="img/ewa/insurance/userflow-light-mobile.jpg" alt="Insurance UI Showcase Mobile"
+                class="dark:hidden w-full h-auto object-contain">
+              <img src="img/ewa/insurance/userflow-dark-mobile.jpg" alt="Insurance UI Showcase Mobile"
+                class="hidden dark:block w-full h-auto object-contain">
+            </div>
           </div>
 
         </div>
@@ -1236,10 +1261,17 @@
           </div>
 
           <!-- CENTER: DIAGRAM -->
-          <div class="flex-1 w-full flex items-center justify-center relative py-12 overflow-x-auto overflow-y-hidden"
-            style="scrollbar-width: none;">
+          <style>
+            @media (min-width: 1024px) {
+              .lg\:hidden { display: none !important; }
+              .lg\:flex-row { flex-direction: row !important; }
+              .lg\:flex { display: flex !important; }
+              .lg\:block { display: block !important; }
+            }
+          </style>
+          <div class="flex-1 w-full relative py-12 overflow-auto text-center" style="scrollbar-width: none;">
 
-            <div class="flex items-center min-w-max px-4">
+            <div class="inline-flex flex-col lg:flex-row items-center justify-start min-h-full w-max px-8 lg:px-12 pb-12 lg:pb-0 text-left">
 
               <!-- COL 1 -->
               <div
@@ -1249,9 +1281,14 @@
               </div>
 
               <!-- LINE 1 -->
-              <div class="relative"
+              <div class="hidden lg:block relative"
                 style="width: clamp(48px, 8vw, 120px); height: 1px; background-color: #9333ea; flex-shrink: 0;">
                 <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full"
+                  style="width: 6px; height: 6px; background-color: #9333ea;"></div>
+              </div>
+              <div class="block lg:hidden relative"
+                style="width: 1px; height: 40px; background-color: #9333ea; flex-shrink: 0;">
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full"
                   style="width: 6px; height: 6px; background-color: #9333ea;"></div>
               </div>
 
@@ -1282,9 +1319,14 @@
               </div>
 
               <!-- LINE 2 -->
-              <div class="relative"
+              <div class="hidden lg:block relative"
                 style="width: clamp(48px, 8vw, 120px); height: 1px; background-color: #9333ea; flex-shrink: 0;">
                 <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full"
+                  style="width: 6px; height: 6px; background-color: #9333ea;"></div>
+              </div>
+              <div class="block lg:hidden relative"
+                style="width: 1px; height: 40px; background-color: #9333ea; flex-shrink: 0;">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
                   style="width: 6px; height: 6px; background-color: #9333ea;"></div>
               </div>
 
@@ -1296,14 +1338,19 @@
               </div>
 
               <!-- LINE 3 -->
-              <div class="relative"
+              <div class="hidden lg:block relative"
                 style="width: clamp(48px, 8vw, 120px); height: 1px; background-color: #9333ea; flex-shrink: 0;">
                 <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full"
                   style="width: 6px; height: 6px; background-color: #9333ea;"></div>
               </div>
+              <div class="block lg:hidden relative"
+                style="width: 1px; height: 40px; background-color: #9333ea; flex-shrink: 0;">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  style="width: 6px; height: 6px; background-color: #9333ea;"></div>
+              </div>
 
-              <!-- COL 4 (The Tree) -->
-              <div class="flex flex-col gap-4 relative py-2 z-10">
+              <!-- COL 4 Desktop (The Tree) -->
+              <div class="hidden lg:flex flex-col gap-4 relative py-2 z-10">
                 <div class="absolute left-0" style="width: 1px; top: 26px; bottom: 26px; background-color: #9333ea;">
                 </div>
 
@@ -1373,6 +1420,28 @@
                       style="background-color: #9333ea;">Log Out</div>
                   </div>
                 </div>
+              </div>
+
+              <!-- COL 4 Mobile (Beads on a string) -->
+              <div class="flex lg:hidden flex-col gap-4 relative py-2 z-10 items-center">
+                <div class="absolute top-0" style="width: 1px; bottom: 24px; left: 50%; transform: translateX(-50%); background-color: #9333ea; z-index: 0;"></div>
+                
+                <div class="rounded-full px-6 py-1.5 text-slate-900 dark:text-white text-[13px] font-medium text-center font-light italic whitespace-nowrap relative z-10 bg-slate-50 dark:bg-custom-purple"
+                  style="border: 1px solid rgba(147,51,234,0.5); background-image: linear-gradient(rgba(147,51,234,0.05), rgba(147,51,234,0.05));">E-Vignette</div>
+                <div class="rounded-full px-6 py-1.5 text-slate-900 dark:text-white text-[13px] font-medium text-center font-light italic whitespace-nowrap relative z-10 bg-slate-50 dark:bg-custom-purple"
+                  style="border: 1px solid rgba(147,51,234,0.5); background-image: linear-gradient(rgba(147,51,234,0.05), rgba(147,51,234,0.05));">Mobile Ticket</div>
+                <div class="rounded-full px-6 py-1.5 text-slate-900 dark:text-white text-[13px] font-medium text-center font-light italic whitespace-nowrap relative z-10 bg-slate-50 dark:bg-custom-purple"
+                  style="border: 1px solid rgba(147,51,234,0.5); background-image: linear-gradient(rgba(147,51,234,0.05), rgba(147,51,234,0.05));">Smart Parking</div>
+                <div class="rounded-full px-6 py-1.5 text-white text-[13px] font-medium text-center shadow-[0_0_10px_rgba(147,51,234,0.4)] whitespace-nowrap relative z-10"
+                  style="background-color: #9333ea;">Wallet</div>
+                <div class="rounded-full px-6 py-1.5 text-slate-900 dark:text-white text-[13px] font-medium text-center font-light italic whitespace-nowrap relative z-10 bg-slate-50 dark:bg-custom-purple"
+                  style="border: 1px solid rgba(147,51,234,0.5); background-image: linear-gradient(rgba(147,51,234,0.05), rgba(147,51,234,0.05));">Insurance</div>
+                <div class="rounded-full px-6 py-1.5 text-slate-900 dark:text-white text-[13px] font-medium text-center font-light italic whitespace-nowrap relative z-10 bg-slate-50 dark:bg-custom-purple"
+                  style="border: 1px solid rgba(147,51,234,0.5); background-image: linear-gradient(rgba(147,51,234,0.05), rgba(147,51,234,0.05));">Tickets</div>
+                <div class="rounded-full px-6 py-1.5 text-slate-900 dark:text-white text-[13px] font-medium text-center font-light italic whitespace-nowrap relative z-10 bg-slate-50 dark:bg-custom-purple"
+                  style="border: 1px solid rgba(147,51,234,0.5); background-image: linear-gradient(rgba(147,51,234,0.05), rgba(147,51,234,0.05));">Profile</div>
+                <div class="rounded-full px-6 py-1.5 text-white text-[13px] font-medium text-center shadow-[0_0_10px_rgba(147,51,234,0.4)] whitespace-nowrap relative z-10"
+                  style="background-color: #9333ea;">Log Out</div>
               </div>
 
             </div>
@@ -1501,7 +1570,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
               <!-- Description -->
-              <div style="max-width: 350px; margin-top: -80px;">
+              <div class="max-w-[350px] lg:-mt-[80px]">
                 <p class="text-slate-700 dark:text-slate-400 font-light text-sm md:text-base leading-relaxed">
                   A bold teal and purple palette built for dual-theme consistency — each color purposefully adapted for
                   both Light and Dark environments, ensuring contrast, accessibility, and visual harmony across every
@@ -1512,8 +1581,8 @@
               <!-- Graphic -->
               <div class="relative w-full flex justify-center lg:justify-end items-center mt-8 lg:mt-0"
                 style="min-height: 280px;">
-                <div class="relative origin-center lg:origin-right scale-90 md:scale-100"
-                  style="width: 360px; height: 260px; transform: translateX(-129px);">
+                <div class="relative origin-center lg:origin-right scale-90 md:scale-100 lg:-translate-x-[129px]"
+                  style="width: 360px; height: 260px;">
 
                   <!-- Teal Group -->
                   <div class="absolute left-0 rounded-3xl z-0 shadow-lg"
@@ -1546,7 +1615,7 @@
                   </div>
 
                   <!-- Pill -->
-                  <div class="absolute rounded-full px-6 py-2.5 z-30 shadow-xl whitespace-nowrap"
+                  <div class="hidden md:block absolute rounded-full px-6 py-2.5 z-30 shadow-xl whitespace-nowrap"
                     style="left: -100px; bottom: 45px; background-color: rgba(20, 10, 40, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1);">
                     <span class="text-xs italic font-light text-slate-300">Consistency for Primary</span>
                   </div>
@@ -1780,11 +1849,21 @@
       <div id="panel-14" class="stack-panel relative bg-slate-50 dark:bg-black" style="z-index: 16;">
         <div class="w-full min-h-screen relative overflow-hidden flex flex-col justify-start">
 
-          <!-- Background Image -->
-          <img src="./img/ewa/brand/brand-identity-light.jpg" alt="eWa Brand Identity"
-            class="dark:hidden absolute inset-0 w-full h-full object-cover object-center z-0">
-          <img src="./img/ewa/brand/brand-identity-1.jpg" alt="eWa Brand Identity"
-            class="hidden dark:block absolute inset-0 w-full h-full object-cover object-center z-0">
+          <!-- Desktop Background Images -->
+          <div class="hidden md:block absolute inset-0 w-full h-full z-0">
+            <img src="./img/ewa/brand/brand-identity-light.jpg" alt="eWa Brand Identity"
+              class="dark:hidden w-full h-full object-cover object-center">
+            <img src="./img/ewa/brand/brand-identity-1.jpg" alt="eWa Brand Identity"
+              class="hidden dark:block w-full h-full object-cover object-center">
+          </div>
+          
+          <!-- Mobile Background Images -->
+          <div class="md:hidden absolute inset-0 w-full h-full z-0 flex items-center justify-center p-6 pt-40 pb-12">
+            <img src="./img/ewa/brand/brand-identity-light-mobil.jpg" alt="eWa Brand Identity Mobile"
+              class="dark:hidden max-w-full max-h-full object-contain">
+            <img src="./img/ewa/brand/brand-identity-1-mobil.jpg" alt="eWa Brand Identity Mobile"
+              class="hidden dark:block max-w-full max-h-full object-contain">
+          </div>
 
           <!-- Content -->
           <div class="absolute top-12 lg:top-16 left-0 z-20 flex items-center"
