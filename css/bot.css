@@ -558,6 +558,13 @@
     color: rgb(16, 194, 253)
 }
 
+.bot-menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 6px 4px;
+    border: none;
+}
+
 /* ========================================= */
 /* === CLASSIC SKIN OVERRIDE              === */
 /* ========================================= */
@@ -595,6 +602,11 @@
     /* Small inner border */
     top: calc(var(--hal-toolbar-h) + 2px);
     /* Kicsit lejjebb */
+}
+
+#aiBotCard.skin-classic .bot-menu-divider {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 4px 0;
 }
 
 #aiBotCard.skin-classic .bot-skin-menu button {

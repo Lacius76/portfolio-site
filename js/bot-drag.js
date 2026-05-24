@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <button id="skinHal" class="active-skin">◉ AI-Bot 9000</button>
           <button id="skinClassic">◎ Classic</button>
           <button id="skinFirst">▣ Original</button>
+          <hr class="bot-menu-divider">
+          <button id="skinContact">✉ Contact</button>
         </div>
 
         <!-- TOOLBAR / Drag Area -->
@@ -433,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const skinHalBtn = document.getElementById('skinHal');
     const skinClassicBtn = document.getElementById('skinClassic');
     const skinFirstBtn = document.getElementById('skinFirst');
+    const skinContactBtn = document.getElementById('skinContact');
     let isBotClosed = false;
     const storedBotState = sessionStorage.getItem('botClosed');
     if (storedBotState === 'true') {
@@ -530,6 +533,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (skinHalBtn) skinHalBtn.addEventListener('click', () => setSkin('hal'));
     if (skinClassicBtn) skinClassicBtn.addEventListener('click', () => setSkin('classic'));
     if (skinFirstBtn) skinFirstBtn.addEventListener('click', () => setSkin('first'));
+    if (skinContactBtn) {
+        skinContactBtn.addEventListener('click', () => {
+            openBotContactModal();
+            if (skinMenu) skinMenu.classList.remove('open');
+            playBotAudio('Opening mail client.mp3');
+
+            const actionBtns = document.getElementById('botActionBtns');
+            const talkBtnBtn = document.getElementById('botTalkBtn');
+            const botConsole = document.getElementById('botConsole');
+
+            if (actionBtns) actionBtns.classList.add('hidden');
+            if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
+
+            let yesMsg = tBot('bot.contactYesRes', 'Opening mail client... Initiating protocol.');
+            typeWriter(yesMsg, botConsole);
+        });
+    }
 
     // --- Typing & Messages ---
     const botConsole = document.getElementById('botConsole');
@@ -834,6 +854,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (loadingIcon) loadingIcon.classList.add('hidden');
                     if (submitBtn) submitBtn.disabled = false;
                 });
+        });
+    }
+
+    // Update signature automatically when typing name
+    const nameInput = contactForm ? contactForm.querySelector('input[name="name"]') : null;
+    if (nameInput) {
+        nameInput.addEventListener('input', () => {
+            const textarea = document.getElementById('botContactMsg');
+            if (textarea) {
+                // Get current translation signature marker dynamically
+                const prefillVal = tBot('bot.contactPrefill', "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,");
+                const lines = prefillVal.split('\n');
+                const signatureMarker = lines[lines.length - 1].trim(); // e.g., "Best regards," or "Viele Grüße,"
+
+                const currentText = textarea.value;
+                const markerIndex = currentText.indexOf(signatureMarker);
+                if (markerIndex !== -1) {
+                    const baseText = currentText.substring(0, markerIndex + signatureMarker.length);
+                    const nameVal = nameInput.value.trim();
+                    textarea.value = nameVal ? baseText + "\n" + nameVal : baseText;
+                }
+            }
         });
     }
 
