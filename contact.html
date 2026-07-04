@@ -264,7 +264,7 @@
                     </div>
                 </div>
                 <!-- Calendar Booking Section -->
-                <div class="flex flex-col gap-6 w-full mt-4 mb-8">
+                <div id="calendar-booking" class="flex flex-col gap-6 w-full mt-4 mb-8">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <h2 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]"
@@ -285,13 +285,32 @@
                             const calUsername = "laszlo.ui"; // Username
                             const calEvent = "30min"; // Event slug
 
+                            function getSelectedDateParam() {
+                                const date = new URLSearchParams(window.location.search).get('date');
+                                return date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
+                            }
+
                             function updateCalTheme() {
                                 const isDark = document.documentElement.classList.contains('dark');
-                                calIframe.src = `https://cal.com/${calUsername}/${calEvent}?embed=true&theme=${isDark ? 'dark' : 'light'}&layout=column_view`;
+                                const selectedDate = getSelectedDateParam();
+                                let src = `https://cal.com/${calUsername}/${calEvent}?embed=true&theme=${isDark ? 'dark' : 'light'}&layout=column_view`;
+                                if (selectedDate) {
+                                    src += `&date=${selectedDate}`;
+                                }
+                                calIframe.src = src;
                             }
 
                             // Initial load
                             updateCalTheme();
+
+                            if (getSelectedDateParam()) {
+                                const calendarSection = document.getElementById('calendar-booking');
+                                if (calendarSection) {
+                                    requestAnimationFrame(function () {
+                                        calendarSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    });
+                                }
+                            }
 
                             // Theme synchronization
                             const observer = new MutationObserver((mutations) => {

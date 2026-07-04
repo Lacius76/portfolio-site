@@ -388,117 +388,190 @@
                 </div>
                 <script>
                   (function () {
-                    // Day labels (German abbreviations work for all languages as placeholder)
+                    var CAL_USERNAME = 'laszlo.ui';
+                    var CAL_EVENT = '30min';
+                    var CAL_TIMEZONE = 'Europe/Budapest';
                     var DAY_LABELS = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-                    // Available time slots (displayed as-is, all marked available)
-                    var SLOTS = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00'];
 
-                    // Get the Monday of the current week
-                    function getMondayOfWeek(d) {
-                      var day = d.getDay(); // 0=Sun, 1=Mon...
-                      var diff = (day === 0) ? -6 : 1 - day; // adjust to Monday
-                      var monday = new Date(d);
-                      monday.setDate(d.getDate() + diff);
-                      monday.setHours(0, 0, 0, 0);
-                      return monday;
+                    function formatDateISO(d) {
+                      var y = d.getFullYear();
+                      var m = String(d.getMonth() + 1).padStart(2, '0');
+                      var day = String(d.getDate()).padStart(2, '0');
+                      return y + '-' + m + '-' + day;
                     }
 
-                    var now = new Date();
-                    var today = new Date(now);
-                    today.setHours(0, 0, 0, 0);
+                    function buildWeekdayWeeks(year, month) {
+                      var lastDayNum = new Date(year, month + 1, 0).getDate();
+                      var weeks = [];
+                      var currentWeek = [null, null, null, null, null];
+                      var lastCol = -1;
 
-                    // If it's Saturday (6) or Sunday (0), skip to next week
-                    var dowNow = now.getDay();
-                    if (dowNow === 6 || dowNow === 0) {
-                      now = new Date(now);
-                      now.setDate(now.getDate() + (dowNow === 6 ? 2 : 1)); // Sat+2=Mon, Sun+1=Mon
+                      for (var day = 1; day <= lastDayNum; day++) {
+                        var d = new Date(year, month, day);
+                        var dow = d.getDay();
+                        if (dow === 0 || dow === 6) continue;
+
+                        var col = dow - 1;
+                        if (col <= lastCol) {
+                          weeks.push(currentWeek);
+                          currentWeek = [null, null, null, null, null];
+                        }
+                        currentWeek[col] = d;
+                        lastCol = col;
+                      }
+
+                      if (currentWeek.some(function (cell) { return cell !== null; })) {
+                        weeks.push(currentWeek);
+                      }
+                      return weeks;
                     }
-                    var monday = getMondayOfWeek(now);
 
-                    // Build the 5 weekday dates
-                    var weekDates = [];
-                    for (var i = 0; i < 5; i++) {
-                      var d = new Date(monday);
-                      d.setDate(monday.getDate() + i);
-                      weekDates.push(d);
+                    function fetchAvailableDates(year, month) {
+                      var monthStart = formatDateISO(new Date(year, month, 1));
+                      var monthEnd = formatDateISO(new Date(year, month + 1, 0));
+                      var url = 'https://api.cal.com/v2/slots?username=' + encodeURIComponent(CAL_USERNAME)
+                        + '&eventTypeSlug=' + encodeURIComponent(CAL_EVENT)
+                        + '&start=' + monthStart
+                        + '&end=' + monthEnd
+                        + '&timeZone=' + encodeURIComponent(CAL_TIMEZONE);
+
+                      return fetch(url, { headers: { 'cal-api-version': '2024-09-04' } })
+                        .then(function (res) { return res.json(); })
+                        .then(function (json) {
+                          var availableDates = {};
+                          if (json && json.data) {
+                            Object.keys(json.data).forEach(function (dateKey) {
+                              if (json.data[dateKey] && json.data[dateKey].length > 0) {
+                                availableDates[dateKey] = true;
+                              }
+                            });
+                          }
+                          return availableDates;
+                        });
+                    }
+
+                    function renderCalendar(widget, availableDates) {
+                      var now = new Date();
+                      var today = new Date(now);
+                      today.setHours(0, 0, 0, 0);
+
+                      var year = now.getFullYear();
+                      var month = now.getMonth();
+                      var weeks = buildWeekdayWeeks(year, month);
+                      var locale = localStorage.getItem('preferred-language') || 'en';
+                      var monthTitle = new Date(year, month, 1).toLocaleDateString(locale, {
+                        month: 'long',
+                        year: 'numeric'
+                      });
+
+                      widget.innerHTML = '';
+
+                      var title = document.createElement('div');
+                      title.style.cssText = 'font-size:11px;font-weight:700;text-align:center;margin-bottom:6px;flex-shrink:0;text-transform:capitalize;';
+                      title.textContent = monthTitle;
+                      widget.appendChild(title);
+
+                      var headerRow = document.createElement('div');
+                      headerRow.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;margin-bottom:4px;flex-shrink:0;';
+
+                      DAY_LABELS.forEach(function (label) {
+                        var cell = document.createElement('div');
+                        cell.style.cssText = 'flex:1;font-size:10px;font-weight:700;';
+                        cell.textContent = label;
+                        headerRow.appendChild(cell);
+                      });
+                      widget.appendChild(headerRow);
+
+                      var grid = document.createElement('div');
+                      grid.style.cssText = 'display:flex;flex-direction:column;gap:4px;width:100%;flex:1;';
+
+                      weeks.forEach(function (week) {
+                        var row = document.createElement('div');
+                        row.style.cssText = 'display:flex;width:100%;gap:4px;flex:1;';
+
+                        week.forEach(function (d) {
+                          var cell = document.createElement('div');
+                          cell.style.cssText = 'flex:1;display:flex;';
+
+                          if (!d) {
+                            cell.innerHTML = '&nbsp;';
+                            row.appendChild(cell);
+                            return;
+                          }
+
+                          var dateKey = formatDateISO(d);
+                          var isPast = d < today;
+                          var isToday = d.getTime() === today.getTime();
+                          var hasSlots = !!availableDates[dateKey];
+                          var isDisabled = isPast || !hasSlots;
+                          var dayNum = String(d.getDate()).padStart(2, '0');
+
+                          var dayEl = document.createElement(isDisabled ? 'span' : 'a');
+                          if (!isDisabled) {
+                            dayEl.href = 'contact.html?date=' + dateKey;
+                          }
+                          dayEl.setAttribute('aria-label', dateKey + (hasSlots ? '' : ' (unavailable)'));
+                          dayEl.style.cssText = [
+                            'display:flex',
+                            'align-items:center',
+                            'justify-content:center',
+                            'gap:3px',
+                            'width:100%',
+                            'font-size:10px',
+                            'font-weight:' + (isToday && hasSlots ? '700' : '500'),
+                            'border-radius:4px',
+                            'padding:4px 0',
+                            'text-decoration:none',
+                            'transition:all 0.15s',
+                            isDisabled
+                              ? 'background:#f8fafc;border:1px solid #e2e8f0;color:#cbd5e1;pointer-events:none;'
+                              : isToday
+                                ? 'background:#eef2ff;border:1px solid #6366f1;color:#6366f1;cursor:pointer;'
+                                : 'background:#f8fafc;border:1px solid #e2e8f0;color:#475569;cursor:pointer;'
+                          ].join(';');
+
+                          if (hasSlots && !isPast) {
+                            var dot = document.createElement('span');
+                            dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:#22c55e;flex-shrink:0;display:inline-block;';
+                            dayEl.appendChild(dot);
+                          }
+
+                          dayEl.appendChild(document.createTextNode(dayNum));
+
+                          if (!isDisabled && !isToday) {
+                            dayEl.addEventListener('mouseenter', function () {
+                              this.style.borderColor = '#6366f1';
+                              this.style.color = '#6366f1';
+                            });
+                            dayEl.addEventListener('mouseleave', function () {
+                              this.style.borderColor = '#e2e8f0';
+                              this.style.color = '#475569';
+                            });
+                          }
+
+                          cell.appendChild(dayEl);
+                          row.appendChild(cell);
+                        });
+
+                        grid.appendChild(row);
+                      });
+
+                      widget.appendChild(grid);
                     }
 
                     var widget = document.getElementById('mini-cal-widget');
                     if (!widget) return;
 
-                    // --- Build header row ---
-                    var headerRow = document.createElement('div');
-                    headerRow.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;margin-bottom:6px;flex-shrink:0;';
+                    widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;">…</div>';
 
-                    weekDates.forEach(function (d, i) {
-                      var isPast = d < today;
-                      var dayNum = String(d.getDate()).padStart(2, '0');
-                      var cell = document.createElement('div');
-                      cell.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:0;';
-                      cell.innerHTML =
-                        '<span style="font-size:10px;font-weight:700;color:' + (isPast ? '#94a3b8' : 'inherit') + ';">' + DAY_LABELS[i] + '</span>' +
-                        '<span style="font-size:9px;font-weight:500;color:' + (isPast ? '#cbd5e1' : '#6366f1') + ';">' + dayNum + '</span>';
-                      headerRow.appendChild(cell);
-                    });
-                    widget.appendChild(headerRow);
-
-                    // --- Build slots grid ---
-                    var grid = document.createElement('div');
-                    grid.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;flex:1;';
-
-                    weekDates.forEach(function (d) {
-                      var isPast = d < today;
-                      var col = document.createElement('div');
-                      col.style.cssText = 'flex:1;display:flex;flex-direction:column;gap:4px;';
-
-                      SLOTS.forEach(function (time) {
-                        var a = document.createElement('a');
-                        a.href = 'contact.html';
-                        a.style.cssText = [
-                          'display:flex',
-                          'align-items:center',
-                          'justify-content:center',
-                          'gap:2px',
-                          'font-size:9px',
-                          'border-radius:4px',
-                          'padding:3px 0',
-                          'text-decoration:none',
-                          'transition:all 0.15s',
-                          'flex:1',
-                          isPast
-                            ? 'background:#f8fafc;border:1px solid #e2e8f0;color:#cbd5e1;pointer-events:none;'
-                            : 'background:#f8fafc;border:1px solid #e2e8f0;color:#475569;cursor:pointer;'
-                        ].join(';');
-
-                        if (!isPast) {
-                          // Green availability dot
-                          var dot = document.createElement('span');
-                          dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:#22c55e;flex-shrink:0;display:inline-block;';
-                          a.appendChild(dot);
-                        }
-
-                        var label = document.createTextNode(time);
-                        a.appendChild(label);
-
-                        // Hover effect via JS (dark/light agnostic)
-                        if (!isPast) {
-                          a.addEventListener('mouseenter', function () {
-                            this.style.borderColor = '#6366f1';
-                            this.style.color = '#6366f1';
-                          });
-                          a.addEventListener('mouseleave', function () {
-                            this.style.borderColor = '#e2e8f0';
-                            this.style.color = '#475569';
-                          });
-                        }
-
-                        col.appendChild(a);
+                    var now = new Date();
+                    fetchAvailableDates(now.getFullYear(), now.getMonth())
+                      .then(function (availableDates) {
+                        renderCalendar(widget, availableDates);
+                      })
+                      .catch(function () {
+                        widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;text-align:center;padding:8px;">Calendar unavailable</div>';
                       });
-
-                      grid.appendChild(col);
-                    });
-
-                    widget.appendChild(grid);
                   })();
                 </script>
 
