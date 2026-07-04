@@ -362,158 +362,170 @@
                   <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Design that </span>
                   <span
                     class="hero-anim-title-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
-                    data-i18n="index.heroTitle2">humanizes</span> 
+                    data-i18n="index.heroTitle2">humanizes</span>
                   <span class="hero-anim-title-3" data-i18n="index.heroTitle3">technology.</span>
                 </h1>
                 <h2
                   class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-base font-normal leading-relaxed max-w-xl">
                   <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry. Senior UI/UX & Product Designer.<br />I
-                    leverage 25+ years of mastery and AI-driven workflow to solve complex problems through
+                    leverage 10+ years of mastery and AI-driven workflow to solve complex problems through
                     intuitive
                     digital experiences.</span>
                 </h2>
               </div>
-              <div class="flex flex-col sm:flex-row gap-6 mt-2 pointer-events-auto w-full z-10" style="max-width: 600px;">
-                
+              <div class="flex flex-col sm:flex-row gap-6 mt-2 pointer-events-auto w-full z-10"
+                style="max-width: 600px;">
+
                 <!-- Left: Mini Custom Calendar UI — JS-driven, auto dates -->
                 <div class="flex flex-col gap-2 shrink-0 w-full" style="max-width: 300px;">
-                  <h3 class="text-[#111418] dark:text-white text-base font-semibold" data-i18n="index.bookAppointment">Book Appointment</h3>
-                  <div id="mini-cal-widget" class="w-full rounded-xl border border-[#e5e7eb] dark:border-[#2a3441] bg-white dark:bg-[#1e293b] p-2.5 shadow-sm flex flex-col" style="height: 240px;">
+                  <h3 class="text-[#111418] dark:text-white text-base font-semibold" data-i18n="index.bookAppointment">
+                    Book Appointment</h3>
+                  <div id="mini-cal-widget"
+                    class="w-full rounded-xl border border-[#e5e7eb] dark:border-[#2a3441] bg-white dark:bg-[#1e293b] p-2.5 shadow-sm flex flex-col"
+                    style="height: 240px;">
                     <!-- Filled by JS below -->
                   </div>
                 </div>
                 <script>
-                (function () {
-                  // Day labels (German abbreviations work for all languages as placeholder)
-                  var DAY_LABELS = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-                  // Available time slots (displayed as-is, all marked available)
-                  var SLOTS = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00'];
+                  (function () {
+                    // Day labels (German abbreviations work for all languages as placeholder)
+                    var DAY_LABELS = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+                    // Available time slots (displayed as-is, all marked available)
+                    var SLOTS = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00'];
 
-                  // Get the Monday of the current week
-                  function getMondayOfWeek(d) {
-                    var day = d.getDay(); // 0=Sun, 1=Mon...
-                    var diff = (day === 0) ? -6 : 1 - day; // adjust to Monday
-                    var monday = new Date(d);
-                    monday.setDate(d.getDate() + diff);
-                    monday.setHours(0, 0, 0, 0);
-                    return monday;
-                  }
+                    // Get the Monday of the current week
+                    function getMondayOfWeek(d) {
+                      var day = d.getDay(); // 0=Sun, 1=Mon...
+                      var diff = (day === 0) ? -6 : 1 - day; // adjust to Monday
+                      var monday = new Date(d);
+                      monday.setDate(d.getDate() + diff);
+                      monday.setHours(0, 0, 0, 0);
+                      return monday;
+                    }
 
-                  var now = new Date();
-                  var today = new Date(now);
-                  today.setHours(0, 0, 0, 0);
+                    var now = new Date();
+                    var today = new Date(now);
+                    today.setHours(0, 0, 0, 0);
 
-                  // If it's Saturday (6) or Sunday (0), skip to next week
-                  var dowNow = now.getDay();
-                  if (dowNow === 6 || dowNow === 0) {
-                    now = new Date(now);
-                    now.setDate(now.getDate() + (dowNow === 6 ? 2 : 1)); // Sat+2=Mon, Sun+1=Mon
-                  }
-                  var monday = getMondayOfWeek(now);
+                    // If it's Saturday (6) or Sunday (0), skip to next week
+                    var dowNow = now.getDay();
+                    if (dowNow === 6 || dowNow === 0) {
+                      now = new Date(now);
+                      now.setDate(now.getDate() + (dowNow === 6 ? 2 : 1)); // Sat+2=Mon, Sun+1=Mon
+                    }
+                    var monday = getMondayOfWeek(now);
 
-                  // Build the 5 weekday dates
-                  var weekDates = [];
-                  for (var i = 0; i < 5; i++) {
-                    var d = new Date(monday);
-                    d.setDate(monday.getDate() + i);
-                    weekDates.push(d);
-                  }
+                    // Build the 5 weekday dates
+                    var weekDates = [];
+                    for (var i = 0; i < 5; i++) {
+                      var d = new Date(monday);
+                      d.setDate(monday.getDate() + i);
+                      weekDates.push(d);
+                    }
 
-                  var widget = document.getElementById('mini-cal-widget');
-                  if (!widget) return;
+                    var widget = document.getElementById('mini-cal-widget');
+                    if (!widget) return;
 
-                  // --- Build header row ---
-                  var headerRow = document.createElement('div');
-                  headerRow.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;margin-bottom:6px;flex-shrink:0;';
+                    // --- Build header row ---
+                    var headerRow = document.createElement('div');
+                    headerRow.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;margin-bottom:6px;flex-shrink:0;';
 
-                  weekDates.forEach(function (d, i) {
-                    var isPast = d < today;
-                    var dayNum = String(d.getDate()).padStart(2, '0');
-                    var cell = document.createElement('div');
-                    cell.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:0;';
-                    cell.innerHTML =
-                      '<span style="font-size:10px;font-weight:700;color:' + (isPast ? '#94a3b8' : 'inherit') + ';">' + DAY_LABELS[i] + '</span>' +
-                      '<span style="font-size:9px;font-weight:500;color:' + (isPast ? '#cbd5e1' : '#6366f1') + ';">' + dayNum + '</span>';
-                    headerRow.appendChild(cell);
-                  });
-                  widget.appendChild(headerRow);
+                    weekDates.forEach(function (d, i) {
+                      var isPast = d < today;
+                      var dayNum = String(d.getDate()).padStart(2, '0');
+                      var cell = document.createElement('div');
+                      cell.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:0;';
+                      cell.innerHTML =
+                        '<span style="font-size:10px;font-weight:700;color:' + (isPast ? '#94a3b8' : 'inherit') + ';">' + DAY_LABELS[i] + '</span>' +
+                        '<span style="font-size:9px;font-weight:500;color:' + (isPast ? '#cbd5e1' : '#6366f1') + ';">' + dayNum + '</span>';
+                      headerRow.appendChild(cell);
+                    });
+                    widget.appendChild(headerRow);
 
-                  // --- Build slots grid ---
-                  var grid = document.createElement('div');
-                  grid.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;flex:1;';
+                    // --- Build slots grid ---
+                    var grid = document.createElement('div');
+                    grid.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;flex:1;';
 
-                  weekDates.forEach(function (d) {
-                    var isPast = d < today;
-                    var col = document.createElement('div');
-                    col.style.cssText = 'flex:1;display:flex;flex-direction:column;gap:4px;';
+                    weekDates.forEach(function (d) {
+                      var isPast = d < today;
+                      var col = document.createElement('div');
+                      col.style.cssText = 'flex:1;display:flex;flex-direction:column;gap:4px;';
 
-                    SLOTS.forEach(function (time) {
-                      var a = document.createElement('a');
-                      a.href = 'contact.html';
-                      a.style.cssText = [
-                        'display:flex',
-                        'align-items:center',
-                        'justify-content:center',
-                        'gap:2px',
-                        'font-size:9px',
-                        'border-radius:4px',
-                        'padding:3px 0',
-                        'text-decoration:none',
-                        'transition:all 0.15s',
-                        'flex:1',
-                        isPast
-                          ? 'background:#f8fafc;border:1px solid #e2e8f0;color:#cbd5e1;pointer-events:none;'
-                          : 'background:#f8fafc;border:1px solid #e2e8f0;color:#475569;cursor:pointer;'
-                      ].join(';');
+                      SLOTS.forEach(function (time) {
+                        var a = document.createElement('a');
+                        a.href = 'contact.html';
+                        a.style.cssText = [
+                          'display:flex',
+                          'align-items:center',
+                          'justify-content:center',
+                          'gap:2px',
+                          'font-size:9px',
+                          'border-radius:4px',
+                          'padding:3px 0',
+                          'text-decoration:none',
+                          'transition:all 0.15s',
+                          'flex:1',
+                          isPast
+                            ? 'background:#f8fafc;border:1px solid #e2e8f0;color:#cbd5e1;pointer-events:none;'
+                            : 'background:#f8fafc;border:1px solid #e2e8f0;color:#475569;cursor:pointer;'
+                        ].join(';');
 
-                      if (!isPast) {
-                        // Green availability dot
-                        var dot = document.createElement('span');
-                        dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:#22c55e;flex-shrink:0;display:inline-block;';
-                        a.appendChild(dot);
-                      }
+                        if (!isPast) {
+                          // Green availability dot
+                          var dot = document.createElement('span');
+                          dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:#22c55e;flex-shrink:0;display:inline-block;';
+                          a.appendChild(dot);
+                        }
 
-                      var label = document.createTextNode(time);
-                      a.appendChild(label);
+                        var label = document.createTextNode(time);
+                        a.appendChild(label);
 
-                      // Hover effect via JS (dark/light agnostic)
-                      if (!isPast) {
-                        a.addEventListener('mouseenter', function () {
-                          this.style.borderColor = '#6366f1';
-                          this.style.color = '#6366f1';
-                        });
-                        a.addEventListener('mouseleave', function () {
-                          this.style.borderColor = '#e2e8f0';
-                          this.style.color = '#475569';
-                        });
-                      }
+                        // Hover effect via JS (dark/light agnostic)
+                        if (!isPast) {
+                          a.addEventListener('mouseenter', function () {
+                            this.style.borderColor = '#6366f1';
+                            this.style.color = '#6366f1';
+                          });
+                          a.addEventListener('mouseleave', function () {
+                            this.style.borderColor = '#e2e8f0';
+                            this.style.color = '#475569';
+                          });
+                        }
 
-                      col.appendChild(a);
+                        col.appendChild(a);
+                      });
+
+                      grid.appendChild(col);
                     });
 
-                    grid.appendChild(col);
-                  });
-
-                  widget.appendChild(grid);
-                })();
+                    widget.appendChild(grid);
+                  })();
                 </script>
 
 
 
                 <!-- Right: CTA and Stats -->
                 <div class="flex flex-col gap-6 w-full sm:pt-9" style="max-width: 250px;">
-                  <a href="contact.html" class="hero-anim-btn-secondary btn-sweep-outline flex min-w-[160px] w-fit items-center justify-center rounded-lg h-12 px-6 border border-gray-200 dark:border-gray-700 text-base font-medium bot-contact-trigger bg-white dark:bg-transparent" data-i18n="index.contactMe">
+                  <a href="contact.html"
+                    class="hero-anim-btn-secondary btn-sweep-outline flex min-w-[160px] w-fit items-center justify-center rounded-lg h-12 px-6 border border-gray-200 dark:border-gray-700 text-base font-medium bot-contact-trigger bg-white dark:bg-transparent"
+                    data-i18n="index.contactMe">
                     Contact Me
                   </a>
-                  
+
                   <div class="hero-anim-stats flex flex-col gap-5">
                     <div class="flex flex-col items-start cursor-default">
-                      <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-slate-900 dark:text-white">50</span><span class="text-xl font-bold text-primary">+</span></div>
-                      <span class="text-[10px] font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400" data-i18n="index.projectsLaunched">Projects Launched</span>
+                      <div class="flex items-baseline gap-1"><span
+                          class="text-3xl font-black text-slate-900 dark:text-white">50</span><span
+                          class="text-xl font-bold text-primary">+</span></div>
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                        data-i18n="index.projectsLaunched">Projects Launched</span>
                     </div>
                     <div class="flex flex-col items-start cursor-default">
-                      <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-slate-900 dark:text-white">25</span><span class="text-xl font-bold text-primary">+</span></div>
-                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400" data-i18n="index.yearsExperience">Years of Experience</p>
+                      <div class="flex items-baseline gap-1"><span
+                          class="text-3xl font-black text-slate-900 dark:text-white">10</span><span
+                          class="text-xl font-bold text-primary">+</span></div>
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
+                        data-i18n="index.yearsExperience">Years of Experience</p>
                     </div>
                   </div>
                 </div>
@@ -530,7 +542,8 @@
                 <img src="img/portrait/portrait-color.jpg" alt="László Földváry"
                   class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-0 group-hover:opacity-100" />
                 <!-- Pixel transition overlay -->
-                <canvas class="pixel-canvas absolute inset-0 w-full h-full z-20 pointer-events-none mix-blend-overlay"></canvas>
+                <canvas
+                  class="pixel-canvas absolute inset-0 w-full h-full z-20 pointer-events-none mix-blend-overlay"></canvas>
               </div>
             </div>
 
@@ -646,7 +659,7 @@
                     </a>
                     <p class="hidden md:block text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
                       data-i18n="index.selectedWorks.antiGravity.description">
-                      A case study on merging 25 years of design experience with AI for a future-ready portfolio.
+                      A case study on merging 10+ years of design experience with AI for a future-ready portfolio.
                     </p>
                   </div>
                 </div>
