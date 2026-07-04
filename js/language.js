@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Swap content
                 translateElements(elementsToTranslate, lang);
                 updatePDFLinks(lang);
+                document.dispatchEvent(new CustomEvent('language-changed', { detail: { lang } }));
 
                 // Fade in
                 body.classList.remove('lang-fade-out');
@@ -96,6 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // No animation on page load
             translateElements(elementsToTranslate, lang);
             updatePDFLinks(lang);
+            document.dispatchEvent(new CustomEvent('language-changed', { detail: { lang } }));
         }
     }
 

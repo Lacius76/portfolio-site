@@ -391,7 +391,54 @@
                     var CAL_USERNAME = 'laszlo.ui';
                     var CAL_EVENT = '30min';
                     var CAL_TIMEZONE = 'Europe/Budapest';
-                    var DAY_LABELS = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+                    var translationsData = null;
+                    var cachedAvailableDates = null;
+
+                    function isDark() {
+                      return document.documentElement.classList.contains('dark');
+                    }
+
+                    function getLang() {
+                      return localStorage.getItem('preferred-language') || 'en';
+                    }
+
+                    function getColors() {
+                      var dark = isDark();
+                      return {
+                        title: dark ? '#f8fafc' : '#111418',
+                        header: dark ? '#94a3b8' : '#637588',
+                        dayBg: dark ? '#0f172a' : '#f8fafc',
+                        dayBorder: dark ? '#334155' : '#e2e8f0',
+                        dayText: dark ? '#94a3b8' : '#475569',
+                        dayDisabledText: dark ? '#475569' : '#cbd5e1',
+                        dayDisabledBg: dark ? '#0d141f' : '#f8fafc',
+                        dayDisabledBorder: dark ? '#2a3441' : '#e2e8f0',
+                        todayBg: dark ? 'rgba(99,102,241,0.12)' : '#eef2ff',
+                        todayBorder: '#6366f1',
+                        todayText: dark ? '#a5b4fc' : '#6366f1',
+                        hoverText: dark ? '#c7d2fe' : '#6366f1',
+                        muted: '#94a3b8'
+                      };
+                    }
+
+                    function getDayLabels() {
+                      var lang = getLang();
+                      var miniCal = translationsData && translationsData[lang] && translationsData[lang].index
+                        ? translationsData[lang].index.miniCal
+                        : null;
+                      if (miniCal && miniCal.days) return miniCal.days;
+                      return lang === 'de'
+                        ? ['Mo', 'Di', 'Mi', 'Do', 'Fr']
+                        : ['Mo', 'Tu', 'We', 'Th', 'Fr'];
+                    }
+
+                    function getUnavailableText() {
+                      var lang = getLang();
+                      var miniCal = translationsData && translationsData[lang] && translationsData[lang].index
+                        ? translationsData[lang].index.miniCal
+                        : null;
+                      return miniCal && miniCal.unavailable ? miniCal.unavailable : 'Calendar unavailable';
+                    }
 
                     function formatDateISO(d) {
                       var y = d.getFullYear();
@@ -451,6 +498,7 @@
                     }
 
                     function renderCalendar(widget, availableDates) {
+                      var colors = getColors();
                       var now = new Date();
                       var today = new Date(now);
                       today.setHours(0, 0, 0, 0);
@@ -458,8 +506,7 @@
                       var year = now.getFullYear();
                       var month = now.getMonth();
                       var weeks = buildWeekdayWeeks(year, month);
-                      var locale = localStorage.getItem('preferred-language') || 'en';
-                      var monthTitle = new Date(year, month, 1).toLocaleDateString(locale, {
+                      var monthTitle = new Date(year, month, 1).toLocaleDateString(getLang(), {
                         month: 'long',
                         year: 'numeric'
                       });
@@ -467,16 +514,16 @@
                       widget.innerHTML = '';
 
                       var title = document.createElement('div');
-                      title.style.cssText = 'font-size:11px;font-weight:700;text-align:center;margin-bottom:6px;flex-shrink:0;text-transform:capitalize;';
+                      title.style.cssText = 'font-size:11px;font-weight:700;text-align:center;margin-bottom:6px;flex-shrink:0;text-transform:capitalize;color:' + colors.title + ';';
                       title.textContent = monthTitle;
                       widget.appendChild(title);
 
                       var headerRow = document.createElement('div');
                       headerRow.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;margin-bottom:4px;flex-shrink:0;';
 
-                      DAY_LABELS.forEach(function (label) {
+                      getDayLabels().forEach(function (label) {
                         var cell = document.createElement('div');
-                        cell.style.cssText = 'flex:1;font-size:10px;font-weight:700;';
+                        cell.style.cssText = 'flex:1;font-size:10px;font-weight:700;color:' + colors.header + ';';
                         cell.textContent = label;
                         headerRow.appendChild(cell);
                       });
@@ -524,10 +571,10 @@
                             'text-decoration:none',
                             'transition:all 0.15s',
                             isDisabled
-                              ? 'background:#f8fafc;border:1px solid #e2e8f0;color:#cbd5e1;pointer-events:none;'
+                              ? 'background:' + colors.dayDisabledBg + ';border:1px solid ' + colors.dayDisabledBorder + ';color:' + colors.dayDisabledText + ';pointer-events:none;'
                               : isToday
-                                ? 'background:#eef2ff;border:1px solid #6366f1;color:#6366f1;cursor:pointer;'
-                                : 'background:#f8fafc;border:1px solid #e2e8f0;color:#475569;cursor:pointer;'
+                                ? 'background:' + colors.todayBg + ';border:1px solid ' + colors.todayBorder + ';color:' + colors.todayText + ';cursor:pointer;'
+                                : 'background:' + colors.dayBg + ';border:1px solid ' + colors.dayBorder + ';color:' + colors.dayText + ';cursor:pointer;'
                           ].join(';');
 
                           if (hasSlots && !isPast) {
@@ -540,12 +587,12 @@
 
                           if (!isDisabled && !isToday) {
                             dayEl.addEventListener('mouseenter', function () {
-                              this.style.borderColor = '#6366f1';
-                              this.style.color = '#6366f1';
+                              this.style.borderColor = colors.todayBorder;
+                              this.style.color = colors.hoverText;
                             });
                             dayEl.addEventListener('mouseleave', function () {
-                              this.style.borderColor = '#e2e8f0';
-                              this.style.color = '#475569';
+                              this.style.borderColor = colors.dayBorder;
+                              this.style.color = colors.dayText;
                             });
                           }
 
@@ -559,19 +606,40 @@
                       widget.appendChild(grid);
                     }
 
-                    var widget = document.getElementById('mini-cal-widget');
-                    if (!widget) return;
+                    function initMiniCal() {
+                      var widget = document.getElementById('mini-cal-widget');
+                      if (!widget) return;
 
-                    widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;">…</div>';
+                      widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;">…</div>';
 
-                    var now = new Date();
-                    fetchAvailableDates(now.getFullYear(), now.getMonth())
-                      .then(function (availableDates) {
-                        renderCalendar(widget, availableDates);
-                      })
-                      .catch(function () {
-                        widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;text-align:center;padding:8px;">Calendar unavailable</div>';
-                      });
+                      var now = new Date();
+                      Promise.all([
+                        fetch('translations.json').then(function (r) { return r.json(); }).catch(function () { return {}; }),
+                        fetchAvailableDates(now.getFullYear(), now.getMonth())
+                      ])
+                        .then(function (results) {
+                          translationsData = results[0];
+                          cachedAvailableDates = results[1];
+                          renderCalendar(widget, cachedAvailableDates);
+                        })
+                        .catch(function () {
+                          widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;text-align:center;padding:8px;">' + getUnavailableText() + '</div>';
+                        });
+                    }
+
+                    initMiniCal();
+
+                    new MutationObserver(function () {
+                      if (!cachedAvailableDates) return;
+                      var widget = document.getElementById('mini-cal-widget');
+                      if (widget) renderCalendar(widget, cachedAvailableDates);
+                    }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+                    document.addEventListener('language-changed', function () {
+                      if (!cachedAvailableDates) return;
+                      var widget = document.getElementById('mini-cal-widget');
+                      if (widget) renderCalendar(widget, cachedAvailableDates);
+                    });
                   })();
                 </script>
 

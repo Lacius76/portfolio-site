@@ -20,6 +20,11 @@
       "heroSubtitle": "Hi, I'm László Földváry. Senior UI/UX & Product Designer.<br />I leverage 10+ years of mastery and AI-driven workflows to solve complex problems through intuitive digital experiences.",
       "viewSelectedWork": "View Selected Work",
       "contactMe": "Contact Me",
+      "bookAppointment": "Book Appointment",
+      "miniCal": {
+        "days": ["Mo", "Tu", "We", "Th", "Fr"],
+        "unavailable": "Calendar unavailable"
+      },
       "projectsLaunched": "Projects Launched",
       "yearsExperience": "Years of Experience",
       "happyClients": "Happy Clients",
@@ -679,6 +684,11 @@
       "heroSubtitle": "<span class=\"block -mt-9 lg:-mt-8\">Hallo, ich bin László Földváry – Senior UI/UX & Product Designer.<br />Mit 10+ Jahren Erfahrung und KI-gestützten Workflows löse ich komplexe Probleme – durch intuitive digitale Erlebnisse.</span>",
       "viewSelectedWork": "Ausgewählte Arbeiten",
       "contactMe": "Kontakt aufnehmen",
+      "bookAppointment": "Termin buchen",
+      "miniCal": {
+        "days": ["Mo", "Di", "Mi", "Do", "Fr"],
+        "unavailable": "Kalender nicht verfügbar"
+      },
       "projectsLaunched": "Projekte umgesetzt",
       "yearsExperience": "Jahre Erfahrung",
       "happyClients": "Zufriedene Kunden",
