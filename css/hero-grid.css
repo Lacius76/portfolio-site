@@ -1,6 +1,6 @@
-/* Regisztrált CSS property a kockamagasság animálásához.
-   Ezzel egyetlen értéket animálunk a containeren, amit mindhárom lap (tető, jobb, bal) referál.
-   Így matematikailag lehetetlen hézag a lapok között, mert minden frame-ben azonos az érték. */
+/* Registered CSS property for cube height animation.
+   A single value is animated on the container and referenced by all three faces (top, right, left).
+   This keeps the faces gap-free because every frame uses the same value. */
 @property --hg-cube-height {
     syntax: '<length>';
     initial-value: 0px;
@@ -13,12 +13,12 @@
     --hg-cube-right: #0ea5e9;
     --hg-cube-left: #0284c7;
 
-    /* A szomszédok lila színei */
+    /* Neighbor cube colors */
     --hg-neighbor-top: #8b5cf6;
     --hg-neighbor-right: #7c3aed;
     --hg-neighbor-left: #6d28d9;
 
-    /* A hullámzás csúcs és ambient színei */
+    /* Wave peak and ambient colors */
     --hg-wave-top: #a855f7;
     --hg-wave-ambient: rgba(139, 92, 246, 0.6);
 
@@ -33,9 +33,9 @@
 /* Light mode overrides for better visibility against white background */
 :root:not(.dark) {
     --hg-grid-base: #f1f5f9;
-    /* Alap, lapos tábla színe nagyon világos szürkére módosult az 100% opacity miatt */
+    /* Base flat tile color shifted to a very light gray for full opacity */
 
-    /* Ugyanazok a világos, élénk színek, mint sötét módban, hogy megmaradjon a "neon" hatás */
+    /* Same bright colors as dark mode to keep the neon effect */
     --hg-cube-top: #38bdf8;
     --hg-cube-right: #0ea5e9;
     --hg-cube-left: #0284c7;
@@ -50,20 +50,23 @@
 
 .hg-scene {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     perspective: 2000px;
-    /* Megemeljük a perspektívát a nagyobb mérethez */
+    /* Higher perspective for the larger grid size */
     display: flex;
     justify-content: flex-end;
-    /* Jobbra igazítás alapból */
+    /* Default horizontal alignment to the right */
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
     pointer-events: auto;
     z-index: 0;
 }
 
 .hg-grid {
-    /* Növeljük a méretet a --cube-size változóval */
+    /* Scale up via --cube-size */
     --hg-cube-size: 60px;
     /* 40px -> 60px */
     --hg-height-main: 70px;
@@ -74,9 +77,9 @@
     grid-template-columns: repeat(7, var(--hg-cube-size));
     grid-template-rows: repeat(7, var(--hg-cube-size));
     gap: 16px;
-    /* 12px -> 16px hogy szellősebb legyen vaskosabb formáknál */
+    /* 12px -> 16px for more breathing room with thicker forms */
 
-    /* Elforgatás és mozgatás jobbra és kicsit fel */
+    /* Rotate and shift right and slightly up */
     transform: rotateX(55deg) rotateZ(45deg) translate(-10%, -20%);
     transform-style: preserve-3d;
     pointer-events: auto;
@@ -100,14 +103,14 @@
     background: var(--hg-grid-base);
     border-radius: 4px;
     cursor: pointer;
-    /* A kocka magassága: ez az EGYETLEN animált érték, amit mindhárom lap követ */
+    /* Cube height: the single animated value followed by all three faces */
     --hg-cube-height: 0px;
     transition: --hg-cube-height 0.25s ease-out;
 }
 
 .hg-face {
     position: absolute;
-    /* A magasság-animációt a container --hg-cube-height kezeli, a lapoknak csak a háttérszínt kell animálni */
+    /* Height animation is driven by container --hg-cube-height; faces only animate background */
     transition: background 0.4s ease-out, box-shadow 0.4s ease-out;
     will-change: background;
     backface-visibility: hidden;
@@ -117,7 +120,7 @@
     width: 100%;
     height: 100%;
     background: var(--hg-grid-base);
-    /* A translateZ a container --hg-cube-height értékét követi → nincs külön transform animáció */
+    /* translateZ follows container --hg-cube-height — no separate transform animation */
     transform: translateZ(var(--hg-cube-height, 0px));
     border-radius: 4px;
     z-index: 3;
@@ -129,7 +132,7 @@
     transform-origin: right;
     transform: rotateY(90deg);
     height: 100%;
-    /* A width a container --hg-cube-height értékét követi → tökéletes szinkron a tetővel */
+    /* width follows container --hg-cube-height — stays in sync with the top face */
     width: var(--hg-cube-height, 0px);
     right: 0;
     top: 0;
@@ -140,7 +143,7 @@
     transform-origin: bottom;
     transform: rotateX(-90deg);
     width: 100%;
-    /* A height a container --hg-cube-height értékét követi → tökéletes szinkron a tetővel */
+    /* height follows container --hg-cube-height — stays in sync with the top face */
     height: var(--hg-cube-height, 0px);
     bottom: 0;
     left: 0;
@@ -150,30 +153,30 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    /* Alap zongorázós lila-kék glow pulzálás */
+    /* Base purple-blue glow */
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(56, 189, 248, 0.8));
     filter: blur(8px);
     transform: translateZ(-2px);
     opacity: 0.15;
-    /* Alapból is van egy kis alapfény */
+    /* Subtle base glow by default */
     transition: opacity 0.8s ease-in-out;
     border-radius: 4px;
     pointer-events: auto;
-    /* Teljesítmény okokból kivéve a filter-blur animáció: animation: pulseGlow 4s infinite alternate ease-in-out; */
+    /* Filter-blur animation removed for performance: animation: pulseGlow 4s infinite alternate ease-in-out; */
 }
 
-/* @keyframes pulseGlow ki is véve a jobb teljesítményért */
+/* @keyframes pulseGlow removed for better performance */
 
-/* PERFORMANCE OPTIMIZATION: Mobilokon teljesen kikapcsoljuk a 100 db blur glow-t, 
-   mert ez eszi meg leginkább a telefonok GPU-ját görgetés közben. */
+/* PERFORMANCE OPTIMIZATION: Disable all 100 blur glows on mobile —
+   this is the main GPU cost while scrolling on phones. */
 @media (max-width: 768px) {
     .hg-glow {
         display: none !important;
     }
 }
 
-/* --- EGÉR INTERAKCIÓ ÁLLAPOTOK --- */
-/* A magasságot a containeren állítjuk → mindhárom lap automatikusan követi, nulla hézaggal */
+/* --- MOUSE INTERACTION STATES --- */
+/* Height is set on the container — all three faces follow with zero gap */
 .hg-active-main {
     --hg-cube-height: var(--hg-height-main);
 }
@@ -206,8 +209,8 @@
     background: var(--hg-neighbor-left);
 }
 
-/* --- KEZDETI / AUTOMATIKUS HULLÁM ÁLLAPOTOK (Folyamatos) --- */
-/* A hullám is a containeren állítja a magasságot → nulla hézag a lapok között */
+/* --- INITIAL / AUTOMATIC WAVE STATES (continuous) --- */
+/* Wave height is also set on the container — zero gap between faces */
 .hg-wave-peak {
     --hg-cube-height: var(--hg-height-main);
     transition: --hg-cube-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -221,21 +224,21 @@
     transition-delay: var(--hg-wave-delay, 0ms);
 }
 
-/* A fallback transition-t fent az alap .hg-face kezeli */
+/* Fallback transition is handled by the base .hg-face rule above */
 
-/* --- LAPOS, IDŐZÍTETT HULLÁM (Nincs transform, csak lágy színátmenet) --- */
+/* --- FLAT, TIMED WAVE (no transform, soft color transition only) --- */
 .hg-ambient-wave .hg-face-top {
     background: var(--hg-wave-ambient);
     transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: var(--hg-wave-delay, 0ms);
 }
 
-/* --- VEZÉRLŐK --- */
+/* --- CONTROLS --- */
 .hg-controls {
     display: inline-flex;
     align-items: center;
     pointer-events: auto;
-    /* Átengedjük a kattintást, csak a gomb fogja meg */
+    /* Pass clicks through to the button only */
 }
 
 
@@ -244,7 +247,7 @@
     height: 38px;
     border-radius: 50%;
     border: 2px solid rgba(148, 163, 184, 0.4);
-    /* Finomabb szürke outline, világos/sötét módhoz is jó */
+    /* Subtle gray outline that works in light and dark mode */
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     color: #64748b;
@@ -277,4 +280,3 @@
 .hg-replay-btn:hover .material-symbols-outlined {
     transform: rotate(-180deg);
 }
-

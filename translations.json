@@ -677,11 +677,11 @@
       "toggleTheme": "Design wechseln"
     },
     "index": {
-      "availableForWork": "Offen für neue Rollen · <br class=\"sm:hidden\"> Remote & Vor Ort",
-      "heroTitle1": "Design, das  ",
+      "availableForWork": "Offen für neue Rollen · Remote & Vor Ort",
+      "heroTitle1": "Design, das ",
       "heroTitle2": "Technologie ",
       "heroTitle3": "menschlich macht.",
-      "heroSubtitle": "<span class=\"block -mt-9 lg:-mt-8\">Hallo, ich bin László Földváry – Senior UI/UX & Product Designer.<br />Mit 10+ Jahren Erfahrung und KI-gestützten Workflows löse ich komplexe Probleme – durch intuitive digitale Erlebnisse.</span>",
+      "heroSubtitle": "Hallo, ich bin László Földváry – Senior UI/UX & Product Designer.<br />Mit 10+ Jahren Erfahrung und KI-gestützten Workflows löse ich komplexe Probleme – durch intuitive digitale Erlebnisse.",
       "viewSelectedWork": "Ausgewählte Arbeiten",
       "contactMe": "Kontakt aufnehmen",
       "bookAppointment": "Termin buchen",
