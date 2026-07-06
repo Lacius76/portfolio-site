@@ -154,7 +154,7 @@
    400vh gives a nice, even 80vh scroll per segment.
    ======================================= */
 .scroll-tracker {
-    height: 400vh;
+    height: 500vh;
 }
 
 /* =========================================
@@ -222,6 +222,10 @@
 
     .cards-container {
         height: 520px;
+    }
+
+    .scroll-tracker {
+        height: 260vh;
     }
 
     .sticky-cards-wrapper {

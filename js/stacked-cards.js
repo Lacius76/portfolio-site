@@ -11,14 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const totalSteps = cardCount - 1;
 
+    const MOBILE_MQ = window.matchMedia("(max-width: 768px)");
+    const isMobile = () => MOBILE_MQ.matches;
+
     // ─── LERP (Linear interpolation) ─────────────────────────────────
-    // Adaptive lerp: gentle at small deltas (slow scroll),
-    // aggressive at large deltas (fast scroll) so animation keeps up.
-    const LERP_MIN = 0.08;  // gentle for slow scroll
-    const LERP_MAX = 0.25;  // snappy for fast scroll
-    function lerp(current, target, _unused) {
+    // Desktop: gentle follow. Mobile: snap instantly so cards track finger 1:1.
+    const LERP_MIN = 0.08;
+    const LERP_MAX = 0.25;
+    function lerp(current, target) {
         const delta = Math.abs(target - current);
-        // Ramp factor: small delta → LERP_MIN, large delta → LERP_MAX
         const factor = LERP_MIN + Math.min(delta / 50, 1) * (LERP_MAX - LERP_MIN);
         return current + (target - current) * factor;
     }
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // We dynamically assign hold durations so the first and last cards 
         // have shorter holds *inside* the tracker because they gain organic hold time 
         // before and after the tracker pins. Middle cards get longer holds.
-        const transitionDuration = 0.20; 
+        const transitionDuration = isMobile() ? 0.14 : 0.20;
         const totalTransitions = Math.max(0, cardCount - 1);
         const remainingForHolds = Math.max(0, 1.0 - (totalTransitions * transitionDuration));
         
@@ -147,9 +148,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const targets = computeTargets(progress);
         let needsUpdate = false;
 
-        // Toggle links based on progress (0.6 is where we transition to the last card)
-        // Using opacity instead of hidden to prevent layout shifts
-        if (progress < 0.6) {
+        // Toggle links based on progress — show "View all" when approaching the last card
+        const viewAllThreshold = ((cardCount - 1) / cardCount) * 0.8;
+        if (progress < viewAllThreshold) {
             scrollDownIndicator?.classList.remove("opacity-0");
             scrollDownIndicator?.classList.add("opacity-60");
             viewAllProjectsLink?.classList.add("opacity-0", "pointer-events-none");
@@ -164,28 +165,33 @@ document.addEventListener("DOMContentLoaded", () => {
         cards.forEach((card, i) => {
             const t = targets[i];
             const s = state[i];
+            const snap = isMobile();
 
-            // Lerp continuous values toward targets
-            s.ty = lerp(s.ty, t.ty, null);
-            s.scale = lerp(s.scale, t.scale, null);
-            s.brightness = lerp(s.brightness, t.brightness, null);
-            s.opacity = lerp(s.opacity, t.opacity, null);
+            if (snap) {
+                s.ty = t.ty;
+                s.scale = t.scale;
+                s.brightness = t.brightness;
+                s.opacity = t.opacity;
+            } else {
+                s.ty = lerp(s.ty, t.ty);
+                s.scale = lerp(s.scale, t.scale);
+                s.brightness = lerp(s.brightness, t.brightness);
+                s.opacity = lerp(s.opacity, t.opacity);
+            }
 
-            // z-index snaps immediately (no lerp — must be integer)
             s.zIndex = t.zIndex;
 
-            // Apply styles
             card.style.transform = `translateY(${s.ty.toFixed(2)}px) scale(${s.scale.toFixed(4)})`;
             card.style.filter = `brightness(${s.brightness.toFixed(3)})`;
             card.style.opacity = s.opacity.toFixed(3);
             card.style.zIndex = s.zIndex;
             card.style.pointerEvents = s.opacity < 0.5 ? "none" : "auto";
 
-            // Check if we're still moving (threshold for floating point)
-            if (Math.abs(s.ty - t.ty) > 0.1 ||
+            if (!snap && (
+                Math.abs(s.ty - t.ty) > 0.1 ||
                 Math.abs(s.scale - t.scale) > 0.001 ||
                 Math.abs(s.brightness - t.brightness) > 0.005 ||
-                Math.abs(s.opacity - t.opacity) > 0.005) {
+                Math.abs(s.opacity - t.opacity) > 0.005)) {
                 needsUpdate = true;
             }
         });
