@@ -1,123 +1,153 @@
 /**
- * Single Column Infinite Vertical Scroll Engine
- * 
- * Replaces the static project grid with a highly-performant, GPU-accelerated
- * scrolling interface driven by requestAnimationFrame.
+ * Single Column Infinite Vertical Scroll Engine (desktop only)
+ *
+ * On viewports below lg (1024px), project cards scroll normally with the page.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const col1 = document.getElementById("scroll-col-1");
-  
-    if (!col1) return;
-  
-    // Seamless duplication: Clone the existing cards so we have 2 full sets for wrapping
-    col1.innerHTML += col1.innerHTML;
-  
-    // Variables for motion
-    let y1 = 0;
-    
-    // Base speed (pixels per second)
-    const baseSpeed1 = -40;
-  
-    // Current target speeds for lerping
-    let targetSpeed1 = baseSpeed1;
-  
-    // Current real speeds
-    let currentSpeed1 = baseSpeed1;
-  
-    let height1 = 0;
-  
-    const updateHeights = () => {
-        // One set height is total scrollHeight / 2 because we duplicated it once.
-        height1 = col1.scrollHeight / 2;
-    };
-  
-    // Delay highly calculating heights immediately to let images/videos paint
+  const col1 = document.getElementById("scroll-col-1");
+  const container = document.getElementById("infinite-scroll-container");
+
+  if (!col1) return;
+
+  const DESKTOP_MQ = window.matchMedia("(min-width: 1024px)");
+  const originalHTML = col1.innerHTML;
+
+  let animationId = null;
+  let isAnimated = false;
+  let y1 = 0;
+  const baseSpeed1 = -40;
+  let targetSpeed1 = baseSpeed1;
+  let currentSpeed1 = baseSpeed1;
+  let height1 = 0;
+  let lastTime = performance.now();
+
+  const updateHeights = () => {
+    if (!isAnimated) return;
+    height1 = col1.scrollHeight / 2;
+  };
+
+  const animationLoop = (time) => {
+    if (!isAnimated) return;
+
+    const delta = time - lastTime;
+    lastTime = time;
+
+    if (!height1) {
+      animationId = requestAnimationFrame(animationLoop);
+      return;
+    }
+
+    const timeRatio = delta / 1000;
+    currentSpeed1 += (targetSpeed1 - currentSpeed1) * 0.1;
+    y1 += currentSpeed1 * timeRatio;
+
+    if (y1 <= -height1) y1 += height1;
+    else if (y1 > 0) y1 -= height1;
+
+    col1.style.transform = `translateY(${y1}px)`;
+    animationId = requestAnimationFrame(animationLoop);
+  };
+
+  const stopAnimation = () => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  };
+
+  const enableAnimation = () => {
+    if (isAnimated) return;
+    isAnimated = true;
+    container?.classList.add("is-scroll-animated");
+
+    col1.innerHTML = originalHTML + originalHTML;
+    col1.style.transform = "";
+    y1 = 0;
+    currentSpeed1 = baseSpeed1;
+    targetSpeed1 = baseSpeed1;
+    lastTime = performance.now();
+
     setTimeout(updateHeights, 150);
-    window.addEventListener("resize", updateHeights);
-  
-    // Time tracking for consistent frame velocity
-    let lastTime = performance.now();
-  
-    const animationLoop = (time) => {
-        const delta = time - lastTime;
-        lastTime = time;
-  
-        if (!height1) {
-            requestAnimationFrame(animationLoop);
-            return;
-        }
-  
-        const timeRatio = delta / 1000;
-  
-        // Lerp velocities for smooth speed-shifting
-        currentSpeed1 += (targetSpeed1 - currentSpeed1) * 0.1;
-  
-        // Move columns
-        y1 += currentSpeed1 * timeRatio;
-  
-        // Wraparound Logic for seamless loop
+    animationId = requestAnimationFrame(animationLoop);
+  };
+
+  const disableAnimation = () => {
+    if (!isAnimated) return;
+    isAnimated = false;
+    container?.classList.remove("is-scroll-animated");
+
+    stopAnimation();
+    col1.innerHTML = originalHTML;
+    col1.style.transform = "";
+    height1 = 0;
+    y1 = 0;
+  };
+
+  const onBreakpointChange = () => {
+    if (DESKTOP_MQ.matches) enableAnimation();
+    else disableAnimation();
+  };
+
+  window.addEventListener("resize", updateHeights);
+  DESKTOP_MQ.addEventListener("change", onBreakpointChange);
+  onBreakpointChange();
+
+  if (container) {
+    container.addEventListener("mouseenter", () => {
+      if (!isAnimated) return;
+      targetSpeed1 = baseSpeed1 * 3;
+    });
+
+    container.addEventListener("mouseleave", () => {
+      if (!isAnimated) return;
+      targetSpeed1 = baseSpeed1;
+    });
+
+    container.addEventListener(
+      "wheel",
+      (e) => {
+        if (!isAnimated) return;
+
+        const scrollFactor = 1.2;
+        y1 -= e.deltaY * scrollFactor;
+
         if (y1 <= -height1) y1 += height1;
         else if (y1 > 0) y1 -= height1;
-  
-        // Apply GPU accelerated transform
-        col1.style.transform = `translateY(${y1}px)`;
-  
-        requestAnimationFrame(animationLoop);
-    };
-  
-    requestAnimationFrame(animationLoop);
-  
-    // --- Interactions --- //
-    const container = document.getElementById("infinite-scroll-container");
-    
-    if (container) {
-        // Hover Speed Up
-        container.addEventListener("mouseenter", () => {
-            targetSpeed1 = baseSpeed1 * 3;
-        });
-        
-        container.addEventListener("mouseleave", () => {
-            targetSpeed1 = baseSpeed1;
-        });
-  
-        // Manual Trackpad/Mouse Wheel scroll inside container
-        container.addEventListener("wheel", (e) => {
-            if (window.innerWidth < 1024) return; // Allow native page scroll on mobile/tablet
-            // Accelerate slightly for responsiveness
-            const scrollFactor = 1.2;
-            y1 -= (e.deltaY * scrollFactor);
-            
-            // Reapply bounds instantly to avoid visual tearing
-            if (y1 <= -height1) y1 += height1;
-            else if (y1 > 0) y1 -= height1;
-            
-            // Prevent default page scrolling if they are over the grid
-            e.preventDefault();
-        }, { passive: false });
-  
-        // Mobile Touch Gestures
-        let touchStartY = 0;
-        container.addEventListener("touchstart", (e) => {
-            if (window.innerWidth < 1024) return; // Allow native page scroll on mobile/tablet
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-  
-        container.addEventListener("touchmove", (e) => {
-            if (window.innerWidth < 1024) return; // Allow native page scroll on mobile/tablet
-            
-            const currentY = e.touches[0].clientY;
-            const deltaY = touchStartY - currentY;
-            touchStartY = currentY;
-            
-            // Apply larger factor for touch to feel natural
-            const touchFactor = 1.5;
-            y1 -= (deltaY * touchFactor);
-            
-            if (y1 <= -height1) y1 += height1;
-            else if (y1 > 0) y1 -= height1;
-            
-            e.preventDefault();
-        }, { passive: false });
-    }
+
+        e.preventDefault();
+      },
+      { passive: false }
+    );
+
+    let touchStartY = 0;
+
+    container.addEventListener(
+      "touchstart",
+      (e) => {
+        if (!isAnimated) return;
+        touchStartY = e.touches[0].clientY;
+      },
+      { passive: true }
+    );
+
+    container.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!isAnimated) return;
+
+        const currentY = e.touches[0].clientY;
+        const deltaY = touchStartY - currentY;
+        touchStartY = currentY;
+
+        y1 -= deltaY * 1.5;
+
+        if (y1 <= -height1) y1 += height1;
+        else if (y1 > 0) y1 -= height1;
+
+        e.preventDefault();
+      },
+      { passive: false }
+    );
+  }
 });

@@ -67,6 +67,14 @@
       background-color: #334155;
     }
 
+    /* Infinite scroll: mask and clip only on desktop */
+    @media (min-width: 1024px) {
+      #infinite-scroll-container.is-scroll-animated .scroll-mask-wrapper {
+        mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+      }
+    }
+
     /* Masonry */
     .masonry-grid {
       display: grid;
@@ -271,7 +279,7 @@
     <main class="flex flex-col">
       <!-- === HERO SECTION (FIXED LAYER 0) === -->
       <div
-        class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-0 overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-4 lg:pt-16">
+        class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-0 overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-4 lg:pt-16">
         <section class="relative w-full">
           <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
             <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -319,7 +327,7 @@
 
               <!-- RIGHT ANIMATED COLUMN (Single Column replaces Video block) -->
               <div
-                class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0 h-[60vh] lg:h-[80vh] pointer-events-auto"
+                class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0 h-auto lg:h-[80vh] pointer-events-auto"
                 id="infinite-scroll-container">
                 <!-- Decorative Lights matching original logic -->
                 <div
@@ -329,11 +337,10 @@
                   class="absolute -bottom-10 -left-10 h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-purple-500/20 blur-[60px] sm:blur-[80px] dark:bg-purple-500/30 mix-blend-multiply dark:mix-blend-screen -z-10">
                 </div>
 
-                <div class="relative w-full h-full overflow-hidden"
-                  style="mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);">
+                <div class="scroll-mask-wrapper relative w-full h-auto lg:h-full overflow-visible lg:overflow-hidden">
 
                   <!-- Single Animated Column Wrapper -->
-                  <div class="relative w-[90%] mx-auto h-full">
+                  <div class="relative w-[90%] mx-auto h-auto lg:h-full">
                     <style>
                       .hg-card-glow {
                         transition: box-shadow 0.5s ease, transform 0.5s ease;
@@ -343,7 +350,7 @@
                         box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5), 0 0 10px rgba(139, 92, 246, 0.5);
                       }
                     </style>
-                    <div id="scroll-col-1" class="flex flex-col gap-8 w-full will-change-transform pt-12">
+                    <div id="scroll-col-1" class="flex flex-col gap-8 w-full lg:will-change-transform lg:pt-12">
 
                                             <!-- 0. Bakery Live Tracker -->
                       <a href="case-study-babusgatos.html"
