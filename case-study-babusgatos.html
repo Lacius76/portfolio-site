@@ -157,6 +157,35 @@
     #mobile-work-wrapper.is-active .mobile-work-link:hover {
       background-color: rgba(255, 255, 255, 0.15) !important;
     }
+
+    .demo-video-card {
+      width: 100%;
+    }
+
+    .demo-video-frame {
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1rem;
+    }
+
+    .demo-video-card video {
+      width: 100%;
+      height: auto;
+      max-height: min(72vh, 680px);
+      object-fit: contain;
+      display: block;
+    }
+
+    @media (min-width: 768px) {
+      .stack-panel--demo > section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
@@ -494,8 +523,109 @@
         </section>
       </div>
 
+      <!-- PRODUCT DEMOS — one stack-panel per demo so Outro only covers after each is scrolled -->
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 6;">
+        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
+          <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-4">
+            <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demosTag">Product Demos</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase"
+              data-i18n="babusgatos.demosTitle">See It in Action</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="babusgatos.demosIntro">
+              Four focused screen recordings — one flow at a time, from the live app.
+            </p>
+          </div>
+          <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
+            <div class="space-y-4 lg:col-span-2">
+              <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demoGpsLabel">01 · GPS</p>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight"
+                data-i18n="babusgatos.demoGpsTitle">Live GPS &amp; Schedule</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed"
+                data-i18n="babusgatos.demoGpsText">
+                The van's real position runs in parallel with Google Maps — alongside the actual route schedule, so customers see where the truck is and when it will arrive.
+              </p>
+            </div>
+            <figure class="demo-video-card lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
+              <div class="demo-video-frame">
+                <video autoplay loop muted playsinline aria-label="Live GPS tracking demo">
+                  <source src="img/babusgatos/gps.webm" type="video/webm" />
+                </video>
+              </div>
+            </figure>
+          </div>
+        </section>
+      </div>
+
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
+        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
+          <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
+            <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
+              <div class="demo-video-frame">
+                <video autoplay loop muted playsinline aria-label="Push notification demo">
+                  <source src="img/babusgatos/notification.webm" type="video/webm" />
+                </video>
+              </div>
+            </figure>
+            <div class="order-1 lg:order-2 space-y-4 lg:col-span-2">
+              <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demoNotificationLabel">02 · Notification</p>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight"
+                data-i18n="babusgatos.demoNotificationTitle">Arrival Notifications</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed"
+                data-i18n="babusgatos.demoNotificationText">
+                One tap to subscribe. When the van enters a town, subscribers get a push alert — no app store, no manual refresh.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
+        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
+          <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
+            <div class="space-y-4 lg:col-span-2">
+              <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demoProductNameLabel">03 · Product List</p>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight"
+                data-i18n="babusgatos.demoProductNameTitle">Sheet-Native Product Names</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed"
+                data-i18n="babusgatos.demoProductNameText">
+                The client edits product names directly in a Google Drive spreadsheet. Changes sync to the live site — no custom admin panel, no training.
+              </p>
+            </div>
+            <figure class="demo-video-card lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
+              <div class="demo-video-frame">
+                <video autoplay loop muted playsinline aria-label="Product name CMS demo">
+                  <source src="img/babusgatos/prduct-name.webm" type="video/webm" />
+                </video>
+              </div>
+            </figure>
+          </div>
+        </section>
+      </div>
+
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
+        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
+          <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
+            <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
+              <div class="demo-video-frame">
+                <video autoplay loop muted playsinline aria-label="Stock quantity demo">
+                  <source src="img/babusgatos/stock-quantity.webm" type="video/webm" />
+                </video>
+              </div>
+            </figure>
+            <div class="order-1 lg:order-2 space-y-4 lg:col-span-2">
+              <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demoStockLabel">04 · Stock</p>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight"
+                data-i18n="babusgatos.demoStockTitle">Driver Stock Control</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed"
+                data-i18n="babusgatos.demoStockText">
+                From a PIN-protected driver page, sold items are logged with +/− controls. The sheet updates instantly — and quantities on the public page change in real time.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
       <!-- OUTRO -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 6;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 10;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 text-center">
           <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
