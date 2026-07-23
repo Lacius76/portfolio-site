@@ -13,14 +13,14 @@
     },
     "index": {
       "radarTooltip": "Recalculate Fragments",
-      "availableForWork": "Available for work",
-      "heroTitle1": "Design that ",
-      "heroTitle2": "humanizes",
-      "heroTitle3": " technology.",
-      "heroSubtitle": "Hi, I'm László Földváry. Senior UI/UX & Product Designer.<br />I leverage 10+ years of mastery and AI-driven workflows to solve complex problems through intuitive digital experiences.",
-      "viewSelectedWork": "View Selected Work",
+      "availableForWork": "Available for Product Design & Design Engineering",
+      "heroTitle1": "Designing is how I think.",
+      "heroTitle2": "Building",
+      "heroTitle3": " is how I prove it.",
+      "heroSubtitle": "Hi, I'm László Földváry — Senior Product Designer & Design Engineer. I turn complex ideas into intuitive digital products, combining product strategy, UX, design systems, and AI-assisted development from concept to working software.",
+      "viewSelectedWork": "View Work",
       "contactMe": "Contact Me",
-      "bookAppointment": "Book Appointment",
+      "bookAppointment": "Book a Call",
       "miniCal": {
         "days": ["Mo", "Tu", "We", "Th", "Fr"],
         "unavailable": "Calendar unavailable"
@@ -31,7 +31,7 @@
       "designAwards": "Design Awards",
       "selectedWorks": {
         "title": "Selected Works",
-        "subtitle": "A glimpse into my recent design journey",
+        "subtitle": "Recent projects built from idea to working product",
         "viewAll": "View all projects",
         "scrollDown": "↓ Scroll for more ↓",
         "foldvary": {
@@ -42,9 +42,9 @@
         },
         "babusgatos": {
           "title": "Bakery Live Tracker",
-          "subtitle": "AI-Augmented Field Operations",
+          "subtitle": "Real-Time Mobile Retail Logistics",
           "tag": "Community Product",
-          "description": "From concept to a fully functional field-ops platform: live tracking, automated push alerts, and seamless CMS integration."
+          "description": "From a local bakery van problem to a working MVP with live GPS tracking, inventory visibility, driver access, and customer updates."
         },
         "antiGravity": {
           "title": "Project Antigravity",
@@ -257,8 +257,8 @@
       "projectFunworldTag": "Photoplay (2000)",
       "projectFunworldTitle": "Funworld / Photoplay",
       "projectFunworldDesc": "Touchscreen Ergonomics Pioneer • Funworld AG",
-      "bridgeTitle": "Let's Bridge the Gap together",
-      "bridgeDesc": "From complex <span class=\"text-primary font-bold\">Industrial HMI dashboards</span> to immersive <span class=\"text-primary font-bold\">Game Interfaces</span>. I bring 20+ years of systematic thinking to your next digital product.",
+      "bridgeTitle": "Let's turn complex ideas into working products",
+      "bridgeDesc": "From industrial systems and gaming interfaces to AI-assisted product prototypes, I bring deep interface experience, product thinking, and design engineering to your next digital product.",
       "startCollaboration": "Start a Collaboration",
       "hireMe": "Reserve"
     },
@@ -419,9 +419,9 @@
       "conclusionCta": "Let's discuss a collaboration"
     },
     "footer": {
-      "readyToStart": "Ready to start a project?",
+      "readyToStart": "Ready to build something that works?",
       "backToProjects": "Back to All Projects",
-      "readySubtitle": "Let's create something meaningful together. I'll try my best to get back to you!",
+      "readySubtitle": "Let's turn your idea into a clear, usable digital product. Send me a message and I'll get back to you soon.",
       "allRightsReserved": "All rights reserved.",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service",
@@ -743,14 +743,14 @@
       "toggleTheme": "Design wechseln"
     },
     "index": {
-      "availableForWork": "Offen für neue Rollen · Remote & Vor Ort",
-      "heroTitle1": "Design, das ",
-      "heroTitle2": "Technologie ",
-      "heroTitle3": "menschlich macht.",
-      "heroSubtitle": "Hallo, ich bin László Földváry – Senior UI/UX & Product Designer.<br />Mit 10+ Jahren Erfahrung und KI-gestützten Workflows löse ich komplexe Probleme – durch intuitive digitale Erlebnisse.",
-      "viewSelectedWork": "Ausgewählte Arbeiten",
+      "availableForWork": "Offen für Rollen in Product Design & Design Engineering",
+      "heroTitle1": "Design ist meine Denkweise.",
+      "heroTitle2": "Funktionierende Produkte",
+      "heroTitle3": " sind mein Beweis.",
+      "heroSubtitle": "Hallo, ich bin László Földváry — Senior Product Designer & Design Engineer. Ich verwandle komplexe Ideen in intuitive digitale Produkte und verbinde Produktstrategie, UX, Design Systems und KI-gestützte Entwicklung vom Konzept bis zur funktionierenden Software.",
+      "viewSelectedWork": "Projekte ansehen",
       "contactMe": "Kontakt aufnehmen",
-      "bookAppointment": "Termin buchen",
+      "bookAppointment": "Gespräch buchen",
       "miniCal": {
         "days": ["Mo", "Di", "Mi", "Do", "Fr"],
         "unavailable": "Kalender nicht verfügbar"
@@ -761,7 +761,7 @@
       "designAwards": "Design-Auszeichnungen",
       "selectedWorks": {
         "title": "Ausgewählte Arbeiten",
-        "subtitle": "Ein Einblick in meine jüngsten Designprojekte",
+        "subtitle": "Aktuelle Projekte — vom Konzept zum funktionierenden Produkt",
         "viewAll": "Alle Projekte ansehen",
         "scrollDown": "↓ Mehr ansehen ↓",
         "foldvary": {
@@ -772,9 +772,9 @@
         },
         "babusgatos": {
           "title": "Bakery Live Tracker",
-          "subtitle": "KI-gestützte Field Operations",
+          "subtitle": "Echtzeit-Tracking für mobilen Verkauf",
           "tag": "Community Product",
-          "description": "Vom ersten Konzept zur voll funktionsfähigen Field-Ops-Plattform: Live-Tracking, automatisierte Push-Alerts und nahtloses CMS."
+          "description": "Vom Bäckerei-Furgon zum MVP mit Live-GPS, Bestandsanzeige, Fahrerzugang und Kundenupdates."
         },
         "antiGravity": {
           "title": "Projekt Antigravity",
@@ -1015,8 +1015,8 @@
       "projectFunworldTag": "Photoplay (2000)",
       "projectFunworldTitle": "Funworld / Photoplay",
       "projectFunworldDesc": "Pionier der Touchscreen-Ergonomie • Funworld AG",
-      "bridgeTitle": "Lassen Sie uns gemeinsam die Lücke schließen",
-      "bridgeDesc": "Von komplexen <span class=\"text-primary font-bold\">Industrie-HMI-Dashboards</span> bis zu immersiven <span class=\"text-primary font-bold\">Game-Interfaces</span>. Ich bringe 20+ Jahre systematisches Denken in Ihr nächstes digitales Produkt ein.",
+      "bridgeTitle": "Lassen Sie uns komplexe Ideen in funktionierende Produkte verwandeln",
+      "bridgeDesc": "Von industriellen Systemen und Game Interfaces bis zu KI-gestützten Produktprototypen verbinde ich langjährige Interface-Erfahrung, Produktdenken und Design Engineering für Ihr nächstes digitales Produkt.",
       "startCollaboration": "Zusammenarbeit starten",
       "hireMe": "Reservieren"
     },
@@ -1145,9 +1145,9 @@
       "nextCaseStudyGreent": "Nächstes Projekt: Greentube"
     },
     "footer": {
-      "readyToStart": "Bereit für ein neues Projekt?",
+      "readyToStart": "Bereit, etwas Funktionierendes zu entwickeln?",
       "backToProjects": "Zurück zu allen Projekten",
-      "readySubtitle": "Lassen Sie uns gemeinsam etwas Bedeutungsvolles schaffen. Ich werde mein Bestes tun, um mich bei Ihnen zu melden!",
+      "readySubtitle": "Lassen Sie uns Ihre Idee in ein klares, nutzbares digitales Produkt verwandeln. Schreiben Sie mir — ich melde mich zeitnah zurück.",
       "allRightsReserved": "Alle Rechte vorbehalten.",
       "privacyPolicy": "Datenschutz",
       "termsOfService": "Nutzungsbedingungen",
