@@ -101,22 +101,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function getTranslation(key, lang) {
+        const keys = key.split('.');
+        let translation = translations[lang];
+        for (const k of keys) {
+            if (translation && translation[k] !== undefined) {
+                translation = translation[k];
+            } else {
+                return null;
+            }
+        }
+        return typeof translation === 'string' ? translation : null;
+    }
+
     function translateElements(elements, lang) {
         elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (!key) return;
 
-            // Navigate through nested object using dot notation
-            const keys = key.split('.');
-            let translation = translations[lang];
-
-            for (const k of keys) {
-                if (translation && translation[k] !== undefined) {
-                    translation = translation[k];
-                } else {
-                    console.warn(`Translation key not found: ${key} for language: ${lang}`);
-                    return;
-                }
+            const translation = getTranslation(key, lang);
+            if (translation === null) {
+                console.warn(`Translation key not found: ${key} for language: ${lang}`);
+                return;
             }
 
             // Check if element should use innerHTML or textContent
@@ -126,6 +132,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 element.textContent = translation;
             }
+        });
+
+        // Attribute translations (aria-label, title) for accessible download CTAs etc.
+        document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+            const value = getTranslation(element.getAttribute('data-i18n-aria-label'), lang);
+            if (value) element.setAttribute('aria-label', value);
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach((element) => {
+            const value = getTranslation(element.getAttribute('data-i18n-title'), lang);
+            if (value) element.setAttribute('title', value);
         });
     }
 

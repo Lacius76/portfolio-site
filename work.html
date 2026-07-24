@@ -279,48 +279,54 @@
     <main class="flex flex-col">
       <!-- === HERO SECTION (FIXED LAYER 0) === -->
       <div
-        class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-0 overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-4 lg:pt-16">
+        class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-0 overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-4 lg:pt-12 lg:pb-6">
         <section class="relative w-full">
           <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-            <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div class="grid gap-8 lg:gap-12 lg:grid-cols-2 lg:items-center">
 
               <!-- LEFT TEXT COLUMN -->
-              <div class="flex flex-col items-start gap-6 relative z-10 pointer-events-auto">
+              <div class="flex flex-col items-start gap-3 sm:gap-4 relative z-10 pointer-events-auto">
                 <!-- HERO TITLE BADGE -->
                 <div
                   class="hero-anim-badge inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
                   <span class="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
-                  <span data-i18n="work.heroBadge">Open for commissions</span>
+                  <span data-i18n="work.heroBadge">Selected Product Work</span>
                 </div>
                 <h1
-                  class="text-4xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
+                  class="text-3xl font-black leading-[1.15] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
                   <span data-i18n="work.heroTitle1">
-                    <span class="hero-anim-title-1">Crafting </span>
-                    <span class="hero-anim-title-1">Intuitive&nbsp;</span>
+                    <span class="hero-anim-title-1">From complex ideas to </span>
                   </span>
                   <span
-                    class="hero-anim-title-2 inline-block pb-2 lg:pb-3 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
-                    data-i18n="work.heroTitle2">Digital</span>
+                    class="hero-anim-title-2 inline-block pb-1 lg:pb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
+                    data-i18n="work.heroTitle2">working</span>
                   <span data-i18n="work.heroTitle3">
-                    <span class="hero-anim-title-3">&nbsp;Experiences</span>
+                    <span class="hero-anim-title-3">&nbsp;products.</span>
                   </span>
                 </h1>
-                <p class="hero-anim-subtitle max-w-xl text-lg text-slate-600 dark:text-slate-400 font-medium leading-relaxed"
+                <p class="hero-anim-subtitle max-w-xl text-base text-slate-600 dark:text-slate-400 font-medium leading-relaxed"
                   data-i18n="work.heroDescription">
-                  Specialized UI/UX Designer bridging the gap between
-                  functional business solutions and high-engagement gaming
-                  interfaces.
+                  Selected projects where UX, design systems, AI-assisted development, and front-end execution turn product ideas into usable digital experiences.
                 </p>
                 <!-- PORTFOLIO & RESUME BUTTONS -->
-                <div class="flex flex-wrap gap-4 pt-4">
-                  <a href="img/laszlo_foldvary_portfolio.pdf" download
-                    class="hero-anim-btn-primary btn-sweep-primary group flex h-14 items-center rounded-xl px-10 text-lg font-bold shadow-lg shadow-primary/25 transition-transform hover:-translate-y-1">
-                    <span data-i18n="work.viewPortfolio">View Portfolio</span>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                  <a href="img/laszlo_foeldvary_portfolio_EN.pdf" download
+                    class="hero-anim-btn-primary btn-sweep-primary group inline-flex h-11 items-center gap-2 rounded-xl px-5 text-sm font-bold shadow-lg shadow-primary/25 transition-transform hover:-translate-y-1"
+                    data-i18n-aria-label="work.viewPortfolioAria"
+                    data-i18n-title="work.viewPortfolioAria"
+                    aria-label="Download Portfolio PDF"
+                    title="Download Portfolio PDF">
+                    <span class="material-symbols-outlined text-[20px] group-hover:animate-bounce" aria-hidden="true">download</span>
+                    <span data-i18n="work.viewPortfolio">Portfolio PDF</span>
                   </a>
-                  <a href="img/laszlo_foldvary_cv.pdf" download
-                    class="hero-anim-btn-secondary btn-sweep-outline group flex h-14 items-center gap-3 rounded-xl border border-slate-200 px-8 text-lg font-bold dark:border-slate-700 transition-transform hover:-translate-y-1">
-                    <span class="material-symbols-outlined text-[24px] group-hover:animate-bounce">download</span>
-                    <span data-i18n="work.downloadResume">Resume</span>
+                  <a href="img/laszlo_foeldvary_cv_EN.pdf" download
+                    class="hero-anim-btn-secondary btn-sweep-outline group inline-flex h-11 items-center gap-2 rounded-xl border border-slate-200 px-5 text-sm font-bold dark:border-slate-700 transition-transform hover:-translate-y-1"
+                    data-i18n-aria-label="work.downloadResumeAria"
+                    data-i18n-title="work.downloadResumeAria"
+                    aria-label="Download Resume PDF"
+                    title="Download Resume PDF">
+                    <span class="material-symbols-outlined text-[20px] group-hover:animate-bounce" aria-hidden="true">download</span>
+                    <span data-i18n="work.downloadResume">Resume PDF</span>
                   </a>
                 </div>
               </div>

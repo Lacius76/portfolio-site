@@ -35,10 +35,10 @@
         "viewAll": "View all projects",
         "scrollDown": "↓ Scroll for more ↓",
         "foldvary": {
-          "title": "Földvary.com",
+          "title": "földvary.com",
           "subtitle": "Cinematic Portfolio Experience",
           "tag": "Web Experience",
-          "description": "What if a portfolio could actually feel like an experience? A futuristic city with a floating bot narrator."
+          "description": "A cinematic portfolio experiment with a futuristic city, bot narrator, and interactive storytelling."
         },
         "babusgatos": {
           "title": "Bakery Live Tracker",
@@ -47,21 +47,21 @@
           "description": "From a local bakery van problem to a working MVP with live GPS tracking, inventory visibility, driver access, and customer updates."
         },
         "antiGravity": {
-          "title": "Project Antigravity",
-          "subtitle": "AI-Collaborative Design System",
+          "title": "foeldvary.com",
+          "subtitle": "Interactive Portfolio Platform",
           "tag": "Style Guide",
-          "description": "A case study on merging 10+ years of design experience with AI for a future-ready portfolio."
+          "description": "An interactive portfolio platform with AI interaction, project storytelling, and recruiter-friendly contact flows."
         },
         "ewa": {
-          "title": "eWa Wallet App",
-          "subtitle": "UX/UI Design & Android APK",
+          "title": "eWa Fintech Super App",
+          "subtitle": "Mobility Wallet MVP",
           "tag": "Fintech App",
-          "description": "A modern application for the Austrian market, integrating smart parking and digital wallet payments."
+          "description": "A fintech mobility MVP for parking, tolling, digital wallets, and cross-platform payments."
         },
         "shadow": {
           "title": "Shadow Cartels",
-          "subtitle": "Lead Game UI & Interaction",
-          "description": "An AI-driven noir strategy interface balancing complex data with 1930s cinematic atmosphere."
+          "subtitle": "Noir Strategy UI System",
+          "description": "Complex game logic, territory feedback, and resource systems translated into a clear context-first interface."
         },
         "casino": {
           "title": "Premium Slot Games",
@@ -232,13 +232,15 @@
       "viewOnMap": "View on Map"
     },
     "work": {
-      "heroBadge": "Open for commissions",
-      "heroTitle1": "<span class=\"hero-anim-title-1\">Crafting </span><span class=\"hero-anim-title-1\">Intuitive </span>",
-      "heroTitle2": "Digital",
-      "heroTitle3": "<span class=\"hero-anim-title-3\"> Experiences</span>",
-      "heroDescription": "Specialized UI/UX Designer bridging the gap between functional business solutions and high-engagement gaming interfaces.",
-      "viewPortfolio": "View Portfolio",
-      "downloadResume": "Resume",
+      "heroBadge": "Selected Product Work",
+      "heroTitle1": "<span class=\"hero-anim-title-1\">From complex ideas to </span>",
+      "heroTitle2": "working",
+      "heroTitle3": "<span class=\"hero-anim-title-3\"> products.</span>",
+      "heroDescription": "Selected projects where UX, design systems, AI-assisted development, and front-end execution turn product ideas into usable digital experiences.",
+      "viewPortfolio": "Portfolio PDF",
+      "downloadResume": "Resume PDF",
+      "viewPortfolioAria": "Download Portfolio PDF",
+      "downloadResumeAria": "Download Resume PDF",
       "hudSystem": "Interface System",
       "hudArchitecture": "HMI Layout Architecture",
       "projectWinccTag": "WinCC-OA Interface",
@@ -765,10 +767,10 @@
         "viewAll": "Alle Projekte ansehen",
         "scrollDown": "↓ Mehr ansehen ↓",
         "foldvary": {
-          "title": "Földvary.com",
+          "title": "földvary.com",
           "subtitle": "Cinematisches Portfolio-Erlebnis",
           "tag": "Web Experience",
-          "description": "Was wäre, wenn sich ein Portfolio wie ein Erlebnis anfühlt? Eine futuristische Stadt mit einem schwebenden Bot-Erzähler."
+          "description": "Ein cinematisches Portfolio-Experiment mit futuristischer Stadt, Bot-Erzähler und interaktivem Storytelling."
         },
         "babusgatos": {
           "title": "Bakery Live Tracker",
@@ -777,21 +779,21 @@
           "description": "Vom Bäckerei-Furgon zum MVP mit Live-GPS, Bestandsanzeige, Fahrerzugang und Kundenupdates."
         },
         "antiGravity": {
-          "title": "Projekt Antigravity",
-          "subtitle": "KI-Kollaboratives Design System",
+          "title": "foeldvary.com",
+          "subtitle": "Interactive Portfolio Platform",
           "tag": "Style Guide",
-          "description": "Eine Fallstudie zur Verschmelzung von 10+ Jahren Design-Erfahrung mit KI für ein zukunftsreiches Portfolio."
+          "description": "Eine interaktive Portfolio-Plattform mit KI-Bot, Projekt-Storytelling und klaren Kontaktwegen."
         },
         "ewa": {
-          "title": "eWa Wallet App",
-          "subtitle": "UX/UI Design & Android APK",
+          "title": "eWa Fintech Super App",
+          "subtitle": "Mobility Wallet MVP",
           "tag": "Fintech App",
-          "description": "Eine moderne Anwendung für den österreichischen Markt, mit Parkgebühren und digitalen Zahlungen."
+          "description": "Ein Fintech-Mobility-MVP für Parken, Maut, digitale Wallets und plattformübergreifende Zahlungen."
         },
         "shadow": {
           "title": "Shadow Cartels",
-          "subtitle": "Lead Game UI & Interaction",
-          "description": "Ein KI-gestütztes Noir-Strategie-Interface, das komplexe Daten mit 1930er-Atmosphäre verbindet."
+          "subtitle": "Noir-Strategie-UI-System",
+          "description": "Komplexe Spiellogik, Kartenstatus und Ressourcen werden in ein klares, kontextbasiertes Interface übersetzt."
         },
         "casino": {
           "title": "Premium Slot Games",
@@ -990,13 +992,15 @@
       "conclusionCta": "Gemeinsam starten"
     },
     "work": {
-      "heroBadge": "Offen für Aufträge",
-      "heroTitle1": "<span class=\"hero-anim-title-1\">Erschaffung </span><span class=\"hero-anim-title-1\">intuitiver </span>",
-      "heroTitle2": "digitaler",
-      "heroTitle3": "<span class=\"hero-anim-title-3\"> Erlebnisse</span>",
-      "heroDescription": "Spezialisierter UI/UX Designer, der die Lücke zwischen funktionalen Geschäftslösungen und fesselnden Gaming-Interfaces schließt.",
-      "viewPortfolio": "Portfolio ansehen",
-      "downloadResume": "Lebenslauf",
+      "heroBadge": "Ausgewählte Produktarbeiten",
+      "heroTitle1": "<span class=\"hero-anim-title-1\">Von komplexen Ideen zu </span>",
+      "heroTitle2": "funktionierenden",
+      "heroTitle3": "<span class=\"hero-anim-title-3\"> Produkten.</span>",
+      "heroDescription": "Ausgewählte Projekte, in denen UX, Design Systems, KI-gestützte Entwicklung und Front-End-Umsetzung aus Produktideen nutzbare digitale Erlebnisse machen.",
+      "viewPortfolio": "Portfolio-PDF",
+      "downloadResume": "Lebenslauf-PDF",
+      "viewPortfolioAria": "Portfolio-PDF herunterladen",
+      "downloadResumeAria": "Lebenslauf-PDF herunterladen",
       "hudSystem": "Interface System",
       "hudArchitecture": "HMI Layout Architektur",
       "projectWinccTag": "WinCC-OA Interface",
