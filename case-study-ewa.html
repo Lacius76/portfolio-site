@@ -120,6 +120,292 @@
         box-shadow: none;
       }
 
+      /* Laptop short viewport: compact dense sticky panels so content stays in view */
+      @media (max-height: 900px) {
+        #panel-16 > div {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+        }
+
+        #panel-16 section {
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+        }
+
+        #panel-2 > section,
+        #panel-4 > div,
+        #panel-5 > section,
+        #panel-6 > div,
+        #panel-8 > div,
+        #panel-10 > div,
+        #panel-12 > div,
+        #panel-dev > div,
+        #panel-15 > div,
+        #panel-17 > div,
+        #panel-logo > div {
+          padding-top: 1.25rem !important;
+          padding-bottom: 1.25rem !important;
+        }
+
+        /* panel-2: executive summary */
+        #panel-2 [style*="height: 560px"] {
+          height: 560px !important;
+        }
+
+        #panel-2 h3 {
+          font-size: 1.5rem !important;
+          line-height: 1.25 !important;
+        }
+
+        #panel-2 .space-y-3 > p {
+          font-size: 0.875rem !important;
+        }
+
+        /* panel-4: live demo phone — keep ~580px as requested */
+        #panel-4 [style*="height: 580px"],
+        #panel-4 iframe[style*="height: 580px"] {
+          height: 580px !important;
+        }
+
+        /* panel-5: process timeline */
+        #panel-5 .mb-16 {
+          margin-bottom: 1.25rem !important;
+        }
+
+        #panel-5 .gap-12 {
+          gap: 1rem !important;
+        }
+
+        #panel-5 .gap-4 {
+          gap: 0.5rem !important;
+        }
+
+        #panel-5 .mb-8 {
+          margin-bottom: 0.75rem !important;
+        }
+
+        #panel-5 .mb-6 {
+          margin-bottom: 0.5rem !important;
+        }
+
+        #panel-5 .h-12 {
+          height: 1.5rem !important;
+        }
+
+        #panel-5 .h-10 {
+          height: 1.75rem !important;
+        }
+
+        #panel-5 .pill-accent-border {
+          padding-top: 0.35rem !important;
+          padding-bottom: 0.35rem !important;
+          font-size: 11px !important;
+        }
+
+        /* panel-6: UX solution */
+        #panel-6 .mt-16 {
+          margin-top: 1rem !important;
+        }
+
+        #panel-6 h2[style*="top: 58px"] {
+          top: 0 !important;
+          margin-bottom: 0.75rem !important;
+        }
+
+        #panel-6 .space-y-6 {
+          gap: 0.75rem !important;
+        }
+
+        #panel-6 .space-y-4 {
+          gap: 0.5rem !important;
+        }
+
+        #panel-6 .space-y-4 p,
+        #panel-6 .space-y-6 p {
+          font-size: 0.875rem !important;
+          line-height: 1.4 !important;
+        }
+
+        #panel-6 img[src*="tokens.jpg"] {
+          width: 420px !important;
+          height: 420px !important;
+          max-height: none !important;
+          max-width: 100%;
+          object-fit: contain;
+        }
+
+        /* panel-8: research columns */
+        #panel-8 .mt-12 {
+          margin-top: 1.25rem !important;
+        }
+
+        #panel-8 .gap-24,
+        #panel-8 .md\:gap-24,
+        #panel-8 .lg\:gap-32 {
+          gap: 1.5rem !important;
+        }
+
+        #panel-8 [style*="margin-top: 40px"] {
+          margin-top: 0.75rem !important;
+        }
+
+        #panel-8 .mb-16 {
+          margin-bottom: 1rem !important;
+        }
+
+        /* panel-10: user flow diagram */
+        #panel-10 > div {
+          justify-content: center !important;
+        }
+
+        #panel-10 .py-12 {
+          padding-top: 0.75rem !important;
+          padding-bottom: 0.75rem !important;
+        }
+
+        #panel-10 .pb-8 {
+          padding-bottom: 0.5rem !important;
+        }
+
+        #panel-10 .ewa-flow-diagram {
+          margin-left: 90px;
+          transform: none;
+          transform-origin: left center;
+        }
+
+        #panel-10 .inline-flex:not(.ewa-flow-diagram) {
+          transform: none;
+        }
+
+        /* panel-logo: prevent overlapping tall images */
+        #panel-logo .mt-8 {
+          margin-top: 0.5rem !important;
+        }
+
+        #panel-logo .py-6 {
+          padding-top: 0.5rem !important;
+          padding-bottom: 0.5rem !important;
+        }
+
+        #panel-logo .gap-6 {
+          gap: 0.75rem !important;
+        }
+
+        #panel-logo .lg\:h-64,
+        #panel-logo .grid.md\:grid-cols-2 {
+          height: 140px !important;
+          max-height: 140px !important;
+        }
+
+        #panel-logo .grid.md\:grid-cols-2 > div {
+          height: 140px !important;
+          max-height: 140px !important;
+        }
+
+        #panel-logo .grid.md\:grid-cols-3 {
+          margin-top: 0 !important;
+        }
+
+        #panel-logo .grid.md\:grid-cols-3 img {
+          max-height: 160px;
+          object-fit: cover;
+        }
+
+        #panel-logo [style*="height: 140px"] {
+          height: 100px !important;
+        }
+
+        #panel-logo .h-8 {
+          height: 0.5rem !important;
+        }
+
+        #panel-brand-screens {
+          padding-top: 1.5rem !important;
+          padding-bottom: 1.5rem !important;
+        }
+
+        #panel-brand-screens > div:first-child {
+          margin-bottom: 1.5rem !important;
+        }
+
+        #panel-brand-screens .brand-screens-bleed {
+          width: 100vw !important;
+          margin-left: calc(50% - 50vw) !important;
+          margin-right: calc(50% - 50vw) !important;
+        }
+
+        #panel-brand-screens .brand-screens-bleed img {
+          width: 100% !important;
+          max-width: none !important;
+          height: 365px !important;
+          max-height: 365px !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          object-fit: cover !important;
+          object-position: center;
+        }
+
+        #panel-15 .deploy-viz {
+          min-height: 220px !important;
+        }
+
+        #panel-15 .deploy-viz img[alt="Antigravity Code"] {
+          width: 150px !important;
+          height: 150px !important;
+        }
+
+        #panel-15 .deploy-viz img[alt="eWa App"],
+        #panel-15 .deploy-viz div[style*="140px"] {
+          width: 120px !important;
+          height: 120px !important;
+        }
+
+        #panel-17 section {
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+        }
+
+        #panel-9 img {
+          max-height: min(48vh, 380px) !important;
+        }
+
+        #panel-11 img {
+          max-height: min(42vh, 340px) !important;
+        }
+
+        #panel-12 [style*="clamp(12rem"] {
+          font-size: clamp(7rem, 12vw, 14rem) !important;
+        }
+
+        #panel-dev img {
+          max-height: min(28vh, 220px);
+          width: auto;
+          object-fit: contain;
+        }
+      }
+
+      #panel-16 .glass-panel {
+        min-height: 400px;
+      }
+
+      #panel-16 > div > section {
+        margin-top: 30px;
+      }
+
+      @media (min-width: 1024px) {
+        #panel-10 .ewa-flow-diagram {
+          margin-left: 90px;
+        }
+
+        #panel-10 .ewa-flow-tree {
+          margin-left: -50px;
+        }
+
+        #panel-10 .ewa-flow-logout {
+          margin-left: -34px;
+        }
+      }
+
       /* Hero container: fixed so it never moves during scroll on desktop */
       .hero-fixed-container {
         position: fixed;
@@ -704,20 +990,20 @@
       <div id="panel-2" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 3;">
 
         <!-- EXECUTIVE SUMMARY - eWa Wallet App -->
-        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
-          <div class="flex flex-col md:flex-row gap-8 lg:gap-16 items-start">
+        <section class="max-w-[1200px] mx-auto px-6 py-8 sm:py-10">
+          <div class="flex flex-col md:flex-row gap-6 lg:gap-10 items-start">
             <!-- BAL OLDAL: cím + tartalom -->
             <div class="flex-1">
               <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap"
                 data-i18n="ewa.execTitle">/
                 Executive Summary</h2>
-              <div class="space-y-6" style="margin-top: 100px;">
+              <div class="space-y-3" style="margin-top: 32px;">
                 <h3
-                  class="text-lg sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
+                  class="text-lg sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
                   data-i18n="ewa.challengeTitle">
                   The Austrian Mobility Wallet Challenge
                 </h3>
-                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg"
+                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-base"
                   data-i18n="ewa.challengeText1">
                   Designing a wallet app means balancing complexity and trust.
                   The product needed to combine several everyday mobility and
@@ -725,14 +1011,14 @@
                   wallet flows, and account management — without overwhelming
                   the user.
                 </p>
-                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg mt-4"
+                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-base"
                   data-i18n="ewa.challengeText2">
                   The challenge was to create a product architecture that feels
                   simple on the surface, while still being robust enough for
                   financial interactions, mobility services, and clear
                   Euro-based transaction logic.
                 </p>
-                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-lg mt-4"
+                <p class="leading-relaxed text-slate-600 dark:text-slate-400 text-sm sm:text-base"
                   data-i18n="ewa.challengeText3">
                   For the Austrian market context, I focused on privacy-minded
                   UX, data clarity, readable financial information, and a clean
@@ -758,7 +1044,7 @@
 
             <div
               class="glass-panel self-center md:self-auto rounded-[2rem] p-6 md:p-8 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl transition-colors flex flex-col gap-6 flex-shrink-0"
-              style="width: min(100%, 460px); height: 580px; overflow: auto;">
+              style="width: min(100%, 460px); height: 560px; overflow: auto;">
               <!-- 1. QR Code for Desktop Users -->
               <div class="hidden sm:flex flex-row items-center gap-3">
                 <div
@@ -842,12 +1128,12 @@
 
       <!-- ===== PANEL 2.5: LIVE APP DEMO ===== -->
       <div id="panel-4" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 5;">
-        <div class="max-w-[1200px] mx-auto px-6 py-24">
-          <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-12"
-            style="margin-top: 28px;" data-i18n="ewa.liveDemoTitle">/ Live
+        <div class="max-w-[1200px] mx-auto px-6 py-10 md:py-12">
+          <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-6"
+            style="margin-top: 8px;" data-i18n="ewa.liveDemoTitle">/ Live
             Demo</h2>
-          <section class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6">
+          <section class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4">
               <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary">
                 <span class="material-symbols-outlined">phone_android</span>
               </div>
@@ -856,18 +1142,18 @@
                 data-i18n="ewa.liveDemoHeadline">
                 Try the Live App: <br /><span class="text-primary font-light">Experience in Action</span>
               </h2>
-              <p class="text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="ewa.liveDemoText">
+              <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base" data-i18n="ewa.liveDemoText">
                 Interact with the actual eWa Wallet App directly in your browser. Explore the interface, test the
                 flows, and see how the product design translates into a working application.
               </p>
             </div>
 
-            <div class="relative flex justify-center mt-12 lg:-mt-[112px]">
+            <div class="relative flex justify-center mt-6 lg:-mt-8">
               <div
                 class="glass-panel rounded-[2rem] p-3 md:p-4 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl">
                 <div class="w-[280px] md:w-[320px] rounded-xl bg-slate-100 dark:bg-slate-900 scrollbar-thin"
-                  style="height: 600px; overflow-y: auto;">
-                  <iframe src="https://e-wa-app.vercel.app/" class="w-full border-0" style="height: 600px;"
+                  style="height: 580px; overflow-y: auto;">
+                  <iframe src="https://e-wa-app.vercel.app/" class="w-full border-0" style="height: 580px;"
                     frameborder="0" allowfullscreen loading="lazy">
                   </iframe>
                 </div>
@@ -902,15 +1188,15 @@
       </style>
       <!-- ===== PANEL 3.5: DESIGN PROCESS & TIMELINE ===== -->
       <div id="panel-5" class="stack-panel bg-slate-50 dark:bg-custom-purple" style="z-index: 6;">
-        <section class="max-w-[1200px] mx-auto px-6 py-24 min-h-screen flex flex-col justify-center">
+        <section class="max-w-[1200px] mx-auto px-6 py-8 md:py-10 min-h-screen flex flex-col justify-center">
 
           <!-- HEADER -->
-          <div class="flex flex-col md:flex-row justify-between items-start gap-8 mb-16 md:mb-24 w-full">
+          <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 md:mb-8 w-full">
             <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap"
               data-i18n="ewa.processTitle">/ Design
               process & Timeline</h2>
             <div class="flex-1 flex justify-end">
-              <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed font-light md:text-right w-full"
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light md:text-right w-full"
                 style="max-width: 260px;" data-i18n="ewa.processIntro">
                 Structuring complexity from initial product logic and user flows to high-fidelity UI architecture,
                 with a focus on clear payment paths and working product execution.
@@ -919,7 +1205,7 @@
           </div>
 
           <!-- TIMELINE GRID -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative">
 
             <!-- CSS CONNECTING LINES (Hidden on mobile) -->
             <!-- Replacing SVG with the 'Slanted Box Method' using skewX for a dynamic aesthetic -->
@@ -948,8 +1234,8 @@
               <h3 class="font-bold text-lg md:text-xl mb-2 tracking-wide" style="color: #9333ea;"
                 data-i18n="ewa.processResearch">Research</h3>
               <!-- Vertical Line & Circle -->
-              <div class="flex flex-col items-center mb-6">
-                <div class="w-px h-12" style="background: linear-gradient(to bottom, transparent, #9333ea);"></div>
+              <div class="flex flex-col items-center mb-3">
+                <div class="w-px h-6" style="background: linear-gradient(to bottom, transparent, #9333ea);"></div>
                 <div class="w-4 h-4 rounded-full border flex items-center justify-center mt-1"
                   style="border-color: #9333ea;">
                   <div class="w-1.5 h-1.5 rounded-full" style="background-color: #9333ea;"></div>
@@ -957,7 +1243,7 @@
               </div>
 
               <!-- Progress Bar (1 Day) -->
-              <div class="w-full h-10 border rounded-full mb-8 flex items-center"
+              <div class="w-full h-8 border rounded-full mb-4 flex items-center"
                 style="max-width: 200px; padding: 3px; border-color: rgba(147, 51, 234, 0.4); background-color: rgba(147, 51, 234, 0.1);">
                 <div class="h-full rounded-full flex items-center px-4 shadow-[0_0_12px_rgba(147,51,234,0.4)]"
                   style="background-color: #9333ea; width: 35%;">
@@ -967,15 +1253,15 @@
               </div>
 
               <!-- Pills -->
-              <div class="flex flex-col items-center gap-4 w-full">
+              <div class="flex flex-col items-center gap-2 w-full">
                 <div data-i18n="ewa.processResearch1"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Collected relevant market, UX, and product context in NotebookLM.</div>
                 <div data-i18n="ewa.processResearch2"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Used AI-assisted synthesis to identify pain points, service categories, and product requirements.</div>
                 <div data-i18n="ewa.processResearch3"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Defined the first product prompt and system direction.</div>
               </div>
             </div>
@@ -984,8 +1270,8 @@
             <div class="flex flex-col items-center relative z-10 w-full">
               <h3 class="font-bold text-lg md:text-xl mb-2 tracking-wide" style="color: #9333ea;"
                 data-i18n="ewa.processDesign">Design</h3>
-              <div class="flex flex-col items-center mb-6">
-                <div class="w-px h-12" style="background: linear-gradient(to bottom, transparent, #9333ea);"></div>
+              <div class="flex flex-col items-center mb-3">
+                <div class="w-px h-6" style="background: linear-gradient(to bottom, transparent, #9333ea);"></div>
                 <div class="w-4 h-4 rounded-full border flex items-center justify-center mt-1"
                   style="border-color: #9333ea;">
                   <div class="w-1.5 h-1.5 rounded-full" style="background-color: #9333ea;"></div>
@@ -993,7 +1279,7 @@
               </div>
 
               <!-- Progress Bar (3 Days) -->
-              <div class="w-full h-10 border rounded-full mb-8 flex items-center"
+              <div class="w-full h-8 border rounded-full mb-4 flex items-center"
                 style="max-width: 200px; padding: 3px; border-color: rgba(147, 51, 234, 0.4); background-color: rgba(147, 51, 234, 0.1);">
                 <div class="h-full rounded-full flex items-center px-4 shadow-[0_0_15px_rgba(147,51,234,0.4)]"
                   style="background-color: #9333ea; width: 45%;">
@@ -1003,15 +1289,15 @@
               </div>
 
               <!-- Pills -->
-              <div class="flex flex-col items-center gap-4 w-full">
+              <div class="flex flex-col items-center gap-2 w-full">
                 <div data-i18n="ewa.processDesign1"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Created initial wireframes, branding direction, and interface structure.</div>
                 <div data-i18n="ewa.processDesign2"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Connected Google Stitch and MCP workflows for design-to-code exploration.</div>
                 <div data-i18n="ewa.processDesign3"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Defined the visual system, motion direction, and component logic.</div>
               </div>
             </div>
@@ -1020,8 +1306,8 @@
             <div class="flex flex-col items-center relative z-10 w-full">
               <h3 class="font-bold text-lg md:text-xl mb-2 tracking-wide" style="color: #9333ea;"
                 data-i18n="ewa.processDev">Development</h3>
-              <div class="flex flex-col items-center mb-6">
-                <div class="w-px h-12" style="background: linear-gradient(to bottom, transparent, #9333ea);"></div>
+              <div class="flex flex-col items-center mb-3">
+                <div class="w-px h-6" style="background: linear-gradient(to bottom, transparent, #9333ea);"></div>
                 <div class="w-4 h-4 rounded-full border flex items-center justify-center mt-1"
                   style="border-color: #9333ea;">
                   <div class="w-1.5 h-1.5 rounded-full" style="background-color: #9333ea;"></div>
@@ -1029,7 +1315,7 @@
               </div>
 
               <!-- Progress Bar (9 Days) -->
-              <div class="w-full h-10 border rounded-full mb-8 flex items-center"
+              <div class="w-full h-8 border rounded-full mb-4 flex items-center"
                 style="max-width: 200px; padding: 3px; border-color: rgba(147, 51, 234, 0.4); background-color: rgba(147, 51, 234, 0.1);">
                 <div class="h-full rounded-full flex items-center px-4 shadow-[0_0_15px_rgba(147,51,234,0.4)]"
                   style="background-color: #9333ea; width: 65%;">
@@ -1039,15 +1325,15 @@
               </div>
 
               <!-- Pills -->
-              <div class="flex flex-col items-center gap-4 w-full">
+              <div class="flex flex-col items-center gap-2 w-full">
                 <div data-i18n="ewa.processDev1"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Prepared the Flutter environment and mobile development workflow.</div>
                 <div data-i18n="ewa.processDev2"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Translated product prompts and UI concepts into a working application.</div>
                 <div data-i18n="ewa.processDev3"
-                  class="w-fit mx-auto border pill-accent-border rounded-full px-4 py-2 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
+                  class="w-fit mx-auto border pill-accent-border rounded-full px-3 py-1.5 text-[12px] sm:text-[13px] text-slate-700 dark:text-slate-300 text-center bg-slate-50 dark:bg-custom-purple italic transition-colors">
                   Built a deployable MVP with Android APK and Web App access.</div>
 
                 <!-- Working Product Solid Pill -->
@@ -1065,21 +1351,21 @@
 
       <!-- ===== PANEL 3: UX/UI SOLUTION ===== -->
       <div id="panel-6" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 7;">
-        <div class="max-w-[1200px] mx-auto px-6 py-24">
-          <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-12"
-            style="position: relative; top: 58px;" data-i18n="ewa.uxTitle">/ UX/UI Solution</h2>
+        <div class="max-w-[1200px] mx-auto px-6 py-8 md:py-10">
+          <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-4"
+            data-i18n="ewa.uxTitle">/ UX/UI Solution</h2>
           <!-- 1. UX/UI Solution -->
-          <section class="grid lg:grid-cols-2 gap-16 items-center mt-16 md:mt-24">
-            <div class="space-y-6">
-              <div class="size-12 rounded-2xl flex items-center justify-center" style="background-color: rgba(147, 51, 234, 0.2); color: #9333ea;">
+          <section class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-4 md:mt-6">
+            <div class="space-y-4">
+              <div class="size-10 rounded-2xl flex items-center justify-center" style="background-color: rgba(147, 51, 234, 0.2); color: #9333ea;">
                 <span class="material-symbols-outlined">palette</span>
               </div>
               <h2
-                class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
+                class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white uppercase italic tracking-tighter break-words"
                 data-i18n="ewa.uxHeadline">
                 Architectural Scalability: <br /><span class="font-light" style="color: #9333ea;">Beyond Aesthetics</span>
               </h2>
-              <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              <div class="space-y-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 <p data-i18n="ewa.uxBlock1">
                   <strong class="font-bold text-slate-900 dark:text-white">Token-Driven Framework:</strong> I replaced static styling with a semantic variable system for colors, surfaces, typography, and interface states. This made the visual system more consistent, scalable, and implementation-ready.
                 </p>
@@ -1092,7 +1378,7 @@
               </div>
             </div>
             <div class="flex justify-center items-center">
-              <img src="img/ewa/color-sys/tokens.jpg" alt="Design Tokens System" class="w-full h-auto rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-2xl" />
+              <img src="img/ewa/color-sys/tokens.jpg" alt="Design Tokens System" class="w-full h-auto object-contain rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-2xl" style="width: 420px; height: 420px; max-width: 100%;" />
             </div>
           </section>
         </div>
@@ -1130,15 +1416,15 @@
 
       <!-- ===== PANEL 3.9: RESEARCH & MARKET ANALYSIS ===== -->
       <div id="panel-8" class="stack-panel bg-slate-50 dark:bg-custom-purple" style="z-index: 9;">
-        <div class="max-w-[1200px] mx-auto px-6 py-24 min-h-screen flex flex-col justify-center">
+        <div class="max-w-[1200px] mx-auto px-6 py-8 md:py-10 min-h-screen flex flex-col justify-center">
 
           <!-- HEADER -->
-          <div class="mb-16 md:mb-24 w-full">
-            <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-6"
+          <div class="mb-6 md:mb-8 w-full">
+            <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap mb-3"
               data-i18n="ewa.researchTitle">/
               Research & Market Analysis</h2>
             <p
-              class="text-slate-600 dark:text-slate-400 text-lg md:text-xl lg:text-2xl leading-relaxed font-light w-full max-w-4xl"
+              class="text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed font-light w-full max-w-4xl"
               data-i18n="ewa.researchText">
               For this self-initiated MVP, I used NotebookLM as an AI-assisted research and synthesis tool. I combined
               UX studies, ergonomics material, fintech references, and mobility-service patterns to identify
@@ -1147,7 +1433,7 @@
           </div>
 
           <!-- 3 COLUMN GRID -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-24 lg:gap-32 mt-12 md:mt-20 w-fit mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 lg:gap-14 mt-4 md:mt-6 w-fit mx-auto">
             <!-- COL 1 -->
             <div class="flex flex-col text-left">
               <div class="flex flex-col items-center w-fit">
@@ -1163,8 +1449,8 @@
                   </div>
                 </div>
               </div>
-              <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed"
-                style="max-width: 220px; margin-top: 40px;" data-i18n="ewa.solution1Text">
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"
+                style="max-width: 220px; margin-top: 16px;" data-i18n="ewa.solution1Text">
                 Reducing cognitive load through focused, minimal UI.
               </p>
             </div>
@@ -1184,8 +1470,8 @@
                   </div>
                 </div>
               </div>
-              <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed"
-                style="max-width: 220px; margin-top: 40px;" data-i18n="ewa.solution2Text">
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"
+                style="max-width: 220px; margin-top: 16px;" data-i18n="ewa.solution2Text">
                 Step-by-step interactions that reduce uncertainty and help users complete key tasks.
               </p>
             </div>
@@ -1205,8 +1491,8 @@
                   </div>
                 </div>
               </div>
-              <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed"
-                style="max-width: 220px; margin-top: 40px;" data-i18n="ewa.solution3Text">
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"
+                style="max-width: 220px; margin-top: 16px;" data-i18n="ewa.solution3Text">
                 Clear visibility into balances, payments, ticket states, and transaction-related information.
               </p>
             </div>
@@ -1252,10 +1538,10 @@
       <!-- ===== PANEL 3.96: USER FLOW ===== -->
       <div id="panel-10" class="stack-panel bg-slate-50 dark:bg-custom-purple" style="z-index: 11;">
         <div
-          class="max-w-[1200px] mx-auto px-6 py-24 min-h-screen flex flex-col justify-between relative overflow-hidden">
+          class="max-w-[1200px] mx-auto px-6 py-8 md:py-10 min-h-screen flex flex-col justify-center relative overflow-hidden">
 
           <!-- TOP: HEADER -->
-          <div class="w-full relative z-10">
+          <div class="w-full relative z-10 mb-2">
             <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap"
               data-i18n="ewa.userFlowTitle">/ User Flow
             </h2>
@@ -1270,9 +1556,9 @@
               .lg\:block { display: block !important; }
             }
           </style>
-          <div class="flex-1 w-full relative py-12 overflow-auto text-center" style="scrollbar-width: none;">
+          <div class="flex-1 w-full relative py-4 overflow-auto text-center" style="scrollbar-width: none;">
 
-            <div class="inline-flex flex-col lg:flex-row items-center justify-start min-h-full w-max px-8 lg:px-12 pb-12 lg:pb-0 text-left">
+            <div class="inline-flex flex-col lg:flex-row items-center justify-start min-h-full w-max px-4 lg:px-6 pb-6 lg:pb-0 text-left ewa-flow-diagram">
 
               <!-- COL 1 -->
               <div
@@ -1350,7 +1636,7 @@
               </div>
 
               <!-- COL 4 Desktop (The Tree) -->
-              <div class="hidden lg:flex flex-col gap-4 relative py-2 z-10">
+              <div class="hidden lg:flex flex-col gap-4 relative py-2 z-10 ewa-flow-tree">
                 <div class="absolute left-0" style="width: 1px; top: 26px; bottom: 26px; background-color: #9333ea;">
                 </div>
 
@@ -1416,7 +1702,7 @@
                       style="width: clamp(32px, 5vw, 80px); height: 1px; background-color: #9333ea; flex-shrink: 0;">
                     </div>
                     <div data-i18n="ewa.flowLogOut"
-                      class="rounded-full px-6 py-1.5 text-white text-[13px] font-medium text-center shadow-[0_0_10px_rgba(147,51,234,0.4)] whitespace-nowrap"
+                      class="rounded-full px-6 py-1.5 text-white text-[13px] font-medium text-center shadow-[0_0_10px_rgba(147,51,234,0.4)] whitespace-nowrap ewa-flow-logout"
                       style="background-color: #9333ea;">Log Out</div>
                   </div>
                 </div>
@@ -1448,8 +1734,8 @@
           </div>
 
           <!-- BOTTOM: DESCRIPTION -->
-          <div class="w-full pb-8 relative z-10">
-            <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed max-w-sm font-light"
+          <div class="w-full pb-2 relative z-10 mt-2">
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-sm font-light"
               data-i18n="ewa.userFlowClosing">
               A logical flow architecture keeps navigation predictable, purposeful, and easy to understand across
               multiple service categories.
@@ -1778,20 +2064,20 @@
         }
       </style>
       <div id="panel-logo" class="stack-panel bg-slate-50 dark:bg-custom-purple" style="z-index: 15;">
-        <div class="mx-auto px-6 py-12 min-h-screen flex flex-col justify-between relative overflow-hidden"
+        <div class="mx-auto px-6 py-6 md:py-8 min-h-screen flex flex-col justify-center relative overflow-hidden"
           style="max-width: 1200px;">
 
           <!-- TOP: HEADER -->
-          <div class="w-full relative z-10">
+          <div class="w-full relative z-10 mb-2">
             <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 font-light whitespace-nowrap"
               data-i18n="ewa.logoTitle">/ Logo</h2>
           </div>
 
           <!-- CENTER: CONTENT -->
-          <div class="flex-1 w-full flex flex-col justify-center py-6 gap-6 relative z-10 mt-8">
+          <div class="flex-1 w-full flex flex-col justify-center py-2 gap-3 relative z-10">
 
             <!-- Top Half: Two large images -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full h-full lg:h-64">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full" style="height: 160px;">
               <!-- Left: Icon Logo -->
               <div
                 class="logo-card-bg overflow-hidden relative w-full h-full shadow-lg flex items-center justify-center"
@@ -1807,24 +2093,24 @@
             </div>
 
             <!-- Bottom Half: Three columns -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full items-stretch mt-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full items-stretch">
 
               <!-- Left Col: Old Logo & Text -->
-              <div class="flex flex-col gap-4 justify-between h-full">
+              <div class="flex flex-col gap-3 justify-between h-full">
                 <!-- Old Logo Card -->
                 <div
-                  class="rounded-3xl bg-black p-4 sm:p-6 flex flex-col items-start justify-between w-full relative overflow-hidden shadow-lg"
-                  style="height: 140px; border-radius: 1.5rem;">
-                  <h3 class="text-xl font-bold text-white mb-1" data-i18n="ewa.logoOldLabel">Old Logo</h3>
+                  class="rounded-3xl bg-black p-4 flex flex-col items-start justify-between w-full relative overflow-hidden shadow-lg"
+                  style="height: 110px; border-radius: 1.5rem;">
+                  <h3 class="text-lg font-bold text-white mb-1" data-i18n="ewa.logoOldLabel">Old Logo</h3>
                   <div class="w-full flex justify-center items-center flex-1">
-                    <img src="./img/ewa/logo/logo-old.png" alt="Old Logo" class="w-full h-full object-contain max-h-16">
+                    <img src="./img/ewa/logo/logo-old.png" alt="Old Logo" class="w-full h-full object-contain max-h-12">
                   </div>
                 </div>
                 <!-- Text -->
-                <div class="text-left mt-2 flex-1">
-                  <h4 class="text-slate-900 dark:text-white text-base font-bold mb-1" data-i18n="ewa.logoHeadline">
+                <div class="text-left mt-1 flex-1">
+                  <h4 class="text-slate-900 dark:text-white text-sm font-bold mb-1" data-i18n="ewa.logoHeadline">
                     From Literal to Abstract</h4>
-                  <p class="text-slate-600 dark:text-slate-300 font-light text-xs sm:text-sm leading-relaxed"
+                  <p class="text-slate-600 dark:text-slate-300 font-light text-xs leading-relaxed"
                     style="max-width: 95%;" data-i18n="ewa.logoText">
                     The original placeholder logo was too literal and generic for a fintech product. I redesigned the
                     identity around a cleaner, more abstract mark that feels more premium, scalable, and appropriate
@@ -1834,21 +2120,19 @@
               </div>
 
               <!-- Middle Col: Pencil Sketches -->
-              <div class="rounded-3xl overflow-hidden bg-white flex items-center justify-center h-full shadow-lg"
-                style="border-radius: 1.5rem;">
-                <img src="./img/ewa/logo/logo-pecil.png" alt="Pencil Sketches" class="w-full h-full object-cover">
+              <div class="rounded-3xl overflow-hidden bg-white flex items-center justify-center shadow-lg"
+                style="border-radius: 1.5rem; max-height: 220px;">
+                <img src="./img/ewa/logo/logo-pecil.png" alt="Pencil Sketches" class="w-full h-full object-cover" style="max-height: 220px;">
               </div>
 
               <!-- Right Col: Screen Mockup -->
-              <div class="rounded-3xl overflow-hidden bg-transparent flex items-center justify-center h-full shadow-lg"
-                style="border-radius: 1.5rem;">
-                <img src="./img/ewa/logo/logo-screen.png" alt="App Screen Mockup" class="w-full h-full object-cover">
+              <div class="rounded-3xl overflow-hidden bg-transparent flex items-center justify-center shadow-lg"
+                style="border-radius: 1.5rem; max-height: 220px;">
+                <img src="./img/ewa/logo/logo-screen.png" alt="App Screen Mockup" class="w-full h-full object-cover" style="max-height: 220px;">
               </div>
 
             </div>
           </div>
-
-          <div class="w-full h-8"></div>
         </div>
       </div>
       <!-- END PANEL 3.995 -->
@@ -1912,28 +2196,28 @@
         }
       </style>
       <div id="panel-dev" class="stack-panel dev-panel-bg" style="z-index: 17;">
-        <div class="max-w-[1200px] mx-auto px-6 py-16 lg:py-24 min-h-screen flex flex-col justify-center">
+        <div class="max-w-[1200px] mx-auto px-6 py-8 lg:py-12 min-h-screen flex flex-col justify-center">
 
           <!-- Header -->
-          <div class="mb-8 lg:mb-12">
-            <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 whitespace-nowrap">
+          <div class="mb-4 lg:mb-6">
+            <h2 class="text-lg md:text-xl text-slate-800 dark:text-slate-200 whitespace-nowrap">
               <span class="font-bold" data-i18n="ewa.devTitleBold">/ Development:</span> <span class="font-light"
                 data-i18n="ewa.devTitleLight">Designer as Builder</span>
             </h2>
           </div>
 
           <!-- Paragraph -->
-          <div class="max-w-3xl mb-12 lg:mb-16 space-y-4">
-            <p class="text-base md:text-lg lg:text-xl text-slate-700 dark:text-slate-300 font-light leading-relaxed"
+          <div class="max-w-3xl mb-6 lg:mb-8 space-y-3">
+            <p class="text-sm md:text-base lg:text-lg text-slate-700 dark:text-slate-300 font-light leading-relaxed"
               data-i18n="ewa.devText1">
               The handoff to engineering was not a static PDF. It was a working application.
             </p>
-            <p class="text-base md:text-lg lg:text-xl text-slate-700 dark:text-slate-300 font-light leading-relaxed"
+            <p class="text-sm md:text-base lg:text-lg text-slate-700 dark:text-slate-300 font-light leading-relaxed"
               data-i18n="ewa.devText2">
               Using Google Antigravity and Flutter, I moved from drawing screens to building functional product
               logic, including simulated payment flows, cross-platform navigation, and deployable app structures.
             </p>
-            <p class="text-base md:text-lg lg:text-xl text-slate-700 dark:text-slate-300 font-light leading-relaxed"
+            <p class="text-sm md:text-base lg:text-lg text-slate-700 dark:text-slate-300 font-light leading-relaxed"
               data-i18n="ewa.devSupport">
               UI mockups became working product surfaces. The result was not only a visual prototype, but an
               executable MVP that demonstrates how product thinking, design systems, and implementation can move
@@ -1943,7 +2227,7 @@
 
           <!-- Images & Dashed Line -->
           <div
-            class="relative flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-16 w-full mb-12 lg:mb-16">
+            class="relative flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-10 w-full mb-6 lg:mb-8">
 
             <!-- Dashed Line (Visible on md and up) -->
             <div
@@ -1983,32 +2267,32 @@
 
       <!-- ===== PANEL 4.5: DEPLOYMENT ===== -->
       <div id="panel-15" class="stack-panel dev-panel-bg" style="z-index: 18;">
-        <div class="max-w-[1200px] mx-auto px-6 py-16 lg:py-24 min-h-screen flex flex-col justify-center">
+        <div class="max-w-[1200px] mx-auto px-6 py-8 lg:py-12 min-h-screen flex flex-col justify-center">
 
           <!-- Header -->
-          <div class="mb-12">
-            <h2 class="text-xl md:text-2xl text-slate-800 dark:text-slate-200 whitespace-nowrap">
+          <div class="mb-4 lg:mb-6">
+            <h2 class="text-lg md:text-xl text-slate-800 dark:text-slate-200 whitespace-nowrap">
               <span class="font-bold" data-i18n="ewa.deployTitleBold">/ Deployment:</span> <span class="font-light"
                 data-i18n="ewa.deployTitleLight">Smart Cross-Platform Strategy</span>
             </h2>
           </div>
 
           <!-- Content Stack -->
-          <div class="flex flex-col gap-8 lg:gap-12">
+          <div class="flex flex-col gap-4 lg:gap-6">
 
             <!-- Text Section -->
-            <div class="w-full max-w-4xl space-y-6">
-              <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight"
+            <div class="w-full max-w-4xl space-y-3">
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight"
                 data-i18n="ewa.deployHeadline">
                 Smart Cross-Platform Deployment
               </h3>
-              <p class="text-base md:text-lg text-slate-700 dark:text-slate-300 font-light leading-relaxed"
+              <p class="text-sm md:text-base text-slate-700 dark:text-slate-300 font-light leading-relaxed"
                 data-i18n="ewa.deployText1">
                 To keep the project lean and accessible, I deployed a native Android APK alongside an optimized Web
                 App. This allowed Android users to test a native-feeling experience while iOS users could explore
                 the product directly from their mobile browser.
               </p>
-              <p class="text-base md:text-lg text-slate-700 dark:text-slate-300 font-light leading-relaxed"
+              <p class="text-sm md:text-base text-slate-700 dark:text-slate-300 font-light leading-relaxed"
                 data-i18n="ewa.deployText2">
                 This approach avoided early-stage app store friction and kept the MVP focused on validation,
                 accessibility, and product experience.
@@ -2017,7 +2301,7 @@
 
             <!-- Visualization Section -->
             <div
-              class="relative flex flex-col sm:flex-row items-center justify-between gap-12 sm:gap-0 w-full max-w-[850px] mx-auto min-h-[300px]">
+              class="deploy-viz relative flex flex-col sm:flex-row items-center justify-between gap-8 sm:gap-0 w-full max-w-[850px] mx-auto min-h-[240px]">
 
               <style>
                 @media (min-width: 640px) {
@@ -2027,6 +2311,16 @@
 
                   .ewa-line-shift {
                     right: calc(15% + 220px) !important;
+                  }
+                }
+
+                @media (min-width: 640px) and (max-height: 900px) {
+                  .ewa-icon-shift {
+                    transform: translateX(-120px) !important;
+                  }
+
+                  .ewa-line-shift {
+                    right: calc(15% + 140px) !important;
                   }
                 }
               </style>
@@ -2043,13 +2337,13 @@
                   style="border-color: #8B5CF6; top: 50%; left: 60%; right: calc(15% + 220px);"></div>
 
                 <!-- Left Fork (branches up/down) -->
-                <div class="absolute border-2 border-dashed"
-                  style="border-color: #8B5CF6; border-right-color: transparent; height: 120px; top: 50%; transform: translateY(-50%); left: 40%; right: calc(50% + 40px); border-radius: 1.5rem 0 0 1.5rem;">
+                <div class="absolute border-2 border-dashed deploy-fork"
+                  style="border-color: #8B5CF6; border-right-color: transparent; height: 100px; top: 50%; transform: translateY(-50%); left: 40%; right: calc(50% + 40px); border-radius: 1.5rem 0 0 1.5rem;">
                 </div>
 
                 <!-- Right Fork (merges back) -->
-                <div class="absolute border-2 border-dashed"
-                  style="border-color: #8B5CF6; border-left-color: transparent; height: 120px; top: 50%; transform: translateY(-50%); left: calc(50% + 40px); right: 40%; border-radius: 0 1.5rem 1.5rem 0;">
+                <div class="absolute border-2 border-dashed deploy-fork"
+                  style="border-color: #8B5CF6; border-left-color: transparent; height: 100px; top: 50%; transform: translateY(-50%); left: calc(50% + 40px); right: 40%; border-radius: 0 1.5rem 1.5rem 0;">
                 </div>
 
               </div>
@@ -2057,19 +2351,19 @@
               <!-- Left: Antigravity -->
               <div class="relative z-10 w-full sm:w-[30%] flex justify-center">
                 <img src="./img/ewa/deployment/antigravity.png" alt="Antigravity Code"
-                  style="width: 220px; height: 220px;"
+                  style="width: 180px; height: 180px;"
                   class="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500">
               </div>
 
               <!-- Middle: Android & Safari -->
-              <div class="relative z-10 w-full sm:w-[40%] flex flex-col items-center justify-center gap-10">
+              <div class="relative z-10 w-full sm:w-[40%] flex flex-col items-center justify-center gap-6">
                 <!-- Android -->
-                <div class="relative group w-20 h-20 flex items-center justify-center">
+                <div class="relative group w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
                   <img src="./img/ewa/deployment/android.png" alt="Android APK"
                     class="relative z-10 w-full h-full object-contain border-2 border-slate-200 dark:border-transparent rounded-3xl drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:-translate-y-2 transition-all duration-300">
                 </div>
                 <!-- Safari -->
-                <div class="relative group w-20 h-20 flex items-center justify-center">
+                <div class="relative group w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
                   <img src="./img/ewa/deployment/safary.png" alt="Safari Web App"
                     class="relative z-10 w-full h-full object-contain border-2 border-slate-200 dark:border-transparent rounded-3xl drop-shadow-[0_0_20px_rgba(255,255,255,0.15)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:-translate-y-2 transition-all duration-300">
                 </div>
@@ -2077,8 +2371,8 @@
 
               <!-- Right: eWa Icon -->
               <div class="relative z-10 w-full sm:w-[30%] flex justify-center ewa-icon-shift">
-                <div class="relative group flex items-center justify-center" style="width: 180px; height: 180px;">
-                  <img src="./img/ewa/deployment/ewa-icon.png" alt="eWa App" style="width: 180px; height: 180px;"
+                <div class="relative group flex items-center justify-center" style="width: 140px; height: 140px;">
+                  <img src="./img/ewa/deployment/ewa-icon.png" alt="eWa App" style="width: 140px; height: 140px;"
                     class="relative z-10 object-contain drop-shadow-[0_0_40px_rgba(168,85,247,0.4)] group-hover:drop-shadow-[0_0_60px_rgba(168,85,247,0.7)] group-hover:scale-105 transition-all duration-300">
                 </div>
               </div>
@@ -2101,27 +2395,27 @@
         }
       </style>
       <div id="panel-brand-screens"
-        class="stack-panel brand-screens-bg flex flex-col justify-center min-h-screen py-16 lg:py-20"
+        class="stack-panel brand-screens-bg flex flex-col justify-center min-h-screen py-8 lg:py-12"
         style="z-index: 19;">
 
         <!-- Top Text Section (Constrained) -->
-        <div class="max-w-[1400px] mx-auto px-6 w-full mb-12 lg:mb-20">
-          <div class="w-full flex flex-col md:flex-row justify-between items-start gap-8 px-2 lg:px-8">
+        <div class="max-w-[1400px] mx-auto px-6 w-full mb-6 lg:mb-10">
+          <div class="w-full flex flex-col md:flex-row justify-between items-start gap-6 px-2 lg:px-8">
             <!-- Left: Title -->
-            <h2 class="text-xl md:text-2xl text-slate-800 dark:text-white font-light tracking-wide whitespace-nowrap"
+            <h2 class="text-lg md:text-xl text-slate-800 dark:text-white font-light tracking-wide whitespace-nowrap"
               data-i18n="ewa.brandTitle">
               / Brand Identity
             </h2>
 
             <!-- Right: Description -->
             <div class="md:w-1/2 flex md:justify-end">
-              <div class="max-w-md text-left space-y-3">
-                <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed"
+              <div class="max-w-md text-left space-y-2">
+                <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 font-light leading-relaxed"
                   data-i18n="ewa.brandText">
                   The eWa brand was designed to adapt across different services and product surfaces, from wallet
                   interactions and mobility flows to payment-related screens and visual communication.
                 </p>
-                <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed"
+                <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 font-light leading-relaxed"
                   data-i18n="ewa.brandText2">
                   The goal was to maintain visual harmony, dual-theme consistency, and a premium fintech feel without
                   making the interface feel heavy or overly decorative.
@@ -2132,9 +2426,10 @@
         </div>
 
         <!-- Bottom: Full Width Image (Edge-to-Edge) -->
-        <div style="width: 100vw; margin-left: calc(50% - 50vw);">
+        <div class="brand-screens-bleed" style="width: 100vw; margin-left: calc(50% - 50vw);">
           <img src="./img/ewa/brand/brand-screens.png" alt="eWa Brand Screens"
-            class="w-full h-auto object-cover max-w-none block">
+            class="w-full h-auto object-cover max-w-none block"
+            style="width: 100%; height: 365px; object-fit: cover;">
         </div>
 
       </div>
@@ -2142,20 +2437,20 @@
 
       <!-- ===== PANEL 5: INTERACTIVE PROTOTYPE ===== -->
       <div id="panel-16" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 20;">
-        <div class="max-w-[1200px] mx-auto px-6 py-10">
+        <div class="max-w-[1200px] mx-auto px-6 py-6 md:py-8">
           <!-- FUTURE ROADMAP & VISION -->
-          <section class="mx-auto max-w-[1200px] py-4 sm:py-14">
+          <section class="mx-auto max-w-[1200px] py-2 sm:py-4 md:py-6">
             <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-4">
-              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-xs italic" data-i18n="ewa.roadmapTag">
+            <div class="text-center max-w-3xl mx-auto mb-4 sm:mb-5 space-y-2">
+              <h3 class="text-primary font-bold tracking-[0.2em] uppercase text-[10px] sm:text-xs italic" data-i18n="ewa.roadmapTag">
                 Product Vision
               </h3>
               <h2
-                class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
+                class="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter"
                 data-i18n="ewa.roadmapHeadline">
                 Future Roadmap &amp; Vision
               </h2>
-              <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed"
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed"
                 data-i18n="ewa.roadmapIntro">
                 As a working prototype, eWa proves the product concept. The next steps would move it from MVP toward
                 a broader market-ready wallet experience.
@@ -2163,66 +2458,66 @@
             </div>
 
             <!-- Two Phase Cards -->
-            <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+            <div class="grid lg:grid-cols-2 gap-4 lg:gap-5 items-stretch">
 
               <!-- Phase 1 Card -->
               <div
-                class="glass-panel rounded-[2rem] p-8 md:p-8 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-xl flex flex-col gap-4">
-                <div class="flex items-center gap-4">
+                class="glass-panel rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-6 bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-xl flex flex-col gap-3 min-h-[400px]">
+                <div class="flex items-center gap-3">
                   <div
-                    class="size-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
-                    <span class="material-symbols-outlined text-[26px]">smartphone</span>
+                    class="size-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+                    <span class="material-symbols-outlined text-[22px]">smartphone</span>
                   </div>
                   <div>
                     <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
                       data-i18n="ewa.roadmapPhase1Label">Phase 1</p>
-                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
+                    <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight"
                       data-i18n="ewa.roadmapPhase1Title">
                       Expanding the Ecosystem
                     </h3>
                   </div>
                 </div>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
+                <p class="text-slate-600 dark:text-slate-400 leading-snug text-sm px-3"
                   data-i18n="ewa.roadmapPhase1Desc">
                   The immediate next step is turning the remaining UI placeholders — including Mobile Ticket and
                   Insurance screens — into fully interactive, data-driven Flutter screens. This would complete the
                   core wallet experience and create a smoother end-to-end journey across every eWa service.
                 </p>
-                <ul class="space-y-1 mt-3">
-                  <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                <ul class="space-y-1 mt-auto px-3 pb-1">
+                  <li class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-[11px]">check</span>
+                      <span class="material-symbols-outlined text-[10px]">check</span>
                     </span>
                     <span data-i18n="ewa.roadmapPhase1Item1">Mobile Ticket &amp; Transit screens</span>
                   </li>
-                  <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                  <li class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-[11px]">check</span>
+                      <span class="material-symbols-outlined text-[10px]">check</span>
                     </span>
                     <span data-i18n="ewa.roadmapPhase1Item2">Insurance &amp; document hub screens</span>
                   </li>
-                  <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                  <li class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-[11px]">check</span>
+                      <span class="material-symbols-outlined text-[10px]">check</span>
                     </span>
                     <span data-i18n="ewa.roadmapPhase1Item3">Full data-driven Flutter integration</span>
                   </li>
-                  <li class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                  <li class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                     <span class="size-4 rounded-full border border-primary flex items-center justify-center shrink-0">
                     </span>
                     <span data-i18n="ewa.roadmapPhase1Item4">German language activation</span>
                   </li>
-                  <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                  <li class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
                     <span
                       class="size-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-[11px]">check</span>
+                      <span class="material-symbols-outlined text-[10px]">check</span>
                     </span>
                     <span data-i18n="ewa.roadmapPhase1Item5">Light theme integration</span>
                   </li>
-                  <li class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                  <li class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                     <span class="size-4 rounded-full border border-primary flex items-center justify-center shrink-0">
                     </span>
                     <span data-i18n="ewa.roadmapPhase1Item6">iOS implementation as a later-stage expansion</span>
@@ -2232,29 +2527,26 @@
 
               <!-- Phase 2 Card (USP) -->
               <div
-                class="relative glass-panel rounded-[2rem] p-8 md:p-10 bg-primary/5 dark:bg-primary/10 backdrop-blur-xl border border-primary/20 shadow-xl flex flex-col gap-6 overflow-hidden">
-                <!-- "USP" Badge - in normal flow on mobile, absolute on desktop -->
-                <div class="md:absolute md:top-6 md:right-6 self-start">
-                  <span
-                    class="inline-flex items-center gap-1.5 rounded-full bg-primary/20 border border-primary/30 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-                    <span class="material-symbols-outlined text-[12px]">star</span>
-                    <span data-i18n="ewa.roadmapUspBadge">Future Feature</span>
-                  </span>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div class="size-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary shrink-0">
-                    <span class="material-symbols-outlined text-[26px]">widgets</span>
+                class="relative glass-panel rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-6 bg-primary/5 dark:bg-primary/10 backdrop-blur-xl border border-primary/20 shadow-xl flex flex-col gap-3 overflow-hidden min-h-[400px]">
+                <div class="flex items-start gap-3">
+                  <div class="size-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <span class="material-symbols-outlined text-[22px]">widgets</span>
                   </div>
-                  <div>
+                  <div class="min-w-0 flex-1">
                     <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-0.5"
                       data-i18n="ewa.roadmapPhase2Label">Phase 2</p>
-                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight"
+                    <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight"
                       data-i18n="ewa.roadmapPhase2Title">
                       The Composable Subscription Hub
                     </h3>
                   </div>
+                  <span
+                    class="inline-flex items-center gap-1 rounded-full bg-primary/20 border border-primary/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary shrink-0">
+                    <span class="material-symbols-outlined text-[12px]">star</span>
+                    <span data-i18n="ewa.roadmapUspBadge">Future Feature</span>
+                  </span>
                 </div>
-                <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base"
+                <p class="text-slate-600 dark:text-slate-400 leading-snug text-sm px-3"
                   data-i18n="ewa.roadmapPhase2Desc">
                   A differentiating future concept for eWa is a modular subscription hub where users can add,
                   configure, and manage recurring services such as streaming, cloud storage, gym memberships, and
@@ -2262,18 +2554,18 @@
                   pause/cancel actions, and central control in one place.
                 </p>
                 <!-- Feature Pills -->
-                <div class="flex flex-wrap gap-2 mt-auto">
+                <div class="flex flex-wrap gap-1.5 mt-auto px-3 pb-1">
                   <span
-                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    class="px-3 py-1 rounded-lg bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-wider text-primary"
                     data-i18n="ewa.roadmapPill1">Modular Blocks</span>
                   <span
-                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    class="px-3 py-1 rounded-lg bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-wider text-primary"
                     data-i18n="ewa.roadmapPill2">Cost Transparency</span>
                   <span
-                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    class="px-3 py-1 rounded-lg bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-wider text-primary"
                     data-i18n="ewa.roadmapPill3">One-Tap Cancel</span>
                   <span
-                    class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-wider text-primary"
+                    class="px-3 py-1 rounded-lg bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-wider text-primary"
                     data-i18n="ewa.roadmapPill4">Central Control</span>
                 </div>
               </div>
@@ -2286,10 +2578,10 @@
 
       <!-- ===== PANEL 6: LESSONS / OUTRO (last panel – slides up to reveal footer) ===== -->
       <div id="panel-17" class="stack-panel bg-white dark:bg-background-dark" style="z-index: 20;">
-        <div class="max-w-[1200px] mx-auto px-6 py-24">
+        <div class="max-w-[1200px] mx-auto px-6 py-10 md:py-14">
           <!-- LESSONS FROM THE NOIR -->
-          <section class="mx-auto max-w-[1200px] py-16 sm:py-24 text-center">
-            <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
+          <section class="mx-auto max-w-[1200px] py-6 sm:py-10 text-center">
+            <div class="max-w-2xl mx-auto space-y-4 sm:space-y-6">
               <h2
                 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
                 data-i18n="ewa.lessonsTitle">
@@ -2303,7 +2595,7 @@
                 logic, user experience, and implementation is no longer just a positioning statement. In this
                 project, it became an executable workflow.
               </p>
-              <div class="pt-6 sm:pt-8 w-full">
+              <div class="pt-4 sm:pt-6 w-full">
                 <a href="case-study-styleguide.html"
                   class="inline-flex items-center gap-2 sm:gap-3 text-primary font-bold hover:text-indigo-600 transition-all group flex-row-reverse text-sm sm:text-base md:text-lg">
                   <span
