@@ -185,6 +185,186 @@
         flex-direction: column;
         justify-content: center;
       }
+
+      /* Tall rationale sections: expand with content, avoid clipping on laptop */
+      .stack-panel--expand {
+        overflow: visible;
+        height: auto;
+        min-height: 100vh;
+      }
+    }
+
+    .decision-cards {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1099px) {
+      .decision-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .decision-cards {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        align-items: start;
+        padding-top: 1.25rem;
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    /* Card + connector segment share one transform unit */
+    .decision-item {
+      position: relative;
+      transform-origin: center center;
+      transition: transform 0.35s ease;
+    }
+
+    .decision-card {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      height: 100%;
+      padding: 1rem 1.1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: rgba(255, 255, 255, 0.92);
+      transition: box-shadow 0.35s ease;
+    }
+
+    .dark .decision-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Desktop only: stagger + micro rotation on the whole item */
+    @media (min-width: 1100px) {
+      .decision-item:nth-child(1) {
+        transform: translateY(16px) rotate(-2deg);
+      }
+
+      .decision-item:nth-child(2) {
+        transform: translateY(-12px) rotate(1deg);
+      }
+
+      .decision-item:nth-child(3) {
+        transform: translateY(10px) rotate(-1deg);
+      }
+
+      .decision-item:nth-child(4) {
+        transform: translateY(-18px) rotate(2deg);
+      }
+
+      .decision-item:nth-child(5) {
+        transform: translateY(14px) rotate(-1deg);
+      }
+
+      /* Keep DOM paint order: later cards cover earlier segments.
+         Do not raise the whole item z-index on hover (that pulled the line over the next card). */
+      .decision-item:hover {
+        transform: translateY(4px) rotate(0deg);
+      }
+
+      .decision-item:hover .decision-card {
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      }
+
+      .dark .decision-item:hover .decision-card {
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+      }
+    }
+
+    .decision-card-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(99, 102, 241, 0.12);
+      color: #6366f1;
+      flex-shrink: 0;
+    }
+
+    .decision-card-icon .material-symbols-outlined {
+      font-size: 1.15rem;
+    }
+
+    .decision-why {
+      margin-top: auto;
+      padding-top: 0.65rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .dark .decision-why {
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Per-item connector segments — move with the wrapper */
+    .decision-segment {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+      color: #6366f1;
+    }
+
+    .dark .decision-segment {
+      color: #a5b4fc;
+    }
+
+    .decision-segment path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      opacity: 0.4;
+    }
+
+    /* Desktop: horizontal segment from icon toward next card */
+    .decision-segment--h {
+      display: none;
+      top: 1.15rem;
+      left: 1.85rem;
+      width: calc(100% + 1rem);
+      height: 36px;
+    }
+
+    /* Mobile: short vertical segment under the card */
+    .decision-segment--v {
+      display: none;
+      left: 1.85rem;
+      top: calc(100% - 0.15rem);
+      width: 12px;
+      height: 1.15rem;
+    }
+
+    @media (min-width: 1100px) {
+      .decision-segment--h {
+        display: block;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .decision-segment--v {
+        display: block;
+      }
+    }
+
+    @media (min-width: 768px) and (max-height: 900px) {
+      .stack-panel--expand > section {
+        padding-top: 2rem;
+        padding-bottom: 2.5rem;
+      }
     }
   </style>
 </head>
@@ -495,8 +675,178 @@
         </section>
       </div>
 
+      <!-- DESIGN DECISIONS -->
+      <div class="stack-panel stack-panel--expand bg-white dark:bg-background-dark" style="z-index: 5;">
+        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20">
+          <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
+            <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.decisionsTag">Product Thinking</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
+              data-i18n="babusgatos.decisionsTitle">Design Decisions</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="babusgatos.decisionsIntro">
+              Five small UX decisions that turn the bakery flow from a visual concept into a usable product experience.
+            </p>
+          </div>
+
+          <div class="decision-cards">
+            <!-- 1 -->
+            <div class="decision-item">
+              <svg class="decision-segment decision-segment--h" viewBox="0 0 120 36" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 20 C 28 26, 48 30, 72 18 S 104 6, 120 14" />
+              </svg>
+              <svg class="decision-segment decision-segment--v" viewBox="0 0 12 24" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M6 0 C 5 8, 7 14, 6 24" />
+              </svg>
+              <article class="decision-card">
+                <div class="decision-card-icon">
+                  <span class="material-symbols-outlined">lock_open</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">01</p>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-snug"
+                    data-i18n="babusgatos.decision1Title">No forced login</h3>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed"
+                  data-i18n="babusgatos.decision1Text">
+                  First-time customers can place an order without creating an account first.
+                </p>
+                <div class="decision-why">
+                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 mb-1"
+                    data-i18n="babusgatos.decisionWhyLabel">Why it matters</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                    data-i18n="babusgatos.decision1Why">
+                    Less friction for local bakery orders where speed and trust are more important than account management.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <!-- 2 -->
+            <div class="decision-item">
+              <svg class="decision-segment decision-segment--h" viewBox="0 0 120 36" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 14 C 24 8, 44 4, 68 16 S 100 32, 120 22" />
+              </svg>
+              <svg class="decision-segment decision-segment--v" viewBox="0 0 12 24" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M6 0 C 7 9, 5 15, 6 24" />
+              </svg>
+              <article class="decision-card">
+                <div class="decision-card-icon">
+                  <span class="material-symbols-outlined">fact_check</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">02</p>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-snug"
+                    data-i18n="babusgatos.decision2Title">Inline form validation</h3>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed"
+                  data-i18n="babusgatos.decision2Text">
+                  Errors appear directly where correction happens.
+                </p>
+                <div class="decision-why">
+                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 mb-1"
+                    data-i18n="babusgatos.decisionWhyLabel">Why it matters</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                    data-i18n="babusgatos.decision2Why">
+                    Customers understand immediately what needs to be fixed instead of discovering errors after submitting the form.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <!-- 3 -->
+            <div class="decision-item">
+              <svg class="decision-segment decision-segment--h" viewBox="0 0 120 36" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 22 C 30 28, 50 18, 74 10 S 102 8, 120 16" />
+              </svg>
+              <svg class="decision-segment decision-segment--v" viewBox="0 0 12 24" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M6 0 C 4 10, 8 14, 6 24" />
+              </svg>
+              <article class="decision-card">
+                <div class="decision-card-icon">
+                  <span class="material-symbols-outlined">edit_note</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">03</p>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-snug"
+                    data-i18n="babusgatos.decision3Title">Editable cart quantities</h3>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed"
+                  data-i18n="babusgatos.decision3Text">
+                  Customers can adjust quantities directly in the cart.
+                </p>
+                <div class="decision-why">
+                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 mb-1"
+                    data-i18n="babusgatos.decisionWhyLabel">Why it matters</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                    data-i18n="babusgatos.decision3Why">
+                    Small order changes do not force users back into the product list.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <!-- 4 -->
+            <div class="decision-item">
+              <svg class="decision-segment decision-segment--h" viewBox="0 0 120 36" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 16 C 26 10, 52 6, 76 18 S 104 30, 120 24" />
+              </svg>
+              <svg class="decision-segment decision-segment--v" viewBox="0 0 12 24" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M6 0 C 8 8, 4 16, 6 24" />
+              </svg>
+              <article class="decision-card">
+                <div class="decision-card-icon">
+                  <span class="material-symbols-outlined">history</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">04</p>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-snug"
+                    data-i18n="babusgatos.decision4Title">Reorder flow</h3>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed"
+                  data-i18n="babusgatos.decision4Text">
+                  Previous orders can be reviewed and repeated.
+                </p>
+                <div class="decision-why">
+                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 mb-1"
+                    data-i18n="babusgatos.decisionWhyLabel">Why it matters</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                    data-i18n="babusgatos.decision4Why">
+                    Bakery purchases are often habitual — the same bread, pastry or cake order comes back regularly.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <!-- 5 (last: no outgoing connectors) -->
+            <div class="decision-item">
+              <article class="decision-card">
+                <div class="decision-card-icon">
+                  <span class="material-symbols-outlined">near_me</span>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">05</p>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-snug"
+                    data-i18n="babusgatos.decision5Title">Live tracking concept</h3>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed"
+                  data-i18n="babusgatos.decision5Text">
+                  Delivery visibility reduces uncertainty after checkout.
+                </p>
+                <div class="decision-why">
+                  <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 mb-1"
+                    data-i18n="babusgatos.decisionWhyLabel">Why it matters</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+                    data-i18n="babusgatos.decision5Why">
+                    Customers do not just want to know where the van is — they want confidence that the order will arrive on time.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
       <!-- METRICS -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 5;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 6;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
           <div class="text-center mb-12">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3" data-i18n="babusgatos.metricsTag">Results</p>
@@ -524,7 +874,7 @@
       </div>
 
       <!-- PRODUCT DEMOS — one stack-panel per demo so Outro only covers after each is scrolled -->
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 6;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-4">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demosTag">Product Demos</p>
@@ -555,7 +905,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -578,7 +928,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <div class="space-y-4 lg:col-span-2">
@@ -601,7 +951,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 10;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -625,7 +975,7 @@
       </div>
 
       <!-- OUTRO -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 10;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 11;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 text-center">
           <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
