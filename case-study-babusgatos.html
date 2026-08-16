@@ -360,6 +360,153 @@
       }
     }
 
+    /* Cart & Checkout Flow — evidence after Design Decisions */
+    .checkout-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .checkout-flow {
+        gap: 2rem;
+      }
+    }
+
+    .checkout-step {
+      margin: 0;
+    }
+
+    .checkout-step-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 0.75rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .checkout-step-num {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #6366f1;
+    }
+
+    .checkout-step-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.35;
+    }
+
+    .dark .checkout-step-title {
+      color: #f8fafc;
+    }
+
+    .checkout-step-caption {
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: #64748b;
+      max-width: 42rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .dark .checkout-step-caption {
+      color: #94a3b8;
+    }
+
+    .checkout-frame {
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      overflow: hidden;
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    .dark .checkout-frame {
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.45);
+    }
+
+    .checkout-frame img {
+      width: 100%;
+      height: auto;
+      max-height: min(52vh, 440px);
+      object-fit: contain;
+      object-position: top center;
+      display: block;
+    }
+
+    .checkout-step--pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .checkout-step--pair {
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+        gap: 1.25rem;
+      }
+
+      .checkout-step--pair .checkout-frame img {
+        max-height: min(48vh, 400px);
+      }
+    }
+
+    .checkout-validation-label {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 0.4rem;
+    }
+
+    .checkout-validation-caption {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: #64748b;
+      margin-top: 0.65rem;
+    }
+
+    .dark .checkout-validation-caption {
+      color: #94a3b8;
+    }
+
+    .checkout-step-why {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: #64748b;
+      margin-top: 0.65rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      max-width: 42rem;
+    }
+
+    .dark .checkout-step-why {
+      color: #94a3b8;
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (min-width: 768px) {
+      .checkout-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        align-items: start;
+      }
+
+      .stack-panel--demo .checkout-frame img {
+        max-height: min(56vh, 460px);
+      }
+
+      .stack-panel--demo .checkout-step--pair .checkout-frame img {
+        max-height: min(40vh, 340px);
+      }
+    }
+
     @media (min-width: 768px) and (max-height: 900px) {
       .stack-panel--expand > section {
         padding-top: 2rem;
@@ -527,13 +674,11 @@
                 How I turned a real-world community pain point into a working field-operations MVP with live GPS tracking, stock visibility, driver access, and AI-assisted development.
               </p>
               <div class="flex flex-col items-center gap-2">
-                <a href="https://bakery-live-tracker.vercel.app" target="_blank" rel="noopener noreferrer"
+                <a href="https://babusgatos-app.vercel.app/" target="_blank" rel="noopener noreferrer"
                   class="inline-flex items-center gap-3 rounded-full bg-primary/20 border border-primary/40 px-6 py-3 text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white hover:bg-primary hover:border-primary hover:text-white transition-all">
                   <span class="material-symbols-outlined text-[18px] shrink-0 leading-none">rocket_launch</span>
                   <span data-i18n="babusgatos.liveDemo">Live Demo</span>
                 </a>
-                <p class="text-primary/80 font-mono text-xs normal-case tracking-normal"
-                  data-i18n="babusgatos.demoPassword">Password: 8821</p>
               </div>
             </div>
           </div>
@@ -845,8 +990,123 @@
         </section>
       </div>
 
+      <!-- CART & CHECKOUT FLOW — one sticky panel per step so Metrics waits until the end -->
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 6;">
+        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
+          <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
+            <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.checkoutTag">Interface Evidence</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
+              data-i18n="babusgatos.checkoutTitle">Cart &amp; Checkout Flow</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="babusgatos.checkoutIntro">
+              A lightweight ordering flow that lets customers add products, adjust quantities, complete checkout and review their submitted order without unnecessary account friction.
+            </p>
+          </div>
+
+          <figure class="checkout-step max-w-[1140px] mx-auto">
+            <div class="checkout-step-header">
+              <span class="checkout-step-num">01</span>
+              <h3 class="checkout-step-title" data-i18n="babusgatos.checkout1Title">Product selection &amp; cart preview</h3>
+            </div>
+            <p class="checkout-step-caption" data-i18n="babusgatos.checkout1Caption">
+              Customers can browse pre-order products and keep the cart visible while adding items.
+            </p>
+            <div class="checkout-frame">
+              <img src="img/babusgatos/shop/01-chart.png" alt="Pre-order product grid with cart overlay open"
+                loading="lazy" decoding="async" />
+            </div>
+          </figure>
+        </section>
+      </div>
+
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
+        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
+          <figure class="checkout-step max-w-[1140px] mx-auto">
+            <div class="checkout-step-header">
+              <span class="checkout-step-num">02</span>
+              <h3 class="checkout-step-title" data-i18n="babusgatos.checkout2Title">Editable cart &amp; previous orders</h3>
+            </div>
+            <p class="checkout-step-caption" data-i18n="babusgatos.checkout2Caption">
+              Quantities can be adjusted directly in the cart, while previous orders support repeat bakery purchases.
+            </p>
+            <div class="checkout-frame">
+              <img src="img/babusgatos/shop/02-order-1.png" alt="Checkout cart with quantity controls and previous order panel"
+                loading="lazy" decoding="async" />
+            </div>
+          </figure>
+        </section>
+      </div>
+
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
+        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
+          <div class="checkout-step max-w-[1140px] mx-auto">
+            <div class="checkout-step-header">
+              <span class="checkout-step-num">03</span>
+              <h3 class="checkout-step-title" data-i18n="babusgatos.checkout3Title">Payment &amp; contact details</h3>
+            </div>
+            <p class="checkout-step-caption" data-i18n="babusgatos.checkout3Caption">
+              Checkout stays lightweight, while inline validation helps customers correct issues directly where they happen.
+            </p>
+            <div class="checkout-step--pair">
+              <figure class="m-0">
+                <div class="checkout-frame">
+                  <img src="img/babusgatos/shop/03-order-02.png" alt="Checkout payment method selection and contact details"
+                    loading="lazy" decoding="async" />
+                </div>
+              </figure>
+              <figure class="m-0">
+                <p class="checkout-validation-label" data-i18n="babusgatos.checkout3ValidationLabel">Validation state</p>
+                <div class="checkout-frame">
+                  <img src="img/babusgatos/shop/03-order-wit-error.png" alt="Checkout form showing inline validation errors"
+                    loading="lazy" decoding="async" />
+                </div>
+                <figcaption class="checkout-validation-caption" data-i18n="babusgatos.checkout3ValidationCaption">
+                  Error messages appear close to the relevant input field, reducing confusion before the order is submitted.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
+        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
+          <div class="checkout-row space-y-7 md:space-y-0 max-w-[1140px] mx-auto">
+            <figure class="checkout-step">
+              <div class="checkout-step-header">
+                <span class="checkout-step-num">04</span>
+                <h3 class="checkout-step-title" data-i18n="babusgatos.checkout4Title">Confirmation</h3>
+              </div>
+              <p class="checkout-step-caption" data-i18n="babusgatos.checkout4Caption">
+                The flow ends with a clear confirmation that the order has been recorded.
+              </p>
+              <div class="checkout-frame">
+                <img src="img/babusgatos/shop/04-succes.png" alt="Order confirmation with successfully paid message"
+                  loading="lazy" decoding="async" />
+              </div>
+            </figure>
+
+            <figure class="checkout-step">
+              <div class="checkout-step-header">
+                <span class="checkout-step-num">05</span>
+                <h3 class="checkout-step-title" data-i18n="babusgatos.checkout5Title">Post-order review</h3>
+              </div>
+              <p class="checkout-step-caption" data-i18n="babusgatos.checkout5Caption">
+                After completing the order, customers can return and review what they ordered instead of losing access to the order state.
+              </p>
+              <div class="checkout-frame">
+                <img src="img/babusgatos/shop/05-reveu-order.png" alt="Submitted order summary for post-checkout review"
+                  loading="lazy" decoding="async" />
+              </div>
+              <p class="checkout-step-why" data-i18n="babusgatos.checkout5Why">
+                This reduces post-checkout uncertainty and gives customers confidence that their order was recorded correctly.
+              </p>
+            </figure>
+          </div>
+        </section>
+      </div>
+
       <!-- METRICS -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 6;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 10;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
           <div class="text-center mb-12">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3" data-i18n="babusgatos.metricsTag">Results</p>
@@ -874,7 +1134,7 @@
       </div>
 
       <!-- PRODUCT DEMOS — one stack-panel per demo so Outro only covers after each is scrolled -->
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 11;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-4">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demosTag">Product Demos</p>
@@ -905,7 +1165,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 12;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -928,7 +1188,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 13;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <div class="space-y-4 lg:col-span-2">
@@ -951,7 +1211,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 10;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 14;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -975,7 +1235,7 @@
       </div>
 
       <!-- OUTRO -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 11;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 15;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 text-center">
           <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
@@ -986,7 +1246,7 @@
               This project shows how useful portfolio work can solve real problems: with product thinking, speed, restraint, and architecture that holds up outside the demo.
               </p>
             <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://bakery-live-tracker.vercel.app" target="_blank" rel="noopener noreferrer"
+              <a href="https://babusgatos-app.vercel.app/" target="_blank" rel="noopener noreferrer"
                 class="btn-sweep-primary inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold uppercase tracking-widest">
                 <span class="material-symbols-outlined text-[18px]">open_in_new</span>
                 <span data-i18n="babusgatos.liveDemo">Live Demo</span>
