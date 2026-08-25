@@ -513,6 +513,38 @@
         padding-bottom: 2.5rem;
       }
     }
+
+    /* Cake Creator — guided configuration feature */
+    .cake-creator-shots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .cake-creator-shots img {
+      width: 100%;
+      height: auto;
+      max-height: min(32vh, 260px);
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .cake-creator-video .demo-video-frame {
+      padding: 0;
+    }
+
+    .cake-creator-video video {
+      max-height: min(48vh, 420px);
+    }
+
+    .cake-creator-copy p {
+      hyphens: none;
+      -webkit-hyphens: none;
+      -ms-hyphens: none;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
   </style>
 </head>
 
@@ -990,8 +1022,72 @@
         </section>
       </div>
 
+      <!-- CAKE CREATOR -->
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 6;">
+        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20">
+          <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div class="order-2 lg:order-1 space-y-4">
+              <div class="cake-creator-shots">
+                <figure class="glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5 m-0">
+                  <img src="img/babusgatos/cake-creator/step%201.jpg" alt="Cake Creator step 1 — size and servings selection"
+                    loading="lazy" decoding="async" />
+                  <figcaption class="px-3 py-2 text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold"
+                    data-i18n="babusgatos.cakeCreatorShot1">Step 1</figcaption>
+                </figure>
+                <figure class="glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5 m-0">
+                  <img src="img/babusgatos/cake-creator/step%202.jpg" alt="Cake Creator step 2 — flavor and coating selection"
+                    loading="lazy" decoding="async" />
+                  <figcaption class="px-3 py-2 text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold"
+                    data-i18n="babusgatos.cakeCreatorShot2">Step 2</figcaption>
+                </figure>
+              </div>
+              <figure class="cake-creator-video demo-video-card glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5 m-0">
+                <div class="demo-video-frame">
+                  <video autoplay loop muted playsinline aria-label="Cake Creator configuration flow demo">
+                    <source src="img/babusgatos/cake-creator/cake-creator.webm" type="video/webm" />
+                  </video>
+                </div>
+                <figcaption class="px-4 py-3 text-xs text-slate-500 dark:text-slate-400"
+                  data-i18n="babusgatos.cakeCreatorVideoCaption">Full configuration flow — preview, pricing and cart handoff</figcaption>
+              </figure>
+            </div>
+
+            <div class="order-1 lg:order-2 space-y-5 sm:space-y-6 cake-creator-copy">
+              <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.cakeCreatorTag">Guided Configuration</p>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
+                data-i18n="babusgatos.cakeCreatorTitle">Cake Creator</h2>
+              <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed"
+                data-i18n="babusgatos.cakeCreatorSubtitle">
+                A playful step-by-step flow for building a custom cake before checkout.
+              </p>
+              <div class="space-y-4 text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                <p data-i18n="babusgatos.cakeCreatorBody1">
+                  Cake Creator turns custom cake ordering from a static form into a guided configuration flow.
+                </p>
+                <p data-i18n="babusgatos.cakeCreatorBody2">
+                  Customers choose size, flavor, coating and decorations step by step — while the preview and price update with every decision. The flow combines single-choice steps, multi-select add-ons, custom text, visual feedback and a final review before the configured cake enters the cart.
+                </p>
+                <p data-i18n="babusgatos.cakeCreatorBody3">
+                  The goal was to make a complex custom order feel simple, playful and emotionally personal — without losing the structure needed for checkout and production.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-3 pt-1">
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+                  data-i18n="babusgatos.cakeCreatorChip1">Step-by-step choices</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+                  data-i18n="babusgatos.cakeCreatorChip2">Visual cake preview</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+                  data-i18n="babusgatos.cakeCreatorChip3">Live pricing logic</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+                  data-i18n="babusgatos.cakeCreatorChip4">Checkout-ready summary</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
       <!-- CART & CHECKOUT FLOW — one sticky panel per step so Metrics waits until the end -->
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 6;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
         <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
           <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.checkoutTag">Interface Evidence</p>
@@ -1018,7 +1114,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
         <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
           <figure class="checkout-step max-w-[1140px] mx-auto">
             <div class="checkout-step-header">
@@ -1036,7 +1132,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
         <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
           <div class="checkout-step max-w-[1140px] mx-auto">
             <div class="checkout-step-header">
@@ -1068,7 +1164,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 10;">
         <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
           <div class="checkout-row space-y-7 md:space-y-0 max-w-[1140px] mx-auto">
             <figure class="checkout-step">
@@ -1106,7 +1202,7 @@
       </div>
 
       <!-- METRICS -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 10;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 11;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
           <div class="text-center mb-12">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3" data-i18n="babusgatos.metricsTag">Results</p>
@@ -1134,7 +1230,7 @@
       </div>
 
       <!-- PRODUCT DEMOS — one stack-panel per demo so Outro only covers after each is scrolled -->
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 11;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 12;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-4">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demosTag">Product Demos</p>
@@ -1165,7 +1261,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 12;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 13;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -1188,7 +1284,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 13;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 14;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <div class="space-y-4 lg:col-span-2">
@@ -1211,7 +1307,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 14;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 15;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -1235,7 +1331,7 @@
       </div>
 
       <!-- OUTRO -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 15;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 16;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 text-center">
           <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
