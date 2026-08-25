@@ -146,3 +146,36 @@
     rgba(16, 25, 34, 0.85) 40%,
     transparent 100%);
 }
+
+/* Footer reveal: content-wrapper drop shadow bleeds onto fixed footer */
+body:has(#footer-reveal) #content-wrapper,
+body:has(#footer-reveal) main#content-wrapper {
+  box-shadow: none !important;
+}
+
+@media (min-width: 768px) {
+  /* Sticky-stack outro transition: no upward panel shadow on last sections */
+  body:has(#footer-reveal) #content-wrapper > .stack-panel:nth-last-child(2),
+  body:has(#footer-reveal) #content-wrapper > .stack-panel:nth-last-child(3),
+  body:has(#footer-reveal) main#content-wrapper > .stack-panel:nth-last-child(2),
+  body:has(#footer-reveal) main#content-wrapper > .stack-panel:nth-last-child(3) {
+    box-shadow: none !important;
+  }
+}
+
+/* Opaque top strip — covers any residual scroll shadow at footer edge */
+#footer-reveal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.25rem;
+  background-color: #ffffff;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.dark #footer-reveal::before {
+  background-color: #101922;
+}

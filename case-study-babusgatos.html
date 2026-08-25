@@ -52,6 +52,12 @@
         box-shadow: none;
       }
 
+      /* Outro + panel beneath it: no upward shadow bleed into final section */
+      #content-wrapper > .stack-panel:nth-last-child(2),
+      #content-wrapper > .stack-panel:nth-last-child(3) {
+        box-shadow: none;
+      }
+
       .hero-video-bg {
         position: fixed;
         inset: 0;
@@ -682,7 +688,7 @@
     </div>
 
     <main id="content-wrapper"
-      class="relative z-10 bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300">
+      class="relative z-10 bg-white dark:bg-background-dark transition-colors duration-300">
 
       <!-- HERO -->
       <div id="hero-panel" class="stack-panel bg-white dark:bg-slate-950" style="z-index: 1;">

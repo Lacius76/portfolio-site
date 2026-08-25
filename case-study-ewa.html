@@ -120,6 +120,14 @@
         box-shadow: none;
       }
 
+      /* Outro + panel beneath it: no upward shadow bleed into final section */
+      #content-wrapper > .stack-panel:nth-last-child(2),
+      #content-wrapper > .stack-panel:nth-last-child(3),
+      .dark #content-wrapper > .stack-panel:nth-last-child(2),
+      .dark #content-wrapper > .stack-panel:nth-last-child(3) {
+        box-shadow: none;
+      }
+
       /* Laptop short viewport: compact dense sticky panels so content stays in view */
       @media (max-height: 900px) {
         #panel-16 > div {
@@ -872,7 +880,7 @@
 
 
     <main id="content-wrapper"
-      class="relative z-10 bg-white dark:bg-background-dark shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300">
+      class="relative z-10 bg-white dark:bg-background-dark transition-colors duration-300">
 
       <!-- ===== PANEL 1: HERO ===== -->
       <div id="hero-panel" class="stack-panel bg-slate-50 dark:bg-[#0B0F19]" style="z-index: 1;">
