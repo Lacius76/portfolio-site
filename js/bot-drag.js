@@ -443,8 +443,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (storedBotState === 'false') {
         isBotClosed = false;
     } else {
-        // No stored state yet. On mobile, default to closed.
-        isBotClosed = window.innerWidth <= 768;
+        // First visit (no stored preference): start closed — reopen tab only
+        isBotClosed = true;
     }
 
     // Reopen tab
