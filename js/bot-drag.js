@@ -490,6 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
             wrapper.style.pointerEvents = 'auto';
         });
         scheduleRandomMessage();
+
+        // Greeting on open — same user click unlocks audio, so playback works
+        if (typeof wakeUp === 'function') wakeUp();
+        playBotGreeting();
     }
 
     if (closeBtn) closeBtn.addEventListener('click', () => closeBot(true));
@@ -910,20 +914,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start only if not asleep
     if (!window._botSleeping) scheduleRandomMessage();
 
-    // Welcome / utolsó üzenet visszatöltése
+    function playBotGreeting() {
+        const consoleEl = document.getElementById('botConsole');
+        if (!consoleEl) return;
+        playBotAudio('System online. Hello.mp3');
+        const greeting = "System online. Hello! I am AI-Bot 9000.";
+        typeWriter(greeting, consoleEl);
+        sessionStorage.setItem('botGreeted', 'true');
+    }
+
+    // Welcome / restore last message — no auto audio while closed on first visit
     if (botConsole) {
         const lastMsg = sessionStorage.getItem('botLastMessage');
         if (lastMsg) {
-            // Volt már üzenet ebben a sessionban: visszatöltjük azonnal, animáció nélkül
             botConsole.textContent = lastMsg;
-        } else {
-            // Legelső látogatás: üdvözlés 2 másodperc késéssel
-            setTimeout(() => {
-                playBotAudio('System online. Hello.mp3');
-                const greeting = "System online. Hello! I am AI-Bot 9000.";
-                typeWriter(greeting, botConsole);
-                sessionStorage.setItem('botGreeted', 'true');
-            }, 2000);
+        } else if (!isBotClosed) {
+            // Bot already open (rare): greet after short delay
+            setTimeout(playBotGreeting, 2000);
         }
+        // If closed on first visit, greeting waits until user opens via reopen tab
     }
 });
