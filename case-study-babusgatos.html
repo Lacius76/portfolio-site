@@ -58,6 +58,15 @@
         box-shadow: none;
       }
 
+      /* Last panel: not sticky — must be a full viewport sheet that can scroll away */
+      #content-wrapper > .stack-panel:nth-last-child(2) {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+
       .hero-video-bg {
         position: fixed;
         inset: 0;
@@ -223,6 +232,13 @@
         overflow: visible;
         height: auto;
         min-height: 100vh;
+      }
+
+      /* Tall viewports: content already fits — clip so expand panels cannot leak into footer */
+      @media (min-height: 901px) {
+        .stack-panel--expand {
+          overflow: hidden;
+        }
       }
     }
 
@@ -409,6 +425,37 @@
       .checkout-explorer-stage {
         grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
         gap: 1.5rem;
+      }
+    }
+
+    .checkout-explorer-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .checkout-explorer-intro {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #475569;
+    }
+
+    .dark .checkout-explorer-intro {
+      color: rgb(148 163 184);
+    }
+
+    .checkout-explorer-intro--aside {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      .checkout-explorer-intro--stack {
+        display: none;
+      }
+
+      .checkout-explorer-intro--aside {
+        display: block;
       }
     }
 
@@ -608,6 +655,26 @@
       .stack-panel--expand > section {
         padding-top: 2rem;
         padding-bottom: 2.5rem;
+      }
+
+      .stack-panel--expand > .decisions-section {
+        padding-top: calc(2rem + 40px);
+      }
+
+      .stack-panel--expand > .checkout-section {
+        padding-top: calc(2rem + 40px);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .decisions-section,
+      .cake-creator-section,
+      .checkout-section {
+        padding-top: calc(5rem + 40px);
+      }
+
+      .spark-section {
+        padding-top: calc(6rem + 40px);
       }
     }
 
@@ -816,7 +883,7 @@
 
       <!-- THE SPARK -->
       <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 2;">
-        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
+        <section class="spark-section max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
           <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div class="space-y-6">
               <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.sparkTag">The Spark</p>
@@ -951,7 +1018,7 @@
 
       <!-- DESIGN DECISIONS -->
       <div class="stack-panel stack-panel--expand bg-white dark:bg-background-dark" style="z-index: 5;">
-        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20">
+        <section class="decisions-section max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:pb-20">
           <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.decisionsTag">Product Thinking</p>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
@@ -1121,7 +1188,7 @@
 
       <!-- CAKE CREATOR -->
       <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 6;">
-        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20">
+        <section class="cake-creator-section max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:pb-20">
           <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <div class="order-2 lg:order-1 space-y-4">
               <div class="cake-creator-shots">
@@ -1185,12 +1252,13 @@
 
       <!-- CART & CHECKOUT FLOW — interactive step explorer -->
       <div class="stack-panel stack-panel--expand bg-white dark:bg-background-dark" style="z-index: 7;">
-        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
-          <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
+        <section class="checkout-section max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:pb-20 w-full">
+          <div class="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-3">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.checkoutTag">Interface Evidence</p>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight italic uppercase break-words"
               data-i18n="babusgatos.checkoutTitle">Cart &amp; Checkout Flow</h2>
-            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="babusgatos.checkoutIntro">
+            <p class="checkout-explorer-intro checkout-explorer-intro--stack text-slate-600 dark:text-slate-400 text-sm sm:text-base"
+              data-i18n="babusgatos.checkoutIntro">
               A lightweight ordering flow that lets customers add products, adjust quantities, complete checkout and review their submitted order without unnecessary account friction.
             </p>
           </div>
@@ -1220,13 +1288,19 @@
                 </div>
               </div>
 
-              <div class="checkout-explorer-detail" id="checkout-explorer-detail" aria-live="polite">
-                <p class="checkout-explorer-detail-num" id="checkout-explorer-num">01</p>
-                <h3 class="checkout-explorer-detail-title" id="checkout-explorer-title">Product selection &amp; cart preview</h3>
-                <p class="checkout-explorer-detail-caption" id="checkout-explorer-caption">
-                  Customers can browse pre-order products and keep the cart visible while adding items.
+              <div class="checkout-explorer-side">
+                <p class="checkout-explorer-intro checkout-explorer-intro--aside"
+                  data-i18n="babusgatos.checkoutIntro">
+                  A lightweight ordering flow that lets customers add products, adjust quantities, complete checkout and review their submitted order without unnecessary account friction.
                 </p>
-                <p class="checkout-explorer-detail-extra" id="checkout-explorer-extra" hidden></p>
+                <div class="checkout-explorer-detail" id="checkout-explorer-detail" aria-live="polite">
+                  <p class="checkout-explorer-detail-num" id="checkout-explorer-num">01</p>
+                  <h3 class="checkout-explorer-detail-title" id="checkout-explorer-title">Product selection &amp; cart preview</h3>
+                  <p class="checkout-explorer-detail-caption" id="checkout-explorer-caption">
+                    Customers can browse pre-order products and keep the cart visible while adding items.
+                  </p>
+                  <p class="checkout-explorer-detail-extra" id="checkout-explorer-extra" hidden></p>
+                </div>
               </div>
             </div>
 
@@ -1445,7 +1519,7 @@
 
       <!-- OUTRO -->
       <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 13;">
-        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 text-center">
+        <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 text-center min-h-screen flex flex-col justify-center">
           <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
               data-i18n="babusgatos.outroTitle">Built for the Community</h2>
@@ -1483,7 +1557,7 @@
     <footer id="footer-reveal"
       class="fixed bottom-0 left-0 w-full border-t border-slate-200 dark:border-white/10 cs-footer-bg pt-32 pb-12 overflow-hidden transition-all duration-300"
       style="z-index: 2;">
-      <div class="absolute inset-0 cs-footer-bg" style="z-index: -1;"></div>
+      <div class="absolute inset-0 cs-footer-bg"></div>
       <div class="absolute inset-0 z-0 pointer-events-none">
         <img src="img/babusgatos/mobile.png"
           class="w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-luminosity scale-110 blur-sm brightness-100 dark:brightness-50"
@@ -1564,7 +1638,12 @@
 
       function adjustLayout() {
         if (wrapper && footer) {
-          wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+          const desktop = window.matchMedia("(min-width: 768px)").matches;
+          const viewport = window.visualViewport?.height || window.innerHeight;
+          const reveal = desktop
+            ? Math.max(footer.offsetHeight, Math.ceil(viewport))
+            : footer.offsetHeight;
+          wrapper.style.marginBottom = `${reveal}px`;
         }
       }
 
@@ -1599,6 +1678,7 @@
 
       adjustLayout();
       window.addEventListener("resize", adjustLayout);
+      window.visualViewport?.addEventListener("resize", adjustLayout);
       window.addEventListener("scroll", handleScroll, { passive: true });
     });
   </script>

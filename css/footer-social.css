@@ -153,13 +153,59 @@ body:has(#footer-reveal) main#content-wrapper {
   box-shadow: none !important;
 }
 
+/* Keep mix-blend / z-index:-1 children inside the footer. */
+#footer-reveal {
+  isolation: isolate;
+}
+
+#footer-reveal > .cs-footer-bg {
+  z-index: 0 !important;
+}
+
 @media (min-width: 768px) {
+  /* Sticky-stack pages: footer and reveal gap always follow the viewport
+     (100vh / 100dvh), so laptop and large monitors both clear the last panel. */
+  body:has(.stack-panel) #footer-reveal {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  body:has(.stack-panel) #footer-reveal > .relative {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  body:has(.stack-panel) #footer-reveal > .relative > :last-child {
+    margin-top: auto;
+  }
+
+  body:has(.stack-panel) #content-wrapper,
+  body:has(.stack-panel) main#content-wrapper {
+    margin-bottom: 100vh;
+    margin-bottom: 100dvh;
+  }
+
   /* Sticky-stack outro transition: no upward panel shadow on last sections */
   body:has(#footer-reveal) #content-wrapper > .stack-panel:nth-last-child(2),
   body:has(#footer-reveal) #content-wrapper > .stack-panel:nth-last-child(3),
   body:has(#footer-reveal) main#content-wrapper > .stack-panel:nth-last-child(2),
   body:has(#footer-reveal) main#content-wrapper > .stack-panel:nth-last-child(3) {
     box-shadow: none !important;
+  }
+
+  /* Last stack panel is the last in-flow child (hire button is fixed). */
+  body:has(#footer-reveal) #content-wrapper > .stack-panel:nth-last-child(2),
+  body:has(#footer-reveal) main#content-wrapper > .stack-panel:nth-last-child(2) {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 

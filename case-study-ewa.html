@@ -2761,9 +2761,13 @@
       const wrapper = document.getElementById("content-wrapper");
 
       function adjustLayout() {
-        // Set wrapper margin equal to footer height to allow reveal
         if (wrapper && footer) {
-          wrapper.style.marginBottom = `${footer.offsetHeight}px`;
+          const desktop = window.matchMedia("(min-width: 768px)").matches;
+          const viewport = window.visualViewport?.height || window.innerHeight;
+          const reveal = desktop
+            ? Math.max(footer.offsetHeight, Math.ceil(viewport))
+            : footer.offsetHeight;
+          wrapper.style.marginBottom = `${reveal}px`;
         }
       }
 
@@ -2815,6 +2819,7 @@
       // Init
       adjustLayout();
       window.addEventListener("resize", adjustLayout);
+      window.visualViewport?.addEventListener("resize", adjustLayout);
       window.addEventListener("scroll", handleScroll, { passive: true });
     });
   </script>
