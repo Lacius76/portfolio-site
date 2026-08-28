@@ -392,60 +392,204 @@
       }
     }
 
-    /* Cart & Checkout Flow — evidence after Design Decisions */
-    .checkout-flow {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
+    /* Cart & Checkout Flow — interactive step explorer */
+    .checkout-explorer {
+      max-width: 1140px;
+      margin: 0 auto;
     }
 
-    @media (min-width: 768px) {
-      .checkout-flow {
-        gap: 2rem;
+    .checkout-explorer-stage {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .checkout-explorer-stage {
+        grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+        gap: 1.5rem;
       }
     }
 
-    .checkout-step {
-      margin: 0;
+    .checkout-explorer-preview .checkout-frame img {
+      width: 100%;
+      height: auto;
+      max-height: min(48vh, 420px);
+      object-fit: contain;
+      object-position: top center;
+      display: block;
+      transition: opacity 0.25s ease;
     }
 
-    .checkout-step-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.5rem 0.75rem;
-      margin-bottom: 0.65rem;
+    .checkout-explorer-preview.is-fading .checkout-frame img {
+      opacity: 0.35;
     }
 
-    .checkout-step-num {
+    .checkout-explorer-detail {
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: rgba(248, 250, 252, 0.65);
+      padding: 1.15rem 1.25rem;
+      min-height: 8rem;
+    }
+
+    .dark .checkout-explorer-detail {
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(16, 25, 34, 0.65);
+    }
+
+    .checkout-explorer-detail-num {
       font-size: 0.625rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #6366f1;
+      margin-bottom: 0.35rem;
     }
 
-    .checkout-step-title {
+    .checkout-explorer-detail-title {
       font-size: 0.9375rem;
       font-weight: 700;
       color: #0f172a;
       line-height: 1.35;
+      margin-bottom: 0.5rem;
     }
 
-    .dark .checkout-step-title {
+    .dark .checkout-explorer-detail-title {
       color: #f8fafc;
     }
 
-    .checkout-step-caption {
+    .checkout-explorer-detail-caption {
       font-size: 0.8125rem;
       line-height: 1.55;
       color: #64748b;
-      max-width: 42rem;
-      margin-bottom: 0.85rem;
     }
 
-    .dark .checkout-step-caption {
+    .dark .checkout-explorer-detail-caption {
       color: #94a3b8;
+    }
+
+    .checkout-explorer-detail-extra {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: #64748b;
+      margin-top: 0.65rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .dark .checkout-explorer-detail-extra {
+      color: #94a3b8;
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .checkout-explorer-detail-extra[hidden] {
+      display: none;
+    }
+
+    .checkout-explorer-nav {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .checkout-explorer-nav {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .checkout-explorer-nav {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+    }
+
+    .checkout-explorer-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.45rem;
+      padding: 0.45rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .dark .checkout-explorer-tab {
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(16, 25, 34, 0.75);
+    }
+
+    .checkout-explorer-tab:hover {
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+
+    .checkout-explorer-tab.is-active {
+      border-color: rgba(99, 102, 241, 0.55);
+      box-shadow: 0 8px 22px rgba(99, 102, 241, 0.12);
+    }
+
+    .checkout-explorer-tab:focus-visible {
+      outline: 2px solid #6366f1;
+      outline-offset: 2px;
+    }
+
+    .checkout-explorer-tab-thumb {
+      border-radius: 0.55rem;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(248, 250, 252, 0.9);
+      aspect-ratio: 16 / 10;
+    }
+
+    .dark .checkout-explorer-tab-thumb {
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.45);
+    }
+
+    .checkout-explorer-tab-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .checkout-explorer-tab-label {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #64748b;
+      line-height: 1.3;
+      padding: 0 0.15rem 0.1rem;
+    }
+
+    .dark .checkout-explorer-tab-label {
+      color: #94a3b8;
+    }
+
+    .checkout-explorer-tab.is-active .checkout-explorer-tab-label {
+      color: #6366f1;
+    }
+
+    .checkout-i18n-store {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .checkout-frame {
@@ -458,85 +602,6 @@
     .dark .checkout-frame {
       border-color: rgba(255, 255, 255, 0.08);
       background: rgba(15, 23, 42, 0.45);
-    }
-
-    .checkout-frame img {
-      width: 100%;
-      height: auto;
-      max-height: min(52vh, 440px);
-      object-fit: contain;
-      object-position: top center;
-      display: block;
-    }
-
-    .checkout-step--pair {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-
-    @media (min-width: 900px) {
-      .checkout-step--pair {
-        grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-        gap: 1.25rem;
-      }
-
-      .checkout-step--pair .checkout-frame img {
-        max-height: min(48vh, 400px);
-      }
-    }
-
-    .checkout-validation-label {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #94a3b8;
-      margin-bottom: 0.4rem;
-    }
-
-    .checkout-validation-caption {
-      font-size: 0.75rem;
-      line-height: 1.5;
-      color: #64748b;
-      margin-top: 0.65rem;
-    }
-
-    .dark .checkout-validation-caption {
-      color: #94a3b8;
-    }
-
-    .checkout-step-why {
-      font-size: 0.75rem;
-      line-height: 1.5;
-      color: #64748b;
-      margin-top: 0.65rem;
-      padding-top: 0.65rem;
-      border-top: 1px solid rgba(148, 163, 184, 0.2);
-      max-width: 42rem;
-    }
-
-    .dark .checkout-step-why {
-      color: #94a3b8;
-      border-top-color: rgba(255, 255, 255, 0.08);
-    }
-
-    @media (min-width: 768px) {
-      .checkout-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.25rem;
-        align-items: start;
-      }
-
-      .stack-panel--demo .checkout-frame img {
-        max-height: min(56vh, 460px);
-      }
-
-      .stack-panel--demo .checkout-step--pair .checkout-frame img {
-        max-height: min(40vh, 340px);
-      }
     }
 
     @media (min-width: 768px) and (max-height: 900px) {
@@ -1118,8 +1183,8 @@
         </section>
       </div>
 
-      <!-- CART & CHECKOUT FLOW — one sticky panel per step so Metrics waits until the end -->
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 7;">
+      <!-- CART & CHECKOUT FLOW — interactive step explorer -->
+      <div class="stack-panel stack-panel--expand bg-white dark:bg-background-dark" style="z-index: 7;">
         <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
           <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.checkoutTag">Interface Evidence</p>
@@ -1130,111 +1195,127 @@
             </p>
           </div>
 
-          <figure class="checkout-step max-w-[1140px] mx-auto">
-            <div class="checkout-step-header">
-              <span class="checkout-step-num">01</span>
-              <h3 class="checkout-step-title" data-i18n="babusgatos.checkout1Title">Product selection &amp; cart preview</h3>
+          <div class="checkout-explorer" id="checkout-explorer">
+            <div class="checkout-i18n-store" aria-hidden="true">
+              <span data-i18n="babusgatos.checkout1Title">Product selection &amp; cart preview</span>
+              <span data-i18n="babusgatos.checkout1Caption">Customers can browse pre-order products and keep the cart visible while adding items.</span>
+              <span data-i18n="babusgatos.checkout2Title">Editable cart &amp; previous orders</span>
+              <span data-i18n="babusgatos.checkout2Caption">Quantities can be adjusted directly in the cart, while previous orders support repeat bakery purchases.</span>
+              <span data-i18n="babusgatos.checkout3Title">Payment &amp; contact details</span>
+              <span data-i18n="babusgatos.checkout3Caption">Checkout stays lightweight, while inline validation helps customers correct issues directly where they happen.</span>
+              <span data-i18n="babusgatos.checkout3ValidationLabel">Validation state</span>
+              <span data-i18n="babusgatos.checkout3ValidationCaption">Error messages appear close to the relevant input field, reducing confusion before the order is submitted.</span>
+              <span data-i18n="babusgatos.checkout4Title">Confirmation</span>
+              <span data-i18n="babusgatos.checkout4Caption">The flow ends with a clear confirmation that the order has been recorded.</span>
+              <span data-i18n="babusgatos.checkout5Title">Post-order review</span>
+              <span data-i18n="babusgatos.checkout5Caption">After completing the order, customers can return and review what they ordered instead of losing access to the order state.</span>
+              <span data-i18n="babusgatos.checkout5Why">This reduces post-checkout uncertainty and gives customers confidence that their order was recorded correctly.</span>
             </div>
-            <p class="checkout-step-caption" data-i18n="babusgatos.checkout1Caption">
-              Customers can browse pre-order products and keep the cart visible while adding items.
-            </p>
-            <div class="checkout-frame">
-              <img src="img/babusgatos/shop/01-chart.jpg" alt="Pre-order product grid with cart overlay open"
-                loading="lazy" decoding="async" />
-            </div>
-          </figure>
-        </section>
-      </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 8;">
-        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
-          <figure class="checkout-step max-w-[1140px] mx-auto">
-            <div class="checkout-step-header">
-              <span class="checkout-step-num">02</span>
-              <h3 class="checkout-step-title" data-i18n="babusgatos.checkout2Title">Editable cart &amp; previous orders</h3>
-            </div>
-            <p class="checkout-step-caption" data-i18n="babusgatos.checkout2Caption">
-              Quantities can be adjusted directly in the cart, while previous orders support repeat bakery purchases.
-            </p>
-            <div class="checkout-frame">
-              <img src="img/babusgatos/shop/02-order-1.png" alt="Checkout cart with quantity controls and previous order panel"
-                loading="lazy" decoding="async" />
-            </div>
-          </figure>
-        </section>
-      </div>
-
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
-        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
-          <div class="checkout-step max-w-[1140px] mx-auto">
-            <div class="checkout-step-header">
-              <span class="checkout-step-num">03</span>
-              <h3 class="checkout-step-title" data-i18n="babusgatos.checkout3Title">Payment &amp; contact details</h3>
-            </div>
-            <p class="checkout-step-caption" data-i18n="babusgatos.checkout3Caption">
-              Checkout stays lightweight, while inline validation helps customers correct issues directly where they happen.
-            </p>
-            <div class="checkout-step--pair">
-              <figure class="m-0">
+            <div class="checkout-explorer-stage">
+              <div class="checkout-explorer-preview" id="checkout-explorer-preview">
                 <div class="checkout-frame">
-                  <img src="img/babusgatos/shop/03-order-02.png" alt="Checkout payment method selection and contact details"
-                    loading="lazy" decoding="async" />
+                  <img id="checkout-explorer-img" src="img/babusgatos/shop/01-chart.jpg"
+                    alt="Pre-order product grid with cart overlay open" loading="eager" decoding="async" />
                 </div>
-              </figure>
-              <figure class="m-0">
-                <p class="checkout-validation-label" data-i18n="babusgatos.checkout3ValidationLabel">Validation state</p>
-                <div class="checkout-frame">
-                  <img src="img/babusgatos/shop/03-order-wit-error.png" alt="Checkout form showing inline validation errors"
-                    loading="lazy" decoding="async" />
-                </div>
-                <figcaption class="checkout-validation-caption" data-i18n="babusgatos.checkout3ValidationCaption">
-                  Error messages appear close to the relevant input field, reducing confusion before the order is submitted.
-                </figcaption>
-              </figure>
+              </div>
+
+              <div class="checkout-explorer-detail" id="checkout-explorer-detail" aria-live="polite">
+                <p class="checkout-explorer-detail-num" id="checkout-explorer-num">01</p>
+                <h3 class="checkout-explorer-detail-title" id="checkout-explorer-title">Product selection &amp; cart preview</h3>
+                <p class="checkout-explorer-detail-caption" id="checkout-explorer-caption">
+                  Customers can browse pre-order products and keep the cart visible while adding items.
+                </p>
+                <p class="checkout-explorer-detail-extra" id="checkout-explorer-extra" hidden></p>
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 10;">
-        <section class="max-w-[1200px] mx-auto px-6 py-12 sm:py-16 md:py-20 w-full">
-          <div class="checkout-row space-y-7 md:space-y-0 max-w-[1140px] mx-auto">
-            <figure class="checkout-step">
-              <div class="checkout-step-header">
-                <span class="checkout-step-num">04</span>
-                <h3 class="checkout-step-title" data-i18n="babusgatos.checkout4Title">Confirmation</h3>
-              </div>
-              <p class="checkout-step-caption" data-i18n="babusgatos.checkout4Caption">
-                The flow ends with a clear confirmation that the order has been recorded.
-              </p>
-              <div class="checkout-frame">
-                <img src="img/babusgatos/shop/04-succes.png" alt="Order confirmation with successfully paid message"
-                  loading="lazy" decoding="async" />
-              </div>
-            </figure>
+            <div class="checkout-explorer-nav" role="tablist" aria-label="Checkout flow steps">
+              <button type="button" role="tab" class="checkout-explorer-tab is-active"
+                data-num="01"
+                data-img="img/babusgatos/shop/01-chart.jpg"
+                data-alt="Pre-order product grid with cart overlay open"
+                data-title-key="babusgatos.checkout1Title"
+                data-caption-key="babusgatos.checkout1Caption"
+                aria-selected="true" aria-controls="checkout-explorer-detail" id="checkout-tab-0">
+                <span class="checkout-explorer-tab-thumb">
+                  <img src="img/babusgatos/shop/01-chart.jpg" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="checkout-explorer-tab-label" data-i18n="babusgatos.checkout1Thumb">Cart preview</span>
+              </button>
 
-            <figure class="checkout-step">
-              <div class="checkout-step-header">
-                <span class="checkout-step-num">05</span>
-                <h3 class="checkout-step-title" data-i18n="babusgatos.checkout5Title">Post-order review</h3>
-              </div>
-              <p class="checkout-step-caption" data-i18n="babusgatos.checkout5Caption">
-                After completing the order, customers can return and review what they ordered instead of losing access to the order state.
-              </p>
-              <div class="checkout-frame">
-                <img src="img/babusgatos/shop/05-reveu-order.png" alt="Submitted order summary for post-checkout review"
-                  loading="lazy" decoding="async" />
-              </div>
-              <p class="checkout-step-why" data-i18n="babusgatos.checkout5Why">
-                This reduces post-checkout uncertainty and gives customers confidence that their order was recorded correctly.
-              </p>
-            </figure>
+              <button type="button" role="tab" class="checkout-explorer-tab"
+                data-num="02"
+                data-img="img/babusgatos/shop/02-order-1.png"
+                data-alt="Checkout cart with quantity controls and previous order panel"
+                data-title-key="babusgatos.checkout2Title"
+                data-caption-key="babusgatos.checkout2Caption"
+                aria-selected="false" aria-controls="checkout-explorer-detail" id="checkout-tab-1">
+                <span class="checkout-explorer-tab-thumb">
+                  <img src="img/babusgatos/shop/02-order-1.png" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="checkout-explorer-tab-label" data-i18n="babusgatos.checkout2Thumb">Editable cart</span>
+              </button>
+
+              <button type="button" role="tab" class="checkout-explorer-tab"
+                data-num="03"
+                data-img="img/babusgatos/shop/03-order-02.png"
+                data-alt="Checkout payment method selection and contact details"
+                data-title-key="babusgatos.checkout3Title"
+                data-caption-key="babusgatos.checkout3Caption"
+                aria-selected="false" aria-controls="checkout-explorer-detail" id="checkout-tab-2">
+                <span class="checkout-explorer-tab-thumb">
+                  <img src="img/babusgatos/shop/03-order-02.png" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="checkout-explorer-tab-label" data-i18n="babusgatos.checkout3Thumb">Payment</span>
+              </button>
+
+              <button type="button" role="tab" class="checkout-explorer-tab"
+                data-num="04"
+                data-img="img/babusgatos/shop/03-order-wit-error.png"
+                data-alt="Checkout form showing inline validation errors"
+                data-title-key="babusgatos.checkout3ValidationLabel"
+                data-caption-key="babusgatos.checkout3ValidationCaption"
+                aria-selected="false" aria-controls="checkout-explorer-detail" id="checkout-tab-3">
+                <span class="checkout-explorer-tab-thumb">
+                  <img src="img/babusgatos/shop/03-order-wit-error.png" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="checkout-explorer-tab-label" data-i18n="babusgatos.checkout3ValidationThumb">Validation</span>
+              </button>
+
+              <button type="button" role="tab" class="checkout-explorer-tab"
+                data-num="05"
+                data-img="img/babusgatos/shop/04-succes.png"
+                data-alt="Order confirmation with successfully paid message"
+                data-title-key="babusgatos.checkout4Title"
+                data-caption-key="babusgatos.checkout4Caption"
+                aria-selected="false" aria-controls="checkout-explorer-detail" id="checkout-tab-4">
+                <span class="checkout-explorer-tab-thumb">
+                  <img src="img/babusgatos/shop/04-succes.png" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="checkout-explorer-tab-label" data-i18n="babusgatos.checkout4Thumb">Confirmation</span>
+              </button>
+
+              <button type="button" role="tab" class="checkout-explorer-tab"
+                data-num="06"
+                data-img="img/babusgatos/shop/05-reveu-order.png"
+                data-alt="Submitted order summary for post-checkout review"
+                data-title-key="babusgatos.checkout5Title"
+                data-caption-key="babusgatos.checkout5Caption"
+                data-extra-key="babusgatos.checkout5Why"
+                aria-selected="false" aria-controls="checkout-explorer-detail" id="checkout-tab-5">
+                <span class="checkout-explorer-tab-thumb">
+                  <img src="img/babusgatos/shop/05-reveu-order.png" alt="" loading="lazy" decoding="async" />
+                </span>
+                <span class="checkout-explorer-tab-label" data-i18n="babusgatos.checkout5Thumb">Post-order</span>
+              </button>
+            </div>
           </div>
         </section>
       </div>
 
       <!-- METRICS -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 11;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 8;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24">
           <div class="text-center mb-12">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3" data-i18n="babusgatos.metricsTag">Results</p>
@@ -1262,7 +1343,7 @@
       </div>
 
       <!-- PRODUCT DEMOS — one stack-panel per demo so Outro only covers after each is scrolled -->
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 12;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 9;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-4">
             <p class="text-[10px] font-bold text-primary uppercase tracking-widest" data-i18n="babusgatos.demosTag">Product Demos</p>
@@ -1293,7 +1374,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 13;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 10;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -1316,7 +1397,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 14;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 11;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <div class="space-y-4 lg:col-span-2">
@@ -1339,7 +1420,7 @@
         </section>
       </div>
 
-      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 15;">
+      <div class="stack-panel stack-panel--demo bg-white dark:bg-background-dark" style="z-index: 12;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 w-full">
           <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center max-w-[1140px] mx-auto">
             <figure class="demo-video-card order-2 lg:order-1 lg:col-span-3 glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/5">
@@ -1363,7 +1444,7 @@
       </div>
 
       <!-- OUTRO -->
-      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 16;">
+      <div class="stack-panel bg-white dark:bg-background-dark" style="z-index: 13;">
         <section class="max-w-[1200px] mx-auto px-6 py-16 sm:py-24 text-center">
           <div class="max-w-2xl mx-auto space-y-6 sm:space-y-8">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter italic uppercase break-words"
@@ -1596,6 +1677,105 @@
   </script>
   <script src="js/theme.js"></script>
   <script src="js/language.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const explorer = document.getElementById("checkout-explorer");
+      if (!explorer) return;
+
+      const preview = document.getElementById("checkout-explorer-preview");
+      const mainImg = document.getElementById("checkout-explorer-img");
+      const numEl = document.getElementById("checkout-explorer-num");
+      const titleEl = document.getElementById("checkout-explorer-title");
+      const captionEl = document.getElementById("checkout-explorer-caption");
+      const extraEl = document.getElementById("checkout-explorer-extra");
+      const tabs = Array.from(explorer.querySelectorAll(".checkout-explorer-tab"));
+      const i18nStore = explorer.querySelector(".checkout-i18n-store");
+
+      function getI18nText(key) {
+        if (!key || !i18nStore) return "";
+        const source = i18nStore.querySelector(`[data-i18n="${key}"]`);
+        return source ? source.textContent.trim() : "";
+      }
+
+      function activateTab(tab) {
+        if (!tab || tab.classList.contains("is-active")) return;
+
+        tabs.forEach((t) => {
+          const isActive = t === tab;
+          t.classList.toggle("is-active", isActive);
+          t.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        preview?.classList.add("is-fading");
+
+        window.setTimeout(() => {
+          if (mainImg) {
+            mainImg.src = tab.dataset.img || "";
+            mainImg.alt = tab.dataset.alt || "";
+          }
+          if (numEl) numEl.textContent = tab.dataset.num || "";
+          if (titleEl) titleEl.textContent = getI18nText(tab.dataset.titleKey);
+          if (captionEl) captionEl.textContent = getI18nText(tab.dataset.captionKey);
+
+          const extraKey = tab.dataset.extraKey;
+          if (extraEl) {
+            if (extraKey) {
+              extraEl.textContent = getI18nText(extraKey);
+              extraEl.hidden = false;
+            } else {
+              extraEl.textContent = "";
+              extraEl.hidden = true;
+            }
+          }
+
+          preview?.classList.remove("is-fading");
+        }, 120);
+      }
+
+      function refreshActiveCopy() {
+        const active = tabs.find((t) => t.classList.contains("is-active"));
+        if (!active) return;
+        if (titleEl) titleEl.textContent = getI18nText(active.dataset.titleKey);
+        if (captionEl) captionEl.textContent = getI18nText(active.dataset.captionKey);
+        const extraKey = active.dataset.extraKey;
+        if (extraEl) {
+          if (extraKey) {
+            extraEl.textContent = getI18nText(extraKey);
+            extraEl.hidden = false;
+          } else {
+            extraEl.textContent = "";
+            extraEl.hidden = true;
+          }
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => activateTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          const index = tabs.indexOf(tab);
+          let nextIndex = null;
+
+          if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+            nextIndex = (index + 1) % tabs.length;
+          } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+            nextIndex = (index - 1 + tabs.length) % tabs.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = tabs.length - 1;
+          }
+
+          if (nextIndex !== null) {
+            event.preventDefault();
+            tabs[nextIndex].focus();
+            activateTab(tabs[nextIndex]);
+          }
+        });
+      });
+
+      document.addEventListener("language-changed", refreshActiveCopy);
+    });
+  </script>
   <script src="js/bot-drag.js?v=2"></script>
   <script>
     document.getElementById("current-year").textContent = new Date().getFullYear();
