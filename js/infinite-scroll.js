@@ -2,11 +2,14 @@
  * Single Column Infinite Vertical Scroll Engine (desktop only)
  *
  * On viewports below lg (1024px), project cards scroll normally with the page.
+ * Off-screen card videos are paused to reduce decode/compositing jank.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
   const col1 = document.getElementById("scroll-col-1");
   const container = document.getElementById("infinite-scroll-container");
+  const clipRoot =
+    container?.querySelector(".scroll-mask-wrapper") || container;
 
   if (!col1) return;
 
@@ -21,11 +24,64 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentSpeed1 = baseSpeed1;
   let height1 = 0;
   let lastTime = performance.now();
+  let frameCount = 0;
+  let videos = [];
 
   // Click tracking — transform animations can drop native click
   let pointerDownLink = null;
   let pointerDownX = 0;
   let pointerDownY = 0;
+
+  const refreshVideos = () => {
+    videos = Array.from(col1.querySelectorAll("video"));
+    videos.forEach((video) => {
+      video.muted = true;
+      video.playsInline = true;
+      video.removeAttribute("autoplay");
+      // Start paused; visibility sync will play only on-screen ones
+      try {
+        video.pause();
+      } catch (_) {}
+    });
+    syncVideoPlayback();
+  };
+
+  const isVideoVisible = (video) => {
+    const root = isAnimated && clipRoot ? clipRoot : null;
+    const rootRect = root
+      ? root.getBoundingClientRect()
+      : {
+          top: 0,
+          bottom: window.innerHeight,
+          left: 0,
+          right: window.innerWidth,
+        };
+    const rect = video.getBoundingClientRect();
+    // Small margin so cards start/stop slightly before fully entering/leaving
+    const margin = 40;
+    return (
+      rect.bottom > rootRect.top - margin &&
+      rect.top < rootRect.bottom + margin &&
+      rect.right > rootRect.left &&
+      rect.left < rootRect.right
+    );
+  };
+
+  const syncVideoPlayback = () => {
+    videos.forEach((video) => {
+      const visible = isVideoVisible(video);
+      if (visible) {
+        if (video.paused) {
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {});
+          }
+        }
+      } else if (!video.paused) {
+        video.pause();
+      }
+    });
+  };
 
   const updateHeights = () => {
     if (!isAnimated) return;
@@ -35,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const animationLoop = (time) => {
     if (!isAnimated) return;
 
-    const delta = time - lastTime;
+    const delta = Math.min(time - lastTime, 32); // cap hitch spikes
     lastTime = time;
 
     if (!height1) {
@@ -50,7 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (y1 <= -height1) y1 += height1;
     else if (y1 > 0) y1 -= height1;
 
-    col1.style.transform = `translateY(${y1}px)`;
+    col1.style.transform = `translate3d(0, ${y1}px, 0)`;
+
+    frameCount += 1;
+    // Sync video play/pause every ~8 frames (~130ms) — cheap enough, not every frame
+    if (frameCount % 8 === 0) syncVideoPlayback();
+
     animationId = requestAnimationFrame(animationLoop);
   };
 
@@ -72,8 +133,13 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSpeed1 = baseSpeed1;
     targetSpeed1 = baseSpeed1;
     lastTime = performance.now();
+    frameCount = 0;
 
-    setTimeout(updateHeights, 150);
+    refreshVideos();
+    setTimeout(() => {
+      updateHeights();
+      syncVideoPlayback();
+    }, 150);
     animationId = requestAnimationFrame(animationLoop);
   };
 
@@ -87,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     col1.style.transform = "";
     height1 = 0;
     y1 = 0;
+    refreshVideos();
   };
 
   const onBreakpointChange = () => {
@@ -110,9 +177,21 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.assign(href);
   };
 
-  window.addEventListener("resize", updateHeights);
+  window.addEventListener("resize", () => {
+    updateHeights();
+    syncVideoPlayback();
+  });
   DESKTOP_MQ.addEventListener("change", onBreakpointChange);
   onBreakpointChange();
+
+  // Mobile / non-animated: still pause off-screen videos while page scrolls
+  if (!DESKTOP_MQ.matches) {
+    refreshVideos();
+  }
+  window.addEventListener("scroll", () => {
+    if (isAnimated) return;
+    syncVideoPlayback();
+  }, { passive: true });
 
   if (container) {
     container.addEventListener("mouseenter", () => {
@@ -120,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Pause so cards stay still long enough for a reliable click
       targetSpeed1 = 0;
       currentSpeed1 = 0;
+      syncVideoPlayback();
     });
 
     container.addEventListener("mouseleave", () => {
@@ -139,7 +219,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (y1 <= -height1) y1 += height1;
         else if (y1 > 0) y1 -= height1;
 
-        col1.style.transform = `translateY(${y1}px)`;
+        col1.style.transform = `translate3d(0, ${y1}px, 0)`;
+        syncVideoPlayback();
         e.preventDefault();
       },
       { passive: false }
@@ -169,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const dy = Math.abs(e.clientY - pointerDownY);
         if (dx > 8 || dy > 8) return;
 
-        // Prefer the link under the pointer after release
         const under = document.elementFromPoint(e.clientX, e.clientY);
         const releaseLink = findCardLink(under) || link;
         e.preventDefault();
@@ -226,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (y1 <= -height1) y1 += height1;
         else if (y1 > 0) y1 -= height1;
 
-        col1.style.transform = `translateY(${y1}px)`;
+        col1.style.transform = `translate3d(0, ${y1}px, 0)`;
         e.preventDefault();
       },
       { passive: false }
