@@ -67,11 +67,55 @@
       background-color: #334155;
     }
 
-    /* Infinite scroll: mask and clip only on desktop */
+    /* Infinite scroll: full-viewport column on desktop (clips hard, no fade mask) */
     @media (min-width: 1024px) {
+      .work-hero-grid {
+        min-height: 0;
+      }
+
+      .work-hero-grid > * {
+        min-height: 0;
+      }
+
+      /* Text column: only interactive children capture clicks (avoids covering cards) */
+      .work-hero-copy {
+        pointer-events: none;
+      }
+
+      .work-hero-copy a,
+      .work-hero-copy button {
+        pointer-events: auto;
+      }
+
+      #infinite-scroll-container.is-scroll-animated {
+        position: relative;
+        z-index: 30;
+        height: 100%;
+        max-height: 100%;
+        min-height: 0;
+        align-self: stretch;
+      }
+
       #infinite-scroll-container.is-scroll-animated .scroll-mask-wrapper {
-        mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-        -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        height: 100%;
+        min-height: 0;
+      }
+
+      #infinite-scroll-container.is-scroll-animated #scroll-col-1 {
+        padding-top: 0;
+      }
+
+      /* Media must not steal clicks from the parent case-study links */
+      #scroll-col-1 a,
+      #scroll-col-1 a * {
+        pointer-events: auto;
+        cursor: pointer;
+      }
+
+      #scroll-col-1 a img,
+      #scroll-col-1 a video,
+      #scroll-col-1 a source {
+        pointer-events: none;
       }
     }
 
@@ -279,13 +323,13 @@
     <main class="flex flex-col">
       <!-- === HERO SECTION (FIXED LAYER 0) === -->
       <div
-        class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-0 overflow-visible lg:overflow-hidden flex flex-col justify-start lg:justify-center bg-background-light dark:bg-background-dark pt-4 lg:pt-12 lg:pb-6">
-        <section class="relative w-full">
-          <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
-            <div class="grid gap-8 lg:gap-12 lg:grid-cols-2 lg:items-center">
+        class="relative lg:fixed lg:inset-0 min-h-screen lg:min-h-0 z-[1] overflow-visible lg:overflow-hidden flex flex-col justify-start bg-background-light dark:bg-background-dark pt-4 lg:pt-0 lg:pb-0">
+        <section class="relative w-full lg:h-full lg:min-h-0">
+          <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 lg:h-full lg:min-h-0">
+            <div class="work-hero-grid grid gap-8 lg:gap-12 lg:grid-cols-2 lg:items-stretch lg:h-full">
 
               <!-- LEFT TEXT COLUMN -->
-              <div class="flex flex-col items-start gap-3 sm:gap-4 relative z-10 pointer-events-auto">
+              <div class="work-hero-copy flex flex-col items-start justify-center gap-3 sm:gap-4 relative z-10 lg:py-12 lg:min-h-0">
                 <!-- HERO TITLE BADGE -->
                 <div
                   class="hero-anim-badge inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
@@ -333,7 +377,7 @@
 
               <!-- RIGHT ANIMATED COLUMN (Single Column replaces Video block) -->
               <div
-                class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0 h-auto lg:h-[80vh] pointer-events-auto"
+                class="relative lg:ml-auto w-full max-w-[600px] mx-auto lg:mx-0 h-auto lg:h-full lg:min-h-0 pointer-events-auto"
                 id="infinite-scroll-container">
                 <!-- Decorative Lights matching original logic -->
                 <div
@@ -356,7 +400,7 @@
                         box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5), 0 0 10px rgba(139, 92, 246, 0.5);
                       }
                     </style>
-                    <div id="scroll-col-1" class="flex flex-col gap-8 w-full lg:will-change-transform lg:pt-12">
+                    <div id="scroll-col-1" class="flex flex-col gap-8 w-full lg:will-change-transform">
 
                                             <!-- 0. Bakery Live Tracker -->
                       <a href="case-study-babusgatos.html"
