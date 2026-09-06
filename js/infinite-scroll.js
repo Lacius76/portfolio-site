@@ -141,12 +141,15 @@ document.addEventListener("DOMContentLoaded", () => {
       syncVideoPlayback();
     }, 150);
     animationId = requestAnimationFrame(animationLoop);
+    startScrollHintIntro();
   };
 
   const disableAnimation = () => {
     if (!isAnimated) return;
     isAnimated = false;
-    container?.classList.remove("is-scroll-animated");
+    container?.classList.remove("is-scroll-animated", "is-hint-intro");
+    clearTimeout(hintIntroTimer);
+    hintIntroTimer = null;
 
     stopAnimation();
     col1.innerHTML = originalHTML;
@@ -154,6 +157,24 @@ document.addEventListener("DOMContentLoaded", () => {
     height1 = 0;
     y1 = 0;
     refreshVideos();
+  };
+
+  let hintIntroTimer = null;
+
+  const endScrollHintIntro = () => {
+    container?.classList.remove("is-hint-intro");
+    clearTimeout(hintIntroTimer);
+    hintIntroTimer = null;
+  };
+
+  const startScrollHintIntro = () => {
+    if (!container) return;
+    endScrollHintIntro();
+    // Brief auto-show so first-time visitors notice scrollability
+    requestAnimationFrame(() => {
+      container.classList.add("is-hint-intro");
+      hintIntroTimer = setTimeout(endScrollHintIntro, 3800);
+    });
   };
 
   const onBreakpointChange = () => {
@@ -221,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         col1.style.transform = `translate3d(0, ${y1}px, 0)`;
         syncVideoPlayback();
+        endScrollHintIntro();
         e.preventDefault();
       },
       { passive: false }
