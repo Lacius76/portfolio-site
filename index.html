@@ -371,14 +371,15 @@
                 </h1>
                 <h2
                   class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-base font-normal leading-relaxed max-w-xl">
-                  <span data-i18n="index.heroSubtitle">Hi, I'm László Földváry — Senior Product Designer & Design Engineer. I turn complex ideas into intuitive digital products, combining product strategy, UX, design systems, and AI-assisted development from concept to working software.</span>
+                  <span class="sm:hidden" data-i18n="index.heroSubtitleMobile">Hi, I'm László Földváry — Senior Product Designer &amp; Design Engineer. I turn complex ideas into intuitive digital products.</span>
+                  <span class="hidden sm:inline" data-i18n="index.heroSubtitle">Hi, I'm László Földváry — Senior Product Designer &amp; Design Engineer. I turn complex ideas into intuitive digital products, combining product strategy, UX, design systems, and AI-assisted development from concept to working software.</span>
                 </h2>
               </div>
               <div class="flex flex-col sm:flex-row gap-6 mt-2 pointer-events-auto w-full z-10"
                 style="max-width: 600px;">
 
-                <!-- Left: Mini Custom Calendar UI — JS-driven, auto dates -->
-                <div class="flex flex-col gap-2 shrink-0 w-full" style="max-width: 300px;">
+                <!-- Left: Mini Custom Calendar UI — desktop only (hidden on mobile) -->
+                <div class="hidden sm:flex flex-col gap-2 shrink-0 w-full" style="max-width: 300px;">
                   <h3 class="text-[#111418] dark:text-white text-base font-semibold" data-i18n="index.bookAppointment">
                     Book a Call</h3>
                   <div id="mini-cal-widget"
@@ -646,8 +647,8 @@
 
 
 
-                <!-- Right: CTA and Stats -->
-                <div class="flex flex-col gap-6 w-full sm:pt-9" style="max-width: 250px;">
+                <!-- Right: CTA and Stats — desktop only -->
+                <div class="hidden sm:flex flex-col gap-6 w-full sm:pt-9" style="max-width: 250px;">
                   <a href="work.html"
                     class="hero-anim-btn-secondary btn-sweep-outline flex min-w-[160px] w-fit items-center justify-center rounded-lg h-12 px-6 border border-gray-200 dark:border-gray-700 text-base font-medium bg-white dark:bg-transparent"
                     data-i18n="index.viewSelectedWork">
