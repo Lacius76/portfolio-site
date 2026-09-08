@@ -38,7 +38,11 @@ import { fileURLToPath } from "node:url";
 
 const PORT = 8787;
 const REDIRECT_URI = `http://127.0.0.1:${PORT}/oauth/callback`;
-const SCOPE = "https://www.googleapis.com/auth/calendar.freebusy";
+const SCOPES = [
+  "https://www.googleapis.com/auth/calendar.freebusy",
+  "https://www.googleapis.com/auth/calendar.events",
+];
+const SCOPE = SCOPES.join(" ");
 const AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 const TOKEN_URL = "https://oauth2.googleapis.com/token";
 
@@ -114,8 +118,9 @@ console.log("Where to add it:");
 console.log("  Google Cloud Console → APIs & Services → Credentials");
 console.log("  → OAuth 2.0 Client IDs → your Web client");
 console.log("  → Authorized redirect URIs → Add URI → Save\n");
-console.log("Scope requested (availability only):");
-console.log(`  ${SCOPE}\n`);
+console.log("Scopes requested (FreeBusy + event create):");
+SCOPES.forEach((s) => console.log(`  ${s}`));
+console.log("");
 console.log("Open this URL in your browser (as the calendar owner / test user):\n");
 console.log(`  ${authPageUrl}\n`);
 console.log("Waiting for Google to redirect back to the local callback…\n");
@@ -195,6 +200,8 @@ const server = http.createServer(async (req, res) => {
     console.log("  GOOGLE_CLIENT_SECRET");
     console.log("  GOOGLE_CALENDAR_ID   (often: primary)");
     console.log("  BOOKING_TZ=Europe/Budapest\n");
+    console.log("Replace GOOGLE_REFRESH_TOKEN in BOTH local .env and Netlify.");
+    console.log("Old freebusy-only tokens cannot create events.\n");
     console.log("This script did NOT save the token to a file.\n");
 
     server.close();

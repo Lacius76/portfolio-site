@@ -1,8 +1,9 @@
 /**
  * Custom booking calendar
  * Timezone: Europe/Budapest
- * Availability: Netlify Function → Google FreeBusy (production fail-closed)
- * Mock only on plain local Live Server when the function is unreachable
+ * Availability: GET calendar-availability (FreeBusy)
+ * Booking: POST calendar-book then Netlify Forms (Calendar is source of truth)
+ * Mock availability only on plain local Live Server when the function is unreachable
  */
 (function () {
   "use strict";
@@ -12,6 +13,7 @@
   const WORK_END = 16; // exclusive end → last slot 15:00–16:00
   const SLOT_HOURS = [8, 9, 10, 11, 12, 13, 14, 15];
   const AVAILABILITY_URL = "/.netlify/functions/calendar-availability";
+  const BOOK_URL = "/.netlify/functions/calendar-book";
 
   const DOW_KEYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
@@ -24,6 +26,7 @@
     busySet: new Set(),
     loading: false,
     availabilityError: null,
+    bookingSubmitLocked: false,
   };
 
   let rootEl = null;
@@ -473,6 +476,8 @@
         if (state.availabilityError) return;
         state.selectedKey = slotKey(dateKey, hour);
         state.selectedDay = dateKey;
+        clearBookingSubmitError();
+        syncBookingHiddenFields();
         render();
       });
     }
@@ -652,9 +657,186 @@
       message.focus();
     }
 
+    syncBookingHiddenFields();
+    clearBookingSubmitError();
+
     if (form) {
       form.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  }
+
+  function getSelectedSlot() {
+    if (!state.selectedKey || state.availabilityError) return null;
+    const [dateKey, timePart] = state.selectedKey.split("T");
+    const hour = Number(timePart.slice(0, 2));
+    if (!Number.isFinite(hour) || hour < WORK_START || hour >= WORK_END) return null;
+    return {
+      start: `${dateKey}T${pad2(hour)}:00:00`,
+      end: `${dateKey}T${pad2(hour + 1)}:00:00`,
+      timeZone: TZ,
+      dateKey,
+      hour,
+    };
+  }
+
+  function syncBookingHiddenFields() {
+    const slot = getSelectedSlot();
+    const startEl = document.getElementById("booking_start");
+    const endEl = document.getElementById("booking_end");
+    const tzEl = document.getElementById("booking_tz");
+    if (startEl) startEl.value = slot ? slot.start : "";
+    if (endEl) endEl.value = slot ? slot.end : "";
+    if (tzEl) tzEl.value = TZ;
+  }
+
+  function clearBookingSubmitError() {
+    const box = document.getElementById("booking-submit-error");
+    if (!box) return;
+    box.classList.add("hidden");
+    box.textContent = "";
+  }
+
+  function showBookingSubmitError(message) {
+    const box = document.getElementById("booking-submit-error");
+    if (!box) return;
+    box.textContent = message;
+    box.classList.remove("hidden");
+    box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function errorMessageForCode(code, status) {
+    if (code === "slot_busy" || status === 409) {
+      return t(
+        "booking.slotBusy",
+        "That time slot was just taken. Please choose another available time."
+      );
+    }
+    if (code === "validation" || status === 400) {
+      return t(
+        "booking.validationError",
+        "Please check your details and selected time, then try again."
+      );
+    }
+    return t(
+      "booking.bookUnavailable",
+      "Booking is temporarily unavailable. Your message was not sent."
+    );
+  }
+
+  function setSubmitLoading(isLoading) {
+    const btn = document.querySelector('form[name="contact"] button[type="submit"]');
+    if (!btn) return;
+    btn.disabled = isLoading;
+    btn.setAttribute("aria-busy", isLoading ? "true" : "false");
+  }
+
+  async function bookSlotOnServer(slot, form) {
+    const name = (form.querySelector('[name="name"]') || {}).value || "";
+    const email = (form.querySelector('[name="email"]') || {}).value || "";
+    const message = (form.querySelector('[name="message"]') || {}).value || "";
+
+    const res = await fetch(BOOK_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        start: slot.start,
+        end: slot.end,
+        timeZone: slot.timeZone,
+        name,
+        email,
+        message,
+      }),
+    });
+
+    let data = null;
+    try {
+      data = await res.json();
+    } catch (_) {
+      data = null;
+    }
+
+    return { res, data };
+  }
+
+  async function handleContactSubmit(event) {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement) || form.getAttribute("name") !== "contact") {
+      return;
+    }
+
+    // After Calendar success we re-submit natively for Netlify Forms
+    if (state.bookingSubmitLocked) {
+      return;
+    }
+
+    syncBookingHiddenFields();
+    const slot = getSelectedSlot();
+
+    // Plain contact (no slot): Netlify Forms only — no Calendar call
+    if (!slot) {
+      return;
+    }
+
+    event.preventDefault();
+    clearBookingSubmitError();
+
+    if (state.availabilityError) {
+      showBookingSubmitError(
+        t(
+          "booking.bookUnavailable",
+          "Booking is temporarily unavailable. Your message was not sent."
+        )
+      );
+      return;
+    }
+
+    setSubmitLoading(true);
+
+    try {
+      const { res, data } = await bookSlotOnServer(slot, form);
+      const code = data && typeof data.error === "string" ? data.error : "";
+
+      if (res.ok && data && data.ok === true) {
+        // Calendar confirmed → secondary Netlify Forms notification + success redirect
+        state.bookingSubmitLocked = true;
+        setSubmitLoading(false);
+        form.submit();
+        return;
+      }
+
+      if (res.status === 409 || code === "slot_busy") {
+        state.busySet.add(state.selectedKey);
+        state.selectedKey = null;
+        syncBookingHiddenFields();
+        showBookingSubmitError(errorMessageForCode("slot_busy", 409));
+        await render();
+        return;
+      }
+
+      showBookingSubmitError(errorMessageForCode(code, res.status));
+    } catch (_) {
+      showBookingSubmitError(
+        t(
+          "booking.bookUnavailable",
+          "Booking is temporarily unavailable. Your message was not sent."
+        )
+      );
+    } finally {
+      if (!state.bookingSubmitLocked) {
+        setSubmitLoading(false);
+      }
+    }
+  }
+
+  function wireContactForm() {
+    const form = document.querySelector('form[name="contact"]');
+    if (!form || form.dataset.bookingWired === "1") return;
+    form.dataset.bookingWired = "1";
+    form.addEventListener("submit", handleContactSubmit);
   }
 
   async function render() {
@@ -677,6 +859,7 @@
 
     summaryEl.innerHTML = "";
     summaryEl.appendChild(renderSummary());
+    syncBookingHiddenFields();
   }
 
   function applyDateQuery() {
@@ -709,6 +892,7 @@
     rootEl.append(shellEl, summaryEl);
 
     render();
+    wireContactForm();
 
     document.addEventListener("language-changed", () => render());
   }

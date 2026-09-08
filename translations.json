@@ -236,7 +236,10 @@
       "messagePrefill": "I would like to book a call for the following time slot:",
       "availabilityErrorTitle": "Availability unavailable",
       "availabilityError": "Availability could not be loaded. Booking is temporarily disabled.",
-      "retry": "Retry"
+      "retry": "Retry",
+      "slotBusy": "That time slot was just taken. Please choose another available time.",
+      "validationError": "Please check your details and selected time, then try again.",
+      "bookUnavailable": "Booking is temporarily unavailable. Your message was not sent."
     },
     "contact": {
       "calendarTitle": "Check Availability & Book a Time",
@@ -1235,7 +1238,10 @@
       "messagePrefill": "Ich möchte einen Termin für das folgende Zeitfenster buchen:",
       "availabilityErrorTitle": "Verfügbarkeit nicht ladbar",
       "availabilityError": "Die Verfügbarkeit konnte nicht geladen werden. Die Buchung ist vorübergehend deaktiviert.",
-      "retry": "Erneut versuchen"
+      "retry": "Erneut versuchen",
+      "slotBusy": "Dieses Zeitfenster wurde gerade vergeben. Bitte wählen Sie eine andere verfügbare Zeit.",
+      "validationError": "Bitte prüfen Sie Ihre Angaben und die gewählte Zeit, und versuchen Sie es erneut.",
+      "bookUnavailable": "Die Buchung ist vorübergehend nicht verfügbar. Ihre Nachricht wurde nicht gesendet."
     },
     "contact": {
       "calendarTitle": "Verfügbarkeit prüfen & Termin buchen",
