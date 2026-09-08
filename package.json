@@ -5,7 +5,8 @@
   "main": "tailwind.config.js",
   "scripts": {
     "build:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.min.css --minify",
-    "watch:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.min.css --watch"
+    "watch:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.min.css --watch",
+    "oauth:setup": "node scripts/google-oauth-setup.mjs"
   },
   "repository": {
     "type": "git",

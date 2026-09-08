@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/language-animations.css">
     <link rel="stylesheet" href="css/nav-animations.css">
     <link rel="stylesheet" href="css/footer-social.css" />
+    <link rel="stylesheet" href="css/booking-calendar.css" />
     <link rel="stylesheet" href="css/tailwind.min.css">
     <style>
         body {
@@ -273,57 +274,65 @@
                             <h2 class="text-[#111418] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]"
                                 data-i18n="contact.calendarTitle">Check Availability & Book a Time</h2>
                             <p class="text-[#637588] dark:text-[#94a3b8] text-sm mt-1"
-                                data-i18n="contact.calendarSubtitle">Select an available time slot below to
-                                automatically start a project inquiry.</p>
+                                data-i18n="contact.calendarSubtitle">Select an available 1-hour slot below (Mon–Fri, 08:00–16:00, Europe/Budapest).</p>
                         </div>
                     </div>
 
-                    <div class="w-full overflow-hidden rounded-xl border border-[#e5e7eb] dark:border-[#2a3441] bg-white dark:bg-[#1e293b] relative"
-                        style="height: 680px;">
+                    <!-- Custom booking calendar (STEP 1 — mock availability) -->
+                    <div id="booking-calendar" class="w-full"></div>
+
+                    <!-- LEGACY: Kal.com embed — preserved for easy restore during development
+                         To restore: remove hidden class from #cal-legacy-embed and hide #booking-calendar -->
+                    <div id="cal-legacy-embed" class="hidden w-full overflow-hidden rounded-xl border border-[#e5e7eb] dark:border-[#2a3441] bg-white dark:bg-[#1e293b] relative"
+                        style="height: 680px;" hidden aria-hidden="true">
                         <iframe id="cal-iframe"
                             style="width: 135%; height: 135%; border: none; transform: scale(0.74); transform-origin: top left;"></iframe>
 
                         <script type="text/javascript">
-                            const calIframe = document.getElementById('cal-iframe');
-                            const calUsername = "laszlo.ui"; // Username
-                            const calEvent = "30min"; // Event slug
+                            // Legacy Kal.com loader — inactive while #cal-legacy-embed is hidden
+                            (function () {
+                                const legacy = document.getElementById('cal-legacy-embed');
+                                if (!legacy || legacy.classList.contains('hidden')) return;
 
-                            function getSelectedDateParam() {
-                                const date = new URLSearchParams(window.location.search).get('date');
-                                return date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
-                            }
+                                const calIframe = document.getElementById('cal-iframe');
+                                const calUsername = "laszlo.ui";
+                                const calEvent = "30min";
 
-                            function updateCalTheme() {
-                                const isDark = document.documentElement.classList.contains('dark');
-                                const selectedDate = getSelectedDateParam();
-                                let src = `https://cal.com/${calUsername}/${calEvent}?embed=true&theme=${isDark ? 'dark' : 'light'}&layout=column_view`;
-                                if (selectedDate) {
-                                    src += `&date=${selectedDate}`;
+                                function getSelectedDateParam() {
+                                    const date = new URLSearchParams(window.location.search).get('date');
+                                    return date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
                                 }
-                                calIframe.src = src;
-                            }
 
-                            // Initial load
-                            updateCalTheme();
-
-                            if (getSelectedDateParam()) {
-                                const calendarSection = document.getElementById('calendar-booking');
-                                if (calendarSection) {
-                                    requestAnimationFrame(function () {
-                                        calendarSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                    });
-                                }
-                            }
-
-                            // Theme synchronization
-                            const observer = new MutationObserver((mutations) => {
-                                mutations.forEach((mutation) => {
-                                    if (mutation.attributeName === "class") {
-                                        updateCalTheme();
+                                function updateCalTheme() {
+                                    const isDark = document.documentElement.classList.contains('dark');
+                                    const selectedDate = getSelectedDateParam();
+                                    let src = `https://cal.com/${calUsername}/${calEvent}?embed=true&theme=${isDark ? 'dark' : 'light'}&layout=column_view`;
+                                    if (selectedDate) {
+                                        src += `&date=${selectedDate}`;
                                     }
+                                    calIframe.src = src;
+                                }
+
+                                updateCalTheme();
+
+                                if (getSelectedDateParam()) {
+                                    const calendarSection = document.getElementById('calendar-booking');
+                                    if (calendarSection) {
+                                        requestAnimationFrame(function () {
+                                            calendarSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        });
+                                    }
+                                }
+
+                                const observer = new MutationObserver((mutations) => {
+                                    mutations.forEach((mutation) => {
+                                        if (mutation.attributeName === "class") {
+                                            updateCalTheme();
+                                        }
+                                    });
                                 });
-                            });
-                            observer.observe(document.documentElement, { attributes: true });
+                                observer.observe(document.documentElement, { attributes: true });
+                            })();
                         </script>
                     </div>
                 </div>
@@ -667,6 +676,7 @@
     </script>
         <script src="js/theme.js"></script>
         <script src="js/language.js"></script>
+        <script src="js/booking-calendar.js"></script>
 
         <script>
             document.getElementById('current-year').textContent = new Date().getFullYear();

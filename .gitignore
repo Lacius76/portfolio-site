@@ -2,3 +2,12 @@ node_modules/
 .DS_Store
 .vscode/
 .cache/
+.env
+.env.*
+!.env.example
+.netlify/
+credentials*.json
+*client_secret*.json
+**/token.json
+**/tokens.json
+.DS_Store
