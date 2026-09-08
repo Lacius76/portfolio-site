@@ -1,6 +1,13 @@
 [build]
   functions = "netlify/functions"
 
+# GOOGLE_CALENDAR_ID is often "primary" (matches CSS/Tailwind "primary" everywhere).
+# BOOKING_TZ is intentionally public in the UI (Europe/Budapest).
+# These are config, not credentials — omit from Netlify secrets scanning.
+# Still keep GOOGLE_CLIENT_SECRET / GOOGLE_REFRESH_TOKEN scanned.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "GOOGLE_CALENDAR_ID,BOOKING_TZ"
+
 [functions]
   node_bundler = "esbuild"
   directory = "netlify/functions"
