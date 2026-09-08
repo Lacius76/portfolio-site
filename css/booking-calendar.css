@@ -160,8 +160,8 @@
   aspect-ratio: 1;
   min-height: 2.5rem;
   border-radius: 0.65rem;
-  border: 1px solid transparent;
-  background: transparent;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
   color: #111418;
   font-size: 0.875rem;
   font-weight: 600;
@@ -170,30 +170,41 @@
 }
 
 .dark .bc-day {
+  border-color: #334155;
+  background: #0f172a;
   color: #e2e8f0;
 }
 
 .bc-day:hover:not(:disabled):not(.is-weekend) {
-  border-color: rgba(99, 102, 241, 0.35);
+  border-color: rgba(99, 102, 241, 0.45);
   background: rgba(99, 102, 241, 0.08);
 }
 
 .bc-day.is-weekend,
 .bc-day.is-outside,
 .bc-day:disabled {
+  border-color: #e5e7eb;
+  background: #f1f5f9;
   color: #cbd5e1;
   cursor: not-allowed;
-  opacity: 0.55;
+  opacity: 0.7;
 }
 
 .dark .bc-day.is-weekend,
 .dark .bc-day.is-outside,
 .dark .bc-day:disabled {
+  border-color: #1e293b;
+  background: #0b1220;
   color: #475569;
 }
 
 .bc-day.is-today {
   border-color: rgba(99, 102, 241, 0.45);
+  color: #6366f1;
+}
+
+.dark .bc-day.is-today {
+  color: #818cf8;
 }
 
 .bc-day.is-selected {
@@ -264,7 +275,9 @@
   flex-direction: column;
   gap: 0.1rem;
   border-radius: 0.5rem;
+  border: 1px solid transparent;
   background: #f8fafc;
+  box-sizing: border-box;
 }
 
 .dark .bc-week-head {
@@ -286,6 +299,22 @@
 
 .dark .bc-week-head-date {
   color: #f8fafc;
+}
+
+.bc-week-head.is-today .bc-week-head-date {
+  color: #6366f1;
+}
+
+.bc-week-head.is-today {
+  border: 1px solid rgba(99, 102, 241, 0.45);
+}
+
+.dark .bc-week-head.is-today .bc-week-head-date {
+  color: #818cf8;
+}
+
+.dark .bc-week-head.is-today {
+  border-color: rgba(129, 140, 248, 0.5);
 }
 
 .bc-week-time {

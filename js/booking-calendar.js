@@ -587,7 +587,8 @@
 
     grid.appendChild(el("div", "bc-week-corner"));
     days.forEach((dateKey) => {
-      const head = el("div", "bc-week-head");
+      const isToday = dateKey === todayKey();
+      const head = el("div", `bc-week-head${isToday ? " is-today" : ""}`);
       const dow = DOW_KEYS[weekdayIndexMon0(dateKey)];
       head.appendChild(el("span", "bc-week-head-day", { text: t(`booking.${dow}`, dow) }));
       head.appendChild(el("span", "bc-week-head-date", { text: String(parseDateKey(dateKey).day) }));
