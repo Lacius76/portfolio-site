@@ -318,7 +318,8 @@
       state.availabilityError = null;
     } catch (_) {
       state.busySet = new Set();
-      state.selectedKey = null;
+      // Keep selectedKey / hidden booking fields — clearing them caused Netlify Forms
+      // to submit without calling calendar-book (Calendar is source of truth).
       state.availabilityError = t(
         "booking.availabilityError",
         "Availability could not be loaded. Booking is temporarily disabled."
@@ -666,7 +667,7 @@
   }
 
   function getSelectedSlot() {
-    if (!state.selectedKey || state.availabilityError) return null;
+    if (!state.selectedKey) return null;
     const [dateKey, timePart] = state.selectedKey.split("T");
     const hour = Number(timePart.slice(0, 2));
     if (!Number.isFinite(hour) || hour < WORK_START || hour >= WORK_END) return null;
@@ -679,14 +680,31 @@
     };
   }
 
+  function readSlotFromHiddenFields() {
+    const start = (document.getElementById("booking_start")?.value || "").trim();
+    const end = (document.getElementById("booking_end")?.value || "").trim();
+    const timeZone = (document.getElementById("booking_tz")?.value || "").trim() || TZ;
+    if (!start || !end) return null;
+    return { start, end, timeZone };
+  }
+
   function syncBookingHiddenFields() {
-    const slot = getSelectedSlot();
+    const slot = getSelectedSlot() || readSlotFromHiddenFields();
     const startEl = document.getElementById("booking_start");
     const endEl = document.getElementById("booking_end");
     const tzEl = document.getElementById("booking_tz");
-    if (startEl) startEl.value = slot ? slot.start : "";
-    if (endEl) endEl.value = slot ? slot.end : "";
-    if (tzEl) tzEl.value = TZ;
+    // Only update when we still know the slot — never wipe booking intent before submit
+    if (!slot) return;
+    if (startEl) startEl.value = slot.start;
+    if (endEl) endEl.value = slot.end;
+    if (tzEl) tzEl.value = slot.timeZone || TZ;
+  }
+
+  function clearBookingHiddenFields() {
+    const startEl = document.getElementById("booking_start");
+    const endEl = document.getElementById("booking_end");
+    if (startEl) startEl.value = "";
+    if (endEl) endEl.value = "";
   }
 
   function clearBookingSubmitError() {
@@ -745,7 +763,7 @@
       body: JSON.stringify({
         start: slot.start,
         end: slot.end,
-        timeZone: slot.timeZone,
+        timeZone: slot.timeZone || TZ,
         name,
         email,
         message,
@@ -763,7 +781,8 @@
   }
 
   async function handleContactSubmit(event) {
-    const form = event.target;
+    // Listener is on the form — always use currentTarget (target can be the submitter)
+    const form = event.currentTarget;
     if (!(form instanceof HTMLFormElement) || form.getAttribute("name") !== "contact") {
       return;
     }
@@ -773,14 +792,15 @@
       return;
     }
 
-    syncBookingHiddenFields();
-    const slot = getSelectedSlot();
+    // Read booking intent BEFORE any sync that might alter fields
+    const slot = getSelectedSlot() || readSlotFromHiddenFields();
 
-    // Plain contact (no slot): Netlify Forms only — no Calendar call
+    // Plain contact (no slot selected / no hidden booking): allow native Netlify Forms
     if (!slot) {
       return;
     }
 
+    // Booking intent present → Calendar is source of truth. Never fall through to Netlify.
     event.preventDefault();
     clearBookingSubmitError();
 
@@ -809,9 +829,9 @@
       }
 
       if (res.status === 409 || code === "slot_busy") {
-        state.busySet.add(state.selectedKey);
+        if (state.selectedKey) state.busySet.add(state.selectedKey);
         state.selectedKey = null;
-        syncBookingHiddenFields();
+        clearBookingHiddenFields();
         showBookingSubmitError(errorMessageForCode("slot_busy", 409));
         await render();
         return;
