@@ -33,12 +33,13 @@
   <link rel="stylesheet" href="css/hero-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
   <link rel="stylesheet" href="css/hero-grid.css" />
+  <link rel="stylesheet" href="css/hero-redesign.css" />
   <link rel="stylesheet" href="css/bot.css" />
-  <link rel="stylesheet" href="css/stacked-cards.css" />
+  <link rel="stylesheet" href="css/selected-works.css" />
   <link rel="stylesheet" href="css/footer-social.css" />
   <link rel="stylesheet" href="css/tailwind.min.css">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&amp;display=swap"
     rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -55,7 +56,7 @@
 
   <style>
     body {
-      font-family: "Inter", sans-serif;
+      font-family: "Asul", serif;
     }
 
     .material-symbols-outlined {
@@ -182,83 +183,47 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
   <div class="relative flex min-h-screen flex-col">
-    <!-- TopNavBar -->
-    <header
-      class="sticky top-0 z-[100] w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-      <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-4 nav-anim-logo">
-          <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
-            href="index.html">
-            <div data-icon="logo"
-              class="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 p-1.5">
-            </div>
-            <h2 class="hidden sm:block text-lg font-bold tracking-tight">Laszlo.UI</h2>
+    <!-- Sticky header: revealed after scrolling past hero -->
+    <header id="site-header" class="site-header site-header--index-reveal">
+      <div class="site-header-inner">
+        <div class="site-header-left">
+          <a class="site-logo-link" href="index.html" aria-label="Home">
+            <div data-icon="logo" class="site-logo-mark"></div>
           </a>
+          <button id="theme-toggle"
+            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white theme__icon"
+            data-i18n-aria-label="nav.toggleTheme" aria-label="Toggle Theme">
+            <span></span>
+            <span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span></span>
+          </button>
         </div>
-
-        <nav class="hidden md:flex items-center gap-8">
-          <a href="work.html"
-            class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-1"
-            data-i18n="nav.work">Work</a>
-          <a href="about-me.html"
-            class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-2"
-            data-i18n="nav.about">About</a>
-          <a href="resume.html"
-            class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-3"
-            data-i18n="nav.resume">Resume</a>
+        <nav class="site-header-nav" aria-label="Primary">
+          <a href="work.html" data-i18n="nav.work">Work</a>
+          <a href="resume.html" data-i18n="nav.approach">Resume</a>
+          <a href="about-me.html" data-i18n="nav.about">About</a>
         </nav>
-
-        <div class="flex items-center gap-4">
-          <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-            <a href="contact.html"
-              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
-              aria-label="Contact">
-              <img src="img/contact-icon.svg" alt="Contact" class="size-6" />
-            </a>
-            <span
-              class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-              data-i18n="nav.contactMeTooltip">Contact Me</span>
-          </div>
-          <div class="relative nav-anim-lang">
-            <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-              <button id="language-btn"
-                class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <img src="img/language-icon.svg" alt="Select Language" class="size-6" />
-              </button>
-              <span
-                class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                data-i18n="nav.switchLanguage">Switch Language</span>
-            </div>
-            <div id="language-dropdown"
-              class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
-              <div class="py-1">
-                <a href="#" data-lang="en"
-                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"><span
-                    class="text-lg">🇬🇧</span> English</a>
-                <a href="#" data-lang="de"
-                  class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50"><span
-                    class="text-lg">🇩🇪</span> Deutsch</a>
-              </div>
-            </div>
-          </div>
-          <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-            <button id="theme-toggle"
-              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
-              <span></span>
-              <span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-              <span></span>
+        <div class="site-header-right">
+          <div class="lang-stack" aria-label="Language">
+            <button type="button" class="lang-stack-btn lang-stack-primary" aria-expanded="false" aria-haspopup="true"
+              data-i18n-aria-label="nav.switchLanguage" aria-label="Switch Language">
+              <span class="lang-stack-current">EN</span>
             </button>
-            <span
-              class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-              data-i18n="nav.toggleTheme">Toggle Theme</span>
+            <div class="lang-stack-panel">
+              <button type="button" class="lang-stack-btn lang-stack-secondary" data-lang="de">DE</button>
+            </div>
           </div>
+          <a href="contact.html" class="site-header-talk">
+            <span data-i18n="nav.letsTalk">Let's talk</span>
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">north_east</span>
+          </a>
           <button id="menu-button"
-            class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
+            class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white" aria-label="Menu">
             <span class="material-symbols-outlined text-[28px]">menu</span>
           </button>
         </div>
@@ -267,12 +232,10 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu"
-      class="hidden fixed inset-0 z-[110] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
+      class="hidden fixed inset-0 z-[320] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
       <button id="close-menu" class="absolute top-6 right-6 text-slate-900 dark:text-white"><span
           class="material-symbols-outlined text-4xl">close</span></button>
       <nav class="flex flex-col items-center gap-6 text-2xl font-bold w-full">
-
-        <!-- Work dropdown -->
         <div id="mobile-work-wrapper" class="w-full flex flex-col items-center transition-colors duration-300">
           <div id="mobile-work-header"
             class="flex items-center justify-center w-full gap-5 transition-all duration-300">
@@ -294,581 +257,211 @@
                 class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors"
                 data-i18n="babusgatos.navTitle">Bakery Live Tracker</a>
               <a href="case-study-ewa.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                eWa App</a>
+                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">eWa App</a>
               <a href="case-study-styleguide.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                foeldvary.com</a>
+                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">foeldvary.com</a>
               <a href="case-study-shadow.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Shadow Cartels</a>
+                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Shadow Cartels</a>
               <a href="case-study-siemens.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Siemens</a>
+                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Siemens</a>
               <a href="case-study-greent.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Greentube</a>
+                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Greentube</a>
               <a href="case-study-amatic.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Amatic</a>
+                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Amatic</a>
               <a href="case-study-funworld.html"
-                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">
-                Funworld</a>
+                class="mobile-work-link py-3 px-4 text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors">Funworld</a>
             </div>
           </div>
         </div>
-
+        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+          data-i18n="nav.approach">Resume</a>
         <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
           data-i18n="nav.about">About</a>
-        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.resume">Resume</a>
-        <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's Talk</a>
+        <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's talk</a>
       </nav>
     </div>
 
-
-
     <main class="flex flex-col">
       <!-- HERO LAYER -->
-      <div
-        class="fixed inset-0 z-0 pt-[88px] lg:pt-[130px] pb-4 overflow-hidden flex flex-col items-center bg-background-light dark:bg-background-dark">
-        <div
-          class="hg-scene w-full max-w-[1200px] mx-auto opacity-0 pointer-events-none dark:opacity-40 dark:pointer-events-auto transition-opacity duration-1000 z-10">
-          <div class="relative translate-y-[80px]">
-            <div class="hg-grid" id="hgGrid"></div>
+      <div class="hero-split" id="hero-split">
+        <!-- Grid kept for later; disabled via flag + CSS -->
+        <div class="hg-scene absolute inset-0 opacity-0 pointer-events-none" aria-hidden="true">
+          <div class="hg-grid" id="hgGrid"></div>
+        </div>
+        <div id="radarBtnWrapper" class="hidden" aria-hidden="true">
+          <button id="hgReplayBtn" type="button" tabindex="-1" aria-hidden="true"></button>
+        </div>
+
+        <div class="hero-split-left">
+          <div class="hero-split-chrome">
+            <div class="hero-split-brand">
+              <a href="index.html" class="site-logo-link" aria-label="Home">
+                <div data-icon="logo" class="site-logo-mark"></div>
+              </a>
+              <button id="theme-toggle-hero"
+                class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-[#111418] dark:text-white theme__icon"
+                data-i18n-aria-label="nav.toggleTheme" aria-label="Toggle Theme">
+                <span></span>
+                <span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span></span>
+              </button>
+            </div>
+            <nav class="hero-split-nav" aria-label="Primary">
+              <a href="resume.html" data-i18n="nav.approach">Resume</a>
+              <a href="about-me.html" data-i18n="nav.about">About</a>
+            </nav>
+            <button id="menu-button-hero"
+              class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white" aria-label="Menu">
+              <span class="material-symbols-outlined text-[28px]">menu</span>
+            </button>
           </div>
-        </div>
 
-        <!-- Radar button: %-based position from reference point (1200x710 viewport: left=760px, bottom=175px) -->
-        <!-- left: 760/1200 = 63.33%, bottom: 175/710 = 24.65% -->
-        <div id="radarBtnWrapper"
-          class="z-40 bot-tooltip-container hidden md:flex items-center justify-center pointer-events-none opacity-0 dark:pointer-events-auto dark:opacity-100 transition-opacity duration-500"
-          style="position: absolute; left: calc(64.43% - 60px); bottom: calc(24.65% - 10px);">
-          <button id="hgReplayBtn" aria-label="Trigger Wave Scan"
-            class="h-6 w-11 rounded-xl bg-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center border border-primary/10 shadow-sm backdrop-blur-md">
-            <span class="material-symbols-outlined text-[28px] transition-transform duration-700">radar</span>
-          </button>
-          <span
-            class="bot-tooltip text-[#303030] dark:text-white text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-            data-i18n="index.radarTooltip">Recalculate Fragments</span>
-        </div>
+          <div class="hero-split-body">
+            <div class="hero-split-copy">
+              <h1 class="hero-split-title hero-title">
+                <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Designing is how I think.</span>
+                <span class="hero-anim-title-2 hero-accent" data-i18n="index.heroTitle2">Building</span>
+                <span class="hero-anim-title-3" data-i18n="index.heroTitle3"> is how I prove it.</span>
+              </h1>
+              <p class="hero-split-subtitle hero-anim-subtitle" data-i18n="index.heroSubtitle" data-i18n-html="true">
+                Hi, I'm László Földváry — Senior Product Designer &amp; Design Engineer.<br>I turn complex ideas into intuitive digital products.
+              </p>
+            </div>
+            <a href="work.html" class="hero-split-cta hero-anim-btn-secondary" data-i18n="index.viewSelectedWork">View work</a>
+          </div>
 
-        <div
-          class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 flex flex-col h-full relative z-20 pointer-events-none">
-          <div class="flex flex-col-reverse gap-4 lg:gap-10 lg:flex-row lg:items-center mb-2 md:mb-4 flex-1">
-            <div class="flex flex-col gap-3 lg:gap-4 flex-1 pr-0 z-10 pointer-events-none lg:-mt-[100px]">
-              <div class="flex flex-col gap-4 text-left">
-                <div
-                  class="hero-anim-badge w-fit shrink-0 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider"
-                  data-i18n="index.availableForWork">Available for Product Design & Design Engineering</div>
-                <h1
-                  class="hero-title text-[#111418] dark:text-white text-3xl font-black leading-[1.1] pb-1 tracking-[-0.033em] lg:text-[40px] xl:text-[44px]">
-                  <span class="hero-anim-title-1" data-i18n="index.heroTitle1">Designing is how I think.</span>
-                  <span
-                    class="hero-anim-title-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500"
-                    data-i18n="index.heroTitle2">Building</span>
-                  <span class="hero-anim-title-3" data-i18n="index.heroTitle3"> is how I prove it.</span>
-                </h1>
-                <h2
-                  class="hero-anim-subtitle text-[#617589] dark:text-gray-400 text-base font-normal leading-relaxed max-w-xl">
-                  <span class="sm:hidden" data-i18n="index.heroSubtitleMobile">Hi, I'm László Földváry — Senior Product Designer &amp; Design Engineer. I turn complex ideas into intuitive digital products.</span>
-                  <span class="hidden sm:inline" data-i18n="index.heroSubtitle">Hi, I'm László Földváry — Senior Product Designer &amp; Design Engineer. I turn complex ideas into intuitive digital products, combining product strategy, UX, design systems, and AI-assisted development from concept to working software.</span>
-                </h2>
+          <div class="hero-split-footer">
+            <a href="#selected-works" class="hero-explore">
+              <span data-i18n="index.exploreSelectedWork">Explore selected work</span>
+              <span class="hero-explore-icon" aria-hidden="true">
+                <span class="material-symbols-outlined text-[20px]">arrow_downward</span>
+              </span>
+            </a>
+            <div class="hero-stats hero-anim-stats">
+              <div class="hero-stat">
+                <span class="hero-stat-value" data-i18n="index.statYearsValue">10+</span>
+                <span class="hero-stat-label" data-i18n="index.statYearsLabel">Years designing</span>
               </div>
-              <div class="flex flex-col sm:flex-row gap-6 mt-2 pointer-events-auto w-full z-10"
-                style="max-width: 600px;">
-
-                <!-- Left: Mini Custom Calendar UI — desktop only (hidden on mobile) -->
-                <div class="hidden sm:flex flex-col gap-2 shrink-0 w-full" style="max-width: 300px;">
-                  <h3 class="text-[#111418] dark:text-white text-base font-semibold" data-i18n="index.bookAppointment">
-                    Book a Call</h3>
-                  <div id="mini-cal-widget"
-                    class="w-full rounded-xl border border-[#e5e7eb] dark:border-[#2a3441] bg-white dark:bg-[#1e293b] p-2.5 shadow-sm flex flex-col"
-                    style="height: 240px;">
-                    <!-- Filled by JS below -->
-                  </div>
-                </div>
-                <script>
-                  (function () {
-                    var CAL_USERNAME = 'laszlo.ui';
-                    var CAL_EVENT = '30min';
-                    var CAL_TIMEZONE = 'Europe/Budapest';
-                    var translationsData = null;
-                    var cachedAvailableDates = null;
-
-                    function isDark() {
-                      return document.documentElement.classList.contains('dark');
-                    }
-
-                    function getLang() {
-                      return localStorage.getItem('preferred-language') || 'en';
-                    }
-
-                    function getColors() {
-                      var dark = isDark();
-                      return {
-                        title: dark ? '#f8fafc' : '#111418',
-                        header: dark ? '#94a3b8' : '#637588',
-                        dayBg: dark ? '#0f172a' : '#f8fafc',
-                        dayBorder: dark ? '#334155' : '#e2e8f0',
-                        dayText: dark ? '#94a3b8' : '#475569',
-                        dayDisabledText: dark ? '#475569' : '#cbd5e1',
-                        dayDisabledBg: dark ? '#0d141f' : '#f8fafc',
-                        dayDisabledBorder: dark ? '#2a3441' : '#e2e8f0',
-                        todayBg: dark ? 'rgba(99,102,241,0.12)' : '#eef2ff',
-                        todayBorder: '#6366f1',
-                        todayText: dark ? '#a5b4fc' : '#6366f1',
-                        hoverText: dark ? '#c7d2fe' : '#6366f1',
-                        muted: '#94a3b8'
-                      };
-                    }
-
-                    function getDayLabels() {
-                      var lang = getLang();
-                      var miniCal = translationsData && translationsData[lang] && translationsData[lang].index
-                        ? translationsData[lang].index.miniCal
-                        : null;
-                      if (miniCal && miniCal.days) return miniCal.days;
-                      return lang === 'de'
-                        ? ['Mo', 'Di', 'Mi', 'Do', 'Fr']
-                        : ['Mo', 'Tu', 'We', 'Th', 'Fr'];
-                    }
-
-                    function getUnavailableText() {
-                      var lang = getLang();
-                      var miniCal = translationsData && translationsData[lang] && translationsData[lang].index
-                        ? translationsData[lang].index.miniCal
-                        : null;
-                      return miniCal && miniCal.unavailable ? miniCal.unavailable : 'Calendar unavailable';
-                    }
-
-                    function formatDateISO(d) {
-                      var y = d.getFullYear();
-                      var m = String(d.getMonth() + 1).padStart(2, '0');
-                      var day = String(d.getDate()).padStart(2, '0');
-                      return y + '-' + m + '-' + day;
-                    }
-
-                    function buildWeekdayWeeks(year, month) {
-                      var lastDayNum = new Date(year, month + 1, 0).getDate();
-                      var weeks = [];
-                      var currentWeek = [null, null, null, null, null];
-                      var lastCol = -1;
-
-                      for (var day = 1; day <= lastDayNum; day++) {
-                        var d = new Date(year, month, day);
-                        var dow = d.getDay();
-                        if (dow === 0 || dow === 6) continue;
-
-                        var col = dow - 1;
-                        if (col <= lastCol) {
-                          weeks.push(currentWeek);
-                          currentWeek = [null, null, null, null, null];
-                        }
-                        currentWeek[col] = d;
-                        lastCol = col;
-                      }
-
-                      if (currentWeek.some(function (cell) { return cell !== null; })) {
-                        weeks.push(currentWeek);
-                      }
-                      return weeks;
-                    }
-
-                    function fetchAvailableDates(year, month) {
-                      var monthStart = formatDateISO(new Date(year, month, 1));
-                      var monthEnd = formatDateISO(new Date(year, month + 1, 0));
-                      var url = 'https://api.cal.com/v2/slots?username=' + encodeURIComponent(CAL_USERNAME)
-                        + '&eventTypeSlug=' + encodeURIComponent(CAL_EVENT)
-                        + '&start=' + monthStart
-                        + '&end=' + monthEnd
-                        + '&timeZone=' + encodeURIComponent(CAL_TIMEZONE);
-
-                      return fetch(url, { headers: { 'cal-api-version': '2024-09-04' } })
-                        .then(function (res) { return res.json(); })
-                        .then(function (json) {
-                          var availableDates = {};
-                          if (json && json.data) {
-                            Object.keys(json.data).forEach(function (dateKey) {
-                              if (json.data[dateKey] && json.data[dateKey].length > 0) {
-                                availableDates[dateKey] = true;
-                              }
-                            });
-                          }
-                          return availableDates;
-                        });
-                    }
-
-                    function renderCalendar(widget, availableDates) {
-                      var colors = getColors();
-                      var now = new Date();
-                      var today = new Date(now);
-                      today.setHours(0, 0, 0, 0);
-
-                      var year = now.getFullYear();
-                      var month = now.getMonth();
-                      var weeks = buildWeekdayWeeks(year, month);
-                      var monthTitle = new Date(year, month, 1).toLocaleDateString(getLang(), {
-                        month: 'long',
-                        year: 'numeric'
-                      });
-
-                      widget.innerHTML = '';
-
-                      var title = document.createElement('div');
-                      title.style.cssText = 'font-size:11px;font-weight:700;text-align:center;margin-bottom:6px;flex-shrink:0;text-transform:capitalize;color:' + colors.title + ';';
-                      title.textContent = monthTitle;
-                      widget.appendChild(title);
-
-                      var headerRow = document.createElement('div');
-                      headerRow.style.cssText = 'display:flex;width:100%;gap:4px;text-align:center;margin-bottom:4px;flex-shrink:0;';
-
-                      getDayLabels().forEach(function (label) {
-                        var cell = document.createElement('div');
-                        cell.style.cssText = 'flex:1;font-size:10px;font-weight:700;color:' + colors.header + ';';
-                        cell.textContent = label;
-                        headerRow.appendChild(cell);
-                      });
-                      widget.appendChild(headerRow);
-
-                      var grid = document.createElement('div');
-                      grid.style.cssText = 'display:flex;flex-direction:column;gap:4px;width:100%;flex:1;';
-
-                      weeks.forEach(function (week) {
-                        var row = document.createElement('div');
-                        row.style.cssText = 'display:flex;width:100%;gap:4px;flex:1;';
-
-                        week.forEach(function (d) {
-                          var cell = document.createElement('div');
-                          cell.style.cssText = 'flex:1;display:flex;';
-
-                          if (!d) {
-                            cell.innerHTML = '&nbsp;';
-                            row.appendChild(cell);
-                            return;
-                          }
-
-                          var dateKey = formatDateISO(d);
-                          var isPast = d < today;
-                          var isToday = d.getTime() === today.getTime();
-                          var hasSlots = !!availableDates[dateKey];
-                          var isDisabled = isPast || !hasSlots;
-                          var dayNum = String(d.getDate()).padStart(2, '0');
-
-                          var dayEl = document.createElement(isDisabled ? 'span' : 'a');
-                          if (!isDisabled) {
-                            dayEl.href = 'contact.html?date=' + dateKey;
-                          }
-                          dayEl.setAttribute('aria-label', dateKey + (hasSlots ? '' : ' (unavailable)'));
-                          dayEl.style.cssText = [
-                            'display:flex',
-                            'align-items:center',
-                            'justify-content:center',
-                            'gap:3px',
-                            'width:100%',
-                            'font-size:10px',
-                            'font-weight:' + (isToday && hasSlots ? '700' : '500'),
-                            'border-radius:4px',
-                            'padding:4px 0',
-                            'text-decoration:none',
-                            'transition:all 0.15s',
-                            isDisabled
-                              ? 'background:' + colors.dayDisabledBg + ';border:1px solid ' + colors.dayDisabledBorder + ';color:' + colors.dayDisabledText + ';pointer-events:none;'
-                              : isToday
-                                ? 'background:' + colors.todayBg + ';border:1px solid ' + colors.todayBorder + ';color:' + colors.todayText + ';cursor:pointer;'
-                                : 'background:' + colors.dayBg + ';border:1px solid ' + colors.dayBorder + ';color:' + colors.dayText + ';cursor:pointer;'
-                          ].join(';');
-
-                          if (hasSlots && !isPast) {
-                            var dot = document.createElement('span');
-                            dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:#22c55e;flex-shrink:0;display:inline-block;';
-                            dayEl.appendChild(dot);
-                          }
-
-                          dayEl.appendChild(document.createTextNode(dayNum));
-
-                          if (!isDisabled && !isToday) {
-                            dayEl.addEventListener('mouseenter', function () {
-                              this.style.borderColor = colors.todayBorder;
-                              this.style.color = colors.hoverText;
-                            });
-                            dayEl.addEventListener('mouseleave', function () {
-                              this.style.borderColor = colors.dayBorder;
-                              this.style.color = colors.dayText;
-                            });
-                          }
-
-                          cell.appendChild(dayEl);
-                          row.appendChild(cell);
-                        });
-
-                        grid.appendChild(row);
-                      });
-
-                      widget.appendChild(grid);
-                    }
-
-                    function initMiniCal() {
-                      var widget = document.getElementById('mini-cal-widget');
-                      if (!widget) return;
-
-                      widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;">…</div>';
-
-                      var now = new Date();
-                      Promise.all([
-                        fetch('translations.json').then(function (r) { return r.json(); }).catch(function () { return {}; }),
-                        fetchAvailableDates(now.getFullYear(), now.getMonth())
-                      ])
-                        .then(function (results) {
-                          translationsData = results[0];
-                          cachedAvailableDates = results[1];
-                          renderCalendar(widget, cachedAvailableDates);
-                        })
-                        .catch(function () {
-                          widget.innerHTML = '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:10px;color:#94a3b8;text-align:center;padding:8px;">' + getUnavailableText() + '</div>';
-                        });
-                    }
-
-                    initMiniCal();
-
-                    new MutationObserver(function () {
-                      if (!cachedAvailableDates) return;
-                      var widget = document.getElementById('mini-cal-widget');
-                      if (widget) renderCalendar(widget, cachedAvailableDates);
-                    }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-                    document.addEventListener('language-changed', function () {
-                      if (!cachedAvailableDates) return;
-                      var widget = document.getElementById('mini-cal-widget');
-                      if (widget) renderCalendar(widget, cachedAvailableDates);
-                    });
-                  })();
-                </script>
-
-
-
-                <!-- Right: CTA and Stats — desktop only -->
-                <div class="hidden sm:flex flex-col gap-6 w-full sm:pt-9" style="max-width: 250px;">
-                  <a href="work.html"
-                    class="hero-anim-btn-secondary btn-sweep-outline flex min-w-[160px] w-fit items-center justify-center rounded-lg h-12 px-6 border border-gray-200 dark:border-gray-700 text-base font-medium bg-white dark:bg-transparent"
-                    data-i18n="index.viewSelectedWork">
-                    View Work
-                  </a>
-
-                  <div class="hero-anim-stats flex flex-col gap-5">
-                    <div class="flex flex-col items-start cursor-default">
-                      <div class="flex items-baseline gap-1"><span
-                          class="text-3xl font-black text-slate-900 dark:text-white">50</span><span
-                          class="text-xl font-bold text-primary">+</span></div>
-                      <span class="text-[10px] font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                        data-i18n="index.projectsLaunched">Projects Launched</span>
-                    </div>
-                    <div class="flex flex-col items-start cursor-default">
-                      <div class="flex items-baseline gap-1"><span
-                          class="text-3xl font-black text-slate-900 dark:text-white">10</span><span
-                          class="text-xl font-bold text-primary">+</span></div>
-                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#637588] dark:text-slate-400"
-                        data-i18n="index.yearsExperience">Years of Experience</p>
-                    </div>
-                  </div>
-                </div>
+              <div class="hero-stat">
+                <span class="hero-stat-value" data-i18n="index.statProductsValue">50+</span>
+                <span class="hero-stat-label" data-i18n="index.statProductsLabel">Products shipped</span>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Portrait Image for Light Mode -->
-            <div
-              class="flex-1 flex justify-center lg:justify-end items-center pointer-events-auto dark:hidden w-full lg:w-auto mt-8 lg:mt-0 z-10 hero-anim-video">
-              <div
-                class="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] rounded-[17px] overflow-hidden group shadow-[0_20px_50px_rgba(79,70,229,0.15)] ring-4 ring-white/50">
-                <img src="img/portrait/portrait-bw.jpg" alt="László Földváry"
-                  class="absolute inset-0 w-full h-full object-cover" />
-                <img src="img/portrait/portrait-color.jpg" alt="László Földváry"
-                  class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-0 group-hover:opacity-100" />
-                <!-- Pixel transition overlay -->
-                <canvas
-                  class="pixel-canvas absolute inset-0 w-full h-full z-20 pointer-events-none mix-blend-overlay"></canvas>
+        <div class="hero-split-right">
+          <div class="hero-split-right-chrome">
+            <div class="lang-stack" aria-label="Language">
+              <button type="button" class="lang-stack-btn lang-stack-primary" aria-expanded="false" aria-haspopup="true"
+                data-i18n-aria-label="nav.switchLanguage" aria-label="Switch Language">
+                <span class="lang-stack-current">EN</span>
+              </button>
+              <div class="lang-stack-panel">
+                <button type="button" class="lang-stack-btn lang-stack-secondary" data-lang="de">DE</button>
               </div>
             </div>
-
+            <a href="contact.html" class="hero-split-talk">
+              <span data-i18n="nav.letsTalk">Let's talk</span>
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">north_east</span>
+            </a>
+          </div>
+          <div class="hero-portrait hero-anim-video" id="hero-portrait" role="img" aria-label="László Földváry">
+            <img class="hero-portrait-img" src="img/portrait/portrait-color.jpg" alt="" />
           </div>
         </div>
-
-        <!-- Scroll Down Indicator -->
-        <div class="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none" style="bottom: 32px;">
-          <div class="container_mouse">
-            <span class="mouse-btn">
-              <span class="mouse-scroll"></span>
-            </span>
-            <span data-i18n="index.scrollToWorks">Scroll to Works</span>
-          </div>
-        </div>
-
       </div>
 
-      <!-- SCROLLING CONTENT WRAPPER (Cards + Selected Works) -->
+      <!-- SELECTED WORKS -->
       <div id="content-wrapper"
-        class="relative z-10 mt-[100vh] bg-gray-100 dark:bg-[#0d141f] shadow-[0_-10px_2px_#f1f2f4] dark:shadow-[0_-10px_2px_#0d141f]">
-        <!-- Inner Content Container (Matches Hero Width) -->
-        <div class="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-6 py-[74px] flex flex-col">
-          <!-- Place holder for dynamic content if any, or just structure -->
-          <div class="layout-content-container flex flex-col flex-1"></div>
-          <!-- Selected Works Preview -->
-          <!-- New Stacked Cards Section -->
-          <section class="stacked-cards-section">
-            <!-- sticky viewport - stays pinned while scroll-tracker provides the scroll range -->
-            <div class="sticky-cards-wrapper">
-
-              <!-- Header -->
-              <div class="stacked-section-header">
-                <h3 class="text-3xl font-black text-[#111418] dark:text-white" data-i18n="index.selectedWorks.title">
-                  Selected Works
-                </h3>
-                <p class="text-gray-500 mt-4 text-lg" data-i18n="index.selectedWorks.subtitle">
-                  Recent projects built from idea to working product
+        class="relative z-10 mt-[100vh]">
+        <section id="selected-works" class="selected-works" aria-labelledby="selected-works-title">
+          <div class="selected-works-sticky">
+            <div class="selected-works-inner">
+              <p class="selected-works-eyebrow" data-i18n="index.selectedWorks.eyebrow">
+                Selected work • 2025 – 2026
+              </p>
+              <div class="selected-works-heading">
+                <h2 id="selected-works-title" class="selected-works-title" data-i18n="index.selectedWorks.title">
+                  Proof of concept
+                </h2>
+                <p class="selected-works-intro" data-i18n="index.selectedWorks.intro">
+                  A selection of products where strategy, interface design and hands-on prototyping created measurable momentum.
                 </p>
               </div>
 
-              <!-- Scroll Down (Moved above the cards entirely, easing via opacity) -->
-              <div id="scroll-down-indicator"
-                class="w-full max-w-[1120px] mx-auto flex justify-center mb-8 text-primary font-bold text-xl items-center gap-2 opacity-60 transition-opacity duration-300">
-                <span data-i18n="index.selectedWorks.scrollDown">↓ Scroll down ↓</span>
-              </div>
-
-              <!-- Stacked card stack -->
-              <div class="cards-container">
-
-                <!-- Card 0: Bakery Live Tracker (top - z:50) -->
-                <div class="stacked-card" style="z-index:50; transform: translateY(0px) scale(1);">
-                  <div class="card-media">
-                    <img src="img/babusgatos/start-card.jpg" class="w-full h-full object-cover" alt="Bakery Live Tracker">
+              <div class="selected-works-grid">
+                <a href="case-study-babusgatos.html" class="selected-works-card" aria-label="Bakery Live Tracker case study">
+                  <div class="selected-works-card-media">
+                    <img src="img/cards/bakery-card.png" alt="Bakery Live Tracker" />
                   </div>
-                  <div class="card-content">
-                    <h4 class="font-bold text-2xl text-primary mb-1" data-i18n="index.selectedWorks.babusgatos.title">
-                      Bakery Live Tracker</h4>
-                    <p class="card-subtitle text-base text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-3"
-                      data-i18n="index.selectedWorks.babusgatos.subtitle">Real-Time Mobile Retail Logistics</p>
-                    <a href="case-study-babusgatos.html" class="card-arrow-link group/arrow">
-                      <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-base leading-relaxed"
-                      data-i18n="index.selectedWorks.babusgatos.description">
-                      From a local bakery van problem to a working MVP with live GPS tracking, inventory visibility, driver access, and customer updates.
+                  <div class="selected-works-card-shade" aria-hidden="true"></div>
+                  <div class="selected-works-card-body">
+                    <h3 class="selected-works-card-title" data-i18n="index.selectedWorks.babusgatos.title">
+                      Bakery Live Tracker
+                    </h3>
+                    <p class="selected-works-card-subtitle" data-i18n="index.selectedWorks.babusgatos.subtitle">
+                      Real-Time Mobile Retail Logistics
                     </p>
                   </div>
-                </div>
+                  <span class="selected-works-card-cta selected-works-card-cta--br" aria-hidden="true">
+                    <span class="selected-works-card-cta-btn">
+                      <span class="material-symbols-outlined text-[20px]">north_east</span>
+                    </span>
+                  </span>
+                </a>
 
-                <!-- Card 1: eWa (z:40) -->
-                <div class="stacked-card" style="z-index:40; transform: translateY(0px) scale(1);">
-                  <div class="card-media">
-                    <video autoplay loop muted playsinline>
-                      <source src="img/ewa/ewa-card.webm" type="video/webm" />
-                      <source src="img/ewa/ewa-card.mp4" type="video/mp4" />
-                    </video>
+                <a href="case-study-ewa.html" class="selected-works-card" aria-label="eWa Fintech Super App case study">
+                  <div class="selected-works-card-media">
+                    <img src="img/cards/ewa-card.jpg" alt="eWa Fintech Super App" />
                   </div>
-                  <div class="card-content">
-                    <h4 class="font-bold text-2xl text-primary mb-1" data-i18n="index.selectedWorks.ewa.title">eWa Fintech Super App</h4>
-                    <p class="card-subtitle text-base text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-3"
-                      data-i18n="index.selectedWorks.ewa.subtitle">Mobility Wallet MVP</p>
-                    <a href="case-study-ewa.html" class="card-arrow-link group/arrow">
-                      <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-base leading-relaxed"
-                      data-i18n="index.selectedWorks.ewa.description">
+                  <div class="selected-works-card-shade" aria-hidden="true"></div>
+                  <div class="selected-works-card-body">
+                    <h3 class="selected-works-card-title" data-i18n="index.selectedWorks.ewa.title">
+                      eWa Fintech Super App
+                    </h3>
+                    <p class="selected-works-card-subtitle" data-i18n="index.selectedWorks.ewa.description">
                       A fintech mobility MVP for parking, tolling, digital wallets, and cross-platform payments.
                     </p>
                   </div>
-                </div>
+                  <span class="selected-works-card-cta selected-works-card-cta--tr" aria-hidden="true">
+                    <span class="selected-works-card-cta-btn">
+                      <span class="material-symbols-outlined text-[20px]">north_east</span>
+                    </span>
+                  </span>
+                </a>
 
-                <!-- Card 2: Foldvary (z:30) -->
-                <div class="stacked-card" style="z-index:30; transform: translateY(0px) scale(1);">
-                  <div class="card-media">
-                    <img src="img/foldvary-concept/index.jpg" class="w-full h-full object-cover">
+                <a href="case-study-foldvary.html" class="selected-works-card selected-works-card--wide" aria-label="Cinematic Portfolio Experience case study">
+                  <div class="selected-works-card-media">
+                    <img src="img/cards/foldvary-card.jpg" alt="Cinematic Portfolio Experience" />
                   </div>
-                  <div class="card-content">
-                    <h4 class="font-bold text-2xl text-primary mb-1" data-i18n="index.selectedWorks.foldvary.title">
-                      földvary.com</h4>
-                    <p class="card-subtitle text-base text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-3"
-                      data-i18n="index.selectedWorks.foldvary.subtitle">Cinematic Portfolio Experience</p>
-                    <a href="case-study-foldvary.html" class="card-arrow-link group/arrow">
-                      <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-base leading-relaxed"
-                      data-i18n="index.selectedWorks.foldvary.description">
+                  <div class="selected-works-card-shade" aria-hidden="true"></div>
+                  <div class="selected-works-card-body">
+                    <h3 class="selected-works-card-title" data-i18n="index.selectedWorks.foldvary.cardTitle">
+                      Cinematic Portfolio Experience
+                    </h3>
+                    <p class="selected-works-card-subtitle" data-i18n="index.selectedWorks.foldvary.description">
                       A cinematic portfolio experiment with a futuristic city, bot narrator, and interactive storytelling.
                     </p>
                   </div>
-                </div>
-
-                <!-- Card 3: Antigravity (z:20) -->
-                <div class="stacked-card"
-                  style="z-index:20; transform: translateY(18px) scale(0.95); filter: brightness(0.8);">
-                  <div class="card-media">
-                    <video autoplay loop muted playsinline>
-                      <source src="img/style-guide/styleguide.webm" type="video/webm" />
-                      <source src="img/style-guide/styleguide.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                  <div class="card-content">
-                    <h4 class="font-bold text-2xl text-primary mb-1" data-i18n="index.selectedWorks.antiGravity.title">
-                      foeldvary.com</h4>
-                    <p class="card-subtitle text-base text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-3"
-                      data-i18n="index.selectedWorks.antiGravity.subtitle">Interactive Portfolio Platform</p>
-                    <a href="case-study-styleguide.html" class="card-arrow-link group/arrow">
-                      <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-base leading-relaxed"
-                      data-i18n="index.selectedWorks.antiGravity.description">
-                      An interactive portfolio platform with AI interaction, project storytelling, and recruiter-friendly contact flows.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Card 4: Shadow Cartels (z:10 — behind all others initially) -->
-                <div class="stacked-card"
-                  style="z-index:10; transform: translateY(36px) scale(0.9); filter: brightness(0.6);">
-                  <div class="card-media">
-                    <video autoplay loop muted playsinline>
-                      <source src="img/shadow-cartels/shadow-card.webm" type="video/webm" />
-                      <source src="img/shadow-cartels/shadow-card.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                  <div class="card-content">
-                    <h4 class="font-bold text-2xl text-primary mb-1" data-i18n="index.selectedWorks.shadow.title">Shadow Cartels</h4>
-                    <p class="card-subtitle text-base text-gray-500 dark:text-gray-400 font-medium mb-1 md:mb-3"
-                      data-i18n="index.selectedWorks.shadow.subtitle">Noir Strategy UI System</p>
-                    <a href="case-study-shadow.html" class="card-arrow-link group/arrow">
-                      <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                    <p class="hidden md:block text-gray-600 dark:text-gray-300 text-base leading-relaxed"
-                      data-i18n="index.selectedWorks.shadow.description">
-                      Complex game logic, territory feedback, and resource systems translated into a clear context-first interface.
-                    </p>
-                  </div>
-                </div>
-
-              </div><!-- /cards-container -->
-
-              <!-- View all link -->
-              <div class="stacked-view-all">
-                <!-- View All (Last card, hidden via opacity class instead of display to prevent layout shift) -->
-                <a id="view-all-projects-link"
-                  class="text-primary font-bold text-xl flex items-center gap-2 group opacity-0 pointer-events-none transition-opacity duration-500"
-                  href="work.html">
-                  <span data-i18n="index.selectedWorks.viewAll">View all projects</span>
-                  <span
-                    class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                  <span class="selected-works-card-cta selected-works-card-cta--tr">
+                    <span class="selected-works-card-cta-label" data-i18n="index.selectedWorks.enterProject">Enter Project</span>
+                    <span class="selected-works-card-cta-btn" aria-hidden="true">
+                      <span class="material-symbols-outlined text-[20px]">north_east</span>
+                    </span>
+                  </span>
                 </a>
               </div>
-
-            </div><!-- /sticky-cards-wrapper -->
-
-            <!-- Invisible scroll-tracker: its height creates the scroll range -->
-            <div class="scroll-tracker"></div>
-
-          </section><!-- /stacked-cards-section -->
-        </div>
+            </div>
+          </div>
+        </section>
       </div>
-      <!-- END OF CONTENT WRAPPER -->
+      <!-- END SELECTED WORKS -->
 
       <!-- BRIDGE SECTION -->
       <section class="relative z-10 border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900">
@@ -1054,12 +647,79 @@
         }
       });
     </script>
+    <script>window.HERO_GRID_ENABLED = false;</script>
     <script src="js/theme.js"></script>
     <script src="js/language.js"></script>
     <script src="js/hero-grid.js"></script>
-    <script src="js/stacked-cards.js"></script>
     <script src="js/bot-drag.js?v=2"></script>
-    <script src="js/pixel-card.js"></script>
+    <script>
+      (function () {
+        const heroMenu = document.getElementById('menu-button-hero');
+        const menu = document.getElementById('menu-button');
+        if (heroMenu && menu) {
+          heroMenu.addEventListener('click', function () { menu.click(); });
+        }
+        // Reveal sticky header after hero; keep bar clear of portrait until past fold
+        const header = document.getElementById('site-header');
+        const content = document.getElementById('content-wrapper');
+        function syncHeaderPastHero() {
+          if (!header) return;
+          const past = window.scrollY >= window.innerHeight - 8;
+          header.classList.toggle('is-past-hero', past);
+        }
+        if (header && content && 'IntersectionObserver' in window) {
+          const io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) header.classList.add('is-visible');
+              else if (window.scrollY < window.innerHeight * 0.5) header.classList.remove('is-visible');
+            });
+          }, { rootMargin: '-10% 0px 0px 0px', threshold: 0 });
+          io.observe(content);
+        }
+        syncHeaderPastHero();
+        window.addEventListener('scroll', syncHeaderPastHero, { passive: true });
+        window.addEventListener('resize', syncHeaderPastHero, { passive: true });
+        // Portrait touch toggle for color zoom
+        const portrait = document.getElementById('hero-portrait');
+        if (portrait) {
+          portrait.addEventListener('click', function () {
+            portrait.classList.toggle('is-color');
+          });
+        }
+
+        // Explore: content panel rises from below (smooth ease, not instant jump)
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+        function scrollRiseTo(targetY, duration) {
+          const startY = window.scrollY || window.pageYOffset;
+          const delta = targetY - startY;
+          if (Math.abs(delta) < 2) return;
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (reduce || duration <= 0) {
+            window.scrollTo(0, targetY);
+            return;
+          }
+          const start = performance.now();
+          function frame(now) {
+            const t = Math.min(1, (now - start) / duration);
+            window.scrollTo(0, startY + delta * easeOutCubic(t));
+            if (t < 1) requestAnimationFrame(frame);
+          }
+          requestAnimationFrame(frame);
+        }
+        document.querySelectorAll('a.hero-explore').forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.getElementById('content-wrapper') || document.getElementById('selected-works');
+            if (!target) return;
+            const y = Math.round(target.getBoundingClientRect().top + (window.scrollY || window.pageYOffset));
+            scrollRiseTo(y, 950);
+            if (history.replaceState) history.replaceState(null, '', '#selected-works');
+          });
+        });
+      })();
+    </script>
     <div id="ai-bot-injection-point"></div>
     <script>
       // Footer Animation Reveal

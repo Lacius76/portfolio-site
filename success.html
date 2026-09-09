@@ -7,14 +7,15 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Contact - UI Designer Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
-    <link rel="stylesheet" href="css/nav-animations.css">
+    <link rel="stylesheet" href="css/nav-animations.css" />
+    <link rel="stylesheet" href="css/hero-redesign.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&amp;display=swap"
         rel="stylesheet" />
     <script>
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -26,7 +27,7 @@
   <link rel="stylesheet" href="css/tailwind.min.css">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: "Asul", serif;
         }
 
         .material-symbols-outlined {
@@ -102,82 +103,51 @@
     class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-x-hidden antialiased transition-colors duration-300 selection:bg-primary selection:text-white">
     <div class="relative flex min-h-screen flex-col">
         <!-- Navbar -->
-        <header
-            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-            <!-- Replaced lg:px-40 with px-6 for consistent stability -->
-            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-
-                <!-- COLUMN 1: LOGO -->
-                <div class="flex items-center gap-4 nav-anim-logo">
-                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
-                        href="index.html">
-                        <div data-icon="logo"
-                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-grey-100 shadow-lg shadow-primary/20 p-1.5">
-                        </div>
-                        <h2 class="hidden sm:block text-lg font-bold tracking-tight">Laszlo.UI</h2>
-                    </a>
-                </div>
-
-                <!-- COLUMN 2: MENU -->
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-1"
-                        data-i18n="nav.work">Work</a>
-                    <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-2"
-                        data-i18n="nav.about">About</a>
-                    <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-3"
-                        data-i18n="nav.resume">Resume</a>
-                </nav>
-
-                <!-- COLUMN 3: BUTTONS -->
-                <div class="flex items-center gap-4">
-                    <!-- Let's Talk: Removed base transition, activates only on hover -->
-                    <a href="index.html"
-                        class="btn-sweep-primary hidden sm:flex h-10 min-w-[100px] items-center justify-center rounded-lg px-4 text-sm font-bold shadow-sm transition-transform hover:scale-105"
-                        data-i18n="success.backButton">
-                        Back to Laszlo.UI
-                    </a>
-                    <!-- Dark Mode Button - Fixed size (size-10) with shrink-0 -->
-                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                        <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
-                            <span></span>
-                            <span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span></span>
-                        </button>
-                        <span
-                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                            data-i18n="nav.toggleTheme">Toggle Theme</span>
-                    </div>
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="https://www.facebook.com/laszlo.ui" target="_blank">
-                        <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
-                            </path>
-                        </svg>
-                    </a>
-                    <!-- GitHub -->
-                    <a class="size-12 flex items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#1e293b] text-[#111418] dark:text-white hover:bg-primary hover:text-white transition-all"
-                        href="https://github.com/Lacius76" target="_blank">
-                        <svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24">
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405 1.02 0 2.04.135 3 .405 2.28-1.56 3.285-1.23 3.285-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                    </a>
-                    <button id="menu-button"
-                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
-                        <span class="material-symbols-outlined text-[28px]">menu</span>
-                    </button>
-                </div>
+        <header class="site-header">
+      <div class="site-header-inner">
+        <div class="site-header-left">
+                    <a class="site-logo-link" href="index.html" aria-label="Home">
+            <div data-icon="logo" class="site-logo-mark"></div>
+          </a>
+          <button id="theme-toggle"
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white theme__icon"
+              data-i18n-aria-label="nav.toggleTheme" aria-label="Toggle Theme">
+              <span></span>
+              <span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span></span>
+            </button>
+        </div>
+        <nav class="site-header-nav" aria-label="Primary">
+            <a href="work.html" data-i18n="nav.work">Work</a>
+            <a href="resume.html" data-i18n="nav.approach">Resume</a>
+            <a href="about-me.html" data-i18n="nav.about">About</a>
+        </nav>
+        <div class="site-header-right">
+            <div class="lang-stack" aria-label="Language">
+              <button type="button" class="lang-stack-btn lang-stack-primary" aria-expanded="false" aria-haspopup="true"
+                data-i18n-aria-label="nav.switchLanguage" aria-label="Switch Language">
+                <span class="lang-stack-current">EN</span>
+              </button>
+              <div class="lang-stack-panel">
+                <button type="button" class="lang-stack-btn lang-stack-secondary" data-lang="de">DE</button>
+              </div>
             </div>
-        </header>
+          <a href="contact.html" class="site-header-talk">
+            <span data-i18n="nav.letsTalk">Let's talk</span>
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">north_east</span>
+          </a>
+          <button id="menu-button"
+            class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white" aria-label="Menu">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu"
       class="hidden fixed inset-0 z-[110] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
@@ -234,10 +204,8 @@
           </div>
         </div>
 
-        <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.about">About</a>
-        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.resume">Resume</a>
+        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors" data-i18n="nav.approach">Resume</a>
+                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors" data-i18n="nav.about">About</a>
         <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's Talk</a>
       </nav>
     </div>

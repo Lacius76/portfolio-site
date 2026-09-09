@@ -7,10 +7,11 @@
     <title>Shadow Cartels: AI-Driven Noir Strategy | Laszlo.UI</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
     <link rel="stylesheet" href="css/language-animations.css">
-    <link rel="stylesheet" href="css/nav-animations.css">
+    <link rel="stylesheet" href="css/nav-animations.css" />
+    <link rel="stylesheet" href="css/hero-redesign.css">
     <link rel="stylesheet" href="css/footer-social.css" />
     <link rel="stylesheet" href="css/tailwind.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -64,100 +65,51 @@
 
     <div class="relative flex min-h-screen flex-col">
         <!-- HEADER -->
-        <header
-            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-            <!-- Replaced lg:px-40 with px-6 for consistent stability -->
-            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-
-                <!-- COLUMN 1: LOGO -->
-                <div class="flex items-center gap-4 nav-anim-logo">
-                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
-                        href="index.html">
-                        <div data-icon="logo"
-                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-sky-200 shadow-lg shadow-primary/20 p-1.5">
-                        </div>
-                        <h2 class="hidden sm:block text-lg font-bold tracking-tight">Laszlo.UI</h2>
-                    </a>
-                </div>
-
-                <!-- COLUMN 2: MENU -->
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-1"
-                        data-i18n="nav.work">Work</a>
-                    <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-2"
-                        data-i18n="nav.about">About</a>
-                    <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors nav-anim-link-3"
-                        data-i18n="nav.resume">Resume</a>
-                </nav>
-
-                <!-- COLUMN 3: BUTTONS -->
-                <div class="flex items-center gap-4">
-                    <!-- Let's Talk: Removed base transition, activates only on hover! -->
-                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                        <a href="contact.html"
-                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors nav-anim-contact"
-                            aria-label="Contact">
-                            <img src="img/contact-icon.svg" alt="Contact" class="size-6">
-                        </a>
-                        <span
-                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                            data-i18n="nav.contactMeTooltip">Contact Me</span>
-                    </div>
-
-                    <!-- 2. Language Dropdown -->
-                    <div class="relative nav-anim-lang">
-                        <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                            <button id="language-btn"
-                                class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                                <img src="img/language-icon.svg" alt="Select Language" class="size-6">
-                            </button>
-                            <span
-                                class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                                data-i18n="nav.switchLanguage">Switch Language</span>
-                        </div>
-                        <!-- Dropdown Menu -->
-                        <div id="language-dropdown"
-                            class="hidden absolute right-0 mt-2 w-30 bg-white dark:bg-[#1e293b] rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50 origin-top-right transition-all transform">
-                            <div class="py-1">
-                                <a href="#" data-lang="en"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                                    <span class="text-lg">🇬🇧</span> English
-                                </a>
-                                <a href="#" data-lang="de"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-t border-gray-100 dark:border-gray-700/50">
-                                    <span class="text-lg">🇩🇪</span> Deutsch
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. Theme Toggle -->
-                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                        <button id="theme-toggle"
-                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
-                            <span></span>
-                            <span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span></span>
-                        </button>
-                        <span
-                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                            data-i18n="nav.toggleTheme">Toggle Theme</span>
-                    </div>
-                    <button id="menu-button"
-                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
-                        <span class="material-symbols-outlined text-[28px]">menu</span>
-                    </button>
-                </div>
+        <header class="site-header">
+      <div class="site-header-inner">
+        <div class="site-header-left">
+                    <a class="site-logo-link" href="index.html" aria-label="Home">
+            <div data-icon="logo" class="site-logo-mark"></div>
+          </a>
+          <button id="theme-toggle"
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white theme__icon"
+              data-i18n-aria-label="nav.toggleTheme" aria-label="Toggle Theme">
+              <span></span>
+              <span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span></span>
+            </button>
+        </div>
+        <nav class="site-header-nav" aria-label="Primary">
+            <a href="work.html" data-i18n="nav.work">Work</a>
+            <a href="resume.html" data-i18n="nav.approach">Resume</a>
+            <a href="about-me.html" data-i18n="nav.about">About</a>
+        </nav>
+        <div class="site-header-right">
+            <div class="lang-stack" aria-label="Language">
+              <button type="button" class="lang-stack-btn lang-stack-primary" aria-expanded="false" aria-haspopup="true"
+                data-i18n-aria-label="nav.switchLanguage" aria-label="Switch Language">
+                <span class="lang-stack-current">EN</span>
+              </button>
+              <div class="lang-stack-panel">
+                <button type="button" class="lang-stack-btn lang-stack-secondary" data-lang="de">DE</button>
+              </div>
             </div>
-        </header>
+          <a href="contact.html" class="site-header-talk">
+            <span data-i18n="nav.letsTalk">Let's talk</span>
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">north_east</span>
+          </a>
+          <button id="menu-button"
+            class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white" aria-label="Menu">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu"
             class="hidden fixed inset-0 z-[110] bg-white dark:bg-[#101922] flex flex-col items-center justify-center gap-8">
@@ -212,10 +164,8 @@
                     </div>
                 </div>
 
-                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-                    data-i18n="nav.about">About</a>
-                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-                    data-i18n="nav.resume">Resume</a>
+                <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors" data-i18n="nav.approach">Resume</a>
+                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors" data-i18n="nav.about">About</a>
                 <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's
                     Talk</a>
             </nav>

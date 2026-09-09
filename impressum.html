@@ -6,9 +6,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Impressum - Laszlo.UI</title>
     <link rel="icon" type="image/svg+xml" href="img/logo-s.svg">
-    <link rel="stylesheet" href="css/nav-animations.css">
+    <link rel="stylesheet" href="css/nav-animations.css" />
+    <link rel="stylesheet" href="css/hero-redesign.css">
   <link rel="stylesheet" href="css/tailwind.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -22,7 +23,7 @@
     </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: "Asul", serif;
         }
 
         ::-webkit-scrollbar {
@@ -71,66 +72,51 @@
 
     <div class="relative flex min-h-screen flex-col">
         <!-- HEADER -->
-        <header
-            class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-[#101922]/80">
-            <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <a class="flex items-center gap-2 text-slate-900 dark:text-white transition-opacity hover:opacity-80"
-                        href="index.html">
-                        <div data-icon="logo"
-                            class="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 p-1.5">
-                        </div>
-                        <h2 class="hidden sm:block text-lg font-bold tracking-tight">Laszlo.UI</h2>
-                    </a>
-                </div>
-
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="work.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors"
-                        data-i18n="nav.work">Work</a>
-                    <a href="about-me.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors"
-                        data-i18n="nav.about">About</a>
-                    <a href="resume.html"
-                        class="text-sm font-medium text-slate-600 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors"
-                        data-i18n="nav.resume">Resume</a>
-                </nav>
-
-                <div class="flex items-center gap-4">
-                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                        <a href="contact.html"
-                            class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            aria-label="Contact">
-                            <img src="img/contact-icon.svg" alt="Contact" class="size-6">
-                        </a>
-                        <span
-                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                            data-i18n="nav.contactMeTooltip">Contact Me</span>
-                    </div>
-
-                    <div class="bot-tooltip-container bot-tooltip-down relative flex items-center justify-center">
-                        <button id="theme-toggle" class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white nav-anim-theme theme__icon">
-                            <span></span>
-                            <span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span></span>
-                        </button>
-                        <span
-                            class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl"
-                            data-i18n="nav.toggleTheme">Toggle Theme</span>
-                    </div>
-
-                    <button id="menu-button"
-                        class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white">
-                        <span class="material-symbols-outlined text-[28px]">menu</span>
-                    </button>
-                </div>
+        <header class="site-header">
+      <div class="site-header-inner">
+        <div class="site-header-left">
+                    <a class="site-logo-link" href="index.html" aria-label="Home">
+            <div data-icon="logo" class="site-logo-mark"></div>
+          </a>
+          <button id="theme-toggle"
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-[#111418] dark:text-white theme__icon"
+              data-i18n-aria-label="nav.toggleTheme" aria-label="Toggle Theme">
+              <span></span>
+              <span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span></span>
+            </button>
+        </div>
+        <nav class="site-header-nav" aria-label="Primary">
+            <a href="work.html" data-i18n="nav.work">Work</a>
+            <a href="resume.html" data-i18n="nav.approach">Resume</a>
+            <a href="about-me.html" data-i18n="nav.about">About</a>
+        </nav>
+        <div class="site-header-right">
+            <div class="lang-stack" aria-label="Language">
+              <button type="button" class="lang-stack-btn lang-stack-primary" aria-expanded="false" aria-haspopup="true"
+                data-i18n-aria-label="nav.switchLanguage" aria-label="Switch Language">
+                <span class="lang-stack-current">EN</span>
+              </button>
+              <div class="lang-stack-panel">
+                <button type="button" class="lang-stack-btn lang-stack-secondary" data-lang="de">DE</button>
+              </div>
             </div>
-        </header>
+          <a href="contact.html" class="site-header-talk">
+            <span data-i18n="nav.letsTalk">Let's talk</span>
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">north_east</span>
+          </a>
+          <button id="menu-button"
+            class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white" aria-label="Menu">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
 
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu"
@@ -188,10 +174,8 @@
           </div>
         </div>
 
-        <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.about">About</a>
-        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors"
-          data-i18n="nav.resume">Resume</a>
+        <a href="resume.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors" data-i18n="nav.approach">Resume</a>
+                <a href="about-me.html" class="text-slate-900 dark:text-white hover:text-primary transition-colors" data-i18n="nav.about">About</a>
         <a href="contact.html" class="btn-sweep-primary px-8 py-3 rounded-xl" data-i18n="nav.letsTalk">Let's Talk</a>
       </nav>
     </div>

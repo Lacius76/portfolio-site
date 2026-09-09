@@ -14,7 +14,7 @@ module.exports = {
         "background-dark": "#101922",
       },
       fontFamily: {
-        display: ["Inter", "sans-serif"],
+        display: ["Asul", "serif"],
       },
       borderRadius: {
         DEFAULT: "0.25rem",

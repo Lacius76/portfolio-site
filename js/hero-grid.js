@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.HERO_GRID_ENABLED === false) return;
+
     const gridElement = document.getElementById('hgGrid');
     const replayBtn = document.getElementById('hgReplayBtn');
 

@@ -1,0 +1,298 @@
+/* Selected Works — mockup grid (always dark; header theme independent) */
+
+#content-wrapper {
+  background: #0b1220;
+  box-shadow: 0 -10px 2px #0b1220;
+}
+
+.selected-works {
+  position: relative;
+  color: #ffffff;
+  background: #0b1220;
+  /* Extra runway so the next section only arrives after the cards are fully scrolled past */
+  padding-bottom: max(3rem, calc(85vh - 720px));
+}
+
+.selected-works-sticky {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2.5rem 1rem 2rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .selected-works-sticky {
+    padding: 2.75rem 1.5rem 2.5rem;
+  }
+}
+
+.selected-works-inner {
+  width: 100%;
+  max-width: 1245px;
+  margin: 0 auto;
+}
+
+.selected-works-eyebrow {
+  margin: 94px 0 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a5b4fc;
+}
+
+.selected-works-heading {
+  display: grid;
+  gap: 1.25rem 3rem;
+  align-items: end;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+@media (min-width: 900px) {
+  .selected-works-heading {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+}
+
+.selected-works-title {
+  margin: 0;
+  font-size: clamp(2.35rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.selected-works-intro {
+  margin: 0;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(226, 232, 240, 0.88);
+}
+
+@media (min-width: 900px) {
+  .selected-works-intro {
+    justify-self: end;
+    text-align: left;
+  }
+}
+
+.selected-works-grid {
+  display: grid;
+  gap: 1.15rem;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+/* Desktop: Bakery 591×591, eWa 372×591, wide 1245×492 — top pair centered, 20px gap */
+@media (min-width: 900px) {
+  .selected-works-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+
+  .selected-works-card:nth-child(1) {
+    width: min(591px, calc((100% - 20px) * 591 / 963));
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    height: auto;
+    flex: 0 0 auto;
+  }
+
+  .selected-works-card:nth-child(2) {
+    width: min(372px, calc((100% - 20px) * 372 / 963));
+    height: auto;
+    aspect-ratio: 372 / 591;
+    min-height: 0;
+    flex: 0 0 auto;
+    align-self: stretch;
+  }
+
+  .selected-works-card--wide {
+    flex: 0 0 auto;
+    width: min(984px, 100%);
+    max-width: 984px;
+    aspect-ratio: 984 / 492;
+    min-height: 0;
+    height: auto;
+  }
+}
+
+/* Exact mockup sizes when the inner is full 1245px wide */
+@media (min-width: 1277px) {
+  .selected-works-card:nth-child(1) {
+    width: 591px;
+    height: 591px;
+    aspect-ratio: auto;
+  }
+
+  .selected-works-card:nth-child(2) {
+    width: 372px;
+    height: 591px;
+    aspect-ratio: auto;
+  }
+
+  .selected-works-card--wide {
+    width: 984px;
+    height: 492px;
+    aspect-ratio: auto;
+  }
+}
+
+.selected-works-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 1.35rem;
+  min-height: min(42vh, 320px);
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+  background: #111827;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.selected-works-card-media,
+.selected-works-card-media img,
+.selected-works-card-shade,
+.selected-works-card-body,
+.selected-works-card-cta {
+  pointer-events: none;
+}
+
+.selected-works-card-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.selected-works-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.selected-works-card:hover .selected-works-card-media img {
+  transform: scale(1.04);
+}
+
+.selected-works-card-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.72) 100%);
+}
+
+.selected-works-card--wide .selected-works-card-shade {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0.35) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.selected-works-card-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 1.35rem 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 90%;
+}
+
+@media (min-width: 900px) {
+  .selected-works-card-body {
+    padding: 1.5rem 1.6rem 1.55rem;
+    max-width: 85%;
+  }
+
+  .selected-works-card--wide .selected-works-card-body {
+    max-width: 55%;
+  }
+}
+
+.selected-works-card-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.selected-works-card-subtitle {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.selected-works-card-cta {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.selected-works-card-cta--br {
+  right: 1.1rem;
+  bottom: 1.1rem;
+}
+
+.selected-works-card-cta--tr {
+  right: 1.1rem;
+  top: 1.1rem;
+}
+
+.selected-works-card-cta-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+.selected-works-card-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 9999px;
+  background: #6366f1;
+  color: #ffffff;
+  transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+.selected-works-card:hover .selected-works-card-cta-btn {
+  transform: scale(1.06);
+  background: #818cf8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selected-works-card-media img,
+  .selected-works-card-cta-btn {
+    transition: none;
+  }
+
+  .selected-works-card:hover .selected-works-card-media img {
+    transform: none;
+  }
+}
