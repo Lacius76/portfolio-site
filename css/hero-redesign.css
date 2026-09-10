@@ -292,7 +292,8 @@
   z-index: 0;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(0, 1fr) minmax(240px, 42vh);
+  /* More room for copy/CTA; portrait sits lower/smaller on mobile */
+  grid-template-rows: minmax(0, 1.75fr) minmax(160px, 28vh);
   background: #f3f4f6;
   overflow: hidden;
 }
@@ -332,6 +333,13 @@
   flex-shrink: 0;
   height: 4rem;
   padding-right: 0;
+  position: relative;
+  z-index: 5;
+  background: #f3f4f6;
+}
+
+.dark .hero-split-chrome {
+  background: #101922;
 }
 
 .hero-split-brand {
@@ -379,13 +387,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 1.25rem;
   max-width: none;
   width: 100%;
-  padding: 1.5rem 1.25rem 0 1.5rem;
+  padding: 1rem 1.25rem 0.75rem 1.5rem;
   min-height: 0;
+  overflow: visible;
 }
 
 @media (min-width: 1024px) {
@@ -395,6 +404,7 @@
     align-items: center;
     gap: 0;
     padding: 76px 20px 0;
+    overflow: visible;
   }
 }
 
@@ -482,6 +492,10 @@
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  z-index: 3;
+  margin-top: 0.5rem;
+  margin-bottom: 1.75rem;
 }
 
 @media (min-width: 1024px) {
@@ -518,7 +532,7 @@
   justify-content: space-between;
   gap: 1.25rem 2rem;
   margin-top: auto;
-  padding: 1.5rem 1.25rem 0 1.5rem;
+  padding: 2rem 1.25rem 0 1.5rem;
 }
 
 @media (min-width: 1024px) {
@@ -695,11 +709,61 @@
 }
 
 @media (max-width: 1023px) {
-  .hero-split-right-chrome .hero-split-talk {
+  .hero-split-right-chrome {
     display: none;
   }
 
   .hero-split-footer {
     padding-bottom: 0.25rem;
   }
+}
+
+.hero-split-chrome-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+
+/* Mobile: lang lives in left header; desktop: on portrait */
+.hero-split-chrome .lang-stack--chrome {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .hero-split-chrome .lang-stack--chrome {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-split-chrome-actions {
+    display: none;
+  }
+}
+
+/* Header-style chip on light chrome (not bordered portrait style) */
+.hero-split-chrome .lang-stack-btn {
+  border: none;
+}
+
+.hero-split-chrome .lang-stack-primary {
+  background: #e8e8ec;
+  color: #111418;
+}
+
+.hero-split-chrome .lang-stack-secondary {
+  background: #dcdce2;
+  color: #111418;
+  border: none;
+}
+
+.dark .hero-split-chrome .lang-stack-primary {
+  background: #2a3544;
+  color: #f8fafc;
+}
+
+.dark .hero-split-chrome .lang-stack-secondary {
+  background: #1e293b;
+  color: #f8fafc;
 }

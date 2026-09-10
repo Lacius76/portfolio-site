@@ -18,8 +18,8 @@
       "heroTitle1": "Designing is how I think.",
       "heroTitle2": "Building",
       "heroTitle3": " is how I prove it.",
-      "heroSubtitle": "Hi, I'm László Földváry — Senior Product Designer & Design Engineer.<br>I turn complex ideas into intuitive digital products.",
-      "heroSubtitleMobile": "Hi, I'm László Földváry — Senior Product Designer & Design Engineer. I turn complex ideas into intuitive digital products.",
+      "heroSubtitle": "Hi, I'm László Földváry — Senior Product Designer & Design Engineer.<br>I turn complex systems, workflows and product ideas into clear, usable digital products.",
+      "heroSubtitleMobile": "Hi, I'm László Földváry — Senior Product Designer & Design Engineer. I turn complex systems, workflows and product ideas into clear, usable digital products.",
       "viewSelectedWork": "View work",
       "exploreSelectedWork": "Explore selected work",
       "scrollToWorks": "Scroll to Works",
@@ -89,6 +89,23 @@
           "title": "Industrial SCADA UI",
           "subtitle": "WinCC OA UI & Icons"
         }
+      },
+      "howIWork": {
+        "eyebrow": "How I work",
+        "headline": "Design isn't decoration. It's how difficult ideas become useful products.",
+        "step1Title": "Find the signal",
+        "step1Text": "I turn research, constraints and business goals into a product direction everyone can understand.",
+        "step2Title": "Shape the system",
+        "step2Text": "Flows, interface language and reusable patterns come together as one coherent experience.",
+        "step3Title": "Make it real",
+        "step3Text": "I prototype in high fidelity and build the critical parts, so ideas are tested in the medium they live in."
+      },
+      "designerBuilds": {
+        "eyebrow": "A designer who builds",
+        "title": "Close to the problem.<br>Close to the product.",
+        "p1": "I work where product thinking, interaction design and front-end craft overlap — turning complex systems, workflows and ideas into interfaces that can be tested, built and improved.",
+        "p2": "From industrial systems and gaming interfaces to AI-assisted product prototypes, I bring deep interface experience and hands-on implementation thinking to digital products.",
+        "moreAboutMe": "More about me"
       }
     },
     "resume": {
@@ -1035,8 +1052,8 @@
       "heroTitle1": "Design ist meine Denkweise.",
       "heroTitle2": "Bauen",
       "heroTitle3": " ist mein Beweis.",
-      "heroSubtitle": "Hallo, ich bin László Földváry — Senior Product Designer & Design Engineer.<br>Ich verwandle komplexe Ideen in intuitive digitale Produkte.",
-      "heroSubtitleMobile": "Hallo, ich bin László Földváry — Senior Product Designer & Design Engineer. Ich verwandle komplexe Ideen in intuitive digitale Produkte.",
+      "heroSubtitle": "Hallo, ich bin László Földváry — Senior Product Designer & Design Engineer.<br>Ich verwandle komplexe Systeme, Workflows und Produktideen in klare, nutzbare digitale Produkte.",
+      "heroSubtitleMobile": "Hallo, ich bin László Földváry — Senior Product Designer & Design Engineer. Ich verwandle komplexe Systeme, Workflows und Produktideen in klare, nutzbare digitale Produkte.",
       "viewSelectedWork": "Projekte ansehen",
       "exploreSelectedWork": "Ausgewählte Projekte",
       "scrollToWorks": "Zu den Projekten",
@@ -1106,6 +1123,23 @@
           "title": "Industrielle SCADA UI",
           "subtitle": "WinCC OA UI & Icons"
         }
+      },
+      "howIWork": {
+        "eyebrow": "So arbeite ich",
+        "headline": "Design ist kein Dekor. Es ist der Weg, wie schwierige Ideen zu nützlichen Produkten werden.",
+        "step1Title": "Das Signal finden",
+        "step1Text": "Ich mache aus Research, Constraints und Business-Zielen eine Produkt-Richtung, die alle verstehen.",
+        "step2Title": "Das System formen",
+        "step2Text": "Flows, Interface-Sprache und wiederverwendbare Patterns werden zu einem kohärenten Erlebnis.",
+        "step3Title": "Real machen",
+        "step3Text": "Ich prototype in hoher Treue und baue die kritischen Teile, damit Ideen im Medium getestet werden, in dem sie leben."
+      },
+      "designerBuilds": {
+        "eyebrow": "Ein Designer, der baut",
+        "title": "Nah am Problem.<br>Nah am Produkt.",
+        "p1": "Ich arbeite dort, wo Produktdenken, Interaction Design und Front-End-Handwerk überlappen — und verwandle komplexe Systeme, Workflows und Ideen in Interfaces, die getestet, gebaut und verbessert werden können.",
+        "p2": "Von industriellen Systemen und Game Interfaces bis zu KI-gestützten Produktprototypen bringe ich tiefe Interface-Erfahrung und hands-on Umsetzungsgedanken in digitale Produkte.",
+        "moreAboutMe": "Mehr über mich"
       }
     },
     "resume": {

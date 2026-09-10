@@ -1,0 +1,159 @@
+/* Designer who builds — bridge card (mockup + existing CTAs) */
+
+.designer-builds {
+  position: relative;
+  z-index: 10;
+  background: #ffffff;
+  padding: 3.5rem 1.25rem 4.5rem;
+}
+
+.dark .designer-builds {
+  background: #0b1220;
+}
+
+.designer-builds-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  max-width: 1245px;
+  margin: 0 auto;
+  border-radius: 2rem;
+  background: #efeee9;
+}
+
+.dark .designer-builds-card {
+  background: #1a2332;
+}
+
+@media (min-width: 900px) {
+  .designer-builds-card {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    min-height: 520px;
+    border-radius: 2.25rem;
+  }
+}
+
+.designer-builds-media {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .designer-builds-media {
+    min-height: 100%;
+  }
+}
+
+.designer-builds-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.designer-builds-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.15rem;
+  padding: 2rem 1.5rem 2.25rem;
+}
+
+@media (min-width: 900px) {
+  .designer-builds-body {
+    padding: 3rem 3rem 3.25rem 2.75rem;
+    gap: 1.25rem;
+  }
+}
+
+.designer-builds-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4f6ef7;
+}
+
+.designer-builds-title {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(2rem, 3.6vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #111418;
+}
+
+.dark .designer-builds-title {
+  color: #ffffff;
+}
+
+.designer-builds-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 36rem;
+}
+
+.designer-builds-copy p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #4b5563;
+}
+
+.dark .designer-builds-copy p {
+  color: #cbd5e1;
+}
+
+.designer-builds-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 2.5rem;
+  margin-top: 0.75rem;
+}
+
+.designer-builds-actions .btn-sweep-primary,
+.designer-builds-actions .btn-sweep-outline {
+  min-height: 3.25rem;
+}
+
+.designer-builds-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0;
+  border: none;
+  background: none;
+  color: #111418;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.dark .designer-builds-more {
+  color: #f8fafc;
+}
+
+.designer-builds-more:hover {
+  color: #6366f1;
+}
+
+.designer-builds-more .material-symbols-outlined {
+  transition: transform 0.2s ease;
+}
+
+.designer-builds-more:hover .material-symbols-outlined {
+  transform: translateX(3px);
+}
+
+@media (min-width: 768px) {
+  .designer-builds {
+    padding: 4.5rem 2.5rem 5.5rem;
+  }
+}

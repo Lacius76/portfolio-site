@@ -1,0 +1,148 @@
+/* How I Work — light editorial process section */
+
+.how-i-work {
+  position: relative;
+  z-index: 10;
+  background: #f3f1ec;
+  color: #111418;
+  padding: 5rem 1.25rem 5.5rem;
+}
+
+.dark .how-i-work {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.how-i-work-inner {
+  width: 100%;
+  max-width: 1245px;
+  margin: 0 auto;
+}
+
+.how-i-work-top {
+  display: grid;
+  gap: 1.5rem 3rem;
+  align-items: start;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.dark .how-i-work-top {
+  border-bottom-color: rgba(148, 163, 184, 0.28);
+}
+
+@media (min-width: 900px) {
+  .how-i-work-top {
+    grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 0.72fr);
+    padding-bottom: 2.25rem;
+  }
+}
+
+.how-i-work-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4f6ef7;
+}
+
+.how-i-work-headline {
+  margin: 0;
+  max-width: 42rem;
+  font-size: clamp(2.25rem, 4.6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #111418;
+}
+
+.dark .how-i-work-headline {
+  color: #ffffff;
+}
+
+@media (min-width: 900px) {
+  .how-i-work-headline {
+    justify-self: start;
+  }
+}
+
+.how-i-work-steps {
+  display: grid;
+  gap: 2.5rem;
+  padding-top: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .how-i-work-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    padding-top: 2.75rem;
+  }
+}
+
+.how-i-work-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+@media (min-width: 900px) {
+  .how-i-work-step {
+    padding: 0 2rem;
+  }
+
+  .how-i-work-step:first-child {
+    padding-left: 0;
+  }
+
+  .how-i-work-step:last-child {
+    padding-right: 0;
+  }
+
+  .how-i-work-step + .how-i-work-step {
+    border-left: 1px solid rgba(15, 23, 42, 0.12);
+  }
+
+  .dark .how-i-work-step + .how-i-work-step {
+    border-left-color: rgba(148, 163, 184, 0.28);
+  }
+}
+
+.how-i-work-num {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #4f6ef7;
+}
+
+.how-i-work-step-title {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111418;
+}
+
+.dark .how-i-work-step-title {
+  color: #ffffff;
+}
+
+.how-i-work-step-text {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #3f4b59;
+}
+
+.dark .how-i-work-step-text {
+  color: #cbd5e1;
+}
+
+@media (min-width: 768px) {
+  .how-i-work {
+    padding: 6rem 2.5rem 6.5rem;
+  }
+}

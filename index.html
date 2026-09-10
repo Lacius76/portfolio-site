@@ -36,6 +36,8 @@
   <link rel="stylesheet" href="css/hero-redesign.css" />
   <link rel="stylesheet" href="css/bot.css" />
   <link rel="stylesheet" href="css/selected-works.css" />
+  <link rel="stylesheet" href="css/how-i-work.css" />
+  <link rel="stylesheet" href="css/designer-builds.css" />
   <link rel="stylesheet" href="css/footer-social.css" />
   <link rel="stylesheet" href="css/tailwind.min.css">
 
@@ -315,10 +317,21 @@
               <a href="resume.html" data-i18n="nav.approach">Resume</a>
               <a href="about-me.html" data-i18n="nav.about">About</a>
             </nav>
-            <button id="menu-button-hero"
-              class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white" aria-label="Menu">
-              <span class="material-symbols-outlined text-[28px]">menu</span>
-            </button>
+            <div class="hero-split-chrome-actions">
+              <div class="lang-stack lang-stack--chrome" aria-label="Language">
+                <button type="button" class="lang-stack-btn lang-stack-primary" aria-expanded="false" aria-haspopup="true"
+                  data-i18n-aria-label="nav.switchLanguage" aria-label="Switch Language">
+                  <span class="lang-stack-current">EN</span>
+                </button>
+                <div class="lang-stack-panel">
+                  <button type="button" class="lang-stack-btn lang-stack-secondary" data-lang="de">DE</button>
+                </div>
+              </div>
+              <button id="menu-button-hero"
+                class="md:hidden flex items-center justify-center p-2 text-slate-900 dark:text-white" aria-label="Menu">
+                <span class="material-symbols-outlined text-[28px]">menu</span>
+              </button>
+            </div>
           </div>
 
           <div class="hero-split-body">
@@ -329,7 +342,7 @@
                 <span class="hero-anim-title-3" data-i18n="index.heroTitle3"> is how I prove it.</span>
               </h1>
               <p class="hero-split-subtitle hero-anim-subtitle" data-i18n="index.heroSubtitle" data-i18n-html="true">
-                Hi, I'm László Földváry — Senior Product Designer &amp; Design Engineer.<br>I turn complex ideas into intuitive digital products.
+                Hi, I'm László Földváry — Senior Product Designer &amp; Design Engineer.<br>I turn complex systems, workflows and product ideas into clear, usable digital products.
               </p>
             </div>
             <a href="work.html" class="hero-split-cta hero-anim-btn-secondary" data-i18n="index.viewSelectedWork">View work</a>
@@ -463,22 +476,70 @@
       </div>
       <!-- END SELECTED WORKS -->
 
-      <!-- BRIDGE SECTION -->
-      <section class="relative z-10 border-t border-slate-200 py-20 dark:border-slate-800 bg-white dark:bg-slate-900">
-        <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6">
-            <span class="material-symbols-outlined text-3xl">handshake</span>
+      <!-- HOW I WORK -->
+      <section id="how-i-work" class="how-i-work" aria-labelledby="how-i-work-headline">
+        <div class="how-i-work-inner">
+          <div class="how-i-work-top">
+            <p class="how-i-work-eyebrow" data-i18n="index.howIWork.eyebrow">How I work</p>
+            <h2 id="how-i-work-headline" class="how-i-work-headline" data-i18n="index.howIWork.headline">
+              Design isn't decoration. It's how difficult ideas become useful products.
+            </h2>
           </div>
-          <h2 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-6 uppercase"
-            data-i18n="work.bridgeTitle">Let's turn complex ideas into working products</h2>
-          <p class="mx-auto max-w-2xl text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed"
-            data-i18n="work.bridgeDesc">From industrial systems and gaming interfaces to AI-assisted product prototypes, I bring deep interface experience, product thinking, and design engineering to your next digital product.</p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="contact.html"
-              class="btn-sweep-primary flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl px-8 text-base font-bold shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1"><span
-                data-i18n="work.startCollaboration">Start a Collaboration</span></a>
-            <a href="mailto:foeldvary@gmail.com"
-              class="btn-sweep-outline flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-slate-200 px-8 text-base font-bold dark:border-slate-700">foeldvary@gmail.com</a>
+          <div class="how-i-work-steps">
+            <article class="how-i-work-step">
+              <p class="how-i-work-num">01</p>
+              <h3 class="how-i-work-step-title" data-i18n="index.howIWork.step1Title">Find the signal</h3>
+              <p class="how-i-work-step-text" data-i18n="index.howIWork.step1Text">
+                I turn research, constraints and business goals into a product direction everyone can understand.
+              </p>
+            </article>
+            <article class="how-i-work-step">
+              <p class="how-i-work-num">02</p>
+              <h3 class="how-i-work-step-title" data-i18n="index.howIWork.step2Title">Shape the system</h3>
+              <p class="how-i-work-step-text" data-i18n="index.howIWork.step2Text">
+                Flows, interface language and reusable patterns come together as one coherent experience.
+              </p>
+            </article>
+            <article class="how-i-work-step">
+              <p class="how-i-work-num">03</p>
+              <h3 class="how-i-work-step-title" data-i18n="index.howIWork.step3Title">Make it real</h3>
+              <p class="how-i-work-step-text" data-i18n="index.howIWork.step3Text">
+                I prototype in high fidelity and build the critical parts, so ideas are tested in the medium they live in.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESIGNER WHO BUILDS -->
+      <section id="designer-builds" class="designer-builds" aria-labelledby="designer-builds-title">
+        <div class="designer-builds-card">
+          <div class="designer-builds-media">
+            <img src="img/portrait/foto-2.jpg" alt="László Földváry" />
+          </div>
+          <div class="designer-builds-body">
+            <p class="designer-builds-eyebrow" data-i18n="index.designerBuilds.eyebrow">A designer who builds</p>
+            <h2 id="designer-builds-title" class="designer-builds-title" data-i18n="index.designerBuilds.title" data-i18n-html="true">
+              Close to the problem.<br>Close to the product.
+            </h2>
+            <div class="designer-builds-copy">
+              <p data-i18n="index.designerBuilds.p1">
+                I work where product thinking, interaction design and front-end craft overlap — turning complex systems, workflows and ideas into interfaces that can be tested, built and improved.
+              </p>
+              <p data-i18n="index.designerBuilds.p2">
+                From industrial systems and gaming interfaces to AI-assisted product prototypes, I bring deep interface experience and hands-on implementation thinking to digital products.
+              </p>
+            </div>
+            <div class="designer-builds-actions">
+              <a href="contact.html"
+                class="btn-sweep-primary flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl px-8 text-base font-bold shadow-xl shadow-primary/20 transition-transform hover:-translate-y-1">
+                <span data-i18n="nav.letsTalk">Let's talk</span>
+              </a>
+              <a href="about-me.html" class="designer-builds-more">
+                <span data-i18n="index.designerBuilds.moreAboutMe">More about me</span>
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">arrow_forward</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
