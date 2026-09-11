@@ -3,6 +3,11 @@
    Shared across all pages
    ============================================ */
 
+/* Mobile menu overlay — z-[320] is missing from tailwind.min.css */
+#mobile-menu {
+  z-index: 320;
+}
+
 /* --- Keyframes --- */
 
 /* Smooth fade + slide down for nav items */

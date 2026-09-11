@@ -662,24 +662,26 @@
           }
         }
 
-        if (menuBtn && closeBtn && mobileMenu) {
-          menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            if (workDropdown) {
-              if (window.location.pathname.includes('case-study-')) {
-                setTimeout(() => {
-                  workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
-                  workChevron.style.transform = 'rotate(180deg)';
-                  toggleWorkStyles(true);
-                }, 50);
-              } else {
-                workDropdown.style.maxHeight = '0px';
-                workChevron.style.transform = 'rotate(0deg)';
-                toggleWorkStyles(false);
-              }
+        function openMobileMenu() {
+          mobileMenu.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+          if (workDropdown) {
+            if (window.location.pathname.includes('case-study-')) {
+              setTimeout(() => {
+                workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
+                workChevron.style.transform = 'rotate(180deg)';
+                toggleWorkStyles(true);
+              }, 50);
+            } else {
+              workDropdown.style.maxHeight = '0px';
+              workChevron.style.transform = 'rotate(0deg)';
+              toggleWorkStyles(false);
             }
-          });
+          }
+        }
+
+        if (menuBtn && closeBtn && mobileMenu) {
+          menuBtn.addEventListener('click', openMobileMenu);
 
           closeBtn.addEventListener('click', closeMobileMenu);
 
@@ -705,6 +707,12 @@
               link.addEventListener('click', closeMobileMenu);
             }
           });
+
+          // Hero chrome hamburger (same overlay)
+          const heroMenuBtn = document.getElementById('menu-button-hero');
+          if (heroMenuBtn) {
+            heroMenuBtn.addEventListener('click', openMobileMenu);
+          }
         }
       });
     </script>
@@ -715,11 +723,6 @@
     <script src="js/bot-drag.js?v=2"></script>
     <script>
       (function () {
-        const heroMenu = document.getElementById('menu-button-hero');
-        const menu = document.getElementById('menu-button');
-        if (heroMenu && menu) {
-          heroMenu.addEventListener('click', function () { menu.click(); });
-        }
         // Reveal sticky header after hero; keep bar clear of portrait until past fold
         const header = document.getElementById('site-header');
         const content = document.getElementById('content-wrapper');
