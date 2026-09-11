@@ -287,13 +287,13 @@
 
 /* ——— Index hero split ——— */
 .hero-split {
-  position: fixed;
-  inset: 0;
+  position: relative;
   z-index: 0;
   display: grid;
   grid-template-columns: 1fr;
-  /* More room for copy/CTA; portrait sits lower/smaller on mobile */
-  grid-template-rows: minmax(0, 1.75fr) minmax(160px, 28vh);
+  /* Mobile: in-flow so the portrait is a real scroll stop before Selected Works */
+  grid-template-rows: auto minmax(62svh, 78vw);
+  min-height: 100svh;
   background: #f3f4f6;
   overflow: hidden;
 }
@@ -304,9 +304,14 @@
 
 @media (min-width: 1024px) {
   .hero-split {
+    position: fixed;
+    inset: 0;
     /* ~590px portrait at 1400px viewport (not 50/50) */
     grid-template-columns: minmax(0, 1fr) min(590px, 42.14vw);
     grid-template-rows: 1fr;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
   }
 }
 
@@ -315,13 +320,14 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  padding: 0 1.25rem 1.5rem 0;
+  padding: 0 1.25rem 0.75rem 0;
   min-height: 0;
 }
 
 @media (min-width: 1024px) {
   .hero-split-left {
     padding: 0 2.5rem 2rem 0;
+    overflow: hidden;
   }
 }
 
@@ -384,15 +390,15 @@
 }
 
 .hero-split-body {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1.25rem;
+  gap: 0.85rem;
   max-width: none;
   width: 100%;
-  padding: 1rem 1.25rem 0.75rem 1.5rem;
+  padding: 1.5rem 1.25rem 0 1.5rem;
   min-height: 0;
   overflow: visible;
 }
@@ -400,6 +406,7 @@
 @media (min-width: 1024px) {
   .hero-split-body {
     position: relative;
+    flex: 1;
     justify-content: flex-start;
     align-items: center;
     gap: 0;
@@ -411,7 +418,7 @@
 .hero-split-copy {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.85rem;
   max-width: 636px;
   width: 100%;
   min-width: 0;
@@ -428,7 +435,7 @@
 .hero-split-title {
   margin: 0;
   max-width: 636px;
-  font-size: clamp(2rem, 4.2vw, 3.35rem);
+  font-size: clamp(1.7rem, 7.2vw, 2.35rem);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.02em;
@@ -437,6 +444,10 @@
 
 /* German title line 1 is longer — scale down so it stays one line (no DE-only layout breakpoint) */
 @media (min-width: 1024px) {
+  .hero-split-title {
+    font-size: clamp(2rem, 4.2vw, 3.35rem);
+  }
+
   html[lang="de"] .hero-split-title {
     font-size: clamp(1.75rem, 3.55vw, 3.05rem);
   }
@@ -456,8 +467,8 @@
 
 .hero-split-subtitle {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 0.9375rem;
+  line-height: 1.45;
   color: #4b5563;
   max-width: 570px;
   width: 100%;
@@ -465,6 +476,8 @@
 
 @media (min-width: 1024px) {
   .hero-split-subtitle {
+    font-size: 1rem;
+    line-height: 1.55;
     margin-top: 70px;
     margin-left: auto;
     margin-right: auto;
@@ -476,26 +489,33 @@
   color: #cbd5e1;
 }
 
+@media (max-width: 1023px) {
+  /* Desktop subtitle uses <br>; on phones keep one flowing block to avoid overlap */
+  .hero-split-subtitle br {
+    display: none;
+  }
+}
+
 .hero-split-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   align-self: flex-start;
-  min-height: 3.25rem;
-  padding: 0.85rem 1.75rem;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.35rem;
   border-radius: 0;
   background: #111418;
   color: #ffffff;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 0.2s ease, transform 0.2s ease;
   position: relative;
-  z-index: 3;
-  margin-top: 0.5rem;
-  margin-bottom: 1.75rem;
+  z-index: auto;
+  margin-top: 0.15rem;
+  margin-bottom: 0;
 }
 
 @media (min-width: 1024px) {
@@ -509,6 +529,9 @@
     margin: 0;
     width: 224px;
     min-width: 224px;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.75rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -530,15 +553,17 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem 2rem;
-  margin-top: auto;
-  padding: 2rem 1.25rem 0 1.5rem;
+  gap: 0.85rem 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.85rem;
+  padding: 0.35rem 1.25rem 0.25rem 1.5rem;
 }
 
 @media (min-width: 1024px) {
   .hero-split-footer {
     flex-wrap: nowrap;
     align-items: center;
+    margin-top: auto;
     /* Match .hero-split-body 20px padding + centered 636px copy column */
     padding-top: 1.5rem;
     padding-bottom: 0;

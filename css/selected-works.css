@@ -3,6 +3,14 @@
 #content-wrapper {
   background: #0b1220;
   box-shadow: 0 -10px 2px #0b1220;
+  /* Mobile hero is in-flow; desktop hero is fixed and needs a full-viewport spacer */
+  margin-top: 0;
+}
+
+@media (min-width: 1024px) {
+  #content-wrapper {
+    margin-top: 100vh;
+  }
 }
 
 .selected-works {

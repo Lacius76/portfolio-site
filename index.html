@@ -392,7 +392,7 @@
 
       <!-- SELECTED WORKS -->
       <div id="content-wrapper"
-        class="relative z-10 mt-[100vh]">
+        class="relative z-10">
         <section id="selected-works" class="selected-works" aria-labelledby="selected-works-title">
           <div class="selected-works-sticky">
             <div class="selected-works-inner">
@@ -723,16 +723,24 @@
         // Reveal sticky header after hero; keep bar clear of portrait until past fold
         const header = document.getElementById('site-header');
         const content = document.getElementById('content-wrapper');
+        const heroSplit = document.getElementById('hero-split');
+        function heroFoldY() {
+          if (heroSplit) {
+            const top = heroSplit.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+            return top + heroSplit.offsetHeight;
+          }
+          return window.innerHeight;
+        }
         function syncHeaderPastHero() {
           if (!header) return;
-          const past = window.scrollY >= window.innerHeight - 8;
+          const past = (window.scrollY || window.pageYOffset) >= heroFoldY() - 8;
           header.classList.toggle('is-past-hero', past);
         }
         if (header && content && 'IntersectionObserver' in window) {
           const io = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
               if (entry.isIntersecting) header.classList.add('is-visible');
-              else if (window.scrollY < window.innerHeight * 0.5) header.classList.remove('is-visible');
+              else if ((window.scrollY || window.pageYOffset) < heroFoldY() * 0.5) header.classList.remove('is-visible');
             });
           }, { rootMargin: '-10% 0px 0px 0px', threshold: 0 });
           io.observe(content);
