@@ -431,14 +431,17 @@
   box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
 }
 
-.bc-slot.is-busy {
+.bc-slot.is-busy,
+.bc-slot.is-busy:disabled {
   border-color: rgba(239, 68, 68, 0.35);
   background: rgba(239, 68, 68, 0.12);
   color: #ef4444;
   cursor: not-allowed;
+  opacity: 1;
 }
 
-.dark .bc-slot.is-busy {
+.dark .bc-slot.is-busy,
+.dark .bc-slot.is-busy:disabled {
   border-color: rgba(248, 113, 113, 0.35);
   background: rgba(239, 68, 68, 0.16);
   color: #fca5a5;
@@ -451,8 +454,8 @@
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
 }
 
-.bc-slot.is-disabled,
-.bc-slot:disabled {
+.bc-slot.is-disabled:not(.is-busy),
+.bc-slot:disabled:not(.is-busy) {
   border-color: #e5e7eb;
   background: #f1f5f9;
   color: #94a3b8;
@@ -460,8 +463,8 @@
   opacity: 0.7;
 }
 
-.dark .bc-slot.is-disabled,
-.dark .bc-slot:disabled {
+.dark .bc-slot.is-disabled:not(.is-busy),
+.dark .bc-slot:disabled:not(.is-busy) {
   border-color: #1e293b;
   background: #0b1220;
   color: #475569;
