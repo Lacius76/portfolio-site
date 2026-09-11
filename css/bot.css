@@ -432,58 +432,279 @@
     flex-shrink: 0;
 }
 
-/* ---- CONSOLE (bottom) ---- */
-.bot-screen-container {
-    padding: 2px 2px 2px 2px;
-    flex-shrink: 0;
-    background: transparent;
-    height: auto;
-    position: relative;
-    z-index: 10;
-}
-
-/* Hide old inset screen — console is handled by bot-console-inset now */
+/* Hide old inset screen — console lives in the external chat panel */
 .bot-screen-inset {
     display: none;
 }
 
+/* Wrapper sizes to the bot card only — chat panel is out-of-flow (absolute) */
+#aiBotDragWrapper {
+    width: max-content;
+    max-width: max-content;
+    overflow: visible;
+}
+
+/* ---- External chat panel (absolute: slides LEFT out of bot, bot stays put) ---- */
+.bot-chat-panel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 100%;
+    bottom: 20px;
+    left: auto;
+    top: auto;
+    width: 228px;
+    max-width: 0;
+    height: 380px;
+    margin: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background: #000;
+    box-shadow: none;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: 1;
+    transition:
+        max-width 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.28s ease,
+        visibility 0s linear 0.42s,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.bot-chat-panel.is-open {
+    max-width: 228px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    border-color: #8a8a8a;
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    transition:
+        max-width 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.22s ease,
+        visibility 0s linear 0s,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.bot-chat-panel[hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bot-chat-panel,
+    .bot-chat-panel.is-open {
+        transition: none;
+    }
+}
+
+.bot-chat-collapse {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 5;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #28a530;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.bot-chat-collapse:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.bot-chat-panel-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    /* Keep full content width while parent max-width clips — slide-out from bot */
+    width: 228px;
+    min-width: 228px;
+    box-sizing: border-box;
+    padding: 8px 8px 8px;
+    gap: 0;
+}
+
 .bot-console-inset {
     background: #000;
-    border-radius: 8px;
-    box-shadow:
-        inset 2px 2px 2px rgba(0, 0, 0, 1),
-        inset -1px -1px 3px rgba(100, 100, 120, 0.2),
-        0 1px 0 rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(60, 60, 60, 0.9);
-    height: 110px !important;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid rgba(140, 140, 140, 0.55);
+    height: auto !important;
     width: auto !important;
-    max-height: 110px !important;
-    min-height: 110px !important;
+    max-height: none !important;
+    min-height: 0 !important;
     overflow: hidden !important;
     margin: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    padding-top: 18px;
 }
 
-.bot-console-inset>div {
+.bot-console-scroll,
+.bot-console-inset>div.bot-console-scroll {
     width: 100% !important;
     max-width: 100% !important;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
     overflow-x: hidden !important;
     overflow-y: auto !important;
 }
 
 /* Custom scrollbar for bot terminal */
+.bot-console-scroll::-webkit-scrollbar,
 .bot-console-inset>div::-webkit-scrollbar {
     width: 2px !important;
 }
 
+.bot-console-scroll::-webkit-scrollbar-track,
 .bot-console-inset>div::-webkit-scrollbar-track {
     background: transparent !important;
     margin-block: 8px !important;
 }
 
+.bot-console-scroll::-webkit-scrollbar-thumb,
 .bot-console-inset>div::-webkit-scrollbar-thumb {
     background-color: #28a530 !important;
     border-radius: 0 !important;
+}
+
+.bot-chat-compose {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0;
+    min-height: 34px;
+    padding: 6px 2px 2px 4px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.bot-chat-compose.hidden {
+    display: none !important;
+}
+
+.bot-chat-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 22px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--hal-text, #28a530);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 22px;
+    caret-color: var(--hal-text, #28a530);
+}
+
+.bot-chat-input::placeholder {
+    color: rgba(40, 165, 48, 0.45);
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.bot-chat-send {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #28a530;
+    cursor: pointer;
+    z-index: 50;
+    opacity: 0.9;
+}
+
+.bot-chat-send:hover {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+.bot-chat-send:disabled {
+    opacity: 0.45;
+    cursor: wait;
+    transform: none;
+}
+
+.bot-ask-me-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    margin: 0 6px 4px;
+    min-height: 24px;
+    padding: 3px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    border-radius: 3px;
+    background: linear-gradient(90deg, #67e8f9 0%, #a5b4fc 52%, #c4b5fd 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        0 1px 2px rgba(0, 0, 0, 0.35);
+    color: #1e1b4b;
+    font-family: "Asul", "Segoe UI", system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.bot-ask-me-btn:hover {
+    filter: brightness(1.05);
+}
+
+.bot-ask-me-btn[aria-expanded="true"] {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        0 0 0 1px rgba(99, 102, 241, 0.35);
+}
+
+.bot-speaker-grill {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0 4px 2px;
+    border-radius: 3px;
+    background-color: #9a9a9a;
+    background-image: radial-gradient(circle, #4a4a4a 1.1px, transparent 1.25px);
+    background-size: 6px 6px;
+    background-position: 2px 2px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+    opacity: 0.95;
 }
 
 .bot-console-text,
@@ -500,18 +721,21 @@
     font-size: 11px !important;
 }
 
-/* Bottom row: console + send button */
+/* Bottom row: Ask me + grill (closed state) */
 .bot-bottom-area {
-    flex-shrink: 0;
+    flex: 0 0 94px;
+    height: 94px;
+    max-height: 94px;
+    min-height: 94px;
     padding: 4px;
-    /* Uniform padding to match top gap with sides and bottom */
     display: flex;
-    gap: 8px;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    align-items: stretch;
     position: relative;
     z-index: 20;
     overflow: hidden;
-    height: auto;
+    box-sizing: border-box;
 }
 
 /* Skin dropdown */
@@ -815,51 +1039,82 @@
 }
 
 #aiBotCard.skin-classic .bot-console-inset {
-    height: 88px !important;
-    max-height: 88px !important;
-    min-height: 88px !important;
-    width: 100% !important;
-    margin: 0 !important;
-    border-radius: 9px !important;
-
-    /* Fehér ablakbelső a konzolhoz (Mac OS 8.6 kinézet) */
     background: #ffffff !important;
-
-    box-shadow:
-        inset 2px 2px 6px rgba(0, 0, 0, 0.2),
-        inset -1px -1px 3px rgba(255, 255, 255, 1),
-        0 2px 2px rgba(255, 255, 255, 0.2) !important;
-    border: 1px solid rgba(50, 50, 50, 0.8) !important;
+    border-bottom: 1px solid rgba(50, 50, 50, 0.55) !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
 /* Fekete görgetősáv a classic skin konzoljában */
-#aiBotCard.skin-classic .bot-console-inset>div::-webkit-scrollbar-thumb {
+#aiBotCard.skin-classic .bot-console-inset>div::-webkit-scrollbar-thumb,
+.skin-classic ~ .bot-chat-panel .bot-console-inset>div::-webkit-scrollbar-thumb,
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-console-inset>div::-webkit-scrollbar-thumb {
     background-color: #000000 !important;
 }
 
 /* Sötét szürke szöveg és kurzor a fehér konzol belsőhöz */
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-console-text,
 #aiBotCard.skin-classic .bot-console-text {
     color: #333333 !important;
     text-shadow: none !important;
 }
 
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-cursor,
 #aiBotCard.skin-classic .bot-cursor {
     background: #333333 !important;
     box-shadow: none !important;
-    /* Nincs zöld glória a klasszikus kurzor körül */
 }
 
-/* Szöveg generáló "Enter" gomb az ablakon belül sötétszürke lesz */
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel #botTalkBtn,
 #aiBotCard.skin-classic #botTalkBtn {
     color: #333333 !important;
 }
 
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel {
+    background: #d8d8e8;
+    border-color: #5a5a7a;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-console-inset {
+    background: #ffffff !important;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-chat-input {
+    color: #1f2937 !important;
+    caret-color: #111827 !important;
+    font-family: "Chicago", "Charcoal", "Geneva", "Segoe UI", sans-serif;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-chat-input::placeholder {
+    color: rgba(55, 65, 81, 0.55) !important;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-chat-send,
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-chat-collapse {
+    color: #333333 !important;
+}
+
+#aiBotCard.skin-classic .bot-ask-me-btn {
+    background: linear-gradient(180deg, #f3f4f6 0%, #c7c9d9 100%);
+    color: #1f2937;
+    border-color: rgba(50, 50, 50, 0.75);
+}
+
+#aiBotCard.skin-classic .bot-speaker-grill {
+    background-color: #a8a8c0;
+    background-image: radial-gradient(circle, #4a4a68 1.1px, transparent 1.25px);
+}
+
 #aiBotCard.skin-classic .bot-bottom-area {
-    height: 105px !important;
-    padding: 2px 14px 14px 14px !important;
+    flex: 0 0 94px !important;
+    height: 94px !important;
+    max-height: 94px !important;
+    min-height: 94px !important;
+    padding: 4px 8px 6px !important;
     display: flex;
-    gap: 8px;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    align-items: stretch;
 }
 
 #aiBotCard.skin-classic #botTalkBtnHal {
@@ -1034,75 +1289,68 @@
     display: none !important;
 }
 
-/* Console Area */
+/* Closed-state bottom + open panel adapt for Original skin */
 #aiBotCard.skin-first .bot-bottom-area {
-    height: 120px !important;
-    padding: 0 6px 6px 6px !important;
+    flex: 0 0 94px !important;
+    height: 94px !important;
+    max-height: 94px !important;
+    min-height: 94px !important;
+    padding: 4px 8px 6px !important;
     display: flex !important;
-    align-items: flex-end !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
 }
 
-#aiBotCard.skin-first .bot-screen-container {
-    display: block !important;
-    height: 100% !important;
-    width: 100% !important;
+#aiBotCard.skin-first .bot-ask-me-btn {
+    background: linear-gradient(90deg, #0f172a 0%, #1e293b 55%, #312e81 100%);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    color: #34d399;
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.15);
 }
 
-#aiBotCard.skin-first .bot-console-inset {
-    height: 100% !important;
-    max-height: 100% !important;
-    min-height: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
-    border-radius: 6px !important;
+#aiBotCard.skin-first .bot-speaker-grill {
+    background-color: #1e293b;
+    background-image: radial-gradient(circle, #34d399 0.9px, transparent 1.1px);
+    opacity: 0.55;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel {
+    background: #15181e;
+    border-color: rgba(52, 211, 153, 0.35);
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-console-inset {
     background: #15181e !important;
-    /* Slightly darker than card background */
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
-    position: relative !important;
-    overflow: hidden !important;
+    border-bottom-color: rgba(52, 211, 153, 0.35) !important;
 }
 
-/* Bottom glowing neon line inside console */
-#aiBotCard.skin-first .bot-console-inset::after {
-    content: '';
-    position: absolute;
-    bottom: 6px;
-    left: 8px;
-    right: 8px;
-    height: 3px;
-    background: #34d399;
-    border-radius: 2px;
-    box-shadow: 0 0 10px 2px rgba(52, 211, 153, 0.6);
-    pointer-events: none;
-}
-
-#aiBotCard.skin-first .bot-console-text {
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-console-text {
     color: #e2e8f0 !important;
-    /* light grey text */
     text-shadow: none !important;
-    font-size: 11px !important;
-    padding-bottom: 24px !important;
-    /* Move text up above glowing line */
-    display: inline-block;
 }
 
-#aiBotCard.skin-first .bot-cursor {
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-cursor {
     background: #a78bfa !important;
-    /* Light purple blinking cursor */
     box-shadow: none !important;
 }
 
-#aiBotCard.skin-first #botTalkBtn {
-    color: #34d399 !important;
-    bottom: 12px !important;
-    /* Move it up because of the glowing line */
-    right: 6px !important;
-    opacity: 1 !important;
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-chat-input {
+    color: #e2e8f0 !important;
+    caret-color: #34d399 !important;
 }
 
-#aiBotCard.skin-first .bot-console-inset>div::-webkit-scrollbar-thumb {
-    background-color: #4b5563 !important;
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-chat-input::placeholder {
+    color: rgba(52, 211, 153, 0.65) !important;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-chat-send,
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-chat-collapse {
+    color: #34d399 !important;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-console-inset>div::-webkit-scrollbar-thumb {
+    background-color: #34d399 !important;
 }
 
 

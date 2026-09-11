@@ -167,6 +167,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       const value = getTranslation(element.getAttribute("data-i18n-title"), lang);
       if (value) element.setAttribute("title", value);
     });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+      const value = getTranslation(element.getAttribute("data-i18n-placeholder"), lang);
+      if (value) element.setAttribute("placeholder", value);
+    });
   }
 
   function updatePDFLinks(lang) {

@@ -853,7 +853,9 @@
       "contactYes": "[ YES ]",
       "contactNo": "[ NO ]",
       "contactYesRes": "Opening mail client... Initiating protocol.",
-      "contactNoRes": "Maybe next time, but based on my calculations, László would be glad to hear from you."
+      "contactNoRes": "Maybe next time, but based on my calculations, László would be glad to hear from you.",
+      "chatPlaceholder": "Ask me",
+      "chatError": "Link unstable. Falling back to local humor module: "
     },
     "babusgatos": {
       "navTitle": "Bakery Live Tracker",
@@ -1884,7 +1886,9 @@
       "contactYes": "[ JA ]",
       "contactNo": "[ NEIN ]",
       "contactYesRes": "E-Mail-Client wird geöffnet... Protokoll initiiert.",
-      "contactNoRes": "Vielleicht das nächste Mal. Aber meinen Berechnungen zufolge würde sich László freuen, von dir zu hören."
+      "contactNoRes": "Vielleicht das nächste Mal. Aber meinen Berechnungen zufolge würde sich László freuen, von dir zu hören.",
+      "chatPlaceholder": "Frag mich",
+      "chatError": "Verbindung instabil. Lokales Humor-Modul: "
     },
     "babusgatos": {
       "navTitle": "Bakery Live Tracker",

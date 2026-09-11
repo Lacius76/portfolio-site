@@ -24,7 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CENTRALIZED BOT INJECTION ---
     const botHTML = `
     <div id="aiBotDragWrapper"
-      class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[150] flex items-center justify-end pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
+      class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[150] pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
+
+      <!-- Conversation panel: absolute left of bot so opening never shifts the card -->
+      <aside id="botChatPanel" class="bot-chat-panel" aria-hidden="true" hidden>
+        <button type="button" id="botChatCollapse" class="bot-chat-collapse" aria-label="Close conversation" title="Close conversation">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+        </button>
+        <div class="bot-chat-panel-main">
+          <div class="bot-console-inset px-3 py-2 relative">
+            <div class="bot-console-scroll">
+              <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
+              <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+            </div>
+            <div id="botActionBtns" class="absolute hidden flex gap-2 text-[10px] font-mono items-center" style="bottom: 4px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10;">
+              <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
+              <button id="botBtnNo" data-i18n="bot.contactNo">[ NO ]</button>
+            </div>
+          </div>
+          <div class="bot-chat-compose">
+            <input id="botChatInput" class="bot-chat-input" type="text" maxlength="500" autocomplete="off" spellcheck="false" data-i18n-placeholder="bot.chatPlaceholder" placeholder="Ask me" aria-label="Ask me" />
+            <button id="botTalkBtn" type="button" class="bot-chat-send js-bot-talk-btn bot-tooltip-container bot-tooltip-left-align" aria-label="Send">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
+              <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipTalk">Talk to me</span>
+            </button>
+          </div>
+        </div>
+      </aside>
 
       <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md opacity-100 transition-all duration-500">
 
@@ -101,27 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <!-- Divider -->
         <div class="bot-separator-line"></div>
 
-        <!-- Console Area -->
+        <!-- Closed-state controls: Ask me + speaker grill -->
         <div class="bot-bottom-area">
-          <div class="bot-screen-container w-full">
-            <div class="bot-console-inset px-3 py-2 relative">
-              <div class="h-full pb-6">
-                <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
-                <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
-              </div>
-              
-              <!-- Action Buttons for Contact Prompt -->
-              <div id="botActionBtns" class="absolute hidden flex gap-2 text-[10px] font-mono items-center" style="bottom: 3px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10;">
-                 <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
-                 <button id="botBtnNo" data-i18n="bot.contactNo">[ NO ]</button>
-              </div>
-
-              <button id="botTalkBtn" class="absolute flex items-center justify-center w-4 h-4 bg-transparent border-none cursor-pointer z-50 js-bot-talk-btn bot-tooltip-container bot-tooltip-left-align" style="right: 4px; bottom: 3px;">
-                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
-                <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipTalk">Talk to me</span>
-              </button>
-            </div>
-          </div>
+          <button type="button" id="botAskMeBtn" class="bot-ask-me-btn" data-i18n="bot.chatPlaceholder" aria-expanded="false" aria-controls="botChatPanel">Ask me</button>
+          <div class="bot-speaker-grill" aria-hidden="true"></div>
         </div>
 
       </div><!-- end aiBotCard -->
@@ -464,6 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeBot(animate = true) {
         isBotClosed = true;
         sessionStorage.setItem('botClosed', 'true');
+        if (typeof closeChatPanel === 'function') closeChatPanel();
 
         // Remove animation so inline opacity/transform overrides work
         wrapper.style.setProperty('animation', 'none', 'important');
@@ -537,23 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (skinHalBtn) skinHalBtn.addEventListener('click', () => setSkin('hal'));
     if (skinClassicBtn) skinClassicBtn.addEventListener('click', () => setSkin('classic'));
     if (skinFirstBtn) skinFirstBtn.addEventListener('click', () => setSkin('first'));
-    if (skinContactBtn) {
-        skinContactBtn.addEventListener('click', () => {
-            openBotContactModal();
-            if (skinMenu) skinMenu.classList.remove('open');
-            playBotAudio('Opening mail client.mp3');
-
-            const actionBtns = document.getElementById('botActionBtns');
-            const talkBtnBtn = document.getElementById('botTalkBtn');
-            const botConsole = document.getElementById('botConsole');
-
-            if (actionBtns) actionBtns.classList.add('hidden');
-            if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
-
-            let yesMsg = tBot('bot.contactYesRes', 'Opening mail client... Initiating protocol.');
-            typeWriter(yesMsg, botConsole);
-        });
-    }
+    // skinContact wired after openChatPanel (below)
 
     // --- Typing & Messages ---
     const botConsole = document.getElementById('botConsole');
@@ -707,35 +701,212 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Session-szintű állapot: ha ezen a munkameneten belül már megkérdezett, ne kérdezze meg újra
     let contactPrompted = (sessionStorage.getItem('botContactPrompted') === 'true');
+    let isChatBusy = false;
+    let isChatPanelOpen = false;
+    const chatHistory = [];
+    const BOT_CHAT_URL = '/.netlify/functions/bot-chat';
+    const chatInput = document.getElementById('botChatInput');
+    const chatPanel = document.getElementById('botChatPanel');
+    const askMeBtn = document.getElementById('botAskMeBtn');
+    const chatCollapseBtn = document.getElementById('botChatCollapse');
+
+    function currentBotSkin() {
+        return localStorage.getItem('botSkin') || 'hal';
+    }
+
+    let chatPanelAnimTimer = null;
+
+    function openChatPanel() {
+        if (!chatPanel) return;
+        if (chatPanelAnimTimer) {
+            clearTimeout(chatPanelAnimTimer);
+            chatPanelAnimTimer = null;
+        }
+        isChatPanelOpen = true;
+        chatPanel.hidden = false;
+        chatPanel.setAttribute('aria-hidden', 'false');
+        if (askMeBtn) askMeBtn.setAttribute('aria-expanded', 'true');
+        wrapper.classList.add('is-chat-open');
+        wakeUp();
+        // Restore last console text if empty
+        if (botConsole && !botConsole.textContent.trim()) {
+            const lastMsg = sessionStorage.getItem('botLastMessage');
+            if (lastMsg) botConsole.textContent = lastMsg;
+        }
+        // Double rAF so max-width:0 → open transition actually runs
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                if (!isChatPanelOpen) return;
+                chatPanel.classList.add('is-open');
+            });
+        });
+        setTimeout(() => {
+            if (isChatPanelOpen && chatInput && !chatInput.classList.contains('hidden')) chatInput.focus();
+        }, 280);
+    }
+
+    function closeChatPanel() {
+        if (!chatPanel) return;
+        isChatPanelOpen = false;
+        chatPanel.classList.remove('is-open');
+        chatPanel.setAttribute('aria-hidden', 'true');
+        if (askMeBtn) askMeBtn.setAttribute('aria-expanded', 'false');
+        wrapper.classList.remove('is-chat-open');
+        if (chatPanelAnimTimer) clearTimeout(chatPanelAnimTimer);
+        chatPanelAnimTimer = setTimeout(() => {
+            chatPanelAnimTimer = null;
+            if (!isChatPanelOpen) chatPanel.hidden = true;
+        }, 450);
+    }
+
+    if (askMeBtn) {
+        askMeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isChatPanelOpen) closeChatPanel();
+            else openChatPanel();
+        });
+        // Don't start drag from Ask me
+        askMeBtn.addEventListener('mousedown', (e) => e.stopPropagation());
+        askMeBtn.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    }
+
+    if (chatCollapseBtn) {
+        chatCollapseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeChatPanel();
+        });
+        chatCollapseBtn.addEventListener('mousedown', (e) => e.stopPropagation());
+    }
+
+    if (chatPanel) {
+        chatPanel.addEventListener('mousedown', (e) => e.stopPropagation());
+        chatPanel.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    }
+
+    if (skinContactBtn) {
+        skinContactBtn.addEventListener('click', () => {
+            openBotContactModal();
+            if (skinMenu) skinMenu.classList.remove('open');
+            playBotAudio('Opening mail client.mp3');
+
+            const actionBtns = document.getElementById('botActionBtns');
+            const talkBtnBtn = document.getElementById('botTalkBtn');
+
+            if (actionBtns) actionBtns.classList.add('hidden');
+            if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
+            const compose = document.querySelector('#botChatPanel .bot-chat-compose');
+            if (compose) compose.classList.remove('hidden');
+            openChatPanel();
+
+            let yesMsg = tBot('bot.contactYesRes', 'Opening mail client... Initiating protocol.');
+            typeWriter(yesMsg, botConsole);
+        });
+    }
+
+    function setChatBusy(busy) {
+        isChatBusy = busy;
+        if (chatInput) chatInput.disabled = busy;
+        talkBtns.forEach((btn) => {
+            btn.disabled = busy;
+        });
+    }
+
+    async function sendBotChat(userText) {
+        const text = (userText || '').trim();
+        if (!text || isChatBusy) return;
+
+        if (!isChatPanelOpen) openChatPanel();
+        setChatBusy(true);
+        wakeUp();
+        if (chatInput) chatInput.value = '';
+        typeWriter('…', botConsole);
+
+        try {
+            const res = await fetch(BOT_CHAT_URL, {
+                method: 'POST',
+                headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify({
+                    message: text,
+                    skin: currentBotSkin(),
+                    history: chatHistory.slice(-8),
+                }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data || typeof data.reply !== 'string' || !data.reply.trim()) {
+                throw new Error((data && data.error) || 'chat_failed');
+            }
+            const reply = data.reply.trim();
+            chatHistory.push({ role: 'user', content: text });
+            chatHistory.push({ role: 'assistant', content: reply });
+            while (chatHistory.length > 8) chatHistory.shift();
+            typeWriter(reply, botConsole);
+        } catch (_) {
+            const fallback = getNextJoke();
+            playBotAudio(jokeAudioMapping[fallback]);
+            typeWriter(
+                tBot('bot.chatError', 'Link unstable. Falling back to local humor module: ') + fallback,
+                botConsole
+            );
+        } finally {
+            setChatBusy(false);
+        }
+    }
+
+    function runTalkButtonFallback() {
+        const actionBtns = document.getElementById('botActionBtns');
+        const compose = document.querySelector('#botChatPanel .bot-chat-compose');
+
+        // Ha épp a kontakt gombokat mutatjuk, a talkBtn legyen blokkolva
+        if (actionBtns && !actionBtns.classList.contains('hidden')) return;
+
+        if (!isChatPanelOpen) openChatPanel();
+
+        if (!contactPrompted) {
+            contactPrompted = true;
+            sessionStorage.setItem('botContactPrompted', 'true');
+            let promptMsg = tBot('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?');
+            playBotAudio('Would you like me to draft.mp3');
+
+            typeWriter(promptMsg, botConsole, () => {
+                if (actionBtns) actionBtns.classList.remove('hidden');
+                if (compose) compose.classList.add('hidden');
+            });
+        } else {
+            const joke = getNextJoke();
+            playBotAudio(jokeAudioMapping[joke]);
+            typeWriter(joke, botConsole);
+        }
+    }
 
     talkBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (isChatBusy) return;
             wakeUp();
 
-            const actionBtns = botCard.querySelector('#botActionBtns');
-            const talkBtnBtn = botCard.querySelector('#botTalkBtn');
-
-            // Ha épp a kontakt gombokat mutatjuk, a talkBtn legyen blokkolva
-            if (actionBtns && !actionBtns.classList.contains('hidden')) return;
-
-            if (!contactPrompted) {
-                contactPrompted = true;
-                sessionStorage.setItem('botContactPrompted', 'true'); // Megőrizzük az állapotot oldalak között
-                let promptMsg = tBot('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?');
-                playBotAudio('Would you like me to draft.mp3');
-
-                typeWriter(promptMsg, botConsole, () => {
-                    if (actionBtns) actionBtns.classList.remove('hidden');
-                    if (talkBtnBtn) talkBtnBtn.classList.add('hidden');
-                });
-            } else {
-                const joke = getNextJoke();
-                playBotAudio(jokeAudioMapping[joke]);
-                typeWriter(joke, botConsole);
+            const typed = chatInput ? chatInput.value.trim() : '';
+            if (typed) {
+                sendBotChat(typed);
+                return;
             }
+            runTalkButtonFallback();
         });
     });
+
+    if (chatInput) {
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter') return;
+            e.preventDefault();
+            e.stopPropagation();
+            if (isChatBusy) return;
+            const typed = chatInput.value.trim();
+            if (typed) sendBotChat(typed);
+        });
+        // Don't start a drag when focusing/typing in the input
+        chatInput.addEventListener('mousedown', (e) => e.stopPropagation());
+        chatInput.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    }
 
     // Yes/No gombok logikája + Modal logika
 
@@ -799,9 +970,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const actionBtns = document.getElementById('botActionBtns');
             const talkBtnBtn = document.getElementById('botTalkBtn');
             const botConsole = document.getElementById('botConsole');
+            const compose = document.querySelector('#botChatPanel .bot-chat-compose');
 
             if (actionBtns) actionBtns.classList.add('hidden');
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
+            if (compose) compose.classList.remove('hidden');
 
             openBotContactModal();
             let yesMsg = tBot('bot.contactYesRes', 'Opening mail client... Initiating protocol.');
@@ -813,9 +986,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const actionBtns = document.getElementById('botActionBtns');
             const talkBtnBtn = document.getElementById('botTalkBtn');
             const botConsole = document.getElementById('botConsole');
+            const compose = document.querySelector('#botChatPanel .bot-chat-compose');
 
             if (actionBtns) actionBtns.classList.add('hidden');
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
+            if (compose) compose.classList.remove('hidden');
 
             let noMsg = tBot('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be glad to hear from you.');
             playBotAudio('Maybe next time.mp3');
@@ -883,13 +1058,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Enter key triggers interaction (only when bot is active/visible)
+    // Enter key: only when chat panel is open (input has its own handler)
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !isBotClosed && !window._botSleeping && window.innerWidth > 768) {
-            // Find the talk button and click it
-            const talkBtn = botCard.querySelector('#botTalkBtn');
-            if (talkBtn) talkBtn.click();
+        if (e.key === 'Escape' && isChatPanelOpen) {
+            closeChatPanel();
+            return;
         }
+        if (e.key !== 'Enter' || isBotClosed || window._botSleeping || !isChatPanelOpen || window.innerWidth <= 768) return;
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+        const talkBtn = document.getElementById('botTalkBtn');
+        if (talkBtn) talkBtn.click();
     });
 
     // Random messages - Increased interval to 3-5 minutes to avoid "cycle" feel
@@ -902,7 +1081,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const delay = Math.random() * 120000 + 180000;
 
         randomMsgTimer = setTimeout(() => {
-            if (!isBotClosed && !isDragging && !window._botSleeping && window.innerWidth > 768) {
+            if (
+                !isBotClosed &&
+                !isDragging &&
+                !window._botSleeping &&
+                !isChatBusy &&
+                isChatPanelOpen &&
+                window.innerWidth > 768
+            ) {
                 const joke = getNextJoke();
                 playBotAudio(jokeAudioMapping[joke]);
                 typeWriter(joke, botConsole);
