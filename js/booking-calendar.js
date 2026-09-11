@@ -174,6 +174,15 @@
     }).format(dt);
   }
 
+  function monthName(year, month) {
+    const dt = budapestLocalToDate(year, month, 1, 12);
+    const lang = localStorage.getItem("preferred-language") || "en";
+    return new Intl.DateTimeFormat(lang === "de" ? "de-AT" : "en-GB", {
+      timeZone: TZ,
+      month: "long",
+    }).format(dt);
+  }
+
   function weekTitle(mondayKey) {
     const fridayKey = addDaysToKey(mondayKey, 4);
     return `${formatDisplayDate(mondayKey)} – ${formatDisplayDate(fridayKey)}`;
@@ -233,21 +242,16 @@
   }
 
   function buildMockBusyIntervals(from, to) {
+    // Local-only demo busy: one predictable slot per weekday so mornings stay free to test.
     const intervals = [];
     let key = from;
     while (compareKeys(key, to) <= 0) {
       if (!isWeekendKey(key)) {
-        SLOT_HOURS.forEach((hour) => {
-          const seed = key.split("-").join("") + String(hour);
-          let h = 0;
-          for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
-          if (h % 5 === 0 || h % 7 === 0) {
-            const { year, month, day } = parseDateKey(key);
-            const start = budapestLocalToDate(year, month, day, hour);
-            const end = budapestLocalToDate(year, month, day, hour + 1);
-            intervals.push({ start: start.toISOString(), end: end.toISOString() });
-          }
-        });
+        const hour = 13;
+        const { year, month, day } = parseDateKey(key);
+        const start = budapestLocalToDate(year, month, day, hour);
+        const end = budapestLocalToDate(year, month, day, hour + 1);
+        intervals.push({ start: start.toISOString(), end: end.toISOString() });
       }
       key = addDaysToKey(key, 1);
     }
@@ -286,6 +290,8 @@
     const today = todayKey();
     const now = nowBudapest();
 
+    // Past days / weekends unavailable. Once a slot's start hour has begun
+    // (matches server: startMs <= Date.now()), it can no longer be booked.
     if (compareKeys(dateKey, today) < 0) return "DISABLED";
     if (isWeekendKey(dateKey)) return "DISABLED";
     if (dateKey === today && hour <= now.hour) return "DISABLED";
@@ -341,7 +347,7 @@
     return node;
   }
 
-  function renderToolbar(titleText) {
+  function renderToolbar() {
     const bar = el("div", "bc-toolbar");
 
     const left = el("div", "bc-toolbar-left");
@@ -381,7 +387,23 @@
       "aria-label": t("booking.next", "Next"),
       text: "›",
     });
-    const title = el("h3", "bc-title", { text: titleText });
+
+    const focus = cursorKey();
+    const { year, month } = parseDateKey(focus);
+    const todayBtn = el("button", "bc-today-btn", {
+      type: "button",
+      text: t("booking.today", "Today"),
+    });
+    todayBtn.addEventListener("click", () => {
+      const today = todayKey();
+      setCursorFromKey(today);
+      if (!isWeekendKey(today)) state.selectedDay = today;
+      render();
+    });
+    const period = el("p", "bc-title-period");
+    period.appendChild(el("span", "bc-title-month", { text: monthName(year, month) }));
+    period.appendChild(document.createTextNode(" "));
+    period.appendChild(el("span", "bc-title-year", { text: String(year) }));
 
     prev.addEventListener("click", () => {
       const key = cursorKey();
@@ -409,7 +431,7 @@
       render();
     });
 
-    nav.append(prev, title, next);
+    nav.append(prev, todayBtn, next, period);
     left.appendChild(nav);
     bar.appendChild(left);
 
@@ -459,18 +481,23 @@
 
   function makeSlotButton(dateKey, hour) {
     const status = slotStatus(dateKey, hour);
+    const range = formatSlotRange(hour);
+    // Empty label only on available slots so they read as free; busy/disabled/selected keep the time.
+    const showLabel = status !== "AVAILABLE";
     const btn = el("button", `bc-slot is-${status.toLowerCase()}`, {
       type: "button",
-      text: formatSlotRange(hour),
+      text: showLabel ? range : "",
+      "aria-label": range,
     });
     btn.dataset.slot = slotKey(dateKey, hour);
     btn.dataset.status = status;
+    btn.title = range;
 
     if (status === "BUSY" || status === "DISABLED" || state.availabilityError) {
       btn.disabled = true;
       btn.setAttribute("aria-disabled", "true");
-      if (status === "BUSY") btn.title = t("booking.busy", "Busy");
-      else btn.title = t("booking.disabled", "Unavailable");
+      if (status === "BUSY") btn.title = `${range} — ${t("booking.busy", "Busy")}`;
+      else btn.title = `${range} — ${t("booking.disabled", "Unavailable")}`;
     } else {
       btn.setAttribute("aria-pressed", status === "SELECTED" ? "true" : "false");
       btn.addEventListener("click", () => {
@@ -866,13 +893,8 @@
     await refreshAvailability();
 
     const focus = cursorKey();
-    const titleText =
-      state.view === "month"
-        ? monthTitle(parseDateKey(focus).year, parseDateKey(focus).month)
-        : weekTitle(startOfWeekMonday(focus));
-
     shellEl.innerHTML = "";
-    shellEl.appendChild(renderToolbar(titleText));
+    shellEl.appendChild(renderToolbar());
     const errBox = renderAvailabilityError();
     if (errBox) shellEl.appendChild(errBox);
     shellEl.appendChild(state.view === "month" ? renderMonthBody() : renderWeekBody());

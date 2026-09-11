@@ -26,12 +26,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.dark .bc-toolbar {
-  border-bottom-color: #2a3441;
+  padding: 0.875rem 1rem 0.25rem;
 }
 
 .bc-toolbar-left,
@@ -42,17 +37,61 @@
   gap: 0.5rem;
 }
 
-.bc-title {
-  margin: 0;
-  min-width: 10rem;
-  text-align: center;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: #111418;
+.bc-title-stack {
+  display: none;
 }
 
-.dark .bc-title {
+.bc-today-btn {
+  margin: 0;
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #dce0e5;
+  background: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #637588;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.bc-today-btn:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.dark .bc-today-btn {
+  border-color: #334155;
+  background: #0f172a;
+  color: #94a3b8;
+}
+
+.dark .bc-today-btn:hover {
+  border-color: #818cf8;
+  color: #818cf8;
+}
+
+.bc-title-period {
+  margin: 0 0 0 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: #111418;
+  white-space: nowrap;
+}
+
+.dark .bc-title-period {
   color: #f8fafc;
+}
+
+.bc-title-month {
+  font-weight: 700;
+}
+
+.bc-title-year {
+  font-weight: 400;
 }
 
 .bc-seg,
@@ -81,6 +120,27 @@
 .bc-seg {
   height: 2rem;
   padding: 0 0.75rem;
+  position: relative;
+}
+
+.bc-seg-group .bc-seg {
+  border-radius: 0;
+}
+
+.bc-seg-group .bc-seg:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.bc-seg-group .bc-seg:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.bc-seg-group .bc-seg + .bc-seg {
+  margin-left: -1px;
+}
+
+.bc-seg-group .bc-seg.is-active {
+  z-index: 1;
 }
 
 .bc-icon-btn {
@@ -111,7 +171,7 @@
 
 .bc-seg-group {
   display: inline-flex;
-  gap: 0.25rem;
+  gap: 0;
   padding: 0.2rem;
   border-radius: 0.65rem;
   background: #f8fafc;
@@ -136,7 +196,7 @@
 }
 
 .bc-body {
-  padding: 1rem;
+  padding: 0.25rem 1rem 1rem;
 }
 
 /* ——— Month view ——— */
@@ -265,23 +325,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.5rem;
+  min-height: 1.5rem;
+  line-height: 1.2;
   font-size: 0.75rem;
   font-weight: 700;
   color: #64748b;
 }
 
 .bc-week-head {
-  flex-direction: column;
-  gap: 0.1rem;
-  border-radius: 0.5rem;
-  border: 1px solid transparent;
-  background: #f8fafc;
+  flex-direction: row;
+  gap: 0.35rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
   box-sizing: border-box;
 }
 
 .dark .bc-week-head {
-  background: rgba(15, 23, 42, 0.55);
+  background: transparent;
   color: #94a3b8;
 }
 
@@ -306,7 +367,8 @@
 }
 
 .bc-week-head.is-today {
-  border: 1px solid rgba(99, 102, 241, 0.45);
+  border: none;
+  background: transparent;
 }
 
 .dark .bc-week-head.is-today .bc-week-head-date {
@@ -314,7 +376,8 @@
 }
 
 .dark .bc-week-head.is-today {
-  border-color: rgba(129, 140, 248, 0.5);
+  border: none;
+  background: transparent;
 }
 
 .bc-week-time {
