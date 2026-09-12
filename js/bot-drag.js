@@ -186,7 +186,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     </button>
                 </form>
 
-                <!-- Success Message -->
+                <!-- Phase C: ready to confirm inside page-level overlay modal (nothing booked yet) -->
+                <div id="botBookingConfirmPanel" class="hidden flex flex-col gap-4" style="min-height: 420px;">
+                    <h4 class="text-[#111418] dark:text-white font-black text-lg tracking-tight">Ready to book</h4>
+                    <div id="botBookingConfirmSummary" class="text-sm leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3"></div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Nothing has been booked yet. Confirming will check Google Calendar again and create the meeting only if the slot is still free.</p>
+                    <p id="botBookingConfirmError" class="hidden text-sm text-red-600 dark:text-red-400" role="alert"></p>
+                    <div class="flex flex-col gap-2 mt-auto">
+                        <button type="button" id="botBookingConfirmBtn" class="w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold shadow-xl shadow-[#6366f1]/20">
+                            <span id="botBookingConfirmBtnText">CONFIRM BOOKING</span>
+                            <span class="material-symbols-outlined text-[16px] hidden animate-spin" id="botBookingConfirmLoading">sync</span>
+                        </button>
+                        <button type="button" id="botBookingCancelBtn" class="w-full h-11 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-bold text-gray-700 dark:text-gray-200">CANCEL</button>
+                    </div>
+                </div>
+
+                <!-- Success Message (legacy Forms OR Phase C after Google confirms) -->
                 <div id="botContactSuccess" class="hidden flex-col h-full" style="min-height: 480px;">
                     
                     <div class="flex-1 flex flex-col items-center justify-center text-center">
@@ -213,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <p class="text-xl font-bold text-[#111418] dark:text-white mt-4" data-i18n="bot.modalSuccess">Message sent successfully!</p>
+                        <p id="botBookingSuccessDetails" class="hidden mt-3 text-sm text-gray-600 dark:text-gray-300 whitespace-pre-wrap px-2"></p>
                     </div>
 
                     <button id="botContactSuccessClose" class="mt-auto w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold tracking-wide shadow-xl shadow-[#6366f1]/20 transition-transform hover:-translate-y-1" data-i18n="bot.modalSuccessClose">CLOSE</button>
@@ -731,9 +747,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let pendingBookingSlot = null;
     /** Phase B: modal opened from calendar slot selection */
     let modalPhaseBMode = false;
-    /** Phase B collected details (not a Google booking) */
+    /** Phase B collected details (not a Google booking until Phase C confirm) */
     let pendingBookingDetails = null;
+    let bookingConfirmInFlight = false;
     const BOT_CHAT_URL = '/.netlify/functions/bot-chat';
+    const BOT_CALENDAR_BOOK_URL = '/.netlify/functions/bot-calendar-book';
     const chatInput = document.getElementById('botChatInput');
     const chatPanel = document.getElementById('botChatPanel');
     const chatSlot = document.getElementById('botChatSlot');
@@ -1145,8 +1163,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('botContactForm').classList.remove('hidden');
         document.getElementById('botContactSuccess').classList.add('hidden');
+        const confirmPanel = document.getElementById('botBookingConfirmPanel');
+        if (confirmPanel) {
+            confirmPanel.classList.add('hidden');
+            confirmPanel.style.display = '';
+        }
         document.getElementById('botContactForm').reset();
         clearBotBookingHiddenFields();
+        bookingConfirmInFlight = false;
+        const confirmErr = document.getElementById('botBookingConfirmError');
+        if (confirmErr) {
+            confirmErr.textContent = '';
+            confirmErr.classList.add('hidden');
+        }
+        const successDetails = document.getElementById('botBookingSuccessDetails');
+        if (successDetails) {
+            successDetails.textContent = '';
+            successDetails.classList.add('hidden');
+        }
 
         if (phaseB && slot) {
             setBotBookingHiddenFields(slot);
@@ -1269,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (loadingIcon) loadingIcon.classList.remove('hidden');
             if (submitBtn) submitBtn.disabled = true;
 
-            // Phase B calendar path: collect details only — never call calendar-book / never imply booked.
+            // Phase B → C: collect details, show Ready to book (nothing booked yet).
             if (modalPhaseBMode && pendingBookingSlot) {
                 const name = (contactForm.querySelector('[name="name"]') || {}).value || '';
                 const email = (contactForm.querySelector('[name="email"]') || {}).value || '';
@@ -1283,26 +1317,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 contactForm.classList.add('hidden');
                 const success = document.getElementById('botContactSuccess');
-                if (success) {
-                    const successMsg = success.querySelector('[data-i18n="bot.modalSuccess"]');
-                    if (successMsg) {
-                        successMsg.textContent = 'Details received — nothing has been booked yet.';
-                    }
-                    success.classList.remove('hidden');
-                    success.style.display = 'flex';
-                }
+                if (success) success.classList.add('hidden');
 
                 const slot = pendingBookingDetails.slot;
-                const summary =
-                    `Meeting details saved (not booked):\n` +
-                    `• Time: ${slot.label || slot.slot_id} (Europe/Budapest)\n` +
-                    `• Name: ${pendingBookingDetails.name}\n` +
-                    `• Email: ${pendingBookingDetails.email}\n` +
-                    `• Message: ${pendingBookingDetails.message.slice(0, 160)}${pendingBookingDetails.message.length > 160 ? '…' : ''}\n\n` +
-                    `Nothing has been reserved on Google Calendar. Would you like me to book this meeting? (Booking will be available in a later step.)`;
+                const confirmPanel = document.getElementById('botBookingConfirmPanel');
+                const summaryEl = document.getElementById('botBookingConfirmSummary');
+                const titleEl = document.querySelector('#botContactModal [data-i18n="bot.modalTitle"]');
+                if (titleEl) titleEl.textContent = 'Ready to book';
+                if (summaryEl) {
+                    summaryEl.textContent =
+                        `${slot.label || slot.slot_id}\n` +
+                        `Europe/Budapest\n\n` +
+                        `Name: ${pendingBookingDetails.name}\n` +
+                        `Email: ${pendingBookingDetails.email}\n` +
+                        `Message: ${pendingBookingDetails.message}\n\n` +
+                        `Nothing has been booked yet.`;
+                }
+                const confirmErr = document.getElementById('botBookingConfirmError');
+                if (confirmErr) {
+                    confirmErr.textContent = '';
+                    confirmErr.classList.add('hidden');
+                }
+                // Stay in the page-level overlay modal — do not move confirmation into the bot chat panel.
+                if (confirmPanel) {
+                    confirmPanel.classList.remove('hidden');
+                    confirmPanel.style.display = 'flex';
+                }
 
-                typeWriter(summary, botConsole);
-                pushChatHistory('(meeting details form)', summary);
+                typeWriter(
+                    'Details saved. Review the summary in the dialog and confirm only if you want to create the Google Calendar meeting. Nothing is booked yet.',
+                    botConsole
+                );
+                pushChatHistory(
+                    '(meeting details form)',
+                    'Details saved. Awaiting confirmation in the meeting dialog — nothing booked yet.'
+                );
 
                 if (btnText) btnText.classList.remove('hidden');
                 if (loadingIcon) loadingIcon.classList.add('hidden');
@@ -1331,6 +1380,184 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (loadingIcon) loadingIcon.classList.add('hidden');
                     if (submitBtn) submitBtn.disabled = false;
                 });
+        });
+    }
+
+    function setBookingConfirmLoading(isLoading) {
+        const btn = document.getElementById('botBookingConfirmBtn');
+        const btnText = document.getElementById('botBookingConfirmBtnText');
+        const loading = document.getElementById('botBookingConfirmLoading');
+        const cancel = document.getElementById('botBookingCancelBtn');
+        if (btn) btn.disabled = isLoading;
+        if (cancel) cancel.disabled = isLoading;
+        if (btnText) btnText.classList.toggle('hidden', isLoading);
+        if (loading) loading.classList.toggle('hidden', !isLoading);
+    }
+
+    function showBookingConfirmError(message) {
+        const el = document.getElementById('botBookingConfirmError');
+        if (!el) return;
+        el.textContent = message || '';
+        el.classList.toggle('hidden', !message);
+    }
+
+    async function submitBotBookingNotification(details) {
+        // Secondary only — Google already succeeded. Failure must not undo booking.
+        try {
+            const params = new URLSearchParams();
+            params.set('form-name', 'contact');
+            params.set('name', details.name || '');
+            params.set('email', details.email || '');
+            params.set(
+                'message',
+                [
+                    details.message || '',
+                    '',
+                    `Booked slot: ${details.slot && details.slot.label ? details.slot.label : ''}`,
+                    `slot_id: ${details.slot && details.slot.slot_id ? details.slot.slot_id : ''}`,
+                    'Source: AI-Bot 9000 (Google Calendar confirmed)',
+                ].join('\n')
+            );
+            if (details.slot) {
+                params.set('booking_slot_id', details.slot.slot_id || '');
+                params.set('booking_start', details.slot.start || '');
+                params.set('booking_end', details.slot.end || '');
+                params.set('booking_tz', 'Europe/Budapest');
+            }
+            await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params.toString(),
+            });
+        } catch (_) {
+            // Keep Google booking; do not retry insert.
+        }
+    }
+
+    async function confirmBotCalendarBooking() {
+        if (bookingConfirmInFlight) return;
+        if (!pendingBookingDetails || !pendingBookingDetails.slot) {
+            showBookingConfirmError('Missing meeting details. Please start again from availability.');
+            return;
+        }
+        if (!calendarSession || !calendarSession.selected) {
+            showBookingConfirmError('Booking session expired. Please check availability again.');
+            return;
+        }
+
+        bookingConfirmInFlight = true;
+        setBookingConfirmLoading(true);
+        showBookingConfirmError('');
+
+        try {
+            const res = await fetch(BOT_CALENDAR_BOOK_URL, {
+                method: 'POST',
+                headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify({
+                    confirm: true,
+                    calendar_session: calendarSession,
+                    name: pendingBookingDetails.name,
+                    email: pendingBookingDetails.email,
+                    message: pendingBookingDetails.message,
+                }),
+            });
+            const data = await res.json().catch(() => ({}));
+
+            if (res.ok && data && data.ok === true) {
+                const slot = data.slot || pendingBookingDetails.slot;
+                const confirmPanel = document.getElementById('botBookingConfirmPanel');
+                if (confirmPanel) {
+                    confirmPanel.classList.add('hidden');
+                    confirmPanel.style.display = '';
+                }
+                const titleEl = document.querySelector('#botContactModal [data-i18n="bot.modalTitle"]');
+                if (titleEl) titleEl.textContent = 'Meeting booked';
+
+                const success = document.getElementById('botContactSuccess');
+                const successMsg = success && success.querySelector('[data-i18n="bot.modalSuccess"]');
+                const successDetails = document.getElementById('botBookingSuccessDetails');
+                if (successMsg) successMsg.textContent = 'Meeting booked.';
+                if (successDetails) {
+                    successDetails.textContent =
+                        `${slot.label || slot.slot_id}\nEurope/Budapest\n\nLászló has been notified.`;
+                    successDetails.classList.remove('hidden');
+                }
+                if (success) {
+                    success.classList.remove('hidden');
+                    success.style.display = 'flex';
+                }
+
+                // Short console note only — success UI stays in the page-level overlay modal.
+                typeWriter('Meeting booked in Google Calendar. See the confirmation dialog.', botConsole);
+                pushChatHistory('(confirm booking)', 'Meeting booked in Google Calendar.');
+
+                // Google-first already done — Forms is secondary notification only.
+                await submitBotBookingNotification(pendingBookingDetails);
+
+                pendingBookingDetails = null;
+                pendingBookingSlot = null;
+                return;
+            }
+
+            const code = (data && data.error) || 'unavailable';
+            if (code === 'slot_busy' || res.status === 409) {
+                showBookingConfirmError(
+                    'That time has just become unavailable. Please check current availability again.'
+                );
+                typeWriter(
+                    'That time has just become unavailable. Ask me to check László’s availability again for another slot.',
+                    botConsole
+                );
+            } else if (code === 'session_expired' || code === 'session_invalid') {
+                showBookingConfirmError(
+                    'Your booking session expired or was invalid. Please check availability again.'
+                );
+            } else if (code === 'validation') {
+                showBookingConfirmError('Please check your name, email, and message, then try again.');
+            } else {
+                showBookingConfirmError(
+                    'Booking is temporarily unavailable. Nothing was booked. Please try again later.'
+                );
+            }
+        } catch (_) {
+            showBookingConfirmError(
+                'Booking is temporarily unavailable. Nothing was booked. Please try again later.'
+            );
+        } finally {
+            bookingConfirmInFlight = false;
+            setBookingConfirmLoading(false);
+        }
+    }
+
+    const bookingConfirmBtn = document.getElementById('botBookingConfirmBtn');
+    if (bookingConfirmBtn) {
+        bookingConfirmBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            confirmBotCalendarBooking();
+        });
+    }
+    const bookingCancelBtn = document.getElementById('botBookingCancelBtn');
+    if (bookingCancelBtn) {
+        bookingCancelBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (bookingConfirmInFlight) return;
+            const confirmPanel = document.getElementById('botBookingConfirmPanel');
+            if (confirmPanel) {
+                confirmPanel.classList.add('hidden');
+                confirmPanel.style.display = '';
+            }
+            const form = document.getElementById('botContactForm');
+            if (form) form.classList.remove('hidden');
+            const titleEl = document.querySelector('#botContactModal [data-i18n="bot.modalTitle"]');
+            if (titleEl) titleEl.textContent = 'Meeting details';
+            showBookingConfirmError('');
+            typeWriter(
+                'Cancelled — nothing was booked. You can edit the details in the dialog or close it.',
+                botConsole
+            );
         });
     }
 
