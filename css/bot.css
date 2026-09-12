@@ -437,71 +437,68 @@
     display: none;
 }
 
-/* Wrapper sizes to the bot card only — chat panel is out-of-flow (absolute) */
+/* Wrapper sizes to the bot card only — chat slot is out-of-flow (absolute) */
 #aiBotDragWrapper {
     width: max-content;
     max-width: max-content;
     overflow: visible;
 }
 
-/* ---- External chat panel (absolute: slides LEFT out of bot, bot stays put) ---- */
-.bot-chat-panel {
-    display: flex;
-    flex-direction: column;
+/* Slot clips & expands left from the bot edge — Chrome-safe (no display:none / max-width dance) */
+.bot-chat-slot {
     position: absolute;
     right: 100%;
     bottom: 20px;
     left: auto;
     top: auto;
-    width: 228px;
-    max-width: 0;
+    width: 0;
     height: 380px;
     margin: 0;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    border-radius: 4px;
-    border: 1px solid transparent;
-    background: #000;
-    box-shadow: none;
+    padding: 0;
     overflow: hidden;
-    opacity: 0;
     pointer-events: none;
+    z-index: 2;
     visibility: hidden;
-    z-index: 1;
     transition:
-        max-width 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.28s ease,
-        visibility 0s linear 0.42s,
-        border-color 0.28s ease,
-        box-shadow 0.28s ease;
+        width 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0s linear 0.42s;
 }
 
-.bot-chat-panel.is-open {
-    max-width: 228px;
-    opacity: 1;
-    visibility: visible;
+.bot-chat-slot.is-open {
+    width: 228px;
     pointer-events: auto;
-    border-color: #8a8a8a;
-    box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.35),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    visibility: visible;
     transition:
-        max-width 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.22s ease,
-        visibility 0s linear 0s,
-        border-color 0.22s ease,
-        box-shadow 0.22s ease;
-}
-
-.bot-chat-panel[hidden] {
-    display: none !important;
+        width 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0s linear 0s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .bot-chat-panel,
-    .bot-chat-panel.is-open {
+    .bot-chat-slot,
+    .bot-chat-slot.is-open {
         transition: none;
     }
+}
+
+/* Panel stays full size; slot reveals it from the bot outward */
+.bot-chat-panel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 228px;
+    height: 380px;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #8a8a8a;
+    background: #000;
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    pointer-events: auto;
 }
 
 .bot-chat-collapse {
@@ -532,9 +529,7 @@
     flex-direction: column;
     flex: 1 1 auto;
     min-height: 0;
-    /* Keep full content width while parent max-width clips — slide-out from bot */
-    width: 228px;
-    min-width: 228px;
+    width: 100%;
     box-sizing: border-box;
     padding: 8px 8px 8px;
     gap: 0;

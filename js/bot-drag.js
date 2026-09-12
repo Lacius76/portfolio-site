@@ -26,31 +26,33 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="aiBotDragWrapper"
       class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[150] pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
 
-      <!-- Conversation panel: absolute left of bot so opening never shifts the card -->
-      <aside id="botChatPanel" class="bot-chat-panel" aria-hidden="true" hidden>
-        <button type="button" id="botChatCollapse" class="bot-chat-collapse" aria-label="Close conversation" title="Close conversation">
-          <span class="material-symbols-outlined text-[16px]">close</span>
-        </button>
-        <div class="bot-chat-panel-main">
-          <div class="bot-console-inset px-3 py-2 relative">
-            <div class="bot-console-scroll">
-              <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
-              <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+      <!-- Conversation slot: width animates leftward; panel stays full-size inside (Chrome-safe) -->
+      <div id="botChatSlot" class="bot-chat-slot" aria-hidden="true">
+        <aside id="botChatPanel" class="bot-chat-panel">
+          <button type="button" id="botChatCollapse" class="bot-chat-collapse" aria-label="Close conversation" title="Close conversation">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+          <div class="bot-chat-panel-main">
+            <div class="bot-console-inset px-3 py-2 relative">
+              <div class="bot-console-scroll">
+                <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
+                <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+              </div>
+              <div id="botActionBtns" class="absolute hidden flex gap-2 text-[10px] font-mono items-center" style="bottom: 4px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10;">
+                <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
+                <button id="botBtnNo" data-i18n="bot.contactNo">[ NO ]</button>
+              </div>
             </div>
-            <div id="botActionBtns" class="absolute hidden flex gap-2 text-[10px] font-mono items-center" style="bottom: 4px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10;">
-              <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
-              <button id="botBtnNo" data-i18n="bot.contactNo">[ NO ]</button>
+            <div class="bot-chat-compose">
+              <input id="botChatInput" class="bot-chat-input" type="text" maxlength="500" autocomplete="off" spellcheck="false" data-i18n-placeholder="bot.chatPlaceholder" placeholder="Ask me" aria-label="Ask me" />
+              <button id="botTalkBtn" type="button" class="bot-chat-send js-bot-talk-btn bot-tooltip-container bot-tooltip-left-align" aria-label="Send">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
+                <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipTalk">Talk to me</span>
+              </button>
             </div>
           </div>
-          <div class="bot-chat-compose">
-            <input id="botChatInput" class="bot-chat-input" type="text" maxlength="500" autocomplete="off" spellcheck="false" data-i18n-placeholder="bot.chatPlaceholder" placeholder="Ask me" aria-label="Ask me" />
-            <button id="botTalkBtn" type="button" class="bot-chat-send js-bot-talk-btn bot-tooltip-container bot-tooltip-left-align" aria-label="Send">
-              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'wght' 200;">subdirectory_arrow_left</span>
-              <span class="bot-tooltip text-[#303030] dark:text-[#f8fafc] text-[10px] font-sans font-semibold tracking-wide whitespace-nowrap shadow-xl" data-i18n="bot.tooltipTalk">Talk to me</span>
-            </button>
-          </div>
-        </div>
-      </aside>
+        </aside>
+      </div>
 
       <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md opacity-100 transition-all duration-500">
 
@@ -707,6 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const BOT_CHAT_URL = '/.netlify/functions/bot-chat';
     const chatInput = document.getElementById('botChatInput');
     const chatPanel = document.getElementById('botChatPanel');
+    const chatSlot = document.getElementById('botChatSlot');
     const askMeBtn = document.getElementById('botAskMeBtn');
     const chatCollapseBtn = document.getElementById('botChatCollapse');
 
@@ -717,70 +720,64 @@ document.addEventListener('DOMContentLoaded', () => {
     let chatPanelAnimTimer = null;
 
     function openChatPanel() {
-        if (!chatPanel) return;
+        if (!chatPanel || !chatSlot) return;
         if (chatPanelAnimTimer) {
             clearTimeout(chatPanelAnimTimer);
             chatPanelAnimTimer = null;
         }
         isChatPanelOpen = true;
-        chatPanel.hidden = false;
+        chatSlot.setAttribute('aria-hidden', 'false');
         chatPanel.setAttribute('aria-hidden', 'false');
         if (askMeBtn) askMeBtn.setAttribute('aria-expanded', 'true');
         wrapper.classList.add('is-chat-open');
         wakeUp();
-        // Restore last console text if empty
         if (botConsole && !botConsole.textContent.trim()) {
             const lastMsg = sessionStorage.getItem('botLastMessage');
             if (lastMsg) botConsole.textContent = lastMsg;
         }
-        // Double rAF so max-width:0 → open transition actually runs
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                if (!isChatPanelOpen) return;
-                chatPanel.classList.add('is-open');
-            });
-        });
+        // Force layout so width:0 → 228px transition runs in Chrome
+        void chatSlot.offsetWidth;
+        chatSlot.classList.add('is-open');
         setTimeout(() => {
             if (isChatPanelOpen && chatInput && !chatInput.classList.contains('hidden')) chatInput.focus();
         }, 280);
     }
 
     function closeChatPanel() {
-        if (!chatPanel) return;
+        if (!chatPanel || !chatSlot) return;
         isChatPanelOpen = false;
-        chatPanel.classList.remove('is-open');
+        chatSlot.classList.remove('is-open');
+        chatSlot.setAttribute('aria-hidden', 'true');
         chatPanel.setAttribute('aria-hidden', 'true');
         if (askMeBtn) askMeBtn.setAttribute('aria-expanded', 'false');
         wrapper.classList.remove('is-chat-open');
         if (chatPanelAnimTimer) clearTimeout(chatPanelAnimTimer);
-        chatPanelAnimTimer = setTimeout(() => {
-            chatPanelAnimTimer = null;
-            if (!isChatPanelOpen) chatPanel.hidden = true;
-        }, 450);
+        chatPanelAnimTimer = null;
     }
 
     if (askMeBtn) {
         askMeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             if (isChatPanelOpen) closeChatPanel();
             else openChatPanel();
         });
-        // Don't start drag from Ask me
         askMeBtn.addEventListener('mousedown', (e) => e.stopPropagation());
         askMeBtn.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
     }
 
     if (chatCollapseBtn) {
         chatCollapseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             closeChatPanel();
         });
         chatCollapseBtn.addEventListener('mousedown', (e) => e.stopPropagation());
     }
 
-    if (chatPanel) {
-        chatPanel.addEventListener('mousedown', (e) => e.stopPropagation());
-        chatPanel.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    if (chatSlot) {
+        chatSlot.addEventListener('mousedown', (e) => e.stopPropagation());
+        chatSlot.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
     }
 
     if (skinContactBtn) {
