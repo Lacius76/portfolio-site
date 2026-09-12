@@ -858,7 +858,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!message || typeof message !== 'string') return null;
         const siemens = /\b(hmi|scada|wincc|siemens|etm)\b/i.test(message);
         const ewa = /\b(ewa|fintech|wallet)\b/i.test(message);
-        const bakery = /\b(bakery|babusgatos|cake\s*creator)\b/i.test(message);
+        const bakery =
+            /\b(bakery|babusgatos|babus|cake\s*creator|live\s*tracker)\b/i.test(message);
         const hits = [siemens && 'siemens', ewa && 'ewa', bakery && 'bakery'].filter(Boolean);
         if (hits.length !== 1) return null;
         return hits[0];
@@ -868,19 +869,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function shouldLocalNavigate(message) {
         if (!message || typeof message !== 'string') return false;
         if (
-            /\b(tell\s+me\s+about|what\s+did|what\s+was|describe|explain|how\s+did)\b/i.test(
+            /\b(tell\s+me\s+about|what\s+did|what\s+was|describe|explain|how\s+did|how\s+does|how\s+was)\b/i.test(
                 message
             )
         ) {
             return false;
         }
         const hasNavIntent =
-            /\bshow\s+me\b/i.test(message) ||
+            /\bshow(\s+me)?\b/i.test(message) ||
             /\btake\s+me\s+to\b/i.test(message) ||
             /\blet\s+me\s+see\b/i.test(message) ||
             /\bgo\s+to\b/i.test(message) ||
             /\bbring\s+up\b/i.test(message) ||
-            /\bopen\b/i.test(message);
+            /\bopen\b/i.test(message) ||
+            /\bnavigate\b/i.test(message) ||
+            /\bdisplay\b/i.test(message) ||
+            /\bvisit\b/i.test(message) ||
+            /\blaunch\b/i.test(message);
         if (!hasNavIntent) return false;
         return inferBotProjectId(message) !== null;
     }

@@ -1,11 +1,11 @@
 /**
- * Deterministic navigation-intent detection for AI-Bot show_project routing.
- * Server-side only. No URLs — project_id inference only.
+ * Deterministic navigation-intent detection for AI-Bot portfolio routing.
+ * Shared logic: explicit show/open/go + known project → navigate.
+ * Informational questions → no navigate.
+ * No URLs — project_id inference only.
  */
 
 /**
- * Force show_project only for explicit navigation + a known project topic.
- * Informational questions stay on tool_choice "auto".
  * @param {string} message
  * @returns {boolean}
  */
@@ -14,7 +14,7 @@ function shouldForceShowProject(message) {
 
   // Informational asks — never force navigation
   if (
-    /\b(tell\s+me\s+about|what\s+did|what\s+was|describe|explain|how\s+did)\b/i.test(
+    /\b(tell\s+me\s+about|what\s+did|what\s+was|describe|explain|how\s+did|how\s+does|how\s+was)\b/i.test(
       message
     )
   ) {
@@ -22,12 +22,16 @@ function shouldForceShowProject(message) {
   }
 
   const hasNavIntent =
-    /\bshow\s+me\b/i.test(message) ||
+    /\bshow(\s+me)?\b/i.test(message) ||
     /\btake\s+me\s+to\b/i.test(message) ||
     /\blet\s+me\s+see\b/i.test(message) ||
     /\bgo\s+to\b/i.test(message) ||
     /\bbring\s+up\b/i.test(message) ||
-    /\bopen\b/i.test(message);
+    /\bopen\b/i.test(message) ||
+    /\bnavigate\b/i.test(message) ||
+    /\bdisplay\b/i.test(message) ||
+    /\bvisit\b/i.test(message) ||
+    /\blaunch\b/i.test(message);
 
   if (!hasNavIntent) return false;
 
@@ -44,7 +48,10 @@ function inferProjectId(message) {
 
   const siemens = /\b(hmi|scada|wincc|siemens|etm)\b/i.test(message);
   const ewa = /\b(ewa|fintech|wallet)\b/i.test(message);
-  const bakery = /\b(bakery|babusgatos|cake\s*creator)\b/i.test(message);
+  const bakery =
+    /\b(bakery|babusgatos|babus|cake\s*creator|live\s*tracker)\b/i.test(
+      message
+    );
 
   const hits = [siemens && "siemens", ewa && "ewa", bakery && "bakery"].filter(
     Boolean
@@ -76,7 +83,10 @@ if (require.main === module) {
     ["Tell me about László's HMI work", false, null],
     ["What did he do at Siemens?", false, null],
     ["Open the bakery project", true, "bakery"],
+    ["Show the bakery project", true, "bakery"],
+    ["Show me the Cake Creator", true, "bakery"],
     ["Take me to eWa", true, "ewa"],
+    ["Navigate to the fintech project", true, "ewa"],
     ["Show me something cool", false, null],
   ];
   for (const [m, expForce, expId] of cases) {

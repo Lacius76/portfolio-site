@@ -4,10 +4,11 @@
  * OpenAI Responses API proxy for AI-Bot 9000.
  * OPENAI_API_KEY stays server-side.
  *
- * v1 portfolio navigation is DETERMINISTIC (server intent → allowlist → action).
- * It does NOT depend on the model calling show_project.
- * show_project remains defined for future use but is not required for nav.
+ * Explicit portfolio navigation is DETERMINISTIC:
+ * intent → PROJECT_ALLOWLIST → { reply, action } with NO OpenAI call.
+ * Informational questions go to OpenAI for a short reply only.
  *
+ * show_project remains defined for future use but is not required for v1 nav.
  * No hosted OpenAI tools. No calendar tools yet. No web search.
  */
 
@@ -122,6 +123,10 @@ function resolveNavigateAction(message) {
   };
 }
 
+function cannedNavReply(label) {
+  return `Opening László's ${label} case study...`;
+}
+
 async function callResponsesApi(apiKey, payload) {
   const res = await fetch(OPENAI_RESPONSES_URL, {
     method: "POST",
@@ -165,25 +170,23 @@ exports.handler = async function handler(event) {
     return json(400, { error: "message_too_long" });
   }
 
+  // Explicit nav: canned reply + allowlisted action. Never call OpenAI.
+  const nav = resolveNavigateAction(message);
+  if (nav) {
+    return json(200, {
+      reply: cannedNavReply(nav.label),
+      action: { type: "navigate", path: nav.path },
+    });
+  }
+
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return json(503, { error: "openai_not_configured" });
   }
 
-  // 1–3. Deterministic navigation BEFORE OpenAI (does not depend on tool calls).
-  const nav = resolveNavigateAction(message);
-  /** @type {{ type: string, path: string } | null} */
-  const action = nav ? { type: "navigate", path: nav.path } : null;
-
   const skin = normalizeSkin(body.skin);
   const history = sanitizeHistory(body.history);
-  let instructions = buildInstructions(skin);
-  if (nav) {
-    instructions +=
-      `\n\nNAVIGATION NOTICE (server-handled): The visitor will be taken to "${nav.label}". ` +
-      `Reply in 1–2 short sentences confirming you are opening that case study. ` +
-      `Do not say you cannot display or open it. Do not invent URLs.`;
-  }
+  const instructions = buildInstructions(skin);
 
   /** @type {Array<object>} */
   const input = [];
@@ -193,8 +196,6 @@ exports.handler = async function handler(event) {
   input.push({ role: "user", content: message });
 
   try {
-    // 4. OpenAI only generates conversational reply (tools kept available for later;
-    //    tool_choice none so v1 nav never depends on the model calling show_project).
     const { res, data } = await callResponsesApi(apiKey, {
       model: MODEL,
       instructions,
@@ -212,24 +213,11 @@ exports.handler = async function handler(event) {
       });
     }
 
-    let reply = extractReplyText(data);
-    if (
-      action &&
-      (!reply ||
-        /don['’]?t have|cannot display|can'?t display|no .{0,40}case-study|not available to display|no public case-study/i.test(
-          reply
-        ))
-    ) {
-      reply = `Opening ${nav.label}.`;
-    }
+    const reply = extractReplyText(data);
     if (!reply) {
       return json(502, { error: "empty_reply" });
     }
 
-    // 5. Final response — action is independent of OpenAI tool results.
-    if (action) {
-      return json(200, { reply, action });
-    }
     return json(200, { reply });
   } catch (_) {
     return json(502, { error: "openai_unreachable" });
@@ -249,22 +237,39 @@ if (require.main === module) {
   }
   const nav = resolveNavigateAction(msg);
   const mocked = {
-    reply: "Opening Siemens / ETM HMI.",
-    action: nav ? { type: "navigate", path: nav.path } : null,
+    reply: cannedNavReply(nav.label),
+    action: { type: "navigate", path: nav.path },
   };
   if (
     !mocked.action ||
-    mocked.action.type !== "navigate" ||
-    mocked.action.path !== "case-study-siemens.html"
+    mocked.action.path !== "case-study-siemens.html" ||
+    !mocked.reply.includes("Opening")
   ) {
     console.error("FAIL mocked response", mocked);
     process.exit(1);
   }
-  // Informational must not navigate
+  const bakery = resolveNavigateAction("Show the bakery project");
+  if (!bakery || bakery.path !== "case-study-babusgatos.html") {
+    console.error("FAIL bakery nav", bakery);
+    process.exit(1);
+  }
   if (resolveNavigateAction("Tell me about László's HMI work.") !== null) {
     console.error("FAIL informational should have no action");
     process.exit(1);
   }
   console.log("OK bot-chat nav path selftest");
-  console.log(JSON.stringify({ message: msg, mocked }, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        message: msg,
+        mocked,
+        bakeryMock: {
+          reply: cannedNavReply(bakery.label),
+          action: { type: "navigate", path: bakery.path },
+        },
+      },
+      null,
+      2
+    )
+  );
 }
