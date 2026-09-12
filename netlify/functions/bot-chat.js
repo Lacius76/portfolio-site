@@ -5,7 +5,8 @@
  * OPENAI_API_KEY stays server-side.
  *
  * Explicit portfolio navigation is DETERMINISTIC (no OpenAI).
- * Phase A calendar: check_availability tool → shared FreeBusy + free-slots (read-only).
+ * Phase A calendar: check_availability → FreeBusy + free-slots (read-only).
+ * Phase B: signed offered-slot session → select slot → YES/NO + modal details.
  * No booking / events.insert. No hosted OpenAI tools. No web search.
  */
 
@@ -33,6 +34,14 @@ const {
   TZ_DEFAULT,
 } = require("./_lib/free-slots");
 const { weekdayMon0 } = require("./_lib/budapest-time");
+const {
+  signSession,
+  verifySession,
+  resolveSlotSelection,
+  selectionReply,
+  ambiguousReply,
+  notOfferedReply,
+} = require("./_lib/bot-calendar-session");
 
 const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 const MODEL = "gpt-5.6-luna";
@@ -270,12 +279,13 @@ async function runCheckAvailability(rawArgs, now = new Date()) {
 
 /**
  * Apply function calls; mutate input with call + outputs for follow-up turn.
- * Phase A: only check_availability is executed. show_project ignored here (nav is deterministic).
+ * Phase A/B: only check_availability is executed (read-only).
+ * @returns {{ needsFollowUp: boolean, availabilityResult: object|null }}
  */
 async function applyFunctionCalls(data, input, now = new Date()) {
   const calls = extractFunctionCalls(data);
   if (!calls.length) {
-    return { needsFollowUp: false };
+    return { needsFollowUp: false, availabilityResult: null };
   }
 
   const output = Array.isArray(data.output) ? data.output : [];
@@ -285,9 +295,13 @@ async function applyFunctionCalls(data, input, now = new Date()) {
     }
   }
 
+  /** @type {object|null} */
+  let availabilityResult = null;
+
   for (const call of calls) {
     if (call.name === "check_availability") {
       const result = await runCheckAvailability(call.arguments, now);
+      availabilityResult = result;
       input.push({
         type: "function_call_output",
         call_id: call.call_id,
@@ -296,7 +310,7 @@ async function applyFunctionCalls(data, input, now = new Date()) {
       continue;
     }
 
-    // Phase A: no other mutating tools. Reject unknown / unused.
+    // No mutating tools. Reject unknown / unused.
     input.push({
       type: "function_call_output",
       call_id: call.call_id,
@@ -304,7 +318,7 @@ async function applyFunctionCalls(data, input, now = new Date()) {
     });
   }
 
-  return { needsFollowUp: true };
+  return { needsFollowUp: true, availabilityResult };
 }
 
 async function callResponsesApi(apiKey, payload) {
@@ -359,6 +373,40 @@ exports.handler = async function handler(event) {
     });
   }
 
+  const forceCalendar = shouldForceCheckAvailability(message);
+  const verified = verifySession(body.calendar_session);
+
+  // Phase B: resolve slot selection against signed offered slots (no Google mutation).
+  if (!forceCalendar && verified.ok) {
+    const selection = resolveSlotSelection(message, verified.session.offered);
+    if (selection.status === "resolved") {
+      const nextSession = signSession({
+        offered: verified.session.offered,
+        selected: selection.slot,
+      });
+      return json(200, {
+        reply: selectionReply(selection.slot),
+        action: {
+          type: "booking_intent_prompt",
+          selected_slot: selection.slot,
+        },
+        calendar_session: nextSession,
+      });
+    }
+    if (selection.status === "ambiguous") {
+      return json(200, {
+        reply: ambiguousReply(selection.candidates),
+        calendar_session: verified.session,
+      });
+    }
+    if (selection.status === "not_offered") {
+      return json(200, {
+        reply: notOfferedReply(),
+        calendar_session: verified.session,
+      });
+    }
+  }
+
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return json(503, { error: "openai_not_configured" });
@@ -366,7 +414,6 @@ exports.handler = async function handler(event) {
 
   const skin = normalizeSkin(body.skin);
   const history = sanitizeHistory(body.history);
-  const forceCalendar = shouldForceCheckAvailability(message);
   const instructions = `${buildInstructions(skin)}\n\n${buildTodayContext()}`;
 
   /** @type {Array<object>} */
@@ -403,7 +450,6 @@ exports.handler = async function handler(event) {
 
     const toolResult = await applyFunctionCalls(data, input);
     if (forceCalendar && !toolResult.needsFollowUp) {
-      // Forced availability path but model returned text only — never invent slots.
       return json(200, {
         reply:
           "I couldn't check László's real calendar just now. Please try again in a moment, or use the booking calendar on the contact page.",
@@ -420,12 +466,39 @@ exports.handler = async function handler(event) {
       }
     }
 
-    const reply = extractReplyText(data);
+    let reply = extractReplyText(data);
     if (!reply) {
       return json(502, { error: "empty_reply" });
     }
 
-    return json(200, { reply });
+    // Soften any reserved/booked claims after availability (Phase A wording).
+    if (
+      toolResult.availabilityResult &&
+      toolResult.availabilityResult.ok &&
+      /reserved|booked|confirmed|the slot is yours/i.test(reply)
+    ) {
+      reply = reply.replace(/reserved|booked|confirmed|the slot is yours/gi, "currently available");
+    }
+
+    /** @type {object|undefined} */
+    let calendar_session;
+    if (
+      toolResult.availabilityResult &&
+      toolResult.availabilityResult.ok &&
+      Array.isArray(toolResult.availabilityResult.slots)
+    ) {
+      const signed = signSession({
+        offered: toolResult.availabilityResult.slots,
+        selected: null,
+      });
+      if (signed) calendar_session = signed;
+    } else if (verified.ok) {
+      calendar_session = verified.session;
+    }
+
+    const payload = { reply };
+    if (calendar_session) payload.calendar_session = calendar_session;
+    return json(200, payload);
   } catch (_) {
     return json(502, { error: "openai_unreachable" });
   }
@@ -471,12 +544,48 @@ if (require.main === module) {
   // Simulated FreeBusy failure path: runCheckAvailability without env → unavailable
   // (skip live call; unit free-slots already covers slot math)
 
-  console.log("OK bot-chat calendar Phase A selftest");
+  process.env.BOT_CALENDAR_STATE_SECRET =
+    process.env.BOT_CALENDAR_STATE_SECRET || "test-secret-phase-b";
+  const offered = [
+    {
+      slot_id: "2026-09-18T12:00",
+      start: "2026-09-18T12:00:00",
+      end: "2026-09-18T13:00:00",
+      label: "Fri 18 Sep, 12:00–13:00",
+    },
+    {
+      slot_id: "2026-09-18T15:00",
+      start: "2026-09-18T15:00:00",
+      end: "2026-09-18T16:00:00",
+      label: "Fri 18 Sep, 15:00–16:00",
+    },
+  ];
+  const signed = signSession({ offered });
+  const v = verifySession(signed);
+  if (!v.ok) {
+    console.error("FAIL session sign/verify", v);
+    process.exit(1);
+  }
+  const picked = resolveSlotSelection("15:00 works for me.", offered);
+  if (picked.status !== "resolved" || picked.slot.slot_id !== "2026-09-18T15:00") {
+    console.error("FAIL phase B resolve", picked);
+    process.exit(1);
+  }
+
+  console.log("OK bot-chat calendar Phase A+B selftest");
   console.log(
     JSON.stringify(
       {
         forceCalendarExample: "Is László free Friday afternoon?",
         noCalendarExample: "Tell me about László's Siemens work.",
+        phaseBSelection: {
+          message: "15:00 works for me.",
+          action: {
+            type: "booking_intent_prompt",
+            selected_slot: picked.slot,
+          },
+          reply: selectionReply(picked.slot),
+        },
         exampleToolResult: {
           ok: true,
           timeZone: "Europe/Budapest",

@@ -159,6 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- Form -->
                 <form id="botContactForm" name="contact" method="POST" data-netlify="true" class="flex flex-col gap-4">
                     <input type="hidden" name="form-name" value="contact" />
+                    <input type="hidden" name="booking_slot_id" id="botBookingSlotId" value="" />
+                    <input type="hidden" name="booking_start" id="botBookingStart" value="" />
+                    <input type="hidden" name="booking_end" id="botBookingEnd" value="" />
+                    <input type="hidden" name="booking_tz" id="botBookingTz" value="Europe/Budapest" />
+                    <p id="botBookingSlotStatus" class="hidden text-xs leading-relaxed text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-600 rounded-xl px-3 py-2"></p>
                     
                     <div class="flex flex-col gap-1.5">
                         <label class="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest" data-i18n="contact.name">NAME</label>
@@ -717,10 +722,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return jokes[selectedJokeIndex];
     }
 
-    // Session-szintű állapot: ha ezen a munkameneten belül már megkérdezett, ne kérdezze meg újra
-    let contactPrompted = (sessionStorage.getItem('botContactPrompted') === 'true');
+    // Cold-start meeting prompt removed — YES/NO only for real booking intent (Phase B).
     let isChatBusy = false;
     const chatHistory = [];
+    /** @type {object|null} signed calendar session from bot-chat */
+    let calendarSession = null;
+    /** @type {object|null} verified selected slot awaiting YES/NO */
+    let pendingBookingSlot = null;
+    /** Phase B: modal opened from calendar slot selection */
+    let modalPhaseBMode = false;
+    /** Phase B collected details (not a Google booking) */
+    let pendingBookingDetails = null;
     const BOT_CHAT_URL = '/.netlify/functions/bot-chat';
     const chatInput = document.getElementById('botChatInput');
     const chatPanel = document.getElementById('botChatPanel');
@@ -912,6 +924,72 @@ document.addEventListener('DOMContentLoaded', () => {
         while (chatHistory.length > 8) chatHistory.shift();
     }
 
+    function showBookingIntentButtons() {
+        const actionBtns = document.getElementById('botActionBtns');
+        const compose = document.querySelector('#botChatPanel .bot-chat-compose');
+        if (!isChatPanelOpen) openChatPanel();
+        if (actionBtns) actionBtns.classList.remove('hidden');
+        if (compose) compose.classList.add('hidden');
+    }
+
+    function hideBookingIntentButtons() {
+        const actionBtns = document.getElementById('botActionBtns');
+        const compose = document.querySelector('#botChatPanel .bot-chat-compose');
+        if (actionBtns) actionBtns.classList.add('hidden');
+        if (compose) compose.classList.remove('hidden');
+    }
+
+    function formatSlotPrefill(slot) {
+        if (!slot) return '';
+        const start = String(slot.start || '');
+        const end = String(slot.end || '');
+        const datePart = start.slice(0, 10);
+        const startHm = start.slice(11, 16);
+        const endHm = end.slice(11, 16);
+        const label = slot.label || `${datePart} ${startHm}–${endHm}`;
+        return (
+            `Selected meeting time:\n` +
+            `${label}\n` +
+            `Europe/Budapest\n\n` +
+            `Status:\nCurrently available — not reserved.\n\n` +
+            `Hi László,\n\n` +
+            `I would like to discuss a potential meeting at the time above.\n\n` +
+            `Best regards,`
+        );
+    }
+
+    function clearBotBookingHiddenFields() {
+        const ids = ['botBookingSlotId', 'botBookingStart', 'botBookingEnd'];
+        ids.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+        });
+        const tz = document.getElementById('botBookingTz');
+        if (tz) tz.value = 'Europe/Budapest';
+        const status = document.getElementById('botBookingSlotStatus');
+        if (status) {
+            status.textContent = '';
+            status.classList.add('hidden');
+        }
+    }
+
+    function setBotBookingHiddenFields(slot) {
+        const idEl = document.getElementById('botBookingSlotId');
+        const startEl = document.getElementById('botBookingStart');
+        const endEl = document.getElementById('botBookingEnd');
+        const tzEl = document.getElementById('botBookingTz');
+        const status = document.getElementById('botBookingSlotStatus');
+        if (idEl) idEl.value = slot.slot_id || '';
+        if (startEl) startEl.value = slot.start || '';
+        if (endEl) endEl.value = slot.end || '';
+        if (tzEl) tzEl.value = 'Europe/Budapest';
+        if (status) {
+            status.textContent =
+                `${slot.label || slot.slot_id} · Europe/Budapest · Currently available — not reserved. Nothing is booked until a later confirmation step.`;
+            status.classList.remove('hidden');
+        }
+    }
+
     async function sendBotChat(userText) {
         const text = (userText || '').trim();
         if (!text || isChatBusy) return;
@@ -937,15 +1015,18 @@ document.addEventListener('DOMContentLoaded', () => {
         typeWriter('…', botConsole);
 
         try {
+            const payload = {
+                message: text,
+                skin: currentBotSkin(),
+                history: chatHistory.slice(-8),
+            };
+            if (calendarSession) payload.calendar_session = calendarSession;
+
             const res = await fetch(BOT_CHAT_URL, {
                 method: 'POST',
                 headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
                 credentials: 'same-origin',
-                body: JSON.stringify({
-                    message: text,
-                    skin: currentBotSkin(),
-                    history: chatHistory.slice(-8),
-                }),
+                body: JSON.stringify(payload),
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok || !data || typeof data.reply !== 'string' || !data.reply.trim()) {
@@ -954,7 +1035,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const reply = data.reply.trim();
             pushChatHistory(text, reply);
 
-            // Server may still return action; only follow allowlisted relative paths.
+            if (data.calendar_session && typeof data.calendar_session === 'object') {
+                calendarSession = data.calendar_session;
+            }
+
+            // Server may still return navigate action; only follow allowlisted relative paths.
             const navPath =
                 data.action &&
                 data.action.type === 'navigate' &&
@@ -968,6 +1053,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         setChatBusy(false);
                         navigateAfterBotReply(navPath);
                     }, BOT_NAV_PAUSE_AFTER_TYPE_MS);
+                });
+                return;
+            }
+
+            if (
+                data.action &&
+                data.action.type === 'booking_intent_prompt' &&
+                data.action.selected_slot &&
+                typeof data.action.selected_slot === 'object'
+            ) {
+                pendingBookingSlot = data.action.selected_slot;
+                typeWriter(reply, botConsole, () => {
+                    showBookingIntentButtons();
+                    setChatBusy(false);
                 });
                 return;
             }
@@ -987,28 +1086,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function runTalkButtonFallback() {
         const actionBtns = document.getElementById('botActionBtns');
-        const compose = document.querySelector('#botChatPanel .bot-chat-compose');
 
-        // Ha épp a kontakt gombokat mutatjuk, a talkBtn legyen blokkolva
+        // While YES/NO booking prompt is visible, ignore empty talk presses
         if (actionBtns && !actionBtns.classList.contains('hidden')) return;
 
         if (!isChatPanelOpen) openChatPanel();
 
-        if (!contactPrompted) {
-            contactPrompted = true;
-            sessionStorage.setItem('botContactPrompted', 'true');
-            let promptMsg = tBot('bot.contactPrompt', 'Would you like me to draft an email for an appointment with László?');
-            playBotAudio('Would you like me to draft.mp3');
-
-            typeWriter(promptMsg, botConsole, () => {
-                if (actionBtns) actionBtns.classList.remove('hidden');
-                if (compose) compose.classList.add('hidden');
-            });
-        } else {
-            const joke = getNextJoke();
-            playBotAudio(jokeAudioMapping[joke]);
-            typeWriter(joke, botConsole);
-        }
+        // Normal conversation fallback: local joke (no automatic meeting prompt).
+        const joke = getNextJoke();
+        playBotAudio(jokeAudioMapping[joke]);
+        typeWriter(joke, botConsole);
     }
 
     talkBtns.forEach(btn => {
@@ -1042,25 +1129,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Yes/No gombok logikája + Modal logika
 
-    function openBotContactModal() {
+    function openBotContactModal(options) {
+        const opts = options && typeof options === 'object' ? options : {};
+        const slot = opts.slot || null;
+        const phaseB = !!opts.phaseB && !!slot;
+
         const modal = document.getElementById('botContactModal');
         const modalBox = document.getElementById('botContactModalBox');
         const textarea = document.getElementById('botContactMsg');
+        const titleEl = modal ? modal.querySelector('[data-i18n="bot.modalTitle"]') : null;
 
         if (!modal) return;
 
-        // Előre megírt szöveg
-        let prefill = tBot('bot.contactPrefill', "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,");
-        if (textarea) textarea.value = prefill;
+        modalPhaseBMode = phaseB;
 
-        // Reset state
         document.getElementById('botContactForm').classList.remove('hidden');
         document.getElementById('botContactSuccess').classList.add('hidden');
         document.getElementById('botContactForm').reset();
-        if (textarea) textarea.value = prefill; // re-apply prefill after reset
+        clearBotBookingHiddenFields();
+
+        if (phaseB && slot) {
+            setBotBookingHiddenFields(slot);
+            if (textarea) textarea.value = formatSlotPrefill(slot);
+            if (titleEl) titleEl.textContent = 'Meeting details';
+            const btnText = document.getElementById('botContactBtnText');
+            if (btnText) btnText.textContent = 'SAVE DETAILS';
+            const successMsg = document.querySelector('#botContactSuccess [data-i18n="bot.modalSuccess"]');
+            if (successMsg) {
+                successMsg.textContent = 'Details received — nothing has been booked yet.';
+            }
+        } else {
+            let prefill = tBot('bot.contactPrefill', "Hi László,\n\nI would like to schedule an appointment with you to discuss a potential project.\n\nBest regards,");
+            if (textarea) textarea.value = prefill;
+            if (titleEl) titleEl.textContent = tBot('bot.modalTitle', 'Project Inquiry');
+            const btnText = document.getElementById('botContactBtnText');
+            if (btnText) btnText.textContent = tBot('bot.modalSend', 'SEND MESSAGE');
+            const successMsg = document.querySelector('#botContactSuccess [data-i18n="bot.modalSuccess"]');
+            if (successMsg) {
+                successMsg.textContent = tBot('bot.modalSuccess', 'Message sent successfully!');
+            }
+        }
 
         modal.classList.remove('hidden');
-        // trigger animation setup
         setTimeout(() => {
             modal.classList.remove('opacity-0');
             modalBox.classList.remove('scale-95');
@@ -1072,6 +1182,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('botContactModal');
         const modalBox = document.getElementById('botContactModalBox');
         if (!modal) return;
+
+        modalPhaseBMode = false;
 
         modal.classList.add('opacity-0');
         modalBox.classList.remove('scale-100');
@@ -1099,34 +1211,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (e.target.closest('#botBtnYes')) {
-            const actionBtns = document.getElementById('botActionBtns');
             const talkBtnBtn = document.getElementById('botTalkBtn');
-            const botConsole = document.getElementById('botConsole');
-            const compose = document.querySelector('#botChatPanel .bot-chat-compose');
+            const consoleEl = document.getElementById('botConsole');
 
-            if (actionBtns) actionBtns.classList.add('hidden');
+            hideBookingIntentButtons();
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
-            if (compose) compose.classList.remove('hidden');
 
-            openBotContactModal();
-            let yesMsg = tBot('bot.contactYesRes', 'Opening mail client... Initiating protocol.');
-            playBotAudio('Opening mail client.mp3');
-            typeWriter(yesMsg, botConsole);
+            if (pendingBookingSlot) {
+                const slot = pendingBookingSlot;
+                openBotContactModal({ slot, phaseB: true });
+                playBotAudio('Opening mail client.mp3');
+                typeWriter(
+                    tBot(
+                        'bot.bookingYesRes',
+                        'Opening the meeting form. The selected time is currently available — not reserved.'
+                    ),
+                    consoleEl
+                );
+            } else {
+                openBotContactModal();
+                playBotAudio('Opening mail client.mp3');
+                typeWriter(
+                    tBot('bot.contactYesRes', 'Opening mail client... Initiating protocol.'),
+                    consoleEl
+                );
+            }
         }
 
         if (e.target.closest('#botBtnNo')) {
-            const actionBtns = document.getElementById('botActionBtns');
             const talkBtnBtn = document.getElementById('botTalkBtn');
-            const botConsole = document.getElementById('botConsole');
-            const compose = document.querySelector('#botChatPanel .bot-chat-compose');
+            const consoleEl = document.getElementById('botConsole');
 
-            if (actionBtns) actionBtns.classList.add('hidden');
+            hideBookingIntentButtons();
+            pendingBookingSlot = null;
             if (talkBtnBtn) talkBtnBtn.classList.remove('hidden');
-            if (compose) compose.classList.remove('hidden');
 
-            let noMsg = tBot('bot.contactNoRes', 'Maybe next time, but based on my calculations, László would be glad to hear from you.');
+            let noMsg = tBot(
+                'bot.contactNoRes',
+                'Maybe next time, but based on my calculations, László would be glad to hear from you.'
+            );
             playBotAudio('Maybe next time.mp3');
-            typeWriter(noMsg, botConsole);
+            typeWriter(noMsg, consoleEl);
         }
     });
 
@@ -1143,6 +1268,47 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnText) btnText.classList.add('hidden');
             if (loadingIcon) loadingIcon.classList.remove('hidden');
             if (submitBtn) submitBtn.disabled = true;
+
+            // Phase B calendar path: collect details only — never call calendar-book / never imply booked.
+            if (modalPhaseBMode && pendingBookingSlot) {
+                const name = (contactForm.querySelector('[name="name"]') || {}).value || '';
+                const email = (contactForm.querySelector('[name="email"]') || {}).value || '';
+                const message = (contactForm.querySelector('[name="message"]') || {}).value || '';
+                pendingBookingDetails = {
+                    slot: pendingBookingSlot,
+                    name: String(name).trim(),
+                    email: String(email).trim(),
+                    message: String(message).trim(),
+                };
+
+                contactForm.classList.add('hidden');
+                const success = document.getElementById('botContactSuccess');
+                if (success) {
+                    const successMsg = success.querySelector('[data-i18n="bot.modalSuccess"]');
+                    if (successMsg) {
+                        successMsg.textContent = 'Details received — nothing has been booked yet.';
+                    }
+                    success.classList.remove('hidden');
+                    success.style.display = 'flex';
+                }
+
+                const slot = pendingBookingDetails.slot;
+                const summary =
+                    `Meeting details saved (not booked):\n` +
+                    `• Time: ${slot.label || slot.slot_id} (Europe/Budapest)\n` +
+                    `• Name: ${pendingBookingDetails.name}\n` +
+                    `• Email: ${pendingBookingDetails.email}\n` +
+                    `• Message: ${pendingBookingDetails.message.slice(0, 160)}${pendingBookingDetails.message.length > 160 ? '…' : ''}\n\n` +
+                    `Nothing has been reserved on Google Calendar. Would you like me to book this meeting? (Booking will be available in a later step.)`;
+
+                typeWriter(summary, botConsole);
+                pushChatHistory('(meeting details form)', summary);
+
+                if (btnText) btnText.classList.remove('hidden');
+                if (loadingIcon) loadingIcon.classList.add('hidden');
+                if (submitBtn) submitBtn.disabled = false;
+                return;
+            }
 
             const formData = new FormData(contactForm);
 
