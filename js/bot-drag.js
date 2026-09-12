@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isDragging = false;
     let isInitialized = false;
+    let isChatPanelOpen = false;
     let offsetX = 0;
     let offsetY = 0;
 
@@ -475,7 +476,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeBot(animate = true) {
         isBotClosed = true;
         sessionStorage.setItem('botClosed', 'true');
-        if (typeof closeChatPanel === 'function') closeChatPanel();
+        // Collapse chat via DOM — do NOT call closeChatPanel() here.
+        // That helper closes over consts declared later; calling it on early
+        // session restore throws TDZ ReferenceError and kills the rest of bot JS.
+        isChatPanelOpen = false;
+        const slot = document.getElementById('botChatSlot');
+        const panel = document.getElementById('botChatPanel');
+        const askBtn = document.getElementById('botAskMeBtn');
+        if (slot) {
+            slot.classList.remove('is-open');
+            slot.setAttribute('aria-hidden', 'true');
+        }
+        if (panel) panel.setAttribute('aria-hidden', 'true');
+        if (askBtn) askBtn.setAttribute('aria-expanded', 'false');
+        wrapper.classList.remove('is-chat-open');
 
         // Remove animation so inline opacity/transform overrides work
         wrapper.style.setProperty('animation', 'none', 'important');
@@ -704,7 +718,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Session-szintű állapot: ha ezen a munkameneten belül már megkérdezett, ne kérdezze meg újra
     let contactPrompted = (sessionStorage.getItem('botContactPrompted') === 'true');
     let isChatBusy = false;
-    let isChatPanelOpen = false;
     const chatHistory = [];
     const BOT_CHAT_URL = '/.netlify/functions/bot-chat';
     const chatInput = document.getElementById('botChatInput');
