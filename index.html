@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="css/hero-animations.css" />
   <link rel="stylesheet" href="css/nav-animations.css" />
   <link rel="stylesheet" href="css/hero-grid.css" />
-  <link rel="stylesheet" href="css/hero-redesign.css" />
+  <link rel="stylesheet" href="css/hero-redesign.css?v=2" />
   <link rel="stylesheet" href="css/bot.css?v=29" />
   <link rel="stylesheet" href="css/selected-works.css" />
   <link rel="stylesheet" href="css/how-i-work.css" />
@@ -728,7 +728,15 @@
         const content = document.getElementById('content-wrapper');
         const heroSplit = document.getElementById('hero-split');
         function heroFoldY() {
+          // Desktop hero is position:fixed — do not use heroSplit offset (breaks past-hero).
+          // Fold = where the content panel starts in document space.
+          if (content) {
+            const top = content.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+            return top;
+          }
           if (heroSplit) {
+            const pos = window.getComputedStyle(heroSplit).position;
+            if (pos === 'fixed') return window.innerHeight;
             const top = heroSplit.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
             return top + heroSplit.offsetHeight;
           }

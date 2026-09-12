@@ -283,6 +283,28 @@
     position: absolute;
     right: 0;
   }
+
+  /* Past hero: full-bleed sticky bar again */
+  .site-header--index-reveal.is-visible.is-past-hero {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .site-header--index-reveal.is-visible.is-past-hero .site-header-inner {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .site-header--index-reveal.is-visible.is-past-hero .site-header-nav {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .site-header--index-reveal.is-visible.is-past-hero .site-header-right {
+    position: relative;
+    right: auto;
+  }
 }
 
 /* ——— Index hero split ——— */
