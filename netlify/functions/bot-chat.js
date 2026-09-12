@@ -112,6 +112,48 @@ function parseShowProjectArgs(rawArgs) {
   }
 }
 
+/**
+ * Force show_project only for explicit navigation + a known project topic.
+ * Informational questions stay on tool_choice "auto".
+ * @param {string} message
+ * @returns {boolean}
+ */
+function shouldForceShowProject(message) {
+  if (!message || typeof message !== "string") return false;
+
+  // Informational asks — never force navigation
+  if (
+    /\b(tell\s+me\s+about|what\s+did|what\s+was|describe|explain|how\s+did)\b/i.test(
+      message
+    )
+  ) {
+    return false;
+  }
+
+  const hasNavIntent =
+    /\bshow\s+me\b/i.test(message) ||
+    /\btake\s+me\s+to\b/i.test(message) ||
+    /\blet\s+me\s+see\b/i.test(message) ||
+    /\bgo\s+to\b/i.test(message) ||
+    /\bbring\s+up\b/i.test(message) ||
+    /\bopen\b/i.test(message);
+
+  if (!hasNavIntent) return false;
+
+  const hasKnownProject =
+    /\b(hmi|scada|wincc|siemens|etm)\b/i.test(message) ||
+    /\b(ewa|fintech|wallet)\b/i.test(message) ||
+    /\b(bakery|babusgatos|cake\s*creator)\b/i.test(message);
+
+  return hasKnownProject;
+}
+
+/** Responses API forced-function tool_choice for show_project. */
+const FORCE_SHOW_PROJECT_TOOL_CHOICE = {
+  type: "function",
+  name: "show_project",
+};
+
 async function callResponsesApi(apiKey, payload) {
   const res = await fetch(OPENAI_RESPONSES_URL, {
     method: "POST",
@@ -229,6 +271,8 @@ exports.handler = async function handler(event) {
   }
   input.push({ role: "user", content: message });
 
+  const forceShowProject = shouldForceShowProject(message);
+
   const basePayload = {
     model: MODEL,
     instructions,
@@ -236,6 +280,8 @@ exports.handler = async function handler(event) {
     store: false,
     // Only our allowlisted function tool — no hosted tools, no calendar.
     tools: [SHOW_PROJECT_TOOL],
+    // Explicit nav intent + known project → force show_project; else auto.
+    tool_choice: forceShowProject ? FORCE_SHOW_PROJECT_TOOL_CHOICE : "auto",
   };
 
   try {
@@ -257,6 +303,8 @@ exports.handler = async function handler(event) {
     if (toolResult.needsFollowUp) {
       const follow = await callResponsesApi(apiKey, {
         ...basePayload,
+        // After the tool runs, ask for a short spoken reply — do not force another call.
+        tool_choice: "none",
         input,
       });
       if (follow.res.ok && follow.data) {
