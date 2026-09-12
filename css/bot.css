@@ -237,7 +237,7 @@
 .bot-eye-area {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
     position: relative;
@@ -256,7 +256,7 @@
 /* Outer metallic ring - Sharper conic gradient */
 .hal-eye-ring {
     position: relative;
-    margin-top: 30px;
+    margin-top: 43px;
     width: 154px;
     height: 154px;
     border-radius: 50%;
@@ -444,6 +444,14 @@
     overflow: visible;
 }
 
+/* Shared float layer so chat panel bobbles with the bot */
+.bot-float-inner {
+    position: relative;
+    width: max-content;
+    max-width: max-content;
+    overflow: visible;
+}
+
 /* Slot clips & expands left from the bot edge — Chrome-safe (no display:none / max-width dance) */
 .bot-chat-slot {
     position: absolute;
@@ -506,8 +514,8 @@
     top: 4px;
     right: 4px;
     z-index: 5;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -517,6 +525,11 @@
     color: #28a530;
     cursor: pointer;
     opacity: 0.75;
+}
+
+.bot-chat-collapse .material-symbols-outlined {
+    font-size: 14px !important;
+    line-height: 1;
 }
 
 .bot-chat-collapse:hover {
@@ -593,7 +606,7 @@
     box-sizing: border-box;
     margin-top: 0;
     min-height: 34px;
-    padding: 6px 2px 2px 4px;
+    padding: 6px 2px 2px 2px;
     border: none;
     border-radius: 0;
     background: transparent;
@@ -609,7 +622,7 @@
     min-width: 0;
     height: 22px;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 2px;
     border: none;
     outline: none;
     background: transparent;
@@ -620,6 +633,12 @@
     letter-spacing: 0.01em;
     line-height: 22px;
     caret-color: var(--hal-text, #28a530);
+}
+
+.bot-chat-input:focus,
+.bot-chat-input:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.5px #6366f1;
 }
 
 .bot-chat-input::placeholder {
@@ -690,13 +709,15 @@
 }
 
 .bot-speaker-grill {
-    flex: 1 1 auto;
-    min-height: 0;
-    margin: 0 4px 2px;
+    flex: 0 0 56px;
+    height: 56px;
+    min-height: 56px;
+    max-height: 56px;
+    margin: -4px 4px 2px;
     border-radius: 3px;
     background-color: #9a9a9a;
-    background-image: radial-gradient(circle, #4a4a4a 1.1px, transparent 1.25px);
-    background-size: 6px 6px;
+    background-image: radial-gradient(circle, #4a4a4a 1.7px, transparent 2.35px);
+    background-size: 8px 8px;
     background-position: 2px 2px;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
     opacity: 0.95;
@@ -1068,6 +1089,20 @@
 #aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel {
     background: #d8d8e8;
     border-color: #5a5a7a;
+    width: 300px;
+    height: 276px;
+}
+
+/* Classic (Mac OS): wider + shorter chat panel, vertically centered to the bot */
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-slot {
+    height: 276px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-slot.is-open {
+    width: 300px;
 }
 
 #aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-chat-panel .bot-console-inset {
@@ -1097,7 +1132,7 @@
 
 #aiBotCard.skin-classic .bot-speaker-grill {
     background-color: #a8a8c0;
-    background-image: radial-gradient(circle, #4a4a68 1.1px, transparent 1.25px);
+    background-image: radial-gradient(circle, #4a4a68 1.7px, transparent 2.35px);
 }
 
 #aiBotCard.skin-classic .bot-bottom-area {
@@ -1306,13 +1341,27 @@
 
 #aiBotCard.skin-first .bot-speaker-grill {
     background-color: #1e293b;
-    background-image: radial-gradient(circle, #34d399 0.9px, transparent 1.1px);
+    background-image: radial-gradient(circle, #34d399 1.5px, transparent 2.2px);
     opacity: 0.55;
 }
 
 #aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel {
     background: #15181e;
     border-color: rgba(52, 211, 153, 0.35);
+    width: 300px;
+    height: 276px;
+}
+
+/* First (Original): same wider/shorter + vertically centered chat as Classic */
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-slot {
+    height: 276px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-slot.is-open {
+    width: 300px;
 }
 
 #aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-chat-panel .bot-console-inset {

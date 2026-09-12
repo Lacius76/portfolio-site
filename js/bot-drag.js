@@ -26,11 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="aiBotDragWrapper"
       class="hero-anim-float-card fixed bottom-4 right-4 sm:bottom-6 sm:right-8 z-[150] pointer-events-auto group mt-4 sm:mt-0 transform scale-75 sm:scale-100 origin-bottom-right">
 
+      <!-- Float layer: bot + chat move together -->
+      <div class="bot-float-inner hg-float-anim">
+
       <!-- Conversation slot: width animates leftward; panel stays full-size inside (Chrome-safe) -->
       <div id="botChatSlot" class="bot-chat-slot" aria-hidden="true">
         <aside id="botChatPanel" class="bot-chat-panel">
           <button type="button" id="botChatCollapse" class="bot-chat-collapse" aria-label="Close conversation" title="Close conversation">
-            <span class="material-symbols-outlined text-[16px]">close</span>
+            <span class="material-symbols-outlined text-[14px]">close</span>
           </button>
           <div class="bot-chat-panel-main">
             <div class="bot-console-inset px-3 py-2 relative">
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </aside>
       </div>
 
-      <div id="aiBotCard" class="relative bot-body-3d hg-float-anim backdrop-blur-md opacity-100 transition-all duration-500">
+      <div id="aiBotCard" class="relative bot-body-3d backdrop-blur-md opacity-100 transition-all duration-500">
 
         <!-- Skin Dropdown -->
         <div id="botSkinMenu" class="bot-skin-menu">
@@ -136,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
       </div><!-- end aiBotCard -->
+      </div><!-- end bot-float-inner -->
     </div><!-- end aiBotDragWrapper -->
 
     <!-- AI Bot Contact Modal -->
@@ -374,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchend', () => onDragEnd());
 
     // --- Sleep Logic (Optimized) ---
-    const SLEEP_DELAY = 30000; // 30s
+    const SLEEP_DELAY = 180000; // 180s
     let sleepTimer = null;
     window._botSleeping = false;
 
@@ -603,7 +607,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Audio Mapping for jokes
     const jokeAudioMapping = {
         "My systems are functioning perfectly, your intentions are less clear.": "My systems are functioning.mp3",
-        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.": "Hey, did you know my 3D.mp3",
         "I see you scrolling... but you still haven't clicked 'Download CV'.": "I see you scrolling.mp3",
         "Not to brag, but Laszlo designed this layout in his head back in 1999.": "Not to brag.mp3",
         "Excuse me, is there any coffee around? My processor is freezing.": "Excuse me, is there any coffee around?.mp3",
@@ -675,7 +678,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const jokes = [
         "My systems are functioning perfectly, your intentions are less clear.",
-        "Hey, did you know my 3D grid is just a CSS trick? Even I fell for it.",
         "I see you scrolling... but you still haven't clicked 'Download CV'.",
         "Not to brag, but Laszlo designed this layout in his head back in 1999.",
         "Excuse me, is there any coffee around? My processor is freezing.",
