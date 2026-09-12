@@ -9,7 +9,7 @@ const { buildInstructions } = require("./_lib/bot-prompts");
 
 const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 const MODEL = "gpt-5.6-luna";
-const MAX_OUTPUT_TOKENS = 120;
+const MAX_OUTPUT_TOKENS = 200;
 const MAX_MESSAGE_CHARS = 500;
 const MAX_HISTORY_TURNS = 4;
 
