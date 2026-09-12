@@ -92,11 +92,8 @@ if (require.main === module) {
     JSON.stringify(
       {
         message: msg,
-        forceShowProject: forced,
-        tool_choice: forced
-          ? { type: "function", name: "show_project" }
-          : "auto",
-        inferred_project_id: id,
+        shouldForceShowProject: forced,
+        inferProjectId: id,
       },
       null,
       2

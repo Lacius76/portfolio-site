@@ -3,7 +3,11 @@
  *
  * OpenAI Responses API proxy for AI-Bot 9000.
  * OPENAI_API_KEY stays server-side.
- * Custom function tool: show_project (allowlisted paths only).
+ *
+ * v1 portfolio navigation is DETERMINISTIC (server intent → allowlist → action).
+ * It does NOT depend on the model calling show_project.
+ * show_project remains defined for future use but is not required for nav.
+ *
  * No hosted OpenAI tools. No calendar tools yet. No web search.
  */
 
@@ -90,53 +94,33 @@ function extractReplyText(data) {
   return parts.join("\n").trim();
 }
 
-/** @returns {Array<{ call_id: string, name: string, arguments: string }>} */
-function extractFunctionCalls(data) {
-  const output = data && Array.isArray(data.output) ? data.output : [];
-  const calls = [];
-  for (const item of output) {
-    if (!item || item.type !== "function_call") continue;
-    if (typeof item.call_id !== "string" || typeof item.name !== "string") continue;
-    let args = "";
-    if (typeof item.arguments === "string") {
-      args = item.arguments;
-    } else if (item.arguments && typeof item.arguments === "object") {
-      // Some payloads may already be parsed objects
-      try {
-        args = JSON.stringify(item.arguments);
-      } catch (_) {
-        args = "";
-      }
-    }
-    calls.push({
-      call_id: item.call_id,
-      name: item.name,
-      arguments: args,
-    });
-  }
-  return calls;
-}
-
-function parseShowProjectArgs(rawArgs) {
-  try {
-    const parsed =
-      typeof rawArgs === "string"
-        ? JSON.parse(rawArgs || "{}")
-        : rawArgs && typeof rawArgs === "object"
-          ? rawArgs
-          : null;
-    if (!parsed || typeof parsed !== "object") return null;
-    return typeof parsed.project_id === "string" ? parsed.project_id : null;
-  } catch (_) {
+/**
+ * Resolve navigate action from message intent + PROJECT_ALLOWLIST only.
+ * Never invents URLs. Returns null for informational / ambiguous asks.
+ * @param {string} message
+ * @returns {{ type: "navigate", path: string, label: string } | null}
+ */
+function resolveNavigateAction(message) {
+  if (!shouldForceShowProject(message)) return null;
+  const projectId = inferProjectId(message);
+  const resolved = resolveProject(projectId);
+  if (!resolved) return null;
+  if (!allowedNavigatePaths().includes(resolved.path)) return null;
+  // Relative filename only (same-origin allowlist)
+  if (
+    resolved.path.includes("://") ||
+    resolved.path.startsWith("//") ||
+    resolved.path.includes("..") ||
+    resolved.path.includes("/")
+  ) {
     return null;
   }
+  return {
+    type: "navigate",
+    path: resolved.path,
+    label: resolved.label,
+  };
 }
-
-/** Responses API forced-function tool_choice for show_project. */
-const FORCE_SHOW_PROJECT_TOOL_CHOICE = {
-  type: "function",
-  name: "show_project",
-};
 
 async function callResponsesApi(apiKey, payload) {
   const res = await fetch(OPENAI_RESPONSES_URL, {
@@ -149,64 +133,6 @@ async function callResponsesApi(apiKey, payload) {
   });
   const data = await res.json().catch(() => null);
   return { res, data };
-}
-
-/**
- * Handle show_project (and reject unknown tools). Returns navigate action if resolved.
- * Mutates `input` with function_call items + outputs for a follow-up Responses turn.
- */
-function applyFunctionCalls(data, input) {
-  const calls = extractFunctionCalls(data);
-  if (!calls.length) {
-    return { action: null, needsFollowUp: false, fallbackLabel: null };
-  }
-
-  const output = Array.isArray(data.output) ? data.output : [];
-  for (const item of output) {
-    if (item && item.type === "function_call") {
-      input.push(item);
-    }
-  }
-
-  /** @type {{ type: string, path: string } | null} */
-  let action = null;
-  let fallbackLabel = null;
-
-  for (const call of calls) {
-    if (call.name !== "show_project") {
-      input.push({
-        type: "function_call_output",
-        call_id: call.call_id,
-        output: JSON.stringify({ ok: false, error: "unsupported_tool" }),
-      });
-      continue;
-    }
-
-    const projectId = parseShowProjectArgs(call.arguments);
-    const resolved = resolveProject(projectId);
-    if (!resolved) {
-      input.push({
-        type: "function_call_output",
-        call_id: call.call_id,
-        output: JSON.stringify({ ok: false, error: "unknown_project_id" }),
-      });
-      continue;
-    }
-
-    action = { type: "navigate", path: resolved.path };
-    fallbackLabel = resolved.label;
-    input.push({
-      type: "function_call_output",
-      call_id: call.call_id,
-      output: JSON.stringify({
-        ok: true,
-        project_id: resolved.project_id,
-        label: resolved.label,
-      }),
-    });
-  }
-
-  return { action, needsFollowUp: true, fallbackLabel };
 }
 
 exports.handler = async function handler(event) {
@@ -244,9 +170,20 @@ exports.handler = async function handler(event) {
     return json(503, { error: "openai_not_configured" });
   }
 
+  // 1–3. Deterministic navigation BEFORE OpenAI (does not depend on tool calls).
+  const nav = resolveNavigateAction(message);
+  /** @type {{ type: string, path: string } | null} */
+  const action = nav ? { type: "navigate", path: nav.path } : null;
+
   const skin = normalizeSkin(body.skin);
   const history = sanitizeHistory(body.history);
-  const instructions = buildInstructions(skin);
+  let instructions = buildInstructions(skin);
+  if (nav) {
+    instructions +=
+      `\n\nNAVIGATION NOTICE (server-handled): The visitor will be taken to "${nav.label}". ` +
+      `Reply in 1–2 short sentences confirming you are opening that case study. ` +
+      `Do not say you cannot display or open it. Do not invent URLs.`;
+  }
 
   /** @type {Array<object>} */
   const input = [];
@@ -255,23 +192,17 @@ exports.handler = async function handler(event) {
   }
   input.push({ role: "user", content: message });
 
-  const forceShowProject = shouldForceShowProject(message);
-
-  const basePayload = {
-    model: MODEL,
-    instructions,
-    max_output_tokens: MAX_OUTPUT_TOKENS,
-    store: false,
-    // Only our allowlisted function tool — no hosted tools, no calendar.
-    tools: [SHOW_PROJECT_TOOL],
-    // Explicit nav intent + known project → force show_project; else auto.
-    tool_choice: forceShowProject ? FORCE_SHOW_PROJECT_TOOL_CHOICE : "auto",
-  };
-
   try {
-    let { res, data } = await callResponsesApi(apiKey, {
-      ...basePayload,
+    // 4. OpenAI only generates conversational reply (tools kept available for later;
+    //    tool_choice none so v1 nav never depends on the model calling show_project).
+    const { res, data } = await callResponsesApi(apiKey, {
+      model: MODEL,
+      instructions,
       input,
+      max_output_tokens: MAX_OUTPUT_TOKENS,
+      store: false,
+      tools: [SHOW_PROJECT_TOOL],
+      tool_choice: "none",
     });
 
     if (!res.ok) {
@@ -281,57 +212,21 @@ exports.handler = async function handler(event) {
       });
     }
 
-    const toolResult = applyFunctionCalls(data, input);
-    let action = toolResult.action;
-
-    if (toolResult.needsFollowUp) {
-      const follow = await callResponsesApi(apiKey, {
-        ...basePayload,
-        // After the tool runs, ask for a short spoken reply — do not force another call.
-        tool_choice: "none",
-        input,
-      });
-      if (follow.res.ok && follow.data) {
-        data = follow.data;
-      }
-      // If follow-up fails, keep action from the resolved allowlist and fall back to a short reply.
-    }
-
     let reply = extractReplyText(data);
-    if (!reply && action && toolResult.fallbackLabel) {
-      reply = `Opening ${toolResult.fallbackLabel}.`;
+    if (
+      action &&
+      (!reply ||
+        /don['’]?t have|cannot display|can'?t display|no .{0,40}case-study|not available to display|no public case-study/i.test(
+          reply
+        ))
+    ) {
+      reply = `Opening ${nav.label}.`;
     }
-
-    // Deterministic safety net: explicit nav intent + unique allowlisted topic
-    // must always yield a navigate action, even if the model returned text only
-    // (no function_call) or tool args failed to parse.
-    if (forceShowProject && !action) {
-      const inferredId = inferProjectId(message);
-      const resolved = resolveProject(inferredId);
-      if (resolved && allowedNavigatePaths().includes(resolved.path)) {
-        action = { type: "navigate", path: resolved.path };
-        if (
-          !reply ||
-          /don['’]?t have|cannot display|can'?t display|no .{0,40}case-study|not available to display|no public case-study/i.test(
-            reply
-          )
-        ) {
-          reply = `Opening ${resolved.label}.`;
-        }
-      }
-    }
-
     if (!reply) {
       return json(502, { error: "empty_reply" });
     }
 
-    // Re-validate path immediately before responding (never trust free-form URLs).
-    if (action && action.type === "navigate") {
-      if (!allowedNavigatePaths().includes(action.path)) {
-        action = null;
-      }
-    }
-
+    // 5. Final response — action is independent of OpenAI tool results.
     if (action) {
       return json(200, { reply, action });
     }
@@ -340,3 +235,36 @@ exports.handler = async function handler(event) {
     return json(502, { error: "openai_unreachable" });
   }
 };
+
+// --- local mocked handler-path assertion ---
+if (require.main === module) {
+  const msg = "Show me László's HMI work.";
+  if (shouldForceShowProject(msg) !== true) {
+    console.error("FAIL shouldForceShowProject");
+    process.exit(1);
+  }
+  if (inferProjectId(msg) !== "siemens") {
+    console.error("FAIL inferProjectId");
+    process.exit(1);
+  }
+  const nav = resolveNavigateAction(msg);
+  const mocked = {
+    reply: "Opening Siemens / ETM HMI.",
+    action: nav ? { type: "navigate", path: nav.path } : null,
+  };
+  if (
+    !mocked.action ||
+    mocked.action.type !== "navigate" ||
+    mocked.action.path !== "case-study-siemens.html"
+  ) {
+    console.error("FAIL mocked response", mocked);
+    process.exit(1);
+  }
+  // Informational must not navigate
+  if (resolveNavigateAction("Tell me about László's HMI work.") !== null) {
+    console.error("FAIL informational should have no action");
+    process.exit(1);
+  }
+  console.log("OK bot-chat nav path selftest");
+  console.log(JSON.stringify({ message: msg, mocked }, null, 2));
+}
