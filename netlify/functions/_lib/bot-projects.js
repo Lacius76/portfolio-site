@@ -24,7 +24,11 @@ const SHOW_PROJECT_TOOL = {
   type: "function",
   name: "show_project",
   description:
-    "Navigate the visitor to one of László's known portfolio case-study pages. Call only when the visitor clearly wants to view, open, show, or go to a project. Do not call when they only ask questions about a project. Never invent URLs — only use project_id.",
+    "Open one of László's real portfolio case-study pages in the visitor's browser. " +
+    "You MUST call this tool when the visitor explicitly asks to show, open, view, see, or go to / be taken to a project " +
+    '(e.g. "Show me László\'s HMI work", "Open the bakery project", "Take me to eWa", "Let me see the fintech case study"). ' +
+    "Do NOT call it for ordinary questions like \"Tell me about Siemens\" or \"What did he do in HMI?\". " +
+    "Never invent URLs — only pass project_id. Calling this tool is how pages are opened; do not claim you cannot display those case studies.",
   strict: true,
   parameters: {
     type: "object",
