@@ -823,6 +823,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Same-origin, relative case-study paths only (mirrors server allowlist).
+    const BOT_NAV_ALLOWLIST = new Set([
+        'case-study-siemens.html',
+        'case-study-ewa.html',
+        'case-study-babusgatos.html',
+    ]);
+    const BOT_NAV_PAUSE_AFTER_TYPE_MS = 700;
+
+    function isAllowedBotNavPath(path) {
+        if (typeof path !== 'string') return false;
+        if (!BOT_NAV_ALLOWLIST.has(path)) return false;
+        // Reject absolute / protocol / traversal forms even if somehow returned.
+        if (path.includes('://') || path.startsWith('//') || path.includes('..') || path.includes('/')) {
+            return false;
+        }
+        return true;
+    }
+
+    function navigateAfterBotReply(path) {
+        if (!isAllowedBotNavPath(path)) return;
+        window.location.assign(path);
+    }
+
     async function sendBotChat(userText) {
         const text = (userText || '').trim();
         if (!text || isChatBusy) return;
@@ -852,7 +875,26 @@ document.addEventListener('DOMContentLoaded', () => {
             chatHistory.push({ role: 'user', content: text });
             chatHistory.push({ role: 'assistant', content: reply });
             while (chatHistory.length > 8) chatHistory.shift();
+
+            const navPath =
+                data.action &&
+                data.action.type === 'navigate' &&
+                isAllowedBotNavPath(data.action.path)
+                    ? data.action.path
+                    : null;
+
+            if (navPath) {
+                typeWriter(reply, botConsole, () => {
+                    setTimeout(() => {
+                        setChatBusy(false);
+                        navigateAfterBotReply(navPath);
+                    }, BOT_NAV_PAUSE_AFTER_TYPE_MS);
+                });
+                return; // finally must not clear busy early
+            }
+
             typeWriter(reply, botConsole);
+            setChatBusy(false);
         } catch (_) {
             const fallback = getNextJoke();
             playBotAudio(jokeAudioMapping[fallback]);
@@ -860,7 +902,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tBot('bot.chatError', 'Link unstable. Falling back to local humor module: ') + fallback,
                 botConsole
             );
-        } finally {
             setChatBusy(false);
         }
     }
