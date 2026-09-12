@@ -13,6 +13,10 @@ const {
   resolveProject,
   allowedNavigatePaths,
 } = require("./_lib/bot-projects");
+const {
+  shouldForceShowProject,
+  inferProjectId,
+} = require("./_lib/bot-nav-intent");
 
 const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 const MODEL = "gpt-5.6-luna";
@@ -93,10 +97,21 @@ function extractFunctionCalls(data) {
   for (const item of output) {
     if (!item || item.type !== "function_call") continue;
     if (typeof item.call_id !== "string" || typeof item.name !== "string") continue;
+    let args = "";
+    if (typeof item.arguments === "string") {
+      args = item.arguments;
+    } else if (item.arguments && typeof item.arguments === "object") {
+      // Some payloads may already be parsed objects
+      try {
+        args = JSON.stringify(item.arguments);
+      } catch (_) {
+        args = "";
+      }
+    }
     calls.push({
       call_id: item.call_id,
       name: item.name,
-      arguments: typeof item.arguments === "string" ? item.arguments : "",
+      arguments: args,
     });
   }
   return calls;
@@ -104,48 +119,17 @@ function extractFunctionCalls(data) {
 
 function parseShowProjectArgs(rawArgs) {
   try {
-    const parsed = JSON.parse(rawArgs || "{}");
+    const parsed =
+      typeof rawArgs === "string"
+        ? JSON.parse(rawArgs || "{}")
+        : rawArgs && typeof rawArgs === "object"
+          ? rawArgs
+          : null;
     if (!parsed || typeof parsed !== "object") return null;
     return typeof parsed.project_id === "string" ? parsed.project_id : null;
   } catch (_) {
     return null;
   }
-}
-
-/**
- * Force show_project only for explicit navigation + a known project topic.
- * Informational questions stay on tool_choice "auto".
- * @param {string} message
- * @returns {boolean}
- */
-function shouldForceShowProject(message) {
-  if (!message || typeof message !== "string") return false;
-
-  // Informational asks — never force navigation
-  if (
-    /\b(tell\s+me\s+about|what\s+did|what\s+was|describe|explain|how\s+did)\b/i.test(
-      message
-    )
-  ) {
-    return false;
-  }
-
-  const hasNavIntent =
-    /\bshow\s+me\b/i.test(message) ||
-    /\btake\s+me\s+to\b/i.test(message) ||
-    /\blet\s+me\s+see\b/i.test(message) ||
-    /\bgo\s+to\b/i.test(message) ||
-    /\bbring\s+up\b/i.test(message) ||
-    /\bopen\b/i.test(message);
-
-  if (!hasNavIntent) return false;
-
-  const hasKnownProject =
-    /\b(hmi|scada|wincc|siemens|etm)\b/i.test(message) ||
-    /\b(ewa|fintech|wallet)\b/i.test(message) ||
-    /\b(bakery|babusgatos|cake\s*creator)\b/i.test(message);
-
-  return hasKnownProject;
 }
 
 /** Responses API forced-function tool_choice for show_project. */
@@ -317,6 +301,26 @@ exports.handler = async function handler(event) {
     if (!reply && action && toolResult.fallbackLabel) {
       reply = `Opening ${toolResult.fallbackLabel}.`;
     }
+
+    // Deterministic safety net: explicit nav intent + unique allowlisted topic
+    // must always yield a navigate action, even if the model returned text only
+    // (no function_call) or tool args failed to parse.
+    if (forceShowProject && !action) {
+      const inferredId = inferProjectId(message);
+      const resolved = resolveProject(inferredId);
+      if (resolved && allowedNavigatePaths().includes(resolved.path)) {
+        action = { type: "navigate", path: resolved.path };
+        if (
+          !reply ||
+          /don['’]?t have|cannot display|can'?t display|no .{0,40}case-study|not available to display|no public case-study/i.test(
+            reply
+          )
+        ) {
+          reply = `Opening ${resolved.label}.`;
+        }
+      }
+    }
+
     if (!reply) {
       return json(502, { error: "empty_reply" });
     }
