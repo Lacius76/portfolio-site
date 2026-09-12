@@ -823,12 +823,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Same-origin, relative case-study paths only (mirrors server allowlist).
-    const BOT_NAV_ALLOWLIST = new Set([
-        'case-study-siemens.html',
-        'case-study-ewa.html',
-        'case-study-babusgatos.html',
-    ]);
+    // Explicit project navigation — local allowlist only (no OpenAI / no bot-chat).
+    // Relative same-origin filenames only; never invent URLs.
+    const BOT_PROJECT_ALLOWLIST = Object.freeze({
+        siemens: {
+            path: 'case-study-siemens.html',
+            canned: "Opening László's Siemens / ETM HMI case study...",
+        },
+        ewa: {
+            path: 'case-study-ewa.html',
+            canned: "Opening László's eWa Fintech Super App case study...",
+        },
+        bakery: {
+            path: 'case-study-babusgatos.html',
+            canned: "Opening László's Bakery Live Tracker / Babusgatos case study...",
+        },
+    });
+    const BOT_NAV_ALLOWLIST = new Set(
+        Object.keys(BOT_PROJECT_ALLOWLIST).map((id) => BOT_PROJECT_ALLOWLIST[id].path)
+    );
     const BOT_NAV_PAUSE_AFTER_TYPE_MS = 700;
 
     function isAllowedBotNavPath(path) {
@@ -841,9 +854,57 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
+    function inferBotProjectId(message) {
+        if (!message || typeof message !== 'string') return null;
+        const siemens = /\b(hmi|scada|wincc|siemens|etm)\b/i.test(message);
+        const ewa = /\b(ewa|fintech|wallet)\b/i.test(message);
+        const bakery = /\b(bakery|babusgatos|cake\s*creator)\b/i.test(message);
+        const hits = [siemens && 'siemens', ewa && 'ewa', bakery && 'bakery'].filter(Boolean);
+        if (hits.length !== 1) return null;
+        return hits[0];
+    }
+
+    /** Explicit show/open/go — not informational "tell me about". */
+    function shouldLocalNavigate(message) {
+        if (!message || typeof message !== 'string') return false;
+        if (
+            /\b(tell\s+me\s+about|what\s+did|what\s+was|describe|explain|how\s+did)\b/i.test(
+                message
+            )
+        ) {
+            return false;
+        }
+        const hasNavIntent =
+            /\bshow\s+me\b/i.test(message) ||
+            /\btake\s+me\s+to\b/i.test(message) ||
+            /\blet\s+me\s+see\b/i.test(message) ||
+            /\bgo\s+to\b/i.test(message) ||
+            /\bbring\s+up\b/i.test(message) ||
+            /\bopen\b/i.test(message);
+        if (!hasNavIntent) return false;
+        return inferBotProjectId(message) !== null;
+    }
+
+    /**
+     * @returns {{ path: string, reply: string } | null}
+     */
+    function resolveLocalBotNav(message) {
+        if (!shouldLocalNavigate(message)) return null;
+        const projectId = inferBotProjectId(message);
+        const entry = projectId ? BOT_PROJECT_ALLOWLIST[projectId] : null;
+        if (!entry || !isAllowedBotNavPath(entry.path)) return null;
+        return { path: entry.path, reply: entry.canned };
+    }
+
     function navigateAfterBotReply(path) {
         if (!isAllowedBotNavPath(path)) return;
         window.location.assign(path);
+    }
+
+    function pushChatHistory(userText, reply) {
+        chatHistory.push({ role: 'user', content: userText });
+        chatHistory.push({ role: 'assistant', content: reply });
+        while (chatHistory.length > 8) chatHistory.shift();
     }
 
     async function sendBotChat(userText) {
@@ -854,6 +915,20 @@ document.addEventListener('DOMContentLoaded', () => {
         setChatBusy(true);
         wakeUp();
         if (chatInput) chatInput.value = '';
+
+        // Explicit nav: canned reply + allowlisted navigation. Never call OpenAI.
+        const localNav = resolveLocalBotNav(text);
+        if (localNav) {
+            pushChatHistory(text, localNav.reply);
+            typeWriter(localNav.reply, botConsole, () => {
+                setTimeout(() => {
+                    setChatBusy(false);
+                    navigateAfterBotReply(localNav.path);
+                }, BOT_NAV_PAUSE_AFTER_TYPE_MS);
+            });
+            return;
+        }
+
         typeWriter('…', botConsole);
 
         try {
@@ -872,10 +947,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error((data && data.error) || 'chat_failed');
             }
             const reply = data.reply.trim();
-            chatHistory.push({ role: 'user', content: text });
-            chatHistory.push({ role: 'assistant', content: reply });
-            while (chatHistory.length > 8) chatHistory.shift();
+            pushChatHistory(text, reply);
 
+            // Server may still return action; only follow allowlisted relative paths.
             const navPath =
                 data.action &&
                 data.action.type === 'navigate' &&
@@ -890,7 +964,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         navigateAfterBotReply(navPath);
                     }, BOT_NAV_PAUSE_AFTER_TYPE_MS);
                 });
-                return; // finally must not clear busy early
+                return;
             }
 
             typeWriter(reply, botConsole);
