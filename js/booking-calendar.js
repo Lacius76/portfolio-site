@@ -848,11 +848,29 @@
       const { res, data } = await bookSlotOnServer(slot, form);
       const code = data && typeof data.error === "string" ? data.error : "";
 
-      if (res.ok && data && data.ok === true) {
-        // Calendar confirmed → secondary Netlify Forms notification + success redirect
+      if (
+        res.ok &&
+        data &&
+        data.ok === true &&
+        (data.created === true ||
+          data.restored === true ||
+          data.verified_existing === true)
+      ) {
+        // Calendar confirmed a live booking → secondary Netlify Forms notification
         state.bookingSubmitLocked = true;
         setSubmitLoading(false);
         form.submit();
+        return;
+      }
+
+      // ok without create/restore/verified_existing must not notify
+      if (res.ok && data && data.ok === true) {
+        showBookingSubmitError(
+          t(
+            "booking.bookUnavailable",
+            "Booking is temporarily unavailable. Your message was not sent."
+          )
+        );
         return;
       }
 

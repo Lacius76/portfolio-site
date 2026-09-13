@@ -1742,7 +1742,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const data = await res.json().catch(() => ({}));
 
-            if (res.ok && data && data.ok === true) {
+            // Only treat as booked when server confirms a live Google event
+            // (fresh create, restored cancelled, or verified idempotent existing).
+            const liveBooking =
+                res.ok &&
+                data &&
+                data.ok === true &&
+                (data.created === true ||
+                    data.restored === true ||
+                    data.verified_existing === true);
+
+            if (liveBooking) {
                 const slot = data.slot || pendingBookingDetails.slot;
                 const confirmPanel = document.getElementById('botBookingConfirmPanel');
                 if (confirmPanel) {
@@ -1770,11 +1780,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 typeWriter('Meeting booked in Google Calendar. See the confirmation dialog.', botConsole);
                 pushChatHistory('(confirm booking)', 'Meeting booked in Google Calendar.');
 
-                // Google-first already done — Forms is secondary notification only.
+                // Google-first already done — Forms only after verified live booking.
                 await submitBotBookingNotification(pendingBookingDetails);
 
                 pendingBookingDetails = null;
                 pendingBookingSlot = null;
+                return;
+            }
+
+            // ok:true without create/restore/verified_existing must never notify (unverified 409).
+            if (res.ok && data && data.ok === true) {
+                showBookingConfirmError(
+                    'Booking could not be verified in Google Calendar. Nothing was confirmed. Please try again.'
+                );
+                typeWriter(
+                    'Booking could not be verified in Google Calendar. Please try again.',
+                    botConsole
+                );
                 return;
             }
 

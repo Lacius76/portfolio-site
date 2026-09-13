@@ -61,7 +61,13 @@ exports.handler = async function handler(event) {
       return json(result.status || 500, { ok: false, error: result.error });
     }
 
-    return json(200, { ok: true, eventId: result.eventId });
+    return json(200, {
+      ok: true,
+      eventId: result.eventId,
+      created: result.created === true,
+      restored: result.restored === true,
+      verified_existing: result.verified_existing === true,
+    });
   } catch (err) {
     const code = err && err.code ? err.code : "UNKNOWN";
     if (code === "ENV_MISSING") {

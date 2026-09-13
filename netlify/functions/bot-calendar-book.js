@@ -136,6 +136,8 @@ exports.handler = async function handler(event) {
       eventId: result.eventId,
       slot: verified.session.selected,
       created: result.created === true,
+      restored: result.restored === true,
+      verified_existing: result.verified_existing === true,
     });
   } catch (err) {
     const code = err && err.code ? err.code : "UNKNOWN";
