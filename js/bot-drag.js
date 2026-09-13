@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="bot-console-scroll">
                 <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
                 <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
-                <div id="botSlotChips" class="bot-slot-chips" hidden></div>
               </div>
-              <div id="botActionBtns" class="absolute hidden flex gap-2 text-[10px] font-mono items-center" style="bottom: 4px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10;">
+              <div id="botSlotChips" class="bot-slot-chips" hidden></div>
+              <div id="botActionBtns" class="bot-action-btns absolute hidden flex gap-2 text-[10px] font-mono items-center" aria-hidden="true" style="bottom: 4px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10; pointer-events: none;">
                 <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
                 <button id="botBtnNo" data-i18n="bot.contactNo">[ NO ]</button>
               </div>
@@ -954,14 +954,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const actionBtns = document.getElementById('botActionBtns');
         const compose = document.querySelector('#botChatPanel .bot-chat-compose');
         if (!isChatPanelOpen) openChatPanel();
-        if (actionBtns) actionBtns.classList.remove('hidden');
+        clearSlotChips();
+        if (actionBtns) {
+            actionBtns.classList.remove('hidden');
+            actionBtns.setAttribute('aria-hidden', 'false');
+            actionBtns.style.pointerEvents = 'auto';
+        }
         if (compose) compose.classList.add('hidden');
     }
 
     function hideBookingIntentButtons() {
         const actionBtns = document.getElementById('botActionBtns');
         const compose = document.querySelector('#botChatPanel .bot-chat-compose');
-        if (actionBtns) actionBtns.classList.add('hidden');
+        if (actionBtns) {
+            actionBtns.classList.add('hidden');
+            actionBtns.setAttribute('aria-hidden', 'true');
+            actionBtns.style.pointerEvents = 'none';
+        }
         if (compose) compose.classList.remove('hidden');
     }
 
@@ -1071,6 +1080,12 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.dataset.slotId = id;
             btn.setAttribute('aria-label', `Select available slot ${slotChipLabel(slot)}`);
             btn.textContent = `[ ${slotChipLabel(slot)} ]`;
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isChatBusy) return;
+                selectVerifiedSlotById(id);
+            });
             frag.appendChild(btn);
         });
 

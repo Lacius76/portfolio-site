@@ -739,15 +739,20 @@
 
 /* Clickable verified availability slots (Phase B) */
 .bot-slot-chips {
+    position: relative;
+    z-index: 20;
     display: flex;
     flex-wrap: wrap;
     gap: 4px 6px;
     margin-top: 8px;
     max-width: 100%;
+    pointer-events: auto;
+    flex-shrink: 0;
 }
 
 .bot-slot-chips[hidden] {
     display: none !important;
+    pointer-events: none !important;
 }
 
 .bot-slot-chip {
@@ -766,6 +771,8 @@
     letter-spacing: 0.01em;
     line-height: 1.3;
     cursor: pointer;
+    pointer-events: auto;
+    touch-action: manipulation;
     text-shadow: 0 0 4px rgba(40, 165, 48, 0.45);
 }
 
@@ -780,6 +787,18 @@
 .bot-slot-chip:disabled {
     opacity: 0.45;
     cursor: wait;
+}
+
+/* Tailwind hidden+flex conflict: force YES/NO bar off so it cannot steal chip clicks */
+#botActionBtns.hidden,
+#botActionBtns[aria-hidden="true"] {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+#botActionBtns:not(.hidden) {
+    pointer-events: auto;
 }
 
 #aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-slot-chip {
