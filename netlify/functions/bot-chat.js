@@ -357,7 +357,13 @@ exports.handler = async function handler(event) {
   }
 
   const message = typeof body.message === "string" ? body.message.trim() : "";
-  if (!message) {
+  const selectSlotId =
+    typeof body.select_slot_id === "string" ? body.select_slot_id.trim() : "";
+  const refreshRaw = body.refresh_availability;
+  const wantsRefresh =
+    refreshRaw === true || (refreshRaw && typeof refreshRaw === "object");
+
+  if (!message && !selectSlotId && !wantsRefresh) {
     return json(400, { error: "empty_message" });
   }
   if (message.length > MAX_MESSAGE_CHARS) {
@@ -365,19 +371,122 @@ exports.handler = async function handler(event) {
   }
 
   // Explicit nav: canned reply + allowlisted action. Never call OpenAI / Calendar.
-  const nav = resolveNavigateAction(message);
-  if (nav) {
+  if (message) {
+    const nav = resolveNavigateAction(message);
+    if (nav) {
+      return json(200, {
+        reply: cannedNavReply(nav.label),
+        action: { type: "navigate", path: nav.path },
+      });
+    }
+  }
+
+  const forceCalendar = message ? shouldForceCheckAvailability(message) : false;
+  const verified = verifySession(body.calendar_session);
+
+  // Clickable chip selection — no OpenAI; slot_id must be in signed offered[].
+  if (selectSlotId) {
+    if (!verified.ok) {
+      return json(403, {
+        reply:
+          "Your availability session expired or is invalid. Please ask me to check László’s calendar again.",
+        error: verified.reason === "expired" ? "session_expired" : "session_invalid",
+      });
+    }
+    const match = verified.session.offered.find((s) => s.slot_id === selectSlotId);
+    if (!match) {
+      return json(200, {
+        reply: notOfferedReply(),
+        calendar_session: verified.session,
+      });
+    }
+    const nextSession = signSession({
+      offered: verified.session.offered,
+      selected: match,
+    });
     return json(200, {
-      reply: cannedNavReply(nav.label),
-      action: { type: "navigate", path: nav.path },
+      reply: selectionReply(match),
+      action: {
+        type: "booking_intent_prompt",
+        selected_slot: match,
+      },
+      calendar_session: nextSession,
     });
   }
 
-  const forceCalendar = shouldForceCheckAvailability(message);
-  const verified = verifySession(body.calendar_session);
+  // Fresh FreeBusy refresh (race-condition recovery) — no OpenAI, no stale booking.
+  if (wantsRefresh) {
+    const opts = refreshRaw === true ? {} : refreshRaw;
+    let fromDate =
+      typeof opts.from_date === "string" ? opts.from_date.trim() : "";
+    let toDate = typeof opts.to_date === "string" ? opts.to_date.trim() : "";
+    const dayPart =
+      typeof opts.day_part === "string" ? opts.day_part.trim() : "any";
+
+    if (!DATE_RE.test(fromDate)) {
+      // Prefer day of previous selected/offered if present
+      const hint =
+        (verified.ok &&
+          verified.session.selected &&
+          verified.session.selected.start &&
+          verified.session.selected.start.slice(0, 10)) ||
+        (verified.ok &&
+          verified.session.offered[0] &&
+          verified.session.offered[0].start &&
+          verified.session.offered[0].start.slice(0, 10)) ||
+        budapestTodayKey();
+      fromDate = hint;
+    }
+    if (!DATE_RE.test(toDate)) {
+      toDate = fromDate;
+    }
+
+    const avail = await runCheckAvailability(
+      JSON.stringify({
+        from_date: fromDate,
+        to_date: toDate,
+        day_part: ["any", "morning", "afternoon"].includes(dayPart)
+          ? dayPart
+          : "any",
+      })
+    );
+
+    if (!avail.ok) {
+      return json(200, {
+        reply:
+          "I couldn't refresh László's real calendar just now. Please try again in a moment.",
+        error: avail.error || "unavailable",
+      });
+    }
+
+    const signed = signSession({
+      offered: avail.slots,
+      selected: null,
+    });
+    const count = avail.slots.length;
+    const reply =
+      count === 0
+        ? `I checked again for ${fromDate}${fromDate !== toDate ? `–${toDate}` : ""} (Europe/Budapest). There are no open 1-hour slots in that window right now.`
+        : `I checked again. These ${count} slot(s) are currently available (Europe/Budapest) — not reserved. Tap one to continue:`;
+
+    const payload = {
+      reply,
+      action: {
+        type: "offer_slots",
+        slots: signed && Array.isArray(signed.offered) ? signed.offered : [],
+      },
+    };
+    // Fresh session only when Google returned signed free slots; otherwise clear stale booking state.
+    if (signed && signed.offered.length > 0) {
+      payload.calendar_session = signed;
+    } else {
+      payload.calendar_session = null;
+    }
+    return json(200, payload);
+  }
 
   // Phase B: resolve slot selection against signed offered slots (no Google mutation).
-  if (!forceCalendar && verified.ok) {
+  if (!forceCalendar && verified.ok && message) {
     const selection = resolveSlotSelection(message, verified.session.offered);
     if (selection.status === "resolved") {
       const nextSession = signSession({
@@ -497,7 +606,20 @@ exports.handler = async function handler(event) {
     }
 
     const payload = { reply };
-    if (calendar_session) payload.calendar_session = calendar_session;
+    if (calendar_session) {
+      payload.calendar_session = calendar_session;
+      if (
+        toolResult.availabilityResult &&
+        toolResult.availabilityResult.ok &&
+        Array.isArray(calendar_session.offered) &&
+        calendar_session.offered.length > 0
+      ) {
+        payload.action = {
+          type: "offer_slots",
+          slots: calendar_session.offered,
+        };
+      }
+    }
     return json(200, payload);
   } catch (_) {
     return json(502, { error: "openai_unreachable" });
@@ -569,6 +691,37 @@ if (require.main === module) {
   const picked = resolveSlotSelection("15:00 works for me.", offered);
   if (picked.status !== "resolved" || picked.slot.slot_id !== "2026-09-18T15:00") {
     console.error("FAIL phase B resolve", picked);
+    process.exit(1);
+  }
+
+  // Chip path: slot_id must resolve only against signed offered (no invent).
+  const chipMatch = v.session.offered.find((s) => s.slot_id === "2026-09-18T15:00");
+  if (!chipMatch) {
+    console.error("FAIL chip offered lookup");
+    process.exit(1);
+  }
+  const forged = v.session.offered.find((s) => s.slot_id === "2026-09-18T03:00");
+  if (forged) {
+    console.error("FAIL forged slot should not be in offered");
+    process.exit(1);
+  }
+  const afterSelect = signSession({
+    offered: v.session.offered,
+    selected: chipMatch,
+  });
+  const v2 = verifySession(afterSelect);
+  if (!v2.ok || !v2.session.selected || v2.session.selected.slot_id !== "2026-09-18T15:00") {
+    console.error("FAIL chip select session", v2);
+    process.exit(1);
+  }
+  // Refresh clears selection
+  const afterRefresh = signSession({
+    offered: v.session.offered,
+    selected: null,
+  });
+  const v3 = verifySession(afterRefresh);
+  if (!v3.ok || v3.session.selected !== null) {
+    console.error("FAIL refresh clear selected", v3);
     process.exit(1);
   }
 

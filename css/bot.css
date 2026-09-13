@@ -737,6 +737,89 @@
     font-size: 11px !important;
 }
 
+/* Clickable verified availability slots (Phase B) */
+.bot-slot-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    margin-top: 8px;
+    max-width: 100%;
+}
+
+.bot-slot-chips[hidden] {
+    display: none !important;
+}
+
+.bot-slot-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 2px 6px;
+    border: 1px solid rgba(40, 165, 48, 0.65);
+    border-radius: 2px;
+    background: transparent;
+    color: #28a530;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    cursor: pointer;
+    text-shadow: 0 0 4px rgba(40, 165, 48, 0.45);
+}
+
+.bot-slot-chip:hover:not(:disabled),
+.bot-slot-chip:focus-visible:not(:disabled) {
+    background: #28a530;
+    color: #000;
+    text-shadow: none;
+    outline: none;
+}
+
+.bot-slot-chip:disabled {
+    opacity: 0.45;
+    cursor: wait;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-slot-chip {
+    border-color: rgba(0, 0, 0, 0.55);
+    color: #000;
+    text-shadow: none;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-slot-chip:hover:not(:disabled),
+#aiBotDragWrapper:has(#aiBotCard.skin-classic) .bot-slot-chip:focus-visible:not(:disabled) {
+    background: #000;
+    color: #fff;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-slot-chip {
+    border-color: rgba(52, 211, 153, 0.55);
+    color: #e2e8f0;
+    text-shadow: none;
+}
+
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-slot-chip:hover:not(:disabled),
+#aiBotDragWrapper:has(#aiBotCard.skin-first) .bot-slot-chip:focus-visible:not(:disabled) {
+    background: #34d399;
+    color: #0f172a;
+}
+
+#aiBotCard:not(.skin-first):not(.skin-classic) ~ .bot-chat-slot .bot-slot-chip,
+#aiBotDragWrapper:has(#aiBotCard:not(.skin-first):not(.skin-classic)) .bot-slot-chip {
+    border-color: rgba(255, 0, 0, 0.55);
+    color: #ff3030;
+    text-shadow: 0 0 4px rgba(255, 0, 0, 0.35);
+}
+
+#aiBotDragWrapper:has(#aiBotCard:not(.skin-first):not(.skin-classic)) .bot-slot-chip:hover:not(:disabled),
+#aiBotDragWrapper:has(#aiBotCard:not(.skin-first):not(.skin-classic)) .bot-slot-chip:focus-visible:not(:disabled) {
+    background: #ff0000;
+    color: #000;
+    text-shadow: none;
+}
+
 /* Bottom row: Ask me + grill (closed state) */
 .bot-bottom-area {
     flex: 0 0 94px;

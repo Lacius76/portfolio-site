@@ -410,7 +410,7 @@ Availability rules you must follow:
 - If the tool returns ok:false or an error / empty failure, say you cannot check the calendar right now — do not invent slots.
 - If slots is an empty array, say there are no open 1-hour slots in that window (weekdays 08:00–16:00 Budapest).
 - Times are Europe/Budapest unless you briefly explain the timezone.
-- When listing slots, keep them short and numbered when helpful so the visitor can say “the first one” or “15:00”.
+- When listing slots, keep the spoken reply short. The visitor will also see clickable time chips for each verified open slot — do not invent extra times beyond the tool result.
 
 You have no web search and no OpenAI hosted calendar tools.
 Do not claim that you sent a message, searched the web, or accessed systems other than these controlled tools.`;

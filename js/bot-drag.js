@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="bot-console-scroll">
                 <span id="botConsole" class="bot-console-text text-[11px] font-mono">System online. Hello!</span>
                 <span class="bot-cursor w-1.5 h-3 bg-[#28A530] shadow-[0_0_5px_rgba(40,165,48,0.8)] inline-block ml-0.5 align-middle"></span>
+                <div id="botSlotChips" class="bot-slot-chips" hidden></div>
               </div>
               <div id="botActionBtns" class="absolute hidden flex gap-2 text-[10px] font-mono items-center" style="bottom: 4px; left: 0; right: 0; justify-content: flex-start; padding-left: 12px; padding-top: 2px; padding-bottom: 2px; z-index: 10;">
                 <button id="botBtnYes" data-i18n="bot.contactYes">[ YES ]</button>
@@ -196,6 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button type="button" id="botBookingConfirmBtn" class="w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold shadow-xl shadow-[#6366f1]/20">
                             <span id="botBookingConfirmBtnText">CONFIRM BOOKING</span>
                             <span class="material-symbols-outlined text-[16px] hidden animate-spin" id="botBookingConfirmLoading">sync</span>
+                        </button>
+                        <button type="button" id="botBookingCheckNewTimesBtn" class="hidden w-full h-12 btn-sweep-primary flex items-center justify-center gap-2 rounded-xl text-base font-bold">
+                            CHECK NEW TIMES
                         </button>
                         <button type="button" id="botBookingCancelBtn" class="w-full h-11 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-bold text-gray-700 dark:text-gray-200">CANCEL</button>
                     </div>
@@ -851,6 +855,10 @@ document.addEventListener('DOMContentLoaded', () => {
         talkBtns.forEach((btn) => {
             btn.disabled = busy;
         });
+        const chips = document.querySelectorAll('#botSlotChips .bot-slot-chip');
+        chips.forEach((btn) => {
+            btn.disabled = busy;
+        });
     }
 
     // Explicit project navigation — local allowlist only (no OpenAI / no bot-chat).
@@ -1008,6 +1016,257 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const SLOT_ID_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:00$/;
+
+    function clearSlotChips() {
+        const host = document.getElementById('botSlotChips');
+        if (!host) return;
+        host.innerHTML = '';
+        host.hidden = true;
+        host.setAttribute('aria-hidden', 'true');
+    }
+
+    function slotChipLabel(slot) {
+        const startHm = String(slot.start || '').slice(11, 16);
+        const endHm = String(slot.end || '').slice(11, 16);
+        if (startHm && endHm) return `${startHm}–${endHm}`;
+        const m = String(slot.label || '').match(/(\d{2}:\d{2})\s*[–-]\s*(\d{2}:\d{2})/);
+        if (m) return `${m[1]}–${m[2]}`;
+        return 'slot';
+    }
+
+    /**
+     * Render clickable chips only for slot_ids present in the latest signed calendarSession.offered.
+     * DOM values are never treated as authoritative — click sends slot_id back to the server.
+     */
+    function renderOfferedSlotChips(candidateSlots) {
+        const host = document.getElementById('botSlotChips');
+        if (!host) return;
+        clearSlotChips();
+
+        const offered = calendarSession && Array.isArray(calendarSession.offered)
+            ? calendarSession.offered
+            : [];
+        if (!offered.length) return;
+
+        const offeredById = new Map();
+        offered.forEach((s) => {
+            if (s && typeof s.slot_id === 'string' && SLOT_ID_RE.test(s.slot_id)) {
+                offeredById.set(s.slot_id, s);
+            }
+        });
+
+        const list = Array.isArray(candidateSlots) && candidateSlots.length ? candidateSlots : offered;
+        const seen = new Set();
+        const frag = document.createDocumentFragment();
+
+        list.forEach((raw) => {
+            const id = raw && typeof raw.slot_id === 'string' ? raw.slot_id.trim() : '';
+            if (!SLOT_ID_RE.test(id) || !offeredById.has(id) || seen.has(id)) return;
+            seen.add(id);
+            const slot = offeredById.get(id);
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'bot-slot-chip';
+            btn.dataset.slotId = id;
+            btn.setAttribute('aria-label', `Select available slot ${slotChipLabel(slot)}`);
+            btn.textContent = `[ ${slotChipLabel(slot)} ]`;
+            frag.appendChild(btn);
+        });
+
+        if (!seen.size) return;
+        host.appendChild(frag);
+        host.hidden = false;
+        host.setAttribute('aria-hidden', 'false');
+        host.setAttribute('role', 'group');
+        host.setAttribute('aria-label', 'Available meeting times');
+    }
+
+    function applyCalendarSessionFromResponse(data) {
+        if (data && data.calendar_session === null) {
+            calendarSession = null;
+            return;
+        }
+        if (data && data.calendar_session && typeof data.calendar_session === 'object') {
+            calendarSession = data.calendar_session;
+        }
+    }
+
+    function handleOfferSlotsAction(data) {
+        if (!data || !data.action || data.action.type !== 'offer_slots') return false;
+        renderOfferedSlotChips(data.action.slots);
+        return true;
+    }
+
+    function resetBookingConfirmActions() {
+        const confirmBtn = document.getElementById('botBookingConfirmBtn');
+        const checkNew = document.getElementById('botBookingCheckNewTimesBtn');
+        if (confirmBtn) {
+            confirmBtn.classList.remove('hidden');
+            confirmBtn.disabled = false;
+        }
+        if (checkNew) checkNew.classList.add('hidden');
+        showBookingConfirmError('');
+    }
+
+    function enterSlotBusyConfirmState() {
+        const confirmBtn = document.getElementById('botBookingConfirmBtn');
+        const checkNew = document.getElementById('botBookingCheckNewTimesBtn');
+        if (confirmBtn) {
+            confirmBtn.classList.add('hidden');
+            confirmBtn.disabled = true;
+        }
+        if (checkNew) checkNew.classList.remove('hidden');
+        showBookingConfirmError(
+            'That time has just become unavailable. Please check current availability again.'
+        );
+    }
+
+    function clearStaleBookingSelectionState() {
+        pendingBookingDetails = null;
+        pendingBookingSlot = null;
+        modalPhaseBMode = false;
+        bookingConfirmInFlight = false;
+        clearBotBookingHiddenFields();
+        hideBookingIntentButtons();
+        clearSlotChips();
+    }
+
+    function hintDateFromCalendarSession() {
+        if (calendarSession && calendarSession.selected && calendarSession.selected.start) {
+            return String(calendarSession.selected.start).slice(0, 10);
+        }
+        if (
+            calendarSession &&
+            Array.isArray(calendarSession.offered) &&
+            calendarSession.offered[0] &&
+            calendarSession.offered[0].start
+        ) {
+            return String(calendarSession.offered[0].start).slice(0, 10);
+        }
+        return '';
+    }
+
+    /**
+     * Chip click / select_slot_id — Phase B selection without OpenAI.
+     */
+    async function selectVerifiedSlotById(slotId) {
+        const id = typeof slotId === 'string' ? slotId.trim() : '';
+        if (!SLOT_ID_RE.test(id) || isChatBusy) return;
+        if (!calendarSession || !Array.isArray(calendarSession.offered)) return;
+        const allowed = calendarSession.offered.some((s) => s && s.slot_id === id);
+        if (!allowed) return;
+
+        if (!isChatPanelOpen) openChatPanel();
+        setChatBusy(true);
+        wakeUp();
+        clearSlotChips();
+        typeWriter('…', botConsole);
+
+        try {
+            const payload = {
+                select_slot_id: id,
+                skin: currentBotSkin(),
+                history: chatHistory.slice(-8),
+                calendar_session: calendarSession,
+            };
+            const res = await fetch(BOT_CHAT_URL, {
+                method: 'POST',
+                headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data || typeof data.reply !== 'string' || !data.reply.trim()) {
+                throw new Error((data && data.error) || 'select_failed');
+            }
+            const reply = data.reply.trim();
+            pushChatHistory(`(selected slot ${id})`, reply);
+            applyCalendarSessionFromResponse(data);
+
+            if (
+                data.action &&
+                data.action.type === 'booking_intent_prompt' &&
+                data.action.selected_slot &&
+                typeof data.action.selected_slot === 'object'
+            ) {
+                pendingBookingSlot = data.action.selected_slot;
+                typeWriter(reply, botConsole, () => {
+                    showBookingIntentButtons();
+                    setChatBusy(false);
+                });
+                return;
+            }
+
+            typeWriter(reply, botConsole, () => {
+                handleOfferSlotsAction(data);
+                setChatBusy(false);
+            });
+        } catch (_) {
+            typeWriter(
+                'I could not lock that slot selection. Please ask me to check availability again.',
+                botConsole
+            );
+            setChatBusy(false);
+        }
+    }
+
+    /**
+     * Race-condition recovery: fresh Google FreeBusy — no retry of stale booking, no OpenAI times.
+     */
+    async function checkNewTimesAfterConflict() {
+        if (isChatBusy || bookingConfirmInFlight) return;
+
+        const fromDate = hintDateFromCalendarSession();
+        // Clear stale confirm state before refresh (do not retry booking).
+        clearStaleBookingSelectionState();
+        resetBookingConfirmActions();
+        closeBotContactModal();
+
+        if (!isChatPanelOpen) openChatPanel();
+        setChatBusy(true);
+        wakeUp();
+        typeWriter('…', botConsole);
+
+        try {
+            const refresh =
+                fromDate && /^\d{4}-\d{2}-\d{2}$/.test(fromDate)
+                    ? { from_date: fromDate, to_date: fromDate, day_part: 'any' }
+                    : true;
+            const payload = {
+                refresh_availability: refresh,
+                skin: currentBotSkin(),
+                history: chatHistory.slice(-8),
+            };
+            if (calendarSession) payload.calendar_session = calendarSession;
+
+            const res = await fetch(BOT_CHAT_URL, {
+                method: 'POST',
+                headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data || typeof data.reply !== 'string' || !data.reply.trim()) {
+                throw new Error((data && data.error) || 'refresh_failed');
+            }
+            const reply = data.reply.trim();
+            pushChatHistory('(check new times)', reply);
+            applyCalendarSessionFromResponse(data);
+
+            typeWriter(reply, botConsole, () => {
+                handleOfferSlotsAction(data);
+                setChatBusy(false);
+            });
+        } catch (_) {
+            typeWriter(
+                'I could not refresh László’s calendar just now. Please try asking for availability again.',
+                botConsole
+            );
+            setChatBusy(false);
+        }
+    }
+
     async function sendBotChat(userText) {
         const text = (userText || '').trim();
         if (!text || isChatBusy) return;
@@ -1016,6 +1275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setChatBusy(true);
         wakeUp();
         if (chatInput) chatInput.value = '';
+        clearSlotChips();
 
         // Explicit nav: canned reply + allowlisted navigation. Never call OpenAI.
         const localNav = resolveLocalBotNav(text);
@@ -1053,9 +1313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const reply = data.reply.trim();
             pushChatHistory(text, reply);
 
-            if (data.calendar_session && typeof data.calendar_session === 'object') {
-                calendarSession = data.calendar_session;
-            }
+            applyCalendarSessionFromResponse(data);
 
             // Server may still return navigate action; only follow allowlisted relative paths.
             const navPath =
@@ -1082,6 +1340,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 typeof data.action.selected_slot === 'object'
             ) {
                 pendingBookingSlot = data.action.selected_slot;
+                clearSlotChips();
                 typeWriter(reply, botConsole, () => {
                     showBookingIntentButtons();
                     setChatBusy(false);
@@ -1089,8 +1348,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            typeWriter(reply, botConsole);
-            setChatBusy(false);
+            typeWriter(reply, botConsole, () => {
+                handleOfferSlotsAction(data);
+                setChatBusy(false);
+            });
         } catch (_) {
             const fallback = getNextJoke();
             playBotAudio(jokeAudioMapping[fallback]);
@@ -1176,6 +1437,7 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmErr.textContent = '';
             confirmErr.classList.add('hidden');
         }
+        resetBookingConfirmActions();
         const successDetails = document.getElementById('botBookingSuccessDetails');
         if (successDetails) {
             successDetails.textContent = '';
@@ -1338,6 +1600,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     confirmErr.textContent = '';
                     confirmErr.classList.add('hidden');
                 }
+                resetBookingConfirmActions();
                 // Stay in the page-level overlay modal — do not move confirmation into the bot chat panel.
                 if (confirmPanel) {
                     confirmPanel.classList.remove('hidden');
@@ -1502,11 +1765,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const code = (data && data.error) || 'unavailable';
             if (code === 'slot_busy' || res.status === 409) {
-                showBookingConfirmError(
-                    'That time has just become unavailable. Please check current availability again.'
-                );
+                enterSlotBusyConfirmState();
                 typeWriter(
-                    'That time has just become unavailable. Ask me to check László’s availability again for another slot.',
+                    'That time has just become unavailable. Use CHECK NEW TIMES in the dialog to load current open slots.',
                     botConsole
                 );
             } else if (code === 'session_expired' || code === 'session_invalid') {
@@ -1538,6 +1799,14 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmBotCalendarBooking();
         });
     }
+    const bookingCheckNewTimesBtn = document.getElementById('botBookingCheckNewTimesBtn');
+    if (bookingCheckNewTimesBtn) {
+        bookingCheckNewTimesBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            checkNewTimesAfterConflict();
+        });
+    }
     const bookingCancelBtn = document.getElementById('botBookingCancelBtn');
     if (bookingCancelBtn) {
         bookingCancelBtn.addEventListener('click', (e) => {
@@ -1553,11 +1822,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (form) form.classList.remove('hidden');
             const titleEl = document.querySelector('#botContactModal [data-i18n="bot.modalTitle"]');
             if (titleEl) titleEl.textContent = 'Meeting details';
-            showBookingConfirmError('');
+            resetBookingConfirmActions();
             typeWriter(
                 'Cancelled — nothing was booked. You can edit the details in the dialog or close it.',
                 botConsole
             );
+        });
+    }
+
+    const slotChipsHost = document.getElementById('botSlotChips');
+    if (slotChipsHost) {
+        slotChipsHost.addEventListener('click', (e) => {
+            const chip = e.target.closest('.bot-slot-chip');
+            if (!chip || !slotChipsHost.contains(chip)) return;
+            e.preventDefault();
+            e.stopPropagation();
+            if (isChatBusy) return;
+            selectVerifiedSlotById(chip.dataset.slotId);
+        });
+        slotChipsHost.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const chip = e.target.closest('.bot-slot-chip');
+            if (!chip || !slotChipsHost.contains(chip)) return;
+            e.preventDefault();
+            if (isChatBusy) return;
+            selectVerifiedSlotById(chip.dataset.slotId);
         });
     }
 
