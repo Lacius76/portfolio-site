@@ -555,7 +555,8 @@
     "about": {
       "heroTitle": "About Me",
       "heroHeadline": "What if complex systems could feel simple?",
-      "heroDescription": "That is my approach. I'm László Földváry, a Senior Product Designer & Design Engineer based near Vienna. From early touchscreen interfaces to gaming, industrial systems, fintech concepts, and AI-assisted prototypes, I turn complex technology into clear, usable digital products.",
+      "heroDescriptionLead": "I don't start with a tool. I start with a problem — then design the solution around it.",
+      "heroDescription": "I'm László Földváry, a Senior Product Designer & Design Engineer based near Vienna. From early touchscreen interfaces to gaming, industrial systems, fintech concepts, and AI-assisted prototypes, I turn complex technology into clear, usable digital products.",
       "statLegacy": "Years Product & UX Experience",
       "statProjects": "Products & Interfaces",
       "originTitle": "The Story Behind My Work",
@@ -1327,7 +1328,8 @@
     "about": {
       "heroTitle": "Über Mich",
       "heroHeadline": "Was wäre, wenn sich komplexe Systeme einfach anfühlen würden?",
-      "heroDescription": "Genau das ist mein Ansatz. Ich bin László Földváry, Senior Product Designer & Design Engineer nahe Wien. Von frühen Touchscreen-Interfaces über Gaming und industrielle Systeme bis hin zu Fintech-Konzepten und KI-gestützten Prototypen verwandle ich komplexe Technologie in klare, nutzbare digitale Produkte.",
+      "heroDescriptionLead": "Ich beginne nicht mit einem Tool. Ich beginne mit einem Problem – und entwickle daraus die passende Lösung.",
+      "heroDescription": "Ich bin László Földváry, Senior Product Designer & Design Engineer aus dem Raum Wien. Von frühen Touchscreen-Interfaces über Gaming und industrielle Systeme bis hin zu Fintech-Konzepten und KI-gestützten Prototypen verwandle ich komplexe Technologien in klare, intuitive und nutzerfreundliche digitale Produkte.",
       "statLegacy": "Jahre Produkt- & UX-Erfahrung",
       "statProjects": "digitale Produkte & Interfaces",
       "originTitle": "Die Geschichte hinter meiner Arbeit",
