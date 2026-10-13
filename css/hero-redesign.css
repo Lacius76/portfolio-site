@@ -123,7 +123,9 @@
 .site-logo-link {
   display: flex;
   align-items: stretch;
-  height: 100%;
+  /* Cover .site-header border-bottom so no 1px gap under the mark */
+  height: calc(100% + 1px);
+  margin-bottom: -1px;
   text-decoration: none;
 }
 
@@ -132,7 +134,7 @@
   align-items: center;
   justify-content: center;
   width: 4rem;
-  height: 4rem;
+  height: 100%;
   border-radius: 0;
   background: #6366f1;
   color: #ffffff;
@@ -379,6 +381,7 @@
 
 .hero-split-brand .site-logo-link {
   height: 4rem;
+  margin-bottom: 0;
 }
 
 .hero-split-nav {
