@@ -21,6 +21,20 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
+    <script type="text/javascript">
+    (function(c, l, a, r, i, t, y) {
+      c[a] = c[a] || function() {
+        (c[a].q = c[a].q || []).push(arguments);
+      };
+    
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+    
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "yx7gxmvpe2");
+    </script>
     <style>
         body {
             font-family: "Asul", serif;
@@ -341,45 +355,44 @@
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
             // Mobile Menu Control
-      document.addEventListener("DOMContentLoaded", () => {
-        // Active page highlight in mobile dropdown
-        const currentPath = 'datenschutz';
-        const dropdownLinks = document.querySelectorAll('#mobile-work-dropdown-content a');
-        dropdownLinks.forEach(link => {
-            if (link.getAttribute('href').replace('.html', '') === currentPath) {
-                link.style.fontSize = '1.25rem';
-                link.style.fontWeight = '700';
-                link.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+            // Active page highlight in mobile dropdown
+            const currentPath = 'datenschutz';
+            const dropdownLinks = document.querySelectorAll('#mobile-work-dropdown-content a');
+            dropdownLinks.forEach(link => {
+                if (link.getAttribute('href').replace('.html', '') === currentPath) {
+                    link.style.fontSize = '1.25rem';
+                    link.style.fontWeight = '700';
+                    link.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                }
+            });
+
+            const menuBtn = document.getElementById('menu-button');
+            const closeBtn = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const workToggle = document.getElementById('mobile-work-toggle');
+            const workDropdown = document.getElementById('mobile-work-dropdown');
+            const workChevron = document.getElementById('mobile-work-chevron');
+
+            function toggleWorkStyles(isOpen) {
+                const wrapper = document.getElementById('mobile-work-wrapper');
+                if (wrapper) {
+                    wrapper.classList.toggle('is-active', isOpen);
+                }
             }
-        });
 
-        const menuBtn = document.getElementById('menu-button');
-        const closeBtn = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const workToggle = document.getElementById('mobile-work-toggle');
-        const workDropdown = document.getElementById('mobile-work-dropdown');
-        const workChevron = document.getElementById('mobile-work-chevron');
+            function closeMobileMenu() {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // reset dropdown
+                if (workDropdown) {
+                    workDropdown.style.maxHeight = '0px';
+                    workChevron.style.transform = 'rotate(0deg)';
+                    toggleWorkStyles(false);
+                }
+            }
 
-        function toggleWorkStyles(isOpen) {
-          const wrapper = document.getElementById('mobile-work-wrapper');
-          if (wrapper) {
-            wrapper.classList.toggle('is-active', isOpen);
-          }
-        }
-
-        function closeMobileMenu() {
-          mobileMenu.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-          // reset dropdown
-          if (workDropdown) {
-            workDropdown.style.maxHeight = '0px';
-            workChevron.style.transform = 'rotate(0deg)';
-            toggleWorkStyles(false);
-          }
-        }
-
-        if (menuBtn && closeBtn && mobileMenu) {
-          menuBtn.addEventListener('click', () => {
+            if (menuBtn && closeBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
                     mobileMenu.classList.remove('hidden');
                     document.body.style.overflow = 'hidden';
                     if (workDropdown) {
@@ -397,32 +410,32 @@
                     }
                 });
 
-          closeBtn.addEventListener('click', closeMobileMenu);
+                closeBtn.addEventListener('click', closeMobileMenu);
 
-          // Work dropdown toggle
-          if (workToggle && workDropdown) {
-            workToggle.addEventListener('click', () => {
-              const isOpen = workDropdown.style.maxHeight && workDropdown.style.maxHeight !== '0px';
-              if (isOpen) {
-                workDropdown.style.maxHeight = '0px';
-                workChevron.style.transform = 'rotate(0deg)';
-                toggleWorkStyles(false);
-              } else {
-                workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
-                workChevron.style.transform = 'rotate(180deg)';
-                toggleWorkStyles(true);
-              }
-            });
-          }
+                // Work dropdown toggle
+                if (workToggle && workDropdown) {
+                    workToggle.addEventListener('click', () => {
+                        const isOpen = workDropdown.style.maxHeight && workDropdown.style.maxHeight !== '0px';
+                        if (isOpen) {
+                            workDropdown.style.maxHeight = '0px';
+                            workChevron.style.transform = 'rotate(0deg)';
+                            toggleWorkStyles(false);
+                        } else {
+                            workDropdown.style.maxHeight = workDropdown.scrollHeight + 'px';
+                            workChevron.style.transform = 'rotate(180deg)';
+                            toggleWorkStyles(true);
+                        }
+                    });
+                }
 
-          // Close menu on any nav link click
-          mobileMenu.querySelectorAll('a').forEach(link => {
-            if(link.id !== 'mobile-work-link') {
-              link.addEventListener('click', closeMobileMenu);
+                // Close menu on any nav link click
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    if (link.id !== 'mobile-work-link') {
+                        link.addEventListener('click', closeMobileMenu);
+                    }
+                });
             }
-          });
-        }
-      });
+        });
     </script>
     <script src="js/theme.js"></script>
     <script src="js/language.js"></script>
